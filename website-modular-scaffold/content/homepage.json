@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "title": "AI 搜尋能見度健檢｜一鍵教會你如何提升你的網站被 AI 看見的機率。",
+    "description": "免費 SEO/GEO 健檢工具。輸入網址，檢查你的網站在 Google 與 AI 搜尋中的能見度，找出 AI 眼中定位、技術 SEO、內容可引用性與優先修正方向。"
+  },
+  "navigation": {
+    "logo": "GEOCheck",
+    "links": [
+      { "label": "健檢功能", "href": "#modules" },
+      { "label": "報告範例", "href": "#sample-report" },
+      { "label": "方法論", "href": "#methodology" },
+      { "label": "服務方案", "href": "#services" },
+      { "label": "學習資源", "href": "#resources" }
+    ],
+    "cta": { "label": "免費健檢", "href": "#audit" }
+  },
+  "hero": {
+    "eyebrow": "SEO/GEO Website Audit",
+    "title": "你現在的網站，AI 看得見嗎？",
+    "subtitle": "輸入網址，檢查你的網站在 Google 與 AI 搜尋中的能見度，找出 AI 眼中定位、技術 SEO、內容可引用性與優先修正方向。",
+    "primaryCta": { "label": "開始免費健檢", "href": "#audit" },
+    "secondaryCta": { "label": "查看範例報告", "href": "#sample-report" },
+    "trustText": "免費・無需註冊・約 60 秒產出初步報告"
+  },
+  "painPoints": {
+    "eyebrow": "為什麼需要 GEO 健檢",
+    "title": "被 Google 收錄，不代表會出現在 AI 答案裡",
+    "subtitle": "AI 搜尋不只看你的網站是否存在，也在判斷你是誰、服務誰、能不能清楚回答使用者問題。定位模糊、內容不可引用或技術訊號不足，都可能讓你在高意圖問題中輸給競品。",
+    "items": [
+      {
+        "title": "AI 不知道你是誰",
+        "body": "當使用者問「哪個工具適合我？」或「有哪些推薦服務？」時，AI 可能無法判斷你的網站屬於哪個品類、服務哪些受眾、解決什麼問題。結果是競品被列入答案，而你缺席。"
+      },
+      {
+        "title": "技術 SEO 沒壞，不代表內容容易被引用",
+        "body": "你的網站可能有 title、meta、sitemap，也能正常被收錄，但頁面內容如果缺少清楚定義、FAQ、數據、案例與可信來源，AI 仍然很難把它摘錄成答案。"
+      },
+      {
+        "title": "AI 可能誤解你的定位",
+        "body": "你以為自己在和 A 類競品競爭，但 AI 可能把你放進完全不同的品類，或只把你理解成泛用服務。定位訊號不清楚，會讓後續內容策略與競品分析全部偏掉。"
+      }
+    ]
+  },
+  "howItWorks": {
+    "eyebrow": "健檢如何運作",
+    "title": "不是只跑分，而是先確認 AI 如何理解你的網站",
+    "subtitle": "輸入網址後，系統會先讀取網站的公開資訊，判斷搜尋引擎與 AI 可能如何理解你的品牌、服務與內容結構。接著再檢查技術 SEO、內容可引用性與 AI 搜尋能見度，最後整理出最值得優先修正的方向。",
+    "steps": [
+      {
+        "title": "讀取網站公開資訊",
+        "body": "檢查首頁、metadata、heading、schema、robots.txt、sitemap 與 llms.txt，了解搜尋引擎能否順利讀取你的網站。",
+        "outcome": "得到網站基礎可讀性與技術訊號的初步檢查結果。"
+      },
+      {
+        "title": "分析 AI 眼中定位",
+        "body": "根據網站內容判斷：你屬於什麼品類、服務哪些受眾、解決什麼問題，以及是否容易被 AI 誤解。",
+        "outcome": "了解 AI / search 可能如何理解你的網站。"
+      },
+      {
+        "title": "檢查 SEO/GEO 基礎訊號",
+        "body": "檢查 title、meta description、H1、結構化資料、內容段落、FAQ、可引用證據等問題。",
+        "outcome": "找出影響搜尋收錄、內容理解與 AI 可引用性的具體問題。"
+      },
+      {
+        "title": "生成 AI 搜尋測試問題",
+        "body": "根據網站定位，產生使用者可能會問 AI 的問題，例如「如何選擇...」、「有哪些推薦...」。",
+        "outcome": "得到更接近真實搜尋情境的 GEO 測試問題。"
+      },
+      {
+        "title": "彙整優先修正方向",
+        "body": "把問題整理成 P1-P3 優先級，判斷應該先修技術結構、內容可引用性，還是品牌定位訊號。",
+        "outcome": "得到三個最值得優先處理的方向。"
+      }
+    ],
+    "disclaimer": "這是一份初步健檢，不等於完整 SEO audit。AI 搜尋結果可能受到時間、地區、模型版本與搜尋環境影響，因此報告會標示資料限制與信心等級。若需要完整優化，仍建議結合 Search Console、網站後台數據、競品研究與人工顧問判讀。"
+  },
+  "auditModules": {
+    "eyebrow": "健檢內容",
+    "title": "五大模組，完整診斷你的 AI 搜尋能見度",
+    "subtitle": "不只是技術掃描。這份健檢會先確認 AI 如何理解你的網站，再檢查 SEO 基礎、內容可引用性與最值得優先修正的機會。",
+    "items": [
+      {
+        "name": "AI 眼中定位",
+        "label": "AI POSITIONING",
+        "body": "先確認 AI 與搜尋引擎目前怎麼理解你的網站：你屬於什麼品類、服務哪些受眾、解決什麼問題，以及和哪些競品同場出現。",
+        "checks": ["品類辨識", "受眾理解", "核心服務", "使用情境", "競品共現", "定位一致性"]
+      },
+      {
+        "name": "技術 SEO 健檢",
+        "label": "TECHNICAL SEO",
+        "body": "檢查搜尋引擎與 AI 是否能順利讀取網站基礎訊號，包含 title、meta、heading、canonical、schema、robots.txt、sitemap 與 llms.txt。",
+        "checks": ["title", "meta description", "H1", "canonical", "robots.txt", "sitemap.xml", "structured data", "llms.txt"]
+      },
+      {
+        "name": "內容可引用性",
+        "label": "CONTENT CITEABILITY",
+        "body": "判斷網站內容是否容易被 AI 摘錄、引用與轉述。AI 需要清楚定義、具體證據與可獨立回答問題的內容，而不只是漂亮的行銷文案。",
+        "checks": ["定義型段落", "FAQ", "具體數據", "案例與佐證", "作者與更新日期", "比較表"]
+      },
+      {
+        "name": "GEO 能見度測試",
+        "label": "GEO VISIBILITY",
+        "body": "依據網站定位與產業情境，生成 5-8 題使用者可能會問 AI 的問題，觀察品牌是否出現、是否被引用，以及哪些競品在同樣問題中被提到。",
+        "checks": ["產業問題生成", "品牌是否出現", "是否被引用", "競品出現紀錄", "信心等級"]
+      },
+      {
+        "name": "優先修正方向",
+        "label": "OPPORTUNITY SUMMARY",
+        "body": "報告最後會把問題整理成三個最高優先級的修正方向，讓你知道應該先處理技術結構、內容可引用性，還是品牌定位訊號。",
+        "checks": ["P1-P3 優先級", "目標頁面", "問題依據", "建議方向", "預期影響"]
+      }
+    ]
+  },
+  "methodology": {
+    "eyebrow": "方法論",
+    "title": "用透明的方法，檢查 AI 是否真的理解你的網站",
+    "body": "這套健檢流程由獨立 SEO/GEO 研究者設計，目標是把網站健檢流程產品化。自動化工具負責收集公開資料與整理初步訊號，最終優化方向仍以人工判讀、搜尋意圖與實際商業情境為準。",
+    "principles": [
+      {
+        "title": "先看定位，再看競品",
+        "body": "競品不只來自業主自認的名單，也來自 AI 與搜尋結果實際把誰放在同一個答案場景中。"
+      },
+      {
+        "title": "SEO 基礎仍然重要",
+        "body": "GEO 不是取代 SEO。AI 搜尋通常仍依賴可被搜尋引擎讀取、理解與信任的內容。"
+      },
+      {
+        "title": "不承諾保證引用",
+        "body": "AI 搜尋結果會受到模型、時間、地區、搜尋環境與資料來源影響，因此健檢會標示限制與信心等級。"
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "服務方案",
+    "title": "發現問題之後，我們幫你把它修成可執行的優化方案",
+    "subtitle": "免費報告讓你看見問題；顧問服務則協助你判斷優先級、補齊內容與技術訊號，讓網站更容易被搜尋引擎理解、被 AI 正確引用。",
+    "items": [
+      {
+        "title": "GEO 優化服務",
+        "bestFor": ["AI 搜尋常推薦競品，但沒有推薦你", "網站有內容，但 AI 無法清楚理解你的定位", "想提升品牌在 AI 搜尋中的出現機會"],
+        "includes": ["AI 眼中定位診斷", "競品敘事分析", "內容可引用性優化", "FAQ / comparison / evidence page 規劃", "schema 與品牌實體訊號建議"],
+        "cta": "預約 GEO 診斷"
+      },
+      {
+        "title": "SEO 顧問服務",
+        "bestFor": ["想建立長期自然搜尋流量", "不知道該先做內容、技術還是網站架構", "需要 Search Console 數據解讀"],
+        "includes": ["SEO 策略規劃", "關鍵字與搜尋意圖分析", "網站架構建議", "內容主題地圖", "優先級與執行路線圖"],
+        "cta": "預約 SEO 諮詢"
+      },
+      {
+        "title": "技術 SEO 健檢",
+        "bestFor": ["網站改版前後", "收錄或流量異常", "想檢查 indexability、schema、canonical、sitemap、內部連結"],
+        "includes": ["Indexability 檢查", "robots.txt / sitemap / canonical 檢查", "schema 建議", "內部連結與頁面層級檢查", "技術問題優先級排序"],
+        "cta": "預約技術健檢"
+      }
+    ]
+  },
+  "resources": {
+    "eyebrow": "學習資源",
+    "title": "先搞懂 GEO，再開始優化",
+    "subtitle": "AI 搜尋優化不是單一技巧，而是一組結合 SEO 基礎、內容可引用性、品牌實體與搜尋意圖的工作方法。",
+    "items": [
+      {
+        "title": "GEO 是什麼？和 SEO 有什麼不同？",
+        "summary": "GEO 的目標是讓品牌與內容更容易被生成式 AI 搜尋理解、引用與推薦。它不是取代 SEO，而是建立在搜尋引擎可讀、可信的內容基礎上。",
+        "href": "/resources/what-is-geo"
+      },
+      {
+        "title": "AI 搜尋能見度是什麼？",
+        "summary": "AI 搜尋能見度指的是當使用者向 AI 詢問與你產業相關的問題時，你的品牌是否被提及、引用或作為推薦選項出現。",
+        "href": "/resources/ai-search-visibility"
+      },
+      {
+        "title": "為什麼 ChatGPT 沒有提到我的品牌？",
+        "summary": "常見原因包含品牌定位不清楚、缺少可引用內容、第三方佐證不足，或競品內容更完整。",
+        "href": "/resources/why-ai-does-not-mention-my-brand"
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "想知道 AI 眼中的你的網站是什麼樣子？",
+    "subtitle": "輸入網址，取得一份初步 SEO/GEO 健檢報告，了解你的網站是否被搜尋引擎與 AI 正確理解。",
+    "primaryCta": { "label": "開始免費健檢", "href": "#audit" },
+    "secondaryText": "看完報告後不確定該怎麼修，也可以留下聯絡方式預約診斷。"
+  }
+}

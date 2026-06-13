@@ -1,0 +1,12 @@
+{
+  "name": "seo-geo-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SEO/GEO checker prototype and mock API.",
+  "scripts": {
+    "mock-api": "node mock-api/server.js"
+  },
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

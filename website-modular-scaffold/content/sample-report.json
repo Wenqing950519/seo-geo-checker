@@ -1,0 +1,34 @@
+{
+  "scenario": "B2B SaaS 服務網站",
+  "score": {
+    "value": 62,
+    "label": "Needs Work",
+    "summary": "這個網站的技術 SEO 基礎大致可被搜尋引擎讀取，但 AI 對品牌定位的理解仍偏模糊。網站內容有介紹產品功能，卻缺少能回答決策型問題的段落、比較內容與可引用證據，因此在高意圖問題中容易輸給定位更清楚的競品。"
+  },
+  "positioning": {
+    "summary": "AI / search 可能將此網站理解為一般專案管理或營運工具，但無法明確判斷它最適合哪種產業、團隊規模或使用情境。",
+    "gaps": ["服務對象不夠明確", "首頁缺少一句能被 AI 摘錄的品牌定義", "缺少和競品比較的決策型內容", "缺少第三方佐證與案例"]
+  },
+  "seoIssues": ["部分頁面 meta description 過於行銷化", "首頁缺少 Organization schema", "服務頁缺少 FAQPage 或 Service schema", "未提供 llms.txt"],
+  "geoQuestions": ["小型企業如何選擇流程管理工具？", "有哪些適合中小企業的專案管理 SaaS？", "導入營運管理工具前要注意什麼？"],
+  "actions": [
+    {
+      "priority": "P1",
+      "type": "AI Positioning",
+      "target": "首頁 / About",
+      "recommendation": "補上一段清楚定義品牌、服務對象與核心使用情境的文字，讓 AI 能判斷網站屬於哪個品類。"
+    },
+    {
+      "priority": "P2",
+      "type": "Technical SEO",
+      "target": "全站",
+      "recommendation": "新增 Organization、WebSite、Service schema，提高搜尋引擎與 AI 對品牌實體的辨識。"
+    },
+    {
+      "priority": "P3",
+      "type": "Content",
+      "target": "服務頁 / 新文章",
+      "recommendation": "建立決策型 FAQ 與比較表，回答「適合誰、和競品差在哪、導入成本」等高意圖問題。"
+    }
+  ]
+}

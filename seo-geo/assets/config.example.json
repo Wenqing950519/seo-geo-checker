@@ -1,0 +1,58 @@
+{
+  "site": {
+    "name": "",
+    "base_url": "https://example.com",
+    "sitemap_url": "https://example.com/sitemap.xml"
+  },
+  "competitors": [],
+  "language": "zh-TW",
+  "positioning": {
+    "queries": [
+      "What is {brand}?",
+      "What does {brand} do?",
+      "{brand} alternatives",
+      "best {category} tools",
+      "top {category} platforms for {audience}",
+      "how to solve {problem}",
+      "{category} software comparison",
+      "{brand} review"
+    ],
+    "max_queries": 15,
+    "refresh_days": 30
+  },
+  "audit": {
+    "max_pages": 30,
+    "priority_paths": ["/"],
+    "exclude_patterns": ["/tag/", "/page/"]
+  },
+  "geo": {
+    "questions_file": "questions.json",
+    "runs_per_question": 3,
+    "track_competitors": true,
+    "providers": ["chatgpt", "perplexity", "gemini"],
+    "allow_source_visibility_proxy": true
+  },
+  "content_brief": {
+    "gsc_source": "csv",
+    "min_impressions": 200,
+    "position_range": [5, 15],
+    "max_briefs_per_run": 5
+  },
+  "scoring": {
+    "weights": {
+      "business_value": 0.30,
+      "ai_visibility_gap": 0.20,
+      "conversion_intent": 0.20,
+      "evidence_strength": 0.15,
+      "existing_authority": 0.10,
+      "content_cost": -0.05
+    }
+  },
+  "report": {
+    "frequency": "weekly",
+    "telegram": {
+      "enabled": false,
+      "chat_id": ""
+    }
+  }
+}

@@ -1,0 +1,5 @@
+.env
+mock-api/.env
+*.log
+node_modules/
+

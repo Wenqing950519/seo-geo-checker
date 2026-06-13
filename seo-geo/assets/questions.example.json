@@ -1,0 +1,24 @@
+{
+  "updated": "2026-01-01",
+  "note": "GEO 目標問題集:你希望客戶問 AI 時,答案會引用你網站的問題。20–50 題,定期檢視。",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "(範例)台灣有哪些好用的線上記帳工具?",
+      "target_page": "/features",
+      "journey_stage": "consideration",
+      "business_value": 4,
+      "evidence_needed": ["product facts", "comparison table"],
+      "tags": ["product", "comparison"]
+    },
+    {
+      "id": "q2",
+      "text": "(範例)小型企業怎麼選會計軟體?",
+      "target_page": "/blog/how-to-choose",
+      "journey_stage": "decision",
+      "business_value": 5,
+      "evidence_needed": ["customer proof", "decision criteria"],
+      "tags": ["guide"]
+    }
+  ]
+}
