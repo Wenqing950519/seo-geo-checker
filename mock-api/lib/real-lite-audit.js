@@ -340,6 +340,14 @@ function collectScoringSignals({ siteUrl, homepage, searchContext }) {
   const rootHost = host.replace(/^www\./, "");
   const webResults = ensureArray(searchContext?.web?.results);
   const targetRank = webResults.findIndex((result) => hostnameFromUrl(result.url).replace(/^www\./, "") === rootHost) + 1;
+  const pageText = String(homepage?.text || "").toLowerCase();
+  const geoSignals = {
+    faq: /faq|q&a|常見問題|問答|問題/.test(pageText),
+    cases: /case study|案例|客戶|成功|成果|實績/.test(pageText),
+    comparisons: /比較|vs\.?|替代|競品|方案/.test(pageText),
+    proof: /數據|研究|報告|白皮書|引用|來源|證明/.test(pageText),
+    serviceClarity: /服務|方案|價格|收費|流程|適合|對象/.test(pageText)
+  };
 
   return {
     host: rootHost,
@@ -352,34 +360,46 @@ function collectScoringSignals({ siteUrl, homepage, searchContext }) {
     searchEnabled: Boolean(searchContext && searchContext.enabled !== false),
     webResultCount: webResults.length,
     targetRank,
+    geoSignalCount: Object.values(geoSignals).filter(Boolean).length,
+    geoSignals,
     highAuthorityHost: isKnownHighAuthorityHost(rootHost)
   };
 }
 
 function computeObjectiveScore(signals) {
-  let score = 20;
+  let score = 25;
 
-  if (signals.fetched) score += 12;
-  if (signals.title) score += 10;
-  if (signals.description) score += 8;
-  if (signals.h1) score += 8;
-  if (signals.jsonLd) score += 8;
-  if (signals.textLength >= 500) score += 8;
-  if (signals.textLength >= 2000) score += 6;
-  if (signals.searchEnabled) score += 4;
-  if (signals.webResultCount > 0) score += 10;
-  if (signals.targetRank > 0 && signals.targetRank <= 3) score += 10;
-  else if (signals.targetRank > 0 && signals.targetRank <= 10) score += 6;
-  if (signals.highAuthorityHost) score += 16;
+  if (signals.fetched) score += 8;
+  if (signals.title) score += 8;
+  if (signals.description) score += 6;
+  if (signals.h1) score += 6;
+  if (signals.jsonLd) score += 6;
+  if (signals.textLength >= 500) score += 5;
+  if (signals.textLength >= 2000) score += 5;
+  if (signals.searchEnabled) score += 2;
+  if (signals.webResultCount >= 5) score += 8;
+  else if (signals.webResultCount >= 2) score += 5;
+  else if (signals.webResultCount === 1) score += 2;
+  if (signals.targetRank > 0 && signals.targetRank <= 3) score += 5;
+  else if (signals.targetRank > 0 && signals.targetRank <= 10) score += 3;
+  score += Math.min(16, signals.geoSignalCount * 4);
+  if (signals.highAuthorityHost) score += 18;
 
-  const cap = signals.highAuthorityHost ? 92 : 100;
+  let cap = signals.highAuthorityHost ? 92 : 82;
+  if (!signals.highAuthorityHost) {
+    if (signals.webResultCount < 3) cap = Math.min(cap, 74);
+    if (signals.geoSignalCount < 2) cap = Math.min(cap, 76);
+    if (signals.textLength < 2000) cap = Math.min(cap, 76);
+  }
   return Math.round(Math.max(0, Math.min(cap, score)));
 }
 
 function chooseCalibratedScore({ modelScore, objectiveScore, signals }) {
   if (!signals.fetched) return Math.min(modelScore, 45);
-  if (objectiveScore >= 82) return Math.max(modelScore, objectiveScore);
-  return Math.round((modelScore * 0.55) + (objectiveScore * 0.45));
+  if (signals.highAuthorityHost && objectiveScore >= 85) return Math.max(modelScore, objectiveScore);
+  const blended = Math.round((modelScore * 0.65) + (objectiveScore * 0.35));
+  if (!signals.highAuthorityHost && signals.webResultCount < 3) return Math.min(blended, 74);
+  return blended;
 }
 
 function buildScoringBasisZh({ modelScore, objectiveScore, signals }) {
@@ -392,6 +412,7 @@ function buildScoringBasisZh({ modelScore, objectiveScore, signals }) {
   if (signals.textLength >= 500) parts.push("可讀內容量足夠");
   if (signals.webResultCount > 0) parts.push(`Brave 搜尋找到 ${signals.webResultCount} 筆結果`);
   if (signals.targetRank > 0) parts.push(`目標網域出現在搜尋第 ${signals.targetRank} 筆`);
+  if (signals.geoSignalCount > 0) parts.push(`GEO 可引用內容訊號 ${signals.geoSignalCount} 項`);
   if (signals.highAuthorityHost) parts.push("屬於高權威公開網域");
 
   return `模型原始分 ${modelScore}，客觀訊號分 ${objectiveScore}；${parts.join("、") || "可用訊號不足"}。`;
