@@ -21,6 +21,7 @@ const PORT = Number(process.env.PORT || 8787);
 const jobs = new Map();
 const reports = new Map();
 const leads = [];
+const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
 
 function sendJson(res, status, data) {
   const body = JSON.stringify(data, null, 2);
@@ -199,7 +200,7 @@ function reportHtml(report) {
       <h2>想知道這些問題該怎麼修？</h2>
       <p>這是 mock 報告。下一步可以把 mock analyzer 換成真實 crawler、SEO analyzer 與 AI positioning。</p>
       <a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown">下載健檢報告</a>
-      <a class="button" href="/home#cta">預約報告解讀</a>
+      <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener">預約報告解讀</a>
     </section>
   </main>
 </body>
@@ -305,7 +306,7 @@ function realLiteReportHtml(report) {
       <h2>想知道這些問題該怎麼修？</h2>
       <p>這是 real-lite 測試報告。下一步可以把完整站內頁面、Search Console 與更完整的 GEO 測試加入流程。</p>
       <a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown">下載健檢報告</a>
-      <a class="button" href="/home#cta">預約報告解讀</a>
+      <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener">預約報告解讀</a>
     </section>
   </main>
 </body>
