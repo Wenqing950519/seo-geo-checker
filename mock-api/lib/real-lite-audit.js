@@ -73,6 +73,8 @@ Return this exact JSON shape:
 Rules:
 - Use Traditional Chinese for all *_zh fields.
 - score.value must be 0-100.
+- Do not punish globally authoritative or clearly discoverable domains only because they are not sales landing pages.
+- Score should reflect fetchability, metadata, structured data, readable homepage content, and Brave search visibility.
 - geo_questions must include exactly 3 questions.
 - priority_actions must include exactly 3 actions: P1, P2, P3.
 - If evidence is missing, say it is missing instead of pretending it exists.
@@ -102,7 +104,11 @@ async function runRealLiteAudit(siteUrl) {
     searchContext
   });
   const result = await callAgnesJson(prompt, { temperature: 0.1, attempts: 4, timeoutMs: 45_000 });
-  const audit = normalizeAudit(result.json);
+  const audit = calibrateAuditScore(normalizeAudit(result.json), {
+    siteUrl,
+    homepage,
+    searchContext
+  });
 
   return {
     id: `real_lite_${Date.now()}`,
@@ -307,6 +313,120 @@ function normalizeAudit(audit) {
   }
 
   return normalized;
+}
+
+function calibrateAuditScore(audit, { siteUrl, homepage, searchContext }) {
+  const signals = collectScoringSignals({ siteUrl, homepage, searchContext });
+  const objectiveScore = computeObjectiveScore(signals);
+  const modelScore = clampNumber(audit.score?.value, 0, 100, 50);
+  const calibratedScore = chooseCalibratedScore({ modelScore, objectiveScore, signals });
+
+  audit.score.value = calibratedScore;
+  audit.score.label = labelForScore(calibratedScore);
+  audit.score.scoring_basis_zh = buildScoringBasisZh({ modelScore, objectiveScore, signals });
+
+  if (Math.abs(calibratedScore - modelScore) >= 10) {
+    const baseSummary = String(audit.score.summary_zh || "").trim();
+    const calibrationNote = `分數已依客觀訊號校準：${audit.score.scoring_basis_zh}`;
+    audit.score.summary_zh = baseSummary ? `${baseSummary} ${calibrationNote}` : calibrationNote;
+  }
+
+  return audit;
+}
+
+function collectScoringSignals({ siteUrl, homepage, searchContext }) {
+  const metadata = homepage?.metadata || {};
+  const host = hostnameFromUrl(siteUrl);
+  const rootHost = host.replace(/^www\./, "");
+  const webResults = ensureArray(searchContext?.web?.results);
+  const targetRank = webResults.findIndex((result) => hostnameFromUrl(result.url).replace(/^www\./, "") === rootHost) + 1;
+
+  return {
+    host: rootHost,
+    fetched: Boolean(homepage && !homepage.fetchBlocked),
+    title: hasText(metadata.title),
+    description: hasText(metadata.description),
+    h1: hasText(metadata.h1),
+    jsonLd: Boolean(metadata.hasJsonLd),
+    textLength: Number(homepage?.textLength || homepage?.text?.length || 0),
+    searchEnabled: Boolean(searchContext && searchContext.enabled !== false),
+    webResultCount: webResults.length,
+    targetRank,
+    highAuthorityHost: isKnownHighAuthorityHost(rootHost)
+  };
+}
+
+function computeObjectiveScore(signals) {
+  let score = 20;
+
+  if (signals.fetched) score += 12;
+  if (signals.title) score += 10;
+  if (signals.description) score += 8;
+  if (signals.h1) score += 8;
+  if (signals.jsonLd) score += 8;
+  if (signals.textLength >= 500) score += 8;
+  if (signals.textLength >= 2000) score += 6;
+  if (signals.searchEnabled) score += 4;
+  if (signals.webResultCount > 0) score += 10;
+  if (signals.targetRank > 0 && signals.targetRank <= 3) score += 10;
+  else if (signals.targetRank > 0 && signals.targetRank <= 10) score += 6;
+  if (signals.highAuthorityHost) score += 16;
+
+  const cap = signals.highAuthorityHost ? 92 : 100;
+  return Math.round(Math.max(0, Math.min(cap, score)));
+}
+
+function chooseCalibratedScore({ modelScore, objectiveScore, signals }) {
+  if (!signals.fetched) return Math.min(modelScore, 45);
+  if (objectiveScore >= 82) return Math.max(modelScore, objectiveScore);
+  return Math.round((modelScore * 0.55) + (objectiveScore * 0.45));
+}
+
+function buildScoringBasisZh({ modelScore, objectiveScore, signals }) {
+  const parts = [];
+  if (signals.fetched) parts.push("首頁可抓取");
+  if (signals.title) parts.push("有 title");
+  if (signals.description) parts.push("有 meta description");
+  if (signals.h1) parts.push("有 H1");
+  if (signals.jsonLd) parts.push("有結構化資料");
+  if (signals.textLength >= 500) parts.push("可讀內容量足夠");
+  if (signals.webResultCount > 0) parts.push(`Brave 搜尋找到 ${signals.webResultCount} 筆結果`);
+  if (signals.targetRank > 0) parts.push(`目標網域出現在搜尋第 ${signals.targetRank} 筆`);
+  if (signals.highAuthorityHost) parts.push("屬於高權威公開網域");
+
+  return `模型原始分 ${modelScore}，客觀訊號分 ${objectiveScore}；${parts.join("、") || "可用訊號不足"}。`;
+}
+
+function hostnameFromUrl(value) {
+  try {
+    return new URL(String(value || "")).hostname.toLowerCase();
+  } catch {
+    return "";
+  }
+}
+
+function hasText(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function isKnownHighAuthorityHost(host) {
+  return new Set([
+    "github.com",
+    "docs.github.com",
+    "wikipedia.org",
+    "youtube.com",
+    "linkedin.com",
+    "stackoverflow.com",
+    "developer.mozilla.org",
+    "medium.com"
+  ]).has(host);
+}
+
+function labelForScore(score) {
+  if (score >= 85) return "Strong";
+  if (score >= 70) return "Decent";
+  if (score >= 45) return "Needs Work";
+  return "Critical";
 }
 
 function ensureArray(value) {

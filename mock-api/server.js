@@ -343,6 +343,15 @@ function displayModel(model) {
   return value || "agnes-2.0-flash";
 }
 
+function normalizeReportForClient(report) {
+  if (!report || typeof report !== "object") return report;
+  return {
+    ...report,
+    provider: displayProvider(report.provider),
+    model: displayModel(report.model)
+  };
+}
+
 function reportMarkdown(report) {
   return report.audit ? realLiteReportMarkdown(report) : mockReportMarkdown(report);
 }
@@ -596,7 +605,7 @@ async function handleRequest(req, res) {
       }
       limitTicket = limit;
       recordAuditStart(limitTicket);
-      const report = await runRealLiteAudit(siteUrl);
+      const report = normalizeReportForClient(await runRealLiteAudit(siteUrl));
       reports.set(report.id, report);
       return sendJson(res, 200, report);
     } catch (error) {
@@ -629,7 +638,7 @@ async function handleRequest(req, res) {
   if (req.method === "GET" && reportApiMatch) {
     const report = reports.get(reportApiMatch[1]);
     if (!report) return sendJson(res, 404, { error: "Report not found" });
-    return sendJson(res, 200, report);
+    return sendJson(res, 200, normalizeReportForClient(report));
   }
 
   const reportMarkdownMatch = url.pathname.match(/^\/report\/([^/]+)\/markdown$/);
