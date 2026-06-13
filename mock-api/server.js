@@ -496,7 +496,11 @@ async function handleRequest(req, res) {
   }
 
   if (req.method === "GET" && url.pathname === "/") {
-    return sendHtml(res, 200, `<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><title>SEO/GEO Mock API</title><body style="font-family:system-ui;padding:40px"><h1>SEO/GEO Mock API is running</h1><p>Open your prototype HTML and submit a URL.</p></body></html>`);
+    res.writeHead(302, {
+      "Location": "/home",
+      "Access-Control-Allow-Origin": "*"
+    });
+    return res.end();
   }
 
   if (req.method === "GET" && url.pathname === "/home") {
