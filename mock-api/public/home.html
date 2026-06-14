@@ -6,19 +6,19 @@
 <title>AI 搜尋能見度健檢 — 你現在的網站，AI 看得見嗎？</title>
 <meta name="description" content="免費 SEO/GEO 健檢工具。輸入網址，透過 Brave Search 與 Gemini 檢查你的網站搜尋能見度，一鍵教會你如何提升你的網站被 AI 看見的機率。">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://geocheck.tw/">
+<link rel="canonical" href="https://geocheck.tungowo.com/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://geocheck.tw/">
+<meta property="og:url" content="https://geocheck.tungowo.com/">
 <meta property="og:title" content="AI 搜尋能見度健檢 — 你現在的網站，AI 看得見嗎？">
 <meta property="og:description" content="免費 SEO/GEO 健檢工具。60 秒透過 Brave Search 與 Gemini 檢查你的網站搜尋能見度，並取得可執行的優先修正方向。">
-<meta property="og:image" content="https://geocheck.tw/og-image.png">
+<meta property="og:image" content="https://geocheck.tungowo.com/og-image.png">
 <meta property="og:locale" content="zh_TW">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI 搜尋能見度健檢 — 你現在的網站，AI 看得見嗎？">
 <meta name="twitter:description" content="免費 SEO/GEO 健檢工具。60 秒透過 Brave Search 與 Gemini 檢查你的網站搜尋能見度。">
-<meta name="twitter:image" content="https://geocheck.tw/og-image.png">
+<meta name="twitter:image" content="https://geocheck.tungowo.com/og-image.png">
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
@@ -26,9 +26,9 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://geocheck.tw/#organization",
+      "@id": "https://geocheck.tungowo.com/#organization",
       "name": "GEOCheck",
-      "url": "https://geocheck.tw/",
+      "url": "https://geocheck.tungowo.com/",
       "description": "提供 SEO/GEO 健檢工具與顧問服務，協助品牌提升在 Google 與 AI 引擎的搜尋能見度。",
       "contactPoint": {
         "@type": "ContactPoint",
@@ -38,16 +38,16 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://geocheck.tw/#website",
-      "url": "https://geocheck.tw/",
+      "@id": "https://geocheck.tungowo.com/#website",
+      "url": "https://geocheck.tungowo.com/",
       "name": "GEOCheck — AI 搜尋能見度健檢",
-      "publisher": { "@id": "https://geocheck.tw/#organization" },
+      "publisher": { "@id": "https://geocheck.tungowo.com/#organization" },
       "inLanguage": "zh-TW"
     },
     {
       "@type": "Service",
       "name": "GEO 優化服務",
-      "provider": { "@id": "https://geocheck.tw/#organization" },
+      "provider": { "@id": "https://geocheck.tungowo.com/#organization" },
       "description": "透過 Brave Search 與 Gemini 檢查品牌搜尋能見度，進行品牌實體定位與內容可引用性改造。",
       "serviceType": "GEO Optimization"
     },
@@ -102,9 +102,9 @@
   --radius:16px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
 body{font-family:'Noto Sans TC',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
-section{padding:96px 24px}
+section{padding:96px 24px;scroll-margin-top:88px}
 .wrap{max-width:1100px;margin:0 auto}
 h2{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:900;color:var(--navy);text-align:center}
 .sub{color:var(--muted);text-align:center;max-width:640px;margin:16px auto 56px;font-size:1.05rem}
@@ -250,6 +250,77 @@ footer{background:var(--navy-d);color:rgba(255,255,255,.65);padding:40px 24px;fo
 footer a{color:rgba(255,255,255,.8);text-decoration:none;margin-left:20px}
 footer a:hover{color:var(--teal)}
 
+@media(max-width:600px){
+  body{font-size:15px}
+  section{padding:64px 18px}
+  .wrap{width:100%}
+  h2{font-size:1.75rem;line-height:1.25}
+  .sub{font-size:.96rem;margin:12px auto 36px}
+  .tag{font-size:.78rem;margin-bottom:12px}
+
+  nav{padding:12px 16px}
+  nav.scrolled{padding:10px 16px}
+  .logo{font-size:1.05rem}
+  .btn-nav{padding:8px 16px;font-size:.85rem}
+
+  .hero{min-height:auto;padding:104px 18px 64px}
+  .ring.r1{width:320px;height:320px}
+  .ring.r2{width:500px;height:500px}
+  .ring.r3,.sweep{width:680px;height:680px}
+  .node{display:none}
+  .hero-content{max-width:100%}
+  .hero h1{font-size:clamp(2rem,10.8vw,2.8rem);line-height:1.18}
+  .title-lock{max-width:100%}
+  .hero p.lead{margin:18px auto 28px;font-size:.98rem;line-height:1.75}
+  .url-box{flex-direction:column;gap:12px;max-width:100%;padding:12px;border-radius:20px}
+  .url-box input{width:100%;border:1px solid #D5DEE8;padding:12px 14px}
+  .url-box .btn{width:100%;padding:12px 18px}
+  .trust{font-size:.8rem;margin-top:12px}
+  .scroll-cue{display:none}
+
+  .proof-strip{padding:18px!important}
+  .proof-inner{gap:18px!important}
+  .proof-divider{display:none}
+
+  .card,.score-card,.ptable,.module,.lead-form{padding:24px 20px;border-radius:14px}
+  .card:hover{transform:none}
+  .grid3{gap:18px}
+  .module{gap:14px;margin-bottom:16px}
+  .module .num{width:42px;height:42px;font-size:1rem}
+  .module h3 small{display:block;margin:4px 0 0}
+  .module .chips{gap:6px}
+  .chip{font-size:.74rem;padding:3px 10px}
+
+  .report{gap:18px}
+  .gauge{width:170px;height:104px}
+  .gauge .val{font-size:2rem}
+  .ptable{overflow-x:auto}
+  .ptable table{min-width:0}
+  .ptable th:nth-child(2),.ptable td:nth-child(2),.ptable th:nth-child(3),.ptable td:nth-child(3){display:none}
+  th,td{padding:10px 8px}
+
+  .res-head{padding:18px}
+  .res-body p{padding:0 18px 14px}
+  .res-body i{padding:0 18px 18px}
+  .steps{max-width:100%}
+  .step{padding:0 10px;margin-bottom:28px}
+  .step::before{width:48px;height:48px;margin-bottom:12px}
+
+  .final p.intro{margin:12px auto 28px;font-size:.96rem}
+  .lead-form .btn{width:100%;padding:13px 16px}
+  footer{padding:32px 18px;text-align:center}
+  .foot{justify-content:center}
+  footer a{display:inline-block;margin:8px 10px 0}
+}
+
+@media(max-width:380px){
+  section{padding-left:14px;padding-right:14px}
+  .hero{padding-left:14px;padding-right:14px}
+  .hero h1{font-size:1.92rem}
+  .card,.score-card,.ptable,.module,.lead-form{padding:22px 16px}
+  .btn{font-size:.95rem}
+}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .fade-item,.reveal{opacity:1;transform:none}
@@ -299,10 +370,10 @@ footer a:hover{color:var(--teal)}
 </header>
 
 <!-- Social proof strip -->
-<div style="background:var(--bg-alt);border-top:1px solid rgba(11,59,111,.07);border-bottom:1px solid rgba(11,59,111,.07);padding:20px 24px">
-  <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:center;text-align:center">
+<div class="proof-strip" style="background:var(--bg-alt);border-top:1px solid rgba(11,59,111,.07);border-bottom:1px solid rgba(11,59,111,.07);padding:20px 24px">
+  <div class="proof-inner" style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:center;text-align:center">
     <div><strong style="font-size:1.5rem;color:var(--navy);font-weight:900">50+</strong><span style="display:block;font-size:.82rem;color:var(--muted)">已完成健檢的網站</span></div>
-    <div style="width:1px;height:36px;background:rgba(11,59,111,.1)" aria-hidden="true"></div>
+    <div class="proof-divider" style="width:1px;height:36px;background:rgba(11,59,111,.1)" aria-hidden="true"></div>
     <div><strong style="font-size:1.5rem;color:var(--navy);font-weight:900">60 秒</strong><span style="display:block;font-size:.82rem;color:var(--muted)">免費、無需註冊即可完成健檢</span></div>
   </div>
 </div>

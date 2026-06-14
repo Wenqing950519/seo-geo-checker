@@ -170,6 +170,16 @@ function reportHtml(report) {
     .report-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
     a.button{display:inline-block;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700}
     a.button.secondary{background:#fff;color:#0b3b6f;border:1px solid #cdd9e5}
+    @media(max-width:640px){
+      main{padding:30px 14px}
+      .card{padding:18px;border-radius:10px}
+      h1{font-size:1.65rem}
+      h2{font-size:1.2rem}
+      .score{font-size:48px}
+      table{display:block;overflow-x:auto;white-space:nowrap}
+      th,td{padding:8px}
+      .report-nav a.button{width:100%;text-align:center}
+    }
   </style>
 </head>
 <body>
@@ -251,6 +261,17 @@ function realLiteReportHtml(report) {
     .report-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
     a.button{display:inline-block;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700}
     a.button.secondary{background:#fff;color:#0b3b6f;border:1px solid #cdd9e5}
+    @media(max-width:640px){
+      main{padding:30px 14px}
+      .card{padding:18px;border-radius:10px}
+      h1{font-size:1.65rem}
+      h2{font-size:1.2rem}
+      .score{font-size:48px}
+      .meta{font-size:.82rem;word-break:break-word}
+      table{display:block;overflow-x:auto;white-space:nowrap}
+      th,td{padding:8px}
+      .report-nav a.button{width:100%;text-align:center}
+    }
   </style>
 </head>
 <body>
