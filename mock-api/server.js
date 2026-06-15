@@ -22,6 +22,15 @@ const jobs = new Map();
 const reports = new Map();
 const leads = [];
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
+const GA_TAG_HTML = `
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CBTTKVLT82');
+  </script>`;
 
 function sendJson(res, status, data) {
   const body = JSON.stringify(data, null, 2);
@@ -157,6 +166,7 @@ function reportHtml(report) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
+  ${GA_TAG_HTML}
   <title>SEO/GEO 健檢報告 - ${escapeHtml(report.url)}</title>
   <style>
     body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}
@@ -247,6 +257,7 @@ function realLiteReportHtml(report) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
+  ${GA_TAG_HTML}
   <title>SEO/GEO 健檢報告 - ${escapeHtml(report.url)}</title>
   <style>
     body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}
