@@ -103,7 +103,7 @@ async function runRealLiteAudit(siteUrl) {
     text: homepage.text,
     searchContext
   });
-  const result = await callAgnesJson(prompt, { temperature: 0.1, attempts: 4, timeoutMs: 45_000 });
+  const result = await callAgnesJson(prompt, { temperature: 0.1, attempts: 2, timeoutMs: 35_000 });
   const audit = calibrateAuditScore(normalizeAudit(result.json), {
     siteUrl,
     homepage,
@@ -325,7 +325,12 @@ function calibrateAuditScore(audit, { siteUrl, homepage, searchContext }) {
   audit.score.label = labelForScore(calibratedScore);
   audit.score.scoring_basis_zh = buildScoringBasisZh({ modelScore, objectiveScore, signals });
 
-  if (Math.abs(calibratedScore - modelScore) >= 10) {
+  const specialCaseSummary = specialCaseScoreSummaryZh(signals);
+  if (specialCaseSummary) {
+    audit.score.summary_zh = `${specialCaseSummary} ${audit.score.scoring_basis_zh}`;
+    audit.limitations_zh = ensureArray(audit.limitations_zh);
+    audit.limitations_zh.unshift("此網站屬於特殊入口型或高權威公開網域，本報告的分數代表可抓取性、品牌辨識度與搜尋可見度，不等同於一般企業官網的轉換率或內容完整度評分。");
+  } else if (Math.abs(calibratedScore - modelScore) >= 10) {
     const baseSummary = String(audit.score.summary_zh || "").trim();
     const calibrationNote = `分數已依客觀訊號校準：${audit.score.scoring_basis_zh}`;
     audit.score.summary_zh = baseSummary ? `${baseSummary} ${calibrationNote}` : calibrationNote;
@@ -341,6 +346,10 @@ function collectScoringSignals({ siteUrl, homepage, searchContext }) {
   const webResults = ensureArray(searchContext?.web?.results);
   const targetRank = webResults.findIndex((result) => hostnameFromUrl(result.url).replace(/^www\./, "") === rootHost) + 1;
   const pageText = String(homepage?.text || "").toLowerCase();
+  const textLength = Number(homepage?.textLength || homepage?.text?.length || 0);
+  const highAuthorityHost = isKnownHighAuthorityHost(rootHost);
+  const searchPortal = isSearchEngineHost(rootHost);
+  const sparseHighAuthorityPortal = highAuthorityHost && textLength < 1000 && hasText(metadata.title);
   const geoSignals = {
     faq: /faq|q&a|常見問題|問答|問題/.test(pageText),
     cases: /case study|案例|客戶|成功|成果|實績/.test(pageText),
@@ -356,13 +365,15 @@ function collectScoringSignals({ siteUrl, homepage, searchContext }) {
     description: hasText(metadata.description),
     h1: hasText(metadata.h1),
     jsonLd: Boolean(metadata.hasJsonLd),
-    textLength: Number(homepage?.textLength || homepage?.text?.length || 0),
+    textLength,
     searchEnabled: Boolean(searchContext && searchContext.enabled !== false),
     webResultCount: webResults.length,
     targetRank,
     geoSignalCount: Object.values(geoSignals).filter(Boolean).length,
     geoSignals,
-    highAuthorityHost: isKnownHighAuthorityHost(rootHost)
+    highAuthorityHost,
+    searchPortal,
+    specialPageType: searchPortal ? "search_engine_portal" : sparseHighAuthorityPortal ? "high_authority_portal" : ""
   };
 }
 
@@ -384,8 +395,10 @@ function computeObjectiveScore(signals) {
   else if (signals.targetRank > 0 && signals.targetRank <= 10) score += 3;
   score += Math.min(16, signals.geoSignalCount * 4);
   if (signals.highAuthorityHost) score += 18;
+  if (signals.searchPortal) score = Math.max(score, 88);
+  else if (signals.specialPageType === "high_authority_portal") score = Math.max(score, 82);
 
-  let cap = signals.highAuthorityHost ? 92 : 82;
+  let cap = signals.searchPortal ? 94 : signals.highAuthorityHost ? 92 : 82;
   if (!signals.highAuthorityHost) {
     if (signals.webResultCount < 3) cap = Math.min(cap, 74);
     if (signals.geoSignalCount < 2) cap = Math.min(cap, 76);
@@ -396,6 +409,8 @@ function computeObjectiveScore(signals) {
 
 function chooseCalibratedScore({ modelScore, objectiveScore, signals }) {
   if (!signals.fetched) return Math.min(modelScore, 45);
+  if (signals.searchPortal) return Math.max(85, objectiveScore, Math.min(modelScore, 92));
+  if (signals.specialPageType === "high_authority_portal") return Math.max(80, objectiveScore, Math.min(modelScore, 90));
   if (signals.highAuthorityHost && objectiveScore >= 85) return Math.max(modelScore, objectiveScore);
   const blended = Math.round((modelScore * 0.65) + (objectiveScore * 0.35));
   if (!signals.highAuthorityHost && signals.webResultCount < 3) return Math.min(blended, 74);
@@ -414,8 +429,20 @@ function buildScoringBasisZh({ modelScore, objectiveScore, signals }) {
   if (signals.targetRank > 0) parts.push(`目標網域出現在搜尋第 ${signals.targetRank} 筆`);
   if (signals.geoSignalCount > 0) parts.push(`GEO 可引用內容訊號 ${signals.geoSignalCount} 項`);
   if (signals.highAuthorityHost) parts.push("屬於高權威公開網域");
+  if (signals.searchPortal) parts.push("屬於搜尋引擎入口頁，不適合用一般企業官網內容量標準扣分");
+  else if (signals.specialPageType === "high_authority_portal") parts.push("屬於高權威入口型首頁，已降低對銷售頁內容結構的扣分權重");
 
   return `模型原始分 ${modelScore}，客觀訊號分 ${objectiveScore}；${parts.join("、") || "可用訊號不足"}。`;
+}
+
+function specialCaseScoreSummaryZh(signals) {
+  if (signals.searchPortal) {
+    return "此網站屬於搜尋引擎入口頁，首頁本來就會刻意保持極簡，不能用一般企業官網或銷售頁的文字量、H1、FAQ、服務頁結構來直接扣分。本次評分已改以可抓取性、品牌權威、搜尋可見度與基本 metadata 作為主要依據。";
+  }
+  if (signals.specialPageType === "high_authority_portal") {
+    return "此網站屬於高權威入口型首頁，內容呈現目的與一般企業官網不同。本次評分已降低對銷售頁內容結構的扣分權重，改以可抓取性、品牌辨識度與搜尋可見度作為主要依據。";
+  }
+  return "";
 }
 
 function hostnameFromUrl(value) {
@@ -431,16 +458,46 @@ function hasText(value) {
 }
 
 function isKnownHighAuthorityHost(host) {
-  return new Set([
+  return hostMatchesAny(host, [
+    "google.com",
+    "google.com.tw",
+    "bing.com",
+    "duckduckgo.com",
+    "yahoo.com",
     "github.com",
     "docs.github.com",
     "wikipedia.org",
+    "wikimedia.org",
     "youtube.com",
+    "youtu.be",
     "linkedin.com",
     "stackoverflow.com",
     "developer.mozilla.org",
+    "microsoft.com",
+    "apple.com",
+    "amazon.com",
+    "spacex.com",
+    "facebook.com",
+    "instagram.com",
+    "x.com",
     "medium.com"
-  ]).has(host);
+  ]);
+}
+
+function isSearchEngineHost(host) {
+  const normalizedHost = String(host || "").replace(/^www\./, "").toLowerCase();
+  return [
+    "google.com",
+    "google.com.tw",
+    "bing.com",
+    "duckduckgo.com",
+    "yahoo.com"
+  ].includes(normalizedHost);
+}
+
+function hostMatchesAny(host, domains) {
+  const normalizedHost = String(host || "").replace(/^www\./, "").toLowerCase();
+  return domains.some((domain) => normalizedHost === domain || normalizedHost.endsWith(`.${domain}`));
 }
 
 function labelForScore(score) {

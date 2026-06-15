@@ -35,6 +35,7 @@ async function braveWebSearch(query, options = {}) {
 
   const data = await requestBraveJson(`${config.baseUrl}/web/search?${params.toString()}`, {
     apiKey: config.apiKey,
+    attempts: options.attempts,
     timeoutMs: options.timeoutMs ?? 20_000
   });
 
@@ -72,6 +73,7 @@ async function braveLlmContext(query, options = {}) {
     method: "POST",
     apiKey: config.apiKey,
     body,
+    attempts: options.attempts,
     timeoutMs: options.timeoutMs ?? 30_000
   });
 
@@ -101,14 +103,15 @@ async function getBraveAuditContext({ siteUrl, title, description }) {
 
   try {
     const [webResult, contextResult] = await Promise.allSettled([
-      braveWebSearch(query, { count: 10, timeoutMs: 20_000 }),
+      braveWebSearch(query, { count: 10, attempts: 1, timeoutMs: 12_000 }),
       braveLlmContext(query, {
         count: 10,
         maximumNumberOfUrls: 8,
         maximumNumberOfTokens: 4096,
         maximumNumberOfTokensPerUrl: 1024,
         contextThresholdMode: "balanced",
-        timeoutMs: 30_000
+        attempts: 1,
+        timeoutMs: 18_000
       })
     ]);
 

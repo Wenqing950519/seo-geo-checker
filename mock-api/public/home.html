@@ -664,30 +664,61 @@ document.querySelectorAll('.res-head').forEach(btn=>{
 });
 
 // mock API wiring
-const API_BASE=window.location.origin;
+function resolveApiBase(){
+  const configured=window.GEOCHECK_API_BASE||document.querySelector('meta[name="geocheck-api-base"]')?.content;
+  if(configured)return configured.replace(/\/+$/,'');
+  if(window.location.protocol==='file:')return 'http://localhost:8787';
+  return window.location.origin.replace(/\/+$/,'');
+}
 
-async function postJson(path,payload){
+const API_BASE=resolveApiBase();
+
+async function postJson(path,payload,options={}){
+  const timeoutMs=options.timeoutMs||120000;
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),timeoutMs);
   let res;
   let data;
+  let raw='';
   try{
     res=await fetch(`${API_BASE}${path}`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(payload)
+      body:JSON.stringify(payload),
+      signal:controller.signal
     });
-    data=await res.json();
   }catch(err){
-    const networkError=new Error('Network request failed');
+    const networkError=new Error(err.name==='AbortError'
+      ? '分析等待時間過長，請稍後再試'
+      : `無法連線到健檢 API（${API_BASE}），請確認 API server 是否正在運作`);
     networkError.retryable=true;
-    networkError.stage='network';
+    networkError.stage=err.name==='AbortError'?'timeout':'network';
     throw networkError;
+  }finally{
+    clearTimeout(timer);
+  }
+  raw=await res.text();
+  try{
+    data=raw?JSON.parse(raw):{};
+  }catch(err){
+    const formatError=new Error(`健檢 API 回傳格式錯誤（HTTP ${res.status}），請確認網站是否正確連到 API server`);
+    formatError.status=res.status;
+    formatError.retryable=res.status>=500;
+    formatError.stage='invalid_json_response';
+    formatError.details={preview:raw.slice(0,180)};
+    throw formatError;
   }
   if(!res.ok){
-    const apiError=new Error(data.error||'Request failed');
+    const retryHint=res.status===429&&data.retryAfterSeconds
+      ? `（約 ${data.retryAfterSeconds} 秒後可再試）`
+      : '';
+    const apiError=new Error(`${data.error||'Request failed'}${retryHint}`);
     apiError.status=res.status;
+    apiError.code=data.code;
     apiError.retryable=data.retryable||res.status>=500;
     apiError.stage=data.stage;
     apiError.details=data.details;
+    apiError.retryAfterSeconds=data.retryAfterSeconds;
     throw apiError;
   }
   return data;
@@ -732,13 +763,26 @@ document.getElementById('audit-form')?.addEventListener('submit',async(e)=>{
 
   async function runAuditUntilSuccess(){
     let attempt=0;
+    const startedAt=Date.now();
+    const maxAttempts=3;
+    const maxTotalMs=120000;
     while(true){
       attempt+=1;
       try{
-        return await postJson('/api/audit-real-lite',{url:input.value});
+        const remainingMs=Math.max(15000,maxTotalMs-(Date.now()-startedAt));
+        return await postJson('/api/audit-real-lite',{url:input.value},{
+          timeoutMs:Math.min(90000,remainingMs)
+        });
       }catch(err){
+        if(err.status===429){
+          throw err;
+        }
         const shouldRetry=err.retryable||err.status>=500||err.stage==='network';
-        if(!shouldRetry){
+        const timedOut=Date.now()-startedAt>=maxTotalMs;
+        if(!shouldRetry||attempt>=maxAttempts||timedOut){
+          if(timedOut||err.stage==='timeout'){
+            throw new Error('分析時間超過預期，可能是外部 AI API 回應較慢，請稍後再試');
+          }
           throw err;
         }
         const waitMs=Math.min(10000,3000+attempt*1000);

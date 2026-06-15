@@ -3,7 +3,7 @@ const urlCooldowns = new Map();
 
 const DEFAULTS = {
   ipWindowMs: Number(process.env.RATE_LIMIT_IP_WINDOW_MS || 10 * 60 * 1000),
-  ipMax: Number(process.env.RATE_LIMIT_IP_MAX || 3),
+  ipMax: Number(process.env.RATE_LIMIT_IP_MAX || 10),
   urlCooldownMs: Number(process.env.RATE_LIMIT_URL_COOLDOWN_MS || 30 * 60 * 1000),
   maxActiveAudits: Number(process.env.MAX_ACTIVE_AUDITS || 2)
 };
