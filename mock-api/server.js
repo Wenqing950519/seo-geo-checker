@@ -17,6 +17,8 @@ const { braveLlmContext, braveWebSearch, testBraveProvider } = require("./provid
 loadEnvFiles();
 
 const PORT = Number(process.env.PORT || 8787);
+const SITE_ORIGIN = normalizeOrigin(process.env.SITE_ORIGIN || "https://geocheck.lisheng.cv");
+const LEGACY_HOST = String(process.env.LEGACY_HOST || "geocheck.tungowo.com").toLowerCase();
 
 const jobs = new Map();
 const reports = new Map();
@@ -51,6 +53,14 @@ function sendHtml(res, status, html) {
   res.end(html);
 }
 
+function sendText(res, status, text, contentType = "text/plain; charset=utf-8") {
+  res.writeHead(status, {
+    "Content-Type": contentType,
+    "Access-Control-Allow-Origin": "*"
+  });
+  res.end(text);
+}
+
 function sendMarkdown(res, filename, markdown) {
   res.writeHead(200, {
     "Content-Type": "text/markdown; charset=utf-8",
@@ -58,6 +68,54 @@ function sendMarkdown(res, filename, markdown) {
     "Access-Control-Allow-Origin": "*"
   });
   res.end(markdown);
+}
+
+function normalizeOrigin(value) {
+  return String(value || "").trim().replace(/\/+$/, "");
+}
+
+function requestHost(req) {
+  return String(req.headers.host || "").split(":")[0].toLowerCase();
+}
+
+function maybeRedirectLegacyHost(req, res, url) {
+  if (!LEGACY_HOST || requestHost(req) !== LEGACY_HOST) return false;
+  res.writeHead(301, {
+    "Location": `${SITE_ORIGIN}${url.pathname}${url.search}`,
+    "Cache-Control": "public, max-age=3600"
+  });
+  res.end();
+  return true;
+}
+
+function robotsTxt() {
+  return [
+    "User-agent: *",
+    "Allow: /",
+    "",
+    `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
+    ""
+  ].join("\n");
+}
+
+function sitemapXml() {
+  const today = new Date().toISOString().slice(0, 10);
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${SITE_ORIGIN}/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${SITE_ORIGIN}/home</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>
+`;
 }
 
 function readJson(req) {
@@ -533,8 +591,18 @@ function markdownFilename(report) {
 async function handleRequest(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
 
+  if (maybeRedirectLegacyHost(req, res, url)) return;
+
   if (req.method === "OPTIONS") {
     return sendJson(res, 200, { ok: true });
+  }
+
+  if (req.method === "GET" && url.pathname === "/robots.txt") {
+    return sendText(res, 200, robotsTxt());
+  }
+
+  if (req.method === "GET" && url.pathname === "/sitemap.xml") {
+    return sendText(res, 200, sitemapXml(), "application/xml; charset=utf-8");
   }
 
   if (req.method === "GET" && url.pathname === "/") {
