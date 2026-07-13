@@ -1,0 +1,195 @@
+const { fetchHomepageWithBrowser } = require("./browser-fetch");
+const { AppError } = require("./errors");
+
+function stripHtml(html) {
+  return String(html || "")
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, " ")
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractMetadata(html) {
+  const source = String(html || "");
+  const jsonLd = extractJsonLd(source);
+  const images = [...source.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
+  return {
+    title: clean(matchFirst(source, /<title[^>]*>([\s\S]*?)<\/title>/i)),
+    description: clean(metaContent(source, "name", "description")),
+    h1: clean(stripHtml(matchFirst(source, /<h1[^>]*>([\s\S]*?)<\/h1>/i))),
+    canonical: clean(linkHref(source, "canonical")),
+    robots: clean(metaContent(source, "name", "robots")).toLowerCase(),
+    googlebot: clean(metaContent(source, "name", "googlebot")).toLowerCase(),
+    ogTitle: clean(metaContent(source, "property", "og:title")),
+    ogDescription: clean(metaContent(source, "property", "og:description")),
+    hasJsonLd: jsonLd.count > 0,
+    jsonLd,
+    imageCount: images.length,
+    imagesWithAlt: images.filter((tag) => /\balt\s*=\s*["'][^"']+["']/i.test(tag)).length,
+    headingLevels: [...source.matchAll(/<h([1-6])\b[^>]*>/gi)].map((match) => Number(match[1]))
+  };
+}
+
+function metaContent(source, key, value) {
+  const expected = String(value).toLowerCase();
+  for (const tag of source.match(/<meta\b[^>]*>/gi) || []) {
+    if (attributeValue(tag, key).toLowerCase() === expected) return attributeValue(tag, "content");
+  }
+  return "";
+}
+
+function linkHref(source, rel) {
+  const expected = String(rel).toLowerCase();
+  for (const tag of source.match(/<link\b[^>]*>/gi) || []) {
+    if (attributeValue(tag, "rel").toLowerCase().split(/\s+/).includes(expected)) return attributeValue(tag, "href");
+  }
+  return "";
+}
+
+function attributeValue(tag, name) {
+  const quoted = tag.match(new RegExp(`\\b${name}\\s*=\\s*(["'])([\\s\\S]*?)\\1`, "i"));
+  if (quoted) return quoted[2];
+  const unquoted = tag.match(new RegExp(`\\b${name}\\s*=\\s*([^\\s>]+)`, "i"));
+  return unquoted ? unquoted[1] : "";
+}
+
+function extractJsonLd(source) {
+  const blocks = [...source.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+  const types = new Set();
+  let validCount = 0;
+  let invalidCount = 0;
+  for (const block of blocks) {
+    try {
+      const value = JSON.parse(block[1]);
+      validCount += 1;
+      collectSchemaTypes(value, types);
+    } catch {
+      invalidCount += 1;
+    }
+  }
+  return { count: blocks.length, validCount, invalidCount, types: [...types] };
+}
+
+function collectSchemaTypes(value, types) {
+  if (!value || typeof value !== "object") return;
+  if (Array.isArray(value)) return value.forEach((item) => collectSchemaTypes(item, types));
+  const type = value["@type"];
+  if (Array.isArray(type)) type.forEach((item) => types.add(String(item)));
+  else if (type) types.add(String(type));
+  Object.values(value).forEach((item) => collectSchemaTypes(item, types));
+}
+
+function matchFirst(source, pattern) {
+  const match = source.match(pattern);
+  return match ? match[1] : "";
+}
+
+function clean(value) {
+  return stripHtml(value).slice(0, 500);
+}
+
+async function fetchHomepage(url) {
+  try {
+    const httpResult = await fetchHomepageWithHttp(url);
+    if (!looksClientRendered(httpResult)) return { ...httpResult, initialTextLength: httpResult.text.length };
+    try {
+      const browserResult = await fetchHomepageWithBrowser(url);
+      const rendered = processHtml(browserResult.html, browserResult.fetchMethod);
+      return {
+        ...rendered,
+        initialHtml: httpResult.html,
+        initialText: httpResult.text,
+        initialTextLength: httpResult.text.length,
+        renderAttempted: true,
+        renderGain: Math.max(0, rendered.text.length - httpResult.text.length),
+        statusCode: httpResult.statusCode,
+        finalUrl: httpResult.finalUrl,
+        headers: httpResult.headers
+      };
+    } catch (browserError) {
+      return { ...httpResult, initialTextLength: httpResult.text.length, renderAttempted: true, renderError: browserError.message };
+    }
+  } catch (error) {
+    if (shouldTryBrowserFallback(error)) {
+      const browserResult = await fetchHomepageWithBrowser(url, error);
+      return { ...processHtml(browserResult.html, browserResult.fetchMethod), initialTextLength: 0, renderAttempted: true };
+    }
+    throw error;
+  }
+}
+
+async function fetchHomepageWithHttp(url) {
+  let response;
+  try {
+    response = await fetchWithTimeout(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/125.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.8",
+        "Cache-Control": "no-cache"
+      },
+      redirect: "follow"
+    }, 20_000);
+  } catch (error) {
+    throw new AppError(`Failed to fetch homepage: ${error.name === "AbortError" ? "timeout" : error.message}`, {
+      statusCode: 502, stage: "fetch_homepage", retryable: true, details: { url }
+    });
+  }
+  const contentType = response.headers.get("content-type") || "";
+  if (!response.ok) {
+    throw new AppError(`Failed to fetch homepage: HTTP ${response.status}`, {
+      statusCode: response.status >= 500 ? 502 : 400,
+      stage: "fetch_homepage",
+      retryable: response.status >= 500 || response.status === 429,
+      details: { url, httpStatus: response.status }
+    });
+  }
+  if (contentType && !contentType.includes("text/html") && !contentType.includes("application/xhtml")) {
+    throw new AppError(`Target URL did not return HTML (${contentType})`, {
+      statusCode: 400, stage: "fetch_homepage", retryable: false, details: { url, contentType }
+    });
+  }
+  const html = await response.text();
+  return {
+    ...processHtml(html, "http"),
+    statusCode: response.status,
+    finalUrl: response.url || url,
+    headers: { contentType, xRobotsTag: response.headers.get("x-robots-tag") || "" }
+  };
+}
+
+function processHtml(html, fetchMethod) {
+  if (!html || html.length < 100) {
+    throw new AppError("Homepage HTML was empty or too short", {
+      statusCode: 502, stage: "fetch_homepage", retryable: true, details: { fetchMethod, length: html.length }
+    });
+  }
+  return { html, metadata: extractMetadata(html), text: stripHtml(html).slice(0, 8000), fetchMethod };
+}
+
+function looksClientRendered(result) {
+  if (!result || result.text.length >= 500) return false;
+  const source = String(result.html || "");
+  return /<script\b[^>]+src=/i.test(source)
+    && /<(?:div|main)\b[^>]+(?:id|class)=["'][^"']*(?:app|root|__next|nuxt)[^"']*["']/i.test(source);
+}
+
+function fetchWithTimeout(url, options, timeoutMs) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
+function shouldTryBrowserFallback(error) {
+  if (!(error instanceof AppError) || process.env.DISABLE_BROWSER_FETCH === "true") return false;
+  return error.stage === "fetch_homepage" && (error.retryable || error.details?.httpStatus === 401 || error.details?.httpStatus === 403);
+}
+
+module.exports = { extractMetadata, fetchHomepage, looksClientRendered, stripHtml };

@@ -4,7 +4,8 @@
   "private": true,
   "description": "SEO/GEO checker prototype and mock API.",
   "scripts": {
-    "mock-api": "node mock-api/server.js"
+    "mock-api": "node mock-api/server.js",
+    "test": "node mock-api/tests/algorithm-v2.test.js && node mock-api/tests/business-loop.test.js && node mock-api/tests/robots-unknown.test.js"
   },
   "dependencies": {
     "playwright": "^1.60.0"

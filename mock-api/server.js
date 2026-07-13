@@ -11,6 +11,9 @@ const {
   recordAuditStart
 } = require("./lib/rate-limit");
 const { runRealLiteAudit } = require("./lib/real-lite-audit");
+const { createAuditCache } = require("./lib/audit-cache");
+const { createFunnelRecorder } = require("./lib/funnel-events");
+const { assertSafePublicUrl } = require("./lib/url-safety");
 const { testAgnesProvider } = require("./providers/agnes");
 const { braveLlmContext, braveWebSearch, testBraveProvider } = require("./providers/brave");
 
@@ -23,6 +26,8 @@ const LEGACY_HOST = String(process.env.LEGACY_HOST || "geocheck.tungowo.com").to
 const jobs = new Map();
 const reports = new Map();
 const leads = [];
+const auditCache = createAuditCache();
+const funnel = createFunnelRecorder();
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
 const GA_TAG_HTML = `
   <!-- Google tag (gtag.js) -->
@@ -688,6 +693,7 @@ async function handleRequest(req, res) {
     try {
       const body = await readJson(req);
       const siteUrl = normalizeUrl(body.url);
+      await assertSafePublicUrl(siteUrl);
       const limit = checkAuditLimit({ req, url: siteUrl });
       if (!limit.allowed) {
         res.writeHead(limit.statusCode, {
@@ -706,8 +712,34 @@ async function handleRequest(req, res) {
       }
       limitTicket = limit;
       recordAuditStart(limitTicket);
-      const report = normalizeReportForClient(await runRealLiteAudit(siteUrl));
+      const host = new URL(siteUrl).hostname.replace(/^www\./, "");
+      const source = String(body.source || "direct").slice(0, 80);
+      funnel.record("audit_started", { host, source });
+      const cached = auditCache.get(siteUrl);
+      if (cached) {
+        const report = normalizeReportForClient({ ...cached.report, cache: cached.cache });
+        reports.set(report.id, report);
+        funnel.record("audit_cache_hit", {
+          host,
+          reportId: report.id,
+          algorithmVersion: report.algorithmVersion,
+          ageSeconds: cached.cache.ageSeconds,
+          source
+        });
+        return sendJson(res, 200, report);
+      }
+      const freshReport = normalizeReportForClient(await runRealLiteAudit(siteUrl));
+      const report = auditCache.set(siteUrl, freshReport);
       reports.set(report.id, report);
+      funnel.record("audit_completed", {
+        host,
+        reportId: report.id,
+        algorithmVersion: report.algorithmVersion,
+        provider: report.provider,
+        latencyMs: report.latencyMs,
+        cacheHit: false,
+        source
+      });
       return sendJson(res, 200, report);
     } catch (error) {
       console.error("audit-real-lite failed", error);
@@ -718,7 +750,7 @@ async function handleRequest(req, res) {
   }
 
   if (req.method === "GET" && url.pathname === "/api/rate-limit-state") {
-    return sendJson(res, 200, getRateLimitState());
+    return sendJson(res, 200, { ...getRateLimitState(), auditCache: auditCache.state() });
   }
 
   const statusMatch = url.pathname.match(/^\/api\/status\/([^/]+)$/);
@@ -762,6 +794,7 @@ async function handleRequest(req, res) {
       // Field validation
       if (!body.email || typeof body.email !== "string") return sendJson(res, 400, { error: "email is required" });
       if (!body.site || typeof body.site !== "string") return sendJson(res, 400, { error: "site is required" });
+      if (body.consent !== true) return sendJson(res, 400, { error: "請先同意本次聯絡所需的個人資料蒐集告知" });
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email.trim())) return sendJson(res, 400, { error: "email format is invalid" });
       if (body.email.length > 254) return sendJson(res, 400, { error: "email too long" });
       if (body.site.length > 500) return sendJson(res, 400, { error: "site URL too long" });
@@ -771,19 +804,34 @@ async function handleRequest(req, res) {
       try { new URL(body.site.trim()); } catch { return sendJson(res, 400, { error: "site must be a valid URL" }); }
 
       const lead = {
+        id: randomUUID(),
         name: (body.name || "").trim(),
         email: body.email.trim(),
         site: body.site.trim(),
         need: (body.need || "").trim(),
+        interest: String(body.interest || "diagnostic").slice(0, 80),
+        source: String(body.source || "website").slice(0, 80),
+        reportId: String(body.reportId || "").slice(0, 120),
         createdAt: new Date().toISOString(),
-        consentedAt: new Date().toISOString() // user accepted privacy notice before submit
+        consentVersion: "2026-07-13",
+        consentedAt: new Date().toISOString()
       };
       leads.push(lead);
       // Persist to filesystem so leads survive server restarts
       const leadsFile = path.resolve(__dirname, "leads.jsonl");
       fs.appendFileSync(leadsFile, JSON.stringify(lead) + "\n", "utf8");
-      console.log("New lead:", lead);
-      return sendJson(res, 200, { ok: true });
+      funnel.record("lead_submitted", {
+        leadId: lead.id,
+        interest: lead.interest,
+        source: lead.source,
+        reportId: lead.reportId
+      });
+      console.log("New lead:", { ...lead, email: "[redacted]", name: lead.name ? "[redacted]" : "" });
+      return sendJson(res, 200, {
+        ok: true,
+        leadId: lead.id,
+        nextAction: "我們會在一個工作天內確認需求與試點範圍"
+      });
     } catch (error) {
       return sendJson(res, 400, { error: error.message || "Invalid request" });
     }
