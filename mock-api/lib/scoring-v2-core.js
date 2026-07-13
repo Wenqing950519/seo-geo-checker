@@ -1,3 +1,5 @@
+const { classifySite } = require("./site-type");
+
 const WEIGHTS = Object.freeze({
   homepage_fetch: 8,
   indexable: 8,
@@ -54,16 +56,19 @@ const REASONS = Object.freeze({
   service_clarity: "明說服務對象與流程才不易誤解"
 });
 
-function collectScoringSignals({ homepage = {}, technical = {} }) {
+function collectScoringSignals({ homepage = {}, technical = {}, representativePages = [] }) {
   const metadata = homepage.metadata || {};
-  const text = String(homepage.text || "").toLowerCase();
+  const pageTexts = representativePages.filter((page) => page?.crawlQuality?.scorable).map((page) => page.text || "");
+  const text = [homepage.text || "", ...pageTexts].join("\n").toLowerCase();
+  const siteType = classifySite({ url: homepage.finalUrl || homepage.url || "", metadata, text });
+  const pageMetadata = representativePages.map((page) => page.metadata || {});
   const textLength = text.length;
   const initialTextLength = Number(homepage.initialTextLength ?? textLength);
   const xRobots = String(homepage.headers?.xRobotsTag || "").toLowerCase();
   const metaRobots = `${metadata.robots || ""},${metadata.googlebot || ""}`.toLowerCase();
   const noindex = /(?:^|[,\s])noindex(?:[,\s]|$)/.test(`${metaRobots},${xRobots}`);
   const botAccess = technical.robots?.botAccess || {};
-  const schemaTypes = metadata.jsonLd?.types || [];
+  const schemaTypes = [metadata, ...pageMetadata].flatMap((item) => item.jsonLd?.types || []);
   const relevantSchema = schemaTypes.some((type) => /^(Organization|LocalBusiness|Service|Product|Article|FAQPage|WebSite|Person)$/i.test(type));
   const imageCount = Number(metadata.imageCount || 0);
   const altRatio = imageCount ? Number(metadata.imagesWithAlt || 0) / imageCount : 1;
@@ -85,14 +90,16 @@ function collectScoringSignals({ homepage = {}, technical = {} }) {
     description: hasText(metadata.description),
     h1: hasText(metadata.h1),
     openGraph: hasText(metadata.ogTitle) && hasText(metadata.ogDescription),
-    validSchema: Number(metadata.jsonLd?.validCount || 0) > 0,
+    validSchema: [metadata, ...pageMetadata].some((item) => Number(item.jsonLd?.validCount || 0) > 0),
     relevantSchema,
     textLength,
     initialTextLength,
     renderGainRatio,
     imageAltRatio: altRatio,
     headingStructure: headingLevels.includes(1) && !headingLevels.some((level, index) => index > 0 && level - headingLevels[index - 1] > 1),
-    geoSignals: {
+    siteType,
+    representativePageCount: representativePages.filter((page) => page?.crawlQuality?.scorable).length,
+    geoSignals: siteGeoSignals(siteType, text, representativePages) || {
       faq: /faq|q&a|常見問題|問答|問題/.test(text),
       cases: /case study|案例|客戶|成功|成果|實績/.test(text),
       comparisons: /比較|vs\.?|替代|競品|方案差異/.test(text),
@@ -102,13 +109,25 @@ function collectScoringSignals({ homepage = {}, technical = {} }) {
   };
 }
 
+function siteGeoSignals(siteType, text, representativePages) {
+  if (siteType !== "restaurant") return null;
+  const paths = representativePages.map((page) => String(page.url || "").toLowerCase()).join(" ");
+  return {
+    faq: /faq|常見問題|問與答|聯絡我們/.test(text),
+    cases: /菜單|餐點|料理|menu|product/.test(text) || /\/(?:menu|product)/.test(paths),
+    comparisons: /店鋪|分店|門市|營業時間|location|store/.test(text) || /\/(?:store|location)/.test(paths),
+    proof: /地址|電話|最新消息|品牌故事|創立|沿革|news|about/.test(text) || /\/(?:about|news)/.test(paths),
+    serviceClarity: /訂位|外帶|外送|用餐|餐廳|reservation|delivery|takeout/.test(text)
+  };
+}
+
 function computeScoreV2(signals) {
   const checks = [];
   add(checks, "homepage_fetch", signals.fetched, signals.fetched ? "首頁回應正常" : "首頁無法正常取得");
   add(checks, "indexable", !signals.noindex, signals.noindex ? "偵測到 noindex" : "未偵測到 noindex");
-  add(checks, "googlebot_access", signals.googlebotAllowed, accessEvidence(signals.googlebotAllowed, signals.robotsKnown));
-  add(checks, "oai_search_access", signals.oaiSearchAllowed, accessEvidence(signals.oaiSearchAllowed, signals.robotsKnown));
-  add(checks, "claude_search_access", signals.claudeSearchAllowed, accessEvidence(signals.claudeSearchAllowed, signals.robotsKnown));
+  add(checks, "googlebot_access", signals.robotsKnown ? signals.googlebotAllowed : null, accessEvidence(signals.googlebotAllowed, signals.robotsKnown));
+  add(checks, "oai_search_access", signals.robotsKnown ? signals.oaiSearchAllowed : null, accessEvidence(signals.oaiSearchAllowed, signals.robotsKnown));
+  add(checks, "claude_search_access", signals.robotsKnown ? signals.claudeSearchAllowed : null, accessEvidence(signals.claudeSearchAllowed, signals.robotsKnown));
   add(checks, "sitemap_valid", signals.sitemapValid, signals.sitemapValid ? "sitemap 可解析" : "未找到有效 sitemap");
   add(checks, "homepage_in_sitemap", signals.homepageInSitemap, signals.homepageInSitemap ? "sitemap 含首頁" : "sitemap 未確認含首頁");
   add(checks, "sitemap_declared", signals.sitemapDeclared, signals.sitemapDeclared ? "robots.txt 有 Sitemap" : "robots.txt 未列 Sitemap");
@@ -130,7 +149,9 @@ function computeScoreV2(signals) {
   add(checks, "proof", signals.geoSignals.proof, signals.geoSignals.proof ? "有證據訊號" : "未找到來源或數據");
   add(checks, "service_clarity", signals.geoSignals.serviceClarity, signals.geoSignals.serviceClarity ? "服務資訊清楚" : "服務對象與流程不明");
 
-  let rawScore = Math.round(checks.reduce((sum, check) => sum + check.points, 0));
+  const knownWeight = checks.filter((check) => check.status !== "unknown").reduce((sum, check) => sum + check.weight, 0);
+  const knownPoints = checks.reduce((sum, check) => sum + check.points, 0);
+  let rawScore = knownWeight ? Math.round((knownPoints / knownWeight) * 100) : 0;
   const caps = [];
   if (!signals.fetched) caps.push({ max: 25, reason: "首頁無法抓取" });
   if (signals.noindex) caps.push({ max: 35, reason: "首頁設定 noindex" });
@@ -142,16 +163,17 @@ function computeScoreV2(signals) {
 }
 
 function add(checks, id, passed, evidence) {
-  addPartial(checks, id, passed ? 1 : 0, evidence);
+  addPartial(checks, id, passed === null || passed === undefined ? null : (passed ? 1 : 0), evidence);
 }
 
 function addPartial(checks, id, ratio, evidence) {
   const weight = WEIGHTS[id];
+  const unknown = ratio === null || ratio === undefined;
   checks.push({
     id,
     weight,
-    points: Math.round(weight * ratio * 10) / 10,
-    status: ratio === 1 ? "pass" : ratio > 0 ? "partial" : "fail",
+    points: unknown ? 0 : Math.round(weight * ratio * 10) / 10,
+    status: unknown ? "unknown" : ratio === 1 ? "pass" : ratio > 0 ? "partial" : "fail",
     evidence,
     reason_zh: REASONS[id]
   });

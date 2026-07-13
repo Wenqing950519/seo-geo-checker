@@ -1,4 +1,5 @@
-const { fetchHomepageWithBrowser } = require("./browser-fetch");
+const { fetchHomepageWithBrowser } = require("./browser-fetch-v2");
+const { assessCrawlQuality, chooseBetterResult, shouldRenderWithBrowser } = require("./crawl-quality");
 const { AppError } = require("./errors");
 
 function stripHtml(html) {
@@ -96,33 +97,63 @@ function clean(value) {
 }
 
 async function fetchHomepage(url) {
+  let httpResult = null;
+  let browserResult = null;
+  let httpError = null;
+  let browserError = null;
+
   try {
-    const httpResult = await fetchHomepageWithHttp(url);
-    if (!looksClientRendered(httpResult)) return { ...httpResult, initialTextLength: httpResult.text.length };
-    try {
-      const browserResult = await fetchHomepageWithBrowser(url);
-      const rendered = processHtml(browserResult.html, browserResult.fetchMethod);
-      return {
-        ...rendered,
-        initialHtml: httpResult.html,
-        initialText: httpResult.text,
-        initialTextLength: httpResult.text.length,
-        renderAttempted: true,
-        renderGain: Math.max(0, rendered.text.length - httpResult.text.length),
-        statusCode: httpResult.statusCode,
-        finalUrl: httpResult.finalUrl,
-        headers: httpResult.headers
-      };
-    } catch (browserError) {
-      return { ...httpResult, initialTextLength: httpResult.text.length, renderAttempted: true, renderError: browserError.message };
-    }
+    httpResult = decorateResult(await fetchHomepageWithHttp(url), url);
   } catch (error) {
-    if (shouldTryBrowserFallback(error)) {
-      const browserResult = await fetchHomepageWithBrowser(url, error);
-      return { ...processHtml(browserResult.html, browserResult.fetchMethod), initialTextLength: 0, renderAttempted: true };
-    }
-    throw error;
+    httpError = error;
   }
+
+  const renderNeeded = !httpResult || shouldRenderWithBrowser(httpResult);
+  if (renderNeeded && process.env.DISABLE_BROWSER_FETCH !== "true") {
+    try {
+      const rawBrowser = await fetchHomepageWithBrowser(url, httpError);
+      browserResult = decorateResult({
+        ...processHtml(rawBrowser.html, rawBrowser.fetchMethod),
+        ...rawBrowser
+      }, url);
+    } catch (error) {
+      browserError = error;
+    }
+  }
+
+  const chosen = chooseBetterResult(httpResult, browserResult);
+  if (!chosen) throw browserError || httpError || new AppError("Unable to fetch homepage", { stage: "fetch_homepage", retryable: true });
+
+  const crawlQuality = assessCrawlQuality(chosen);
+  if (!crawlQuality.scorable) {
+    throw new AppError("首頁資料不足，無法產生可信分數", {
+      statusCode: 422,
+      stage: "crawl_quality",
+      retryable: false,
+      details: {
+        crawlQuality,
+        httpError: httpError?.message,
+        browserError: browserError?.message,
+        fetchMethod: chosen.fetchMethod
+      }
+    });
+  }
+
+  return {
+    ...chosen,
+    crawlQuality,
+    initialHtml: httpResult?.html || "",
+    initialText: httpResult?.text || "",
+    initialTextLength: httpResult?.text?.length || 0,
+    renderAttempted: renderNeeded,
+    renderGain: browserResult && httpResult ? Math.max(0, browserResult.text.length - httpResult.text.length) : 0,
+    renderError: browserError?.message || "",
+    crawlDiagnostics: {
+      http: httpResult ? assessCrawlQuality(httpResult) : { status: "failed", error: httpError?.message || "unknown" },
+      browser: browserResult ? assessCrawlQuality(browserResult) : renderNeeded ? { status: "failed", error: browserError?.message || "unavailable" } : { status: "not_needed" },
+      selectedMethod: chosen.fetchMethod
+    }
+  };
 }
 
 async function fetchHomepageWithHttp(url) {
@@ -165,6 +196,60 @@ async function fetchHomepageWithHttp(url) {
   };
 }
 
+function decorateResult(result, requestedUrl) {
+  const finalUrl = result.finalUrl || requestedUrl;
+  return {
+    ...result,
+    finalUrl,
+    internalLinks: extractInternalLinks(result.html, finalUrl),
+    crawlQuality: assessCrawlQuality(result)
+  };
+}
+
+function extractInternalLinks(html, baseUrl) {
+  const origin = new URL(baseUrl).origin;
+  const urls = [];
+  const seen = new Set();
+  for (const match of String(html || "").matchAll(/<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1/gi)) {
+    try {
+      const url = new URL(match[2], baseUrl);
+      url.hash = "";
+      if (url.origin !== origin || !["http:", "https:"].includes(url.protocol)) continue;
+      const normalized = url.toString();
+      if (seen.has(normalized)) continue;
+      seen.add(normalized);
+      urls.push(normalized);
+      if (urls.length >= 100) break;
+    } catch { /* ignore malformed links */ }
+  }
+  return urls;
+}
+
+async function fetchRepresentativePages(urls, limit = 3) {
+  const selected = [...new Set((urls || []).filter(Boolean))].slice(0, limit);
+  const results = await Promise.allSettled(selected.map(async (url) => {
+    const result = decorateResult(await fetchHomepageWithHttp(url), url);
+    return {
+      url,
+      finalUrl: result.finalUrl,
+      statusCode: result.statusCode,
+      fetchMethod: result.fetchMethod,
+      metadata: result.metadata,
+      text: result.text.slice(0, 2500),
+      textLength: result.text.length,
+      crawlQuality: result.crawlQuality
+    };
+  }));
+  return results.map((result, index) => result.status === "fulfilled" ? result.value : {
+    url: selected[index],
+    statusCode: 0,
+    fetchMethod: "failed",
+    text: "",
+    textLength: 0,
+    crawlQuality: { status: "failed", scorable: false, reason: result.reason?.message || "unknown" }
+  });
+}
+
 function processHtml(html, fetchMethod) {
   if (!html || html.length < 100) {
     throw new AppError("Homepage HTML was empty or too short", {
@@ -192,4 +277,4 @@ function shouldTryBrowserFallback(error) {
   return error.stage === "fetch_homepage" && (error.retryable || error.details?.httpStatus === 401 || error.details?.httpStatus === 403);
 }
 
-module.exports = { extractMetadata, fetchHomepage, looksClientRendered, stripHtml };
+module.exports = { assessCrawlQuality, extractInternalLinks, extractMetadata, fetchHomepage, fetchRepresentativePages, looksClientRendered, stripHtml };

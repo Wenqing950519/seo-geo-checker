@@ -1,9 +1,10 @@
 const { callAgnesJson } = require("../providers/agnes");
 const { getBraveAuditContext } = require("../providers/brave");
 const { AppError } = require("./errors");
-const { fetchHomepage } = require("./html-v2");
+const { fetchHomepage, fetchRepresentativePages } = require("./html-v2");
 const { fetchTechnicalSignals } = require("./technical-signals");
 const { collectScoringSignals, computeScoreV2 } = require("./scoring-v2");
+const { classifySite, questionsForSite } = require("./site-type");
 
 function realLitePrompt({ siteUrl, metadata, text, searchContext, technical }) {
   return `你是「生成式搜尋引擎爬蟲行為分析師」與「輕量級演算法架構師」。請只輸出有效 JSON。
@@ -48,7 +49,7 @@ async function runRealLiteAudit(siteUrl) {
   try {
     homepage = await fetchHomepage(siteUrl);
   } catch (error) {
-    if (error instanceof AppError && ["fetch_homepage", "browser_fetch"].includes(error.stage)) {
+    if (error instanceof AppError && ["fetch_homepage", "browser_fetch", "browser_challenge", "crawl_quality"].includes(error.stage)) {
       return createFetchLimitedReport(siteUrl, error);
     }
     throw error;
@@ -58,21 +59,29 @@ async function runRealLiteAudit(siteUrl) {
     fetchTechnicalSignals(siteUrl, homepage),
     getBraveAuditContext({ siteUrl, title: homepage.metadata?.title, description: homepage.metadata?.description })
   ]);
+  const representativePages = await fetchRepresentativePages(technical.representativeUrls || [], 3);
+  const analysisText = [homepage.text, ...representativePages.filter((page) => page.crawlQuality?.scorable).map((page) => page.text)].join("\n\n").slice(0, 14000);
   const prompt = realLitePrompt({
     siteUrl,
     metadata: homepage.metadata,
-    text: homepage.text,
+    text: analysisText,
     searchContext,
     technical
   });
   const result = await callAgnesJson(prompt, { temperature: 0.1, attempts: 2, timeoutMs: 35_000 });
-  const audit = applyV2Audit(normalizeAudit(result.json), { homepage, technical });
+  const audit = applyV2Audit(normalizeAudit(result.json), { homepage, technical, representativePages });
+  audit.ai_validation = {
+    status: "interpreted",
+    provider: result.provider || "agnes",
+    model: result.model,
+    message_zh: "AI 已根據本次取得的公開首頁資料產生定位解讀；這不等於品牌已被 AI 搜尋引用。"
+  };
 
   return {
     id: `real_lite_${Date.now()}`,
     url: siteUrl,
     createdAt: new Date().toISOString(),
-    algorithmVersion: "2.0",
+    algorithmVersion: "2.1",
     provider: result.provider || "agnes",
     model: result.model,
     latencyMs: result.latencyMs,
@@ -85,22 +94,32 @@ async function runRealLiteAudit(siteUrl) {
       renderGain: homepage.renderGain || 0,
       renderAttempted: Boolean(homepage.renderAttempted),
       fetchMethod: homepage.fetchMethod || "http",
-      statusCode: homepage.statusCode
+      statusCode: homepage.statusCode,
+      crawlQuality: homepage.crawlQuality,
+      crawlDiagnostics: homepage.crawlDiagnostics,
+      internalLinkCount: homepage.internalLinks?.length || 0
     },
     technical,
+    representativePages,
     search: searchContext,
     audit
   };
 }
 
-function applyV2Audit(audit, { homepage, technical }) {
-  const signals = collectScoringSignals({ homepage, technical });
+function applyV2Audit(audit, { homepage, technical, representativePages = [] }) {
+  const signals = collectScoringSignals({ homepage, technical, representativePages });
   const scored = computeScoreV2(signals);
+  const siteType = classifySite({ metadata: homepage.metadata, text: homepage.text, url: homepage.url });
+  audit.site_type = siteType;
+  audit.geo_questions = questionsForSite(siteType);
   audit.score = {
     ...audit.score,
     value: scored.score,
-    label: labelForScore(scored.score),
-    algorithm_version: "2.0",
+    technical_value: scored.score,
+    label: "技術與內容準備度",
+    readiness_label: labelForScore(scored.score),
+    evidence_status: "measured",
+    algorithm_version: "2.1",
     raw_score: scored.rawScore,
     applied_cap: scored.cap,
     caps: scored.caps,
@@ -121,7 +140,7 @@ function applyV2Audit(audit, { homepage, technical }) {
 
 function buildDeterministicActions(signals) {
   const actions = [];
-  if (!signals.fetched || signals.noindex || !signals.googlebotAllowed) {
+  if (!signals.fetched || signals.noindex || signals.googlebotAllowed === false) {
     actions.push(action("technical", "首頁抓取與收錄設定",
       "請先聯絡網站設計師檢查網站根目錄的 robots.txt、首頁 <head> 的 robots meta，以及伺服器的 X-Robots-Tag。移除誤設的 Disallow: / 或 noindex；若本來就是刻意不公開，則維持現狀。",
       "這些設定會直接阻止 Google 或其他搜尋服務讀取首頁。", "恢復重要頁面的基本抓取與收錄資格。"));
@@ -136,8 +155,8 @@ function buildDeterministicActions(signals) {
       "請網站設計師把店名、服務、地區、營業特色與聯絡方式直接放進伺服器回傳的 HTML。若網站是 SPA，請加上 SSR 或預先渲染；不要等按鈕點擊後才載入主要內容。",
       "畫面看得到不等於爬蟲拿得到；只靠圖片或 JavaScript 會讓部分 AI 讀到空白頁。", "提高不同爬蟲穩定理解首頁的機會。"));
   }
-  if (!signals.oaiSearchAllowed || !signals.claudeSearchAllowed) {
-    const bots = [!signals.oaiSearchAllowed && "OAI-SearchBot", !signals.claudeSearchAllowed && "Claude-SearchBot"].filter(Boolean).join("、");
+  if (signals.oaiSearchAllowed === false || signals.claudeSearchAllowed === false) {
+    const bots = [signals.oaiSearchAllowed === false && "OAI-SearchBot", signals.claudeSearchAllowed === false && "Claude-SearchBot"].filter(Boolean).join("、");
     actions.push(action("technical", "AI 搜尋爬蟲設定",
       `如果您希望出現在 ChatGPT 或 Claude 搜尋，請網站設計師檢查 robots.txt 是否誤擋 ${bots}。只調整搜尋 bot 即可，不必同時開放 GPTBot、ClaudeBot 等訓練用途 bot。`,
       "搜尋用途與模型訓練用途不同，應分開管理。", "在保留內容政策選擇的同時，增加 AI 搜尋可讀性。"));
@@ -177,9 +196,6 @@ function issue(severity, check, detail, impact) {
 
 function mergePriorityActions(deterministic, generated) {
   const merged = [...deterministic, ...ensureArray(generated)].slice(0, 3);
-  while (merged.length < 3) {
-    merged.push(action("content", "首頁內容", "補上店名、服務對象、地區、常見問題與可驗證案例。", "目前可用訊號不足。", "降低搜尋服務誤解網站的機會。"));
-  }
   return merged.map((item, index) => ({ ...item, priority: `P${index + 1}` }));
 }
 
@@ -205,9 +221,6 @@ function normalizeAudit(value) {
   audit.technical_seo = audit.technical_seo || {};
   audit.technical_seo.issues = ensureArray(audit.technical_seo.issues);
   audit.geo_questions = ensureArray(audit.geo_questions).slice(0, 3);
-  while (audit.geo_questions.length < 3) {
-    audit.geo_questions.push({ question_zh: "這間店提供什麼服務，適合誰？", intent: "consideration", business_value: 3 });
-  }
   audit.content_citeability = audit.content_citeability || {};
   audit.content_citeability.strengths_zh = ensureArray(audit.content_citeability.strengths_zh);
   audit.content_citeability.gaps_zh = ensureArray(audit.content_citeability.gaps_zh);
@@ -224,10 +237,10 @@ function createFetchLimitedReport(siteUrl, error) {
     priority_actions: [action("technical", "網站主機、CDN 或防火牆", "請網站設計師檢查首頁是否回傳 403、5xx、驗證頁或封鎖一般爬蟲。確認後再重新檢測。", "沒有取得首頁就無法做可信的內容判讀。", "恢復基本抓取能力。")],
     limitations_zh: ["首頁抓取失敗，所有未取得的項目都視為未知，未用猜測補值。"]
   });
-  audit.score = { ...audit.score, value: 0, raw_score: 0, applied_cap: 25, label: "Critical", algorithm_version: "2.0", rules: [] };
-  audit.priority_actions = mergePriorityActions(audit.priority_actions, []);
+  audit.score = { ...audit.score, value: null, technical_value: null, raw_score: null, applied_cap: null, label: "無法評估", readiness_label: "Unknown", evidence_status: "unavailable", algorithm_version: "2.1", rules: [] };
+  audit.ai_validation = { status: "unavailable", message_zh: "首頁未能成功抓取，因此本次不能判斷網站品質、搜尋排名或 AI 能見度。" };
   return {
-    id: `real_lite_${Date.now()}`, url: siteUrl, createdAt: new Date().toISOString(), algorithmVersion: "2.0",
+    id: `real_lite_${Date.now()}`, url: siteUrl, createdAt: new Date().toISOString(), algorithmVersion: "2.1",
     provider: "local-fallback", model: "fetch-limited", latencyMs: 0, attempts: 0, repairedJson: false,
     homepage: { metadata: {}, textLength: 0, fetchBlocked: true, fetchError: { message: error.message, details: error.details } },
     technical: {}, audit
@@ -251,4 +264,4 @@ function unique(values) {
   return [...new Set(values.filter(Boolean).map(String))];
 }
 
-module.exports = { applyV2Audit, realLitePrompt, runRealLiteAudit };
+module.exports = { applyV2Audit, createFetchLimitedReport, realLitePrompt, runRealLiteAudit };

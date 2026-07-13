@@ -1,5 +1,5 @@
 const core = require("./real-lite-audit-v2-core");
-const { fetchHomepage } = require("./html-v2");
+const { fetchHomepage, fetchRepresentativePages } = require("./html-v2");
 const { fetchTechnicalSignals } = require("./technical-signals");
 
 async function runRealLiteAudit(siteUrl) {
@@ -15,6 +15,7 @@ async function runDeterministicFallback(siteUrl, providerError) {
   const startedAt = Date.now();
   const homepage = await fetchHomepage(siteUrl);
   const technical = await fetchTechnicalSignals(siteUrl, homepage);
+  const representativePages = await fetchRepresentativePages(technical.representativeUrls || [], 3);
   const audit = core.applyV2Audit({
     score: { summary_zh: "技術與內容規則已完成；AI 定位解讀暫時無法使用，因此未用猜測補值。" },
     positioning: {
@@ -36,15 +37,19 @@ async function runDeterministicFallback(siteUrl, providerError) {
     limitations_zh: [
       `AI 定位解讀暫停：${safeProviderMessage(providerError)}。客觀分數不受影響。`
     ]
-  }, { homepage, technical });
+  }, { homepage, technical, representativePages });
+  audit.score.evidence_status = "partial";
+  audit.score.label = "技術與內容準備度（AI 未驗證）";
+  audit.score.summary_zh = "已完成可取得的技術與內容訊號檢查；AI API 本次不可用，因此不輸出 AI 定位或引用結論。";
+  audit.ai_validation = { status: "unavailable", provider: "local-deterministic-fallback", message_zh: "AI API 本次不可用；本報告只包含公開首頁與技術訊號的初步檢查。" };
 
   return {
     id: `real_lite_${Date.now()}`,
     url: siteUrl,
     createdAt: new Date().toISOString(),
-    algorithmVersion: "2.0",
+    algorithmVersion: "2.1",
     provider: "local-deterministic-fallback",
-    model: "rules-v2",
+    model: "rules-v2.1",
     latencyMs: Date.now() - startedAt,
     attempts: 0,
     repairedJson: false,
@@ -55,20 +60,24 @@ async function runDeterministicFallback(siteUrl, providerError) {
       renderGain: homepage.renderGain || 0,
       renderAttempted: Boolean(homepage.renderAttempted),
       fetchMethod: homepage.fetchMethod || "http",
-      statusCode: homepage.statusCode
+      statusCode: homepage.statusCode,
+      crawlQuality: homepage.crawlQuality,
+      crawlDiagnostics: homepage.crawlDiagnostics,
+      internalLinkCount: homepage.internalLinks?.length || 0
     },
     technical,
+    representativePages,
     search: { enabled: false, fallbackReason: "model_provider_unavailable" },
     audit
   };
 }
 
 function isModelProviderFailure(error) {
-  return error && ["agnes_api", "agnes_parse", "agnes_config"].includes(error.stage);
+  return error && ["agnes_api", "agnes_parse", "agnes_config", "agnes_json", "config"].includes(error.stage);
 }
 
 function safeProviderMessage(error) {
-  if (error?.stage === "agnes_config") return "未設定 AI 供應商";
+  if (error?.stage === "agnes_config" || error?.stage === "config") return "未設定 AI 供應商";
   if (error?.stage === "agnes_parse") return "AI 回傳格式無法解析";
   return "AI 供應商暫時連線失敗";
 }

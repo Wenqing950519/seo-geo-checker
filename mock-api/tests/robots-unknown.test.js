@@ -32,7 +32,7 @@ const result = computeScoreV2(collectScoringSignals({ homepage, technical }));
 assert.equal(result.cap, 100, "unknown robots state must not trigger a blocked-site cap");
 for (const id of ["googlebot_access", "oai_search_access", "claude_search_access"]) {
   const check = result.checks.find((item) => item.id === id);
-  assert.equal(check.status, "fail", `${id} must not receive points when unknown`);
+  assert.equal(check.status, "unknown", `${id} must be explicitly marked unknown`);
   assert.match(check.evidence, /未知/);
 }
 console.log("robots unknown-state tests passed");

@@ -296,6 +296,16 @@ function realLiteReportHtml(report) {
   const actions = audit.priority_actions || [];
   const questions = audit.geo_questions || [];
   const gaps = audit.content_citeability?.gaps_zh || [];
+  const score = audit.score || {};
+  const aiValidation = audit.ai_validation || {};
+  const scoreValue = Number.isFinite(score.value) ? score.value : "—";
+  const scoreContext = score.evidence_status === "unavailable"
+    ? "本次首頁未能抓取，沒有產生任何品質分數。"
+    : `技術與內容準備度：${escapeHtml(score.readiness_label || "Unknown")}；AI 定位狀態：${escapeHtml(aiValidation.status || "unknown")}。`;
+  const crawlQuality = report.homepage?.crawlQuality || {};
+  const representativeSuccess = (report.representativePages || []).filter((page) => page.crawlQuality?.scorable).length;
+  const breakdownLabels = { crawl_access: "抓取與存取", discoverability: "網址發現性", semantic_clarity: "語意與結構", content_readability: "內容可讀性", citeability: "餐飲內容可引用性" };
+  const breakdownRows = Object.entries(score.breakdown || {}).map(([key, value]) => `<tr><td>${escapeHtml(breakdownLabels[key] || key)}</td><td>${escapeHtml(value.points)}</td><td>${escapeHtml(value.max)}</td></tr>`).join("");
 
   const issueRows = issues.map((issue) => `
     <tr>
@@ -356,14 +366,22 @@ function realLiteReportHtml(report) {
     <p class="meta">Provider: ${escapeHtml(displayProvider(report.provider))} / Model: ${escapeHtml(displayModel(report.model))} / Attempts: ${escapeHtml(report.attempts || 1)} / Latency: ${escapeHtml(report.latencyMs)}ms</p>
 
     <section class="card">
-      <h2>整體健康度</h2>
-      <div class="score">${escapeHtml(audit.score?.value ?? "")}</div>
-      <p><span class="badge">${escapeHtml(audit.score?.label || "")}</span></p>
-      <p>${escapeHtml(audit.score?.summary_zh || "")}</p>
+      <h2>本次可驗證結果</h2>
+      <div class="score">${escapeHtml(scoreValue)}</div>
+      <p><span class="badge">${escapeHtml(score.label || "無法評估")}</span></p>
+      <p>${scoreContext}</p>
+      <p>${escapeHtml(score.summary_zh || "")}</p>
+      <p class="meta">抓取：${escapeHtml(crawlQuality.status || "unknown")}／${escapeHtml(report.homepage?.fetchMethod || "unknown")}；資料覆蓋 ${escapeHtml(crawlQuality.coverage ?? 0)}%；代表內頁成功 ${escapeHtml(representativeSuccess)} 頁。</p>
     </section>
 
     <section class="card">
-      <h2>AI 眼中定位</h2>
+      <h2>分項準備度</h2>
+      <table><thead><tr><th>分項</th><th>得分</th><th>滿分</th></tr></thead><tbody>${breakdownRows}</tbody></table>
+    </section>
+
+    <section class="card">
+      <h2>AI 定位解讀</h2>
+      <p class="meta">${escapeHtml(aiValidation.message_zh || "尚無 AI 定位驗證結果。")}</p>
       <p><strong>可能分類：</strong>${escapeHtml(audit.positioning?.perceived_category_zh || "")}</p>
       <p><strong>信心等級：</strong>${escapeHtml(audit.positioning?.confidence || "")}</p>
       <h3>可能受眾</h3>

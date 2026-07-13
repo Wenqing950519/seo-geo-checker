@@ -12,6 +12,7 @@ async function fetchTechnicalSignals(siteUrl, homepage = {}) {
   ])].slice(0, 3);
   const sitemapResources = await Promise.all(sitemapCandidates.map((url) => fetchTextResource(url, "xml")));
   const sitemap = chooseSitemap(sitemapResources, homepage.finalUrl || siteUrl);
+  const representativeUrls = chooseRepresentativeUrls([...(sitemap.urls || []), ...(homepage.internalLinks || [])], homepage.finalUrl || siteUrl);
   const llms = await fetchTextResource(new URL("/llms.txt", root).toString(), "text/plain");
   const botAccess = {};
 
@@ -31,6 +32,7 @@ async function fetchTechnicalSignals(siteUrl, homepage = {}) {
       botAccess
     },
     sitemap,
+    representativeUrls,
     llms: {
       exists: llms.ok,
       status: llms.status,
@@ -140,7 +142,8 @@ function chooseSitemap(resources, homepageUrl) {
       status: resource.status,
       url: resource.url,
       urlCount: urls.length,
-      homepageIncluded: urls.some((url) => normalizeComparableUrl(url) === homepage)
+      homepageIncluded: urls.some((url) => normalizeComparableUrl(url) === homepage),
+      urls: urls.slice(0, 500)
     };
   }
   const first = resources[0] || {};
@@ -150,8 +153,32 @@ function chooseSitemap(resources, homepageUrl) {
     status: first.status || 0,
     url: first.url || "",
     urlCount: 0,
-    homepageIncluded: false
+    homepageIncluded: false,
+    urls: []
   };
+}
+
+function chooseRepresentativeUrls(urls, homepageUrl, limit = 3) {
+  const home = new URL(homepageUrl);
+  const priorities = [
+    /\/(?:about|brand|company|story)(?:\/|$)/i,
+    /\/(?:menu|product|service|services)(?:\/|$)/i,
+    /\/(?:store|stores|location|locations|shop)(?:\/|$)/i,
+    /\/(?:faq|contact|news)(?:\/|$)/i
+  ];
+  const candidates = [];
+  for (const value of urls || []) {
+    try {
+      const url = new URL(value, homepageUrl);
+      url.hash = "";
+      if (url.origin !== home.origin || normalizeComparableUrl(url) === normalizeComparableUrl(home)) continue;
+      const score = priorities.reduce((best, pattern, index) => pattern.test(url.pathname) ? Math.max(best, priorities.length - index) : best, 0);
+      candidates.push({ url: url.toString(), score });
+    } catch { /* ignore malformed URLs */ }
+  }
+  return [...new Map(candidates.sort((a, b) => b.score - a.score).map((item) => [item.url, item])).values()]
+    .slice(0, limit)
+    .map((item) => item.url);
 }
 
 function normalizeComparableUrl(value) {
@@ -167,4 +194,4 @@ function decodeXml(value) {
   return String(value).replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 }
 
-module.exports = { evaluateRobotsAccess, fetchTechnicalSignals, parseRobotsTxt, POLICY_BOTS, SEARCH_BOTS };
+module.exports = { chooseRepresentativeUrls, evaluateRobotsAccess, fetchTechnicalSignals, parseRobotsTxt, POLICY_BOTS, SEARCH_BOTS };

@@ -14,7 +14,14 @@ function getAgnesConfig() {
 }
 
 async function callAgnesJson(prompt, options = {}) {
-  const { apiKey, model, baseUrl } = getAgnesConfig();
+  let apiKey;
+  let model;
+  let baseUrl;
+  try {
+    ({ apiKey, model, baseUrl } = getAgnesConfig());
+  } catch (error) {
+    throw normalizeAgnesError(error);
+  }
   const url = chatCompletionsUrl(baseUrl);
   const started = Date.now();
   const attempts = options.attempts ?? 4;
