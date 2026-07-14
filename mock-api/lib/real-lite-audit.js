@@ -73,13 +73,14 @@ async function runDeterministicFallback(siteUrl, providerError) {
 }
 
 function isModelProviderFailure(error) {
-  return error && ["agnes_api", "agnes_parse", "agnes_config", "agnes_json", "config"].includes(error.stage);
+  return error && ["gemini_api", "gemini_json", "perplexity_api", "agnes_api", "agnes_parse", "agnes_config", "agnes_json", "config"].includes(error.stage);
 }
 
 function safeProviderMessage(error) {
-  if (error?.stage === "agnes_config" || error?.stage === "config") return "未設定 AI 供應商";
-  if (error?.stage === "agnes_parse") return "AI 回傳格式無法解析";
-  return "AI 供應商暫時連線失敗";
+  if (error?.stage === "config") return "Gemini 或 Perplexity API 金鑰尚未設定";
+  if (error?.stage === "gemini_json") return "Gemini 回傳格式無法解析";
+  if (error?.stage === "perplexity_api") return "Perplexity Sonar 搜尋暫時不可用";
+  return "AI 供應商暫時不可用";
 }
 
 module.exports = {

@@ -1,5 +1,5 @@
 const http = require("http");
-const { randomUUID } = require("crypto");
+const { randomUUID, timingSafeEqual } = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const { loadEnvFiles } = require("./lib/env");
@@ -14,8 +14,9 @@ const { runRealLiteAudit } = require("./lib/real-lite-audit");
 const { createAuditCache } = require("./lib/audit-cache");
 const { createFunnelRecorder } = require("./lib/funnel-events");
 const { assertSafePublicUrl } = require("./lib/url-safety");
-const { testAgnesProvider } = require("./providers/agnes");
-const { braveLlmContext, braveWebSearch, testBraveProvider } = require("./providers/brave");
+const { testGeminiProvider } = require("./providers/gemini");
+const { searchPerplexity, testPerplexityProvider } = require("./providers/perplexity");
+const { getUsageSummary } = require("./lib/usage-meter");
 
 loadEnvFiles();
 
@@ -73,6 +74,20 @@ function sendMarkdown(res, filename, markdown) {
     "Access-Control-Allow-Origin": "*"
   });
   res.end(markdown);
+}
+
+function getAdminPathToken() {
+  const token = String(process.env.ADMIN_PATH_TOKEN || "").trim();
+  return /^[A-Za-z0-9_-]{16,128}$/.test(token) ? token : "";
+}
+
+function isValidAdminToken(req) {
+  const expected = process.env.ADMIN_TOKEN;
+  const supplied = String(req.headers["x-admin-token"] || "");
+  if (!expected || !supplied) return false;
+  const expectedBuffer = Buffer.from(expected);
+  const suppliedBuffer = Buffer.from(supplied);
+  return expectedBuffer.length === suppliedBuffer.length && timingSafeEqual(expectedBuffer, suppliedBuffer);
 }
 
 function normalizeOrigin(value) {
@@ -636,12 +651,25 @@ async function handleRequest(req, res) {
     return res.end();
   }
 
+  const adminPathToken = getAdminPathToken();
+  const privateAdminPath = adminPathToken ? `/${adminPathToken}` : "";
+  if (privateAdminPath && req.method === "GET" && url.pathname === privateAdminPath) {
+    const adminPath = path.resolve(__dirname, "public", "admin.html");
+    if (!fs.existsSync(adminPath)) return sendHtml(res, 404, "<h1>Not found</h1>");
+    return sendHtml(res, 200, fs.readFileSync(adminPath, "utf8"));
+  }
+
   if (req.method === "GET" && url.pathname === "/home") {
     const prototypePath = path.resolve(__dirname, "public", "home.html");
     if (!fs.existsSync(prototypePath)) {
       return sendHtml(res, 404, "<h1>Prototype HTML not found</h1>");
     }
     return sendHtml(res, 200, fs.readFileSync(prototypePath, "utf8"));
+  }
+
+  if (privateAdminPath && req.method === "GET" && url.pathname === `${privateAdminPath}/usage`) {
+    if (!isValidAdminToken(req)) return sendJson(res, 401, { error: "Unauthorized" });
+    return sendJson(res, 200, getUsageSummary({ limit: url.searchParams.get("limit") }));
   }
 
   if (req.method === "POST" && url.pathname === "/api/audit") {
@@ -662,11 +690,11 @@ async function handleRequest(req, res) {
 
   if (req.method === "POST" && url.pathname === "/api/test-provider") {
     try {
-      const result = await testAgnesProvider();
+      const result = await testGeminiProvider();
       return sendJson(res, 200, {
         ok: true,
-        provider: result.json.provider,
-        message: result.json.message,
+        provider: result.json.provider || result.provider,
+        message: result.json.message || "gemini api works",
         model: result.model,
         latencyMs: result.latencyMs
       });
@@ -678,7 +706,7 @@ async function handleRequest(req, res) {
 
   if (req.method === "POST" && url.pathname === "/api/test-search-provider") {
     try {
-      const result = await testBraveProvider();
+      const result = await testPerplexityProvider();
       return sendJson(res, 200, result);
     } catch (error) {
       console.error("test-search-provider failed", error);
@@ -691,14 +719,7 @@ async function handleRequest(req, res) {
       const body = await readJson(req);
       const query = String(body.query || "").trim();
       if (!query) return sendJson(res, 400, { error: "query is required" });
-      const mode = body.mode === "web" ? "web" : "llm";
-      const result = mode === "web"
-        ? await braveWebSearch(query, { count: body.count || 10 })
-        : await braveLlmContext(query, {
-          count: body.count || 10,
-          maximumNumberOfUrls: body.maximumNumberOfUrls || 8,
-          maximumNumberOfTokens: body.maximumNumberOfTokens || 4096
-        });
+      const result = await searchPerplexity(query, { maxTokens: body.maxTokens || 700, operation: "search_context" });
       return sendJson(res, 200, result);
     } catch (error) {
       console.error("search-context failed", error);

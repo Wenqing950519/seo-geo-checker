@@ -1,5 +1,6 @@
 .env
 mock-api/.env
+mock-api/usage-events.jsonl
 *.log
 node_modules/
 

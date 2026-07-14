@@ -1,0 +1,14 @@
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+const ledger = path.resolve(__dirname, "..", "usage-events.jsonl");
+const backup = fs.existsSync(ledger) ? fs.readFileSync(ledger) : null;
+fs.rmSync(ledger, { force: true });
+process.env.GEMINI_INPUT_USD_PER_1M_TOKENS = "0.1";
+process.env.GEMINI_OUTPUT_USD_PER_1M_TOKENS = "0.4";
+const { recordAiUsage, getUsageSummary } = require("../lib/usage-meter");
+recordAiUsage({ provider: "gemini", model: "test", operation: "audit", status: "success", inputTokens: 1000, outputTokens: 500, latencyMs: 10 });
+const summary = getUsageSummary();
+assert.equal(summary.totals.requests, 1); assert.equal(summary.totals.totalTokens, 1500); assert.equal(summary.totals.successRate, 100); assert.equal(summary.totals.costConfigured, true); assert(summary.totals.estimatedCostUsd > 0);
+fs.rmSync(ledger, { force: true }); if (backup) fs.writeFileSync(ledger, backup);
+console.log("usage meter tests passed");

@@ -1,5 +1,5 @@
-const { callAgnesJson } = require("../providers/agnes");
-const { getBraveAuditContext } = require("../providers/brave");
+const { callGeminiJson } = require("../providers/gemini");
+const { getPerplexityAuditContext } = require("../providers/perplexity");
 const { AppError } = require("./errors");
 const { fetchHomepage, fetchRepresentativePages } = require("./html-v2");
 const { fetchTechnicalSignals } = require("./technical-signals");
@@ -57,7 +57,7 @@ async function runRealLiteAudit(siteUrl) {
 
   const [technical, searchContext] = await Promise.all([
     fetchTechnicalSignals(siteUrl, homepage),
-    getBraveAuditContext({ siteUrl, title: homepage.metadata?.title, description: homepage.metadata?.description })
+    getPerplexityAuditContext({ siteUrl, title: homepage.metadata?.title, description: homepage.metadata?.description })
   ]);
   const representativePages = await fetchRepresentativePages(technical.representativeUrls || [], 3);
   const analysisText = [homepage.text, ...representativePages.filter((page) => page.crawlQuality?.scorable).map((page) => page.text)].join("\n\n").slice(0, 14000);
@@ -68,11 +68,11 @@ async function runRealLiteAudit(siteUrl) {
     searchContext,
     technical
   });
-  const result = await callAgnesJson(prompt, { temperature: 0.1, attempts: 2, timeoutMs: 35_000 });
+  const result = await callGeminiJson(prompt, { temperature: 0.1, attempts: 2, timeoutMs: 35_000, operation: "real_lite_audit" });
   const audit = applyV2Audit(normalizeAudit(result.json), { homepage, technical, representativePages });
   audit.ai_validation = {
     status: "interpreted",
-    provider: result.provider || "agnes",
+    provider: result.provider || "gemini",
     model: result.model,
     message_zh: "AI 已根據本次取得的公開首頁資料產生定位解讀；這不等於品牌已被 AI 搜尋引用。"
   };
@@ -82,7 +82,7 @@ async function runRealLiteAudit(siteUrl) {
     url: siteUrl,
     createdAt: new Date().toISOString(),
     algorithmVersion: "2.1",
-    provider: result.provider || "agnes",
+    provider: result.provider || "gemini",
     model: result.model,
     latencyMs: result.latencyMs,
     attempts: result.attempts,

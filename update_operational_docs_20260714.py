@@ -1,4 +1,8 @@
-# SEO/GEO Mock API
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+
+README = """# SEO/GEO Mock API
 
 GeoCheck 的網站 SEO/GEO 健檢原型。核心分數來自可驗證的抓取與規則訊號；外部模型只補充脈絡與語意解讀，不能改寫核心分數。
 
@@ -97,3 +101,51 @@ https://你的網域/<ADMIN_PATH_TOKEN>
 - `usage-events.jsonl` 需要持久化檔案系統；Serverless 或短暫容器應改用資料庫／持久化磁碟保存歷史。
 - 目前 rate limit 是單程序記憶體實作；多實例部署時請改用 Redis 或相等的共享儲存。
 - 不保證任何 AI 搜尋引擎會引用、排名或推薦受檢網站。
+"""
+
+ENV = """# Copy this file to mock-api/.env (or project root .env). Never commit real values.
+
+PORT=8787
+SITE_ORIGIN=https://geocheck.lisheng.cv
+LEGACY_HOST=geocheck.tungowo.com
+
+# Gemini: structured audit interpretation. Confirm /api/test-provider after deployment.
+GEMINI_API_KEY=
+GEMINI_MODEL=gemini-3.1-flash-lite
+GEMINI_BASE_URL=https://generativelanguage.googleapis.com/v1beta
+
+# Perplexity: web-grounded public context.
+PERPLEXITY_API_KEY=
+PERPLEXITY_MODEL=sonar
+PERPLEXITY_BASE_URL=https://api.perplexity.ai
+PERPLEXITY_ENDPOINT=/chat/completions
+
+# Private cost dashboard. The bookmark is https://your-domain/<ADMIN_PATH_TOKEN>.
+# ADMIN_PATH_TOKEN must be 16-128 characters from A-Z, a-z, 0-9, _ and -.
+ADMIN_PATH_TOKEN=
+ADMIN_TOKEN=
+
+# Optional cost estimates. Prices are USD per 1,000,000 tokens unless stated otherwise.
+GEMINI_INPUT_USD_PER_1M_TOKENS=
+GEMINI_OUTPUT_USD_PER_1M_TOKENS=
+PERPLEXITY_INPUT_USD_PER_1M_TOKENS=
+PERPLEXITY_OUTPUT_USD_PER_1M_TOKENS=
+PERPLEXITY_USD_PER_REQUEST=
+
+# Optional browser fallback for sites that block server-side fetch.
+PLAYWRIGHT_NODE_MODULES=
+DISABLE_BROWSER_FETCH=false
+
+# MVP abuse controls. Replace in-memory limits with shared storage for multi-instance production.
+RATE_LIMIT_IP_WINDOW_MS=600000
+RATE_LIMIT_IP_MAX=10
+RATE_LIMIT_URL_COOLDOWN_MS=1800000
+MAX_ACTIVE_AUDITS=2
+AUDIT_CACHE_TTL_MS=604800000
+TRUST_PROXY=false
+"""
+
+(ROOT / "mock-api" / "README.md").write_text(README, encoding="utf-8")
+(ROOT / "mock-api" / ".env.example").write_text(ENV, encoding="utf-8")
+(ROOT / ".env.example").write_text(ENV, encoding="utf-8")
+print("Updated README and environment templates")
