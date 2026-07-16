@@ -1,4 +1,5 @@
 const { classifySite } = require("./site-type");
+const { analyzeContentEvidence } = require("./content-evidence");
 
 const WEIGHTS = Object.freeze({
   homepage_fetch: 8,
@@ -74,6 +75,14 @@ function collectScoringSignals({ homepage = {}, technical = {}, representativePa
   const altRatio = imageCount ? Number(metadata.imagesWithAlt || 0) / imageCount : 1;
   const headingLevels = Array.isArray(metadata.headingLevels) ? metadata.headingLevels : [];
   const renderGainRatio = initialTextLength > 0 ? Math.max(0, textLength - initialTextLength) / initialTextLength : (textLength > 0 ? Infinity : 0);
+  const verticalSignals = siteGeoSignals(siteType, text, representativePages) || {
+    faq: /faq|q&a|常見問題|問與答|問題/.test(text),
+    cases: /case study|案例|成果|實績|作品/.test(text),
+    comparisons: /比較|vs\.?|差異|選擇|適合/.test(text),
+    proof: /數據|來源|研究|認證|證照|獎項/.test(text),
+    serviceClarity: /服務|價格|費用|預約|聯絡|地區/.test(text)
+  };
+  const contentEvidence = analyzeContentEvidence({ homepage, representativePages, verticalSignals });
 
   return {
     fetched: Boolean(homepage && !homepage.fetchBlocked && (homepage.statusCode || 200) < 400),
@@ -99,26 +108,51 @@ function collectScoringSignals({ homepage = {}, technical = {}, representativePa
     headingStructure: headingLevels.includes(1) && !headingLevels.some((level, index) => index > 0 && level - headingLevels[index - 1] > 1),
     siteType,
     representativePageCount: representativePages.filter((page) => page?.crawlQuality?.scorable).length,
-    geoSignals: siteGeoSignals(siteType, text, representativePages) || {
-      faq: /faq|q&a|常見問題|問答|問題/.test(text),
-      cases: /case study|案例|客戶|成功|成果|實績/.test(text),
-      comparisons: /比較|vs\.?|替代|競品|方案差異/.test(text),
-      proof: /數據|研究|報告|白皮書|引用|來源|證明/.test(text),
-      serviceClarity: /服務|方案|價格|收費|流程|適合|對象/.test(text)
-    }
+    geoSignals: contentEvidence.signals,
+    contentEvidence: contentEvidence.metrics
   };
 }
 
 function siteGeoSignals(siteType, text, representativePages) {
-  if (siteType !== "restaurant") return null;
   const paths = representativePages.map((page) => String(page.url || "").toLowerCase()).join(" ");
-  return {
-    faq: /faq|常見問題|問與答|聯絡我們/.test(text),
-    cases: /菜單|餐點|料理|menu|product/.test(text) || /\/(?:menu|product)/.test(paths),
-    comparisons: /店鋪|分店|門市|營業時間|location|store/.test(text) || /\/(?:store|location)/.test(paths),
-    proof: /地址|電話|最新消息|品牌故事|創立|沿革|news|about/.test(text) || /\/(?:about|news)/.test(paths),
-    serviceClarity: /訂位|外帶|外送|用餐|餐廳|reservation|delivery|takeout/.test(text)
+  const signalSets = {
+    restaurant: {
+      faq: /faq|常見問題|訂位須知|用餐須知/.test(text),
+      cases: /菜單|餐點|料理|menu|product/.test(text) || /\/(?:menu|product)/.test(paths),
+      comparisons: /分店|門市|地點|交通|location|store/.test(text) || /\/(?:store|location)/.test(paths),
+      proof: /評價|獲獎|媒體|食材|品牌故事|review|award|news|about/.test(text),
+      serviceClarity: /訂位|營業時間|外送|外帶|reservation|delivery|takeout/.test(text)
+    },
+    hospitality: {
+      faq: /faq|常見問題|入住|退房|取消|check-?in|check-?out/.test(text),
+      cases: /房型|客房|設施|room|amenities/.test(text) || /\/(?:room|rooms|stay)/.test(paths),
+      comparisons: /交通|景點|位置|停車|location|transport/.test(text),
+      proof: /評價|旅宿登記|獲獎|媒體|review|license|award/.test(text),
+      serviceClarity: /價格|房價|訂房|入住|取消|price|booking/.test(text)
+    },
+    local_service: {
+      faq: /faq|常見問題|服務須知/.test(text),
+      cases: /案例|作品|完工|施工前後|portfolio|case study|before.?after/.test(text) || /\/(?:case|cases|portfolio|works)/.test(paths),
+      comparisons: /服務區域|地區|縣市|價格區間|service area|coverage|pricing/.test(text),
+      proof: /評價|年資|證照|保固|客戶|review|license|warranty/.test(text),
+      serviceClarity: /報價|估價|預約|流程|工期|聯絡|quote|estimate|appointment/.test(text)
+    },
+    professional_service: {
+      faq: /faq|常見問題|法律知識|稅務知識|專業文章/.test(text),
+      cases: /案例|實績|代表案件|客戶成果|case study|experience/.test(text),
+      comparisons: /專業領域|服務項目|適用對象|practice area|expertise/.test(text),
+      proof: /資格|證照|團隊|年資|出版|公會|license|credential|team/.test(text),
+      serviceClarity: /諮詢|預約|流程|費用|聯絡|consultation|appointment|fee/.test(text)
+    },
+    retail: {
+      faq: /faq|常見問題|退換貨|售後/.test(text),
+      cases: /商品|系列|品牌|型錄|product|catalog/.test(text),
+      comparisons: /門市|分店|庫存|營業時間|store|location|inventory/.test(text),
+      proof: /評價|正品|授權|保固|獲獎|review|authorized|warranty/.test(text),
+      serviceClarity: /價格|營業時間|聯絡|預訂|取貨|price|hours|pickup/.test(text)
+    }
   };
+  return signalSets[siteType] || null;
 }
 
 function computeScoreV2(signals) {

@@ -1,36 +1,42 @@
-# GeoCheck 當前營運與技術狀態
+# GeoCheck 當前運作狀態
 
-更新日期：2026-07-14
+更新日期：2026-07-16
 
-## 可確認的現況
+## 已完成
 
-| 項目 | 狀態 | 證據／限制 |
+- Algorithm V3.0.0 已切換為 GEO-first：Perplexity 搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。
+- Perplexity 無法量測時，整體 GEO 分數為未知；站內準備度不得冒充 GEO 分數。
+- Gemini 不參與計分。正式報告可用 Gemini 解釋；白皮書 Skill 只用 Gemini Flash-Lite 做基本資訊與結構分類，不產生優化建議。
+- 網站與 Skill 共用 `mock-api/lib/geo-measurement.js`，並由同步測試阻止權重漂移。
+- 白皮書批次腳本每站固定 Perplexity 3 次、Gemini 1 次，要求兩個獨立硬上限，支援 JSONL 續跑與資料集雜湊。
+- 本機 Gemini 若回傳地區不支援，可透過管理員密碼保護的 Render 代理端點執行研究描述。
+- 後台維持無公開入口的 `/<ADMIN_PATH_TOKEN>`，並以 `ADMIN_TOKEN` 驗證用量與研究代理請求。
+
+## 供應商實測
+
+| 服務 | 狀態 | 證據 |
 |---|---|---|
-| 規則評分與多層爬取 | 已實作、測試通過 | 核心分數由公開網站證據與規則決定，不由模型決定。 |
-| Perplexity Sonar | 已實際連線成功 | `POST /api/test-search-provider` 成功回傳 `sonar`。 |
-| Gemini 3.1 Flash-Lite | 整合完成，部署待驗證 | 現有執行環境回傳 HTTP 400：`User location is not supported for the API use.`；不是演算法分數或 JSON 解析錯誤。 |
-| Gemini 降級機制 | 已實作 | Gemini 不可用時，報告回退為本地確定性結果，並標註 AI 解讀未驗證。 |
-| 成本台帳 | 已實作、測試通過 | 記錄供應商、模型、用途、token、延遲、狀態與預估成本；不記錄 key、提示詞或網站內容。 |
-| 私有成本後台 | 已實作、路由驗證通過 | 需同時具備私有路徑 `ADMIN_PATH_TOKEN` 與登入密碼 `ADMIN_TOKEN`。 |
+| Perplexity Sonar | 已啟用 | 2026-07-16 最終審計 6/6 呼叫成功。 |
+| Gemini 3.1 Flash-Lite（Render） | 已啟用 | `POST https://geocheck.lisheng.cv/api/test-provider` 回傳成功，模型為 `gemini-3.1-flash-lite`。 |
+| Gemini（目前本機出口） | 地區限制 | Google 回傳 HTTP 400 `User location is not supported for the API use.`，改走受保護 Render 代理。 |
 
-## 正確的產品敘述
+## 最終演算法審計
 
-GeoCheck 目前是「AI 搜尋可讀性與技術整備度健檢工具」。它能以可重現的公開網站訊號產生分數、證據與修正建議；它不保證 ChatGPT、Gemini 或任何搜尋引擎會引用、排名或推薦特定網站。
+| 網站 | GEO | 站內準備度 | Perplexity | 提及率 | 官網引用率 | 實體對齊 |
+|---|---:|---:|---:|---:|---:|---|
+| 壽司郎 | 65 | 63 | 41 | 0% | 50% | 是 |
+| Hunterest | 41 | 87 | 0 | 0% | 0% | 否 |
 
-## 上線前必要條件
+結果符合產品目的：Hunterest 的站內結構雖較完整，但未因結構拿到高 GEO 分；壽司郎有實體與官網引用證據，因此 GEO 分較高。資料集 SHA-256：`83d50e17a6962342d5e1baf7c44ea3e97fb40bda0c4ff2ba7703b8304010cd6c`。
 
-1. 在部署平台設定 `GEMINI_API_KEY`、`PERPLEXITY_API_KEY`、`ADMIN_PATH_TOKEN` 與 `ADMIN_TOKEN`；本機 `.env` 不會隨 Git 部署。
-2. 將 Gemini 請求部署到 Gemini Developer API 支援的執行區域，或改用 Vertex AI 後重新執行 `POST /api/test-provider`。
-3. 只有 `test-provider` 回傳成功後，才可把 Gemini 狀態標記為「已啟用」。
-4. 若主機檔案系統非持久化，將 `usage-events.jsonl` 改存入資料庫或持久化磁碟，否則重啟後成本歷史會遺失。
-5. 成本欄位僅為預估；請依實際方案在環境變數填入單價，並以供應商帳單為準。
+## 上線前檢查
 
-## 私有後台設定
+1. Render 保留 `GEMINI_API_KEY`、`PERPLEXITY_API_KEY`、`ADMIN_PATH_TOKEN` 與 `ADMIN_TOKEN`。
+2. 部署後測試 `POST /api/test-provider` 與 `POST /api/test-search-provider`。
+3. 以正確 `X-Admin-Token` 測試 `POST /api/internal/research-profile`；未帶密碼必須回傳 401。
+4. 執行 `npm.cmd test`；任一同步、計分或安全測試失敗都不得部署。
+5. 白皮書批次執行前，先公告預計網站數與兩家供應商的硬上限。
 
-```env
-ADMIN_PATH_TOKEN=至少16字元，僅限A-Z、a-z、0-9、_、-
-ADMIN_TOKEN=登入密碼
-```
+## 對外聲明
 
-書籤格式：`https://geocheck.lisheng.cv/<ADMIN_PATH_TOKEN>`。
-不提供首頁入口；錯誤路徑與舊 `/admin` 路徑均回傳 404。
+GeoCheck 量測的是公開網站與指定 Perplexity 查詢集下的可觀測 GEO 證據，不保證任何 AI 引擎一定引用、排名或推薦。失敗或未知證據不補零，也不由 Gemini 猜測。

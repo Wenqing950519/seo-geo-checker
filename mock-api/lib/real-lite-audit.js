@@ -38,18 +38,18 @@ async function runDeterministicFallback(siteUrl, providerError) {
       `AI 定位解讀暫停：${safeProviderMessage(providerError)}。客觀分數不受影響。`
     ]
   }, { homepage, technical, representativePages });
-  audit.score.evidence_status = "partial";
-  audit.score.label = "技術與內容準備度（AI 未驗證）";
-  audit.score.summary_zh = "已完成可取得的技術與內容訊號檢查；AI API 本次不可用，因此不輸出 AI 定位或引用結論。";
+  audit.score.evidence_status = "insufficient_evidence";
+  audit.score.label = "GEO 證據不足";
+  audit.score.summary_zh = "Perplexity 或 Gemini 服務未完成；不顯示整體 GEO 分數，僅保留站內準備度。";
   audit.ai_validation = { status: "unavailable", provider: "local-deterministic-fallback", message_zh: "AI API 本次不可用；本報告只包含公開首頁與技術訊號的初步檢查。" };
 
   return {
     id: `real_lite_${Date.now()}`,
     url: siteUrl,
     createdAt: new Date().toISOString(),
-    algorithmVersion: "2.1",
+    algorithmVersion: audit.score.algorithm_version || "3.0.0",
     provider: "local-deterministic-fallback",
-    model: "rules-v2.1",
+    model: "rules-v3",
     latencyMs: Date.now() - startedAt,
     attempts: 0,
     repairedJson: false,

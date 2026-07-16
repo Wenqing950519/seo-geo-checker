@@ -17,6 +17,7 @@ const { assertSafePublicUrl } = require("./lib/url-safety");
 const { testGeminiProvider } = require("./providers/gemini");
 const { searchPerplexity, testPerplexityProvider } = require("./providers/perplexity");
 const { getUsageSummary } = require("./lib/usage-meter");
+const { buildResearchProfile } = require("./lib/research-profile");
 
 loadEnvFiles();
 
@@ -46,7 +47,7 @@ function sendJson(res, status, data) {
     "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type"
+    "Access-Control-Allow-Headers": "Content-Type, X-Admin-Token"
   });
   res.end(body);
 }
@@ -65,6 +66,21 @@ function sendText(res, status, text, contentType = "text/plain; charset=utf-8") 
     "Access-Control-Allow-Origin": "*"
   });
   res.end(text);
+}
+
+function sendHealth(res) {
+  const body = '{"ok":true,"service":"geocheck"}\n';
+  res.writeHead(200, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Content-Length": Buffer.byteLength(body),
+    "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+    "CDN-Cache-Control": "no-store",
+    "Surrogate-Control": "no-store",
+    "Pragma": "no-cache",
+    "Expires": "0",
+    "Access-Control-Allow-Origin": "*"
+  });
+  res.end(body);
 }
 
 function sendMarkdown(res, filename, markdown) {
@@ -306,139 +322,52 @@ function reportHtml(report) {
 }
 
 function realLiteReportHtml(report) {
-  const audit = report.audit;
+  const audit = report.audit || {};
   const issues = audit.technical_seo?.issues || [];
   const actions = audit.priority_actions || [];
   const questions = audit.geo_questions || [];
   const gaps = audit.content_citeability?.gaps_zh || [];
   const score = audit.score || {};
+  const observation = audit.perplexity_observation || {};
+  const authority = audit.authority_evidence || {};
   const aiValidation = audit.ai_validation || {};
   const scoreValue = Number.isFinite(score.value) ? score.value : "—";
-  const scoreContext = score.evidence_status === "unavailable"
-    ? "本次首頁未能抓取，沒有產生任何品質分數。"
-    : `技術與內容準備度：${escapeHtml(score.readiness_label || "Unknown")}；AI 定位狀態：${escapeHtml(aiValidation.status || "unknown")}。`;
+  const readinessValue = Number.isFinite(score.site_readiness_value) ? score.site_readiness_value : "—";
+  const scoreContext = score.evidence_status === "measured"
+    ? "此分數以 Perplexity 的實際搜尋提及與官網引用為主，不等同傳統 SEO 分數。"
+    : "Perplexity 搜尋證據不足，因此不顯示整體 GEO 分數；站內準備度仍可單獨參考。";
   const crawlQuality = report.homepage?.crawlQuality || {};
   const representativeSuccess = (report.representativePages || []).filter((page) => page.crawlQuality?.scorable).length;
-  const breakdownLabels = { crawl_access: "抓取與存取", discoverability: "網址發現性", semantic_clarity: "語意與結構", content_readability: "內容可讀性", citeability: "餐飲內容可引用性" };
-  const breakdownRows = Object.entries(score.breakdown || {}).map(([key, value]) => `<tr><td>${escapeHtml(breakdownLabels[key] || key)}</td><td>${escapeHtml(value.points)}</td><td>${escapeHtml(value.max)}</td></tr>`).join("");
-
-  const issueRows = issues.map((issue) => `
-    <tr>
-      <td>${escapeHtml(issue.severity || "")}</td>
-      <td>${escapeHtml(issue.check || "")}</td>
-      <td>${escapeHtml(issue.detail_zh || "")}</td>
-      <td>${escapeHtml(issue.impact_zh || "")}</td>
-    </tr>
-  `).join("");
-  const actionRows = actions.map((action) => `
-    <tr>
-      <td>${escapeHtml(action.priority || "")}</td>
-      <td>${escapeHtml(action.type || "")}</td>
-      <td>${escapeHtml(action.target_zh || "")}</td>
-      <td>${escapeHtml(action.recommendation_zh || "")}</td>
-    </tr>
-  `).join("");
+  const breakdownLabels = { technical_access: "必要技術存取", content_citeability: "內容可引用性", perplexity_observation: "Perplexity 搜尋實測" };
+  const breakdownRows = Object.entries(score.breakdown || {}).map(([key, value]) =>     `<tr><td>${escapeHtml(breakdownLabels[key] || key)}</td><td>${escapeHtml(value.score ?? "—")}</td><td>${escapeHtml(value.weight ?? "—")}%</td></tr>`
+  ).join("");
+  const matchedDomains = authority.matchedExternalDomains || [];
+  const observationRows = (observation.observations || []).map((item) =>     `<tr><td>${escapeHtml(item.query || "")}</td><td>${item.brandMentioned ? "是" : "否"}</td><td>${item.firstPartyCited ? "是" : "否"}</td><td>${escapeHtml((item.sourceDomains || []).join(", ") || "—")}</td></tr>`
+  ).join("");
+  const issueRows = issues.map((issue) => `<tr><td>${escapeHtml(issue.severity || "")}</td><td>${escapeHtml(issue.check || "")}</td><td>${escapeHtml(issue.detail_zh || "")}</td><td>${escapeHtml(issue.impact_zh || "")}</td></tr>`).join("");
+  const actionRows = actions.map((action) => `<tr><td>${escapeHtml(action.priority || "")}</td><td>${escapeHtml(action.type || "")}</td><td>${escapeHtml(action.target_zh || "")}</td><td>${escapeHtml(action.recommendation_zh || "")}</td></tr>`).join("");
 
   return `<!doctype html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow" />
-  ${GA_TAG_HTML}
-  <title>SEO/GEO 健檢報告 - ${escapeHtml(report.url)}</title>
-  <style>
-    body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}
-    main{max-width:1040px;margin:0 auto;padding:48px 20px}
-    .card{background:#fff;border:1px solid #e5edf5;border-radius:12px;padding:24px;margin:18px 0;box-shadow:0 8px 24px rgba(11,59,111,.08)}
-    h1,h2{color:#0b3b6f;line-height:1.3}
-    .score{font-size:56px;font-weight:800;color:#00a99b}
-    table{width:100%;border-collapse:collapse}
-    th,td{text-align:left;border-bottom:1px solid #e5edf5;padding:10px;vertical-align:top}
-    .badge{display:inline-block;padding:4px 12px;border-radius:999px;background:#fff4e0;color:#9a6500;font-weight:700}
-    .meta{color:#5a6b7e;font-size:.92rem}
-    .report-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-    a.button{display:inline-block;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700}
-    a.button.secondary{background:#fff;color:#0b3b6f;border:1px solid #cdd9e5}
-    @media(max-width:640px){
-      main{padding:30px 14px}
-      .card{padding:18px;border-radius:10px}
-      h1{font-size:1.65rem}
-      h2{font-size:1.2rem}
-      .score{font-size:48px}
-      .meta{font-size:.82rem;word-break:break-word}
-      table{display:block;overflow-x:auto;white-space:nowrap}
-      th,td{padding:8px}
-      .report-nav a.button{width:100%;text-align:center}
-    }
-  </style>
-</head>
-<body>
-  <main>
-    ${reportTopNavHtml()}
-    <h1>SEO/GEO 網站健檢報告</h1>
-    <p>${escapeHtml(report.url)}</p>
-    <p class="meta">Provider: ${escapeHtml(displayProvider(report.provider))} / Model: ${escapeHtml(displayModel(report.model))} / Attempts: ${escapeHtml(report.attempts || 1)} / Latency: ${escapeHtml(report.latencyMs)}ms</p>
-
-    <section class="card">
-      <h2>本次可驗證結果</h2>
-      <div class="score">${escapeHtml(scoreValue)}</div>
-      <p><span class="badge">${escapeHtml(score.label || "無法評估")}</span></p>
-      <p>${scoreContext}</p>
-      <p>${escapeHtml(score.summary_zh || "")}</p>
-      <p class="meta">抓取：${escapeHtml(crawlQuality.status || "unknown")}／${escapeHtml(report.homepage?.fetchMethod || "unknown")}；資料覆蓋 ${escapeHtml(crawlQuality.coverage ?? 0)}%；代表內頁成功 ${escapeHtml(representativeSuccess)} 頁。</p>
-    </section>
-
-    <section class="card">
-      <h2>分項準備度</h2>
-      <table><thead><tr><th>分項</th><th>得分</th><th>滿分</th></tr></thead><tbody>${breakdownRows}</tbody></table>
-    </section>
-
-    <section class="card">
-      <h2>AI 定位解讀</h2>
-      <p class="meta">${escapeHtml(aiValidation.message_zh || "尚無 AI 定位驗證結果。")}</p>
-      <p><strong>可能分類：</strong>${escapeHtml(audit.positioning?.perceived_category_zh || "")}</p>
-      <p><strong>信心等級：</strong>${escapeHtml(audit.positioning?.confidence || "")}</p>
-      <h3>可能受眾</h3>
-      <ul>${(audit.positioning?.perceived_audience_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-      <h3>缺少訊號 / 風險</h3>
-      <ul>${(audit.positioning?.missing_signals_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-    </section>
-
-    <section class="card">
-      <h2>技術 SEO 問題</h2>
-      <table><thead><tr><th>嚴重度</th><th>檢查項目</th><th>說明</th><th>影響</th></tr></thead><tbody>${issueRows}</tbody></table>
-    </section>
-
-    <section class="card">
-      <h2>GEO 測試問題</h2>
-      <ul>${questions.map((q) => `<li>${escapeHtml(q.question_zh)} <span class="meta">(${escapeHtml(q.intent)}, value ${escapeHtml(q.business_value)})</span></li>`).join("")}</ul>
-    </section>
-
-    <section class="card">
-      <h2>內容可引用性缺口</h2>
-      <ul>${gaps.map((gap) => `<li>${escapeHtml(gap)}</li>`).join("")}</ul>
-    </section>
-
-    <section class="card">
-      <h2>建議優先處理的 3 件事</h2>
-      <table><thead><tr><th>優先級</th><th>類型</th><th>目標</th><th>建議方向</th></tr></thead><tbody>${actionRows}</tbody></table>
-    </section>
-
-    <section class="card">
-      <h2>資料限制</h2>
-      <ul>${(audit.limitations_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-    </section>
-
-    <section class="card">
-      <h2>想知道這些問題該怎麼修？</h2>
-      <p>這是 real-lite 測試報告。下一步可以把完整站內頁面、Search Console 與更完整的 GEO 測試加入流程。</p>
-      <a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown">下載健檢報告</a>
-      <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener">預約報告解讀</a>
-    </section>
-  </main>
-</body>
-</html>`;
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/>${GA_TAG_HTML}
+<title>GeoCheck GEO 健檢報告 - ${escapeHtml(report.url)}</title>
+<style>
+body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}main{max-width:1040px;margin:0 auto;padding:48px 20px}.card{background:#fff;border:1px solid #e5edf5;border-radius:12px;padding:24px;margin:18px 0;box-shadow:0 8px 24px rgba(11,59,111,.08)}h1,h2,h3{color:#0b3b6f;line-height:1.3}.score{font-size:56px;font-weight:800;color:#00a99b}.readiness{font-size:28px;font-weight:750;color:#0b3b6f}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #e5edf5;padding:10px;vertical-align:top}.badge{display:inline-block;padding:4px 12px;border-radius:999px;background:#fff4e0;color:#9a6500;font-weight:700}.meta{color:#5a6b7e;font-size:.92rem}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{background:#f4f8fc;border-radius:10px;padding:14px}.report-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}a.button{display:inline-block;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700}a.button.secondary{background:#fff;color:#0b3b6f;border:1px solid #cdd9e5}@media(max-width:640px){main{padding:30px 14px}.card{padding:18px}.metrics{grid-template-columns:1fr}.score{font-size:48px}table{display:block;overflow-x:auto;white-space:nowrap}.report-nav a.button{width:100%;text-align:center}}
+</style></head><body><main>
+${reportTopNavHtml()}
+<h1>GeoCheck GEO 網站健檢報告</h1><p>${escapeHtml(report.url)}</p>
+<p class="meta">Provider: ${escapeHtml(displayProvider(report.provider))} / Model: ${escapeHtml(displayModel(report.model))} / Attempts: ${escapeHtml(report.attempts || 1)} / Latency: ${escapeHtml(report.latencyMs)}ms</p>
+<section class="card"><h2>Perplexity GEO 實測分數</h2><div class="score">${escapeHtml(scoreValue)}</div><p><span class="badge">${escapeHtml(score.label || "GEO 證據不足")}</span></p><p>${scoreContext}</p><p>${escapeHtml(score.summary_zh || "")}</p><hr/><h3>站內準備度</h3><div class="readiness">${escapeHtml(readinessValue)} / 100</div><p class="meta">此數字只衡量網站可抓取與內容準備，不代表已被 AI 搜尋看見。</p></section>
+<section class="card"><h2>GEO 三層計分</h2><table><thead><tr><th>層級</th><th>分數</th><th>權重</th></tr></thead><tbody>${breakdownRows}</tbody></table></section>
+<section class="card"><h2>Perplexity 搜尋觀測</h2><div class="metrics"><div class="metric"><strong>有效查詢</strong><br/>${escapeHtml(observation.measuredQueryCount ?? 0)} / ${escapeHtml(observation.queryCount ?? 0)}</div><div class="metric"><strong>品牌提及率</strong><br/>${escapeHtml(observation.mentionRate ?? "—")}%</div><div class="metric"><strong>官網引用率</strong><br/>${escapeHtml(observation.citationRate ?? "—")}%</div></div><p><strong>實體對齊：</strong>${authority.entityGrounded ? "已找到同一品牌的外部證據" : "未找到足夠的同一實體證據"}</p><p><strong>相符外部來源：</strong>${escapeHtml(matchedDomains.join(", ") || "無")}</p><table><thead><tr><th>非品牌搜尋題</th><th>提及品牌</th><th>引用官網</th><th>來源網域</th></tr></thead><tbody>${observationRows}</tbody></table></section>
+<section class="card"><h2>資料抓取狀態</h2><p>抓取品質：${escapeHtml(crawlQuality.status || "unknown")}；方式：${escapeHtml(report.homepage?.fetchMethod || "unknown")}；覆蓋率：${escapeHtml(crawlQuality.coverage ?? 0)}%；成功代表頁：${escapeHtml(representativeSuccess)}。</p></section>
+<section class="card"><h2>AI 解讀（不參與計分）</h2><p class="meta">${escapeHtml(aiValidation.message_zh || "AI 解讀暫時無法使用")}</p><p><strong>可能分類：</strong>${escapeHtml(audit.positioning?.perceived_category_zh || "未知")}</p><p><strong>信心等級：</strong>${escapeHtml(audit.positioning?.confidence || "low")}</p></section>
+<section class="card"><h2>技術與抓取問題</h2><table><thead><tr><th>嚴重度</th><th>檢查</th><th>問題</th><th>影響</th></tr></thead><tbody>${issueRows}</tbody></table></section>
+<section class="card"><h2>建議測試的 GEO 問題</h2><ul>${questions.map((q) => `<li>${escapeHtml(q.question_zh)} <span class="meta">(${escapeHtml(q.intent)}, value ${escapeHtml(q.business_value)})</span></li>`).join("")}</ul></section>
+<section class="card"><h2>內容可引用性缺口</h2><ul>${gaps.map((gap) => `<li>${escapeHtml(gap)}</li>`).join("")}</ul></section>
+<section class="card"><h2>優先修正的 3 件事</h2><table><thead><tr><th>優先級</th><th>類型</th><th>目標</th><th>怎麼做</th></tr></thead><tbody>${actionRows}</tbody></table></section>
+<section class="card"><h2>資料限制</h2><ul>${(audit.limitations_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
+<section class="card"><a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown">下載健檢報告</a> <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener">預約報告解讀</a></section>
+</main></body></html>`;
 }
 
 function reportTopNavHtml() {
@@ -528,89 +457,50 @@ ${report.actions.map((action) => `### ${action.priority} ${action.type}
 }
 
 function realLiteReportMarkdown(report) {
-  const audit = report.audit;
-  return `# SEO/GEO 網站健檢報告
+  const audit = report.audit || {};
+  const score = audit.score || {};
+  const observation = audit.perplexity_observation || {};
+  const authority = audit.authority_evidence || {};
+  return `# GeoCheck GEO 網站健檢報告
 
 - URL: ${report.url}
 - Report ID: ${report.id}
 - Created At: ${report.createdAt}
-- Provider: ${displayProvider(report.provider)}
-- Model: ${displayModel(report.model)}
-- Attempts: ${report.attempts || 1}
-- Latency: ${report.latencyMs}ms
+- Algorithm: ${score.algorithm_version || report.algorithmVersion || ""}
 
-## 整體健康度
+## 核心分數
 
-- Score: ${audit.score?.value ?? ""}
-- Label: ${audit.score?.label ?? ""}
+- Perplexity GEO 實測：${score.value ?? "未知"}
+- 站內準備度：${score.site_readiness_value ?? "未知"}
+- 狀態：${score.evidence_status || "unknown"}
 
-${audit.score?.summary_zh || ""}
+${score.summary_zh || ""}
 
-## AI 眼中定位
+## Perplexity 搜尋觀測
 
-- 可能分類: ${audit.positioning?.perceived_category_zh || ""}
-- 信心等級: ${audit.positioning?.confidence || ""}
+- 有效查詢：${observation.measuredQueryCount ?? 0} / ${observation.queryCount ?? 0}
+- 品牌提及率：${observation.mentionRate ?? "未知"}%
+- 官網引用率：${observation.citationRate ?? "未知"}%
+- 實體對齊：${authority.entityGrounded ? "是" : "否"}
+- 相符外部來源：${(authority.matchedExternalDomains || []).join(", ") || "無"}
 
-### 可能受眾
+${(observation.observations || []).map((item) => `- ${item.query}: 品牌提及=${item.brandMentioned ? "是" : "否"}；官網引用=${item.firstPartyCited ? "是" : "否"}`).join("\n")}
 
-${(audit.positioning?.perceived_audience_zh || []).map((item) => `- ${item}`).join("\n")}
+## 技術與抓取問題
 
-### 可能使用情境
-
-${(audit.positioning?.perceived_use_cases_zh || []).map((item) => `- ${item}`).join("\n")}
-
-### 誤解或風險
-
-${(audit.positioning?.misunderstandings_or_risks_zh || []).map((item) => `- ${item}`).join("\n")}
-
-### 缺少訊號
-
-${(audit.positioning?.missing_signals_zh || []).map((item) => `- ${item}`).join("\n")}
-
-## 技術 SEO 問題
-
-${(audit.technical_seo?.issues || []).map((issue) => `- [${issue.severity}] ${issue.check}: ${issue.detail_zh}
-  - Impact: ${issue.impact_zh}`).join("\n")}
-
-## GEO 測試問題
-
-${(audit.geo_questions || []).map((q) => `- ${q.question_zh}
-  - Intent: ${q.intent}
-  - Business value: ${q.business_value}`).join("\n")}
+${(audit.technical_seo?.issues || []).map((issue) => `- [${issue.severity}] ${issue.check}: ${issue.detail_zh}`).join("\n")}
 
 ## 內容可引用性
 
-### Strengths
-
-${(audit.content_citeability?.strengths_zh || []).map((item) => `- ${item}`).join("\n")}
-
-### Gaps
-
 ${(audit.content_citeability?.gaps_zh || []).map((item) => `- ${item}`).join("\n")}
 
-## 建議優先處理的 3 件事
+## 優先修正
 
-${(audit.priority_actions || []).map((action) => `### ${action.priority} ${action.type}
-
-- Target: ${action.target_zh}
-- Recommendation: ${action.recommendation_zh}
-- Reason: ${action.reason_zh}
-- Expected impact: ${action.expected_impact_zh}
-`).join("\n")}
+${(audit.priority_actions || []).map((action) => `- ${action.priority} ${action.target_zh}: ${action.recommendation_zh}`).join("\n")}
 
 ## 資料限制
 
 ${(audit.limitations_zh || []).map((item) => `- ${item}`).join("\n")}
-
-## 給 AI 協作的提示
-
-請根據以上 SEO/GEO 健檢結果，協助我把每一個 P1-P3 建議拆成可執行的修復任務。請優先產出：
-
-1. 要修改的頁面或區塊
-2. 建議新增或重寫的文案
-3. 建議新增的 FAQ / schema / metadata
-4. 哪些項目需要人工提供證據或案例
-5. 哪些修復可以先做，哪些需要進一步資料
 `;
 }
 
@@ -633,6 +523,10 @@ async function handleRequest(req, res) {
 
   if (req.method === "OPTIONS") {
     return sendJson(res, 200, { ok: true });
+  }
+
+  if (req.method === "GET" && url.pathname === "/healthz") {
+    return sendHealth(res);
   }
 
   if (req.method === "GET" && url.pathname === "/robots.txt") {
@@ -670,6 +564,19 @@ async function handleRequest(req, res) {
   if (privateAdminPath && req.method === "GET" && url.pathname === `${privateAdminPath}/usage`) {
     if (!isValidAdminToken(req)) return sendJson(res, 401, { error: "Unauthorized" });
     return sendJson(res, 200, getUsageSummary({ limit: url.searchParams.get("limit") }));
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/internal/research-profile") {
+    if (!isValidAdminToken(req)) return sendJson(res, 401, { error: "Unauthorized" });
+    try {
+      const body = await readJson(req);
+      if (!body.measurement || typeof body.measurement !== "object") return sendJson(res, 400, { error: "measurement is required" });
+      const result = await buildResearchProfile(body.measurement, { operation: "whitepaper_research_profile_proxy" });
+      return sendJson(res, 200, result);
+    } catch (error) {
+      console.error("research-profile proxy failed", error);
+      return sendJson(res, error.statusCode || 500, toClientError(error));
+    }
   }
 
   if (req.method === "POST" && url.pathname === "/api/audit") {

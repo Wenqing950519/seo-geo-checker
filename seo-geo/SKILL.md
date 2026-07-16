@@ -28,31 +28,52 @@ description: >
 
 Skill 安裝目錄是唯讀的,所有狀態都存在使用者工作資料夾(下稱 `<workdir>`)。
 
-1. 找 `<workdir>/seo-geo/config.json`。沒有工作資料夾時,請使用者選一個能跨 session 保存的資料夾。
-2. 找策略脈絡檔。若缺少,先從本 skill 的 `references/` 模板複製到 `<workdir>/seo-geo/references/`,
-   再請使用者補關鍵資訊;缺資料時可以先標 `TBD`,但輸出時必須揭露限制。
-3. 之後每次執行都先讀 config 與策略脈絡。config 沒有的欄位用 example 檔預設值補。
+**多客戶/多網站歸檔(重要)**:一個 `<workdir>/seo-geo/` 下可同時管理多個網站,每個網站
+一個用 `<Client>`(品牌名,如 `Hunterest`、`Artniverse`)命名的子資料夾。所有路徑解析如下:
 
-首次初始化要建立:
+- `<clientdir>` = `<workdir>/seo-geo/<Client>/` —— 該客戶的工作狀態(config、questions、references、data、drafts)。
+- `<reportsdir>` = `<workdir>/seo-geo/reports/<Client>/` —— 該客戶的「輸出物」(報告)。
+  報告與工作狀態刻意分開:`reports/` 底下每個客戶一個資料夾並列,方便交付與翻閱。
+- 本文件後續所有相對路徑(`config.json`、`data/audits/...`、`drafts/...`)都相對於 `<clientdir>`;
+  所有 `reports/...` 相對於 `<reportsdir>`。
+
+執行步驟:
+
+1. **解析是哪個客戶**。從使用者給的 URL 或品牌名對應到 `<Client>` 子夾。
+   - 已存在 `<workdir>/seo-geo/<Client>/config.json` → 直接讀它,以 config 為準。
+   - `seo-geo/` 下有多個客戶且使用者沒指明 → 用一個問題確認是哪一個,不要猜。
+   - 找不到對應客戶 → 進入該客戶的首次初始化。
+2. 找策略脈絡檔(在 `<clientdir>/references/`)。若缺少,先從本 skill 的 `references/` 模板複製過去,
+   再請使用者補關鍵資訊;缺資料時可以先標 `TBD`,但輸出時必須揭露限制。
+3. 之後每次執行都先讀該客戶的 config 與策略脈絡。config 沒有的欄位用 example 檔預設值補。
+
+沒有工作資料夾時,請使用者選一個能跨 session 保存的資料夾。
+
+首次初始化某客戶時要建立(以 `<Client>` = 品牌名):
 
 ```text
 <workdir>/seo-geo/
-├── config.json
-├── questions.json
-├── references/
-│   ├── strategy.md
-│   ├── icp.md
-│   ├── ai-positioning.md
-│   ├── evidence-inventory.md
-│   ├── scoring-rubric.md
-│   ├── competitor-map.md
-│   └── recommendation-examples.md
-├── data/audits/
-├── data/geo/
-├── data/changes.log
-├── drafts/
+├── <Client>/                 # 每個網站一個工作夾
+│   ├── config.json
+│   ├── questions.json
+│   ├── references/
+│   │   ├── strategy.md
+│   │   ├── icp.md
+│   │   ├── ai-positioning.md
+│   │   ├── evidence-inventory.md
+│   │   ├── scoring-rubric.md
+│   │   ├── competitor-map.md
+│   │   └── recommendation-examples.md
+│   ├── data/audits/
+│   ├── data/geo/
+│   ├── data/changes.log
+│   └── drafts/
 └── reports/
+    └── <Client>/             # 該網站的報告輸出,與其他客戶並列
 ```
+
+> 單一客戶的舊版扁平結構(config/data/reports 直接放 `seo-geo/` 根目錄)仍可運作;
+> 但只要有第二個網站加入,就把每個客戶各自收進 `<Client>/` 子夾並對齊,避免互相覆蓋。
 
 `data/changes.log` 是因果歸因的基礎:使用者每次改網站、發布內容、調整定位,記一行
 (日期 + 做了什麼 + 影響哪些頁/問題)。報告解讀任何變化前必須對照這個檔案;
@@ -165,7 +186,7 @@ AI 引用測試;若只能用一般 web search,要標為 `source_visibility_proxy
    若資料收集已達最低門檻(至少有定位診斷 + 技術檢查,或定位診斷 + GEO 測試),即可產出網站健檢報告。
 2. 讀策略脈絡檔與 `references/report-template.md`。報告核心是 diff、趨勢與決策:
    AI 如何理解本站、哪些 SEO/GEO 問題真的影響商業目標、哪些需要使用者補證據或改定位。
-3. 存到 `reports/report-YYYYMMDD.md`。
+3. 存到 `<reportsdir>/report-YYYYMMDD.md`(即 `<workdir>/seo-geo/reports/<Client>/report-YYYYMMDD.md`)。
 4. 若 `config.report.telegram.enabled` 為 true,只推送摘要,不要推全文。推播失敗不影響報告產出。
 
 ## 輸出品質標準

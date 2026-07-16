@@ -1,99 +1,68 @@
-# SEO/GEO Mock API
+# GeoCheck Mock API
 
-GeoCheck 的網站 SEO/GEO 健檢原型。核心分數來自可驗證的抓取與規則訊號；外部模型只補充脈絡與語意解讀，不能改寫核心分數。
+GeoCheck 是偏向 GEO 搜尋實證的網站健檢服務。Algorithm V3 以 Perplexity 搜尋觀測作為主分數核心，搭配可引用內容與必要技術存取；Gemini 不參與計分。
 
-## 當前供應商狀態（2026-07-14）
+## 供應商角色
 
-| 服務 | 角色 | 狀態 |
-|---|---|---|
-| Perplexity Sonar | 公開網站脈絡與來源探索 | 已完成真實連線測試。 |
-| Gemini 3.1 Flash-Lite | 結構化定位與建議解讀 | 程式與設定完成；目前測試執行位置收到 `User location is not supported for the API use`，正式部署需改至支援區域或改用 Vertex AI 後重新驗證。 |
-| 本地確定性降級 | Gemini 不可用時的報告 | 已實作；回傳技術／內容分數並標註 AI 解讀未驗證。 |
+| 服務 | 用途 |
+|---|---|
+| Perplexity Sonar | 實體權威驗證、兩題非品牌探索、品牌提及與官網引用量測 |
+| Gemini 3.1 Flash-Lite | 正式報告的證據解讀；白皮書模式只做基本資訊與結構分類 |
+| 本地確定性規則 | 抓取、站內準備度、內容可引用性、分數上限與降級 |
+
+網站正式報告與白皮書 Skill 共用 `lib/geo-measurement.js`。Gemini 不可用不會改變已完成的 Perplexity GEO 分數。
 
 ## 設定
 
-請使用 `mock-api/.env`，不要把 key 寫在 `mock-api/.env.example`。
-
 ```powershell
 copy mock-api/.env.example mock-api/.env
-```
-
-至少設定：
-
-```env
-GEMINI_API_KEY=
-PERPLEXITY_API_KEY=
-ADMIN_PATH_TOKEN=至少16字元，僅限A-Z、a-z、0-9、_、-
-ADMIN_TOKEN=後台登入密碼
-```
-
-成本後台的預估單價是可選設定；未填時仍會記錄 token，不會假裝有精確成本：
-
-```env
-GEMINI_INPUT_USD_PER_1M_TOKENS=
-GEMINI_OUTPUT_USD_PER_1M_TOKENS=
-PERPLEXITY_INPUT_USD_PER_1M_TOKENS=
-PERPLEXITY_OUTPUT_USD_PER_1M_TOKENS=
-PERPLEXITY_USD_PER_REQUEST=
-```
-
-## 執行
-
-```powershell
 npm.cmd run mock-api
 ```
 
-開啟首頁：`http://localhost:8787/home`
+必要環境變數：
 
-## 供應商連線測試
-
-```powershell
-Invoke-RestMethod -Uri "http://localhost:8787/api/test-provider" -Method Post -ContentType "application/json" -Body "{}"
-Invoke-RestMethod -Uri "http://localhost:8787/api/test-search-provider" -Method Post -ContentType "application/json" -Body "{}"
+```env
+GEMINI_API_KEY=
+GEMINI_MODEL=gemini-3.1-flash-lite
+PERPLEXITY_API_KEY=
+PERPLEXITY_MODEL=sonar
+ADMIN_PATH_TOKEN=
+ADMIN_TOKEN=
+GEMINI_EXECUTION_MODE=auto
+GEOCHECK_RESEARCH_API_URL=https://geocheck.lisheng.cv
+GEOCHECK_RESEARCH_API_TOKEN=
 ```
 
-只有 Gemini 測試成功回傳模型與延遲後，才能將 Gemini 標示為已啟用。若失敗，系統應維持本地降級，不應宣稱有 Gemini 引用或能見度結果。
+研究代理 token 未另外設定時會使用 `ADMIN_TOKEN`。不要提交真實金鑰或密碼。
 
-## Real-Lite 健檢
+## 主要 API
 
-```powershell
-Invoke-RestMethod -Uri "http://localhost:8787/api/audit-real-lite" -Method Post -ContentType "application/json" -Body '{"url":"https://example.com"}'
-```
-
-流程：
-
-```text
-URL -> HTTP/瀏覽器抓取 -> 技術與內容規則評分
-    -> Perplexity Sonar（可用時補充公開脈絡）
-    -> Gemini（僅部署區域驗證成功時做解讀）
-    -> JSON 報告；否則本地確定性降級
-```
-
-## 私有成本後台
-
-不提供 `/admin` 或首頁入口。書籤網址：
-
-```text
-https://你的網域/<ADMIN_PATH_TOKEN>
-```
-
-正確私有路徑才會顯示登入頁；資料仍必須輸入 `ADMIN_TOKEN`。錯誤路徑與舊 `/admin` 皆為 404。台帳只保存時間、供應商、模型、用途、token、延遲、狀態與預估成本，不保存 API key、提示詞或網站內容。
-
-## API 端點
-
+- `GET /healthz`：健康檢查。
 - `GET /home`：網站首頁。
-- `POST /api/audit`：Mock 健檢工作。
-- `GET /api/status/:jobId`：Mock 工作狀態。
-- `GET /api/report/:reportId`：報告 JSON。
-- `GET /report/:reportId`：報告頁。
+- `POST /api/audit-real-lite`：正式 GEO V3 健檢。
 - `POST /api/test-provider`：Gemini 連線測試。
-- `POST /api/test-search-provider`：Perplexity Sonar 連線測試。
-- `POST /api/search-context`：Perplexity 搜尋脈絡。
-- `POST /api/audit-real-lite`：真實網站健檢。
+- `POST /api/test-search-provider`：Perplexity 連線測試。
+- `POST /api/search-context`：單次 Perplexity 搜尋脈絡。
+- `POST /api/internal/research-profile`：白皮書 Gemini 描述代理；必須帶 `X-Admin-Token`。
+- `GET /<ADMIN_PATH_TOKEN>/usage`：成本與 Token 摘要；必須帶 `X-Admin-Token`。
 
-## 部署注意事項
+## 白皮書批次
 
-- 本機 `.env` 不會隨 Git 部署；請在部署平台設定同名環境變數。
-- `usage-events.jsonl` 需要持久化檔案系統；Serverless 或短暫容器應改用資料庫／持久化磁碟保存歷史。
-- 目前 rate limit 是單程序記憶體實作；多實例部署時請改用 Redis 或相等的共享儲存。
-- 不保證任何 AI 搜尋引擎會引用、排名或推薦受檢網站。
+```powershell
+node .agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs `
+  --input research-input/sites.csv `
+  --output-dir research-output/taiwan-sme-2026 `
+  --max-perplexity-calls 1200 `
+  --max-gemini-calls 400 `
+  --concurrency 2
+```
+
+每個新網站最多 3 次 Perplexity 與 1 次 Gemini。Gemini 只輸出研究描述 schema，不產生優化建議。若只想先排除抓取失敗，可使用 `run-rules-batch.mjs` 做零 API 預檢，但其 `geo_score` 必須為 `null`。
+
+## 測試
+
+```powershell
+npm.cmd test
+```
+
+測試包含演算法邊界、表面成熟偏差、Skill 同步、Gemini 代理、robots 未知狀態、爬蟲、供應商設定、成本紀錄與健康檢查。

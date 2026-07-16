@@ -4,3 +4,9 @@ mock-api/usage-events.jsonl
 *.log
 node_modules/
 
+research-input/
+research-output/
+.codex_deps/
+__pycache__/
+whitepaper_build/
+~$*.docx

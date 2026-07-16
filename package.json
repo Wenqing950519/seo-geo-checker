@@ -5,7 +5,7 @@
   "description": "SEO/GEO checker prototype and mock API.",
   "scripts": {
     "mock-api": "node mock-api/server.js",
-    "test": "node mock-api/tests/algorithm-v2.test.js && node mock-api/tests/business-loop.test.js && node mock-api/tests/robots-unknown.test.js && node mock-api/tests/report-state.test.js && node mock-api/tests/crawler-v2.test.js && node mock-api/tests/provider-config.test.js && node mock-api/tests/model-config.test.js && node mock-api/tests/usage-meter.test.js"
+    "test": "node mock-api/tests/algorithm-v2.test.js && node mock-api/tests/algorithm-trust.test.js && node mock-api/tests/geo-assessment.test.js && node mock-api/tests/skill-sync.test.js && node mock-api/tests/research-profile-proxy.test.js && node mock-api/tests/business-loop.test.js && node mock-api/tests/robots-unknown.test.js && node mock-api/tests/report-state.test.js && node mock-api/tests/crawler-v2.test.js && node mock-api/tests/provider-config.test.js && node mock-api/tests/model-config.test.js && node mock-api/tests/usage-meter.test.js && node mock-api/tests/site-type.test.js && node mock-api/tests/perplexity-provider.test.js && node mock-api/tests/healthz.test.js"
   },
   "dependencies": {
     "playwright": "^1.60.0"

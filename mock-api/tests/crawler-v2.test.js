@@ -53,8 +53,8 @@ const restaurantSignals = collectScoringSignals({
 });
 assert.equal(restaurantSignals.siteType, "restaurant");
 assert.equal(restaurantSignals.representativePageCount, 3);
-assert.equal(restaurantSignals.geoSignals.cases, true);
-assert.equal(restaurantSignals.geoSignals.comparisons, true);
-assert.equal(restaurantSignals.geoSignals.proof, true);
+assert.equal(restaurantSignals.geoSignals.cases, false, "menu pages alone are not case evidence");
+assert.equal(restaurantSignals.geoSignals.comparisons, false, "store pages alone are not comparison evidence");
+assert.equal(restaurantSignals.geoSignals.proof, false, "about pages alone are not authority evidence");
 
 console.log("crawler v2 tests passed");
