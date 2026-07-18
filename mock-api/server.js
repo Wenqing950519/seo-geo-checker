@@ -124,9 +124,38 @@ function maybeRedirectLegacyHost(req, res, url) {
   return true;
 }
 
+// 內容實際更新日:改版時手動更新,不要用當天日期(lastmod 天天變會失去搜尋引擎信任)
+const CONTENT_LASTMOD = "2026-07-18";
+
 function robotsTxt() {
   return [
+    "# GEOCheck 歡迎搜尋引擎與 AI 爬蟲。",
+    "# 注意:若 Cloudflare 開啟了「Block AI bots / managed robots.txt」,會覆蓋此檔案並封鎖",
+    "# GPTBot、ClaudeBot、PerplexityBot 等,請務必在 Cloudflare 後台關閉該設定。",
+    "",
     "User-agent: *",
+    "Allow: /",
+    "",
+    "# 明確允許主要 AI 爬蟲(GEO 必要條件)",
+    "User-agent: GPTBot",
+    "Allow: /",
+    "",
+    "User-agent: OAI-SearchBot",
+    "Allow: /",
+    "",
+    "User-agent: ClaudeBot",
+    "Allow: /",
+    "",
+    "User-agent: Claude-SearchBot",
+    "Allow: /",
+    "",
+    "User-agent: PerplexityBot",
+    "Allow: /",
+    "",
+    "User-agent: Google-Extended",
+    "Allow: /",
+    "",
+    "User-agent: CCBot",
     "Allow: /",
     "",
     `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
@@ -135,22 +164,46 @@ function robotsTxt() {
 }
 
 function sitemapXml() {
-  const today = new Date().toISOString().slice(0, 10);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${SITE_ORIGIN}/</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${CONTENT_LASTMOD}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>${SITE_ORIGIN}/home</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
 </urlset>
+`;
+}
+
+function llmsTxt() {
+  return `# GEOCheck — AI 搜尋能見度健檢
+
+> GEOCheck(${SITE_ORIGIN})是免費的 SEO/GEO 健檢工具,輸入網址即可在約 60 秒內,
+> 透過 Brave Search、Perplexity Sonar 與 Gemini 檢查網站在 Google 與 AI 搜尋引擎
+> (ChatGPT、Perplexity、Gemini)中的能見度,並提供三個優先修正方向。免費、無需註冊。
+
+## 品牌定義
+
+- GEOCheck 是台灣的 AI 搜尋能見度健檢工具與 SEO/GEO 顧問服務,服務對象為想在
+  AI 搜尋時代被看見的中小企業、B2B 品牌與行銷團隊。
+- 健檢包含五大模組:AI 眼中定位、技術 SEO 健檢(12 項檢查)、內容可引用性、
+  GEO 能見度實測(5–8 題真實搜尋問題)、優先修正方向(P1–P3)。
+
+## 主要頁面
+
+- [首頁與免費健檢](${SITE_ORIGIN}/): 輸入網址開始 60 秒免費健檢
+- [健檢五大模組](${SITE_ORIGIN}/#modules): 健檢涵蓋的檢查範圍
+- [報告範例](${SITE_ORIGIN}/#report): 健檢報告的實際內容與格式
+- [服務方案](${SITE_ORIGIN}/#services): GEO 優化、SEO 顧問、技術 SEO 健檢三種服務
+- [學習資源](${SITE_ORIGIN}/#resources): GEO 是什麼、AI 搜尋能見度、llms.txt、schema 說明
+
+## 常見問題
+
+- GEO(Generative Engine Optimization)是讓品牌更容易被 ChatGPT、Perplexity 等
+  生成式 AI 引用與推薦的優化方法;SEO 競爭排名,GEO 競爭「被 AI 選進答案」。
+- AI 沒提到你的品牌,通常是定位訊號不清楚、內容缺乏可引用段落或缺少權威佐證,
+  而不是運氣問題。
 `;
 }
 
@@ -537,12 +590,30 @@ async function handleRequest(req, res) {
     return sendText(res, 200, sitemapXml(), "application/xml; charset=utf-8");
   }
 
+  if (req.method === "GET" && url.pathname === "/llms.txt") {
+    return sendText(res, 200, llmsTxt(), "text/plain; charset=utf-8");
+  }
+
+  // 正典 URL 統一為 /:根路徑直接以 200 回傳首頁(canonical/og:url/schema 均指向 /)
   if (req.method === "GET" && url.pathname === "/") {
-    res.writeHead(302, {
-      "Location": "/home",
+    const prototypePath = path.resolve(__dirname, "public", "home.html");
+    if (!fs.existsSync(prototypePath)) {
+      return sendHtml(res, 404, "<h1>Prototype HTML not found</h1>");
+    }
+    return sendHtml(res, 200, fs.readFileSync(prototypePath, "utf8"));
+  }
+
+  // 靜態資產:og-image 與 favicon(缺檔時回 404,不再讓 meta 指向不存在的資源)
+  if (req.method === "GET" && (url.pathname === "/og-image.png" || url.pathname === "/favicon.png" || url.pathname === "/favicon.ico")) {
+    const assetName = url.pathname === "/og-image.png" ? "og-image.png" : "favicon.png";
+    const assetPath = path.resolve(__dirname, "public", assetName);
+    if (!fs.existsSync(assetPath)) return sendText(res, 404, "Not found");
+    res.writeHead(200, {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=86400",
       "Access-Control-Allow-Origin": "*"
     });
-    return res.end();
+    return res.end(fs.readFileSync(assetPath));
   }
 
   const adminPathToken = getAdminPathToken();
@@ -553,12 +624,14 @@ async function handleRequest(req, res) {
     return sendHtml(res, 200, fs.readFileSync(adminPath, "utf8"));
   }
 
+  // 舊路徑 /home 以 301 併入正典 /
   if (req.method === "GET" && url.pathname === "/home") {
-    const prototypePath = path.resolve(__dirname, "public", "home.html");
-    if (!fs.existsSync(prototypePath)) {
-      return sendHtml(res, 404, "<h1>Prototype HTML not found</h1>");
-    }
-    return sendHtml(res, 200, fs.readFileSync(prototypePath, "utf8"));
+    res.writeHead(301, {
+      "Location": "/",
+      "Cache-Control": "public, max-age=3600",
+      "Access-Control-Allow-Origin": "*"
+    });
+    return res.end();
   }
 
   if (privateAdminPath && req.method === "GET" && url.pathname === `${privateAdminPath}/usage`) {
@@ -783,6 +856,14 @@ async function handleRequest(req, res) {
     }
   }
 
+  // API 路徑維持 JSON 404;一般頁面回傳 HTML 404(附回首頁連結)
+  if (req.method === "GET" && !url.pathname.startsWith("/api/")) {
+    return sendHtml(res, 404, `<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex"/><title>404 — 找不到頁面 | GEOCheck</title>
+<style>body{font-family:system-ui,"Noto Sans TC",sans-serif;background:#f7f9fc;color:#1e2a38;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0}main{text-align:center;padding:24px}h1{color:#0b3b6f;font-size:3rem;margin:0 0 8px}a{display:inline-block;margin-top:20px;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 28px;border-radius:999px;font-weight:700}</style>
+</head><body><main><h1>404</h1><p>找不到這個頁面。想檢查你的網站 AI 看不看得見?</p><a href="/">回首頁開始免費健檢</a></main></body></html>`);
+  }
+
   return sendJson(res, 404, { error: "Not found" });
 }
 
@@ -796,3 +877,5 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`SEO/GEO mock API running at http://localhost:${PORT}`);
 });
+// SEO/GEO audit fixes applied 2026-07-18: canonical unified to "/", llms.txt route,
+// static og-image/favicon routes, fixed sitemap lastmod, explicit AI-crawler allows, HTML 404.
