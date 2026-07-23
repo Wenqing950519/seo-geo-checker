@@ -10,8 +10,8 @@ function recordAiUsage(event) {
   return normalized;
 }
 
-function getUsageSummary({ limit = 40 } = {}) {
-  const events = readEvents();
+function getUsageSummary({ limit = 40, runId = null } = {}) {
+  const events = readEvents({ runId });
   const totals = events.reduce((acc, event) => mergeEvent(acc, event), emptyTotals());
   const byProvider = {};
   for (const event of events) {
@@ -25,11 +25,12 @@ function getUsageSummary({ limit = 40 } = {}) {
   };
 }
 
-function readEvents() {
+function readEvents({ runId = null } = {}) {
   if (!fs.existsSync(LEDGER_FILE)) return [];
-  return fs.readFileSync(LEDGER_FILE, "utf8").split(/\r?\n/).filter(Boolean).slice(-MAX_EVENTS).flatMap((line) => {
+  const events = fs.readFileSync(LEDGER_FILE, "utf8").split(/\r?\n/).filter(Boolean).slice(-MAX_EVENTS).flatMap((line) => {
     try { return [JSON.parse(line)]; } catch { return []; }
   });
+  return runId ? events.filter((event) => event.runId === runId) : events;
 }
 
 function normalizeEvent(event = {}) {
@@ -37,7 +38,8 @@ function normalizeEvent(event = {}) {
   const totalTokens = safeNumber(event.totalTokens) || inputTokens + outputTokens; const rates = getRates(provider);
   const costConfigured = rates.input !== null || rates.output !== null || rates.request !== null;
   const estimatedCostUsd = (inputTokens / 1_000_000) * (rates.input || 0) + (outputTokens / 1_000_000) * (rates.output || 0) + (rates.request || 0);
-  return { id: `${Date.now()}-${Math.random().toString(16).slice(2, 10)}`, occurredAt: new Date().toISOString(), provider, model: String(event.model || "unknown"), operation: String(event.operation || "unknown"), status: event.status === "success" ? "success" : "error", inputTokens, outputTokens, totalTokens, estimatedCostUsd: round(estimatedCostUsd, 8), costConfigured, latencyMs: safeNumber(event.latencyMs), errorStage: event.errorStage ? String(event.errorStage) : undefined };
+  const runId = String(event.runId || process.env.AI_USAGE_RUN_ID || "").trim();
+  return { id: `${Date.now()}-${Math.random().toString(16).slice(2, 10)}`, occurredAt: new Date().toISOString(), runId: runId || undefined, provider, model: String(event.model || "unknown"), operation: String(event.operation || "unknown"), status: event.status === "success" ? "success" : "error", inputTokens, outputTokens, totalTokens, estimatedCostUsd: round(estimatedCostUsd, 8), costConfigured, latencyMs: safeNumber(event.latencyMs), errorStage: event.errorStage ? String(event.errorStage) : undefined };
 }
 
 function mergeEvent(totals, event) { totals.requests += 1; totals.successfulRequests += event.status === "success" ? 1 : 0; totals.inputTokens += event.inputTokens; totals.outputTokens += event.outputTokens; totals.totalTokens += event.totalTokens; totals.estimatedCostUsd += event.estimatedCostUsd || 0; totals.costConfigured = totals.costConfigured || event.costConfigured; return totals; }
@@ -48,4 +50,4 @@ function finalizeTotals(totals) { return { ...totals, estimatedCostUsd: round(to
 function safeNumber(value) { const number = Number(value); return Number.isFinite(number) && number > 0 ? Math.floor(number) : 0; }
 function round(value, digits) { return Number(value.toFixed(digits)); }
 
-module.exports = { getUsageSummary, recordAiUsage };
+module.exports = { getUsageSummary, readEvents, recordAiUsage };

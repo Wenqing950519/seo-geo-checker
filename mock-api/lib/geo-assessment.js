@@ -1,3 +1,7 @@
+// 涵蓋 perplexity-visibility 的 40/30/0.3 公式與本檔的 20/30/50 合成與 caps。
+// 任一計分規則變更都必須同步調升，讓研究資料列可辨識計分版本。
+const SCORING_VERSION = "3.1.0";
+
 function computeGeoAssessment(scored, perplexityObservation) {
   const technical = lanePercent(scored.breakdown, ["crawl_access"]);
   const citeability = lanePercent(scored.breakdown, ["content_readability", "citeability"]);
@@ -54,4 +58,4 @@ function labelForGeoScore(score) {
   return "Critical";
 }
 
-module.exports = { computeGeoAssessment, lanePercent };
+module.exports = { SCORING_VERSION, computeGeoAssessment, lanePercent };

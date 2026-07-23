@@ -6,10 +6,10 @@
 
 - Algorithm V3.0.0 已切換為 GEO-first：Perplexity 搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。
 - Perplexity 無法量測時，整體 GEO 分數為未知；站內準備度不得冒充 GEO 分數。
-- Gemini 不參與計分。正式報告可用 Gemini 解釋；白皮書 Skill 只用 Gemini Flash-Lite 做基本資訊與結構分類，不產生優化建議。
+- Gemini 不參與計分。單站報告由 Gemini 先辨識產業並產 5–8 題候選，再由後端選兩題交給 Perplexity；產題失敗時停止計分。
 - 網站與 Skill 共用 `mock-api/lib/geo-measurement.js`，並由同步測試阻止權重漂移。
-- 白皮書批次腳本每站固定 Perplexity 3 次、Gemini 1 次，要求兩個獨立硬上限，支援 JSONL 續跑與資料集雜湊。
-- 本機 Gemini 若回傳地區不支援，可透過管理員密碼保護的 Render 代理端點執行研究描述。
+- 白皮書先由 Gemini 草擬候選題並強制人工審核凍結；使用兩題題庫時每站 Perplexity 3 次、Gemini 描述 1 次，並保留獨立硬上限、JSONL 續跑與資料集雜湊。
+- 本機 Gemini 若回傳地區不支援，可透過管理員密碼保護的 Render 代理端點執行研究描述與候選題生成。
 - 後台維持無公開入口的 `/<ADMIN_PATH_TOKEN>`，並以 `ADMIN_TOKEN` 驗證用量與研究代理請求。
 
 ## 供應商實測

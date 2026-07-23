@@ -1,89 +1,134 @@
-const { deriveBrandTerms, evaluateAuthorityEvidence } = require("./authority-evidence");
+const { evaluateAuthorityEvidence } = require("./authority-evidence");
+const {
+  PARSER_VERSION,
+  buildBrandTermSet,
+  classifyAnswerStatus,
+  classifySourceType,
+  extractAuthorityAliases,
+  extractMentionRank,
+  isFirstParty,
+  isPlatformRootInput,
+  matchTermsInText,
+  safeHostname
+} = require("./brand-match");
 
-function evaluatePerplexityVisibility({ siteUrl, metadata = {}, searchEvidence = null } = {}) {
+function evaluatePerplexityVisibility({
+  siteUrl,
+  metadata = {},
+  searchEvidence = null,
+  entityProfile = null,
+  citationResolution = null
+} = {}) {
+  const host = safeHostname(siteUrl);
+  const officialDomains = entityProfile?.officialDomains || [];
+  const platformRootInput = isPlatformRootInput(host);
   const authority = evaluateAuthorityEvidence({
     siteUrl,
     metadata,
-    searchContext: searchEvidence?.authority || null
+    searchContext: searchEvidence?.authority || null,
+    entityProfile
   });
-  const authorityAliases = authority.firstPartySourceFound ? extractAuthorityAliases(searchEvidence?.authority?.answer) : [];
-  const brandTerms = [...new Set([...deriveBrandTerms({ host: safeHostname(siteUrl), metadata }), ...authorityAliases])];
+  // 別名需有實體對齊證據（第一方來源或已對齊的外部來源）才可採納，避免幻覺別名造成 FP。
+  const aliasesAllowed = authority.firstPartySourceFound || authority.entityGrounded;
+  const authorityAliases = aliasesAllowed ? extractAuthorityAliases(searchEvidence?.authority?.answer) : [];
+  const termSet = buildBrandTermSet({
+    host,
+    metadata,
+    aliases: authorityAliases,
+    masterTerms: entityProfile?.brandTerms || []
+  });
+  const brandTerms = termSet.map((term) => term.value);
+  const termOrigin = entityProfile?.brandTerms?.length ? "master" : "derived";
+  const resolveUrl = (url) => (citationResolution && citationResolution[url]) || url;
+
   const discovery = Array.isArray(searchEvidence?.discovery) ? searchEvidence.discovery : [];
-  const measured = discovery.filter((item) => item?.enabled);
-  if (!measured.length) {
+  const enabled = discovery.filter((item) => item?.enabled);
+  const observations = enabled.map((result) => {
+    const answer = String(result.answer || "");
+    const answerStatus = classifyAnswerStatus(answer);
+    const matchedTerms = answerStatus === "answered" ? matchTermsInText(answer, termSet).map((term) => term.value) : [];
+    const brandMentioned = matchedTerms.length > 0;
+    const rank = answerStatus === "answered" ? extractMentionRank(answer, termSet) : { rank: null, status: "no_list" };
+    const urls = [
+      ...(Array.isArray(result.citations) ? result.citations : []),
+      ...(Array.isArray(result.searchResults) ? result.searchResults.map((item) => item?.url).filter(Boolean) : [])
+    ].map(resolveUrl);
+    const firstPartyCited = !platformRootInput && urls.some((url) => isFirstParty(url, host, officialDomains));
+    const sourceTypes = {};
+    for (const url of urls) {
+      const type = platformRootInput ? "unattributable" : classifySourceType(url, host, officialDomains);
+      sourceTypes[type] = (sourceTypes[type] || 0) + 1;
+    }
+    return {
+      query: result.query || "",
+      queryId: result.queryId || null,
+      answerStatus,
+      excluded: answerStatus !== "answered",
+      brandMentioned,
+      matchedTerms,
+      mentionRank: rank.rank,
+      rankParseStatus: rank.status,
+      firstPartyCited,
+      citationCount: Array.isArray(result.citations) ? result.citations.length : 0,
+      sourceDomains: [...new Set(urls.map(safeHostname).filter(Boolean))],
+      sourceTypes
+    };
+  });
+
+  const answered = observations.filter((item) => item.answerStatus === "answered");
+  if (!answered.length) {
     return {
       status: "unknown",
       score: null,
+      parserVersion: PARSER_VERSION,
       confidence: "unknown",
       brandTerms,
+      brandTermSources: termSet.map((term) => ({ term: term.value, source: term.source })),
+      termOrigin,
+      platformRootInput,
       authorityAliases,
       mentionRate: null,
       citationRate: null,
       queryCount: discovery.length,
       measuredQueryCount: 0,
+      excludedQueryCount: observations.length,
       authority,
-      observations: []
+      observations
     };
   }
 
-  const host = safeHostname(siteUrl);
-  const observations = measured.map((result) => {
-    const answer = normalizeEntityText(result.answer || "");
-    const brandMentioned = brandTerms.some((term) => answer.includes(term));
-    const urls = [
-      ...(Array.isArray(result.citations) ? result.citations : []),
-      ...(Array.isArray(result.searchResults) ? result.searchResults.map((item) => item?.url).filter(Boolean) : [])
-    ];
-    const firstPartyCited = urls.some((url) => isFirstParty(url, host));
-    return {
-      query: result.query || "",
-      brandMentioned,
-      firstPartyCited,
-      citationCount: Array.isArray(result.citations) ? result.citations.length : 0,
-      sourceDomains: [...new Set(urls.map(safeHostname).filter(Boolean))]
-    };
-  });
-  const mentionRate = ratio(observations.filter((item) => item.brandMentioned).length, observations.length);
-  const citationRate = ratio(observations.filter((item) => item.firstPartyCited).length, observations.length);
-  const authorityComponent = Number.isFinite(authority.score) ? authority.score : 0;
-  const score = Math.round(mentionRate * 40 + citationRate * 30 + authorityComponent * 0.3);
-  const confidence = observations.length >= 3 && authority.entityGrounded ? "high" : observations.length >= 2 ? "medium" : "low";
+  const mentionRate = ratio(answered.filter((item) => item.brandMentioned).length, answered.length);
+  const citationRate = ratio(answered.filter((item) => item.firstPartyCited).length, answered.length);
+  // authority 缺測時以 knownWeight 重標定，不把缺失當 0 分；confidence 另行降級。
+  const authorityKnown = authority.status === "measured" && Number.isFinite(authority.score);
+  const knownWeight = 70 + (authorityKnown ? 30 : 0);
+  const points = mentionRate * 40 + citationRate * 30 + (authorityKnown ? authority.score * 0.3 : 0);
+  const score = Math.round((points / knownWeight) * 100);
+  let confidence = answered.length >= 3 && authority.entityGrounded ? "high" : answered.length >= 2 ? "medium" : "low";
+  if (!authorityKnown && confidence === "high") confidence = "medium";
   return {
     status: "measured",
     score,
+    parserVersion: PARSER_VERSION,
     confidence,
     brandTerms,
+    brandTermSources: termSet.map((term) => ({ term: term.value, source: term.source })),
+    termOrigin,
+    platformRootInput,
     authorityAliases,
     mentionRate: Math.round(mentionRate * 100),
     citationRate: Math.round(citationRate * 100),
     queryCount: discovery.length,
-    measuredQueryCount: observations.length,
+    measuredQueryCount: answered.length,
+    excludedQueryCount: observations.length - answered.length,
+    authorityKnown,
     authority,
     observations
   };
 }
 
-function extractAuthorityAliases(answer) {
-  const line = String(answer || "").match(/(?:^|\n)\s*ALIASES?\s*[:：]\s*([^\n]+)/i)?.[1] || "";
-  if (!line || /^unknown\b/i.test(line.trim())) return [];
-  return [...new Set(line.split(/\s*[|,，、;；]\s*/).map(normalizeEntityText).filter((term) => term.length >= 2 && term.length <= 40))].slice(0, 8);
-}
-
 function ratio(numerator, denominator) {
   return denominator ? numerator / denominator : 0;
-}
-
-function normalizeEntityText(value) {
-  return String(value || "").toLowerCase().replace(/[^a-z0-9\u3400-\u9fff]+/g, "");
-}
-
-function safeHostname(value) {
-  try { return new URL(value).hostname.toLowerCase().replace(/^www\./, ""); } catch { return ""; }
-}
-
-function isFirstParty(value, host) {
-  const domain = safeHostname(value);
-  return Boolean(domain && host && (domain === host || domain.endsWith(`.${host}`) || host.endsWith(`.${domain}`)));
 }
 
 module.exports = { evaluatePerplexityVisibility, extractAuthorityAliases };

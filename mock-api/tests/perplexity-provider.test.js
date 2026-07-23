@@ -49,12 +49,28 @@ const { getPerplexityGeoEvidence, searchPerplexity } = require("../providers/per
     }), { status: 200, headers: { "content-type": "application/json" } });
   };
   const evidence = await getPerplexityGeoEvidence({
-    siteUrl: "https://example.com/", title: "Example Service", description: "Taipei service", siteType: "local_service", text: "Taipei local service repair quote"
+    siteUrl: "https://example.com/", title: "Example Service", description: "Taipei service", siteType: "local_service", text: "Taipei local service repair quote",
+    queryPlan: {
+      query_set_version: "test-v1",
+      queries: [
+        { id: "q1", text: "台北居家維修服務推薦？", intent: "recommendation" },
+        { id: "q2", text: "台北居家維修報價怎麼比較？", intent: "comparison" }
+      ]
+    }
   });
   assert.equal(calls, 3, "GEO evidence should use one entity query and two discovery queries");
   assert.equal(evidence.authority.enabled, true);
   assert.equal(evidence.discovery.length, 2);
   assert.equal(evidence.discovery.every((item) => item.enabled), true);
+  assert.deepEqual(evidence.discovery.map((item) => item.queryIntent), ["recommendation", "comparison"]);
+
+  calls = 0;
+  const rejected = await getPerplexityGeoEvidence({
+    siteUrl: "https://example.com/", title: "Example Service", description: "Taipei service", siteType: "local_service", text: "Taipei local service repair quote"
+  });
+  assert.equal(calls, 0, "Perplexity must not run without a validated query plan");
+  assert.equal(rejected.enabled, false);
+  assert.match(rejected.reason, /validated Gemini or human-reviewed query plan/);
 
   global.fetch = originalFetch;
   fs.rmSync(ledger, { force: true });

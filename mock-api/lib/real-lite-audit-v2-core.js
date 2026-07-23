@@ -1,46 +1,7 @@
-const { callGeminiJson } = require("../providers/gemini");
 const { AppError } = require("./errors");
 const { ALGORITHM_VERSION, collectScoringSignals, computeScoreV2 } = require("./scoring-v2");
 const { classifySite, questionsForSite } = require("./site-type");
 const { measureGeoSite } = require("./geo-measurement");
-
-function realLitePrompt({ siteUrl, metadata, text, searchContext, technical }) {
-  return `你是「生成式搜尋引擎爬蟲行為分析師」與「輕量級演算法架構師」。請只輸出有效 JSON。
-
-核心準則：
-1. 嚴禁猜測。沒有官方文件或本次抓取證據時，寫「未知」並提出驗證方式。
-2. 對象是不懂程式的在地小商家。建議要用繁體中文白話說明，並交代請網站設計師改哪個檔案或 HTML 區域；不知道行號時不可捏造行號。
-3. 不承諾排名或一定被 AI 引用。
-4. 不得建議為了 AI 犧牲 Google 搜尋收錄。
-5. GPTBot、ClaudeBot、Google-Extended 屬訓練或產品政策控制，不可把允許它們當成搜尋高分必要條件。
-6. llms.txt 目前列為實驗性導覽，不可宣稱是排名或引用必要條件。
-7. GEO V3 主分數由伺服器依 Perplexity 實測、內容證據與技術存取計算；你填的 score.value 不會被採用。
-
-網站：${siteUrl}
-首頁 metadata：${JSON.stringify(metadata, null, 2)}
-技術抓取證據：${JSON.stringify(technical, null, 2)}
-首頁文字節錄：${text}
-搜尋佐證：${JSON.stringify(searchContext, null, 2)}
-
-回傳格式：
-{
-  "score": { "value": 0, "label": "Critical | Needs Work | Decent | Strong", "summary_zh": "" },
-  "positioning": {
-    "perceived_category_zh": "", "perceived_audience_zh": [], "perceived_use_cases_zh": [],
-    "misunderstandings_or_risks_zh": [], "missing_signals_zh": [], "confidence": "low | medium | high"
-  },
-  "technical_seo": { "issues": [{ "severity": "high | medium | low", "check": "", "detail_zh": "", "impact_zh": "" }] },
-  "geo_questions": [{ "question_zh": "", "intent": "awareness | consideration | decision", "business_value": 1 }],
-  "content_citeability": { "strengths_zh": [], "gaps_zh": [] },
-  "priority_actions": [{
-    "priority": "P1 | P2 | P3", "type": "positioning | technical | content | authority",
-    "target_zh": "", "recommendation_zh": "", "reason_zh": "", "expected_impact_zh": ""
-  }],
-  "limitations_zh": []
-}
-
-規則：geo_questions 恰好 3 題；priority_actions 恰好 3 項。所有 *_zh 使用繁體中文。`;
-}
 
 async function runRealLiteAudit(siteUrl) {
   let measurement;
@@ -53,40 +14,29 @@ async function runRealLiteAudit(siteUrl) {
     throw error;
   }
 
-  const { homepage, technical, representativePages, searchEvidence: searchContext } = measurement;
-  const analysisText = [homepage.text, ...representativePages.filter((page) => page.crawlQuality?.scorable).map((page) => page.text)].join("\n\n").slice(0, 14000);
-  const prompt = realLitePrompt({
-    siteUrl,
-    metadata: homepage.metadata,
-    text: analysisText,
-    searchContext,
-    technical
+  const { homepage, technical, representativePages, searchEvidence: searchContext, queryPlanning } = measurement;
+  const auditSeed = normalizeAudit({
+    score: {},
+    positioning: queryPlanning?.positioning || {},
+    technical_seo: { issues: [] },
+    geo_questions: [],
+    content_citeability: { strengths_zh: [], gaps_zh: [] },
+    priority_actions: [],
+    limitations_zh: queryPlanning?.status === "ready"
+      ? ["Gemini 先依網站證據產生候選搜尋題，後端通過品牌排除、意圖與重複度檢查後，才交由 Perplexity 實測。"]
+      : ["Gemini 未能產出有效搜尋題，因此未呼叫 Perplexity，也未顯示 GEO 分數。"]
   });
-  let result;
-  try {
-    result = await callGeminiJson(prompt, { temperature: 0.1, attempts: 2, timeoutMs: 35_000, operation: "real_lite_audit" });
-  } catch (error) {
-    result = {
-      json: { limitations_zh: ["Gemini 解讀暫時無法使用；GEO 分數仍由 Perplexity 搜尋觀測與本地規則計算。"] },
-      provider: "local-interpretation-fallback",
-      model: "rules-v3",
-      latencyMs: 0,
-      attempts: 0,
-      unavailable: true,
-      errorMessage: String(error?.message || "Gemini unavailable").slice(0, 200)
-    };
-  }
-  const audit = applyV2Audit(normalizeAudit(result.json), { homepage, technical, representativePages, searchContext, measurement });
-  audit.ai_validation = result.unavailable ? {
-    status: "unavailable",
-    provider: result.provider,
-    model: result.model,
-    message_zh: "Gemini 解讀暫時無法使用，但不影響 Perplexity GEO 實測分數。"
+  const audit = applyV2Audit(auditSeed, { homepage, technical, representativePages, searchContext, measurement });
+  audit.ai_validation = queryPlanning?.status === "ready" ? {
+    status: "planned",
+    provider: queryPlanning.provider,
+    model: queryPlanning.model,
+    message_zh: `Gemini 已產生 ${queryPlanning.candidates.length} 題候選問題，通過規則後選出 ${queryPlanning.selectedQueries.length} 題交由 Perplexity 實測；Gemini 不參與計分。`
   } : {
-    status: "interpreted",
-    provider: result.provider || "gemini",
-    model: result.model,
-    message_zh: "Gemini 已完成白話解讀；它不參與 GEO 計分。"
+    status: "unavailable",
+    provider: queryPlanning?.provider || "gemini",
+    model: queryPlanning?.model,
+    message_zh: "Gemini 產題未通過驗證；為避免用錯產業問題造成偏差，本次停止 Perplexity 實測並將 GEO 分數標為未知。"
   };
 
   return {
@@ -96,11 +46,12 @@ async function runRealLiteAudit(siteUrl) {
     algorithmVersion: ALGORITHM_VERSION,
     provider: searchContext?.enabled ? "perplexity" : "local-rules",
     model: searchContext?.authority?.model || searchContext?.discovery?.find((item) => item?.model)?.model || "rules-v3",
-    interpretationProvider: result.provider || "gemini",
-    interpretationModel: result.model,
-    latencyMs: result.latencyMs,
-    attempts: result.attempts,
-    repairedJson: Boolean(result.repairedJson),
+    interpretationProvider: queryPlanning?.provider || "gemini",
+    interpretationModel: queryPlanning?.model,
+    latencyMs: Number(queryPlanning?.latencyMs) || 0,
+    attempts: Number(queryPlanning?.attempts) || 0,
+    repairedJson: false,
+    queryPlanning,
     homepage: {
       metadata: homepage.metadata,
       textLength: homepage.text.length,
@@ -133,7 +84,14 @@ function applyV2Audit(audit, { homepage, technical, representativePages = [], se
   audit.site_type = siteType;
   audit.perplexity_observation = perplexityObservation;
   audit.authority_evidence = perplexityObservation.authority;
-  audit.geo_questions = questionsForSite(siteType);
+  audit.query_planning = summarizeQueryPlanning(measurement?.queryPlanning);
+  audit.geo_questions = measurement?.queryPlanning?.selectedQueries?.length
+    ? measurement.queryPlanning.selectedQueries.map((query, index) => ({
+        question_zh: query.text,
+        intent: query.intent,
+        business_value: index === 0 ? 4 : 3
+      }))
+    : questionsForSite(siteType);
   audit.score = {
     ...audit.score,
     value: geoAssessment.score,
@@ -157,7 +115,7 @@ function applyV2Audit(audit, { homepage, technical, representativePages = [], se
     site_readiness_caps: scored.caps,
     site_readiness_breakdown: scored.breakdown,
     rules: scored.checks,
-    scoring_basis_zh: "GEO V3：Perplexity 實際搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。Gemini 僅負責解讀，不參與計分。"
+    scoring_basis_zh: "GEO V3：Gemini 先產生並驗證產業搜尋題；Perplexity 實際搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。Gemini 不參與計分。"
   };
   audit.priority_actions = rankDeterministicActions(buildDeterministicActions(signals));
   audit.technical_seo.issues = buildDeterministicIssues(signals);
@@ -170,6 +128,25 @@ function applyV2Audit(audit, { homepage, technical, representativePages = [], se
     "特定 AI 系統如何排序與引用內容沒有完整公開規則；未公開部分一律視為未知。"
   ]);
   return audit;
+}
+
+function summarizeQueryPlanning(plan = {}) {
+  return {
+    status: plan.status || "unavailable",
+    source: plan.source || "unknown",
+    version: plan.version || null,
+    provider: plan.provider || null,
+    model: plan.model || null,
+    entity_name: plan.entity_name || "unknown",
+    industry: plan.industry || "unknown",
+    primary_offering: plan.primary_offering || "unknown",
+    geography: Array.isArray(plan.geography) ? plan.geography : [],
+    confidence: plan.confidence || "low",
+    candidate_count: Array.isArray(plan.candidates) ? plan.candidates.length : 0,
+    candidates: Array.isArray(plan.candidates) ? plan.candidates : [],
+    selected_queries: Array.isArray(plan.selectedQueries) ? plan.selectedQueries : [],
+    reason: plan.reason || null
+  };
 }
 
 function buildDeterministicScoreSummary(scored) {
@@ -369,4 +346,4 @@ function unique(values) {
   return [...new Set(values.filter(Boolean).map(String))];
 }
 
-module.exports = { applyV2Audit, createFetchLimitedReport, realLitePrompt, runRealLiteAudit };
+module.exports = { applyV2Audit, createFetchLimitedReport, runRealLiteAudit };

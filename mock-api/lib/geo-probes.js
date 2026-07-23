@@ -46,4 +46,30 @@ function buildDiscoveryQueries({ siteType = "organization", text = "" } = {}) {
   };
 }
 
-module.exports = { buildDiscoveryQueries };
+// 驗證凍結題庫檔：{ query_set_version, queries: [{ id, text }] }。
+// 題庫一經凍結不得改寫題目；版本字串進入 methodology 與資料列。
+function normalizeQuerySet(value) {
+  if (!value || typeof value !== "object") throw new Error("Query set must be a JSON object");
+  const version = String(value.query_set_version || "").trim();
+  if (!version) throw new Error("Query set is missing query_set_version");
+  const reviewStatus = String(value.review_status || "").trim().toLowerCase();
+  if (reviewStatus !== "approved") throw new Error("Query set must have review_status=approved before paid batch search");
+  const reviewedBy = String(value.reviewed_by || "").trim();
+  const reviewedAt = String(value.reviewed_at || "").trim();
+  if (!reviewedBy || !reviewedAt) throw new Error("Approved query set needs reviewed_by and reviewed_at");
+  const rawQueries = Array.isArray(value.queries) ? value.queries : [];
+  if (rawQueries.length < 2) throw new Error("Approved query set needs at least two queries");
+  const seen = new Set();
+  const queries = rawQueries.map((query, index) => {
+    const id = String(query?.id || "").trim();
+    const text = String(query?.text || "").trim();
+    if (!id || !text) throw new Error(`Query set entry ${index + 1} needs both id and text`);
+    if (seen.has(id)) throw new Error(`Query set has duplicate id: ${id}`);
+    seen.add(id);
+    const intent = String(query?.intent || "").trim().toLowerCase();
+    return { id, text, intent: ["recommendation", "comparison", "decision"].includes(intent) ? intent : "recommendation" };
+  });
+  return { query_set_version: version, industry: String(value.industry || "unknown").trim(), review_status: reviewStatus, reviewed_by: reviewedBy, reviewed_at: reviewedAt, queries };
+}
+
+module.exports = { buildDiscoveryQueries, normalizeQuerySet };

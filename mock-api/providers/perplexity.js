@@ -1,6 +1,5 @@
 const { AppError } = require("../lib/errors");
 const { recordAiUsage } = require("../lib/usage-meter");
-const { buildDiscoveryQueries } = require("../lib/geo-probes");
 
 const DEFAULT_BASE_URL = "https://api.perplexity.ai";
 const DEFAULT_MODEL = "sonar";
@@ -54,18 +53,35 @@ async function searchPerplexity(query, options = {}) {
   recordAiUsage({ provider: "perplexity", model: config.model, operation: options.operation || "web_search", status: "error", latencyMs: Date.now() - started, errorStage: lastError?.stage });
   throw lastError;
 }
-async function getPerplexityGeoEvidence({ siteUrl, title, description, siteType, text }) {
+async function getPerplexityGeoEvidence({ siteUrl, title, description, siteType, text, queryPlan = null }) {
   if (!isPerplexityConfigured()) {
     return { enabled: false, provider: "perplexity", reason: "PERPLEXITY_API_KEY is not configured", authority: { enabled: false }, discovery: [] };
   }
+  if (!queryPlan?.queries?.length) {
+    return { enabled: false, provider: "perplexity", reason: "A validated Gemini or human-reviewed query plan is required", authority: { enabled: false }, discovery: [], plan: null };
+  }
   const host = new URL(siteUrl).hostname.replace(/^www\./, "");
-  const plan = buildDiscoveryQueries({ siteType, text });
+  const plan = {
+    location: null,
+    category: null,
+    querySetVersion: queryPlan.query_set_version || "custom",
+    queries: queryPlan.queries.map((query) => query.text ?? query),
+    queryIds: queryPlan.queries.map((query, index) => query.id || `q${index + 1}`),
+    queryIntents: queryPlan.queries.map((query) => query.intent || null)
+  };
   const authorityQuery = "Verify the exact entity represented by website " + host + " (title: " + (title || "unknown") + "). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.";
   const tasks = [
     safeGeoSearch(authorityQuery, { operation: "geo_authority", maxTokens: 260 }),
     ...plan.queries.map((query, index) => safeGeoSearch(query, { operation: "geo_discovery_" + (index + 1), maxTokens: 260 }))
   ];
   const [authority, ...discovery] = await Promise.all(tasks);
+  if (Array.isArray(plan.queryIds)) {
+    discovery.forEach((item, index) => {
+      if (!item) return;
+      item.queryId = plan.queryIds[index];
+      item.queryIntent = plan.queryIntents[index];
+    });
+  }
   return {
     enabled: authority.enabled || discovery.some((item) => item.enabled),
     provider: "perplexity",

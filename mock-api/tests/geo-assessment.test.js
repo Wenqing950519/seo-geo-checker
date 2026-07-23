@@ -69,6 +69,45 @@ const unknown = computeGeoAssessment(scored(94, 100, 85), { status: "unknown", s
 assert.equal(unknown.score, null);
 assert.equal(unknown.status, "insufficient_evidence");
 
+// 拒答不入分母：一題有效、一題拒答 → measuredQueryCount=1，整體分數需觸發「少於 2 題」上限 69。
+const refusalObservation = evaluatePerplexityVisibility({
+  siteUrl: "https://www.sushiro.com.tw/",
+  metadata: { title: "首頁｜台灣壽司郎" },
+  searchEvidence: {
+    authority: {
+      enabled: true,
+      answer: "ALIASES: 壽司郎 | Sushiro",
+      citations: ["https://www.sushiro.com.tw/"],
+      searchResults: [{ title: "台灣壽司郎介紹", url: "https://news.example.tw/sushiro" }]
+    },
+    discovery: [
+      { enabled: true, query: "信義區壽司推薦", answer: "推薦壽司郎。", citations: ["https://www.sushiro.com.tw/"], searchResults: [] },
+      { enabled: true, query: "信義區日式餐廳推薦", answer: "很抱歉，無法提供相關資訊。", citations: [], searchResults: [] }
+    ]
+  }
+});
+assert.equal(refusalObservation.measuredQueryCount, 1, "refusal must not enter the denominator");
+assert.equal(refusalObservation.excludedQueryCount, 1);
+assert.equal(refusalObservation.mentionRate, 100);
+const refusalOverall = computeGeoAssessment(scored(80, 100, 80), refusalObservation);
+assert.ok(refusalOverall.caps.some((cap) => cap.max === 69), "fewer than 2 measured queries must cap the score at 69");
+
+// authority 缺測時以 knownWeight 重標定，不得把缺失當 0 分。
+const noAuthorityObservation = evaluatePerplexityVisibility({
+  siteUrl: "https://www.sushiro.com.tw/",
+  metadata: { title: "首頁｜台灣壽司郎" },
+  searchEvidence: {
+    authority: { enabled: false },
+    discovery: [
+      { enabled: true, query: "信義區壽司推薦", answer: "推薦壽司郎。", citations: ["https://www.sushiro.com.tw/"], searchResults: [] },
+      { enabled: true, query: "信義區迴轉壽司比較", answer: "壽司郎是常見選項。", citations: ["https://www.sushiro.com.tw/store"], searchResults: [] }
+    ]
+  }
+});
+assert.equal(noAuthorityObservation.authorityKnown, false);
+assert.equal(noAuthorityObservation.score, 100, "missing authority must rescale, not zero-fill");
+assert.notEqual(noAuthorityObservation.confidence, "high", "missing authority must downgrade confidence");
+
 console.log(JSON.stringify({
   passed: true,
   superficial: { perplexity: superficialObservation.score, geo: superficialOverall.score },

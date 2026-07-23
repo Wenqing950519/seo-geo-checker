@@ -6,11 +6,11 @@ GeoCheck 是偏向 GEO 搜尋實證的網站健檢服務。Algorithm V3 以 Perp
 
 | 服務 | 用途 |
 |---|---|
-| Perplexity Sonar | 實體權威驗證、兩題非品牌探索、品牌提及與官網引用量測 |
-| Gemini 3.1 Flash-Lite | 正式報告的證據解讀；白皮書模式只做基本資訊與結構分類 |
+| Perplexity Sonar | 只執行已通過 Gemini＋規則驗證或人工凍結的查詢；量測實體、品牌提及與官網引用 |
+| Gemini 3.1 Flash-Lite | 單站先辨識產業並產 5–8 題候選；白皮書逐站只做基本資訊與結構分類 |
 | 本地確定性規則 | 抓取、站內準備度、內容可引用性、分數上限與降級 |
 
-網站正式報告與白皮書 Skill 共用 `lib/geo-measurement.js`。Gemini 不可用不會改變已完成的 Perplexity GEO 分數。
+網站正式報告與白皮書 Skill 共用 `lib/geo-measurement.js`。單站流程若 Gemini 產題失敗，系統不呼叫 Perplexity 且 GEO 顯示未知；不再用固定產業模板補題。
 
 ## 設定
 
@@ -44,6 +44,7 @@ GEOCHECK_RESEARCH_API_TOKEN=
 - `POST /api/test-search-provider`：Perplexity 連線測試。
 - `POST /api/search-context`：單次 Perplexity 搜尋脈絡。
 - `POST /api/internal/research-profile`：白皮書 Gemini 描述代理；必須帶 `X-Admin-Token`。
+- `POST /api/internal/query-plan`：Gemini 產業辨識與候選題代理；必須帶 `X-Admin-Token`。
 - `GET /<ADMIN_PATH_TOKEN>/usage`：成本與 Token 摘要；必須帶 `X-Admin-Token`。
 
 ## 白皮書批次
@@ -51,13 +52,14 @@ GEOCHECK_RESEARCH_API_TOKEN=
 ```powershell
 node .agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs `
   --input research-input/sites.csv `
+  --query-set research-input/restaurant-query-set.approved.json `
   --output-dir research-output/taiwan-sme-2026 `
   --max-perplexity-calls 1200 `
   --max-gemini-calls 400 `
   --concurrency 2
 ```
 
-每個新網站最多 3 次 Perplexity 與 1 次 Gemini。Gemini 只輸出研究描述 schema，不產生優化建議。若只想先排除抓取失敗，可使用 `run-rules-batch.mjs` 做零 API 預檢，但其 `geo_score` 必須為 `null`。
+使用兩題人工凍結題庫時，每個新網站最多 3 次 Perplexity 與 1 次 Gemini；題庫必須先經 Gemini 草擬、人工審核並標記 approved。逐站 Gemini 只輸出研究描述 schema，不產生優化建議。若只想先排除抓取失敗，可使用 `run-rules-batch.mjs` 做零 API 預檢，但其 `geo_score` 必須為 `null`。
 
 ## 測試
 

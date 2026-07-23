@@ -1,0 +1,19 @@
+{
+  "query_set_version": "taiwan-restaurant-reviewed-v1",
+  "industry": "台灣餐飲",
+  "review_status": "approved",
+  "reviewed_by": "researcher-name",
+  "reviewed_at": "2026-07-21",
+  "queries": [
+    {
+      "id": "recommendation_1",
+      "text": "台北適合家庭聚餐的壽司餐廳有哪些？",
+      "intent": "recommendation"
+    },
+    {
+      "id": "comparison_1",
+      "text": "台北壽司餐廳的套餐與單點怎麼比較？",
+      "intent": "comparison"
+    }
+  ]
+}

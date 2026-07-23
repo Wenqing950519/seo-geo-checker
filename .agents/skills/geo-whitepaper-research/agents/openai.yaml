@@ -1,4 +1,4 @@
 interface:
   display_name: "GeoCheck 白皮書研究"
-  short_description: "用 Perplexity 與 Gemini 建立可重現的 GEO 研究資料"
-  default_prompt: "使用 $geo-whitepaper-research 量測網站清單，輸出具來源、分數與簡評的白皮書資料集，不產出優化建議。"
+  short_description: "以人工凍結題庫建立可重現的 GEO 白皮書資料"
+  default_prompt: "使用 $geo-whitepaper-research 先產候選題並完成人工凍結，再量測網站清單與輸出可追溯資料集。"
