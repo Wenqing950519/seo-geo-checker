@@ -10,3 +10,8 @@ research-output/
 __pycache__/
 whitepaper_build/
 ~$*.docx
+
+# Obsidian（docs/ 為 vault）— 忽略個人 UI 狀態，保留共用設定
+docs/.obsidian/workspace.json
+docs/.obsidian/workspace-mobile.json
+docs/.obsidian/cache

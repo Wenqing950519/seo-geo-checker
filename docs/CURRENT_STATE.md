@@ -1,3 +1,15 @@
+---
+type: current-state
+project: GeoCheck
+last_updated: 2026-07-16
+tags:
+  - geocheck
+  - current-state
+---
+
+> [!note] 本檔原名 `CURRENT_OPERATIONAL_STATUS.md`，2026-07-25 移入 `docs/` 成為 Contract 指定的 `CURRENT_STATE.md`。
+> 內容未經改動。此檔為營運現況的共同事實來源；狀態變更時必須更新此處，不得只寫在對話或記憶中。
+
 # GeoCheck 當前運作狀態
 
 更新日期：2026-07-16

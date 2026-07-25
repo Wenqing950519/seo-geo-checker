@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm.cmd test)",
+      "Bash(npm test)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./mock-api/.env)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/session_start_context.py\" 2>/dev/null || true",
+            "timeout": 15,
+            "statusMessage": "載入 GeoCheck 專案事實摘要"
+          }
+        ]
+      }
+    ]
+  }
+}
