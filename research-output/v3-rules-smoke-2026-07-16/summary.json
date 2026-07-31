@@ -1,0 +1,219 @@
+{
+  "generated_at": "2026-07-16T09:09:50.729Z",
+  "algorithm_version": "3.0.0-rules",
+  "total_sites": 1,
+  "successful_sites": 1,
+  "failed_sites": 0,
+  "crawl_success_rate": 100,
+  "site_readiness_score": {
+    "mean": 63,
+    "median": 63,
+    "min": 63,
+    "max": 63
+  },
+  "readiness_bands": {
+    "Needs Work": {
+      "count": 1,
+      "mean": 63,
+      "median": 63,
+      "min": 63,
+      "max": 63
+    }
+  },
+  "by_industry": {
+    "restaurant": {
+      "count": 1,
+      "mean": 63,
+      "median": 63,
+      "min": 63,
+      "max": 63
+    }
+  },
+  "by_evidence_confidence": {
+    "high": {
+      "count": 1,
+      "mean": 63,
+      "median": 63,
+      "min": 63,
+      "max": 63
+    }
+  },
+  "rule_pass_rates": {
+    "homepage_fetch": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "indexable": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "googlebot_access": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "oai_search_access": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "claude_search_access": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "sitemap_valid": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "homepage_in_sitemap": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "sitemap_declared": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "canonical": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "title": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "description": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "h1": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "open_graph": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "valid_schema": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "relevant_schema": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "readable_text": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "initial_html_text": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "render_consistency": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "image_alt": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "heading_structure": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "faq": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "cases": {
+      "known": 1,
+      "pass": 0,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 0
+    },
+    "comparisons": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "proof": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "service_clarity": {
+      "known": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    }
+  },
+  "dataset_sha256": "3a6c2a7d4ed8f8d6183ed0dc8007bff66d5c322a7911942831ccbc18b9a96d6f"
+}

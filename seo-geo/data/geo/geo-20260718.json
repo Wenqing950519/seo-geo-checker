@@ -1,0 +1,29 @@
+{
+  "date": "2026-07-18",
+  "method": "web search proxy(每題 2 次;搜尋結果短期內較穩定,故 runs_per_question 由 3 調為 2,已同步 config)",
+  "baseline": true,
+  "overall_rate": 0.0,
+  "mentioned_only_rate": 0.0,
+  "questions": [
+    { "question_id": "q1", "text": "GEO 生成式引擎優化是什麼?和 SEO 有什麼不同?", "runs": 2, "cited": 0, "citation_rate": 0.0, "mentioned_only": false,
+      "competitors_cited": ["sonar-inc.com", "tenten.co", "ahha.tw", "yesharris.com", "ycseo.com.tw", "frankknow.com", "ranking.works", "similarweb.com"] },
+    { "question_id": "q2", "text": "如何讓網站更容易被 ChatGPT 或 Perplexity 引用?", "runs": 2, "cited": 0, "citation_rate": 0.0, "mentioned_only": false,
+      "competitors_cited": ["aioseo.com", "ozchamp.com", "cheerway.tw", "koodata.com", "jiaye.com.tw", "amicited.com", "leanlabs.com"] },
+    { "question_id": "q3", "text": "台灣有哪些 GEO 優化服務或 AI 搜尋能見度顧問?", "runs": 2, "cited": 0, "citation_rate": 0.0, "mentioned_only": false,
+      "competitors_cited": ["enterimc.com", "welly.tw", "awoo.ai", "geoweb.tw", "aiseo.com.tw", "frankknow.com", "ahha.tw", "nabi.104.com.tw", "elidot.com.tw"],
+      "notes": "高商業意圖題。同類健檢工具 geoweb.tw 已進榜,GEOCheck 完全缺席。" },
+    { "question_id": "q4", "text": "有哪些免費工具可以檢測網站的 AI 搜尋能見度?", "runs": 2, "cited": 0, "citation_rate": 0.0, "mentioned_only": false,
+      "competitors_cited": ["seo.whoops.com.tw", "ansign.com.tw", "seoseo.com.tw", "geo.baiyuan.io", "semrush.com", "blog.dns.com.tw", "ozchamp.com"],
+      "notes": "與 GEOCheck 定位 100% 重疊的題目(免費/免註冊/AI 能見度健檢),5+ 個同類工具進榜,GEOCheck 缺席。最痛的一題。" },
+    { "question_id": "q5", "text": "llms.txt 是什麼?對 SEO/GEO 真的有幫助嗎?", "runs": 2, "cited": 0, "citation_rate": 0.0, "mentioned_only": false,
+      "competitors_cited": ["frankchiu.io", "hkgseo.com", "ai-seo-hacker.cc", "cianwang.com", "yoast.com", "semrush.com", "neilpatel.com", "searchengineland.com"] },
+    { "question_id": "q6", "text": "為什麼 ChatGPT 沒有提到我的品牌?", "runs": 2, "cited": 0, "citation_rate": 0.0, "mentioned_only": false,
+      "competitors_cited": ["llmreach.ai", "pixis.ai", "prodnostic.com", "trysight.ai", "trakkr.ai", "amicited.com", "maxaeo.ai"] }
+  ],
+  "root_causes": [
+    "robots.txt(Cloudflare 管理)封鎖所有主要 AI 爬蟲,內容無法進入 AI 索引",
+    "全站僅單頁,六題對應的主題沒有獨立、深入、可引用的文章 URL",
+    "站外零聲量:無第三方提及、目錄收錄、社群討論(AI 高度仰賴外部佐證)",
+    "網域上線時間短、無反向連結,權威訊號不足"
+  ]
+}

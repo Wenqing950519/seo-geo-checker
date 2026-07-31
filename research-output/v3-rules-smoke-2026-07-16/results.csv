@@ -1,0 +1,2 @@
+﻿url,domain,site_type,geo_score,site_readiness_score,score_scope,readiness_label,evidence_coverage,evidence_confidence,summary_zh,weakest_group,top_failures,crawl_status,measured_at,algorithm_version,evidence_hash
+https://www.sushiro.com.tw/,sushiro.com.tw,restaurant,,63,owned_site_readiness_only,Needs Work,100,high,整體仍需改善；最弱環節為網站發現性。主要問題是未找到有效 sitemap、缺少 H1。,discoverability,sitemap_valid|h1|homepage_in_sitemap,success,2026-07-16T09:09:21.951Z,3.0.0-rules,f5d6e21ba32a5444676d286c742bc26af534566b49c1608c5ea16f89b9b6086c

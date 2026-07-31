@@ -1,0 +1,98 @@
+{
+  "date": "2026-07-18",
+  "site": "https://geocheck.lisheng.cv",
+  "pages_checked": ["/home (= / 經 302 轉向)"],
+  "method": "live web fetch + repo 原始碼 (mock-api/server.js, public/home.html) 交叉驗證 + scripts/audit_checks.py",
+  "baseline": true,
+  "summary": { "critical": 3, "warning": 4, "info": 4 },
+  "issues": [
+    {
+      "id": "A1", "severity": "critical", "check": "robots.txt AI 爬蟲封鎖",
+      "detail": "Cloudflare Managed robots.txt 對 GPTBot、ClaudeBot、CCBot、Google-Extended、Bytespider、Amazonbot、Applebot-Extended、meta-externalagent 全部 Disallow: /,且 Content-Signal 設 ai-train=no。",
+      "impact": "AI 爬蟲被全面拒絕,GEO 能見度從源頭歸零。對一個販售 GEO 健檢的網站是直接自我矛盾。",
+      "fix": "Cloudflare Dashboard → 網域 → Settings/Bots → 關閉『Block AI bots』與 robots.txt 管理(managed robots.txt),讓 server.js 的 robotsTxt() 生效。程式碼無法修,必須在 Cloudflare 後台操作。",
+      "fix_location": "Cloudflare 後台(非程式碼)"
+    },
+    {
+      "id": "A2", "severity": "critical", "check": "canonical / 轉向矛盾",
+      "detail": "/ 以 302 轉向 /home;但 /home 的 canonical、og:url、schema url 全部指回 https://geocheck.lisheng.cv/。canonical 指向一個轉向頁,形成循環訊號。sitemap 同時列出 / 與 /home。",
+      "impact": "搜尋引擎收到互相矛盾的正典訊號,可能延遲收錄或選錯正典 URL。",
+      "fix": "統一正典為 /:讓 / 直接回傳 home.html(200),/home 301 轉向 /;sitemap 只留 /。",
+      "fix_location": "mock-api/server.js"
+    },
+    {
+      "id": "A3", "severity": "critical", "check": "og:image 404",
+      "detail": "og:image 與 twitter:image 指向 /og-image.png,但伺服器沒有此路由與檔案,回 404。",
+      "impact": "社群與通訊軟體分享時無預覽圖,分享點閱率大幅下降;部分 AI 引擎也用 og 資料理解頁面。",
+      "fix": "加上 /og-image.png 靜態檔案路由並放入實際圖檔(1200x630),或先移除 og:image 標籤。",
+      "fix_location": "mock-api/server.js + public/og-image.png"
+    },
+    {
+      "id": "A4", "severity": "warning", "check": "302 應為 301",
+      "detail": "/ → /home 使用 302(暫時轉向)。",
+      "impact": "302 不傳遞正典訊號,搜尋引擎會持續嘗試收錄兩個 URL。",
+      "fix": "A2 修正後此項一併解決(/home → / 用 301)。",
+      "fix_location": "mock-api/server.js"
+    },
+    {
+      "id": "A5", "severity": "warning", "check": "sitemap lastmod 動態產生",
+      "detail": "sitemapXml() 每次請求都以當天日期為 lastmod,內容沒改也天天更新。",
+      "impact": "lastmod 失去參考價值,搜尋引擎會降低對此欄位的信任。",
+      "fix": "改為固定的實際內容更新日,或從部署時間讀取。",
+      "fix_location": "mock-api/server.js"
+    },
+    {
+      "id": "A6", "severity": "warning", "check": "llms.txt 不存在",
+      "detail": "/llms.txt 回 404。首頁行銷內容大力推薦 llms.txt,自己卻沒有部署。",
+      "impact": "GEO 加分項缺失 + 品牌可信度矛盾(健檢工具會檢查此項,自家網站卻不通過)。",
+      "fix": "新增 /llms.txt 路由,內容涵蓋品牌定義、主要頁面導覽。",
+      "fix_location": "mock-api/server.js"
+    },
+    {
+      "id": "A7", "severity": "warning", "check": "404 處理",
+      "detail": "不存在的路徑回傳 JSON {\"error\":\"Not found\"},無 HTML 404 頁。",
+      "impact": "使用者體驗差;無導回首頁的路徑。狀態碼正確(404)所以 SEO 影響小。",
+      "fix": "回傳簡單的 HTML 404 頁,附回首頁連結。",
+      "fix_location": "mock-api/server.js"
+    },
+    {
+      "id": "A8", "severity": "info", "check": "favicon 缺失",
+      "detail": "home.html 無 rel=icon / apple-touch-icon,伺服器無 /favicon.ico 路由。",
+      "impact": "瀏覽器分頁與搜尋結果品牌識別缺失;每次請求多一個 404。",
+      "fix": "加 favicon 檔案與 <link rel=icon>。",
+      "fix_location": "public/home.html + server.js"
+    },
+    {
+      "id": "A9", "severity": "info", "check": "單頁站內鏈結構",
+      "detail": "全站僅一頁,導覽全是 #anchor;學習資源(GEO 是什麼、llms.txt 指南等)是摺疊卡片而非獨立 URL。",
+      "impact": "每個主題沒有可被搜尋引擎/AI 單獨引用的 URL,長尾關鍵字與可引用性受限。",
+      "fix": "中期:把四張學習資源卡片展開成獨立文章頁(/blog/what-is-geo 等),互相內鏈。",
+      "fix_location": "產品規劃"
+    },
+    {
+      "id": "A10", "severity": "info", "check": "footer 空連結",
+      "detail": "隱私權政策與服務條款 href=\"#\"。",
+      "impact": "信任訊號(E-E-A-T)缺失;對需要留 email 的轉換頁尤其重要。",
+      "fix": "補上實際頁面或先移除連結。",
+      "fix_location": "public/home.html"
+    },
+    {
+      "id": "A11", "severity": "info", "check": "audit_checks.py 誤報",
+      "detail": "腳本回報 jsonld_types 為空,實際上 home.html 有完整 @graph(Organization/WebSite/Service/FAQPage)且 JSON 有效。腳本不支援 @graph 解析。",
+      "impact": "工具誤報,非網站問題。",
+      "fix": "skill 腳本層面:audit_checks.py 應展開 @graph。",
+      "fix_location": "skill scripts(唯讀,僅記錄)"
+    }
+  ],
+  "passed": [
+    "title 存在、長度適中、含主關鍵字",
+    "meta description 86 字元、具體",
+    "H1 唯一,H 階層 1→2→3 無跳級",
+    "og:title/description/image/url/locale/type 與 twitter card 齊全(惟圖檔 404 見 A3)",
+    "JSON-LD @graph:Organization + WebSite + Service + FAQPage 皆有效",
+    "html lang=zh-Hant,行動 viewport 正常",
+    "HTTPS 正常;舊網域 301 轉向邏輯存在(maybeRedirectLegacyHost)",
+    "sitemap.xml 可取得、格式正確",
+    "圖片全用 emoji/CSS,無缺 alt 問題"
+  ]
+}

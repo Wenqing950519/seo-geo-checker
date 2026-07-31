@@ -1,0 +1,23 @@
+{
+  "source_file": "97_5.json",
+  "source_sha256": "19d059158d5f8ae8c53a3dbc322fc0d6e6312145ce12756a26deb56ed0e1df2e",
+  "filtered_at": "2026-07-18T10:25:25.157Z",
+  "filter": {
+    "address_regex": "(臺|台)北市信義區",
+    "registration_item_equals": "餐飲場所"
+  },
+  "total_rows_streamed": 824696,
+  "xinyi_rows_all_registration_items": 10550,
+  "xinyi_dining_rows": 3723,
+  "distinct_registration_numbers": 3723,
+  "distinct_addresses": 2721,
+  "parse_failures": 0,
+  "outputs": {
+    "jsonl": "tfda-xinyi-dining-registry.jsonl",
+    "csv": "tfda-xinyi-dining-registry.csv"
+  },
+  "output_sha256": {
+    "jsonl": "7cc392a1e4c10e5291c7aa4e91fe36712630a5e9d93dba935108537e1166a93c",
+    "csv": "2a240418fe7cd3109381846eb72c2eba0950c430a3fa6d2ae2b559611ff88fb3"
+  }
+}

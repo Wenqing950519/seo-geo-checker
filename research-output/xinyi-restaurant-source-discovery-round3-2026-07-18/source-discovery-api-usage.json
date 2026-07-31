@@ -1,0 +1,20 @@
+{
+  "provider": "Brave Web Search API",
+  "query_mode": "official-strict",
+  "base_url": "https://api.search.brave.com/res/v1",
+  "started_at": "2026-07-18T10:33:26.512Z",
+  "completed_at": "2026-07-18T10:35:22.715Z",
+  "candidate_count": 94,
+  "planned_calls_this_run": 63,
+  "hard_cap_this_run": 63,
+  "recorded_attempts_total": 157,
+  "latest_candidate_records": 94,
+  "successful_calls_total": 94,
+  "failed_calls_total": 0,
+  "tokens_available": false,
+  "input_tokens": null,
+  "output_tokens": null,
+  "total_tokens": null,
+  "mean_latency_ms": 1228,
+  "evidence_boundary": "Search results are source leads only and require direct-page verification before entering the evidence ledger."
+}

@@ -1,0 +1,267 @@
+{
+  "url": "https://hunterest.co/",
+  "measured_at": "2026-07-19T06:11:34.096Z",
+  "pipeline_version": "3.0.0-perplexity-p2.1.0-s3.1.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": null,
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": "台灣",
+      "category": "在地服務商",
+      "queries": [
+        "台灣有哪些值得考慮的在地服務商？請列出具體品牌或商家名稱，並附上可核對的來源。",
+        "台灣在地服務商推薦與比較：哪些品牌較常被提及？請說明理由並附來源。"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website hunterest.co (title: Hunterest — 發現與販售 AI 打造的 Web 工具). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: UNKNOWN\n\nThe exact entity represented by **hunterest.co** cannot be verified using the provided public sources, as none of them explicitly refer to this specific website or brand[1][2][3][4][5]. The search results contain unrelated entities such as **Huntress** (a US cybersecurity company, website: huntress.com)[1][2], **Hunter.io** (an email outreach platform)[3], and generic dictionary definitions or media titles with similar names[4][5], but no source confirms the identity, ownership, or description of hunterest.co.\n\nThe title provided in your query (“Hunterest — 發現與販售 AI 打造的 Web 工具”, meaning “Hunterest – Discover and sell AI-built Web tools”) suggests the site may be a Chinese-language platform for AI web tools, but this claim is not corroborated by any of the returned public sources. Without a direct reference from an official source or a corroborating third party, entity alignment remains unverified.",
+      "citations": [
+        "https://en.wikipedia.org/wiki/Huntress_(company)",
+        "https://www.linkedin.com/company/huntress-labs",
+        "https://hunter.io/about",
+        "https://www.merriam-webster.com/dictionary/hunter",
+        "https://www.imdb.com/title/tt4333674/"
+      ],
+      "searchResults": [
+        {
+          "date": "2025-08-07",
+          "last_updated": "2026-07-04",
+          "place_metadata": null,
+          "snippet": "**Huntress** is an American cybersecurity company based in Columbia, Maryland.\n...\n|Headquarters|Columbia, Maryland , United States|\n...\n|Key people|Kyle Hanslovan (CEO)|\n|Website|huntress.com|",
+          "source": "web",
+          "title": "Huntress (company) - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Huntress_(company)"
+        },
+        {
+          "date": "2026-07-02",
+          "last_updated": "2026-07-03",
+          "place_metadata": null,
+          "snippet": "- **Website**\nhttps://www.huntress.com/demo?utm_source=linkedin&utm_medium=social&utm_campaign=cy25-10-camp-brand-global-broad-all-organic_social_bio External link for Huntress\n...\n2015\n...\n## Locations\n- Primary\n6996 Columbia Gateway Dr\nColumbia, Maryland 21046, US\nGet directions",
+          "source": "web",
+          "title": "Huntress - LinkedIn",
+          "url": "https://www.linkedin.com/company/huntress-labs"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-07-18",
+          "place_metadata": null,
+          "snippet": "Hunter is an all-in-one email outreach platform.\nWe help marketers, salespeople, recruiters, and anyone else who wants to connect with more people using emails.",
+          "source": "web",
+          "title": "About us - Hunter.io",
+          "url": "https://hunter.io/about"
+        },
+        {
+          "date": "2026-05-30",
+          "last_updated": "2026-06-02",
+          "place_metadata": null,
+          "snippet": "1\na\n**: ** a person who hunts game\nb\n**: ** a dog used or trained for hunting\nc\n**: ** a horse used or adapted for use in hunting with hounds\nespecially **: ** a fast strong horse trained for cross-country work and jumping\n2\n**: ** one that searches for something\n3\n**: ** a pocket watch with a hinge...",
+          "source": "web",
+          "title": "HUNTER Definition & Meaning - Merriam-Webster",
+          "url": "https://www.merriam-webster.com/dictionary/hunter"
+        },
+        {
+          "date": "2015-03-20",
+          "last_updated": "2026-05-19",
+          "place_metadata": null,
+          "snippet": "- March 20, 2015 (India)\n...\n- 2h 21m(141 min)",
+          "source": "web",
+          "title": "Hunterrr (2015) ⭐ 7.0 | Comedy, Romance",
+          "url": "https://www.imdb.com/title/tt4333674/"
+        }
+      ],
+      "usage": {
+        "inputTokens": 128,
+        "outputTokens": 207,
+        "totalTokens": 335
+      },
+      "latencyMs": 3187,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台灣有哪些值得考慮的在地服務商？請列出具體品牌或商家名稱，並附上可核對的來源。",
+        "answer": "您的問題「台灣有哪些值得考慮的在地服務商？」目前缺乏明確的**服務領域**（如：裝潢、餐飲、物流、軟體、AI 等），導致難以直接列出「值得考慮」的具體品牌。不過，根據現有搜尋結果，可依不同產業類別提供具公信力與可核對來源的在地服務商名單：\n\n---\n\n### 1. **AI 與軟體服務類（在地軟硬體與雲端支援）**\n台灣在 AI 供應鏈中扮演關鍵角色，以下為具代表性的在地服務商：\n\n- **台智雲**：提供 AI 算力服務的在地雲端平台，属下游軟體服務商 [2]。\n- **創意電子、世芯科技、智原科技**：提供晶片設計服務的在地技術支援商 [2]。\n- **信驊科技、新唐科技**：從事遠端伺服器管理晶片開發的在地企業 [2]。\n- **廣達、鴻海、緯穎（緯創旗下）、英業達**：伺服器代工廠，支援 AI 硬體組裝 [2]。\n\n> 這些企業多為上市公司或國際合作夥伴，具備高度可核實性與產業地位。\n\n---\n\n### 2. **",
+        "citations": [
+          "https://store.tnn.tw/search.html?key=%E5%B7%A5&c1=3&page=190",
+          "https://www.cw.com.tw/article/5125456",
+          "https://tops.taipei/ProjectIntro/ProjectIntro_SupplierList/Info/4",
+          "https://zh.wikipedia.org/zh-cn/%E8%87%BA%E7%81%A3%E5%85%AC%E5%8F%B8%E5%88%97%E8%A1%A8",
+          "https://tcooc-co.gov.taipei/cp.aspx?n=79A752C39B01AA18"
+        ],
+        "searchResults": [
+          {
+            "date": null,
+            "last_updated": "2026-03-05",
+            "place_metadata": null,
+            "snippet": "…\n...\n…\n</td><td><table><tr><td>寶鑫工程有限公司</td></tr><tr><td></td></tr><tr><td> 好評數：0推薦數：0 點閱數：1177</td></tr><tr><td>電話：02-27991758</\n…\n...\n…\n</td><td><table><tr><td>金鑫工程顧問有限公司</td></tr><tr><td></td></tr><tr><td> 好評數：0推薦數：0 點閱數：1377</td></tr><tr><td>電話：02-27988823\n…\n</td><td><table><tr><td>奕霈工程有限公司</td...",
+            "source": "web",
+            "title": "Tnn台灣店家通 - Tnn數位台灣店家通",
+            "url": "https://store.tnn.tw/search.html?key=%E5%B7%A5&c1=3&page=190"
+          },
+          {
+            "date": "2024-02-23",
+            "last_updated": "2025-11-18",
+            "place_metadata": null,
+            "snippet": "AI供應鏈分為上中下游，涵蓋軟體服務商、零組件廠、組裝廠和品牌廠。台灣是伺服器大國，在AI供應鏈中游扮演重要的角色。以下列舉代表性的廠商：\nAI供應鏈上游：AI供應鏈上游為組成伺服器的晶片、關鍵零組件等。\n|晶片|公司|\n|--|--|\n|GPU|輝達、超微、英特爾|\n|CPU|英特爾、超微|\n|DRAM|三星、SK、美光|\n|晶片設計服務|創意、世芯、智原|\n|遠端伺服器管理晶片|信驊、新唐|\n|高速訊號傳輸介面晶片|譜瑞-KY|\n|晶圓代工|台積|\n|封測|日月光|\nAI供應鏈中游：AI供應鏈中游為伺服器的組裝廠、品牌廠。\n|伺服器|公司|\n|--|--|\n|伺服器品牌廠|HP、戴爾、聯想...",
+            "source": "web",
+            "title": "台灣AI供應鏈包括哪些公司？3張表看懂",
+            "url": "https://www.cw.com.tw/article/5125456"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-07-19",
+            "place_metadata": null,
+            "snippet": "臺北市政府產業發展局推動「臺北市中小企業採購計畫」，透過建立「台北好購推廣平台（Taipei-Origin\n...\n- 服務專線：02-2720-8889 分機 6627 黃先生\n- 地址：110204 臺北市信義區市府路 1 號 10 樓\n- 臺北市民當家熱線：1999（免付費電話服務，公共電話，放心講及第二類電信除外），外縣市請撥\n02-2720-8889\n- 服務時間：週一及週五 上午 8:30 至下午 5:30 ，例假日及國定假日休息\n-",
+            "source": "web",
+            "title": "供應方詳細資訊 - 台北好購推廣平台",
+            "url": "https://tops.taipei/ProjectIntro/ProjectIntro_SupplierList/Info/4"
+          },
+          {
+            "date": "2025-01-27",
+            "last_updated": "2026-05-05",
+            "place_metadata": null,
+            "snippet": "|名称|产业|部门|总部|成立|备注|停业|\n|--|--|--|--|--|--|--|\n|五十岚|消费服务|手摇饮|台南|1994|珍珠奶茶和其他手摇饮| |\n|85度C|消费服务|手摇饮|台中|2004|咖啡厅和烘焙坊| |\n|爱买|消费服务|多元化零售|新北市|1990|大卖场，远东集团所属| |\n|A4Tech|科技业|电脑硬件|新北市|1987|电脑配件| |\n...\n|明基电通|消费品|消费性电子产品|台北市|2001|手机、电视和显示设备| |\n|Billion Electric|科技业|电信设备|台北市|1973|电信设备| |\n|映泰集团|科技业|电脑硬件|新北市|1986...",
+            "source": "web",
+            "title": "台湾公司列表 - 维基百科，自由的百科全书",
+            "url": "https://zh.wikipedia.org/zh-cn/%E8%87%BA%E7%81%A3%E5%85%AC%E5%8F%B8%E5%88%97%E8%A1%A8"
+          },
+          {
+            "date": "2020-02-26",
+            "last_updated": "2026-03-27",
+            "place_metadata": null,
+            "snippet": "**●** 臨櫃申請：現金、悠遊卡 (單筆規費不超過新臺幣1萬元)、信用卡、ApplePay、SamsungPay、AndroidPay等行動支付，亦可透過手機下載App「pay.taipei」（歐付寶、橘子支付GAMA PAY、街口支付、台北富邦銀行、ezPay簡單付、嗶嗶繳等支付業者之智慧支付平臺）繳費。\n...\n**● 商業處登記服務科**\n電話：1999（外縣市02-27208889）轉6485、6491\n傳真：27200056\n**●** 服務櫃檯作業時間：週一至週五 9：00 至 17：30（中午不休息，號碼機17:15關閉），17:00後不受理隨到隨辦。\n**●** 電話諮詢服務...",
+            "source": "web",
+            "title": "公司登記資料查閱及影印",
+            "url": "https://tcooc-co.gov.taipei/cp.aspx?n=79A752C39B01AA18"
+          }
+        ],
+        "usage": {
+          "inputTokens": 63,
+          "outputTokens": 325,
+          "totalTokens": 388
+        },
+        "latencyMs": 3470,
+        "attempts": 1
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台灣在地服務商推薦與比較：哪些品牌較常被提及？請說明理由並附來源。",
+        "answer": "針對「台灣在地服務商」的提問，由於該詞彙可涵蓋多項產業（如電商主機、雲端服務、零售電商平台等），以下依據**最常被提及且具在地特性的品牌**，分為三大領域進行推薦與比較，並說明理由：\n\n### 1. 虛擬主機與 VPS 領域（企業最常詢問的「在地服務商」）\n在技術服務與網站架設領域，**戰國策**、**遠振資訊**、**智邦生活館**與**捕夢網雲端**是台灣市場最常被提及的在地品牌。\n\n| 品牌 | 推薦理由 | 適用對象 |\n| :--- | :--- | :--- |\n| **戰國策** | 成立超過 20 年的老牌主機商，主打**規格最高、保障最完整**，且具備中華電信大頻寬優勢，被評為**CP 值最高與市場首選**[1][3]。 | 追求服務穩定、高規格需求的企業 |\n| **遠振資訊** | razio 主打**HiNet 機房速度**，適合極度在意台灣國內連線速度的用戶，且提供預算友善的在地客服方案",
+        "citations": [
+          "https://joyso.app/knowledgebase/21/",
+          "https://blog.104.com.tw/2022-the-best-service-in-taiwan/",
+          "https://www.nss.com.tw/virtual-hosting-charging",
+          "https://goodvibe.tw/third-party-marketplace-platform-comparison/",
+          "https://kkmurmur.com/taipei-restaurant/",
+          "https://www.3394.net/archives/5414",
+          "https://iknowwang.com/%E8%99%9B%E6%93%AC%E4%B8%BB%E6%A9%9F%E6%8E%A8%E8%96%A6/",
+          "https://www.sef.org.tw/files/277/AAB293BE-00A1-4BFB-ABCD-4EFFDD79CF2E.pdf",
+          "https://www.cdri.org.tw/files/file_pool/1/0N341596342102244654/%E3%80%8A2023%E5%95%86%E6%A5%AD%E6%9C%8D%E5%8B%99%E6%A5%AD%E5%B9%B4%E9%91%91%E3%80%8B%E8%A9%A6%E9%96%B1.pdf"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-04-27",
+            "last_updated": "2026-07-12",
+            "place_metadata": null,
+            "snippet": "**⭐ 2026 最新實測｜8 大廠商完整 PK：** 戰國策、遠振資訊、智邦生活館、捕夢網雲端、GoDaddy 台灣、Boilcloud、ReCloud、就速台北。從線路類型、IP 屬性、機房位置、月付帶、客服語言、合規方式 6 維度交叉比較。\n...\n需要：穩定 + 預算友善 + 在地客服\n推薦：遠振資訊 或 捕夢網雲端\n...\n排除非台灣登記廠商後，台灣本地用戶的真實選擇是：戰國策、遠振、智邦、捕夢網、就速台北，5 家中再依需求選擇。",
+            "source": "web",
+            "title": "2026 台灣VPS 8 大廠商實測評比｜就速台北vs 戰國策vs 遠振完整PK",
+            "url": "https://joyso.app/knowledgebase/21/"
+          },
+          {
+            "date": "2022-12-08",
+            "last_updated": "2026-07-01",
+            "place_metadata": null,
+            "snippet": "疫情延燒加速了外送服務的浪潮，金牌獎得主**Uber Eats** 以客戶安全為重，落實「零接觸外送」，不斷優化APP，升級「自取」功能，增加「地圖」介面讓消費者更快找到商場完成購物。此外，Uber Eats更是最大的傳統市場外送合作平台，涵蓋六個城市總計34間傳統市場、500多家攤商合作。（資料來源：工商時報）\n...\n|公司名稱|工作機會|\n|--|--|\n|金牌|全家全家便利商店股份有限公司|\n|銀牌|統一超商統一超商股份有限公司|\n...\n榮獲金牌的**摩斯漢堡** 防疫期間於全台店鋪推出「樂活市集」，消費者在住家及公司附近的門市即能選購產地直送新鮮蔬菜等台灣在地食材，安心宅食創業界先...",
+            "source": "web",
+            "title": "拼轉型迎復甦！2022「服務業大評鑑」得獎榜單出爐（附最新職缺）",
+            "url": "https://blog.104.com.tw/2022-the-best-service-in-taiwan/"
+          },
+          {
+            "date": "2026-03-20",
+            "last_updated": "2026-07-11",
+            "place_metadata": null,
+            "snippet": "本文收錄 4 家台灣在地主機商（戰國策、遠振科技、智邦生活館、捕夢網）以及 1 家台灣用戶最常選用的國際廠商（GoDaddy），從規格、價格、機房位置、客服品質到退款保證，幫您在 2026 年做出最正確的選擇。\n...\n### 一、戰國策 VPS 主機 (推薦首選)\n戰國策是成立超過 20 年的台灣老牌主機服務商，主打規格最高、保證最強、服務最完整的台灣本地 VPS 方案，並具備中華電信大頻寬優勢。\n...\nGoDaddy 是台灣用戶最常選用的國際網路服務大廠，品牌信任度高，首購方案價格極具吸引力，適合預算有限且有能力自行管理伺服器的用戶。\n...\n|--|--|--|--|--|--|\n.....",
+            "source": "web",
+            "title": "2026 台灣VPS 主機推薦：5 大廠商VPS 價格與方案比較",
+            "url": "https://www.nss.com.tw/virtual-hosting-charging"
+          },
+          {
+            "date": "2024-03-01",
+            "last_updated": "2026-07-18",
+            "place_metadata": null,
+            "snippet": "**本篇核心重點**：帶讀者深入了解台灣主流三方商城蝦皮、全聯全電商、MOMO、酷澎、PChome、Yahoo 拍賣、Pinkoi 平台特色 & 費用評比。\n...\n蝦皮購物是台灣目前流量最大、使用者輪廓最廣的綜合型電商龍頭。自 2015 年成立以來，憑藉其強大的行動端 App 和社群互動設計，已成為消費者線上購物的入門首選。其平台生態系完整，涵蓋 B2C 商城、C2C 拍賣、直播導購與自有物流，適合各種規模的商家。\n...\n說到品牌經營電商網站，我們首推的平台必然是之名跨境電商系統龍頭 Shopify！其原因如下：\n...\n提供多種語言和貨幣支持，以及全球物流和稅務計算功能，幫助商家拓展國際...",
+            "source": "web",
+            "title": "2026 最新台灣各大商城平台評比，主流商城平台特色& 收費比較",
+            "url": "https://goodvibe.tw/third-party-marketplace-platform-comparison/"
+          },
+          {
+            "date": "2025-11-23",
+            "last_updated": "2026-07-14",
+            "place_metadata": null,
+            "snippet": "創立於1970年的**【四海一家】**，是許多吃貨與老 台北人的美味口袋名單，這家遠近馳名的北方館子時常高朋滿座，除了著名的北方 菜系外，店內亦有提供各種美味的中式 菜餚可供選擇，滿滿一桌合菜，價格實惠而物超所值!",
+            "source": "web",
+            "title": "茂園餐廳｜台菜｜中山區",
+            "url": "https://kkmurmur.com/taipei-restaurant/"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-05-27",
+            "place_metadata": null,
+            "snippet": "在台灣市場，可分為兩大類供應商：一是本地電信與主機商，例如中華電信、台灣大哥大、遠傳等，這類廠商通常提供從IaaS到混合雲服務；二是國際雲廠商在台灣區域或鄰近區域的服務，例如Google Cloud（asia-east1）、Amazon/微軟等（視區域有無設點），適合需要全球佈局或成熟生態的企業。",
+            "source": "web",
+            "title": "企业采购参考台湾云服务器有哪些品牌价格与SLA 比较",
+            "url": "https://www.3394.net/archives/5414"
+          },
+          {
+            "date": "2021-09-17",
+            "last_updated": "2025-11-29",
+            "place_metadata": null,
+            "snippet": "## 香港，新加坡，台灣虛擬主機推薦\n- Godaddy | 最高人氣最受大眾歡迎!\n- Hostinger | 最便宜且最物超所值！［初階入門首選！］\n- WPX | 價格最高 – 最適用於Wordpress [高階專家限定！］\n- Siteground | 中階價位首選 ［適用於中高階使用者！］\n…\n...\nKinsta全球數據中心的數量與分佈位置比起其他主機商還要多元，是難得在台灣有設立數據中心的公司（台灣的主機位置在彰化），這將會大大提升位在台灣的網站速度，其他亞洲國家的分布包括新加坡、日本、印度、南韓和香港。\n...\n- 多數據中心，在台灣彰化就有一個，讓在地使用者可獲得高效的網站速...",
+            "source": "web",
+            "title": "虛擬主機推薦: 台灣、香港和新加坡WordPress雲端主機比較",
+            "url": "https://iknowwang.com/%E8%99%9B%E6%93%AC%E4%B8%BB%E6%A9%9F%E6%8E%A8%E8%96%A6/"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-07-09",
+            "place_metadata": null,
+            "snippet": "重要EC 業者 \nB2B：阿里巴巴、環球資源、金泉網、敦煌網、慧\n聰網、中國製造網、網盛生意寶、我的鋼鐵網、環\n球市場 \nB2C：天貓、京東、唯品會、蘇寧易購、1 號店、\n亞馬遜中國、國美在線Gome、當當網 \nC2C：淘寶網、洋碼頭 \n垂直類電商\n母嬰類：貝貝、紅孩子、蜜芽、麥樂購、寶貝格子 \n生鮮類：易果生鮮、天天果園、本來生活、每日優\n鮮、looloo \n家裝類：土巴兔、家裝e 站、齊家、愛空間、有住 \n時尚類：聚美優品、蘑菇街、卷皮、尚品",
+            "source": "web",
+            "title": "臺灣電商在中國大陸發展策略與建議",
+            "url": "https://www.sef.org.tw/files/277/AAB293BE-00A1-4BFB-ABCD-4EFFDD79CF2E.pdf"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-07-14",
+            "place_metadata": null,
+            "snippet": "快訊超市店數的統計數據，2022年超級市場業店數占比最高者為全聯福利中心\n（42.92%），其次為美廉社（30.79%），家樂福超市（9.39%）則位居第三。我國超\n級市場業產業集中度相當高，各領導廠商的發展策略卻有所差異。其中，全聯福利中",
+            "source": "web",
+            "title": "[PDF] 我國服務業發展現況與商業發展趨勢",
+            "url": "https://www.cdri.org.tw/files/file_pool/1/0N341596342102244654/%E3%80%8A2023%E5%95%86%E6%A5%AD%E6%9C%8D%E5%8B%99%E6%A5%AD%E5%B9%B4%E9%91%91%E3%80%8B%E8%A9%A6%E9%96%B1.pdf"
+          }
+        ],
+        "usage": {
+          "inputTokens": 55,
+          "outputTokens": 309,
+          "totalTokens": 364
+        },
+        "latencyMs": 3897,
+        "attempts": 1
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

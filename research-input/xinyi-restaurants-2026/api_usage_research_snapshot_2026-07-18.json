@@ -1,0 +1,96 @@
+{
+  "generated_at": "2026-07-18T10:56:23.533Z",
+  "scope": "2026 Taipei Xinyi restaurant AI-search visibility research Stage 2 source collection",
+  "ai_measurement_status": "not_started",
+  "perplexity_requests": 0,
+  "gemini_requests": 0,
+  "ai_input_tokens": 0,
+  "ai_output_tokens": 0,
+  "ai_total_tokens": 0,
+  "brave_search": {
+    "usage_files": 4,
+    "recorded_attempts": 514,
+    "latest_successful_candidate_queries": 408,
+    "latest_failed_candidate_queries": 0,
+    "failed_or_retried_attempt_records": 106,
+    "tokens_available": false,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "note": "Brave Web Search usage responses do not expose token counts; requests and failures are preserved instead."
+  },
+  "public_page_fetches": {
+    "direct_verification_runs": 6,
+    "direct_verification_attempted_fetches": 495,
+    "detail_extraction_runs": 6,
+    "detail_extraction_attempted_fetches": 506,
+    "ai_api_calls": 0,
+    "tokens_available": false
+  },
+  "usage_files": [
+    {
+      "file": "research-output/xinyi-restaurant-booking-social-details-2026-07-18/store-page-detail-usage.json",
+      "sha256": "3f3a3941ebbad536906b9face4417e37ed8ee436bff919f34477aa5c0ba8d83d"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-booking-social-discovery-2026-07-18/source-discovery-api-usage.json",
+      "sha256": "760fe38f536f6e7a087331599af48cffc8022643abdde5943919a9f13fe16f56"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-brand-domain-verification-2026-07-18/direct-verification-usage.json",
+      "sha256": "848d332bbe65f7e34e9058a6a2a4ebabba8d569ca1af8f889ade38dbf479c865"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-curated-brand-details-2026-07-18/store-page-detail-usage.json",
+      "sha256": "fdb9e497c5c80e1f15043acfc41211d74619ceacfe5ea240352eea37cfe2701c"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-curated-brand-details-v0.3-2026-07-18/store-page-detail-usage.json",
+      "sha256": "efb888573c7faecec7cd3228d56601f6ac16e27a4bb62d76782f20a120f608ac"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-curated-brand-verification-2026-07-18/direct-verification-usage.json",
+      "sha256": "909998553a66299dffc982100738ed87b206a44e201c8cb53573ca1ce907354c"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-curated-brand-verification-v0.3-2026-07-18/direct-verification-usage.json",
+      "sha256": "47d3e8331f4aaba8429e8340a344dc0eba4a3109fce02ed473934baef126dca5"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-direct-verification-2026-07-18/direct-verification-usage.json",
+      "sha256": "621f5185c492436fbd2fd4804a5e06de7b2f6d726e558adb3bf81d5111d3f4f3"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-direct-verification-round2-2026-07-18/direct-verification-usage.json",
+      "sha256": "c51ecf56accdb7761731441d3359bc6fb75306aa849a0c0f42e04c3e8a714f78"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-round1-page-details-2026-07-18/store-page-detail-usage.json",
+      "sha256": "c360b39bf037a29745bc6fd778c8718e6c2c9d4c8ecc3d2be39839638d390724"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-round2-page-details-2026-07-18/store-page-detail-usage.json",
+      "sha256": "8a806e0893d360a1333e5aae2e68a7bc10bb14d29c161334ecc33a5a7fa33df2"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-source-discovery-2026-07-18/source-discovery-api-usage.json",
+      "sha256": "3ad51fb6f5cb1479891ab11a6531e6e4321e7a5e682f62236892489c2ad6567e"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-source-discovery-round2-2026-07-18/source-discovery-api-usage.json",
+      "sha256": "929b715488347c63bcf6b52af261b889c0dee686adf17ea24994f18e2d95d2f2"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-source-discovery-round3-2026-07-18/source-discovery-api-usage.json",
+      "sha256": "b5b5afe4a299e21baf94d675c8d79e12cd92980a1583f1c4f717f436d492d706"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-supporting-source-details-2026-07-18/store-page-detail-usage.json",
+      "sha256": "efcd9b7cf74672627dce6b0ab1e2279a8430f127220cdd7853bcd4bfecd58e6c"
+    },
+    {
+      "file": "research-output/xinyi-restaurant-supporting-source-verification-2026-07-18/direct-verification-usage.json",
+      "sha256": "4cc9fc5a78e55632a3b2ad511295cb8aab172ea228123d4d914bb28e96b7fb4e"
+    }
+  ]
+}

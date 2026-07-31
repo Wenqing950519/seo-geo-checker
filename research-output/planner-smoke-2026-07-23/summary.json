@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-07-23T03:19:24.361Z",
+  "total_sites": 2,
+  "measured_sites": 2,
+  "excluded_by_master_sites": 0,
+  "failed_or_unknown_sites": 0,
+  "refusal_or_empty_queries": 0,
+  "platform_root_input_sites": 0,
+  "gemini_profile_successes": 2,
+  "geo_score": {
+    "mean": 59,
+    "median": 59,
+    "min": 41,
+    "max": 77
+  },
+  "site_readiness_score": {
+    "mean": 75,
+    "median": 75,
+    "min": 63,
+    "max": 87
+  },
+  "perplexity_score": {
+    "mean": 33,
+    "median": 33,
+    "min": 0,
+    "max": 66
+  },
+  "mean_mention_rate": 50,
+  "mean_official_citation_rate": 0,
+  "entity_grounded_rate": 50,
+  "by_industry": {
+    "餐飲業": 1,
+    "Software & Internet Services": 1
+  },
+  "dataset_sha256": "d9f35c51a48a12e9f6a8b3368bb043d986ca890be895b21db37ce801e8cf7296"
+}

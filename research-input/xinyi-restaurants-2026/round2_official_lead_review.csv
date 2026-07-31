@@ -1,0 +1,122 @@
+﻿candidate_id,candidate_name,observed_domain,observed_url,observed_status,high_confidence_official_lead,confidence_reason
+001,鼎泰豐（101店）,guide.easytravel.com.tw,https://guide.easytravel.com.tw/scenic/61552,brand_evidence_observed,false,needs_stricter_search
+004,紫艷中餐廳,wingontravel.com,https://www.wingontravel.com/discovery/restaurant-13587902,brand_evidence_observed,false,needs_stricter_search
+005,合.Shabu,ifoodie.tw,https://ifoodie.tw/restaurant/559dba8ac03a103ee86ca04d-%E5%90%88-shabu,brand_evidence_observed,false,needs_stricter_search
+007,隨意鳥101高空觀景餐廳,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+008,LA FARFALLA 義式餐廳－台北艾麗酒店,tablecheck.com,https://www.tablecheck.com/zh-TW/la-farfalla-italy/reserve/landing,brand_evidence_observed,false,needs_stricter_search
+010,泰市場海鮮自助餐廳,cosmopolitan.com,https://www.cosmopolitan.com/tw/lifestyle/hot-topics/g60086796/spice-market/,brand_evidence_observed,false,needs_stricter_search
+011,凱菲屋－台北君悅酒店,wendyjourney.com,https://www.wendyjourney.com/hyatt-cafe/,brand_evidence_observed,false,needs_stricter_search
+012,一蘭拉麵－台灣台北本店,ichiran.com.tw,https://ichiran.com.tw/shop/stores.aspx,brand_evidence_observed,false,needs_stricter_search
+013,Texas Roadhouse,texasroadhouse.com.tw,https://texasroadhouse.com.tw/,brand_evidence_observed,true,brand_token_matches_domain
+014,彩日本料理－台北君悅酒店,kkmurmur.com,https://kkmurmur.com/irodori-taipei/,brand_evidence_observed,false,needs_stricter_search
+016,Top Cap Steakhouse,hippolife.tw,https://hippolife.tw/taipei-food-topcapsteakhouse,brand_evidence_observed,false,needs_stricter_search
+017,海底撈台灣信義店（微風南山）,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+018,鼎泰豐（信義新光A4店）,ifoodie.tw,https://ifoodie.tw/restaurant/57716c802756dd5159c807a8-%E9%BC%8E%E6%B3%B0%E8%B1%90,brand_evidence_observed,false,needs_stricter_search
+019,泰集 Thai Bazaar（微風信義店）,anikofoodie.com,https://anikofoodie.com/thaibazaar/,brand_evidence_observed,false,needs_stricter_search
+020,探索廚房－台北寒舍艾美酒店,tablecheck.com,https://www.tablecheck.com/zh-TW/le-meridien-taipei-latest-recipe/reserve/landing,brand_evidence_observed,false,needs_stricter_search
+021,勞瑞斯牛肋排餐廳,anikofoodie.com,https://anikofoodie.com/lawrys/,brand_evidence_observed,false,needs_stricter_search
+022,CÉ LA VI Taipei,tw.celavi.com,https://tw.celavi.com/,brand_evidence_observed,false,needs_stricter_search
+023,侯布雄法式餐廳,bellavita.com.tw,https://www.bellavita.com.tw/catalogue/goodslist.php?d=199,brand_evidence_observed,true,curated_brand_or_venue_domain
+024,老乾杯－台北信義店,kanpaiclassic.com.tw,https://www.kanpaiclassic.com.tw/zh/branch,brand_evidence_observed,false,needs_stricter_search
+025,French Windows－British TeaHouse,wensgoodlife.com,https://www.wensgoodlife.com/french-windows-british-teahouse/,brand_evidence_observed,false,needs_stricter_search
+026,欣葉台菜－信義A9店,tiffany0118.tw,https://tiffany0118.tw/shinyeh-a9/,brand_evidence_observed,false,needs_stricter_search
+029,春水堂－松菸店,findcoupon.tw,https://www.findcoupon.tw/store-5217.htm,brand_evidence_observed,false,needs_stricter_search
+030,Woolloomooloo,woolloomooloo.tw,https://woolloomooloo.tw/,brand_evidence_observed,true,brand_token_matches_domain
+031,馬辣頂級麻辣鴛鴦火鍋信義店,sarychien.com,https://sarychien.com/%E9%A6%AC%E8%BE%A3%E9%A0%82%E7%B4%9A%E9%BA%BB%E8%BE%A3%E9%B4%9B%E9%B4%A6%E7%81%AB%E9%8D%8B-%E4%BF%A1%E7%BE%A9%E5%BA%97/,brand_evidence_observed,false,needs_stricter_search
+032,饗食天堂信義店,bunnyann.tw,https://bunnyann.tw/eatogether-0611/,brand_evidence_observed,false,needs_stricter_search
+033,Smith & Wollensky 牛排館,smithandwollensky.com.tw,https://smithandwollensky.com.tw/,brand_evidence_observed,true,brand_token_matches_domain
+034,頂鮮101美食美景餐廳,taiwantour.net,https://taiwantour.net/101-tea/,brand_evidence_observed,false,needs_stricter_search
+035,心潮飯店 Sinchao Rice Shoppe,linktr.ee,https://linktr.ee/sinchaoriceshoppe,brand_evidence_observed,false,needs_stricter_search
+036,Hooters Xinyi 美式餐廳,hooters.com.tw,https://www.hooters.com.tw/,brand_evidence_observed,true,brand_token_matches_domain
+038,DA ANTONIO By 大安東尼,daantonio.oddle.me,https://daantonio.oddle.me/zh_TW,brand_evidence_observed,true,brand_token_matches_domain
+039,樂天皇朝台灣,paradisegp.com,https://www.paradisegp.com/tc/tw/,brand_evidence_observed,false,needs_stricter_search
+040,TGI Friday's,tgifridays.com.tw,https://tgifridays.com.tw/,brand_evidence_observed,true,brand_token_matches_domain
+041,欣葉日本料理信義店,shinyeh.com.tw,https://www.shinyeh.com.tw/content/zh/brand/Index.aspx?BrandId=4,brand_evidence_observed,false,needs_stricter_search
+042,莫爾頓牛排館,ifoodie.tw,https://ifoodie.tw/restaurant/56a8e7d12756dd3766b26931-%E8%8E%AB%E7%88%BE%E9%A0%93%E7%89%9B%E6%8E%92%E9%A4%A8-Morton-%E4%BF%A1%E7%BE%A9%E5%BE%AE%E9%A2%A8,brand_evidence_observed,false,needs_stricter_search
+043,春水堂－信義新光三越A9店,rsv.skm.com.tw,https://rsv.skm.com.tw/groups/skm-xinyi/companies/-KsqbueWIURxuxAQ8EIy:inline-live-chunshuitang/restaurants/-KsqbufnXi_ftq44E7bU/takeout?request_locale=en_US,brand_evidence_observed,true,curated_brand_or_venue_domain
+044,瓦城泰國料理－台北阪急店,thaitown.com.tw,https://www.thaitown.com.tw/tw/booking,brand_evidence_observed,false,needs_stricter_search
+045,GB鮮釀餐廳信義店,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+046,Bel Air Bar & Grill,posh.com.tw,https://posh.com.tw/%E5%8F%B0%E5%8C%97%E5%90%9B%E6%82%85%E9%85%92%E5%BA%97%E9%A4%90%E9%A3%B2%E3%80%90bel-air-%E5%AF%B6%E8%89%BE%E8%A5%BF%E9%A4%90%E5%BB%B3%E3%80%91/,brand_evidence_observed,false,needs_stricter_search
+047,茶苑－台北君悅酒店,ifoodie.tw,https://ifoodie.tw/restaurant/56e9142f699b6e7fc05b333e-%E8%8C%B6%E8%8B%91-%E5%90%9B%E6%82%85%E9%85%92%E5%BA%97-,brand_evidence_observed,false,needs_stricter_search
+048,漂亮台式海鮮餐廳,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+049,燒肉同話－台北光復南店,misshuan.tw,https://misshuan.tw/chagether-yakiniku-2019-0710/,brand_evidence_observed,false,needs_stricter_search
+050,厲家菜,shiakingkong.com,https://shiakingkong.com/family-li-imperial-cuisine/,brand_evidence_observed,false,needs_stricter_search
+051,小南門傳統豆花美食,chengmeng.com.tw,https://www.chengmeng.com.tw/brand.php?act=view&id=68,brand_evidence_observed,false,needs_stricter_search
+052,徐淮人家,ifoodie.tw,https://ifoodie.tw/restaurant/559d9dabc03a103ee86c90e9-%E5%BE%90%E6%B7%AE%E4%BA%BA%E5%AE%B6,brand_evidence_observed,false,needs_stricter_search
+054,Joyce East,joycecafetw.com,https://www.joycecafetw.com/JOYCEEAST/?action=menu,brand_evidence_observed,true,brand_token_matches_domain
+055,添好運台北信義店,ifoodie.tw,https://ifoodie.tw/restaurant/559d5538c03a103ee86c64cd-%E6%B7%BB%E5%A5%BD%E9%81%8B-HOYII%E5%8C%97%E8%BB%8A%E7%AB%99%E5%BA%97,brand_evidence_observed,false,needs_stricter_search
+056,Ziga Zaga－台北君悅酒店,girlsplan.com,https://girlsplan.com/zigazaga/,brand_evidence_observed,false,needs_stricter_search
+057,原木燒烤餐廳 Wildwood,wildwood.com.tw,https://www.wildwood.com.tw/index_ch.php,brand_evidence_observed,true,brand_token_matches_domain
+058,日本橋海鮮丼 辻半－微風信義店,,,fetch_failed,false,needs_stricter_search
+059,穆記小吃牛肉麵館,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+060,橘色涮涮屋新光三越A9店,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+061,時時香－微風南山店,ifoodie.tw,https://ifoodie.tw/blog/5c34a458a29dbf5fde9408d1/,brand_evidence_observed,false,needs_stricter_search
+062,L.A PHO 越南美食餐廳,bizlion.com.tw,https://www.bizlion.com.tw/bizlion/Store/Detail?storeId=6382,brand_evidence_observed,false,needs_stricter_search
+063,寒舍食譜－台北寒舍艾美酒店,vivianexplore.tw,https://vivianexplore.tw/my-humble-house/,brand_evidence_observed,false,needs_stricter_search
+065,愛爾蘭瘋薯（信義威秀）,mecocute.com,https://www.mecocute.com/%E3%80%90%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%BE%8E%E9%A3%9F%E3%80%91%E6%9C%89%E5%89%B5%E6%84%8F%E7%9A%84%E7%BE%8E%E5%9C%8B%E8%96%AF%E6%A2%9D%EF%BC%8C%E6%84%9B%E7%88%BE%E8%98%AD%E7%98%8B/,brand_evidence_observed,false,needs_stricter_search
+066,85TD Chinese Restaurant,85td-101.com,https://www.85td-101.com/,brand_evidence_observed,true,brand_token_matches_domain
+068,雲錦中餐廳－台北君悅酒店,tablecheck.com,https://www.tablecheck.com/zh-TW/grand-hyatt-taipei-yun-jin/reserve/landing,brand_evidence_observed,false,needs_stricter_search
+069,味美早餐店 Wei Mei Breakfast Restaurant,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+071,Just Grill,yaya.tw,https://yaya.tw/just-grill/,brand_evidence_observed,false,needs_stricter_search
+072,永心鳳茶,bestatos.com,https://www.bestatos.com/taste/%E5%8F%B0%E7%81%A3/%E6%B0%B8%E5%BF%83%E9%B3%B3%E8%8C%B6%E5%8D%97%E8%A5%BF%E5%BA%97/,brand_evidence_observed,false,needs_stricter_search
+073,歐帕希臘小館,17life.com,https://www.17life.com/piinlife/1c3ba865-33df-4fb9-951e-04a5737f0d7d,brand_evidence_observed,false,needs_stricter_search
+074,Osteria by Angie,wanderlog.com,https://wanderlog.com/place/details/2957298/osteria-by-angie%E5%85%89%E5%BE%A9%E5%BA%97,brand_evidence_observed,false,needs_stricter_search
+075,紅花鐵板燒－台北101旗艦店,xnfood.com.tw,https://xnfood.com.tw/redflower/,brand_evidence_observed,false,needs_stricter_search
+076,開飯川食堂－台北阪急店,kaifun.com.tw,https://www.kaifun.com.tw/zh-TW/home,brand_evidence_observed,false,needs_stricter_search
+077,珍寶海鮮台北信義店,tiffany0118.tw,https://tiffany0118.tw/jumboseafood/,brand_evidence_observed,false,needs_stricter_search
+078,酮版低糖餐廳,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+079,金色三麥－微風南山店,lebledor.com,https://www.lebledor.com/location/umami,brand_evidence_observed,false,needs_stricter_search
+080,稻舍食館－統一時代店,rice1923.com,https://www.rice1923.com/blogs/%E9%96%80%E5%B8%82/192871,brand_evidence_observed,false,needs_stricter_search
+082,Herbivore,skm.com.tw,https://www.skm.com.tw/brand/10916,brand_evidence_observed,true,curated_brand_or_venue_domain
+083,Cheers－台北君悅酒店,posh.com.tw,https://posh.com.tw/%E5%8F%B0%E5%8C%97%E5%90%9B%E6%82%85%E9%A3%AF%E5%BA%97%E3%80%90cheers%E6%AD%A1%E9%A3%B2%E5%BB%8A%E3%80%91/,brand_evidence_observed,false,needs_stricter_search
+084,非常泰概念餐坊－Neo19店,verythai.com.tw,https://www.verythai.com.tw/,brand_evidence_observed,false,needs_stricter_search
+085,段純貞牛肉麵,yummyyummy.tw,https://yummyyummy.tw/duanchunzhen/,brand_evidence_observed,false,needs_stricter_search
+086,燒肉中山 Zonzen,zonzen.com.tw,https://www.zonzen.com.tw/,brand_evidence_observed,true,brand_token_matches_domain
+087,Seasons by Olivier E.,vogue.com.tw,https://www.vogue.com.tw/article/seasons-by-olivier-e,brand_evidence_observed,false,needs_stricter_search
+088,瓦城泰國料理－松山車站店,jumpingsugar.com,https://jumpingsugar.com/blog/post/thaitown,brand_evidence_observed,false,needs_stricter_search
+089,The Chapter Cafe,wallacewang.tw,https://wallacewang.tw/3302,brand_evidence_observed,false,needs_stricter_search
+090,One Rule,hansphoto.tw,https://hansphoto.tw/onerule/,brand_evidence_observed,false,needs_stricter_search
+092,輪輪1976 和食茶酒驛,,,fetch_failed,false,needs_stricter_search
+094,施家麻油腰花,letsplay.tw,https://letsplay.tw/shijia-yaohua2504/,brand_evidence_observed,false,needs_stricter_search
+095,鯤壽司,jumpman.tw,https://www.jumpman.tw/1022.html,brand_evidence_observed,false,needs_stricter_search
+096,大心新泰式麵食－台北信義威秀店,fooday.app,https://fooday.app/zh-TW/spots/nQZqtSV33CEKdWnMURMfJ7,brand_evidence_observed,false,needs_stricter_search
+097,納達吉印度料理 Nataraj,shop1688.com.tw,https://www.shop1688.com.tw/aom20200226025/,brand_evidence_observed,false,needs_stricter_search
+098,北平都一處,stancylife.com,https://stancylife.com/dit/,brand_evidence_observed,false,needs_stricter_search
+099,小後苑,wepeople.club,https://www.wepeople.club/%E5%B0%8F%E5%BE%8C%E8%8B%91%E8%B7%B3%E8%84%AB%E6%97%A5%E5%A4%9C%E7%95%8C%E7%B7%9A%EF%BC%8C%E8%AE%93%E9%A4%90%E9%85%92%E8%88%87%E6%97%A9%E5%8D%88%E9%A4%90%E9%83%BD%E8%83%BD%E6%94%BE%E9%AC%86%E9%AB%94/,brand_evidence_observed,false,needs_stricter_search
+100,百家班活蝦店－基隆路店,heyahh.com.tw,https://www.heyahh.com.tw/collections/prawn-keelungroad,brand_evidence_observed,false,needs_stricter_search
+101,北平陶然亭 Beijing－Do It True,go.liontravel.com,https://go.liontravel.com/zh-tw/attraction/beijing-taoranting_park-q835886,brand_evidence_observed,false,needs_stricter_search
+102,NOLA Kitchen－信義店,dailycheska.com,https://dailycheska.com/food/nola-kitchen/,brand_evidence_observed,false,needs_stricter_search
+103,阮小越,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+104,牛かつもと村－遠百信義A13,nicklee.tw,https://nicklee.tw/2825/gyukatsu-motomura-a13/,brand_evidence_observed,false,needs_stricter_search
+105,瓦城泰國料理－新光三越信義店,thaitown.com.tw,https://www.thaitown.com.tw/tw/booking,brand_evidence_observed,false,needs_stricter_search
+106,黑毛屋信義店,honke.kurogeya.com.tw,https://www.honke.kurogeya.com.tw/zh/branch,brand_evidence_observed,false,needs_stricter_search
+107,陳根找茶,whitneyblog.com,https://whitneyblog.com/chengenzhaocha/,brand_evidence_observed,false,needs_stricter_search
+108,戴記獨臭之家,viviyu.com,https://www.viviyu.com/archives/61831,brand_evidence_observed,false,needs_stricter_search
+109,楓樹韓國烤肉,47life.tw,https://47life.tw/maple-tree-house/,brand_evidence_observed,false,needs_stricter_search
+110,饗泰多－松高店,siammore.com.tw,https://www.siammore.com.tw/zh-TW/store/STB005,brand_evidence_observed,false,needs_stricter_search
+111,SUBWAY Taipei 101,taipei-101.com.tw,https://www.taipei-101.com.tw/index_en.htm,brand_evidence_observed,true,curated_brand_or_venue_domain
+112,心月懷石日本料理,sylvia128.com,https://sylvia128.com/post-588567085/,brand_evidence_observed,false,needs_stricter_search
+113,周胖子餃子館－忠孝店,charliegogogogo.blogspot.com,https://charliegogogogo.blogspot.com/2017/03/fat-zhous-dumplings-taipei-taiwan.html,brand_evidence_observed,false,needs_stricter_search
+114,Divadlo 捷克公寓,,,fetch_failed,false,needs_stricter_search
+115,YABI Kitchen－微風南山店,47life.tw,https://47life.tw/yabi-kitchen/,brand_evidence_observed,false,needs_stricter_search
+116,I Met You Cafe,carollin.tw,https://carollin.tw/i-met-you/,brand_evidence_observed,false,needs_stricter_search
+117,大戶屋－松山車站店,citylink.tw,https://www.citylink.tw/songshan/?p=2862,brand_evidence_observed,false,needs_stricter_search
+118,大戶屋－統一時代台北店,uni-ustyle.com.tw,https://www.uni-ustyle.com.tw/zh-tw/brand-floor/141,brand_evidence_observed,true,curated_brand_or_venue_domain
+120,Hong Kong 88 Hot Pot,thehkhub.com,https://thehkhub.com/best-hot-pot-restaurants-hong-kong/,brand_evidence_observed,false,needs_stricter_search
+121,Bing,explore.microsoft.com,https://explore.microsoft.com/zh-tw/bing?ep=1015&es=192&form=MA13QZ&cs=36067477,brand_evidence_observed,false,needs_stricter_search
+122,MiaCucina－信義店,travelersunny.com,https://travelersunny.com/miacucina-xinyi/,brand_evidence_observed,false,needs_stricter_search
+123,渣男 Taiwan Bistro,bigsharkgogogo.tw,https://bigsharkgogogo.tw/zhananbistro7aa/,brand_evidence_observed,false,needs_stricter_search
+124,劉媽媽涼麵,blake.com.tw,https://blake.com.tw/blog/post/liu-mama-liang-mian-2510,brand_evidence_observed,false,needs_stricter_search
+125,KingSpicy J,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+127,上席小館,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+128,紅豆食府－信義店,bigfang.tw,https://www.bigfang.tw/blog/post/31387707,brand_evidence_observed,false,needs_stricter_search
+129,犇－微風信義館,bencuisine.com,https://www.bencuisine.com/,brand_evidence_observed,false,needs_stricter_search
+130,元食 Cafe,yuancafe.cashier.ecpay.com.tw,https://yuancafe.cashier.ecpay.com.tw/,brand_evidence_observed,false,needs_stricter_search
+131,CPK 加州創意廚房,gq.com.tw,https://www.gq.com.tw/life/content-7393,brand_evidence_observed,false,needs_stricter_search
+132,三太養生鐵板燒,,,fetch_failed,false,needs_stricter_search
+134,宋廚北方菜館,,,page_fetched_name_unconfirmed,false,needs_stricter_search
+135,辛殿麻辣鍋－信義店,jumpman.tw,https://www.jumpman.tw/taipei-hotpot-xindian.html,brand_evidence_observed,false,needs_stricter_search
+136,同壽司－信義區,oreo.blog,https://oreo.blog/tongshousi/,brand_evidence_observed,false,needs_stricter_search
+137,拾穗,greenmedia.today,https://greenmedia.today/article_detail.php?cid=10&mid=632,brand_evidence_observed,false,needs_stricter_search
+139,老井極上燒肉－台北信義店,extremeholiday.asia,https://extremeholiday.asia/%E7%87%92%E8%82%89%E6%8E%A7%E7%9A%84%E6%96%B0%E9%81%B8%E6%93%87%EF%BC%81%E5%8F%B0%E4%B8%AD%E8%80%81%E4%BA%95%E6%A5%B5%E4%B8%8A%E7%87%92%E8%82%89%E5%8C%97%E4%B8%8A%E9%96%8B%E8%A8%AD%E5%8F%B0%E5%8C%97/,brand_evidence_observed,false,needs_stricter_search
+140,TAMED FOX－信義店,bobowin.blog,https://bobowin.blog/tamed-fox-xinyi/,brand_evidence_observed,false,needs_stricter_search

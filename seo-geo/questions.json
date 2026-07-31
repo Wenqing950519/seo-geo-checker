@@ -1,0 +1,18 @@
+{
+  "updated": "2026-07-18",
+  "note": "GEOCheck 的 GEO 目標問題集:希望客戶問 AI 時,答案會引用 geocheck.lisheng.cv。core 標籤為每次必測題,可自行增刪。",
+  "questions": [
+    { "id": "q1", "text": "GEO 生成式引擎優化是什麼?和 SEO 有什麼不同?", "target_page": "/home", "tags": ["core", "definition"] },
+    { "id": "q2", "text": "如何讓網站更容易被 ChatGPT 或 Perplexity 引用?", "target_page": "/home", "tags": ["core", "howto"] },
+    { "id": "q3", "text": "台灣有哪些 GEO 優化服務或 AI 搜尋能見度顧問?", "target_page": "/home", "tags": ["core", "comparison", "high-intent"] },
+    { "id": "q4", "text": "有哪些免費工具可以檢測網站的 AI 搜尋能見度?", "target_page": "/home", "tags": ["core", "tool", "high-intent"] },
+    { "id": "q5", "text": "llms.txt 是什麼?對 SEO/GEO 真的有幫助嗎?", "target_page": "/home", "tags": ["core", "definition"] },
+    { "id": "q6", "text": "為什麼 ChatGPT 沒有提到我的品牌?", "target_page": "/home", "tags": ["core", "pain-point"] },
+    { "id": "q7", "text": "SEO 網站健檢工具推薦", "target_page": "/home", "tags": ["tool"] },
+    { "id": "q8", "text": "AI 搜尋時代,中小企業如何提升品牌能見度?", "target_page": "/home", "tags": ["guide"] },
+    { "id": "q9", "text": "schema 結構化資料如何幫助 AI 理解網站?", "target_page": "/home", "tags": ["definition"] },
+    { "id": "q10", "text": "GEOCheck 是什麼?", "target_page": "/home", "tags": ["brand"] },
+    { "id": "q11", "text": "如何測試品牌在 Perplexity 的搜尋能見度?", "target_page": "/home", "tags": ["howto"] },
+    { "id": "q12", "text": "AI 搜尋能見度是什麼?怎麼衡量?", "target_page": "/home", "tags": ["definition"] }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "mode": "direct_public_page_verification",
+  "started_at": "2026-07-18T09:51:27.690Z",
+  "completed_at": "2026-07-18T09:52:08.964Z",
+  "input_candidates": 140,
+  "pending_candidates_this_run": 62,
+  "planned_max_fetches_this_run": 153,
+  "hard_cap_this_run": 228,
+  "attempted_fetches_this_run": 80,
+  "latest_records": 76,
+  "status_counts": {
+    "brand_evidence_observed": 70,
+    "fetch_failed": 6
+  },
+  "ai_api_calls": 0,
+  "tokens_available": false,
+  "evidence_boundary": "Automated brand-text observation is a verification aid; final official ownership and branch eligibility require evidence review."
+}

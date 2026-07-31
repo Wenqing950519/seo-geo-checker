@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-07-18T10:55:34.999Z",
+  "verified_candidate_rows": 50,
+  "unique_root_domains": 46,
+  "shared_domain_rows": 7,
+  "measurement_status": "not_frozen_no_ai_calls_authorized",
+  "provisional_perplexity_calls_if_all_included": 138,
+  "provisional_gemini_calls_if_all_included": 46,
+  "csv_sha256": "86abe7e0f4acd34af24346874567e7c986d64c8347c2ca8ffecc1f6cfd041827"
+}
