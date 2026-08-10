@@ -2,7 +2,7 @@ const assert = require("assert");
 const fs = require("fs");
 const path = require("path");
 const {
-  GEMINI_CALLS_PER_SITE,
+  DEEPSEEK_CALLS_PER_SITE,
   assertNoAdviceFields,
   buildResearchProfilePrompt,
   normalizeResearchProfile
@@ -18,12 +18,12 @@ const skill = fs.readFileSync(path.join(root, ".agents", "skills", "geo-whitepap
 
 assert.match(webCore, /require\("\.\/geo-measurement"\)/, "Website must use the shared GEO measurement pipeline");
 assert.match(batch, /mock-api["\s,]+"lib["\s,]+"geo-measurement\.js"/, "Whitepaper batch must import the shared GEO measurement pipeline");
-assert.match(batch, /buildResearchProfile/, "Whitepaper batch must run Gemini descriptive profiling");
+assert.match(batch, /buildResearchProfile/, "Whitepaper batch must run DeepSeek descriptive profiling");
 assert.match(batch, /max-perplexity-calls/, "Whitepaper batch must require a Perplexity hard cap");
-assert.match(batch, /max-gemini-calls/, "Whitepaper batch must require a Gemini hard cap");
+assert.match(batch, /max-deepseek-calls/, "Whitepaper batch must require a DeepSeek hard cap");
 assert.match(batch, /optimization_advice_generated:\s*false/, "Whitepaper output must explicitly mark advice as disabled");
 assert.strictEqual(PERPLEXITY_CALLS_PER_SITE, 3);
-assert.strictEqual(GEMINI_CALLS_PER_SITE, 1);
+assert.strictEqual(DEEPSEEK_CALLS_PER_SITE, 1);
 assert.match(PARSER_VERSION, /^\d+\.\d+\.\d+$/, "Parser version must be pinned and semver");
 assert.match(SCORING_VERSION, /^\d+\.\d+\.\d+$/, "Scoring version must be pinned and semver");
 assert.match(batch, /parser_version/, "Whitepaper rows must record parser_version");
@@ -33,7 +33,7 @@ assert.match(batch, /required\(args,\s*"query-set"\)/, "Whitepaper batch must re
 assert.match(batch, /loadEntityMaster/, "Whitepaper batch must support the entity master truth table");
 
 assert.match(skill, /Perplexity/, "Skill contract must document Perplexity evidence");
-assert.match(skill, /Gemini Flash-Lite/, "Skill contract must document Gemini descriptive profiling");
+assert.match(skill, /DeepSeek V4 Flash/, "Skill contract must document DeepSeek descriptive profiling");
 assert.match(skill, /never copy scoring weights into the Skill/, "Skill must bind scoring to production code instead of duplicated weights");
 assert.match(skill, /人工.*凍結|human-reviewed/i, "Skill must require human review before whitepaper batch search");
 

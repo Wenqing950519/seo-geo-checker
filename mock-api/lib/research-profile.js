@@ -1,7 +1,7 @@
-const { callGeminiJson } = require("../providers/gemini");
+const { callStructuredJson } = require("../providers/structured-router");
 
-const RESEARCH_PROFILE_VERSION = "1.0.0";
-const GEMINI_CALLS_PER_SITE = 1;
+const RESEARCH_PROFILE_VERSION = "1.1.0";
+const DEEPSEEK_CALLS_PER_SITE = 1;
 
 function buildResearchProfilePrompt(measurement) {
   const homepage = measurement?.homepage || {};
@@ -62,17 +62,19 @@ function buildResearchProfilePrompt(measurement) {
 }
 
 async function buildResearchProfile(measurement, options = {}) {
-  const result = await callGeminiJson(buildResearchProfilePrompt(measurement), {
+  const result = await callStructuredJson(buildResearchProfilePrompt(measurement), {
     temperature: 0,
     attempts: options.attempts ?? 2,
     timeoutMs: options.timeoutMs ?? 35_000,
-    operation: options.operation || "whitepaper_research_profile"
+    operation: options.operation || "whitepaper_research_profile",
+    allowFallback: options.allowFallback !== false
   });
   assertNoAdviceFields(result.json);
   return {
     profile: normalizeResearchProfile(result.json),
     provider: result.provider,
     model: result.model,
+    modelRelease: result.modelRelease,
     usage: result.usage,
     latencyMs: result.latencyMs,
     attempts: result.attempts,
@@ -82,55 +84,7 @@ async function buildResearchProfile(measurement, options = {}) {
 }
 
 async function buildResearchProfileResolved(measurement, options = {}) {
-  const mode = String(options.mode || process.env.GEMINI_EXECUTION_MODE || "auto").toLowerCase();
-  if (mode === "proxy") return buildResearchProfileViaProxy(measurement, options);
-  if (mode === "direct") return buildResearchProfile(measurement, options);
-  try {
-    return await buildResearchProfile(measurement, options);
-  } catch (error) {
-    const locationBlocked = /location is not supported/i.test(String(error?.message || ""));
-    if (!locationBlocked || !resolveProxyConfig(options).available) throw error;
-    return buildResearchProfileViaProxy(measurement, { ...options, fallbackReason: "local_location_not_supported" });
-  }
-}
-
-async function buildResearchProfileViaProxy(measurement, options = {}) {
-  const config = resolveProxyConfig(options);
-  if (!config.available) throw new Error("Gemini research proxy is not configured");
-  const response = await fetch(`${config.baseUrl}/api/internal/research-profile`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Admin-Token": config.token },
-    body: JSON.stringify({ measurement: compactResearchMeasurement(measurement) })
-  });
-  const raw = await response.text();
-  if (!response.ok) throw new Error(`Gemini research proxy error: HTTP ${response.status} ${raw.slice(0, 300)}`);
-  const result = JSON.parse(raw);
-  assertNoAdviceFields(result.profile);
-  return { ...result, execution: options.fallbackReason ? "proxy_fallback" : "proxy", fallbackReason: options.fallbackReason || null };
-}
-
-function compactResearchMeasurement(measurement = {}) {
-  return {
-    siteUrl: measurement.siteUrl,
-    finalUrl: measurement.finalUrl,
-    siteType: measurement.siteType,
-    homepage: {
-      metadata: measurement.homepage?.metadata || {},
-      text: String(measurement.homepage?.text || "").slice(0, 5000),
-      fetchMethod: measurement.homepage?.fetchMethod || "unknown"
-    },
-    signals: measurement.signals || {},
-    technical: { schema: measurement.technical?.schema || {}, sitemap: measurement.technical?.sitemap || {} },
-    representativePages: (measurement.representativePages || []).slice(0, 3).map((page) => ({
-      url: page.url, metadata: page.metadata || {}, text: String(page.text || "").slice(0, 1500)
-    }))
-  };
-}
-
-function resolveProxyConfig(options = {}) {
-  const baseUrl = String(options.proxyUrl || process.env.GEOCHECK_RESEARCH_API_URL || process.env.SITE_ORIGIN || "").replace(/\/+$/, "");
-  const token = String(options.proxyToken || process.env.GEOCHECK_RESEARCH_API_TOKEN || process.env.ADMIN_TOKEN || "");
-  return { baseUrl, token, available: Boolean(baseUrl && token) };
+  return buildResearchProfile(measurement, options);
 }
 
 function normalizeResearchProfile(value) {
@@ -160,7 +114,7 @@ function assertNoAdviceFields(value, path = "profile") {
   if (!value || typeof value !== "object") return;
   const forbidden = /(recommend|suggest|improv|action|rewrite|impact|優化|建議|改善|改寫)/i;
   for (const [key, child] of Object.entries(value)) {
-    if (forbidden.test(key)) throw new Error(`Gemini research profile contains forbidden advice field: ${path}.${key}`);
+    if (forbidden.test(key)) throw new Error(`DeepSeek research profile contains forbidden advice field: ${path}.${key}`);
     assertNoAdviceFields(child, `${path}.${key}`);
   }
 }
@@ -178,13 +132,11 @@ function stringArray(value, limit) {
 }
 
 module.exports = {
-  GEMINI_CALLS_PER_SITE,
+  DEEPSEEK_CALLS_PER_SITE,
   RESEARCH_PROFILE_VERSION,
   assertNoAdviceFields,
   buildResearchProfile,
   buildResearchProfilePrompt,
   buildResearchProfileResolved,
-  buildResearchProfileViaProxy,
-  compactResearchMeasurement,
   normalizeResearchProfile
 };

@@ -13,7 +13,7 @@ const delayMs = boundedInt(args["delay-ms"], 500, 0, 10_000);
 const representativePages = boundedInt(args["representative-pages"], 3, 0, 5);
 const maxSites = boundedInt(args["max-sites"], 1000, 1, 1000);
 const maxPerplexityCalls = boundedInt(required(args, "max-perplexity-calls"), 0, 0, 100_000);
-const maxGeminiCalls = boundedInt(required(args, "max-gemini-calls"), 0, 0, 100_000);
+const maxDeepSeekCalls = boundedInt(required(args, "max-deepseek-calls"), 0, 0, 100_000);
 const retryFailed = Boolean(args["retry-failed"]);
 const researchRunId = safeRunId(args["run-id"] || `whitepaper-${path.basename(outputDir)}-${new Date().toISOString().slice(0, 10)}`);
 process.env.AI_USAGE_RUN_ID = researchRunId;
@@ -37,13 +37,13 @@ const {
   loadEntityMaster
 } = require(path.join(projectRoot, "mock-api", "lib", "entity-master.js"));
 const {
-  GEMINI_CALLS_PER_SITE,
+  DEEPSEEK_CALLS_PER_SITE,
   RESEARCH_PROFILE_VERSION,
   assertNoAdviceFields,
   buildResearchProfileResolved
 } = require(path.join(projectRoot, "mock-api", "lib", "research-profile.js"));
 const { getPerplexityConfig } = require(path.join(projectRoot, "mock-api", "providers", "perplexity.js"));
-const { getGeminiConfig } = require(path.join(projectRoot, "mock-api", "providers", "gemini.js"));
+const { getDeepSeekConfig } = require(path.join(projectRoot, "mock-api", "providers", "deepseek.js"));
 const { getUsageSummary, readEvents } = require(path.join(projectRoot, "mock-api", "lib", "usage-meter.js"));
 
 assertFile(inputPath, `Input file not found: ${inputPath}`);
@@ -55,7 +55,7 @@ const querySet = normalizeQuerySet(JSON.parse(fs.readFileSync(querySetPath, "utf
 const master = args.master ? loadEntityMaster(path.resolve(projectRoot, args.master)) : null;
 const perplexityCallsPerSite = 1 + querySet.queries.length;
 const perplexityConfig = getPerplexityConfig();
-const geminiConfig = getGeminiConfig();
+const deepseekConfig = getDeepSeekConfig();
 const urls = readUrls(inputPath).slice(0, maxSites);
 fs.mkdirSync(outputDir, { recursive: true });
 fs.mkdirSync(path.join(outputDir, "raw"), { recursive: true });
@@ -72,12 +72,12 @@ const pending = urls.filter((url) => {
     || (retryFailed && row.measurement_status !== "success");
 });
 const plannedPerplexityCalls = pending.length * perplexityCallsPerSite;
-const plannedGeminiCalls = pending.length * GEMINI_CALLS_PER_SITE;
+const plannedDeepSeekCalls = pending.length * DEEPSEEK_CALLS_PER_SITE;
 if (plannedPerplexityCalls > maxPerplexityCalls) throw new Error(`Hard stop: ${plannedPerplexityCalls} Perplexity calls planned, cap is ${maxPerplexityCalls}.`);
-if (plannedGeminiCalls > maxGeminiCalls) throw new Error(`Hard stop: ${plannedGeminiCalls} Gemini calls planned, cap is ${maxGeminiCalls}.`);
+if (plannedDeepSeekCalls > maxDeepSeekCalls) throw new Error(`Hard stop: ${plannedDeepSeekCalls} DeepSeek calls planned, cap is ${maxDeepSeekCalls}.`);
 
 console.log(`GeoCheck AI evidence batch: ${urls.length} sites, ${pending.length} pending.`);
-console.log(`Hard budget: Perplexity ${plannedPerplexityCalls}/${maxPerplexityCalls}; Gemini ${plannedGeminiCalls}/${maxGeminiCalls}.`);
+console.log(`Hard budget: Perplexity ${plannedPerplexityCalls}/${maxPerplexityCalls}; DeepSeek ${plannedDeepSeekCalls}/${maxDeepSeekCalls}.`);
 let completed = 0;
 await runPool(pending, concurrency, async (url) => {
   const result = await auditOne(url);
@@ -95,7 +95,7 @@ const usageSummary = getUsageSummary({ runId: researchRunId, limit: 200 });
 const usageEventsHash = sha256(usageEvents.map(JSON.stringify).join("\n"));
 const methodology = {
   generated_at: new Date().toISOString(),
-  mode: "perplexity_plus_gemini_evidence",
+  mode: "perplexity_plus_deepseek_evidence",
   input_file: path.relative(projectRoot, inputPath),
   site_count: urls.length,
   result_count: rows.length,
@@ -105,9 +105,10 @@ const methodology = {
   scoring_version: SCORING_VERSION,
   scoring_model: "Perplexity search evidence + deterministic GeoCheck lanes",
   perplexity_model: perplexityConfig.model,
-  gemini_model: geminiConfig.model,
+  deepseek_model: deepseekConfig.model,
+  deepseek_model_release: deepseekConfig.modelRelease,
   perplexity_calls_per_site: perplexityCallsPerSite,
-  gemini_calls_per_site: GEMINI_CALLS_PER_SITE,
+  deepseek_calls_per_site: DEEPSEEK_CALLS_PER_SITE,
   query_set_version: querySet?.query_set_version || null,
   query_set_file: args["query-set"],
   query_set_review_status: querySet.review_status,
@@ -117,11 +118,11 @@ const methodology = {
   entity_master_dataset_version: master?.datasetVersion || null,
   raw_evidence_dir: "raw",
   planned_perplexity_calls: plannedPerplexityCalls,
-  planned_gemini_calls: plannedGeminiCalls,
+  planned_deepseek_calls: plannedDeepSeekCalls,
   max_perplexity_calls: maxPerplexityCalls,
-  max_gemini_calls: maxGeminiCalls,
-  gemini_scope: "basic information, industry, structure and observed content classification only",
-  gemini_execution_mode: String(process.env.GEMINI_EXECUTION_MODE || "auto"),
+  max_deepseek_calls: maxDeepSeekCalls,
+  deepseek_scope: "basic information, industry, structure and observed content classification only",
+  deepseek_thinking: String(process.env.DEEPSEEK_THINKING || "disabled"),
   optimization_advice_generated: false,
   concurrency,
   delay_ms: delayMs,
@@ -182,10 +183,10 @@ async function auditOne(url) {
     let profileResult = null;
     let profileError = null;
     try {
-      profileResult = await buildResearchProfileResolved(measurement);
+      profileResult = await buildResearchProfileResolved(measurement, { allowFallback: false });
       assertNoAdviceFields(profileResult.profile);
     } catch (error) {
-      profileError = { stage: String(error.stage || "gemini_profile"), message: String(error.message || error).slice(0, 300) };
+      profileError = { stage: String(error.stage || "deepseek_profile"), message: String(error.message || error).slice(0, 300) };
     }
     return researchRow(measurement, profileResult, profileError, measuredAt, { entity, entityProfile, rawRef });
   } catch (error) {
@@ -265,11 +266,12 @@ function researchRow(measurement, profileResult, profileError, measuredAt, { ent
     source_urls: sources,
     evidence_confidence: observation.confidence,
     concise_comment_zh: conciseGeoComment(measurement),
-    gemini_profile: profileResult?.profile || null,
-    gemini_profile_status: profileResult ? "success" : "unavailable",
-    gemini_profile_model: profileResult?.model || geminiConfig.model,
-    gemini_profile_execution: profileResult?.execution || null,
-    gemini_profile_error: profileError,
+    deepseek_profile: profileResult?.profile || null,
+    deepseek_profile_status: profileResult ? "success" : "unavailable",
+    deepseek_profile_model: profileResult?.model || deepseekConfig.model,
+    deepseek_profile_model_release: profileResult?.modelRelease || deepseekConfig.modelRelease,
+    deepseek_profile_execution: profileResult?.execution || null,
+    deepseek_profile_error: profileError,
     optimization_advice_generated: false,
     geo_lanes: geo.lanes,
     geo_caps: geo.caps,
@@ -311,7 +313,7 @@ function compactEvidence(measurement, sources) {
 function buildSummary(rows) {
   const measured = rows.filter((row) => row.measurement_status === "success" && Number.isFinite(row.geo_score));
   const excludedByMaster = rows.filter((row) => row.measurement_status === "excluded_by_master");
-  const profiles = rows.filter((row) => row.gemini_profile_status === "success");
+  const profiles = rows.filter((row) => row.deepseek_profile_status === "success");
   return {
     generated_at: new Date().toISOString(),
     total_sites: rows.length,
@@ -320,22 +322,22 @@ function buildSummary(rows) {
     failed_or_unknown_sites: rows.length - measured.length - excludedByMaster.length,
     refusal_or_empty_queries: rows.reduce((sum, row) => sum + (Number(row.excluded_query_count) || 0), 0),
     platform_root_input_sites: rows.filter((row) => row.input_unit_warning === "platform_root_input").length,
-    gemini_profile_successes: profiles.length,
+    deepseek_profile_successes: profiles.length,
     geo_score: describe(measured.map((row) => row.geo_score)),
     site_readiness_score: describe(measured.map((row) => row.site_readiness_score)),
     perplexity_score: describe(measured.map((row) => row.perplexity_score)),
     mean_mention_rate: mean(measured.map((row) => row.mention_rate)),
     mean_official_citation_rate: mean(measured.map((row) => row.official_citation_rate)),
     entity_grounded_rate: measured.length ? round(measured.filter((row) => row.entity_grounded).length / measured.length * 100, 1) : null,
-    by_industry: groupCount(profiles.map((row) => row.gemini_profile?.industry || "unknown"))
+    by_industry: groupCount(profiles.map((row) => row.deepseek_profile?.industry || "unknown"))
   };
 }
 
 function toCsv(rows) {
-  const columns = ["url", "domain", "site_type", "store_id", "brand_id", "term_origin", "input_unit_warning", "geo_score", "site_readiness_score", "perplexity_score", "mention_rate", "official_citation_rate", "measured_query_count", "excluded_query_count", "entity_grounded", "authority_known", "evidence_confidence", "concise_comment_zh", "gemini_entity_name", "gemini_industry", "gemini_business_scope", "gemini_profile_status", "measurement_status", "measured_at", "response_model", "query_set_version", "raw_ref", "pipeline_version", "profile_version", "parser_version", "scoring_version", "evidence_hash"];
+  const columns = ["url", "domain", "site_type", "store_id", "brand_id", "term_origin", "input_unit_warning", "geo_score", "site_readiness_score", "perplexity_score", "mention_rate", "official_citation_rate", "measured_query_count", "excluded_query_count", "entity_grounded", "authority_known", "evidence_confidence", "concise_comment_zh", "deepseek_entity_name", "deepseek_industry", "deepseek_business_scope", "deepseek_profile_status", "measurement_status", "measured_at", "response_model", "query_set_version", "raw_ref", "pipeline_version", "profile_version", "parser_version", "scoring_version", "evidence_hash"];
   const lines = [columns.join(",")];
   for (const row of rows) {
-    const flat = { ...row, gemini_entity_name: row.gemini_profile?.entity_name, gemini_industry: row.gemini_profile?.industry, gemini_business_scope: row.gemini_profile?.business_scope };
+    const flat = { ...row, deepseek_entity_name: row.deepseek_profile?.entity_name, deepseek_industry: row.deepseek_profile?.industry, deepseek_business_scope: row.deepseek_profile?.business_scope };
     lines.push(columns.map((column) => csvValue(flat[column])).join(","));
   }
   return `\uFEFF${lines.join("\r\n")}\r\n`;
@@ -394,7 +396,7 @@ function readJsonl(file) {
 }
 
 function stableResearchRow(row) {
-  return { url: row.url, geo_score: row.geo_score, perplexity_score: row.perplexity_score, mention_rate: row.mention_rate, official_citation_rate: row.official_citation_rate, gemini_profile: row.gemini_profile, measurement_status: row.measurement_status, pipeline_version: row.pipeline_version, profile_version: row.profile_version, parser_version: row.parser_version, scoring_version: row.scoring_version, evidence_hash: row.evidence_hash };
+  return { url: row.url, geo_score: row.geo_score, perplexity_score: row.perplexity_score, mention_rate: row.mention_rate, official_citation_rate: row.official_citation_rate, deepseek_profile: row.deepseek_profile, measurement_status: row.measurement_status, pipeline_version: row.pipeline_version, profile_version: row.profile_version, parser_version: row.parser_version, scoring_version: row.scoring_version, evidence_hash: row.evidence_hash };
 }
 
 function parseArgs(tokens) {

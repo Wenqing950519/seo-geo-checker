@@ -86,7 +86,7 @@ tags:
   - `PROJECT_CHARTER.md §0` 與 `§3.1` 是 Agent 對訪談內容的轉述，**需本人確認沒有走樣**
   - H-001～H-007 全部未驗證，引用時須維持「假設」標記
   - Hunterest vs 壽司郎 為 n=2 線索，**不是結論**
-  - D-002（unknown vs 0）與 D-003（Gemini 不影響分數）仍為 Proposed
+  - D-002（unknown vs 0）與 D-003（DeepSeek 不影響分數）仍為 Proposed
   - 內層權重 `40/30/0.3` 之外還有多少未記錄的隱性決定——**這就是 P1 要查的**
 
 - **下次遇到類似問題我會怎麼做**：〔待填〕

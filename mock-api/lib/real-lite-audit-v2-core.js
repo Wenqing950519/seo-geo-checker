@@ -23,20 +23,20 @@ async function runRealLiteAudit(siteUrl) {
     content_citeability: { strengths_zh: [], gaps_zh: [] },
     priority_actions: [],
     limitations_zh: queryPlanning?.status === "ready"
-      ? ["Gemini 先依網站證據產生候選搜尋題，後端通過品牌排除、意圖與重複度檢查後，才交由 Perplexity 實測。"]
-      : ["Gemini 未能產出有效搜尋題，因此未呼叫 Perplexity，也未顯示 GEO 分數。"]
+      ? ["DeepSeek 先依網站證據產生候選搜尋題，後端通過品牌排除、意圖與重複度檢查後，才交由 Perplexity 實測。"]
+      : ["DeepSeek 未能產出有效搜尋題，因此未呼叫 Perplexity，也未顯示 GEO 分數。"]
   });
   const audit = applyV2Audit(auditSeed, { homepage, technical, representativePages, searchContext, measurement });
   audit.ai_validation = queryPlanning?.status === "ready" ? {
     status: "planned",
     provider: queryPlanning.provider,
     model: queryPlanning.model,
-    message_zh: `Gemini 已產生 ${queryPlanning.candidates.length} 題候選問題，通過規則後選出 ${queryPlanning.selectedQueries.length} 題交由 Perplexity 實測；Gemini 不參與計分。`
+    message_zh: `DeepSeek 已產生 ${queryPlanning.candidates.length} 題候選問題，通過規則後選出 ${queryPlanning.selectedQueries.length} 題交由 Perplexity 實測；DeepSeek 不參與計分。`
   } : {
     status: "unavailable",
-    provider: queryPlanning?.provider || "gemini",
+    provider: queryPlanning?.provider || "deepseek",
     model: queryPlanning?.model,
-    message_zh: "Gemini 產題未通過驗證；為避免用錯產業問題造成偏差，本次停止 Perplexity 實測並將 GEO 分數標為未知。"
+    message_zh: "DeepSeek 產題未通過驗證；為避免用錯產業問題造成偏差，本次停止 Perplexity 實測並將 GEO 分數標為未知。"
   };
 
   return {
@@ -46,7 +46,7 @@ async function runRealLiteAudit(siteUrl) {
     algorithmVersion: ALGORITHM_VERSION,
     provider: searchContext?.enabled ? "perplexity" : "local-rules",
     model: searchContext?.authority?.model || searchContext?.discovery?.find((item) => item?.model)?.model || "rules-v3",
-    interpretationProvider: queryPlanning?.provider || "gemini",
+    interpretationProvider: queryPlanning?.provider || "deepseek",
     interpretationModel: queryPlanning?.model,
     latencyMs: Number(queryPlanning?.latencyMs) || 0,
     attempts: Number(queryPlanning?.attempts) || 0,
@@ -115,7 +115,7 @@ function applyV2Audit(audit, { homepage, technical, representativePages = [], se
     site_readiness_caps: scored.caps,
     site_readiness_breakdown: scored.breakdown,
     rules: scored.checks,
-    scoring_basis_zh: "GEO V3：Gemini 先產生並驗證產業搜尋題；Perplexity 實際搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。Gemini 不參與計分。"
+    scoring_basis_zh: "GEO V3：DeepSeek 先產生並驗證產業搜尋題；Perplexity 實際搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。DeepSeek 不參與計分。"
   };
   audit.priority_actions = rankDeterministicActions(buildDeterministicActions(signals));
   audit.technical_seo.issues = buildDeterministicIssues(signals);

@@ -1,0 +1,125 @@
+{
+  "evaluation_id": "blind_eval_1785585650097_d7e5e401",
+  "candidate": "candidate-c",
+  "status": "success",
+  "prompt_sha256": "a8f2a706a7c399b1079ba6c0a961ef5bc13a059ccb6212d254903c9b1928a197",
+  "metrics": {
+    "latency_ms": 4209,
+    "input_tokens": 2908,
+    "output_tokens": 1018,
+    "total_tokens": 3926,
+    "cached_input_tokens": null,
+    "reasoning_tokens": null,
+    "max_output_tokens": 2048,
+    "api_calls": 1
+  },
+  "quality": {
+    "json_schema_required_fields_present": "10/10",
+    "candidate_query_count": 5,
+    "candidate_query_count_valid": true,
+    "distinct_intents": [
+      "comparison",
+      "recommendation",
+      "decision"
+    ],
+    "intent_diversity_valid": true,
+    "forbidden_or_empty_query_count": 1,
+    "query_ratings_valid": true,
+    "confidence_valid": true,
+    "automated_contract_pass": false
+  },
+  "result": {
+    "entity_name": "GEOCheck",
+    "industry": "數位行銷顧問",
+    "primary_offering": "AI 搜尋能見度健檢與優化服務",
+    "topic_terms": [
+      "GEO",
+      "生成式搜尋優化",
+      "AI 搜尋能見度",
+      "網站結構化資料",
+      "AI 品牌定位",
+      "搜尋引擎行銷",
+      "內容可引用性",
+      "技術 SEO"
+    ],
+    "geography": [
+      "台灣"
+    ],
+    "target_audience": [
+      "中小企業主",
+      "行銷經理",
+      "B2B 品牌行銷人員",
+      "網站經營者"
+    ],
+    "evidence_basis": [
+      "網站提供 AI 搜尋能見度健檢工具",
+      "提供針對 Perplexity 與 Gemini 的能見度分析",
+      "提供 GEO 優化與技術 SEO 顧問服務",
+      "強調結構化資料與內容可引用性對 AI 搜尋的重要性"
+    ],
+    "confidence": "high",
+    "positioning": {
+      "perceived_category_zh": "AI 搜尋優化顧問與技術診斷工具",
+      "perceived_audience_zh": [
+        "擔心品牌在 AI 搜尋中被邊緣化的企業",
+        "希望提升品牌在生成式 AI 答案中被引用率的行銷團隊"
+      ],
+      "perceived_use_cases_zh": [
+        "診斷網站為何無法被 AI 搜尋引擎正確識別",
+        "優化網站結構以提升 AI 引用機率",
+        "解決品牌在 AI 搜尋中定位模糊或被競品取代的問題"
+      ],
+      "misunderstandings_or_risks_zh": [
+        "誤以為傳統 SEO 就能解決 AI 搜尋能見度問題",
+        "將 GEO 視為保證排名提升的短期手段",
+        "忽略內容可引用性而僅關注技術層面"
+      ],
+      "missing_signals_zh": [
+        "缺乏大型企業客戶案例佐證",
+        "未明確說明與傳統 SEO 代理商的差異化服務邊界"
+      ]
+    },
+    "query_candidates": [
+      {
+        "id": "candidate_1",
+        "text": "為什麼我的網站搜尋排名很好，但在 ChatGPT 裡卻找不到？",
+        "intent": "comparison",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "直接反映了網站核心痛點：傳統 SEO 與 AI 搜尋能見度的落差。"
+      },
+      {
+        "id": "candidate_2",
+        "text": "如何讓 AI 搜尋引擎在回答問題時主動推薦我的品牌？",
+        "intent": "recommendation",
+        "consumer_relevance": 5,
+        "evidence_fit": 4,
+        "rationale_zh": "針對品牌在生成式 AI 中的曝光需求，符合 GEO 優化目標。"
+      },
+      {
+        "id": "candidate_3",
+        "text": "網站需要做哪些技術調整才能讓 AI 更容易讀懂我的服務內容？",
+        "intent": "decision",
+        "consumer_relevance": 4,
+        "evidence_fit": 5,
+        "rationale_zh": "探討技術 SEO 與結構化資料對 AI 理解力的影響，與服務內容高度相關。"
+      },
+      {
+        "id": "candidate_4",
+        "text": "SEO 和 GEO 有什麼不同？我應該優先投資哪一個？",
+        "intent": "comparison",
+        "consumer_relevance": 4,
+        "evidence_fit": 4,
+        "rationale_zh": "消費者在資源分配決策時常見的疑問，網站內容有明確定義兩者差異。"
+      },
+      {
+        "id": "candidate_5",
+        "text": "AI 搜尋優化服務通常包含哪些項目？如何評估成效？",
+        "intent": "decision",
+        "consumer_relevance": 4,
+        "evidence_fit": 4,
+        "rationale_zh": "針對購買顧問服務前的決策意圖，涵蓋了網站提供的健檢與優化範疇。"
+      }
+    ]
+  }
+}

@@ -43,7 +43,7 @@ function normalizeEvent(event = {}) {
 }
 
 function mergeEvent(totals, event) { totals.requests += 1; totals.successfulRequests += event.status === "success" ? 1 : 0; totals.inputTokens += event.inputTokens; totals.outputTokens += event.outputTokens; totals.totalTokens += event.totalTokens; totals.estimatedCostUsd += event.estimatedCostUsd || 0; totals.costConfigured = totals.costConfigured || event.costConfigured; return totals; }
-function getRates(provider) { const prefix = provider === "gemini" ? "GEMINI" : provider === "perplexity" ? "PERPLEXITY" : "AI"; return { input: envRate(`${prefix}_INPUT_USD_PER_1M_TOKENS`), output: envRate(`${prefix}_OUTPUT_USD_PER_1M_TOKENS`), request: envRate(`${prefix}_USD_PER_REQUEST`) }; }
+function getRates(provider) { const prefix = provider === "deepseek" ? "DEEPSEEK" : provider === "openai" ? "OPENAI" : provider === "gemini" ? "GEMINI" : provider === "perplexity" ? "PERPLEXITY" : "AI"; return { input: envRate(`${prefix}_INPUT_USD_PER_1M_TOKENS`), output: envRate(`${prefix}_OUTPUT_USD_PER_1M_TOKENS`), request: envRate(`${prefix}_USD_PER_REQUEST`) }; }
 function envRate(name) { const value = process.env[name]; if (value === undefined || value === "") return null; const rate = Number(value); return Number.isFinite(rate) && rate >= 0 ? rate : null; }
 function emptyTotals() { return { requests: 0, successfulRequests: 0, inputTokens: 0, outputTokens: 0, totalTokens: 0, estimatedCostUsd: 0, costConfigured: false }; }
 function finalizeTotals(totals) { return { ...totals, estimatedCostUsd: round(totals.estimatedCostUsd, 8), successRate: totals.requests ? round(totals.successfulRequests / totals.requests * 100, 1) : 0 }; }

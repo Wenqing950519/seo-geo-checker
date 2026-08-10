@@ -14,11 +14,9 @@ const { runRealLiteAudit } = require("./lib/real-lite-audit");
 const { createAuditCache } = require("./lib/audit-cache");
 const { createFunnelRecorder } = require("./lib/funnel-events");
 const { assertSafePublicUrl } = require("./lib/url-safety");
-const { testGeminiProvider } = require("./providers/gemini");
+const { testDeepSeekProvider } = require("./providers/deepseek");
 const { searchPerplexity, testPerplexityProvider } = require("./providers/perplexity");
 const { getUsageSummary } = require("./lib/usage-meter");
-const { buildResearchProfile } = require("./lib/research-profile");
-const { buildGeoQueryPlan } = require("./lib/query-planner");
 
 loadEnvFiles();
 
@@ -181,22 +179,23 @@ function llmsTxt() {
   return `# GEOCheck — AI 搜尋能見度健檢
 
 > GEOCheck(${SITE_ORIGIN})是免費的 SEO/GEO 健檢工具,輸入網址即可在約 60 秒內,
-> 透過 Brave Search、Perplexity Sonar 與 Gemini 檢查網站在 Google 與 AI 搜尋引擎
+> 透過 Brave Search、Perplexity Sonar 與 DeepSeek 分析網站在 Google 與 AI 搜尋引擎
 > (ChatGPT、Perplexity、Gemini)中的能見度,並提供三個優先修正方向。免費、無需註冊。
 
 ## 品牌定義
 
-- GEOCheck 是台灣的 AI 搜尋能見度健檢工具與 SEO/GEO 顧問服務,服務對象為想在
-  AI 搜尋時代被看見的中小企業、B2B 品牌與行銷團隊。
+- GEOCheck 是台灣的 AI 搜尋能見度健檢工具、作品與研究計畫,用來觀察品牌在
+  指定 AI 搜尋問題下的提及、官網引用與站內準備訊號。
 - 健檢包含五大模組:AI 眼中定位、技術 SEO 健檢(12 項檢查)、內容可引用性、
-  GEO 能見度實測(Gemini 產 5–8 題候選並選 2 題交由 Perplexity)、優先修正方向(P1–P3)。
+  GEO 能見度實測(DeepSeek 產 5–8 題候選並選 2 題交由 Perplexity)、優先修正方向(P1–P3)。
 
 ## 主要頁面
 
 - [首頁與免費健檢](${SITE_ORIGIN}/): 輸入網址開始 60 秒免費健檢
 - [健檢五大模組](${SITE_ORIGIN}/#modules): 健檢涵蓋的檢查範圍
 - [報告範例](${SITE_ORIGIN}/#report): 健檢報告的實際內容與格式
-- [服務方案](${SITE_ORIGIN}/#services): GEO 優化、SEO 顧問、技術 SEO 健檢三種服務
+- [研究與評分方法](${SITE_ORIGIN}/#method): 報告資料流程與解讀限制
+- [專案內容](${SITE_ORIGIN}/#project): 公開網站健檢、GEO 方法研究與交流回饋
 - [學習資源](${SITE_ORIGIN}/#resources): GEO 是什麼、AI 搜尋能見度、llms.txt、schema 說明
 
 ## 常見問題
@@ -415,10 +414,10 @@ ${reportTopNavHtml()}
 <p class="meta">Provider: ${escapeHtml(displayProvider(report.provider))} / Model: ${escapeHtml(displayModel(report.model))} / Attempts: ${escapeHtml(report.attempts || 1)} / Latency: ${escapeHtml(report.latencyMs)}ms</p>
 <section class="card"><h2>Perplexity GEO 實測分數</h2><div class="score">${escapeHtml(scoreValue)}</div><p><span class="badge">${escapeHtml(score.label || "GEO 證據不足")}</span></p><p>${scoreContext}</p><p>${escapeHtml(score.summary_zh || "")}</p><hr/><h3>站內準備度</h3><div class="readiness">${escapeHtml(readinessValue)} / 100</div><p class="meta">此數字只衡量網站可抓取與內容準備，不代表已被 AI 搜尋看見。</p></section>
 <section class="card"><h2>GEO 三層計分</h2><table><thead><tr><th>層級</th><th>分數</th><th>權重</th></tr></thead><tbody>${breakdownRows}</tbody></table></section>
-<section class="card"><h2>搜尋問題設計</h2><p><strong>Gemini 判定產業：</strong>${escapeHtml(queryPlanning.industry || "未知")}；<strong>主要商品／服務：</strong>${escapeHtml(queryPlanning.primary_offering || "未知")}；<strong>信心：</strong>${escapeHtml(queryPlanning.confidence || "low")}。</p><p class="meta">先由 Gemini 依網站內容產生 ${escapeHtml(queryPlanning.candidate_count ?? 0)} 題候選，再由後端排除品牌詞、技術製作商、低相關與重複問題，選出代表題交給 Perplexity。Gemini 不參與分數。</p><table><thead><tr><th>候選非品牌問題</th><th>意圖</th><th>狀態</th></tr></thead><tbody>${candidateRows}</tbody></table></section>
+<section class="card"><h2>搜尋問題設計</h2><p><strong>DeepSeek 判定產業：</strong>${escapeHtml(queryPlanning.industry || "未知")}；<strong>主要商品／服務：</strong>${escapeHtml(queryPlanning.primary_offering || "未知")}；<strong>信心：</strong>${escapeHtml(queryPlanning.confidence || "low")}。</p><p class="meta">先由 DeepSeek 依網站內容產生 ${escapeHtml(queryPlanning.candidate_count ?? 0)} 題候選，再由後端排除品牌詞、技術製作商、低相關與重複問題，選出代表題交給 Perplexity。DeepSeek 不參與分數。</p><table><thead><tr><th>候選非品牌問題</th><th>意圖</th><th>狀態</th></tr></thead><tbody>${candidateRows}</tbody></table></section>
 <section class="card"><h2>Perplexity 搜尋觀測</h2><div class="metrics"><div class="metric"><strong>有效查詢</strong><br/>${escapeHtml(observation.measuredQueryCount ?? 0)} / ${escapeHtml(observation.queryCount ?? 0)}</div><div class="metric"><strong>品牌提及率</strong><br/>${escapeHtml(observation.mentionRate ?? "—")}%</div><div class="metric"><strong>官網引用率</strong><br/>${escapeHtml(observation.citationRate ?? "—")}%</div></div><p><strong>實體對齊：</strong>${authority.entityGrounded ? "已找到同一品牌的外部證據" : "未找到足夠的同一實體證據"}</p><p><strong>相符外部來源：</strong>${escapeHtml(matchedDomains.join(", ") || "無")}</p><table><thead><tr><th>非品牌搜尋題</th><th>提及品牌</th><th>引用官網</th><th>來源網域</th></tr></thead><tbody>${observationRows}</tbody></table></section>
 <section class="card"><h2>資料抓取狀態</h2><p>抓取品質：${escapeHtml(crawlQuality.status || "unknown")}；方式：${escapeHtml(report.homepage?.fetchMethod || "unknown")}；覆蓋率：${escapeHtml(crawlQuality.coverage ?? 0)}%；成功代表頁：${escapeHtml(representativeSuccess)}。</p></section>
-<section class="card"><h2>Gemini 產業與問題規劃（不參與計分）</h2><p class="meta">${escapeHtml(aiValidation.message_zh || "AI 解讀暫時無法使用")}</p><p><strong>可能分類：</strong>${escapeHtml(audit.positioning?.perceived_category_zh || "未知")}</p><p><strong>信心等級：</strong>${escapeHtml(audit.positioning?.confidence || "low")}</p></section>
+<section class="card"><h2>DeepSeek 產業與問題規劃（不參與計分）</h2><p class="meta">${escapeHtml(aiValidation.message_zh || "AI 解讀暫時無法使用")}</p><p><strong>可能分類：</strong>${escapeHtml(audit.positioning?.perceived_category_zh || "未知")}</p><p><strong>信心等級：</strong>${escapeHtml(audit.positioning?.confidence || "low")}</p></section>
 <section class="card"><h2>技術與抓取問題</h2><table><thead><tr><th>嚴重度</th><th>檢查</th><th>問題</th><th>影響</th></tr></thead><tbody>${issueRows}</tbody></table></section>
 <section class="card"><h2>本次選入實測的 GEO 問題</h2><ul>${questions.map((q) => `<li>${escapeHtml(q.question_zh)} <span class="meta">(${escapeHtml(q.intent)}, value ${escapeHtml(q.business_value)})</span></li>`).join("")}</ul></section>
 <section class="card"><h2>內容可引用性缺口</h2><ul>${gaps.map((gap) => `<li>${escapeHtml(gap)}</li>`).join("")}</ul></section>
@@ -537,7 +536,7 @@ ${score.summary_zh || ""}
 
 ## 搜尋問題設計
 
-- Gemini 判定產業：${queryPlanning.industry || "未知"}
+- DeepSeek 判定產業：${queryPlanning.industry || "未知"}
 - 主要商品／服務：${queryPlanning.primary_offering || "未知"}
 - 候選題數：${queryPlanning.candidate_count ?? 0}
 - 選入實測：${(queryPlanning.selected_queries || []).map((item) => item.text).join("；") || "無"}
@@ -652,32 +651,6 @@ async function handleRequest(req, res) {
     return sendJson(res, 200, getUsageSummary({ limit: url.searchParams.get("limit") }));
   }
 
-  if (req.method === "POST" && url.pathname === "/api/internal/query-plan") {
-    if (!isValidAdminToken(req)) return sendJson(res, 401, { error: "Unauthorized" });
-    try {
-      const body = await readJson(req);
-      if (!body.input || typeof body.input !== "object") return sendJson(res, 400, { error: "input is required" });
-      const result = await buildGeoQueryPlan(body.input, { operation: "geo_query_planning_proxy" });
-      return sendJson(res, 200, result);
-    } catch (error) {
-      console.error("query-plan proxy failed", error);
-      return sendJson(res, error.statusCode || 500, toClientError(error));
-    }
-  }
-
-  if (req.method === "POST" && url.pathname === "/api/internal/research-profile") {
-    if (!isValidAdminToken(req)) return sendJson(res, 401, { error: "Unauthorized" });
-    try {
-      const body = await readJson(req);
-      if (!body.measurement || typeof body.measurement !== "object") return sendJson(res, 400, { error: "measurement is required" });
-      const result = await buildResearchProfile(body.measurement, { operation: "whitepaper_research_profile_proxy" });
-      return sendJson(res, 200, result);
-    } catch (error) {
-      console.error("research-profile proxy failed", error);
-      return sendJson(res, error.statusCode || 500, toClientError(error));
-    }
-  }
-
   if (req.method === "POST" && url.pathname === "/api/audit") {
     try {
       const body = await readJson(req);
@@ -696,11 +669,11 @@ async function handleRequest(req, res) {
 
   if (req.method === "POST" && url.pathname === "/api/test-provider") {
     try {
-      const result = await testGeminiProvider();
+      const result = await testDeepSeekProvider();
       return sendJson(res, 200, {
         ok: true,
         provider: result.json.provider || result.provider,
-        message: result.json.message || "gemini api works",
+        message: result.json.message || "deepseek api works",
         model: result.model,
         latencyMs: result.latencyMs
       });
@@ -875,7 +848,7 @@ async function handleRequest(req, res) {
       return sendJson(res, 200, {
         ok: true,
         leadId: lead.id,
-        nextAction: "我們會在一個工作天內確認需求與試點範圍"
+        nextAction: "已收到資料；如需進一步了解，我們會透過 Email 聯絡"
       });
     } catch (error) {
       return sendJson(res, 400, { error: error.message || "Invalid request" });

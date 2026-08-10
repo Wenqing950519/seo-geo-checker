@@ -1,6 +1,6 @@
-const { callGeminiJson } = require("../providers/gemini");
+const { callStructuredJson } = require("../providers/structured-router");
 
-const QUERY_PLANNER_VERSION = "1.2.0";
+const QUERY_PLANNER_VERSION = "1.3.0";
 const CANDIDATE_QUERY_MIN = 5;
 const CANDIDATE_QUERY_MAX = 8;
 const SELECTED_QUERY_COUNT = 2;
@@ -64,73 +64,29 @@ function buildGeoQueryPlanPrompt({ siteUrl, homepage = {}, representativePages =
 }
 
 async function buildGeoQueryPlan(input, options = {}) {
-  const result = await callGeminiJson(buildGeoQueryPlanPrompt(input), {
+  const result = await callStructuredJson(buildGeoQueryPlanPrompt(input), {
     temperature: 0,
     attempts: options.attempts ?? 2,
     timeoutMs: options.timeoutMs ?? 35_000,
-    operation: options.operation || "geo_query_planning"
+    operation: options.operation || "geo_query_planning",
+    allowFallback: options.allowFallback !== false
   });
   const normalized = normalizeGeoQueryPlan(result.json, input);
   return {
     ...normalized,
     provider: result.provider,
     model: result.model,
+    modelRelease: result.modelRelease,
     usage: result.usage,
     latencyMs: result.latencyMs,
     attempts: result.attempts,
     version: QUERY_PLANNER_VERSION,
-    source: "gemini_dynamic"
+    source: "deepseek_dynamic"
   };
 }
 
 async function buildGeoQueryPlanResolved(input, options = {}) {
-  const mode = String(options.mode || process.env.GEMINI_EXECUTION_MODE || "auto").toLowerCase();
-  if (mode === "proxy") return buildGeoQueryPlanViaProxy(input, options);
-  if (mode === "direct") return buildGeoQueryPlan(input, options);
-  try {
-    return await buildGeoQueryPlan(input, options);
-  } catch (error) {
-    const locationBlocked = /location is not supported/i.test(String(error?.message || ""));
-    if (!locationBlocked || !resolveProxyConfig(options).available) throw error;
-    return buildGeoQueryPlanViaProxy(input, { ...options, fallbackReason: "local_location_not_supported" });
-  }
-}
-
-async function buildGeoQueryPlanViaProxy(input, options = {}) {
-  const config = resolveProxyConfig(options);
-  if (!config.available) throw new Error("Gemini query-planning proxy is not configured");
-  const response = await fetch(`${config.baseUrl}/api/internal/query-plan`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Admin-Token": config.token },
-    body: JSON.stringify({ input: compactQueryPlanningInput(input) })
-  });
-  const raw = await response.text();
-  if (!response.ok) throw new Error(`Gemini query-planning proxy error: HTTP ${response.status} ${raw.slice(0, 300)}`);
-  const result = JSON.parse(raw);
-  return { ...result, source: "gemini_dynamic", execution: options.fallbackReason ? "proxy_fallback" : "proxy", fallbackReason: options.fallbackReason || null };
-}
-
-function compactQueryPlanningInput(input = {}) {
-  return {
-    siteUrl: input.siteUrl,
-    siteType: input.siteType,
-    homepage: {
-      metadata: input.homepage?.metadata || {},
-      text: String(input.homepage?.text || "").slice(0, 6000),
-      fetchMethod: input.homepage?.fetchMethod || "unknown"
-    },
-    representativePages: (input.representativePages || []).slice(0, 3).map((page) => ({
-      url: page.url,
-      metadata: page.metadata || {},
-      text: String(page.text || "").slice(0, 1800)
-    }))
-  };
-}
-
-function resolveProxyConfig(options = {}) {
-  const baseUrl = String(options.proxyUrl || process.env.GEOCHECK_RESEARCH_API_URL || process.env.SITE_ORIGIN || "").replace(/\/+$/, "");
-  const token = String(options.proxyToken || process.env.GEOCHECK_RESEARCH_API_TOKEN || process.env.ADMIN_TOKEN || "");
-  return { baseUrl, token, available: Boolean(baseUrl && token) };
+  return buildGeoQueryPlan(input, options);
 }
 
 function normalizeGeoQueryPlan(value, input = {}) {
@@ -157,7 +113,7 @@ function normalizeGeoQueryPlan(value, input = {}) {
 
   return {
     status: ready ? "ready" : "invalid",
-    reason: ready ? null : "Gemini 未產出足夠且通過品牌、產業與搜尋意圖檢查的候選問題",
+    reason: ready ? null : "DeepSeek 未產出足夠且通過品牌、產業與搜尋意圖檢查的候選問題",
     entity_name: entityName,
     industry,
     primary_offering: primaryOffering,
@@ -170,7 +126,7 @@ function normalizeGeoQueryPlan(value, input = {}) {
     candidates,
     selectedQueries,
     queryPlan: ready ? {
-      query_set_version: `dynamic-gemini-${QUERY_PLANNER_VERSION}`,
+      query_set_version: `dynamic-deepseek-${QUERY_PLANNER_VERSION}`,
       queries: selectedQueries.map(({ id, text, intent }) => ({ id, text, intent }))
     } : null
   };
@@ -362,8 +318,6 @@ module.exports = {
   buildGeoQueryPlan,
   buildGeoQueryPlanPrompt,
   buildGeoQueryPlanResolved,
-  buildGeoQueryPlanViaProxy,
-  compactQueryPlanningInput,
   normalizeGeoQueryPlan,
   normalizeReviewedQueryPlan,
   selectRepresentativeQueries

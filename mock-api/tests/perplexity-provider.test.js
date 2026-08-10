@@ -70,7 +70,7 @@ const { getPerplexityGeoEvidence, searchPerplexity } = require("../providers/per
   });
   assert.equal(calls, 0, "Perplexity must not run without a validated query plan");
   assert.equal(rejected.enabled, false);
-  assert.match(rejected.reason, /validated Gemini or human-reviewed query plan/);
+  assert.match(rejected.reason, /validated DeepSeek or human-reviewed query plan/);
 
   global.fetch = originalFetch;
   fs.rmSync(ledger, { force: true });

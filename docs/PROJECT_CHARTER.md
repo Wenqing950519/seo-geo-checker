@@ -3,7 +3,7 @@ type: project-charter
 project: GeoCheck
 status: draft-partial
 owner: Wenqing950519
-last_updated: 2026-07-26
+last_updated: 2026-08-01
 tags:
   - geocheck
   - charter
@@ -286,7 +286,7 @@ A5  餐飲是提升最大、最容易被打動的市場
 
 **技術與營運**
 
-- Gemini 本機出口受地區限制，須經 Render 代理（見 `docs/CURRENT_STATE.md`）。
+- DeepSeek V4 Flash 已取代 Gemini Flash-Lite；正式部署仍須驗證 API 金鑰、JSON 輸出與批次品質基準（見 `docs/CURRENT_STATE.md`）。
 
 **證據基礎**
 

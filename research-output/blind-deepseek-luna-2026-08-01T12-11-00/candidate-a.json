@@ -1,0 +1,144 @@
+{
+  "evaluation_id": "blind_eval_1785586313352_9d6d2e49",
+  "candidate": "candidate-a",
+  "status": "success",
+  "prompt_sha256": "a8f2a706a7c399b1079ba6c0a961ef5bc13a059ccb6212d254903c9b1928a197",
+  "metrics": {
+    "latency_ms": 8976,
+    "input_tokens": 3422,
+    "output_tokens": 1240,
+    "total_tokens": 4662,
+    "cached_input_tokens": 3419,
+    "reasoning_tokens": 0,
+    "max_output_tokens": 2048,
+    "api_calls": 1
+  },
+  "quality": {
+    "json_schema_required_fields_present": "10/10",
+    "candidate_query_count": 7,
+    "candidate_query_count_valid": true,
+    "distinct_intents": [
+      "recommendation",
+      "comparison",
+      "decision"
+    ],
+    "intent_diversity_valid": true,
+    "forbidden_or_empty_query_count": 5,
+    "query_ratings_valid": true,
+    "confidence_valid": true,
+    "automated_contract_pass": false
+  },
+  "result": {
+    "entity_name": "GEOCheck",
+    "industry": "SEO、GEO 與 AI 搜尋能見度顧問服務",
+    "primary_offering": "AI 搜尋能見度健檢、GEO 優化、SEO 顧問與技術 SEO 健檢",
+    "topic_terms": [
+      "AI 搜尋能見度",
+      "GEO 優化",
+      "技術 SEO 健檢",
+      "內容可引用性",
+      "品牌定位",
+      "搜尋引擎優化"
+    ],
+    "geography": [
+      "台灣"
+    ],
+    "target_audience": [
+      "已具備基礎 SEO 的品牌團隊",
+      "中小企業",
+      "B2B 企業",
+      "網站改版或流量下滑的團隊",
+      "想提升 AI 搜尋曝光的網站經營者"
+    ],
+    "evidence_basis": [
+      "首頁標題與 H1 明確主打 AI 搜尋能見度健檢",
+      "頁面描述提供 SEO/GEO 健檢與 AI 引擎分析功能",
+      "服務方案包含 GEO 優化服務、SEO 顧問服務與技術 SEO 健檢",
+      "內容涵蓋 AI 定位、技術 SEO、內容可引用性與 GEO 能見度測試",
+      "頁面明示服務適用於中小企業、B2B 團隊及想進入 AI 搜尋的品牌"
+    ],
+    "confidence": "high",
+    "positioning": {
+      "perceived_category_zh": "SEO、GEO 與生成式 AI 搜尋能見度顧問及健檢工具",
+      "perceived_audience_zh": [
+        "希望提升品牌在 ChatGPT、Perplexity 等 AI 搜尋中曝光的企業",
+        "需要 SEO 與內容策略規劃的中小企業及 B2B 團隊",
+        "面臨網站改版、爬取或流量異常問題的網站經營者"
+      ],
+      "perceived_use_cases_zh": [
+        "檢查品牌是否被 AI 正確理解與引用",
+        "找出技術 SEO、結構化資料與網站可爬取性問題",
+        "改善內容被生成式 AI 摘錄與推薦的機會",
+        "規劃 GEO、SEO 與內容策略"
+      ],
+      "misunderstandings_or_risks_zh": [
+        "可能被誤認為單純的免費 SEO 掃描工具",
+        "GEO 服務容易被理解為保證 AI 排名或流量成長，但頁面明示不保證排名或流量",
+        "頁面未清楚揭露顧問團隊規模、案例細節與完整服務地區"
+      ],
+      "missing_signals_zh": [
+        "缺少具名顧問、公司完整資訊與實體地址",
+        "缺少可驗證的客戶案例、成果數據與第三方評價",
+        "缺少明確的長期顧問方案價格與交付範圍比較"
+      ]
+    },
+    "query_candidates": [
+      {
+        "id": "candidate_1",
+        "text": "台灣有哪些 GEO 顧問服務適合想提升 ChatGPT 與 Perplexity 曝光的中小企業？",
+        "intent": "recommendation",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "直接對應頁面主打的 GEO 優化、AI 搜尋能見度與中小企業目標客群。"
+      },
+      {
+        "id": "candidate_2",
+        "text": "SEO 顧問和 GEO 顧問有什麼差別？企業應該先做哪一種？",
+        "intent": "comparison",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "頁面明確解釋 SEO 與 GEO 的差異及互補關係，符合企業評估服務方向的比較意圖。"
+      },
+      {
+        "id": "candidate_3",
+        "text": "網站在 Google 有收錄但 ChatGPT 不提到品牌，該做哪些檢查？",
+        "intent": "decision",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "對應頁面指出 Google 收錄不代表出現在 AI 答案，並涵蓋定位、技術與內容可引用性檢查。"
+      },
+      {
+        "id": "candidate_4",
+        "text": "台灣企業要改善 AI 搜尋能見度，應該找 GEO 健檢工具還是直接找顧問？",
+        "intent": "comparison",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "頁面同時提供免費健檢工具與顧問服務，適合尚未決定服務模式的企業比較。"
+      },
+      {
+        "id": "candidate_5",
+        "text": "網站改版後流量下滑，技術 SEO 健檢通常會檢查哪些項目？",
+        "intent": "recommendation",
+        "consumer_relevance": 4,
+        "evidence_fit": 5,
+        "rationale_zh": "頁面明示技術 SEO 健檢適合網站改版或流量異常下滑團隊，並列出 robots、schema、sitemap 等檢查項目。"
+      },
+      {
+        "id": "candidate_6",
+        "text": "B2B 公司想讓 AI 更容易理解服務內容，需要做哪些內容與結構化資料調整？",
+        "intent": "decision",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "符合頁面鎖定的 B2B 顧客，並涵蓋內容可引用性、FAQ、E-E-A-T 與 schema 等核心服務內容。"
+      },
+      {
+        "id": "candidate_7",
+        "text": "中小企業要做 GEO 優化，如何判斷顧問服務是否值得投資？",
+        "intent": "decision",
+        "consumer_relevance": 5,
+        "evidence_fit": 4,
+        "rationale_zh": "符合中小企業的商業決策需求，頁面提供健檢、修正方向與顧問跟進，但未提供完整成效數據。"
+      }
+    ]
+  }
+}

@@ -1,4 +1,6 @@
 const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
 const { createAuditCache } = require("../lib/audit-cache");
 const { createFunnelRecorder } = require("../lib/funnel-events");
 const { assertSafePublicUrl, isPrivateIp } = require("../lib/url-safety");
@@ -24,10 +26,24 @@ async function main() {
 
   const lines = [];
   const recorder = createFunnelRecorder({ write: (line) => lines.push(line) });
-  recorder.record("lead_submitted", { email: "secret@example.com", interest: "pilot_fix_pack" });
+  recorder.record("lead_submitted", { email: "secret@example.com", interest: "audit_feedback" });
   assert.equal(lines.length, 1);
   assert.equal(lines[0].includes("secret@example.com"), false);
-  assert.equal(lines[0].includes("pilot_fix_pack"), true);
+  assert.equal(lines[0].includes("audit_feedback"), true);
+
+  const homePage = fs.readFileSync(path.resolve(__dirname, "../public/home.html"), "utf8");
+  assert.equal(/顧問|付費|報價|NT\$|pilot_fix_pack|服務方案/.test(homePage), false);
+  assert.equal(homePage.includes("健檢結果與使用回饋"), true);
+  assert.equal(homePage.includes("GEO 量測與研究方法"), true);
+  assert.equal(homePage.includes('id="method"'), true);
+  assert.equal(homePage.includes("未知不等於零分"), true);
+  assert.equal(homePage.includes("目前的 50 / 30 / 20"), false);
+  assert.equal(homePage.includes("暫定模型 · 未經校準"), false);
+
+  const serverSource = fs.readFileSync(path.resolve(__dirname, "../server.js"), "utf8");
+  assert.equal(/SEO\/GEO 顧問|#services|服務方案/.test(serverSource), false);
+  assert.equal(serverSource.includes("[專案內容](${SITE_ORIGIN}/#project)"), true);
+  assert.equal(serverSource.includes("[研究與評分方法](${SITE_ORIGIN}/#method): 報告資料流程與解讀限制"), true);
 
   console.log("business-loop tests passed");
 }

@@ -48,7 +48,7 @@ async function measureGeoSite(siteUrl, options = {}) {
     : {
         enabled: false,
         provider: "perplexity",
-        reason: "No validated Gemini or human-reviewed query plan is available",
+        reason: "No validated DeepSeek or human-reviewed query plan is available",
         authority: { enabled: false },
         discovery: [],
         plan: null
@@ -94,7 +94,7 @@ async function resolveQueryPlanning(input, options = {}) {
   } catch (error) {
     return {
       status: "unavailable",
-      reason: String(error?.message || "Gemini query planning failed").slice(0, 300),
+      reason: String(error?.message || "DeepSeek query planning failed").slice(0, 300),
       entity_name: "unknown",
       industry: "unknown",
       primary_offering: "unknown",
@@ -107,8 +107,8 @@ async function resolveQueryPlanning(input, options = {}) {
       candidates: [],
       selectedQueries: [],
       queryPlan: null,
-      provider: "gemini",
-      model: process.env.GEMINI_MODEL || "gemini-3.1-flash-lite",
+      provider: "deepseek",
+      model: process.env.DEEPSEEK_MODEL || "deepseek-v4-flash",
       version: QUERY_PLANNER_VERSION,
       source: "unavailable"
     };

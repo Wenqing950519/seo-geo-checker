@@ -1,0 +1,12 @@
+{
+  "evaluation_id": "blind_eval_1785585650097_d7e5e401",
+  "candidate": "candidate-a",
+  "status": "failed",
+  "prompt_sha256": "a8f2a706a7c399b1079ba6c0a961ef5bc13a059ccb6212d254903c9b1928a197",
+  "error": "Direct API call failed; provider details intentionally withheld.",
+  "metrics": {
+    "api_calls": 1
+  },
+  "quality": null,
+  "result": null
+}

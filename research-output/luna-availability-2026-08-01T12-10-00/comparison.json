@@ -1,0 +1,36 @@
+{
+  "evaluation_id": "blind_eval_1785586293754_6d1112de",
+  "target_url": "https://geocheck.lisheng.cv/",
+  "prompt_sha256": "a8f2a706a7c399b1079ba6c0a961ef5bc13a059ccb6212d254903c9b1928a197",
+  "candidates": [
+    {
+      "candidate": "candidate-a",
+      "status": "success",
+      "metrics": {
+        "latency_ms": 9239,
+        "input_tokens": 3422,
+        "output_tokens": 1274,
+        "total_tokens": 4696,
+        "cached_input_tokens": 3419,
+        "reasoning_tokens": 0,
+        "max_output_tokens": 2048,
+        "api_calls": 1
+      },
+      "quality": {
+        "json_schema_required_fields_present": "10/10",
+        "candidate_query_count": 7,
+        "candidate_query_count_valid": true,
+        "distinct_intents": [
+          "recommendation",
+          "comparison",
+          "decision"
+        ],
+        "intent_diversity_valid": true,
+        "forbidden_or_empty_query_count": 6,
+        "query_ratings_valid": true,
+        "confidence_valid": true,
+        "automated_contract_pass": false
+      }
+    }
+  ]
+}

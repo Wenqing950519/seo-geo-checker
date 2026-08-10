@@ -58,7 +58,7 @@ async function getPerplexityGeoEvidence({ siteUrl, title, description, siteType,
     return { enabled: false, provider: "perplexity", reason: "PERPLEXITY_API_KEY is not configured", authority: { enabled: false }, discovery: [] };
   }
   if (!queryPlan?.queries?.length) {
-    return { enabled: false, provider: "perplexity", reason: "A validated Gemini or human-reviewed query plan is required", authority: { enabled: false }, discovery: [], plan: null };
+    return { enabled: false, provider: "perplexity", reason: "A validated DeepSeek or human-reviewed query plan is required", authority: { enabled: false }, discovery: [], plan: null };
   }
   const host = new URL(siteUrl).hostname.replace(/^www\./, "");
   const plan = {

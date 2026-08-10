@@ -7,9 +7,9 @@ const args = parseArgs(process.argv.slice(2));
 const projectRoot = path.resolve(args["project-root"] || process.cwd());
 const siteUrl = required(args, "site");
 const outputPath = path.resolve(projectRoot, required(args, "output"));
-const maxGeminiCalls = Number(required(args, "max-gemini-calls"));
-if (!Number.isInteger(maxGeminiCalls) || maxGeminiCalls < 1) {
-  throw new Error("Hard stop: drafting a query set requires exactly one Gemini call; set --max-gemini-calls to at least 1.");
+const maxDeepSeekCalls = Number(required(args, "max-deepseek-calls"));
+if (!Number.isInteger(maxDeepSeekCalls) || maxDeepSeekCalls < 1) {
+  throw new Error("Hard stop: drafting a query set requires exactly one DeepSeek call; set --max-deepseek-calls to at least 1.");
 }
 
 const require = createRequire(import.meta.url);
@@ -23,7 +23,7 @@ const { QUERY_PLANNER_VERSION, buildGeoQueryPlanResolved } = require(path.join(p
 
 await assertSafePublicUrl(siteUrl);
 console.log(`Drafting candidate query set from representative site: ${siteUrl}`);
-console.log(`Hard budget: Gemini 1/${maxGeminiCalls}; Perplexity 0.`);
+console.log(`Hard budget: DeepSeek 1/${maxDeepSeekCalls}; Perplexity 0.`);
 
 const homepage = await fetchHomepage(siteUrl);
 const finalUrl = homepage.finalUrl || homepage.url || siteUrl;
@@ -33,7 +33,7 @@ const representativePages = await fetchRepresentativePages(technical.representat
 const plan = await buildGeoQueryPlanResolved({ siteUrl: finalUrl, homepage, representativePages, siteType }, {
   operation: "whitepaper_query_set_draft"
 });
-if (plan.status !== "ready") throw new Error(plan.reason || "Gemini query draft did not pass validation");
+if (plan.status !== "ready") throw new Error(plan.reason || "DeepSeek query draft did not pass validation");
 
 const draft = {
   status: "draft_requires_human_review",
@@ -63,7 +63,7 @@ const draft = {
     reviewed_at: "",
     queries: []
   },
-  api_budget: { gemini_calls: 1, perplexity_calls: 0 }
+  api_budget: { deepseek_calls: 1, perplexity_calls: 0 }
 };
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
