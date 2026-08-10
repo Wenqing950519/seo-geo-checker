@@ -1,0 +1,240 @@
+{
+  "generated_at": "2026-07-16T08:04:25.090Z",
+  "algorithm_version": "2.2.1-rules",
+  "total_sites": 3,
+  "successful_sites": 3,
+  "failed_sites": 0,
+  "crawl_success_rate": 100,
+  "score": {
+    "mean": 69,
+    "median": 66,
+    "min": 47,
+    "max": 94
+  },
+  "readiness_bands": {
+    "Needs Work": {
+      "count": 2,
+      "mean": 56.5,
+      "median": 56.5,
+      "min": 47,
+      "max": 66
+    },
+    "Strong": {
+      "count": 1,
+      "mean": 94,
+      "median": 94,
+      "min": 94,
+      "max": 94
+    }
+  },
+  "by_industry": {
+    "restaurant": {
+      "count": 1,
+      "mean": 66,
+      "median": 66,
+      "min": 66,
+      "max": 66
+    },
+    "local_service": {
+      "count": 1,
+      "mean": 94,
+      "median": 94,
+      "min": 94,
+      "max": 94
+    },
+    "organization": {
+      "count": 1,
+      "mean": 47,
+      "median": 47,
+      "min": 47,
+      "max": 47
+    }
+  },
+  "by_evidence_confidence": {
+    "high": {
+      "count": 3,
+      "mean": 69,
+      "median": 66,
+      "min": 47,
+      "max": 94
+    }
+  },
+  "rule_pass_rates": {
+    "homepage_fetch": {
+      "known": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "indexable": {
+      "known": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "googlebot_access": {
+      "known": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "oai_search_access": {
+      "known": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "claude_search_access": {
+      "known": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "sitemap_valid": {
+      "known": 3,
+      "pass": 1,
+      "partial": 0,
+      "fail": 2,
+      "pass_rate": 33.3
+    },
+    "homepage_in_sitemap": {
+      "known": 3,
+      "pass": 1,
+      "partial": 0,
+      "fail": 2,
+      "pass_rate": 33.3
+    },
+    "sitemap_declared": {
+      "known": 3,
+      "pass": 1,
+      "partial": 0,
+      "fail": 2,
+      "pass_rate": 33.3
+    },
+    "canonical": {
+      "known": 3,
+      "pass": 0,
+      "partial": 0,
+      "fail": 3,
+      "pass_rate": 0
+    },
+    "title": {
+      "known": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "description": {
+      "known": 3,
+      "pass": 1,
+      "partial": 0,
+      "fail": 2,
+      "pass_rate": 33.3
+    },
+    "h1": {
+      "known": 3,
+      "pass": 2,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 66.7
+    },
+    "open_graph": {
+      "known": 3,
+      "pass": 1,
+      "partial": 0,
+      "fail": 2,
+      "pass_rate": 33.3
+    },
+    "valid_schema": {
+      "known": 3,
+      "pass": 1,
+      "partial": 0,
+      "fail": 2,
+      "pass_rate": 33.3
+    },
+    "relevant_schema": {
+      "known": 3,
+      "pass": 1,
+      "partial": 0,
+      "fail": 2,
+      "pass_rate": 33.3
+    },
+    "readable_text": {
+      "known": 3,
+      "pass": 2,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 66.7
+    },
+    "initial_html_text": {
+      "known": 3,
+      "pass": 2,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 66.7
+    },
+    "render_consistency": {
+      "known": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "image_alt": {
+      "known": 3,
+      "pass": 1,
+      "partial": 1,
+      "fail": 1,
+      "pass_rate": 33.3
+    },
+    "heading_structure": {
+      "known": 3,
+      "pass": 2,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 66.7
+    },
+    "faq": {
+      "known": 3,
+      "pass": 2,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 66.7
+    },
+    "cases": {
+      "known": 3,
+      "pass": 2,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 66.7
+    },
+    "comparisons": {
+      "known": 3,
+      "pass": 1,
+      "partial": 0,
+      "fail": 2,
+      "pass_rate": 33.3
+    },
+    "proof": {
+      "known": 3,
+      "pass": 2,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 66.7
+    },
+    "service_clarity": {
+      "known": 3,
+      "pass": 2,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 66.7
+    }
+  },
+  "dataset_sha256": "ff5f490fc56119654f7c29fd0af20eba15393addb03042e5e728bc37e404757e"
+}

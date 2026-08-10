@@ -1,0 +1,310 @@
+{
+  "url": "https://hunterest.co/",
+  "measured_at": "2026-07-23T03:19:13.480Z",
+  "pipeline_version": "3.0.0-query1.2.0-perplexity-p2.1.0-s3.1.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "pipeline-smoke-v1",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "pipeline-smoke-v1",
+      "queries": [
+        "台北有哪些值得一試的迴轉壽司？請簡要說明理由？",
+        "台北常見的迴轉壽司品牌之間有什麼差異？"
+      ],
+      "queryIds": [
+        "smoke-rec-01",
+        "smoke-cmp-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "comparison"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website hunterest.co (title: Hunterest — 發現與販售 AI 打造的 Web 工具). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: UNKNOWN\n\nThe website **hunterest.co** could not be verified from the provided public sources as the exact entity behind the site. The available results only clearly identify unrelated entities such as **Hunter.io** and **Hunterrr**, which do not match the title **“Hunterest — 發現與販售 AI 打造的 Web 工具”**[1][2][3].",
+      "citations": [
+        "https://hunter.io/about",
+        "https://help.hunter.io/en/articles/6001212-hunter-all-in-one-outreach-plans",
+        "https://www.imdb.com/title/tt4333674/"
+      ],
+      "searchResults": [
+        {
+          "date": null,
+          "last_updated": "2026-07-22",
+          "place_metadata": null,
+          "snippet": "Hunter is an all-in-one email outreach platform.\nWe help marketers, salespeople, recruiters, and anyone else who wants to connect with more people using emails.",
+          "source": "web",
+          "title": "About us - Hunter.io",
+          "url": "https://hunter.io/about"
+        },
+        {
+          "date": "2026-05-27",
+          "last_updated": "2026-07-08",
+          "place_metadata": null,
+          "snippet": "Hunter offers two types of plans:\n- **All-in-One Outreach plans** (covered in this article) combine lead discovery, email verification, and email sequences in a single subscription with a unified credit system.\n- **Data Platform plans** are designed for users who only need email finding and verifica...",
+          "source": "web",
+          "title": "Hunter All-in-One Outreach plans",
+          "url": "https://help.hunter.io/en/articles/6001212-hunter-all-in-one-outreach-plans"
+        },
+        {
+          "date": "2015-03-20",
+          "last_updated": "2026-05-19",
+          "place_metadata": null,
+          "snippet": "- March 20, 2015 (India)\n...\n- 2h 21m(141 min)",
+          "source": "web",
+          "title": "Hunterrr (2015) ⭐ 7.0 | Comedy, Romance",
+          "url": "https://www.imdb.com/title/tt4333674/"
+        }
+      ],
+      "usage": {
+        "inputTokens": 128,
+        "outputTokens": 81,
+        "totalTokens": 209
+      },
+      "latencyMs": 1797,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台北有哪些值得一試的迴轉壽司？請簡要說明理由？",
+        "answer": "台北值得一試的迴轉壽司，我會先看 **藏壽司、壽司郎、HAMA壽司、合點壽司、金澤美味壽司** 這幾家；它們各有不同賣點，從親民價格、現點現做、到日系品牌特色都很明確。[1][4][6][7][9]\n\n- **藏壽司（くら寿司）**：特色是**吃壽司可集點扭蛋**，互動性高，且可用螢幕點餐，適合想吃得有趣又方便的人。[4][8]\n- **壽司郎（スシロー）**：以**品項多、常有期間限定口味**聞名，屬於很穩定的日系連鎖選擇。[6][8]\n- **HAMA壽司**：主打**日本直送食材**，被介紹為在台灣也能吃到較接近日式風味的迴轉壽司。[9]\n- **合點壽司**：強調",
+        "citations": [
+          "https://vocus.cc/article/6958cb6bfd89780001f85396",
+          "https://www.gomaji.com/blog/%E5%8F%B0%E5%8C%97%E5%A3%BD%E5%8F%B8/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E5%8F%B0%E5%8C%97%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8",
+          "https://www.kkday.com/zh-tw/blog/149271/asia-taiwan-taipei-sushi-recommend",
+          "https://www.niusnews.com/=P3p02ffj4",
+          "https://www.popdaily.com.tw/food/884878",
+          "https://listentolu.com/tag/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8%E6%8E%A8%E8%96%A6/",
+          "https://www.myfeel-tw.com/media/conveyor-belt-sushi",
+          "https://www.tsunagujapan.com/zh-hant/japan-popular-conveyor-belt-sushi-kaiten-zushi-in-taiwan/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-01-03",
+            "last_updated": "2026-01-06",
+            "place_metadata": null,
+            "snippet": "- 1.\n金澤美味壽司\n- 2.\n中與志迴轉壽司\n- 3.\nくら寿司 藏壽司 台北館前店(線上訂位)\n- 4.\n光り鮨迴轉壽司 復北店\n- 5.\nスシロー壽司郎 台北民權建國店(線上訂位)\n- 6.\n一条通 士林門市\n- 7.\n合點壽司 內湖店\n- 8.\n海壽司 遠百A13店\n- 9.\nMagic Touch 点爭鮮 南港店(線上訂位)\n- 10.\nHAMA壽司 南京復興店\n- 11.\n爭鮮迴轉壽司 林森店\n- 12.\n大車輪火車壽司",
+            "source": "web",
+            "title": "台北12 間迴轉壽司推薦！",
+            "url": "https://vocus.cc/article/6958cb6bfd89780001f85396"
+          },
+          {
+            "date": null,
+            "last_updated": "2025-08-07",
+            "place_metadata": null,
+            "snippet": "今天編輯就要來介紹8間 台北壽司 推薦店家，通通都是老饕精選清單，不管是米其林無菜單、迴轉壽司、散壽司丼通通有，身為海鮮控的朋友，快把這篇 台北壽司 懶人包收藏起來，找機會一間間去踩點攻略起來，包你絕不踩雷。\n...\n位在忠孝敦化站附近的吉兆割烹壽司 KITCHO，是老饕激推到不行的米其林星級料理，不僅開業不到一年時就摘星，還連續四年得到米其林指南一星推薦的肯定\n...\n位於捷運忠孝復興站5號出口附近的丸壽司，是微風廣場的超人氣排隊名店，店家不接受預約只能現場候位，所以每到用餐時間總是大排長龍的，不想排隊的朋友，建議可以避開用餐尖峰時間。以迴轉壽司的方式呈現，餐點都是師傅現點現做的，新鮮美味看...",
+            "source": "web",
+            "title": "台北壽司推薦TOP8｜米其林無菜單、迴轉壽司、散壽司丼",
+            "url": "https://www.gomaji.com/blog/%E5%8F%B0%E5%8C%97%E5%A3%BD%E5%8F%B8/"
+          },
+          {
+            "date": "2022-02-18",
+            "last_updated": "2025-02-19",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.くら寿司 藏壽司 松江南京店",
+            "source": "web",
+            "title": "台北『台北迴轉壽司餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E5%8F%B0%E5%8C%97%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8"
+          },
+          {
+            "date": "2023-04-02",
+            "last_updated": "2025-02-17",
+            "place_metadata": null,
+            "snippet": "**藏壽司松江南京店**\n藏壽司最有名的吃壽司轉扭蛋，集滿5盤轉一次扭蛋，就有機會扭到卡通聯名款的鑰匙圈，不定期更換動漫角色，包含鬼滅之刃、名偵探柯南、蠟筆小新等，讓你邊吃邊玩，一點都不無聊。\n在迴轉台上看到想吃的壽司，可以直接拿取，也能使用螢幕觸控點餐，非常方便；除了現點現做的壽司，也別錯過經典的天婦羅系列、抹茶霜淇淋和豆乳甜甜圈。\n...\n▶︎營業時間：平日11:00～21:00、假日10:30～21:00\n▶︎地址：台北市中山區南京東路二段101號B1F（Google Map）",
+            "source": "web",
+            "title": "台北壽司推薦》台北好吃的壽司在這裡！台北壽司無菜單/平價推薦",
+            "url": "https://www.kkday.com/zh-tw/blog/149271/asia-taiwan-taipei-sushi-recommend"
+          },
+          {
+            "date": "2023-08-08",
+            "last_updated": "2026-06-26",
+            "place_metadata": null,
+            "snippet": "**松山區迴轉壽司推薦-光り鮨光迴轉壽司復北店─松山區平價日本料理推薦，每盤30元起，銅板價生魚片壽司加一！\n...\n以新鮮、多元食材為經營主軸，推出的選擇多樣化的平價生魚片、壽司的光り鮨光迴轉壽司復北店，講究職人手藝的居酒屋料理是推薦必點。",
+            "source": "web",
+            "title": "銅板價生魚片壽司加一！松山區迴轉壽司推薦，海鮮控先筆記",
+            "url": "https://www.niusnews.com/=P3p02ffj4"
+          },
+          {
+            "date": "2025-05-31",
+            "last_updated": "2026-07-04",
+            "place_metadata": null,
+            "snippet": "1、台湾スシロー 台灣壽司郎\n2、 藏壽司\n3、 一条通\n4、美登利壽司\n台北壽司推薦：新鮮現切\n5、合點壽司\n6、上引水產\n7、丸隆生魚行\n台北壽司推薦：無菜單料理\n8、吉兆割烹壽司Kitcho\n9、鮨天本\n...\n壽司郎是來自日本的第一迴轉壽司品牌，現在在全台都有分店，除了超多種壽司品項，更時常會推出期間限定口味，大切鮭魚、金盤鮪魚、鮮蝦三貫、\n...\n同樣是從日本來的合點，是比壽司郎更高一階，店特色就是主打現殺生魚秀的迴轉壽司，更有師傅站在吧台前現捏壽司，比起一般連鎖店更多了些溫度，美味程度當然也有一定水準，整體來說和丸壽司、海壽司這類店蠻相似的，其中大推海寶卷，喜歡鮭魚的也別錯過鮭魚三...",
+            "source": "web",
+            "title": "5、合點壽司",
+            "url": "https://www.popdaily.com.tw/food/884878"
+          },
+          {
+            "date": "2020-10-13",
+            "last_updated": "2026-06-27",
+            "place_metadata": null,
+            "snippet": "台北美食｜SOGO忠孝【金澤美味(まいもん)壽司】。豪華迴轉壽司台灣一號店\n作為每季都會到【壽司郎】報到兩次的迴轉壽司愛好者 食材新鮮、價格實惠、還可以APP訂位 在",
+            "source": "web",
+            "title": "迴轉壽司推薦 彙整 - Listen to LU 旅食光",
+            "url": "https://listentolu.com/tag/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8%E6%8E%A8%E8%96%A6/"
+          },
+          {
+            "date": "2024-10-24",
+            "last_updated": "2026-07-02",
+            "place_metadata": null,
+            "snippet": "藏壽司作為第一個插旗台灣的迴轉壽司品牌，在剛進台灣的時候也掀起一陣旋風，距離第一間門市進到台灣已經十年，藏壽司不僅在台灣立足腳跟，也成為許多台灣人第一直覺想到的日本壽司店！\n而且藏壽司前陣子才跟知名IP吉伊卡哇聯名，讓藏壽司的排隊人潮在幾天內突然增加許多，甚至有些店直接停止抽取號碼牌，非常受歡迎，而藏壽司的鮭魚生魚片也相當新鮮好吃，炙燒系列也是藏壽司的招牌，吃完之後再來上甜甜的冰淇淋當作收尾，就是非常讚的一餐！\n...\n爭鮮絕對是許多人心中對於迴轉壽司的第一個想像，主打新鮮、平價、可外帶特色的爭鮮在台灣擁有最多分店，也是你最容易可以吃到的迴轉壽司店，而且價格不貴，基本上都是30塊，近年因應價格...",
+            "source": "web",
+            "title": "【2025 最新】5 間連鎖迴轉壽司推薦介紹，藏壽司和壽司郎必吃？爭 ...",
+            "url": "https://www.myfeel-tw.com/media/conveyor-belt-sushi"
+          },
+          {
+            "date": "2020-04-24",
+            "last_updated": "2026-06-07",
+            "place_metadata": null,
+            "snippet": "在台灣店鋪也能品嚐到日本人氣前五大壽司，包括選用鮪魚赤身中筋位少、魚味濃厚的「天身」部位製成的鮪魚握壽司；帶點炙燒碳香的上等星鰻握壽司；份量十足、鮭魚控不容錯過的大切生鮭魚握壽司；炙燒羅勒鮭魚握壽司及麻辣赤蝦握壽司等。\n...\n主打由現場專業壽司師傅親手捏製高品質壽司，「合點壽司（がってん寿司）」在日本也坐擁將近百家分店，主要分布於北海道、東北、關東、中部、關西地區，另外在台灣、中國、韓國皆有海外分店。2018年進駐台灣，目前在台北及桃園擁有3間分店。\n...\n在日本經營逾20年，坐擁超過500家門市的「HAMA壽司（はま寿司）」，同樣是深受日本人喜愛的在地迴轉壽司店。2016年首度來台後，目...",
+            "source": "web",
+            "title": "不用飛日本！推薦6間台灣也有的日本人氣迴轉壽司店 - tsunagu Japan",
+            "url": "https://www.tsunagujapan.com/zh-hant/japan-popular-conveyor-belt-sushi-kaiten-zushi-in-taiwan/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 52,
+          "outputTokens": 261,
+          "totalTokens": 313
+        },
+        "latencyMs": 3432,
+        "attempts": 1,
+        "queryId": "smoke-rec-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台北常見的迴轉壽司品牌之間有什麼差異？",
+        "answer": "台北常見的迴轉壽司品牌，主要差在**價格帶、點餐／出餐方式、口味取向、附加活動與定位**。以台北常見的藏壽司、壽司郎、HAMA壽司、合點壽司來看，藏壽司和壽司郎都屬於平價日系連鎖，但藏壽司較強調扭蛋與收盤機制，壽司郎則常被評為品質穩定、餐點水準高；HAMA壽司同樣是平價路線，但有些食記提到炙燒類和季節限定較有特色；合點壽司則更偏向現場師傅捏製、現殺生魚秀，整體感受較有臨場感。[1][2][4][7][8]\n\n- **藏壽司**：特色是座位旁的**收盤機制**和**扭蛋活動**，計價方式以盤數為主，食記也提到其熟食鮮蝦類與炙燒",
+        "citations": [
+          "https://kenalice.tw/blog/post/sushi-pk",
+          "https://www.nownews.com/news/6655343",
+          "https://wanteatfood.com/12405",
+          "https://dongwa.tw/sushiro-zhongli/",
+          "https://iambp6.pixnet.net/blog/posts/9567553888",
+          "https://letsplay.tw/nakayoshi/",
+          "https://marukoblog.tw/2018-08-18.html",
+          "https://www.popdaily.com.tw/food/884878",
+          "https://cashbox168.pixnet.net/blog/posts/3048648630",
+          "https://matcha-jp.com/tw/6569"
+        ],
+        "searchResults": [
+          {
+            "date": null,
+            "last_updated": "2025-07-12",
+            "place_metadata": null,
+            "snippet": "熟食鮮蝦握壽司中，「壽司郎」、「藏壽司」的『酪梨鮮蝦』澎湃又可口；「藏壽司」的『炙烤起司鮮蝦』較「HAMA壽司」的『起司鮮蝦』略勝一籌。\n...\n「藏壽司」座位旁獨家設計的收盤機制非常方便，不像「壽司郎」、「HAMA壽司」或其他迴轉壽司店要保留盤子山的空間。「藏壽司」的迴轉餐點主要以$40（盤子數）為倍數計價，不用判斷顏色取餐計算價格相對簡單，惟定價不如另外兩家以盤子顏色區隔，多了$60的彈性。\n...\n**地址：台北市中正區館前路8號2樓**\n**電話：02-2361-2638**\n**營業時間：11:00（週六日10:30）~21:45**\n**「藏壽司」台北館前店（全球旗艦店）**\n**...",
+            "source": "web",
+            "title": "【食】日本三大平價迴轉壽司推薦：藏壽司、壽司郎、HAMA壽司大PK",
+            "url": "https://kenalice.tw/blog/post/sushi-pk"
+          },
+          {
+            "date": "2025-03-06",
+            "last_updated": "2026-02-28",
+            "place_metadata": null,
+            "snippet": "迴轉壽司店拼規模也拼食材跟特色活動，本土爭鮮憑藉漂亮價格、CP值高吸引客人；藏壽司透過IP聯名扭蛋創造話題；壽司郎則以品質穩定、高水準餐點表現抓緊老饕的心，2025迴轉壽司戰打得火熱，今年誰又能最受到民眾青睞，一切都還有待觀察。",
+            "source": "web",
+            "title": "台灣最強迴轉壽司不是爭鮮了！公認霸主是這間：坐鎮40年、水準高",
+            "url": "https://www.nownews.com/news/6655343"
+          },
+          {
+            "date": "2025-11-21",
+            "last_updated": "2026-06-27",
+            "place_metadata": null,
+            "snippet": "說到金澤壽司，和我們一般熟悉的藏壽司、壽司郎這些平價的迴轉壽司完全不同，《**金澤壽司 SOGO忠孝館**》主打的是精緻且豪華的壽司路線，價格比較高，但品質真的是高出了一個等級。每道料理都能感受到師傅的專業及用心，從食材到製作，都講究道地的日本職人精神。\n...\n金澤美味壽司被定位為 高級迴轉壽司，和一般的平價迴轉壽司走不同的路線，主打的是精緻豪華的壽司體驗，使用的食材也都相當高檔，像是金澤直送的鮪魚，以及來自北海道的干貝，品質也都是頂級的。",
+            "source": "web",
+            "title": "金澤壽司台北忠孝館店- 日本最高級的迴轉壽司，來台北開店",
+            "url": "https://wanteatfood.com/12405"
+          },
+          {
+            "date": "2025-10-14",
+            "last_updated": "2026-02-24",
+            "place_metadata": null,
+            "snippet": "1984年的壽司郎，是一間來自大阪的日本第一迴轉壽司品牌，全球超過一千間門市、一年的來客數約1億4千萬，台灣壽司郎在2018年6月15日台北開設台灣",
+            "source": "web",
+            "title": "【中壢迴轉壽司推薦】日本第一廻轉壽司品牌插旗中壢大時鐘麗陽商場 スシロー壽司郎中壢中正店 – 東蛙池塘 DongWa",
+            "url": "https://dongwa.tw/sushiro-zhongli/"
+          },
+          {
+            "date": "2023-03-30",
+            "last_updated": "2026-07-05",
+            "place_metadata": null,
+            "snippet": "藏壽司的日本公司創立於1984年，日文發音是Kura Sushi，2014年進軍台灣後，迄今已經有50間分店，算是台灣最有規模的日本迴轉壽司。\n...\nHAMA壽司其實是第二間登台的日本連鎖迴轉壽司，不過因為在台灣只有七間分店，因此感覺知名度比較小。\nHAMA壽司也是一盤40元(起)，現點現做，轉盤是用來送壽司的，不要傻傻地等轉盤上的壽司（第一次去不知道，還以為是因為平日午後生意比較普通才沒做），握壽司種類感覺比藏壽司還多（我愛吃炙燒，HAMA壽司炙燒種類真的多），季節限定也很吸引人。\n...\n壽司郎是最晚進軍台灣的日本迴轉壽司，但轉眼就開了30間分店，因此名氣頗大。\n...\n點爭鮮是爭鮮旗下...",
+            "source": "web",
+            "title": "台灣迴轉壽司連鎖店，五間連鎖迴轉壽司分享",
+            "url": "https://iambp6.pixnet.net/blog/posts/9567553888"
+          },
+          {
+            "date": "2023-06-20",
+            "last_updated": "2026-06-16",
+            "place_metadata": null,
+            "snippet": "### 地址：台北市大安區忠孝東路三段300號(SOGO復興店B3超市內)\n### 電話： 02-8772-2228\n### 營業時間：日至四11:00-21:30 五、六11:00-22:00",
+            "source": "web",
+            "title": "中與志迴轉壽司-SOGO復興店｜台北美食 - 大手牽小手。玩樂趣",
+            "url": "https://letsplay.tw/nakayoshi/"
+          },
+          {
+            "date": "2018-08-18",
+            "last_updated": "2025-07-26",
+            "place_metadata": null,
+            "snippet": "合點壽司(がってん寿司)來自日本迴轉壽司店在內湖西湖捷運站開設了海外的第一家分店，在日本地區有近百家連鎖店，是來自RDC的品牌，旗下有迴轉\n壽司、水產、拉麵店、惣菜等等，知名的函太郎迴轉壽司也是來自旗下的品牌，合點壽司六月底進駐台灣，主打現殺生魚秀的迴轉壽司，價格從40-188元不等，評價還不錯，吸引丸子遠道而來的就是海寶卷，堆疊的各種海鮮放在壽司卷上，配料散落的豐富度，讓人食指大動。\n...\n和同樣來自日本的藏壽司、HAMA壽司、壽司郎最大的差別是這家有師傅站在吧台前捏壽司，除了有活力以外，，還可以看到師傅再切生魚與叫賣聲，比如有剛做好的新鮮的特大蝦壽司喔！",
+            "source": "web",
+            "title": "來自日本北海道迴轉壽司，現殺鮭魚秀，真人手捏現點現做，新鮮上桌！",
+            "url": "https://marukoblog.tw/2018-08-18.html"
+          },
+          {
+            "date": "2025-05-31",
+            "last_updated": "2026-07-04",
+            "place_metadata": null,
+            "snippet": "壽司郎是來自日本的第一迴轉壽司品牌，現在在全台都有分店，除了超多種壽司品項，更時常會推出期間限定口味，大切鮭魚、金盤鮪魚、鮮蝦三貫、\n...\n如果你常吃藏壽司和壽司郎，那同樣是連鎖店的一条通也可以試試，不同於日本來的，這間可是台灣在地的自創品牌，目前在雙北都有不少分店，有供應生魚片、握壽司\n...\n同樣是從日本來的合點，是比壽司郎更高一階，店特色就是主打現殺生魚秀的迴轉壽司，更有師傅站在吧台前現捏壽司，比起一般連鎖店更多了些溫度，美味程度當然也有一定水準，整體來說和丸壽司、海壽司這類店蠻相似的，其中大推海寶卷，喜歡鮭魚的也別錯過鮭魚三味喔！",
+            "source": "web",
+            "title": "5、合點壽司",
+            "url": "https://www.popdaily.com.tw/food/884878"
+          },
+          {
+            "date": "2018-10-30",
+            "last_updated": "2025-12-22",
+            "place_metadata": null,
+            "snippet": "壽司郎每盤的價格不同，是以盤子的顏色來區分，從４０元一盤，到６０元，８０元都有，\n...\n當然這樣的好處，就是我可以多花一點錢，吃到等級更高的壽司，\n這也是許多人寫道：壽司郎是最接近高級壽司口味的平價迴轉壽司。\n...\n藏壽司的炙燒味比較明顯，香度比較突出，不過壽司郎的則是沒有明顯的炙燒味，起司味也還好，\n...\n電話：02-2361-2306",
+            "source": "web",
+            "title": "日本平價迴轉壽司 壽司郎スシロー台北中華路店 開幕囉~有什麼必吃必點的美味壽司呢?",
+            "url": "https://cashbox168.pixnet.net/blog/posts/3048648630"
+          },
+          {
+            "date": "2018-10-19",
+            "last_updated": "2026-07-12",
+            "place_metadata": null,
+            "snippet": "「藏壽司（くら寿司）」目前已拓展到日本全國、甚至是台灣、美國，在迴轉壽司排行榜上總是跟壽司郎爭奪冠軍寶座的常勝軍。",
+            "source": "web",
+            "title": "外國月亮比較圓？進駐台灣的日本美食餐廳26選- MATCHA",
+            "url": "https://matcha-jp.com/tw/6569"
+          }
+        ],
+        "usage": {
+          "inputTokens": 48,
+          "outputTokens": 259,
+          "totalTokens": 307
+        },
+        "latencyMs": 2840,
+        "attempts": 1,
+        "queryId": "smoke-cmp-01",
+        "queryIntent": "comparison"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

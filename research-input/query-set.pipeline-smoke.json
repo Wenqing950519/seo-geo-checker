@@ -1,0 +1,12 @@
+{
+  "query_set_version": "pipeline-smoke-v1",
+  "industry": "壽司餐飲（管線煙霧測試，非正式研究資料）",
+  "review_status": "approved",
+  "reviewed_by": "pipeline-smoke",
+  "reviewed_at": "2026-07-23",
+  "note": "僅供驗證量測管線 end-to-end 行為；輸出不得併入任何研究資料集。",
+  "queries": [
+    { "id": "smoke-rec-01", "intent": "recommendation", "text": "台北有哪些值得一試的迴轉壽司？請簡要說明理由。" },
+    { "id": "smoke-cmp-01", "intent": "comparison", "text": "台北常見的迴轉壽司品牌之間有什麼差異？" }
+  ]
+}

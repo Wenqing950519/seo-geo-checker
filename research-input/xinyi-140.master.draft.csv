@@ -1,0 +1,141 @@
+﻿store_id,brand_id,official_name_zh,official_name_en,aliases,official_domains,owned_urls,shared_domain_flag,branch_name,district,include_status,exclusion_reason_code,reviewed_by,reviewed_at,truth_source,dataset_version
+XY-001,BR-DINTAIFUNG,鼎泰豐,,,dintaifung.com.tw,,true,101店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-002,BR-SHILINGSHABU,食令 Shabu,,,shilingshabu.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-003,BR-APOINTSTEAK,艾朋牛排餐酒館,,,apointsteak.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-004,,紫艷中餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-005,BR-HOSTSHABU,合.Shabu,,,hostshabu.com,http://www.hostshabu.com.tw/,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-006,,樂軒松阪亭,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-007,,隨意鳥101高空觀景餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-008,,LA FARFALLA 義式餐廳,,,,,false,台北艾麗酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-009,BR-INDIANFOODTAIWAN,馬友友印度廚房,,,indianfoodtaiwan.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-010,,泰市場海鮮自助餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-011,,凱菲屋,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-012,BR-ICHIRAN,一蘭拉麵,,,ichiran.com.tw,,false,台灣台北本店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-013,BR-TEXASROADHOUSE,Texas Roadhouse,,,texasroadhouse.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-014,,彩日本料理,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-015,BR-INPARADISE,INPARADISE 饗饗,,,inparadise.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-016,,Top Cap Steakhouse,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-017,,海底撈台灣信義店,,,,,false,微風南山,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-018,BR-DINTAIFUNG,鼎泰豐,,,dintaifung.com.tw,,true,信義新光A4店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-019,,泰集 Thai Bazaar,,,,,false,微風信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-020,,探索廚房,,,,,false,台北寒舍艾美酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-021,BR-LAWRYS,勞瑞斯牛肋排餐廳,,,lawrys.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-022,BR-STARFISHCONCEPT,CÉ LA VI Taipei,,,starfishconcept.com,https://tw.celavi.com/zh-tw|https://tw.celavi.com/,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
+XY-023,,侯布雄法式餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-024,BR-KANPAICLASSIC,老乾杯,,,kanpaiclassic.com.tw,,false,台北信義店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-025,,French Windows－British TeaHouse,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-026,BR-SHINYEH,欣葉台菜,,,shinyeh.com.tw,,true,信義A9店,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
+XY-027,BR-MEATLOVE,Meat Love 橡木炭火韓國烤肉,,,meatlove.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-028,BR-SAFFRON46,Saffron 46,,,saffron46.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-029,,春水堂,,,,,false,松菸店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-030,BR-WOOLLOOMOOLOO,Woolloomooloo,,,woolloomooloo.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-031,,馬辣頂級麻辣鴛鴦火鍋信義店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-032,BR-EATOGETHER,饗食天堂信義店,,,eatogether.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-033,,Smith & Wollensky 牛排館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-034,,頂鮮101美食美景餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-035,,心潮飯店 Sinchao Rice Shoppe,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-036,BR-HOOTERS,Hooters Xinyi 美式餐廳,,,hooters.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-037,BR-KARENTEPPANYAKI,凱林鐵板燒,,,karenteppanyaki.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-038,,DA ANTONIO By 大安東尼,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-039,BR-PARADISEGP,樂天皇朝台灣,,,paradisegp.com,,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
+XY-040,BR-TGIFRIDAYS,TGI Friday's,,,tgifridays.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-041,BR-SHINYEH,欣葉日本料理信義店,,,shinyeh.com.tw,,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
+XY-042,,莫爾頓牛排館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-043,,春水堂,,,,,false,信義新光三越A9店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-044,BR-THAITOWN,瓦城泰國料理,,,thaitown.com.tw,,true,台北阪急店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-045,,GB鮮釀餐廳信義店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-046,,Bel Air Bar & Grill,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-047,,茶苑,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-048,,漂亮台式海鮮餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-049,,燒肉同話,,,,,false,台北光復南店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-050,,厲家菜,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-051,,小南門傳統豆花美食,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-052,,徐淮人家,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-053,BR-ELITECONCEPTS,夜上海,,,elite-concepts.com,,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
+XY-054,BR-JOYCECAFETW,Joyce East,,,joycecafetw.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-055,,添好運台北信義店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-056,,Ziga Zaga,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-057,BR-WILDWOOD,原木燒烤餐廳 Wildwood,,,wildwood.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-058,,日本橋海鮮丼 辻半,,,,,false,微風信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-059,,穆記小吃牛肉麵館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-060,,橘色涮涮屋新光三越A9店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-061,BR-RICEBAR,時時香,,,ricebar.com.tw,,false,微風南山店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-062,,L.A PHO 越南美食餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-063,,寒舍食譜,,,,,false,台北寒舍艾美酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-064,BR-UKAI,The Ukai Taipei,,,ukai.co.jp,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-065,,愛爾蘭瘋薯,,,,,false,信義威秀,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-066,BR-85TD101,85TD Chinese Restaurant,,,85td-101.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-067,BR-JKSTUDIO,JK STUDIO,,,jkstudio.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-068,,雲錦中餐廳,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-069,,味美早餐店 Wei Mei Breakfast Restaurant,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-070,BR-TWGTEA,TWG Tea at Taipei 101,,,twgtea.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-071,,Just Grill,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-072,,永心鳳茶,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-073,,歐帕希臘小館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-074,,Osteria by Angie,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-075,,紅花鐵板燒,,,,,false,台北101旗艦店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-076,BR-KAIFUN,開飯川食堂,,,kaifun.com.tw,,false,台北阪急店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-077,,珍寶海鮮台北信義店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-078,,酮版低糖餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-079,BR-LEBLEDOR,金色三麥,,,lebledor.com,,false,微風南山店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-080,BR-RICE1923,稻舍食館,,,rice1923.com,,false,統一時代店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-081,BR-DIMDIMSUM,點點心,,,dimdimsum.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-082,,Herbivore,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-083,,Cheers,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-084,BR-VERYTHAI,非常泰概念餐坊,,,verythai.com.tw,,false,Neo19店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-085,,段純貞牛肉麵,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-086,BR-ZONZEN,燒肉中山 Zonzen,,,zonzen.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-087,,Seasons by Olivier E.,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-088,BR-THAITOWN,瓦城泰國料理,,,thaitown.com.tw,,true,松山車站店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-089,,The Chapter Cafe,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-090,,One Rule,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-091,,勝博殿日式炸豬排,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-092,,輪輪1976 和食茶酒驛,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-093,BR-KHANAKHAZANA,Khana Khazana Indian Kitchen,,,khanakhazana.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-094,,施家麻油腰花,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-095,,鯤壽司,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-096,BR-BHEARTNOODLES,大心新泰式麵食,,,bheartnoodles.com,,false,台北信義威秀店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-097,,納達吉印度料理 Nataraj,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-098,,北平都一處,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-099,,小後苑,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-100,BR-HEYAHH,百家班活蝦店,,,heyahh.com.tw,,false,基隆路店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-101,,北平陶然亭 Beijing－Do It True,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-102,,NOLA Kitchen,,,,,false,信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-103,,阮小越,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-104,,牛かつもと村－遠百信義A13,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-105,BR-THAITOWN,瓦城泰國料理,,,thaitown.com.tw,,true,新光三越信義店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-106,BR-KUROGEYA,黑毛屋信義店,,,honke.kurogeya.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-107,,陳根找茶,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-108,,戴記獨臭之家,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-109,,楓樹韓國烤肉,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-110,BR-SIAMMORE,饗泰多,,,siammore.com.tw,,false,松高店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-111,BR-SUBWAY,SUBWAY Taipei 101,,,subway.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-112,,心月懷石日本料理,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-113,,周胖子餃子館,,,,,false,忠孝店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-114,,Divadlo 捷克公寓,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-115,,YABI Kitchen,,,,,false,微風南山店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-116,,I Met You Cafe,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-117,,大戶屋,,,,,false,松山車站店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-118,,大戶屋,,,,,false,統一時代台北店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-119,,In Between,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-120,,Hong Kong 88 Hot Pot,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-121,,Bing,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-122,,MiaCucina,,,,,false,信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-123,,渣男 Taiwan Bistro,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-124,,劉媽媽涼麵,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-125,,KingSpicy J,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-126,BR-SEATOSKY,Sea to Sky,,,seatosky.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-127,,上席小館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-128,,紅豆食府,,,,,false,信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-129,BR-BENCUISINE,犇,,,bencuisine.com,,false,微風信義館,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-130,,元食 Cafe,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-131,,CPK 加州創意廚房,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-132,,三太養生鐵板燒,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-133,BR-MIRAWAN,MiraWan,,,mirawan.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-134,,宋廚北方菜館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-135,,辛殿麻辣鍋,,,,,false,信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-136,,同壽司－信義區,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-137,,拾穗,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
+XY-138,BR-BUCKSKINRESTAURANTGROUP,柏克金啤酒餐廳,,,buckskinrestaurantgroup.com.tw,,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
+XY-139,BR-LAOJING,老井極上燒肉,,,lao-jing.com,,false,台北信義店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+XY-140,,TAMED FOX,,,,,false,信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1

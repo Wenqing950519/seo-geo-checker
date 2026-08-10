@@ -1,0 +1,290 @@
+{
+  "url": "https://www.sushiro.com.tw/",
+  "measured_at": "2026-07-23T03:19:04.328Z",
+  "pipeline_version": "3.0.0-query1.2.0-perplexity-p2.1.0-s3.1.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "pipeline-smoke-v1",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "pipeline-smoke-v1",
+      "queries": [
+        "台北有哪些值得一試的迴轉壽司？請簡要說明理由？",
+        "台北常見的迴轉壽司品牌之間有什麼差異？"
+      ],
+      "queryIds": [
+        "smoke-rec-01",
+        "smoke-cmp-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "comparison"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website sushiro.com.tw (title: 首頁 - 台湾スシロー 台灣壽司郎). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 台灣壽司郎 | 台湾スシロー\n\nThe website **sushiro.com.tw** aligns with the Taiwan operation of Sushiro, branded as **台灣壽司郎** in traditional Chinese and **台湾スシロー** in Japanese on the site title you provided. The Google Play listing for the Taiwan app also uses **台灣壽司郎** and an official support email at **sushiro.com.tw**, which corroborates that this domain belongs to the Taiwan Sushiro brand.[3]\n\nPublic sources that clearly refer to this same brand include:\n- The Google Play listing for **台灣壽司郎**, which lists support email **TW.SP@sushiro.com.tw** and company contact information tied to Sushiro.[3]\n- Taiwan News coverage referring specifically to **Sushiro in Taiwan**, matching the Taiwan brand context rather than the Japanese parent chain generally.[4]\n\nThe Japanese parent brand **Sushiro / Akindo Sushiro** is a separate corporate identity and should not be used as an alias for the Taiwan site unless directly supported by the Taiwan official site; based on the provided sources, the safest verified aliases are **台灣壽司郎** and **台湾スシロー**",
+      "citations": [
+        "https://en.wikipedia.org/wiki/Sushiro",
+        "https://sushirohk.com.hk/tc/",
+        "https://play.google.com/store/apps/details?id=tw.co.akindo_sushiro.sushiroapp",
+        "https://taiwannews.com.tw/news/4801024"
+      ],
+      "searchResults": [
+        {
+          "date": "2021-10-19",
+          "last_updated": "2026-07-06",
+          "place_metadata": null,
+          "snippet": "**Akindo Sushiro** (Japanese: あきんどスシロー, romanized: *Akindo Sushirō*) is a Japanese multinational conveyor belt sushi specialty store.\nIt is headquartered in Suita, Osaka.\n...\n|Headquarters|〒564-0063 1-22-2 Esaka-cho Suita, Osaka Japan|\n...\n|Website|akindo-sushiro.biz (Japanese) akindo-sushiro.biz/en...",
+          "source": "web",
+          "title": "Sushiro - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sushiro"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-07-18",
+          "place_metadata": null,
+          "snippet": "TEL: 2688 7338\n...\nTEL: 2302 0298\n...\n星期一至日 (10:30-22:00)\nTEL: 2688 7201\n...\n星期日至四(10:30-22:00) 星期五、六、公眾假期及公眾假期前夕(10:30-22:30)\nTEL: 2836 6695\n...\nTEL: 2650 5113\n...\nTEL: 2688 7010\n...\n新界荃灣蕙荃路22-66綠楊坊2樓S20-23號\n星期一至日 (10:30-22:00)\nTEL: 28966228\n...\n九龍九龍灣偉業街33號德福廣場二期6樓615號舖\n...\nTEL: 2788 2798\n...\nTEL: ...",
+          "source": "web",
+          "title": "Sushiro HK",
+          "url": "https://sushirohk.com.hk/tc/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-30",
+          "place_metadata": null,
+          "snippet": "Support email\nTW.SP@sushiro.com.tw\nPrivacy Policy\n...\nFOOD&LIFE COMPANIES LTD.\nsushiro@akindo-sushiro.co.jp\n1-22-2, ESAKACHO\nSUITA, 大阪府 564-0063\nJapan\n+81 6-6368-1014",
+          "source": "web",
+          "title": "台灣壽司郎 - Apps on Google Play",
+          "url": "https://play.google.com/store/apps/details?id=tw.co.akindo_sushiro.sushiroapp"
+        },
+        {
+          "date": null,
+          "last_updated": "2025-08-22",
+          "place_metadata": null,
+          "snippet": "TAIPEI (Taiwan News) — Japan’s leading conveyor-belt sushi chain, Sushiro, has been rocked by a viral video of a 17-year-old Japanese high school student purposely licking a soy sauce bottle, cups, and spreading saliva on a passing plate of sushi.\n...\nSo far, Sushiro in Taiwan has supposedly only be...",
+          "source": "web",
+          "title": "More challenges for conveyor-belt sushi chain | Taiwan News | Feb. 5, 2023 19:13",
+          "url": "https://taiwannews.com.tw/news/4801024"
+        }
+      ],
+      "usage": {
+        "inputTokens": 129,
+        "outputTokens": 262,
+        "totalTokens": 391
+      },
+      "latencyMs": 2766,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台北有哪些值得一試的迴轉壽司？請簡要說明理由？",
+        "answer": "台北值得一試的迴轉壽司，**壽司郎、藏壽司、合點壽司、海壽司**都很常被推薦；如果想要更平價、方便，也可以考慮**爭鮮**。[2][5]\n\n- **壽司郎**：主打新鮮食材、口味多樣，且有標準化服務與舒適用餐環境，適合想吃穩定品質的人。[5]\n- **藏壽司**：價格親民，且有「每五盤抽扭蛋」的趣味設計，用餐體驗很有記憶點。[2]\n- **合點壽司**：以較有日式氛圍、現做感與精緻度見長，適合想吃得更像日本店的人。[1][2]\n- **海壽司**：分店多、價格帶清楚，常被視為高CP值選擇，適合想控制預算又想吃得豐富的人。[5]\n- **爭鮮**：以平價、方便、",
+        "citations": [
+          "https://ifoodie.tw/guide/%E5%8F%B0%E5%8C%97%E5%B8%82/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8",
+          "https://www.gomaji.com/blog/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8/",
+          "https://classic-blog.udn.com/justnike0803/126470748",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E5%8F%B0%E5%8C%97%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8",
+          "https://visitjapan.cc/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8-%E6%8E%A8%E8%96%A6",
+          "https://taiwan.chtsai.org/2024/03/15/huizhuan_shousi/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-01-04",
+            "last_updated": "2026-01-27",
+            "place_metadata": null,
+            "snippet": "金澤美味壽司 (線上訂位)\n...\n- 6.\n一条通 士林門市\n- 7.\n合點壽司 內湖店 (線上訂位)\n- 8.\n海壽司 遠百A13店\n...\n**迴轉壽司**店。主打現點現做，以精緻的壽司盤呈現新鮮美味，並提供特選軍艦三昧，包含海膽、白蝦、 **鮭魚卵**等珍饈，讓您享受頂級的味蕾體驗。無論是情侶約會或是家人聚餐，都非常適合在這裡享受日本道地的壽司文化。\n...\n中與志迴轉壽司，位於台北SOGO復興館，主打新鮮美味的日式料理。店內提供各式經典壽司，以及浮誇吸睛的鮭魚金箔壽司，絕對能滿足壽司控的味蕾。除了\n...\n藏壽司館前店是台北車站附近人氣\n**迴轉壽司**，提供平價美味的壽司選擇，每盤...",
+            "source": "web",
+            "title": "一盤接一盤停不下來！ 台北 12 間讓人驚豔的迴轉壽司～",
+            "url": "https://ifoodie.tw/guide/%E5%8F%B0%E5%8C%97%E5%B8%82/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8"
+          },
+          {
+            "date": "2020-09-18",
+            "last_updated": "2024-09-14",
+            "place_metadata": null,
+            "snippet": "日本前六大壽司之一的合點壽司，於2018年來台開設分店，第一間就選在上班族聚集區－內湖科學園區。位在商辦大樓一樓，內部採用木造室內設計，完整地將日式風情展露無遺，不用大費周章出國，讓客人來到這邊彷彿置身日本一樣的親切。\n...\n**【店家資訊】**地址：台北市內湖區內湖路一段306號\n...\n## 迴轉餐廳#5 壽司郎\n壽司郎台灣一號店於2018年6月進駐台北車站商圈，在日本他可是有「日本第一迴轉壽司」的美名，也是小編心中迴轉壽司的第一名喔！\n...\n## 迴轉餐廳#6 くら寿司 藏壽司\n2014年登台的藏壽司，在當時可是颳起了一陣迴轉壽司旋風，第一間就選在台北金融重鎮的南京東路上，排隊人潮綿...",
+            "source": "web",
+            "title": "誰說只有壽司可以迴轉！IG超夯迴轉餐廳名單大公開～",
+            "url": "https://www.gomaji.com/blog/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8/"
+          },
+          {
+            "date": "2019-05-10",
+            "last_updated": "2025-08-01",
+            "place_metadata": null,
+            "snippet": "店(台灣旗艦店) 地址:100-47 台北市中正區館前路8號2樓 電話:02-2361-2638 時間:平日 11:00-22:30 (最終點餐 22:00) 假日 10\n:30-22:30 (最終點餐 22:00) 其他店面: 【台灣壽司郎】台北中華路店 地址:100-42 台北市中正區中華路一段41號1樓 電話:02-2361-2306\n時間:平日 11:00-22:30 (最終點餐22:00) 假日 10:30-22:30 (最終點餐22:00) 【台灣壽司郎】台北民權建國店 地址:104-91 台北市\n...\n) 【台灣壽司郎】台北松江長安店 地址:104-55 台北市中山區松江路61...",
+            "source": "web",
+            "title": "[日本] 台北‧中正‧台灣壽司郎 迴轉壽司‧台湾スシロー‧館前旗艦店‧台北車站 - 〈哈美食‧美食販賣機〉請投幣 ! - udn部落格",
+            "url": "https://classic-blog.udn.com/justnike0803/126470748"
+          },
+          {
+            "date": "2022-02-18",
+            "last_updated": "2025-02-19",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.くら寿司 藏壽司 松江南京店\n...\n臺北市大同區重慶北路二段171號附近日本料理午餐晚餐21.はま寿司 HAMA-SUSHI",
+            "source": "web",
+            "title": "台北『台北迴轉壽司餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E5%8F%B0%E5%8C%97%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8"
+          },
+          {
+            "date": "2024-04-16",
+            "last_updated": "2025-04-18",
+            "place_metadata": null,
+            "snippet": "**壽司郎**自從在台灣開設分店以來，一直一位難求，透過App訂位也需等待超過一個月，顯示了消費者對高品質迴轉壽司的渴望。壽司郎受歡迎的原因在於新鮮食材、豐富口味及其 **標準化的服務流程和舒適的用餐環境**。\n...\n在台北，\n**海壽司**因多家分店而廣受歡迎，無論是獨立店還是百貨公司的門市，都很容易找到。那海壽司的 **價格**如何呢？其價格策略明確，盤子顏色對應價格，範圍為 **$40~$180**，便於掌握預算，盡情享受美食。\n...\n**爭鮮**是許多人心中的第一選擇。它以 **新鮮、平價、可外帶**聞名，擁有台灣最多的分店，方便消費者隨時享用。爭鮮能成為國民迴轉壽司的代表，除了便...",
+            "source": "web",
+            "title": "迴轉壽司推薦：2023台灣必吃名店精選評測！ | Jinto 神藤遊日本",
+            "url": "https://visitjapan.cc/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8-%E6%8E%A8%E8%96%A6"
+          },
+          {
+            "date": "2024-03-15",
+            "last_updated": "2025-10-10",
+            "place_metadata": null,
+            "snippet": "一個典型的情境是晚上看電影。從傍晚抵達商場到進影廳（通常是七點半之前的場次）的時間不會太長。再扣掉排隊買票及餐廳候位，往往剩不到一小時，甚至更短。一般餐廳會吃得有點趕，迴轉壽司的節奏剛好。只有半個小時也夠。\n...\n另一個情境是食量有限的情況。例如因為某些原因，這天胃口不是特別好，在一般餐廳吃一整個套餐覺得有點太多。迴轉壽司也是很好的解法。可以吃到剛好就好。\n...\n以我的經驗來說，兩個大人吃一餐的價格不太會超過百貨公司裡的大部分的餐廳。通常還會再低一點。或許這也是連鎖迴轉壽司店總是門庭若市、大排長龍的主因。坊間太多餐廳用成本最低的飲料、幾顆毛豆與幾片指甲大的泡菜之類低成本食材湊成擺盤漂亮、內...",
+            "source": "web",
+            "title": "迴轉壽司，迴轉人生 - Taiwan 2.0",
+            "url": "https://taiwan.chtsai.org/2024/03/15/huizhuan_shousi/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 52,
+          "outputTokens": 261,
+          "totalTokens": 313
+        },
+        "latencyMs": 2849,
+        "attempts": 1,
+        "queryId": "smoke-rec-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台北常見的迴轉壽司品牌之間有什麼差異？",
+        "answer": "台北常見的迴轉壽司品牌，**主要差異**通常在「**價格帶**、**點餐/取餐方式**、**品牌主打特色**、**分店密度**」這幾點；在平價日本系品牌裡，常被拿來比較的是**藏壽司、壽司郎、HAMA 壽司**，另外也有**爭鮮系本土品牌**、以及較高價的**金澤美味壽司**與特色型的**合點壽司**等。[1][2][3][5][7][8]\n\n- **藏壽司**：主打**盤子計價簡單**，常見說法是以每盤固定價位為主，且有**收盤機制**，吃完不用堆滿桌面的盤子；另外很強的特色是**扭蛋/IP聯名**，適合喜歡互動感的人。[1][2][10]\n- **壽司郎**：特色是**品質穩定**、品項多，市場印象偏向「**平價中口味",
+        "citations": [
+          "https://kenalice.tw/blog/post/sushi-pk",
+          "https://www.nownews.com/news/6655343",
+          "https://wanteatfood.com/12405",
+          "https://dongwa.tw/sushiro-zhongli/",
+          "https://iambp6.pixnet.net/blog/posts/9567553888",
+          "https://letsplay.tw/nakayoshi/",
+          "https://marukoblog.tw/2018-08-18.html",
+          "https://www.popdaily.com.tw/food/884878",
+          "https://cashbox168.pixnet.net/blog/posts/3048648630",
+          "https://matcha-jp.com/tw/6569"
+        ],
+        "searchResults": [
+          {
+            "date": null,
+            "last_updated": "2025-07-12",
+            "place_metadata": null,
+            "snippet": "熟食鮮蝦握壽司中，「壽司郎」、「藏壽司」的『酪梨鮮蝦』澎湃又可口；「藏壽司」的『炙烤起司鮮蝦』較「HAMA壽司」的『起司鮮蝦』略勝一籌。\n...\n「藏壽司」座位旁獨家設計的收盤機制非常方便，不像「壽司郎」、「HAMA壽司」或其他迴轉壽司店要保留盤子山的空間。「藏壽司」的迴轉餐點主要以$40（盤子數）為倍數計價，不用判斷顏色取餐計算價格相對簡單，惟定價不如另外兩家以盤子顏色區隔，多了$60的彈性。\n...\n**地址：台北市中正區館前路8號2樓**\n**電話：02-2361-2638**\n**營業時間：11:00（週六日10:30）~21:45**\n**「藏壽司」台北館前店（全球旗艦店）**\n**...",
+            "source": "web",
+            "title": "【食】日本三大平價迴轉壽司推薦：藏壽司、壽司郎、HAMA壽司大PK",
+            "url": "https://kenalice.tw/blog/post/sushi-pk"
+          },
+          {
+            "date": "2025-03-06",
+            "last_updated": "2026-02-28",
+            "place_metadata": null,
+            "snippet": "迴轉壽司店拼規模也拼食材跟特色活動，本土爭鮮憑藉漂亮價格、CP值高吸引客人；藏壽司透過IP聯名扭蛋創造話題；壽司郎則以品質穩定、高水準餐點表現抓緊老饕的心，2025迴轉壽司戰打得火熱，今年誰又能最受到民眾青睞，一切都還有待觀察。",
+            "source": "web",
+            "title": "台灣最強迴轉壽司不是爭鮮了！公認霸主是這間：坐鎮40年、水準高",
+            "url": "https://www.nownews.com/news/6655343"
+          },
+          {
+            "date": "2025-11-21",
+            "last_updated": "2026-06-27",
+            "place_metadata": null,
+            "snippet": "說到金澤壽司，和我們一般熟悉的藏壽司、壽司郎這些平價的迴轉壽司完全不同，《**金澤壽司 SOGO忠孝館**》主打的是精緻且豪華的壽司路線，價格比較高，但品質真的是高出了一個等級。每道料理都能感受到師傅的專業及用心，從食材到製作，都講究道地的日本職人精神。\n...\n金澤美味壽司被定位為 高級迴轉壽司，和一般的平價迴轉壽司走不同的路線，主打的是精緻豪華的壽司體驗，使用的食材也都相當高檔，像是金澤直送的鮪魚，以及來自北海道的干貝，品質也都是頂級的。",
+            "source": "web",
+            "title": "金澤壽司台北忠孝館店- 日本最高級的迴轉壽司，來台北開店",
+            "url": "https://wanteatfood.com/12405"
+          },
+          {
+            "date": "2025-10-14",
+            "last_updated": "2026-02-24",
+            "place_metadata": null,
+            "snippet": "1984年的壽司郎，是一間來自大阪的日本第一迴轉壽司品牌，全球超過一千間門市、一年的來客數約1億4千萬，台灣壽司郎在2018年6月15日台北開設台灣",
+            "source": "web",
+            "title": "【中壢迴轉壽司推薦】日本第一廻轉壽司品牌插旗中壢大時鐘麗陽商場 スシロー壽司郎中壢中正店 – 東蛙池塘 DongWa",
+            "url": "https://dongwa.tw/sushiro-zhongli/"
+          },
+          {
+            "date": "2023-03-30",
+            "last_updated": "2026-07-05",
+            "place_metadata": null,
+            "snippet": "藏壽司的日本公司創立於1984年，日文發音是Kura Sushi，2014年進軍台灣後，迄今已經有50間分店，算是台灣最有規模的日本迴轉壽司。\n...\nHAMA壽司其實是第二間登台的日本連鎖迴轉壽司，不過因為在台灣只有七間分店，因此感覺知名度比較小。\nHAMA壽司也是一盤40元(起)，現點現做，轉盤是用來送壽司的，不要傻傻地等轉盤上的壽司（第一次去不知道，還以為是因為平日午後生意比較普通才沒做），握壽司種類感覺比藏壽司還多（我愛吃炙燒，HAMA壽司炙燒種類真的多），季節限定也很吸引人。\n...\n壽司郎是最晚進軍台灣的日本迴轉壽司，但轉眼就開了30間分店，因此名氣頗大。\n...\n點爭鮮是爭鮮旗下...",
+            "source": "web",
+            "title": "台灣迴轉壽司連鎖店，五間連鎖迴轉壽司分享",
+            "url": "https://iambp6.pixnet.net/blog/posts/9567553888"
+          },
+          {
+            "date": "2023-06-20",
+            "last_updated": "2026-06-16",
+            "place_metadata": null,
+            "snippet": "### 地址：台北市大安區忠孝東路三段300號(SOGO復興店B3超市內)\n### 電話： 02-8772-2228\n### 營業時間：日至四11:00-21:30 五、六11:00-22:00",
+            "source": "web",
+            "title": "中與志迴轉壽司-SOGO復興店｜台北美食 - 大手牽小手。玩樂趣",
+            "url": "https://letsplay.tw/nakayoshi/"
+          },
+          {
+            "date": "2018-08-18",
+            "last_updated": "2025-07-26",
+            "place_metadata": null,
+            "snippet": "合點壽司(がってん寿司)來自日本迴轉壽司店在內湖西湖捷運站開設了海外的第一家分店，在日本地區有近百家連鎖店，是來自RDC的品牌，旗下有迴轉\n壽司、水產、拉麵店、惣菜等等，知名的函太郎迴轉壽司也是來自旗下的品牌，合點壽司六月底進駐台灣，主打現殺生魚秀的迴轉壽司，價格從40-188元不等，評價還不錯，吸引丸子遠道而來的就是海寶卷，堆疊的各種海鮮放在壽司卷上，配料散落的豐富度，讓人食指大動。\n...\n和同樣來自日本的藏壽司、HAMA壽司、壽司郎最大的差別是這家有師傅站在吧台前捏壽司，除了有活力以外，，還可以看到師傅再切生魚與叫賣聲，比如有剛做好的新鮮的特大蝦壽司喔！",
+            "source": "web",
+            "title": "來自日本北海道迴轉壽司，現殺鮭魚秀，真人手捏現點現做，新鮮上桌！",
+            "url": "https://marukoblog.tw/2018-08-18.html"
+          },
+          {
+            "date": "2025-05-31",
+            "last_updated": "2026-07-04",
+            "place_metadata": null,
+            "snippet": "壽司郎是來自日本的第一迴轉壽司品牌，現在在全台都有分店，除了超多種壽司品項，更時常會推出期間限定口味，大切鮭魚、金盤鮪魚、鮮蝦三貫、\n...\n如果你常吃藏壽司和壽司郎，那同樣是連鎖店的一条通也可以試試，不同於日本來的，這間可是台灣在地的自創品牌，目前在雙北都有不少分店，有供應生魚片、握壽司\n...\n同樣是從日本來的合點，是比壽司郎更高一階，店特色就是主打現殺生魚秀的迴轉壽司，更有師傅站在吧台前現捏壽司，比起一般連鎖店更多了些溫度，美味程度當然也有一定水準，整體來說和丸壽司、海壽司這類店蠻相似的，其中大推海寶卷，喜歡鮭魚的也別錯過鮭魚三味喔！",
+            "source": "web",
+            "title": "5、合點壽司",
+            "url": "https://www.popdaily.com.tw/food/884878"
+          },
+          {
+            "date": "2018-10-30",
+            "last_updated": "2025-12-22",
+            "place_metadata": null,
+            "snippet": "壽司郎每盤的價格不同，是以盤子的顏色來區分，從４０元一盤，到６０元，８０元都有，\n...\n當然這樣的好處，就是我可以多花一點錢，吃到等級更高的壽司，\n這也是許多人寫道：壽司郎是最接近高級壽司口味的平價迴轉壽司。\n...\n藏壽司的炙燒味比較明顯，香度比較突出，不過壽司郎的則是沒有明顯的炙燒味，起司味也還好，\n...\n電話：02-2361-2306",
+            "source": "web",
+            "title": "日本平價迴轉壽司 壽司郎スシロー台北中華路店 開幕囉~有什麼必吃必點的美味壽司呢?",
+            "url": "https://cashbox168.pixnet.net/blog/posts/3048648630"
+          },
+          {
+            "date": "2018-10-19",
+            "last_updated": "2026-07-12",
+            "place_metadata": null,
+            "snippet": "「藏壽司（くら寿司）」目前已拓展到日本全國、甚至是台灣、美國，在迴轉壽司排行榜上總是跟壽司郎爭奪冠軍寶座的常勝軍。",
+            "source": "web",
+            "title": "外國月亮比較圓？進駐台灣的日本美食餐廳26選- MATCHA",
+            "url": "https://matcha-jp.com/tw/6569"
+          }
+        ],
+        "usage": {
+          "inputTokens": 48,
+          "outputTokens": 256,
+          "totalTokens": 304
+        },
+        "latencyMs": 3068,
+        "attempts": 1,
+        "queryId": "smoke-cmp-01",
+        "queryIntent": "comparison"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

@@ -1,0 +1,73 @@
+{
+  "evaluation_id": "blind_eval_1785585650097_d7e5e401",
+  "target_url": "https://geocheck.lisheng.cv/",
+  "prompt_sha256": "a8f2a706a7c399b1079ba6c0a961ef5bc13a059ccb6212d254903c9b1928a197",
+  "candidates": [
+    {
+      "candidate": "candidate-b",
+      "status": "success",
+      "metrics": {
+        "latency_ms": 10374,
+        "input_tokens": 2804,
+        "output_tokens": 1149,
+        "total_tokens": 3953,
+        "cached_input_tokens": null,
+        "reasoning_tokens": null,
+        "max_output_tokens": 2048,
+        "api_calls": 1
+      },
+      "quality": {
+        "json_schema_required_fields_present": "10/10",
+        "candidate_query_count": 7,
+        "candidate_query_count_valid": true,
+        "distinct_intents": [
+          "recommendation",
+          "decision",
+          "comparison"
+        ],
+        "intent_diversity_valid": true,
+        "forbidden_or_empty_query_count": 4,
+        "query_ratings_valid": true,
+        "confidence_valid": true,
+        "automated_contract_pass": false
+      }
+    },
+    {
+      "candidate": "candidate-c",
+      "status": "success",
+      "metrics": {
+        "latency_ms": 4209,
+        "input_tokens": 2908,
+        "output_tokens": 1018,
+        "total_tokens": 3926,
+        "cached_input_tokens": null,
+        "reasoning_tokens": null,
+        "max_output_tokens": 2048,
+        "api_calls": 1
+      },
+      "quality": {
+        "json_schema_required_fields_present": "10/10",
+        "candidate_query_count": 5,
+        "candidate_query_count_valid": true,
+        "distinct_intents": [
+          "comparison",
+          "recommendation",
+          "decision"
+        ],
+        "intent_diversity_valid": true,
+        "forbidden_or_empty_query_count": 1,
+        "query_ratings_valid": true,
+        "confidence_valid": true,
+        "automated_contract_pass": false
+      }
+    },
+    {
+      "candidate": "candidate-a",
+      "status": "failed",
+      "metrics": {
+        "api_calls": 1
+      },
+      "quality": null
+    }
+  ]
+}

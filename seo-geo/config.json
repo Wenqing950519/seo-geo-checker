@@ -1,0 +1,32 @@
+{
+  "site": {
+    "name": "GEOCheck",
+    "base_url": "https://geocheck.lisheng.cv",
+    "sitemap_url": "https://geocheck.lisheng.cv/sitemap.xml"
+  },
+  "competitors": [],
+  "language": "zh-TW",
+  "audit": {
+    "max_pages": 30,
+    "priority_paths": ["/", "/home"],
+    "exclude_patterns": ["/tag/", "/page/"]
+  },
+  "geo": {
+    "questions_file": "questions.json",
+    "runs_per_question": 2,
+    "track_competitors": true
+  },
+  "content_brief": {
+    "gsc_source": "csv",
+    "min_impressions": 200,
+    "position_range": [5, 15],
+    "max_briefs_per_run": 5
+  },
+  "report": {
+    "frequency": "weekly",
+    "telegram": {
+      "enabled": false,
+      "chat_id": ""
+    }
+  }
+}

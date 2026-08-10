@@ -40,7 +40,7 @@ async function runDeterministicFallback(siteUrl, providerError) {
   }, { homepage, technical, representativePages });
   audit.score.evidence_status = "insufficient_evidence";
   audit.score.label = "GEO 證據不足";
-  audit.score.summary_zh = "Perplexity 或 Gemini 服務未完成；不顯示整體 GEO 分數，僅保留站內準備度。";
+  audit.score.summary_zh = "Perplexity 或 DeepSeek 服務未完成；不顯示整體 GEO 分數，僅保留站內準備度。";
   audit.ai_validation = { status: "unavailable", provider: "local-deterministic-fallback", message_zh: "AI API 本次不可用；本報告只包含公開首頁與技術訊號的初步檢查。" };
 
   return {
@@ -73,12 +73,12 @@ async function runDeterministicFallback(siteUrl, providerError) {
 }
 
 function isModelProviderFailure(error) {
-  return error && ["gemini_api", "gemini_json", "perplexity_api", "agnes_api", "agnes_parse", "agnes_config", "agnes_json", "config"].includes(error.stage);
+  return error && ["deepseek_api", "deepseek_json", "perplexity_api", "agnes_api", "agnes_parse", "agnes_config", "agnes_json", "config"].includes(error.stage);
 }
 
 function safeProviderMessage(error) {
-  if (error?.stage === "config") return "Gemini 或 Perplexity API 金鑰尚未設定";
-  if (error?.stage === "gemini_json") return "Gemini 回傳格式無法解析";
+  if (error?.stage === "config") return "DeepSeek 或 Perplexity API 金鑰尚未設定";
+  if (error?.stage === "deepseek_json") return "DeepSeek 回傳格式無法解析";
   if (error?.stage === "perplexity_api") return "Perplexity Sonar 搜尋暫時不可用";
   return "AI 供應商暫時不可用";
 }

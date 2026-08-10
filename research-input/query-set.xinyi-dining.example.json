@@ -1,0 +1,18 @@
+{
+  "query_set_version": "xinyi-dining-v1-draft",
+  "industry": "台灣餐飲（台北市信義區）",
+  "review_status": "replace_with_approved",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "note": "本檔為候選題庫草稿：完成人工審核後，把 review_status 改為 approved、填入 reviewed_by 與 reviewed_at，另存為正式 JSON 再交給批次。凍結後不得改寫題目文字；改題必須換新的 query_set_version。題型取自研究藍圖 E 節固定句型。",
+  "queries": [
+    { "id": "broad-01", "intent": "recommendation", "text": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由。" },
+    { "id": "cuisine-tw-01", "intent": "recommendation", "text": "請推薦 10 家位於台北市信義區的台式或中式餐廳，簡要說明理由。" },
+    { "id": "cuisine-jp-01", "intent": "recommendation", "text": "請推薦 10 家位於台北市信義區的日式餐廳，簡要說明理由。" },
+    { "id": "cuisine-west-01", "intent": "recommendation", "text": "請推薦 10 家位於台北市信義區的西式餐廳，簡要說明理由。" },
+    { "id": "cuisine-hotpot-01", "intent": "recommendation", "text": "請推薦 10 家位於台北市信義區的火鍋或鍋物餐廳，簡要說明理由。" },
+    { "id": "budget-mid-01", "intent": "decision", "text": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由。" },
+    { "id": "area-101-01", "intent": "recommendation", "text": "請推薦 10 家位於台北 101 與信義商圈周邊的餐廳，簡要說明理由。" },
+    { "id": "hard-open-late-01", "intent": "decision", "text": "請推薦 10 家位於台北市信義區、晚上十點後仍供餐的餐廳，簡要說明理由。" }
+  ]
+}

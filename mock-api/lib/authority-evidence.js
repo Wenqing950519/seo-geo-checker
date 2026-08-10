@@ -1,11 +1,15 @@
-const GENERIC_TERMS = new Set([
-  "首頁", "官方網站", "關於我們", "服務", "公司", "網站", "home", "official", "website",
-  "taiwan", "台灣", "臺灣", "股份有限公司", "有限公司", "co", "ltd", "inc"
-]);
+const {
+  buildBrandTermSet,
+  isFirstParty,
+  matchTermsInText,
+  safeHostname
+} = require("./brand-match");
 
-function evaluateAuthorityEvidence({ siteUrl, metadata = {}, searchContext = null } = {}) {
+function evaluateAuthorityEvidence({ siteUrl, metadata = {}, searchContext = null, entityProfile = null } = {}) {
   const host = safeHostname(siteUrl);
-  const brandTerms = deriveBrandTerms({ host, metadata });
+  const officialDomains = entityProfile?.officialDomains || [];
+  const termSet = buildBrandTermSet({ host, metadata, masterTerms: entityProfile?.brandTerms || [] });
+  const brandTerms = termSet.map((term) => term.value);
   const base = {
     status: searchContext?.enabled ? "measured" : "unknown",
     score: searchContext?.enabled ? 0 : null,
@@ -13,6 +17,7 @@ function evaluateAuthorityEvidence({ siteUrl, metadata = {}, searchContext = nul
     entityGrounded: false,
     firstPartySourceFound: false,
     brandTerms,
+    brandTermSources: termSet.map((term) => ({ term: term.value, source: term.source })),
     matchedExternalDomains: [],
     unmatchedExternalDomains: [],
     governmentOrEducationDomains: [],
@@ -27,14 +32,14 @@ function evaluateAuthorityEvidence({ siteUrl, metadata = {}, searchContext = nul
   const citationUrls = Array.isArray(searchContext.citations) ? searchContext.citations : [];
   const resultUrls = results.map((item) => item?.url).filter(Boolean);
   const allUrls = [...citationUrls, ...resultUrls];
-  const firstPartySourceFound = allUrls.some((url) => isFirstParty(url, host));
+  const firstPartySourceFound = allUrls.some((url) => isFirstParty(url, host, officialDomains));
   const matchedExternalDomains = new Set();
   const unmatchedExternalDomains = new Set();
 
   for (const result of results) {
     const domain = safeHostname(result?.url);
-    if (!domain || sameRegistrableHost(domain, host)) continue;
-    if (resultMatchesEntity(result, brandTerms, host)) matchedExternalDomains.add(domain);
+    if (!domain || isFirstParty(result?.url, host, officialDomains)) continue;
+    if (resultMatchesEntity(result, termSet, host, officialDomains)) matchedExternalDomains.add(domain);
     else unmatchedExternalDomains.add(domain);
   }
 
@@ -62,31 +67,17 @@ function evaluateAuthorityEvidence({ siteUrl, metadata = {}, searchContext = nul
   };
 }
 
+// 相容介面：回傳字串陣列（舊呼叫端與報表使用）。
 function deriveBrandTerms({ host = "", metadata = {} } = {}) {
-  const candidates = [
-    host.split(".")[0],
-    ...String(metadata.title || "").split(/[|｜—–\-:：]/),
-    ...String(metadata.h1 || "").split(/[|｜—–\-:：]/)
-  ];
-  const terms = new Set();
-  for (const candidate of candidates) {
-    const normalized = normalizeEntityText(candidate);
-    if (isUsefulTerm(normalized)) terms.add(normalized);
-    const withoutTaiwan = normalized.replace(/^(?:台灣|臺灣|taiwan)/, "");
-    if (isUsefulTerm(withoutTaiwan)) terms.add(withoutTaiwan);
-  }
-  return [...terms].sort((a, b) => b.length - a.length).slice(0, 8);
+  return buildBrandTermSet({ host, metadata }).map((term) => term.value);
 }
 
-function resultMatchesEntity(result, brandTerms, host) {
-  if (isFirstParty(result?.url, host)) return true;
-  const haystack = normalizeEntityText([
-    result?.title,
-    result?.snippet,
-    result?.description,
-    result?.url
-  ].filter(Boolean).join(" "));
-  return brandTerms.some((term) => haystack.includes(term));
+function resultMatchesEntity(result, termSet, host, officialDomains = []) {
+  if (isFirstParty(result?.url, host, officialDomains)) return true;
+  const haystack = [result?.title, result?.snippet, result?.description, result?.url]
+    .filter(Boolean)
+    .join("\n");
+  return matchTermsInText(haystack, termSet).length > 0;
 }
 
 function scoreForSources(count) {
@@ -96,27 +87,6 @@ function scoreForSources(count) {
   if (count >= 2) return 60;
   if (count >= 1) return 40;
   return 0;
-}
-
-function isUsefulTerm(value) {
-  return value.length >= 3 && !GENERIC_TERMS.has(value) && !/^\d+$/.test(value);
-}
-
-function normalizeEntityText(value) {
-  return String(value || "").toLowerCase().replace(/[^a-z0-9\u3400-\u9fff]+/g, "");
-}
-
-function safeHostname(value) {
-  try { return new URL(value).hostname.toLowerCase().replace(/^www\./, ""); } catch { return ""; }
-}
-
-function isFirstParty(value, host) {
-  const domain = safeHostname(value);
-  return Boolean(domain && host && sameRegistrableHost(domain, host));
-}
-
-function sameRegistrableHost(a, b) {
-  return a === b || a.endsWith(`.${b}`) || b.endsWith(`.${a}`);
 }
 
 module.exports = { deriveBrandTerms, evaluateAuthorityEvidence, resultMatchesEntity };

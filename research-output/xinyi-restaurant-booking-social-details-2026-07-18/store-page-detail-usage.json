@@ -1,0 +1,17 @@
+{
+  "mode": "direct_public_page_detail_extraction",
+  "started_at": "2026-07-18T10:54:32.320Z",
+  "completed_at": "2026-07-18T10:54:46.012Z",
+  "input_candidates": 19,
+  "planned_max_fetches": 42,
+  "hard_cap": 42,
+  "attempted_fetches": 36,
+  "status_counts": {
+    "page_observed_name_unconfirmed": 10,
+    "fetch_failed": 3,
+    "name_matched_page_observed": 6
+  },
+  "ai_api_calls": 0,
+  "tokens_available": false,
+  "evidence_boundary": "Observed page text and regex address leads require human confirmation; absence is not proof of no address, dine-in, or closure."
+}

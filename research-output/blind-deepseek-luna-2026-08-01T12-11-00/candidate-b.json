@@ -1,0 +1,142 @@
+{
+  "evaluation_id": "blind_eval_1785586313352_9d6d2e49",
+  "candidate": "candidate-b",
+  "status": "success",
+  "prompt_sha256": "a8f2a706a7c399b1079ba6c0a961ef5bc13a059ccb6212d254903c9b1928a197",
+  "metrics": {
+    "latency_ms": 9470,
+    "input_tokens": 2804,
+    "output_tokens": 1095,
+    "total_tokens": 3899,
+    "cached_input_tokens": null,
+    "reasoning_tokens": null,
+    "max_output_tokens": 2048,
+    "api_calls": 1
+  },
+  "quality": {
+    "json_schema_required_fields_present": "10/10",
+    "candidate_query_count": 7,
+    "candidate_query_count_valid": true,
+    "distinct_intents": [
+      "recommendation",
+      "comparison",
+      "decision"
+    ],
+    "intent_diversity_valid": true,
+    "forbidden_or_empty_query_count": 2,
+    "query_ratings_valid": true,
+    "confidence_valid": true,
+    "automated_contract_pass": false
+  },
+  "result": {
+    "entity_name": "GEOCheck",
+    "industry": "AI 搜尋優化 / GEO 顧問服務",
+    "primary_offering": "AI 搜尋能見度健檢工具與 GEO/SEO 顧問服務",
+    "topic_terms": [
+      "AI 搜尋優化",
+      "GEO 健檢",
+      "生成式引擎優化",
+      "AI 搜尋能見度",
+      "品牌定位"
+    ],
+    "geography": [
+      "台灣"
+    ],
+    "target_audience": [
+      "已做過基礎 SEO 的品牌",
+      "中小企業",
+      "B2B 公司",
+      "網站改版前後的團隊"
+    ],
+    "evidence_basis": [
+      "首頁標題與描述強調 AI 搜尋能見度健檢",
+      "內文多次提及 ChatGPT、Perplexity、Gemini 等 AI 引擎",
+      "服務方案包含 GEO 優化、SEO 顧問、技術 SEO 健檢",
+      "提供免費健檢工具與報告範例"
+    ],
+    "confidence": "medium",
+    "positioning": {
+      "perceived_category_zh": "AI 搜尋優化工具與顧問服務",
+      "perceived_audience_zh": [
+        "行銷人員",
+        "網站負責人",
+        "中小企業主",
+        "SEO 從業者"
+      ],
+      "perceived_use_cases_zh": [
+        "檢查網站是否被 AI 引用",
+        "了解品牌在 AI 搜尋中的定位",
+        "提升 AI 搜尋能見度",
+        "獲得 GEO 優化建議"
+      ],
+      "misunderstandings_or_risks_zh": [
+        "可能被誤認為純 SEO 工具，但實際專注於 GEO",
+        "可能被誤認為網站設計公司，但實際是顧問服務",
+        "免費健檢可能被視為行銷誘餌，但實際提供具體報告"
+      ],
+      "missing_signals_zh": [
+        "缺乏客戶案例或見證",
+        "缺乏價格資訊（除試點方案）",
+        "缺乏團隊背景或創辦人資訊"
+      ]
+    },
+    "query_candidates": [
+      {
+        "id": "candidate_1",
+        "text": "我想讓品牌在 ChatGPT 和 Perplexity 的搜尋結果中更容易被推薦，該怎麼做？",
+        "intent": "recommendation",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "直接對應網站提供的 GEO 優化服務，且符合目標顧客提升 AI 搜尋能見度的需求。"
+      },
+      {
+        "id": "candidate_2",
+        "text": "GEO 和 SEO 有什麼不同？我的網站需要做 GEO 嗎？",
+        "intent": "comparison",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "網站內文有解釋 GEO 與 SEO 的差異，且這是潛在顧客常見的疑問。"
+      },
+      {
+        "id": "candidate_3",
+        "text": "如何檢查我的網站有沒有被 AI 搜尋引擎引用？",
+        "intent": "recommendation",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "網站提供免費健檢工具，正是為了檢查 AI 引用情況。"
+      },
+      {
+        "id": "candidate_4",
+        "text": "我的網站技術 SEO 沒問題，但 AI 搜尋都不推薦我，可能原因是什麼？",
+        "intent": "decision",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "網站內文提到技術沒壞卻不被引用的情境，並提供診斷服務。"
+      },
+      {
+        "id": "candidate_5",
+        "text": "想找專業顧問協助提升 AI 搜尋能見度，該注意什麼？",
+        "intent": "decision",
+        "consumer_relevance": 4,
+        "evidence_fit": 4,
+        "rationale_zh": "網站提供顧問服務，但缺乏選擇顧問的指引，因此相關性稍低。"
+      },
+      {
+        "id": "candidate_6",
+        "text": "AI 搜尋優化服務大概多少錢？有免費的檢查工具嗎？",
+        "intent": "decision",
+        "consumer_relevance": 5,
+        "evidence_fit": 4,
+        "rationale_zh": "網站有免費健檢和付費試點方案，但價格資訊不完整。"
+      },
+      {
+        "id": "candidate_7",
+        "text": "如何讓 AI 正確理解我的品牌定位和服務對象？",
+        "intent": "recommendation",
+        "consumer_relevance": 5,
+        "evidence_fit": 5,
+        "rationale_zh": "網站強調 AI 眼中定位的重要性，並提供相關診斷。"
+      }
+    ]
+  }
+}

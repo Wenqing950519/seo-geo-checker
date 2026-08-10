@@ -1,0 +1,267 @@
+{
+  "url": "https://www.sushiro.com.tw/",
+  "measured_at": "2026-07-19T06:11:15.184Z",
+  "pipeline_version": "3.0.0-perplexity-p2.1.0-s3.1.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": null,
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": "桃園",
+      "category": "壽司或迴轉壽司",
+      "queries": [
+        "桃園有哪些值得考慮的壽司或迴轉壽司？請列出具體品牌或商家名稱，並附上可核對的來源。",
+        "桃園壽司或迴轉壽司推薦與比較：哪些品牌較常被提及？請說明理由並附來源。"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website sushiro.com.tw (title: 首頁 - 台湾スシロー 台灣壽司郎). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 台湾スシロー | 台灣壽司郎 | Sushiro Taiwan\n\nThe website **sushiro.com.tw** represents **Sushiro Taiwan** (officially **Akindo Sushiro Taiwan**), the Taiwanese branch of the Japanese multinational conveyor belt sushi chain **Akindo Sushiro** (あきんどスシロー). The site serves as the official homepage for the brand's operations in Taiwan, featuring the title \"台灣壽司郎\" (Taiwan Sushiro) and \"台湾スシロー\" [1][2].\n\nKey verification details confirming this entity alignment:\n*   **Official Domain Usage:** Apple Maps lists `sushiro.com.tw` as the official website for the Sushiro location in Zhongzheng District, Taipei City, Taiwan [2].\n*   **Brand Naming:** The Google Play app for the chain is titled \"**台灣壽司郎**\" (Taiwan Sushiro), and the support email associated with the app is `TW.SP@sushiro.com.tw`, directly linking the domain to the Taiwanese brand entity [4].\n*   **Corporate Identity:** The parent company is **Akindo Sushiro**, headquartered in Suita, Osaka, Japan, which operates",
+      "citations": [
+        "https://en.wikipedia.org/wiki/Sushiro",
+        "https://maps.apple.com/place?place-id=I46E626AA9D7EE91A",
+        "https://sushirohk.com.hk/tc/",
+        "https://play.google.com/store/apps/details?id=tw.co.akindo_sushiro.sushiroapp",
+        "https://taiwannews.com.tw/news/4801024"
+      ],
+      "searchResults": [
+        {
+          "date": "2021-10-19",
+          "last_updated": "2026-07-06",
+          "place_metadata": null,
+          "snippet": "**Akindo Sushiro** (Japanese: あきんどスシロー, romanized: *Akindo Sushirō*) is a Japanese multinational conveyor belt sushi specialty store.\nIt is headquartered in Suita, Osaka.\n...\n|Headquarters|〒564-0063 1-22-2 Esaka-cho Suita, Osaka Japan|\n...\n|Website|akindo-sushiro.biz (Japanese) akindo-sushiro.biz/en...",
+          "source": "web",
+          "title": "Sushiro - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sushiro"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-04-12",
+          "place_metadata": null,
+          "snippet": "Details\nEvery Day\n11:00\nAM\n10:30\nPM\nOpen\nsushiro.com.tw\n+886 2-23612638\n2/F, No. 8 Guanqian Rd\nZhongzheng District, Taipei City 10047\nTaiwan\nMore on",
+          "source": "web",
+          "title": "Sushiro in Zhongzheng District, Taipei City Taiwan - Apple Maps",
+          "url": "https://maps.apple.com/place?place-id=I46E626AA9D7EE91A"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-07-18",
+          "place_metadata": null,
+          "snippet": "TEL: 2688 7338\n...\nTEL: 2302 0298\n...\n星期一至日 (10:30-22:00)\nTEL: 2688 7201\n...\n星期日至四(10:30-22:00) 星期五、六、公眾假期及公眾假期前夕(10:30-22:30)\nTEL: 2836 6695\n...\nTEL: 2650 5113\n...\nTEL: 2688 7010\n...\n新界荃灣蕙荃路22-66綠楊坊2樓S20-23號\n星期一至日 (10:30-22:00)\nTEL: 28966228\n...\n九龍九龍灣偉業街33號德福廣場二期6樓615號舖\n...\nTEL: 2788 2798\n...\nTEL: ...",
+          "source": "web",
+          "title": "Sushiro HK",
+          "url": "https://sushirohk.com.hk/tc/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-30",
+          "place_metadata": null,
+          "snippet": "Support email\nTW.SP@sushiro.com.tw\nPrivacy Policy\n...\nFOOD&LIFE COMPANIES LTD.\nsushiro@akindo-sushiro.co.jp\n1-22-2, ESAKACHO\nSUITA, 大阪府 564-0063\nJapan\n+81 6-6368-1014",
+          "source": "web",
+          "title": "台灣壽司郎 - Apps on Google Play",
+          "url": "https://play.google.com/store/apps/details?id=tw.co.akindo_sushiro.sushiroapp"
+        },
+        {
+          "date": null,
+          "last_updated": "2025-08-22",
+          "place_metadata": null,
+          "snippet": "TAIPEI (Taiwan News) — Japan’s leading conveyor-belt sushi chain, Sushiro, has been rocked by a viral video of a 17-year-old Japanese high school student purposely licking a soy sauce bottle, cups, and spreading saliva on a passing plate of sushi.\n...\nSo far, Sushiro in Taiwan has supposedly only be...",
+          "source": "web",
+          "title": "More challenges for conveyor-belt sushi chain | Taiwan News | Feb. 5, 2023 19:13",
+          "url": "https://taiwannews.com.tw/news/4801024"
+        }
+      ],
+      "usage": {
+        "inputTokens": 129,
+        "outputTokens": 263,
+        "totalTokens": 392
+      },
+      "latencyMs": 3712,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "桃園有哪些值得考慮的壽司或迴轉壽司？請列出具體品牌或商家名稱，並附上可核對的來源。",
+        "answer": "桃園值得考慮的壽司或迴轉壽司主要集中在**中壢、青埔與桃園市區**，具體品牌包括日式連鎖的**藏壽司**（くら寿司）、**壽司郎**（スシロー），以及本土的**爭鮮迴轉壽司**、**合點壽司**與**一条通**。\n\n### 推薦品牌與分店清單（附地址與來源）\n\n| 品牌/商家 | 分店名稱 | 地址 | 營業時間 | 來源 |\n|-----------|----------|------|----------|------|\n| **壽司郎**（スシロー） | 中壢中正店 | 桃園市中壢區中正路170號2樓 | 11:00–22:00 | [1] |\n| **藏壽司**（くら寿司） | JC Park中壢店 | 桃園市中壢區中正路51號3樓 | 11:00–22:00 | [1] |\n| **藏壽司** | 中園路店 | 桃園市中壢區中園路二段501號B1 | 11:00–22:",
+        "citations": [
+          "https://ifoodie.tw/explore/%E6%A1%83%E5%9C%92%E5%B8%82/list/%E4%B8%AD%E5%A3%A2%20%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8",
+          "https://www.youtube.com/watch?v=mf3Im01FMDw",
+          "https://uidon.com/article/about-sushi",
+          "https://www.storm.mg/keyword/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8",
+          "https://hk.trip.com/moments/detail/tokyo-294-136159795/",
+          "https://zh.wikipedia.org/wiki/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8",
+          "https://tabelog.com/tw/tokyo/rstLst/RC010202/"
+        ],
+        "searchResults": [
+          {
+            "date": null,
+            "last_updated": "2026-06-05",
+            "place_metadata": null,
+            "snippet": "1.スシロー壽司郎 中壢中正店\n(1則評論)\n均消 $630\n現正營業: 11:00-22:00\n桃園市中壢區中正路170號2樓\n日本料理午餐晚餐\n...\n2.くら寿司 藏壽司 JC Park中壢店\n(49則評論)\n...\n現正營業: 11:00-22:00\n桃園縣中壢市中正路51號3樓\n日本料理午餐晚餐\n...\n3.爭鮮迴轉壽司-中壢店\n(1則評論)\n...\n現正營業: 11:00-22:00\n桃園市中壢區九和一街10號\n日本料理午餐晚餐\n4.くら寿司 藏壽司\n(8則評論)\n...\n現正營業: 11:00-22:30\n桃園市中壢區中園路二段501號B1\n日本料理午餐晚餐\n...\n5.合點壽司...",
+            "source": "web",
+            "title": "桃園中壢 迴轉壽司餐廳 Top 15 推薦！ くら寿司 藏壽司 JC Park中壢店、スシロー壽司郎 中壢中正店... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E6%A1%83%E5%9C%92%E5%B8%82/list/%E4%B8%AD%E5%A3%A2%20%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8"
+          },
+          {
+            "date": "2023-01-04",
+            "last_updated": "2025-06-12",
+            "place_metadata": null,
+            "snippet": "一条通 桃園門市\n地址：桃園市桃園區中華路10號\n營業時間： 11:00–21:30\n電話： 03 331 1252\n…\n...\n{ts:12} 大家好 大家好 這邊是 欸大家應該知道 老闆娘呢就是喜歡吃火鍋嘛 港點以及迴轉壽司 對 那桃園市區開了一間新的迴轉壽司 是一定\n要來吃一下的 沒錯啦 1月1號才開幕今天才1月3號而已 嗯 我們就趕快殺來這邊開箱看看 那今天呢 我們還有帶著阿瑄來不知道她不會很失控 目前",
+            "source": "web",
+            "title": "【吃壽司囉】桃園市區新開幕迴轉壽司！馬上來幫大家試試看好不好吃！是說有米餅廠商需要業配嗎？|店裡有隻貓",
+            "url": "https://www.youtube.com/watch?v=mf3Im01FMDw"
+          },
+          {
+            "date": "2024-03-08",
+            "last_updated": "2026-07-12",
+            "place_metadata": null,
+            "snippet": "根據我最常品嚐的六間迴轉壽司店做出迴轉壽司排名，價格均一價方便掌握餐費，品質也較為穩定。\n...\n藏壽司是我吃過最多次的迴轉壽司店，先前因為重訓關係，藏壽司門市就在我的健身房旁邊，每次都會等重訓結束後八點到九點間去用餐，就可避開排隊人潮！但近期因為價格跟品項調整，覺得沒有以前這麼強力推薦了。\n...\n## 【sushiro 壽司郎】\n### 計價方式：\n40、60、80/盤，季節限定跟多顆組價格不同，副餐價格另計\n...\n## 【平祿壽司】\n### 計價方式：\n40、60、80、100元/盤，副餐價格另計",
+            "source": "web",
+            "title": "藏壽司、平祿壽司：最常吃的三家迴轉壽司推薦指數與必點口味",
+            "url": "https://uidon.com/article/about-sushi"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-03-13",
+            "place_metadata": null,
+            "snippet": "連鎖迴轉壽司品牌亞洲藏壽司（2754）公告2月營收達5.4億元，年增30.2%，創歷史單月新高；累計今年前2月營收達10.2億元，年增13%。受惠春節連假帶動聚餐需求、聯名IP「蠟筆小新」人氣加持，加上多元行銷策略奏效，來客數與客單價同步提升。\n...\n來自日本的壽司品牌「壽司郎」擁有超高人氣，深受不少台灣民眾喜愛。\n...\n許多台灣人喜歡吃日本料理，因此近年不少迴轉壽司品牌陸續來台展店，包含壽司郎、藏壽司、Hama壽司等日本連鎖店，除此之外，還有本土壽司品牌爭鮮與這些海外品牌打對台，凸顯壽司市場的激烈競爭。\n...\n1995年在大阪創立的日本迴轉壽司品牌「藏壽司くら寿司KURASUSHI」進...",
+            "source": "web",
+            "title": "迴轉壽司關鍵字 - 風傳媒",
+            "url": "https://www.storm.mg/keyword/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8"
+          },
+          {
+            "date": "2025-09-21",
+            "last_updated": "2026-04-13",
+            "place_metadata": null,
+            "snippet": "龍吟 | Tsukiji Aozora Sandaime at Ginza Mitsukoshi | 俺的燒肉 銀座9丁目 | Kagurazaka Ishikawa | Mikawa Zezankyo | 傳 | Sushi Yoshitake | L'ecrin | 鮨國\n| Ginza Birdland | 人形町今半 人形町本店 | 天婦羅近藤 | Beige Alain Ducasse Tokyo | Sushi no Midori | 資生堂パーラー | Bills（台場店） | MomoParadise（歌舞伎町本店） | 東京\n芝 豆腐屋UKAI | L'OSIER | 築地壽...",
+            "source": "web",
+            "title": "迴轉壽司      米芝蓮姊妹店性價比之選｜Trip.com 東京",
+            "url": "https://hk.trip.com/moments/detail/tokyo-294-136159795/"
+          },
+          {
+            "date": "2005-06-10",
+            "last_updated": "2026-04-23",
+            "place_metadata": null,
+            "snippet": "大中華地區存在着類似的壽司店，由於壽司文化不如日本普遍，廉價的大眾迴轉壽司成為最常見的壽司店。香港初時有「元綠壽司」、而上海則有「緣祿壽司」、台灣有「爭鮮迴轉壽司」。\n...\n現時香港受歡迎的迴轉壽司店為壽司郎。",
+            "source": "web",
+            "title": "迴轉壽司 - 维基百科，自由的百科全书",
+            "url": "https://zh.wikipedia.org/wiki/%E8%BF%B4%E8%BD%89%E5%A3%BD%E5%8F%B8"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-03-31",
+            "place_metadata": null,
+            "snippet": "### 7 男爵壽司\n十條車站 / 回轉壽司, 壽司, 海鮮\n...\n### 8 美食迴轉壽司 鮪魚問屋 三浦三崎港 惠 澀谷Hikarie店\n澀谷車站 / 回轉壽司\n...\n### 10 沼津港 新宿本店\n新宿三丁目車站 / 回轉壽司, 海鮮, 壽司\n...\n### 11 大江戶 池袋東口店\n...\n### 12 Sushiro BIGBOX高田馬場店\n高田馬場車站 / 回轉壽司, 大眾餐廳\n...\n### 13 壽司 銚子丸 南小岩店\n小岩車站 / 壽司, 回轉壽司\n...\n### 15 Sushiro 府中Kururu店\n府中車站 / 回轉壽司\n...\n### 17 元祖壽司 中野Sun...",
+            "source": "web",
+            "title": "推薦適合在東京回轉壽司",
+            "url": "https://tabelog.com/tw/tokyo/rstLst/RC010202/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 71,
+          "outputTokens": 290,
+          "totalTokens": 361
+        },
+        "latencyMs": 3422,
+        "attempts": 1
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "桃園壽司或迴轉壽司推薦與比較：哪些品牌較常被提及？請說明理由並附來源。",
+        "answer": "在桃園，較常被提及的**壽司**（握壽司/無菜單）品牌包括**老賊壽司**、**樂壽司**（美式壽司捲吃到飽）、**菊川屋**、**上井生魚片**與**本壽司**；而**迴轉壽司**方面，則以日系三大品牌**藏壽司**（Kappa）、**壽司郎**（Sushiro）與台灣本土的**爭鮮**最常出現，此外還有桃園在地特色的**爭先食蔬**（全台唯一蔬食迴轉壽司）。\n\n### 一、高 CP 值與在地人氣握壽司品牌\n\n| 品牌 | 特色與推薦理由 | 來源 |\n|------|----------------|------|\n| **老賊壽司** | 提供30多種平價壽司，醋飯溫熱、蒸蛋滑嫩，CP值極高，受上班族與小資族喜愛 | [1] |\n| **樂壽司** | 以「美式壽司捲吃到飽」聞名，是桃園部落客最推薦的日式壽司之一，適合喜歡卷壽司的食客 | [2] |\n| **菊川屋**",
+        "citations": [
+          "https://tw.trip.com/blog/taoyuan-restaurants/",
+          "https://sushiking.pixnet.net/blog/posts/16051759100",
+          "https://today.line.me/tw/v2/article/Ya9g7op",
+          "https://www.saydigi.com/2017/08/taoyuanjf.html",
+          "https://uidon.com/article/about-sushi",
+          "https://www.myfeel-tw.com/media/conveyor-belt-sushi",
+          "https://www.youtube.com/watch?v=wB252TZnJps"
+        ],
+        "searchResults": [
+          {
+            "date": "2022-10-04",
+            "last_updated": "2026-07-18",
+            "place_metadata": null,
+            "snippet": "- 【桃園CP值高的餐廳推薦】 - #1 詠順小吃\n- #2 老賊壽司\n- #3 林記水煎包\n- #4 忠貞誠米干\n- #5 六福包子\n- #6 好滋味麵館\n...\n|**老賊壽司**|桃園區|日式壽司|80–80–200|趕時間上班族、小資族|30多種平價壽司，溫熱醋飯，蒸蛋滑嫩CP值高|",
+            "source": "web",
+            "title": "桃園高級餐廳、中壢餐廳推薦、CP值高餐廳一次看- 美食 - Trip.com",
+            "url": "https://tw.trip.com/blog/taoyuan-restaurants/"
+          },
+          {
+            "date": "2021-11-15",
+            "last_updated": "2026-05-30",
+            "place_metadata": null,
+            "snippet": "最愛壽司的你快來看！桃園美食部落客最推薦的日式壽司都在這，不管你想吃握壽司、鐵火細卷、軍艦卷還是卷壽司，最熱門的店家包括**樂壽司美式壽司捲吃到飽**、**海賊日式料理**、**壽司王**...一次推薦給你！\n...\n**地址:** 桃園市蘆竹區南上路29號\n**電話:** 03 2223 007\n...\n**地址:** 桃園市蘆竹區大竹路428號\n**電話:** 03 3232 202\n...\n## 壽司王\n**地址:** 桃園市桃園區大興西路一段184號\n**電話:** 03 3261 133",
+            "source": "web",
+            "title": "202111更新必吃桃園壽司生魚片吃到飽，精選10間美味壽司推薦",
+            "url": "https://sushiking.pixnet.net/blog/posts/16051759100"
+          },
+          {
+            "date": "2023-09-14",
+            "last_updated": "2025-03-01",
+            "place_metadata": null,
+            "snippet": "在桃園除了日本三大平價迴轉壽司紛紛插旗之外，也有許多桃園人限定壽司名店，從最便宜街邊35元一盒壽司、全台首間蔬食迴轉壽司，到坐在板前的無菜單壽司，通通都有，這次窩客島特別介紹9間桃園超人氣壽司店，週末就來去吃起來。\n## 桃園壽司推薦清單：樂魚料亭\n...\n**#老賊壽司店**\n地址：桃園市桃園區中正路328號\n電話：03-3360-935\n...\n「全台唯一蔬食迴轉壽司」就在桃園八德廣豐新天地，多達130種蔬食料理，最便宜一盤只要30元起，口味好吃具有質感的文青店，有全素、蛋奶素、五辛素、五辛蛋奶等超多種蔬食料理都讓人有新的體驗！<全文介紹>\n...\n**#爭先食蔬**\n地址：桃園市八德區介...",
+            "source": "web",
+            "title": "桃園壽司爆夯！桃園壽司控私藏「9間必吃壽司清單」只吃壽司郎、藏壽司超遜，「35元盒裝壽司、超難訂無菜單壽司」全收錄。 | WalkerLand 窩客島 | LINE TODAY",
+            "url": "https://today.line.me/tw/v2/article/Ya9g7op"
+          },
+          {
+            "date": "2017-08-04",
+            "last_updated": "2025-10-28",
+            "place_metadata": null,
+            "snippet": "【店家資訊】\n本壽司握壽司專門店\n地址:桃園市桃園區莊二街101號(路邊停車、附近也有停車場)\n電話:03-3021123(建議先預約)\n營業時間:18:00~23:00(週二至週五)、12:00~14:00、18:00~23:00(週六)、12:00~14:00、18:00~21:00(週日)、週一公休\nFB粉絲團:https://www.facebook.com/jenben.sushi/",
+            "source": "web",
+            "title": "【桃園美食】本壽司握壽司專門店‧隱身住宅區的私藏好 ...",
+            "url": "https://www.saydigi.com/2017/08/taoyuanjf.html"
+          },
+          {
+            "date": "2024-03-08",
+            "last_updated": "2026-07-12",
+            "place_metadata": null,
+            "snippet": "根據我最常品嚐的六間迴轉壽司店做出迴轉壽司排名，價格均一價方便掌握餐費，品質也較為穩定。\n...\n藏壽司是我吃過最多次的迴轉壽司店，先前因為重訓關係，藏壽司門市就在我的健身房旁邊，每次都會等重訓結束後八點到九點間去用餐，就可避開排隊人潮！但近期因為價格跟品項調整，覺得沒有以前這麼強力推薦了。",
+            "source": "web",
+            "title": "藏壽司、平祿壽司：最常吃的三家迴轉壽司推薦指數與必點口味",
+            "url": "https://uidon.com/article/about-sushi"
+          },
+          {
+            "date": "2024-10-24",
+            "last_updated": "2026-07-02",
+            "place_metadata": null,
+            "snippet": "大家平常喜歡吃哪一種日式料理呢？在日式料理當中，迴轉壽司一定會是許多人的首選吧！現在市面上有許多連鎖的迴轉壽司店，像是台灣的品牌爭鮮迴轉壽司，又或是從日本起家，到台灣來連鎖開店的藏壽司和壽司郎，更有如一条通、Hama迴轉壽司等品牌加入競爭。\n...\n藏壽司作為第一個插旗台灣的迴轉壽司品牌，在剛進台灣的時候也掀起一陣旋風，距離第一間門市進到台灣已經十年，藏壽司不僅在台灣立足腳跟，也成為許多台灣人第一直覺想到的日本壽司店！\n...\n爭鮮絕對是許多人心中對於迴轉壽司的第一個想像，主打新鮮、平價、可外帶特色的爭鮮在台灣擁有最多分店，也是你最容易可以吃到的迴轉壽司店，而且價格不貴，基本上都是30塊，近年...",
+            "source": "web",
+            "title": "【2025 最新】5 間連鎖迴轉壽司推薦介紹，藏壽司和壽司郎必吃？爭 ...",
+            "url": "https://www.myfeel-tw.com/media/conveyor-belt-sushi"
+          },
+          {
+            "date": "2025-04-25",
+            "last_updated": "2026-05-16",
+            "place_metadata": null,
+            "snippet": "{ts:1291} 我們今天的排名吶 如果是我自己啊 第一名我個人口味最喜歡的話 我會給\n{ts:1296} 藏壽司 因為我覺得它的不管是厚度啊 還是油花的比例都分配得蠻好的\n...\n{ts:1317} 比較沒有那麼公平 所以我就第一名我會給藏壽司 那如果是衡量價格的話啦\n{ts:1322} 我這一次拍完才知道 我們以為爭鮮是最便宜的 可是其實沒有\n{ts:1326} 其實最便宜的是壽司郎跟好市多 它們一公克的鮭魚只要 1.67塊\n{ts:1331} 非常的便宜 因為好市多的話 它的米粒可能冰過一陣子\n{ts:1335} 會比較黏一點點 所以我會給 壽司郎第一名\n{ts:1338} 果然是鮭魚...",
+            "source": "web",
+            "title": "全台連鎖壽司大對決！爭鮮原來不是最便宜？貴真的好嗎？【LING帶你買-試播集】",
+            "url": "https://www.youtube.com/watch?v=wB252TZnJps"
+          }
+        ],
+        "usage": {
+          "inputTokens": 63,
+          "outputTokens": 315,
+          "totalTokens": 378
+        },
+        "latencyMs": 3688,
+        "attempts": 1
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

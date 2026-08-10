@@ -79,7 +79,7 @@ for (const id of ["googlebot_access", "oai_search_access", "claude_search_access
 }
 
 const batchScript = fs.readFileSync(path.join(__dirname, "../../.agents/skills/geo-whitepaper-research/scripts/run-rules-batch.mjs"), "utf8");
-assert.doesNotMatch(batchScript, /callGeminiJson|getPerplexityAuditContext|getPerplexityGeoEvidence|providers[\/](?:gemini|perplexity)/, "rules-only batch must not import paid AI providers");
+assert.doesNotMatch(batchScript, /callDeepSeekJson|getPerplexityAuditContext|getPerplexityGeoEvidence|providers[\/](?:deepseek|perplexity)/, "rules-only batch must not import paid AI providers");
 assert.match(batchScript, /paid_ai_calls:\s*0/, "rules-only methodology must declare zero paid AI calls");
 
 console.log(JSON.stringify({ passed: true, algorithmVersion: ALGORITHM_VERSION, geoScore: resultA.score.value, siteReadiness: resultA.score.site_readiness_value, unavailableGeoScore: unavailableResult.score.value }, null, 2));

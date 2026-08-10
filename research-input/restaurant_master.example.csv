@@ -1,0 +1,5 @@
+store_id,brand_id,official_name_zh,official_name_en,aliases,official_domains,owned_urls,shared_domain_flag,branch_name,district,include_status,exclusion_reason_code,reviewed_by,reviewed_at,truth_source,dataset_version
+XY-001,BR-DTF,鼎泰豐,Din Tai Fung,鼎泰豊,dintaifung.com.tw,https://www.facebook.com/dintaifung.tw,false,101店,信義區,included,,eason,2026-07-19,official_site,sample_v0.1
+XY-002,BR-SUSHIRO,台灣壽司郎,Sushiro,壽司郎|スシロー|寿司郎,sushiro.com.tw,https://www.facebook.com/sushirotaiwan,false,信義店,信義區,included,,eason,2026-07-19,official_site,sample_v0.1
+XY-003,BR-XINYE,欣葉台菜,Shin Yeh,欣葉,shinyeh.com.tw,,true,信義A9店,信義區,included,,eason,2026-07-19,official_site,sample_v0.1
+XY-004,BR-CLOSED,已歇業示範店,Closed Example,,closed-example.tw,,false,,信義區,excluded,closed_business,eason,2026-07-19,field_check,sample_v0.1

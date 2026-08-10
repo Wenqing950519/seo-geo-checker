@@ -1,0 +1,20 @@
+{
+  "provider": "Brave Web Search API",
+  "query_mode": "booking-social",
+  "base_url": "https://api.search.brave.com/res/v1",
+  "started_at": "2026-07-18T10:52:24.193Z",
+  "completed_at": "2026-07-18T10:53:47.971Z",
+  "candidate_count": 53,
+  "planned_calls_this_run": 53,
+  "hard_cap_this_run": 53,
+  "recorded_attempts_total": 53,
+  "latest_candidate_records": 53,
+  "successful_calls_total": 53,
+  "failed_calls_total": 0,
+  "tokens_available": false,
+  "input_tokens": null,
+  "output_tokens": null,
+  "total_tokens": null,
+  "mean_latency_ms": 774,
+  "evidence_boundary": "Search results are source leads only and require direct-page verification before entering the evidence ledger."
+}

@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-07-16T09:39:50.042Z",
+  "total_sites": 2,
+  "measured_sites": 2,
+  "failed_or_unknown_sites": 0,
+  "gemini_profile_successes": 0,
+  "geo_score": {
+    "mean": 53,
+    "median": 53,
+    "min": 41,
+    "max": 65
+  },
+  "site_readiness_score": {
+    "mean": 75,
+    "median": 75,
+    "min": 63,
+    "max": 87
+  },
+  "perplexity_score": {
+    "mean": 20.5,
+    "median": 20.5,
+    "min": 0,
+    "max": 41
+  },
+  "mean_mention_rate": 0,
+  "mean_official_citation_rate": 25,
+  "entity_grounded_rate": 50,
+  "by_industry": {},
+  "dataset_sha256": "83d50e17a6962342d5e1baf7c44ea3e97fb40bda0c4ff2ba7703b8304010cd6c"
+}

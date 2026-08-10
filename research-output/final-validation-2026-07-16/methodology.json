@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-07-16T08:04:25.090Z",
+  "mode": "rules_only",
+  "input_file": "research-input\\final-validation-sites.txt",
+  "algorithm_version": "2.2.1-rules",
+  "scoring_engine_version": "2.2.1",
+  "site_count": 3,
+  "result_count": 3,
+  "concurrency": 2,
+  "delay_ms": 300,
+  "representative_pages": 1,
+  "paid_ai_calls": 0,
+  "dataset_sha256": "ff5f490fc56119654f7c29fd0af20eba15393addb03042e5e728bc37e404757e"
+}

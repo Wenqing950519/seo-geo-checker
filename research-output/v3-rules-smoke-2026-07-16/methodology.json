@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-07-16T09:09:50.729Z",
+  "mode": "rules_only",
+  "input_file": "research-input\\final-validation-sites.txt",
+  "algorithm_version": "3.0.0-rules",
+  "scoring_engine_version": "3.0.0",
+  "site_count": 1,
+  "result_count": 1,
+  "concurrency": 1,
+  "delay_ms": 0,
+  "representative_pages": 3,
+  "paid_ai_calls": 0,
+  "overall_geo_available": false,
+  "dataset_sha256": "3a6c2a7d4ed8f8d6183ed0dc8007bff66d5c322a7911942831ccbc18b9a96d6f"
+}
