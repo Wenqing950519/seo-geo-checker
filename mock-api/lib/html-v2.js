@@ -1,6 +1,7 @@
 const { fetchHomepageWithBrowser } = require("./browser-fetch-v2");
 const { assessCrawlQuality, chooseBetterResult, shouldRenderWithBrowser } = require("./crawl-quality");
 const { AppError } = require("./errors");
+const { fetchHomepageWithGoogleTranslate } = require("./google-translate-fetch");
 
 function stripHtml(html) {
   return String(html || "")
@@ -99,8 +100,10 @@ function clean(value) {
 async function fetchHomepage(url) {
   let httpResult = null;
   let browserResult = null;
+  let translateResult = null;
   let httpError = null;
   let browserError = null;
+  let translateError = null;
 
   try {
     httpResult = decorateResult(await fetchHomepageWithHttp(url), url);
@@ -121,8 +124,21 @@ async function fetchHomepage(url) {
     }
   }
 
-  const chosen = chooseBetterResult(httpResult, browserResult);
-  if (!chosen) throw browserError || httpError || new AppError("Unable to fetch homepage", { stage: "fetch_homepage", retryable: true });
+  let chosen = chooseBetterResult(httpResult, browserResult);
+  if (shouldUseGoogleTranslateFallback(chosen)) {
+    try {
+      const rawTranslate = await fetchHomepageWithGoogleTranslate(url);
+      translateResult = decorateResult({
+        ...processHtml(rawTranslate.html, rawTranslate.fetchMethod),
+        ...rawTranslate
+      }, url);
+      chosen = chooseBetterResult(chosen, translateResult);
+    } catch (error) {
+      translateError = error;
+    }
+  }
+
+  if (!chosen) throw translateError || browserError || httpError || new AppError("Unable to fetch homepage", { stage: "fetch_homepage", retryable: true });
 
   const crawlQuality = assessCrawlQuality(chosen);
   if (!crawlQuality.scorable) {
@@ -134,6 +150,11 @@ async function fetchHomepage(url) {
         crawlQuality,
         httpError: httpError?.message,
         browserError: browserError?.message,
+        browserErrorStage: browserError?.stage,
+        browserErrorDetails: browserError?.details,
+        translateError: translateError?.message,
+        translateErrorStage: translateError?.stage,
+        translateErrorDetails: translateError?.details,
         fetchMethod: chosen.fetchMethod
       }
     });
@@ -151,9 +172,15 @@ async function fetchHomepage(url) {
     crawlDiagnostics: {
       http: httpResult ? assessCrawlQuality(httpResult) : { status: "failed", error: httpError?.message || "unknown" },
       browser: browserResult ? assessCrawlQuality(browserResult) : renderNeeded ? { status: "failed", error: browserError?.message || "unavailable" } : { status: "not_needed" },
+      googleTranslate: translateResult ? assessCrawlQuality(translateResult) : { status: "not_used", error: translateError?.message || "" },
       selectedMethod: chosen.fetchMethod
     }
   };
+}
+
+function shouldUseGoogleTranslateFallback(result) {
+  if (process.env.DISABLE_GOOGLE_TRANSLATE_FETCH === "true") return false;
+  return !result || !assessCrawlQuality(result).scorable;
 }
 
 async function fetchHomepageWithHttp(url) {

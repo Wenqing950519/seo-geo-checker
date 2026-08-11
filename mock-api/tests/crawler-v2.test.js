@@ -1,7 +1,8 @@
 const assert = require("node:assert/strict");
 const { assessCrawlQuality, chooseBetterResult, shouldRenderWithBrowser } = require("../lib/crawl-quality");
 const { extractInternalLinks } = require("../lib/html-v2");
-const { looksLikeBotChallenge } = require("../lib/browser-fetch-v2");
+const { looksLikeBotChallenge, waitForBotChallengeToClear } = require("../lib/browser-fetch-v2");
+const { buildGoogleTranslateUrl, fetchHomepageWithGoogleTranslate } = require("../lib/google-translate-fetch");
 const { chooseRepresentativeUrls } = require("../lib/technical-signals");
 const { collectScoringSignals } = require("../lib/scoring-v2");
 
@@ -57,4 +58,47 @@ assert.equal(restaurantSignals.geoSignals.cases, false, "menu pages alone are no
 assert.equal(restaurantSignals.geoSignals.comparisons, false, "store pages alone are not comparison evidence");
 assert.equal(restaurantSignals.geoSignals.proof, false, "about pages alone are not authority evidence");
 
-console.log("crawler v2 tests passed");
+(async () => {
+  const challengePage = fakePage([
+    { html: "<html>Checking your browser</html>", title: "Just a moment", bodyTextLength: 20 },
+    { html: "<html>Checking your browser</html>", title: "Just a moment", bodyTextLength: 20 },
+    { html: "<html><body>正常網站內容</body></html>", title: "正常網站", bodyTextLength: 1500 }
+  ]);
+  const settled = await waitForBotChallengeToClear(challengePage, { maxAttempts: 3, intervalMs: 10 });
+  assert.equal(settled.title, "正常網站");
+  assert.equal(settled.challengeWaitMs, 20);
+  assert.equal(challengePage.waits, 2);
+
+  assert.equal(buildGoogleTranslateUrl("https://buna.com.tw/menu?store=1"), "https://buna-com-tw.translate.goog/menu?store=1&_x_tr_sl=auto&_x_tr_tl=zh-TW&_x_tr_hl=zh-TW");
+  const translated = await fetchHomepageWithGoogleTranslate("https://buna.com.tw/", {
+    requestImpl: async (url) => {
+      assert.match(url, /^https:\/\/buna-com-tw\.translate\.goog\//);
+      return {
+        ok: true,
+        status: 200,
+        headers: { get: (name) => name === "content-type" ? "text/html; charset=utf-8" : "" },
+        text: "<html><head><title>BUNA CAF'E 布納咖啡館</title></head><body>布納咖啡館首頁內容</body></html>"
+      };
+    }
+  });
+  assert.equal(translated.fetchMethod, "google-translate");
+  assert.match(translated.html, /布納咖啡館/);
+  console.log("crawler v2 tests passed");
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+
+function fakePage(states) {
+  let index = 0;
+  return {
+    waits: 0,
+    async content() { return states[index].html; },
+    async title() { return states[index].title; },
+    locator() { return { innerText: async () => "x".repeat(states[index].bodyTextLength) }; },
+    async waitForTimeout() {
+      this.waits += 1;
+      index = Math.min(index + 1, states.length - 1);
+    }
+  };
+}
