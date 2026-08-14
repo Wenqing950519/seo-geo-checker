@@ -6,6 +6,7 @@ process.env.PERPLEXITY_API_KEY = "test-key";
 process.env.PERPLEXITY_MODEL = "sonar";
 process.env.PERPLEXITY_BASE_URL = "https://api.perplexity.ai";
 process.env.PERPLEXITY_ENDPOINT = "/chat/completions";
+process.env.PERPLEXITY_MIN_INTERVAL_MS = "0";
 
 const ledger = path.resolve(__dirname, "..", "usage-events.jsonl");
 const backup = fs.existsSync(ledger) ? fs.readFileSync(ledger) : null;
@@ -38,8 +39,37 @@ const { getPerplexityGeoEvidence, searchPerplexity } = require("../providers/per
   assert.equal(calls, 1, "non-retryable 422 must not be retried");
 
   calls = 0;
+  let activeCalls = 0;
+  let maxActiveCalls = 0;
   global.fetch = async () => {
     calls += 1;
+    activeCalls += 1;
+    maxActiveCalls = Math.max(maxActiveCalls, activeCalls);
+    await new Promise((resolve) => setTimeout(resolve, 5));
+    activeCalls -= 1;
+    return new Response(JSON.stringify({
+      model: "sonar",
+      choices: [{ message: { content: "ok" } }]
+    }), { status: 200, headers: { "content-type": "application/json" } });
+  };
+  await Promise.all([
+    searchPerplexity("parallel-a", { attempts: 1, minIntervalMs: 0, timeoutMs: 1000, operation: "test_queue_a" }),
+    searchPerplexity("parallel-b", { attempts: 1, minIntervalMs: 0, timeoutMs: 1000, operation: "test_queue_b" })
+  ]);
+  assert.equal(calls, 2);
+  assert.equal(maxActiveCalls, 1, "shared queue must serialize requests from concurrent callers");
+
+  calls = 0;
+  activeCalls = 0;
+  maxActiveCalls = 0;
+  const requestedQueries = [];
+  global.fetch = async (_url, options) => {
+    calls += 1;
+    activeCalls += 1;
+    maxActiveCalls = Math.max(maxActiveCalls, activeCalls);
+    requestedQueries.push(JSON.parse(options.body).messages[1].content);
+    await new Promise((resolve) => setTimeout(resolve, 5));
+    activeCalls -= 1;
     return new Response(JSON.stringify({
       model: "sonar",
       choices: [{ message: { content: "Example Service" } }],
@@ -59,6 +89,9 @@ const { getPerplexityGeoEvidence, searchPerplexity } = require("../providers/per
     }
   });
   assert.equal(calls, 3, "GEO evidence should use one entity query and two discovery queries");
+  assert.equal(maxActiveCalls, 1, "GEO evidence requests must be serialized to avoid Perplexity bursts");
+  assert.match(requestedQueries[0], /Verify the exact entity/);
+  assert.deepEqual(requestedQueries.slice(1), ["台北居家維修服務推薦？", "台北居家維修報價怎麼比較？"]);
   assert.equal(evidence.authority.enabled, true);
   assert.equal(evidence.discovery.length, 2);
   assert.equal(evidence.discovery.every((item) => item.enabled), true);

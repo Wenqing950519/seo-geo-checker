@@ -3,6 +3,10 @@ const { recordAiUsage } = require("../lib/usage-meter");
 
 const DEFAULT_BASE_URL = "https://api.perplexity.ai";
 const DEFAULT_MODEL = "sonar";
+const DEFAULT_MIN_INTERVAL_MS = 1500;
+
+let requestQueue = Promise.resolve();
+let lastRequestFinishedAt = 0;
 
 function getPerplexityConfig() {
   return {
@@ -32,7 +36,7 @@ async function searchPerplexity(query, options = {}) {
         temperature: 0,
         search_language_filter: ["zh", "en"],
         return_related_questions: false
-      }, options.timeoutMs || 30_000);
+      }, options.timeoutMs || 30_000, options.minIntervalMs);
       const latencyMs = Date.now() - started;
       const usage = normalizeUsage(response.usage);
       recordAiUsage({ provider: "perplexity", model: response.model || config.model, operation: options.operation || "web_search", status: "success", ...usage, latencyMs });
@@ -45,8 +49,8 @@ async function searchPerplexity(query, options = {}) {
       lastError = normalizePerplexityError(error);
       if (!lastError.retryable || attempt === attempts) break;
       const retryAfterMs = Number(lastError.details?.retryAfterMs) || 0;
-      const baseDelayMs = Math.max(1, Number(options.retryBaseMs || 800));
-      await new Promise((resolve) => setTimeout(resolve, retryAfterMs || Math.min(baseDelayMs * 2 ** (attempt - 1), 4000)));
+      const baseDelayMs = Math.max(1, Number(options.retryBaseMs || 1500));
+      await sleep(retryAfterMs || Math.min(baseDelayMs * 2 ** (attempt - 1), 12_000));
     }
   }
 
@@ -70,11 +74,17 @@ async function getPerplexityGeoEvidence({ siteUrl, title, description, siteType,
     queryIntents: queryPlan.queries.map((query) => query.intent || null)
   };
   const authorityQuery = "Verify the exact entity represented by website " + host + " (title: " + (title || "unknown") + "). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.";
-  const tasks = [
-    safeGeoSearch(authorityQuery, { operation: "geo_authority", maxTokens: 260 }),
-    ...plan.queries.map((query, index) => safeGeoSearch(query, { operation: "geo_discovery_" + (index + 1), maxTokens: 260 }))
-  ];
-  const [authority, ...discovery] = await Promise.all(tasks);
+  // Perplexity can rate-limit a three-request burst even when the account has
+  // credit. Keep each site's evidence collection ordered and let the shared
+  // request queue protect concurrent audits from recreating the same burst.
+  const authority = await safeGeoSearch(authorityQuery, { operation: "geo_authority", maxTokens: 260 });
+  const discovery = [];
+  for (let index = 0; index < plan.queries.length; index += 1) {
+    discovery.push(await safeGeoSearch(plan.queries[index], {
+      operation: "geo_discovery_" + (index + 1),
+      maxTokens: 260
+    }));
+  }
   if (Array.isArray(plan.queryIds)) {
     discovery.forEach((item, index) => {
       if (!item) return;
@@ -117,19 +127,47 @@ async function testPerplexityProvider() {
 function normalizeUsage(usage = {}) { return { inputTokens: Number(usage.prompt_tokens || usage.input_tokens) || 0, outputTokens: Number(usage.completion_tokens || usage.output_tokens) || 0, totalTokens: Number(usage.total_tokens) || 0 }; }
 function isPerplexityConfigured() { return Boolean(process.env.PERPLEXITY_API_KEY); }
 function requireEnv(name) { if (!process.env[name]) throw new Error(name + " is not configured"); return process.env[name]; }
-async function request(config, payload, timeoutMs) {
-  const response = await fetchWithTimeout(config.baseUrl + config.endpoint, { method: "POST", headers: { Authorization: "Bearer " + config.apiKey, "Content-Type": "application/json" }, body: JSON.stringify(payload) }, timeoutMs);
-  const raw = await response.text();
-  if (!response.ok) {
-    const retryAfterSeconds = Number(response.headers.get("retry-after"));
-    throw new AppError("Perplexity API error: HTTP " + response.status + " " + extractApiError(raw), {
-      statusCode: response.status >= 500 || response.status === 429 ? 503 : response.status,
-      stage: "perplexity_api", retryable: response.status === 408 || response.status === 429 || response.status >= 500,
-      details: { httpStatus: response.status, retryAfterMs: Number.isFinite(retryAfterSeconds) ? retryAfterSeconds * 1000 : 0 }
-    });
-  }
-  try { return JSON.parse(raw); } catch { throw new AppError("Perplexity response was not valid JSON", { statusCode: 502, stage: "perplexity_api", retryable: true }); }
+async function request(config, payload, timeoutMs, minIntervalMs) {
+  return enqueuePerplexityRequest(async () => {
+    const response = await fetchWithTimeout(config.baseUrl + config.endpoint, { method: "POST", headers: { Authorization: "Bearer " + config.apiKey, "Content-Type": "application/json" }, body: JSON.stringify(payload) }, timeoutMs);
+    const raw = await response.text();
+    if (!response.ok) {
+      const retryAfterMs = parseRetryAfterMs(response.headers.get("retry-after"));
+      throw new AppError("Perplexity API error: HTTP " + response.status + " " + extractApiError(raw), {
+        statusCode: response.status >= 500 || response.status === 429 ? 503 : response.status,
+        stage: "perplexity_api", retryable: response.status === 408 || response.status === 429 || response.status >= 500,
+        details: { httpStatus: response.status, retryAfterMs }
+      });
+    }
+    try { return JSON.parse(raw); } catch { throw new AppError("Perplexity response was not valid JSON", { statusCode: 502, stage: "perplexity_api", retryable: true }); }
+  }, minIntervalMs);
 }
+function enqueuePerplexityRequest(task, minIntervalMs) {
+  const intervalMs = boundedDelay(minIntervalMs ?? process.env.PERPLEXITY_MIN_INTERVAL_MS, DEFAULT_MIN_INTERVAL_MS);
+  const current = requestQueue.then(async () => {
+    const remainingMs = Math.max(0, lastRequestFinishedAt + intervalMs - Date.now());
+    if (remainingMs) await sleep(remainingMs);
+    try {
+      return await task();
+    } finally {
+      lastRequestFinishedAt = Date.now();
+    }
+  });
+  requestQueue = current.catch(() => undefined);
+  return current;
+}
+function parseRetryAfterMs(value) {
+  if (!value) return 0;
+  const seconds = Number(value);
+  if (Number.isFinite(seconds)) return Math.max(0, seconds * 1000);
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) ? Math.max(0, timestamp - Date.now()) : 0;
+}
+function boundedDelay(value, fallback) {
+  const number = Number(value ?? fallback);
+  return Number.isFinite(number) ? Math.max(0, Math.min(30_000, Math.floor(number))) : fallback;
+}
+function sleep(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
 function extractApiError(raw) { try { const data = JSON.parse(raw); return data.error?.message || data.message || raw; } catch { return String(raw).slice(0, 500); } }
 function normalizePerplexityError(error) {
   if (error instanceof AppError) return error;

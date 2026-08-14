@@ -27,12 +27,15 @@ DEEPSEEK_MODEL=deepseek-v4-flash
 DEEPSEEK_MODEL_RELEASE=0731
 PERPLEXITY_API_KEY=
 PERPLEXITY_MODEL=sonar
+PERPLEXITY_MIN_INTERVAL_MS=1500
 ADMIN_PATH_TOKEN=
 ADMIN_TOKEN=
 DEEPSEEK_THINKING=disabled
 ```
 
 研究代理 token 未另外設定時會使用 `ADMIN_TOKEN`。不要提交真實金鑰或密碼。
+
+Perplexity 請求會在單一服務程序中排隊執行，預設於每次請求完成後至少間隔 1.5 秒再送下一筆，避免完整 GEO audit 的 authority 與 discovery 查詢形成瞬間突發流量。若供應商方案的速率限制不同，可用 `PERPLEXITY_MIN_INTERVAL_MS` 調整；設為 `0` 只適合測試環境。
 
 ## Render 部署
 
