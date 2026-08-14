@@ -34,6 +34,12 @@ DEEPSEEK_THINKING=disabled
 
 研究代理 token 未另外設定時會使用 `ADMIN_TOKEN`。不要提交真實金鑰或密碼。
 
+## Render 部署
+
+Render 的 Build Command 維持 `npm install` 即可。根目錄 `postinstall` 會把與套件版本相符的 Chromium headless shell 安裝到 `node_modules` 內，但不在 build container 啟動瀏覽器驗證：Render 的 build 與執行容器資源條件不同，build-time launch 可能造成無法部署的誤判。實際抓取時才啟動瀏覽器；若無法啟動，報告會記錄抓取診斷並退回 HTTP 或其他既有備援。若 Chromium 無法下載或安裝，建置仍會失敗，避免在沒有瀏覽器檔案時靜默部署。
+
+只有明確不需要瀏覽器備援的部署，才設定 `DISABLE_BROWSER_FETCH=true`；此時安裝步驟會略過 Chromium。
+
 ## 主要 API
 
 - `GET /healthz`：健康檢查。

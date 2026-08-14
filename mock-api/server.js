@@ -38,7 +38,8 @@ const GA_TAG_HTML = `
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-CBTTKVLT82');
-  </script>`;
+  </script>
+  <script src="/analytics.js"></script>`;
 
 function sendJson(res, status, data) {
   const body = JSON.stringify(data, null, 2);
@@ -176,34 +177,35 @@ function sitemapXml() {
 }
 
 function llmsTxt() {
-  return `# GEOCheck — AI 搜尋能見度健檢
+  return `# GEOCheck — Perplexity AI 搜尋能見度健檢
 
-> GEOCheck(${SITE_ORIGIN})是免費的 SEO/GEO 健檢工具,輸入網址即可在約 60 秒內,
-> 透過 Brave Search、Perplexity Sonar 與 DeepSeek 分析網站在 Google 與 AI 搜尋引擎
-> (ChatGPT、Perplexity、Gemini)中的能見度,並提供三個優先修正方向。免費、無需註冊。
+> GEOCheck(${SITE_ORIGIN}) 是台灣的網站健檢與方法研究計畫。它在指定的 Perplexity Sonar
+> 查詢下，觀察品牌是否被提及、是否引用官網，並分開呈現網站的必要技術與內容訊號。
 
-## 品牌定義
+## 量測範圍
 
-- GEOCheck 是台灣的 AI 搜尋能見度健檢工具、作品與研究計畫,用來觀察品牌在
-  指定 AI 搜尋問題下的提及、官網引用與站內準備訊號。
-- 健檢包含五大模組:AI 眼中定位、技術 SEO 健檢(12 項檢查)、內容可引用性、
-  GEO 能見度實測(DeepSeek 產 5–8 題候選並選 2 題交由 Perplexity)、優先修正方向(P1–P3)。
+- Perplexity Sonar 是目前實際搜尋觀測的唯一來源；GEOCheck 不會將結果外推為
+  ChatGPT、Gemini 或其他生成式系統的可見度。
+- DeepSeek V4 Flash 只負責根據網站公開內容產生候選查詢與結構化描述；它不參與
+  GEO 分數、不改寫搜尋觀測，也不作為搜尋證據。
+- 本地確定性規則檢查網站抓取、必要技術存取與內容可引用性。這些是站內準備訊號，
+  不是 Perplexity GEO 分數的替代品。
+- 若候選查詢未通過驗證、Perplexity 無法取得足夠證據，GEO 分數會標為未知（null），
+  不會以 0 分或站內準備度取代。
+
+## 解讀限制
+
+- 每份報告都是特定時間、特定網站與指定查詢的單次快照；不保證收錄、排名、推薦或商業成效。
+- 「提及」、「官網引用」與「推薦」是不同觀測，報告不會將它們視為同一件事。
+- 現行 V3 分數屬未經校準的暫定模型，不應視為產業標準或生成式引擎的內部排序規則。
 
 ## 主要頁面
 
-- [首頁與免費健檢](${SITE_ORIGIN}/): 輸入網址開始 60 秒免費健檢
-- [健檢五大模組](${SITE_ORIGIN}/#modules): 健檢涵蓋的檢查範圍
-- [報告範例](${SITE_ORIGIN}/#report): 健檢報告的實際內容與格式
-- [研究與評分方法](${SITE_ORIGIN}/#method): 報告資料流程與解讀限制
-- [專案內容](${SITE_ORIGIN}/#project): 公開網站健檢、GEO 方法研究與交流回饋
-- [學習資源](${SITE_ORIGIN}/#resources): GEO 是什麼、AI 搜尋能見度、llms.txt、schema 說明
-
-## 常見問題
-
-- GEO(Generative Engine Optimization)是讓品牌更容易被 ChatGPT、Perplexity 等
-  生成式 AI 引用與推薦的優化方法;SEO 競爭排名,GEO 競爭「被 AI 選進答案」。
-- AI 沒提到你的品牌,通常是定位訊號不清楚、內容缺乏可引用段落或缺少權威佐證,
-  而不是運氣問題。
+- [首頁與健檢](${SITE_ORIGIN}/): 輸入網址並取得單站報告
+- [健檢模組](${SITE_ORIGIN}/#modules): 技術、內容與 Perplexity 觀測的範圍
+- [研究與方法](${SITE_ORIGIN}/#method): 資料流程、當前模型與限制
+- [專案內容](${SITE_ORIGIN}/#project): 公開研究脈絡與交流方式
+- [學習資源](${SITE_ORIGIN}/#resources): GEO、AI 搜尋能見度、llms.txt 與 schema 說明
 `;
 }
 
@@ -314,7 +316,7 @@ function reportHtml(report) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
   ${GA_TAG_HTML}
-  <title>SEO/GEO 健檢報告 - ${escapeHtml(report.url)}</title>
+  <title>GeoCheck SEO/GEO 健檢報告</title>
   <style>
     body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}
     main{max-width:960px;margin:0 auto;padding:48px 20px}
@@ -366,10 +368,11 @@ function reportHtml(report) {
     <section class="card">
       <h2>想知道這些問題該怎麼修？</h2>
       <p>這是 mock 報告。下一步可以把 mock analyzer 換成真實 crawler、SEO analyzer 與 AI positioning。</p>
-      <a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown">下載健檢報告</a>
-      <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener">預約報告解讀</a>
+      <a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown" data-track-action="download_report">下載健檢報告</a>
+      <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener" data-track-action="book_report_interpretation">預約報告解讀</a>
     </section>
   </main>
+  ${reportTrackingHtml(report.id)}
 </body>
 </html>`;
 }
@@ -405,7 +408,7 @@ function realLiteReportHtml(report) {
 
   return `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/>${GA_TAG_HTML}
-<title>GeoCheck GEO 健檢報告 - ${escapeHtml(report.url)}</title>
+<title>GeoCheck GEO 健檢報告</title>
 <style>
 body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}main{max-width:1040px;margin:0 auto;padding:48px 20px}.card{background:#fff;border:1px solid #e5edf5;border-radius:12px;padding:24px;margin:18px 0;box-shadow:0 8px 24px rgba(11,59,111,.08)}h1,h2,h3{color:#0b3b6f;line-height:1.3}.score{font-size:56px;font-weight:800;color:#00a99b}.readiness{font-size:28px;font-weight:750;color:#0b3b6f}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #e5edf5;padding:10px;vertical-align:top}.badge{display:inline-block;padding:4px 12px;border-radius:999px;background:#fff4e0;color:#9a6500;font-weight:700}.meta{color:#5a6b7e;font-size:.92rem}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{background:#f4f8fc;border-radius:10px;padding:14px}.report-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}a.button{display:inline-block;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700}a.button.secondary{background:#fff;color:#0b3b6f;border:1px solid #cdd9e5}@media(max-width:640px){main{padding:30px 14px}.card{padding:18px}.metrics{grid-template-columns:1fr}.score{font-size:48px}table{display:block;overflow-x:auto;white-space:nowrap}.report-nav a.button{width:100%;text-align:center}}
 </style></head><body><main>
@@ -423,16 +426,39 @@ ${reportTopNavHtml()}
 <section class="card"><h2>內容可引用性缺口</h2><ul>${gaps.map((gap) => `<li>${escapeHtml(gap)}</li>`).join("")}</ul></section>
 <section class="card"><h2>優先修正的 3 件事</h2><table><thead><tr><th>優先級</th><th>類型</th><th>目標</th><th>怎麼做</th></tr></thead><tbody>${actionRows}</tbody></table></section>
 <section class="card"><h2>資料限制</h2><ul>${(audit.limitations_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
-<section class="card"><a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown">下載健檢報告</a> <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener">預約報告解讀</a></section>
-</main></body></html>`;
+<section class="card"><a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown" data-track-action="download_report">下載健檢報告</a> <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener" data-track-action="book_report_interpretation">預約報告解讀</a></section>
+</main>${reportTrackingHtml(report.id)}</body></html>`;
 }
 
 function reportTopNavHtml() {
   return `
     <nav class="report-nav" aria-label="報告操作">
-      <a class="button secondary" href="/home">← 回到主頁</a>
+      <a class="button secondary" href="/home" data-track-action="run_another_analysis">← 回到主頁</a>
     </nav>
   `;
+}
+
+function reportTrackingHtml(reportId) {
+  const safeReportId = JSON.stringify(String(reportId || "").slice(0, 120));
+  return `<script>
+    (function(){
+      const analysisId=${safeReportId};
+      window.GeoCheckAnalytics?.trackResultViewed(analysisId,{
+        journey_stage:'result',
+      });
+      document.querySelectorAll('[data-track-action]').forEach(function(element){
+        element.addEventListener('click',function(){
+          window.GeoCheckAnalytics?.track('recommendation_clicked',{
+            analysis_id:analysisId,
+            action_type:element.dataset.trackAction,
+            journey_stage:'next_step',
+            analysis_stage:'result_viewed',
+            analysis_status:'completed'
+          });
+        });
+      });
+    })();
+  </script>`;
 }
 
 function escapeHtml(value) {
@@ -604,6 +630,12 @@ async function handleRequest(req, res) {
 
   if (req.method === "GET" && url.pathname === "/llms.txt") {
     return sendText(res, 200, llmsTxt(), "text/plain; charset=utf-8");
+  }
+
+  if (req.method === "GET" && url.pathname === "/analytics.js") {
+    const analyticsPath = path.resolve(__dirname, "public", "analytics.js");
+    if (!fs.existsSync(analyticsPath)) return sendText(res, 404, "Not found");
+    return sendText(res, 200, fs.readFileSync(analyticsPath, "utf8"), "application/javascript; charset=utf-8");
   }
 
   // 正典 URL 統一為 /:根路徑直接以 200 回傳首頁(canonical/og:url/schema 均指向 /)

@@ -32,7 +32,7 @@ function createAuditCache(options = {}) {
   }
 
   function set(siteUrl, report) {
-    if (ttlMs <= 0) return report;
+    if (ttlMs <= 0 || !isCacheableAuditReport(report)) return report;
     const key = keyFor(siteUrl);
     const storedAt = now();
     entries.set(key, { report: structuredClone(report), storedAt });
@@ -54,4 +54,8 @@ function createAuditCache(options = {}) {
   return { get, set, state, keyFor };
 }
 
-module.exports = { createAuditCache };
+function isCacheableAuditReport(report) {
+  return report?.model !== "fetch-limited" && report?.homepage?.fetchBlocked !== true;
+}
+
+module.exports = { createAuditCache, isCacheableAuditReport };

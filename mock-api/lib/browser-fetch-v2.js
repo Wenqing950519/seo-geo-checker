@@ -1,5 +1,8 @@
 const path = require("path");
 const { AppError } = require("./errors");
+const { configureBrowserRuntime } = require("./browser-runtime");
+
+configureBrowserRuntime();
 
 async function fetchHomepageWithBrowser(url, previousError) {
   const playwright = loadPlaywright();
@@ -36,15 +39,14 @@ async function fetchHomepageWithBrowser(url, previousError) {
     ]);
     await page.waitForTimeout(750);
 
-    const html = await page.content();
-    const title = await page.title().catch(() => "");
-    const bodyTextLength = await page.locator("body").innerText().then((text) => text.trim().length).catch(() => 0);
+    const settledPage = await waitForBotChallengeToClear(page);
+    const { html, title, bodyTextLength, challengeWaitMs } = settledPage;
     if (looksLikeBotChallenge(html, title, bodyTextLength)) {
       throw new AppError("網站回傳了防機器人驗證頁，無法取得實際內容", {
         statusCode: 403,
         stage: "browser_challenge",
         retryable: false,
-        details: { title, bodyTextLength, previousError: previousError?.message }
+        details: { title, bodyTextLength, challengeWaitMs, previousError: previousError?.message }
       });
     }
     if (!html || html.length < 100) throw browserError("瀏覽器渲染後仍沒有取得有效 HTML", previousError, true);
@@ -58,7 +60,7 @@ async function fetchHomepageWithBrowser(url, previousError) {
         contentType: (await response?.allHeaders().catch(() => ({})))?.["content-type"] || "text/html",
         xRobotsTag: (await response?.allHeaders().catch(() => ({})))?.["x-robots-tag"] || ""
       },
-      browserDiagnostics: { title, bodyTextLength, previousError: previousError?.message || "", navigationError: navigationError?.message || "" }
+      browserDiagnostics: { title, bodyTextLength, challengeWaitMs, previousError: previousError?.message || "", navigationError: navigationError?.message || "" }
     };
   } catch (error) {
     if (error instanceof AppError) throw error;
@@ -87,6 +89,33 @@ function looksLikeBotChallenge(html, title, bodyTextLength) {
     .some((needle) => source.includes(needle));
 }
 
+async function waitForBotChallengeToClear(page, options = {}) {
+  const maxAttempts = Number.isInteger(options.maxAttempts) ? Math.max(0, options.maxAttempts) : 6;
+  const intervalMs = Number.isFinite(options.intervalMs) ? Math.max(0, options.intervalMs) : 2_000;
+  let snapshot = await readPageSnapshot(page);
+
+  for (let attempt = 0; attempt < maxAttempts && looksLikeBotChallenge(snapshot.html, snapshot.title, snapshot.bodyTextLength); attempt += 1) {
+    await page.waitForTimeout(intervalMs);
+    snapshot = await readPageSnapshot(page);
+    snapshot.challengeWaitMs = (attempt + 1) * intervalMs;
+  }
+  return snapshot;
+}
+
+async function readPageSnapshot(page) {
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      const html = await page.content();
+      const title = await page.title().catch(() => "");
+      const bodyTextLength = await page.locator("body").innerText().then((text) => text.trim().length).catch(() => 0);
+      return { html, title, bodyTextLength, challengeWaitMs: 0 };
+    } catch (error) {
+      if (attempt === 2) throw error;
+      await page.waitForTimeout(250);
+    }
+  }
+}
+
 function browserError(message, previousError, retryable) {
   return new AppError(message, {
     statusCode: previousError?.statusCode || 502,
@@ -96,4 +125,4 @@ function browserError(message, previousError, retryable) {
   });
 }
 
-module.exports = { fetchHomepageWithBrowser, looksLikeBotChallenge };
+module.exports = { fetchHomepageWithBrowser, looksLikeBotChallenge, waitForBotChallengeToClear };

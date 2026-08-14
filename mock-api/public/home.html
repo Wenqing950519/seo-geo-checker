@@ -11,6 +11,7 @@
   gtag('js', new Date());
   gtag('config', 'G-CBTTKVLT82');
 </script>
+<script src="/analytics.js"></script>
 <title>AI 搜尋能見度健檢 — 你現在的網站，AI 看得見嗎？</title>
 <meta name="description" content="免費 SEO/GEO 健檢工具。輸入網址，透過 Perplexity Sonar 與 DeepSeek 檢查你的網站搜尋能見度，一鍵教會你如何提升你的網站被 AI 看見的機率。">
 <meta name="robots" content="index, follow">
@@ -369,7 +370,7 @@ footer a:hover{color:var(--teal)}
       <li><a href="#report" data-spy>報告範例</a></li>
       <li><a href="#project" data-spy>專案內容</a></li>
       <li><a href="#resources" data-spy>學習資源</a></li>
-      <li><a class="btn btn-nav" href="#top" id="nav-cta">免費健檢</a></li>
+      <li><a class="btn btn-nav" href="#top" id="nav-cta" data-track-cta="nav_start_audit">免費健檢</a></li>
     </ul>
   </div>
 </nav>
@@ -390,7 +391,7 @@ footer a:hover{color:var(--teal)}
     <p class="lead fade-item d2">免費 SEO/GEO 健檢 — 60 秒檢查你的網站在 AI 引擎中的搜尋能見度，一鍵教會你如何提升你的網站被 AI 看見的機率。</p>
     <form id="audit-form" class="url-box fade-item d3">
       <input type="url" placeholder="https://your-website.com" required aria-label="網站網址">
-      <button class="btn" type="submit">開始健檢</button>
+      <button class="btn" type="submit" data-track-cta="hero_start_audit">開始健檢</button>
     </form>
     <div id="audit-progress" class="audit-progress fade-item d4" hidden>
       <div class="audit-progress-head"><span id="audit-progress-stage">準備開始檢查</span><strong id="audit-progress-percent">0%</strong></div>
@@ -509,7 +510,7 @@ footer a:hover{color:var(--teal)}
             <tr><td class="p3">P3</td><td>Content</td><td>服務頁</td><td>增加決策型 FAQ&#65292;回答高意圖搜尋問題</td></tr>
           </tbody>
         </table>
-        <div class="center" style="margin-top:24px"><a class="btn" href="#top">看看你的網站會拿幾分</a></div>
+        <div class="center" style="margin-top:24px"><a class="btn" href="#top" data-track-cta="report_preview_start_audit">看看你的網站會拿幾分</a></div>
       </div>
     </div>
   </div>
@@ -575,7 +576,7 @@ footer a:hover{color:var(--teal)}
           <li>產出優先檢查方向</li>
         </ul>
         <div class="who">用途&#65306;理解目前工具如何量測與呈現</div>
-        <div class="center" style="margin-top:20px"><a class="btn" href="#top">開始健檢</a></div>
+        <div class="center" style="margin-top:20px"><a class="btn" href="#top" data-track-cta="project_start_audit">開始健檢</a></div>
       </div>
       <div class="card reveal delay-2">
         <div class="icon">📚</div>
@@ -715,6 +716,21 @@ footer a:hover{color:var(--teal)}
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
 
+window.GeoCheckAnalytics?.trackOnce('landing_view','landing_view',{
+  journey_stage:'landing',
+  analysis_status:'not_started'
+});
+
+document.querySelectorAll('[data-track-cta]').forEach(element=>{
+  element.addEventListener('click',()=>{
+    window.GeoCheckAnalytics?.track('cta_click',{
+      cta_id:element.dataset.trackCta,
+      journey_stage:'cta_clicked',
+      analysis_status:'not_started'
+    });
+  });
+});
+
 // nav CTA: scroll to hero and focus input
 document.getElementById('nav-cta')?.addEventListener('click',e=>{
   e.preventDefault();
@@ -828,6 +844,10 @@ document.getElementById('audit-form')?.addEventListener('submit',async(e)=>{
   const progressStage=document.getElementById('audit-progress-stage');
   const progressPercent=document.getElementById('audit-progress-percent');
   const originalText=button.textContent;
+  window.GeoCheckAnalytics?.track('url_submitted',{
+    journey_stage:'url_submitted',
+    analysis_status:'pending'
+  });
   const loadingMessages=[
     '正在讀取網站公開資訊...',
     '正在分析 AI 眼中定位...',
@@ -922,16 +942,32 @@ document.getElementById('audit-form')?.addEventListener('submit',async(e)=>{
   try{
     button.disabled=true;
     button.textContent='健檢中...';
+    const analysisSequence=window.GeoCheckAnalytics?.trackAnalysisStarted({
+      journey_stage:'analysis',
+      submission_source:'website_home'
+    });
     startProgress();
     startLoadingMessages();
 
     const report=await runAuditUntilSuccess();
+    window.GeoCheckAnalytics?.track('analysis_completed',{
+      analysis_id:report.id,
+      analysis_sequence:analysisSequence,
+      analysis_stage:'analysis_completed',
+      analysis_status:'completed',
+      cache_hit:Boolean(report.cache?.hit)
+    });
     stopLoadingMessages();
     finishProgress('success');
     status.textContent='報告已完成，正在開啟報告頁...';
     await new Promise(resolve=>setTimeout(resolve,450));
     window.location.href=`${API_BASE}/report/${report.id}`;
   }catch(err){
+    window.GeoCheckAnalytics?.track('analysis_failed',{
+      analysis_stage:err.stage||'analysis_failed',
+      analysis_status:'failed',
+      error_code:err.code||String(err.status||'unknown')
+    });
     stopLoadingMessages();
     finishProgress('error');
     status.textContent=`健檢無法繼續：${err.message}。請確認輸入的網址正確，或稍後再試。`;
@@ -959,6 +995,11 @@ document.getElementById('lead-form')?.addEventListener('submit',async(e)=>{
       interest:document.getElementById('f-interest').value,
       source:'website_home',
       consent:document.getElementById('f-consent').checked
+    });
+    window.GeoCheckAnalytics?.track('lead_submitted',{
+      journey_stage:'lead_submitted',
+      analysis_status:'completed',
+      interest:document.getElementById('f-interest').value
     });
     status.textContent='已收到資料&#65281;謝謝你分享使用情境；如果需要進一步了解，我們會透過 Email 聯絡。';
     form.reset();
