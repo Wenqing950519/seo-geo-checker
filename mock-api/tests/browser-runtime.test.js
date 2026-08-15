@@ -23,7 +23,10 @@ try {
   configureBrowserRuntime({ env: explicitEnv, projectRoot: temporaryRoot });
   assert.equal(explicitEnv.PLAYWRIGHT_BROWSERS_PATH, "D:\\shared-playwright");
 
-  assert.equal(packageJson.scripts.postinstall, "node mock-api/scripts/install-browser-runtime.js");
+  assert.equal(
+    packageJson.scripts.postinstall,
+    "node mock-api/scripts/install-browser-runtime.js && node mock-api/scripts/install-scrapling-runtime.js"
+  );
   assert.match(installScript, /install", "chromium", "--only-shell"/);
   assert.doesNotMatch(installScript, /chromium\.launch/);
   console.log("browser runtime tests passed");

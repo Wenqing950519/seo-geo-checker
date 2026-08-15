@@ -1,0 +1,4 @@
+# Python runtime used by the GeoCheck Scrapling fallback.  Browser binaries are
+# supplied by the existing Node Playwright installation rather than downloaded
+# a second time by Scrapling.
+scrapling[fetchers]>=0.4.14,<0.5

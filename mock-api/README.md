@@ -39,7 +39,9 @@ Perplexity 請求會在單一服務程序中排隊執行，預設於每次請求
 
 ## Render 部署
 
-Render 的 Build Command 維持 `npm install` 即可。根目錄 `postinstall` 會把與套件版本相符的 Chromium headless shell 安裝到 `node_modules` 內，但不在 build container 啟動瀏覽器驗證：Render 的 build 與執行容器資源條件不同，build-time launch 可能造成無法部署的誤判。實際抓取時才啟動瀏覽器；若無法啟動，報告會記錄抓取診斷並退回 HTTP 或其他既有備援。若 Chromium 無法下載或安裝，建置仍會失敗，避免在沒有瀏覽器檔案時靜默部署。
+Render 的 Build Command 維持 `npm install` 即可。根目錄 `postinstall` 會安裝兩個可重現 runtime：Node Playwright Chromium 與 `.scrapling-runtime/` 的 Python Scrapling。Scrapling 不另下載瀏覽器，而是重用 Playwright Chromium；Node 主服務仍由 `npm run mock-api` 啟動，不得改成 Python HTTP server。實際抓取時才啟動瀏覽器；若任一 runtime 無法安裝，建置會失敗，避免在沒有備援能力時靜默部署。
+
+首頁擷取鏈為：原生 HTTP → Playwright → Scrapling dynamic → Scrapling stealth → Google Translate。每一級都以同一份 crawl-quality 規則比較，報告會保留各級診斷與最終 `fetchMethod`；因此 Scrapling 改善抓取能力，不會改變 GEO 計分或把缺失證據視為零。Scrapling 0.4.14 的靜態 fetcher 在目前 Python 3.13 / curl_cffi 組合會將有效 session 誤判為不存在，故不放進正式鏈。Scrapling 不使用 proxy、帳密、CDP、付費牆／登入繞過或 CAPTCHA solver，且僅應處理公開、授權且 robots.txt／服務條款允許的頁面。
 
 只有明確不需要瀏覽器備援的部署，才設定 `DISABLE_BROWSER_FETCH=true`；此時安裝步驟會略過 Chromium。
 

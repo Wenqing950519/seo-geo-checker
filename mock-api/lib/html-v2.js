@@ -2,6 +2,7 @@ const { fetchHomepageWithBrowser } = require("./browser-fetch-v2");
 const { assessCrawlQuality, chooseBetterResult, shouldRenderWithBrowser } = require("./crawl-quality");
 const { AppError } = require("./errors");
 const { fetchHomepageWithGoogleTranslate } = require("./google-translate-fetch");
+const { fetchHomepageWithScrapling } = require("./scrapling-fetch");
 
 function stripHtml(html) {
   return String(html || "")
@@ -100,9 +101,13 @@ function clean(value) {
 async function fetchHomepage(url) {
   let httpResult = null;
   let browserResult = null;
+  let scraplingDynamicResult = null;
+  let scraplingStealthResult = null;
   let translateResult = null;
   let httpError = null;
   let browserError = null;
+  let scraplingDynamicError = null;
+  let scraplingStealthError = null;
   let translateError = null;
 
   try {
@@ -111,7 +116,8 @@ async function fetchHomepage(url) {
     httpError = error;
   }
 
-  const renderNeeded = !httpResult || shouldRenderWithBrowser(httpResult);
+  let chosen = httpResult;
+  const renderNeeded = !chosen || shouldRenderWithBrowser(chosen);
   if (renderNeeded && process.env.DISABLE_BROWSER_FETCH !== "true") {
     try {
       const rawBrowser = await fetchHomepageWithBrowser(url, httpError);
@@ -124,7 +130,33 @@ async function fetchHomepage(url) {
     }
   }
 
-  let chosen = chooseBetterResult(httpResult, browserResult);
+  chosen = chooseBetterResult(chosen, browserResult);
+  if (shouldUseScraplingFallback(chosen)) {
+    try {
+      const rawScrapling = await fetchHomepageWithScrapling(url, browserError || httpError, { mode: "dynamic" });
+      scraplingDynamicResult = decorateResult({
+        ...processHtml(rawScrapling.html, rawScrapling.fetchMethod),
+        ...rawScrapling
+      }, url);
+      chosen = chooseBetterResult(chosen, scraplingDynamicResult);
+    } catch (error) {
+      scraplingDynamicError = error;
+    }
+  }
+
+  if (shouldUseScraplingFallback(chosen)) {
+    try {
+      const rawScrapling = await fetchHomepageWithScrapling(url, scraplingDynamicError || browserError || httpError, { mode: "stealth" });
+      scraplingStealthResult = decorateResult({
+        ...processHtml(rawScrapling.html, rawScrapling.fetchMethod),
+        ...rawScrapling
+      }, url);
+      chosen = chooseBetterResult(chosen, scraplingStealthResult);
+    } catch (error) {
+      scraplingStealthError = error;
+    }
+  }
+
   if (shouldUseGoogleTranslateFallback(chosen)) {
     try {
       const rawTranslate = await fetchHomepageWithGoogleTranslate(url);
@@ -138,7 +170,7 @@ async function fetchHomepage(url) {
     }
   }
 
-  if (!chosen) throw translateError || browserError || httpError || new AppError("Unable to fetch homepage", { stage: "fetch_homepage", retryable: true });
+  if (!chosen) throw translateError || scraplingStealthError || scraplingDynamicError || browserError || httpError || new AppError("Unable to fetch homepage", { stage: "fetch_homepage", retryable: true });
 
   const crawlQuality = assessCrawlQuality(chosen);
   if (!crawlQuality.scorable) {
@@ -152,6 +184,8 @@ async function fetchHomepage(url) {
         browserError: browserError?.message,
         browserErrorStage: browserError?.stage,
         browserErrorDetails: browserError?.details,
+        scraplingDynamicError: scraplingDynamicError?.message,
+        scraplingStealthError: scraplingStealthError?.message,
         translateError: translateError?.message,
         translateErrorStage: translateError?.stage,
         translateErrorDetails: translateError?.details,
@@ -172,6 +206,8 @@ async function fetchHomepage(url) {
     crawlDiagnostics: {
       http: httpResult ? assessCrawlQuality(httpResult) : { status: "failed", error: httpError?.message || "unknown" },
       browser: browserResult ? assessCrawlQuality(browserResult) : renderNeeded ? { status: "failed", error: browserError?.message || "unavailable" } : { status: "not_needed" },
+      scraplingDynamic: scraplingDynamicResult ? assessCrawlQuality(scraplingDynamicResult) : { status: "not_used", error: scraplingDynamicError?.message || "" },
+      scraplingStealth: scraplingStealthResult ? assessCrawlQuality(scraplingStealthResult) : { status: "not_used", error: scraplingStealthError?.message || "" },
       googleTranslate: translateResult ? assessCrawlQuality(translateResult) : { status: "not_used", error: translateError?.message || "" },
       selectedMethod: chosen.fetchMethod
     }
@@ -181,6 +217,11 @@ async function fetchHomepage(url) {
 function shouldUseGoogleTranslateFallback(result) {
   if (process.env.DISABLE_GOOGLE_TRANSLATE_FETCH === "true") return false;
   return !result || !assessCrawlQuality(result).scorable;
+}
+
+function shouldUseScraplingFallback(result) {
+  if (process.env.DISABLE_SCRAPLING_FETCH === "true") return false;
+  return !result || !assessCrawlQuality(result).scorable || assessCrawlQuality(result).status === "partial";
 }
 
 async function fetchHomepageWithHttp(url) {
