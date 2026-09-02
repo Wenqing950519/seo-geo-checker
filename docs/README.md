@@ -25,7 +25,7 @@ Agent（Codex / Claude Code）在重大任務前必須讀取此處；不得只�
 | 文件 | 內容 | 狀態 |
 |---|---|---|
 | [[PROJECT_CHARTER]] | 產品定義、目標使用者、研究問題、商業模式 | ⚠️ **多處 TODO 待你填寫** |
-| [[CURRENT_STATE]] | 營運現況、服務狀態、實測分數 | ✅ 2026-07-16 |
+| [[CURRENT_STATE]] | 營運現況、服務狀態、實測分數 | ✅ 2026-09-02 |
 | [[RESEARCH_STANDARD]] | 研究最高規範（Mandatory v1.0.0） | ✅ 完整 |
 | [[DECISION_LOG]] | 正式決策的唯一憑據 | ⚠️ D-001～003 待確認 |
 | [[LEARNING_LOG]] | 你理解了什麼、還沒理解什麼 | 🔄 持續 |
@@ -41,7 +41,8 @@ Agent（Codex / Claude Code）在重大任務前必須讀取此處；不得只�
 
 這些不在 docs/ 內（保留原位以免破壞既有引用）：
 
-- `ALGORITHM_V3.md` — 現行演算法規格 3.0.0
+- `AI_TRUST_INDEX_V1.md` — 產品現行演算法規格 1.0.0
+- `ALGORITHM_V3.md` — 歷史演算法規格 3.0.0（追溯用）
 - `ALGORITHM_V2.md` — 前版規格（追溯用）
 - `GEOCheck_Technical_Whitepaper_V3_2026-07-16.docx` — 技術白皮書
 - `business_docs/` — BRD / MRD / PRD

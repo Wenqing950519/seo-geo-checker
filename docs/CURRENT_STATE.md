@@ -19,8 +19,8 @@ tags:
 - `[repo 已完成、未部署驗證]` AI Trust Index v1.0.0 已取代產品／報告的主分數：可見答案採用率 65%、已驗證第一方官方 URL 來源證據 35%。GEO Core 保留兩層、query-run 分母與原始證據；站內準備度與建議不進入此分數。
 - `[repo 已完成、未部署驗證]` 無有效可見回答時，AI Trust Index 為 `unknown`／`null`，不補成 0；少於兩個有效 query-run 時封頂 69。白皮書 batch、CSV、JSONL 與 methodology 已改輸出此 schema，舊 GEO V3 僅存 `legacy_geo_score` 供歷史追溯。
 
-- Algorithm V3.0.0 已切換為 GEO-first：Perplexity 搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。
-- Perplexity 無法量測時，整體 GEO 分數為未知；站內準備度不得冒充 GEO 分數。
+- `[歷史 V3]` Algorithm V3.0.0 曾採 GEO-first：Perplexity 搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。既有 V3 資料保留追溯，不併入 AI Trust Index v1 或新白皮書統計。
+- `[歷史 V3]` Perplexity 無法量測時，整體 GEO 分數為未知；站內準備度不得冒充 GEO 分數。
 - DeepSeek 不參與計分。單站報告由 DeepSeek 先辨識產業並產 5–8 題候選，再由後端選兩題交給 Perplexity；產題失敗時停止計分。
 - 網站與 Skill 共用 `mock-api/lib/geo-measurement.js`，並由同步測試阻止權重漂移。
 - 白皮書先由 DeepSeek 草擬候選題並強制人工審核凍結；使用兩題題庫時每站 Perplexity 3 次、DeepSeek 描述 1 次，並保留獨立硬上限、JSONL 續跑與資料集雜湊。

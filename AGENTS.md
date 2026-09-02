@@ -144,5 +144,5 @@ Agent 的成功標準不是完成最多工作，而是同時提高：
 | 主程式 | `mock-api/`（非 `src/`） |
 | 測試 | `mock-api/tests/`（`npm.cmd test`） |
 | 研究 skill | `.agents/skills/geo-whitepaper-research/` |
-| 演算法規格 | `ALGORITHM_V3.md`（現行 3.0.0）、`ALGORITHM_V2.md` |
+| 演算法規格 | `docs/AI_TRUST_INDEX_V1.md`（產品現行 v1.0.0）；`ALGORITHM_V3.md`、`ALGORITHM_V2.md` 僅供歷史追溯 |
 | 研究標準正本 | `docs/attachments/GEO_RESEARCH.md.docx` |
