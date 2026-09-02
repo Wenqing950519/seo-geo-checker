@@ -66,6 +66,8 @@ tags:
 
 ## 上線前檢查
 
+完整的 AI Trust Index v1 發布與正式環境驗收，見 `docs/DEPLOYMENT_RELEASE_CHECKLIST.md`；在該清單的 `deployment_verified` 與 `single_audit_verified` 完成前，不得將本機測試通過表述為正式站穩定。
+
 1. Render 改為設定 `DEEPSEEK_API_KEY`、`PERPLEXITY_API_KEY`、`ADMIN_PATH_TOKEN` 與 `ADMIN_TOKEN`；移除不再使用的 `GEMINI_*` 與 `GEOCHECK_RESEARCH_API_*`。
 2. 部署後測試 `POST /api/test-provider` 與 `POST /api/test-search-provider`。
 4. 執行 `npm.cmd test`；任一同步、計分或安全測試失敗都不得部署。

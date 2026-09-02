@@ -28,6 +28,7 @@ Agent（Codex / Claude Code）在重大任務前必須讀取此處；不得只�
 | [[CURRENT_STATE]] | 營運現況、服務狀態、實測分數 | ✅ 2026-09-02 |
 | [[RESEARCH_STANDARD]] | 研究最高規範（Mandatory v1.0.0） | ✅ 完整 |
 | [[DECISION_LOG]] | 正式決策的唯一憑據 | ⚠️ D-001～003 待確認 |
+| [[DEPLOYMENT_RELEASE_CHECKLIST]] | AI Trust Index v1 發布與正式站驗收 | ✅ 2026-09-02 |
 | [[LEARNING_LOG]] | 你理解了什麼、還沒理解什麼 | 🔄 持續 |
 
 ## 使用規則
