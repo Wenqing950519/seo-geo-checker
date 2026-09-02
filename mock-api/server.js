@@ -686,19 +686,11 @@ async function handleRequest(req, res) {
   }
 
   if (req.method === "POST" && url.pathname === "/api/audit") {
-    try {
-      const body = await readJson(req);
-      const siteUrl = normalizeUrl(body.url);
-      const jobId = `job_${randomUUID()}`;
-      const reportId = `report_${randomUUID()}`;
-      const createdAt = Date.now();
-      const report = createMockReport(reportId, siteUrl);
-      jobs.set(jobId, { jobId, reportId, siteUrl, createdAt });
-      reports.set(reportId, report);
-      return sendJson(res, 200, { jobId });
-    } catch (error) {
-      return sendJson(res, 400, { error: error.message || "Invalid request" });
-    }
+    return sendJson(res, 410, {
+      error: "This mock audit endpoint is retired. Use /api/audit-real-lite for an evidence-backed AI Trust Index report.",
+      code: "deprecated_endpoint",
+      replacement: "/api/audit-real-lite"
+    });
   }
 
   if (req.method === "POST" && url.pathname === "/api/test-provider") {

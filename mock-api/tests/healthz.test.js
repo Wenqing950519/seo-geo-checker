@@ -25,6 +25,15 @@ const ledger = path.resolve(__dirname, "..", "usage-events.jsonl");
     assert.match(response.headers.get("cache-control") || "", /no-store/);
     assert.equal(response.headers.get("cdn-cache-control"), "no-store");
     assert.equal(response.headers.get("surrogate-control"), "no-store");
+    const legacyAudit = await fetch(`http://127.0.0.1:${port}/api/audit`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ url: "https://example.com" })
+    });
+    const legacyAuditBody = await legacyAudit.json();
+    assert.equal(legacyAudit.status, 410);
+    assert.equal(legacyAuditBody.code, "deprecated_endpoint");
+    assert.equal(legacyAuditBody.replacement, "/api/audit-real-lite");
     const llmsResponse = await fetch(`http://127.0.0.1:${port}/llms.txt`);
     const llmsText = await llmsResponse.text();
     assert.equal(llmsResponse.status, 200);
