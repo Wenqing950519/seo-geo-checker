@@ -35,7 +35,8 @@ const raw = {
     { id: "q5", text: "台北多人聚餐的日式餐廳怎麼選？", intent: "comparison", consumer_relevance: 4, evidence_fit: 4 },
     { id: "q6", text: "台北壽司餐廳是否適合帶小孩用餐？", intent: "decision", consumer_relevance: 4, evidence_fit: 4 },
     { id: "bad_brand", text: "海港鮨的套餐值得吃嗎？", intent: "decision", consumer_relevance: 5, evidence_fit: 5 },
-    { id: "bad_footer", text: "台北網站設計服務推薦？", intent: "recommendation", consumer_relevance: 5, evidence_fit: 5 }
+    { id: "bad_footer", text: "台北網站設計服務推薦？", intent: "recommendation", consumer_relevance: 5, evidence_fit: 5 },
+    { id: "bad_meta", text: "台北壽司餐廳 SEO 工具推薦？", intent: "recommendation", consumer_relevance: 5, evidence_fit: 5 }
   ]
 };
 
@@ -44,8 +45,32 @@ assert.equal(plan.status, "ready");
 assert.ok(plan.candidates.length >= CANDIDATE_QUERY_MIN);
 assert.equal(plan.selectedQueries.length, SELECTED_QUERY_COUNT);
 assert.equal(new Set(plan.selectedQueries.map((item) => item.intent)).size, 2, "selected queries should cover distinct intents when possible");
-assert.equal(plan.candidates.some((item) => /海港鮨|網站設計/.test(item.text)), false, "brand and footer-vendor leakage must be rejected");
+assert.equal(plan.candidates.some((item) => /海港鮨|網站設計|SEO/.test(item.text)), false, "brand, footer-vendor, and unrelated service-term leakage must be rejected");
 assert.ok(plan.queryPlan.queries.every((query) => /壽司|日式|餐廳/.test(query.text)));
+
+const visibilityToolRaw = {
+  entity_name: "GeoCheck",
+  industry: "AI 搜尋能見度分析工具",
+  primary_offering: "GEO 與 SEO 的網站可見度檢測報告",
+  topic_terms: ["AI搜尋", "搜尋能見度", "GEO"],
+  geography: ["台灣"],
+  target_audience: ["中小企業行銷人員"],
+  evidence_basis: ["首頁說明 AI 搜尋能見度檢測"],
+  confidence: "high",
+  query_candidates: [
+    { id: "v1", text: "中小企業要怎麼檢查 AI 搜尋能見度？", intent: "recommendation", consumer_relevance: 5, evidence_fit: 5 },
+    { id: "v2", text: "GEO 與傳統 SEO 檢測工具差在哪裡？", intent: "comparison", consumer_relevance: 5, evidence_fit: 5 },
+    { id: "v3", text: "選擇 AI 搜尋能見度報告前要確認哪些指標？", intent: "decision", consumer_relevance: 5, evidence_fit: 5 },
+    { id: "v4", text: "SEO 團隊如何追蹤品牌在 AI 搜尋答案被採用的情況？", intent: "recommendation", consumer_relevance: 4, evidence_fit: 5 },
+    { id: "v5", text: "GEO 報告的來源證據與答案採用率怎麼比較？", intent: "comparison", consumer_relevance: 4, evidence_fit: 5 }
+  ]
+};
+const visibilityPlan = normalizeGeoQueryPlan(visibilityToolRaw, {
+  siteUrl: "https://geocheck.example/",
+  homepage: { metadata: { title: "GeoCheck｜AI 搜尋能見度", h1: "GeoCheck" } }
+});
+assert.equal(visibilityPlan.status, "ready", "service terms should be allowed only when they describe the actual business");
+assert.equal(visibilityPlan.candidates.length, CANDIDATE_QUERY_MIN);
 
 const invalid = normalizeGeoQueryPlan({ ...raw, query_candidates: raw.query_candidates.slice(0, 1) }, input);
 assert.equal(invalid.status, "invalid");

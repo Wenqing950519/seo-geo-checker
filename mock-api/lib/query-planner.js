@@ -1,6 +1,6 @@
 const { callStructuredJson } = require("../providers/structured-router");
 
-const QUERY_PLANNER_VERSION = "1.3.0";
+const QUERY_PLANNER_VERSION = "1.4.0";
 const CANDIDATE_QUERY_MIN = 5;
 const CANDIDATE_QUERY_MAX = 8;
 const SELECTED_QUERY_COUNT = 2;
@@ -28,7 +28,7 @@ function buildGeoQueryPlanPrompt({ siteUrl, homepage = {}, representativePages =
     "先根據頁面證據辨識網站實體、主要產業、核心商品或服務、服務地區與目標顧客，再設計非品牌搜尋問題。",
     "rule_based_site_type_hint 只是低信任提示；若與頁面主要內容衝突，必須以頁面證據為準。",
     "產生 5 到 8 個候選問題，模擬尚未決定品牌的台灣消費者會實際詢問 AI 的方式。",
-    "問題不得出現網站品牌、公司名、網域、指定競品、SEO、GEO、網站設計、列出來源、附上來源或要求回答者列出特定網站，除非網站本業確實是網站設計。",
+    "問題不得出現網站品牌、公司名、網域、指定競品、列出來源、附上來源或要求回答者列出特定網站。SEO、GEO、網站設計等詞只有在它們確實是網站本業時才能出現，且仍不得把問題寫成要求列出特定網站或來源。",
     "問題必須具備商業意圖，並涵蓋 recommendation、comparison、decision 至少兩種不同意圖；不得把網站頁尾製作商、技術供應商或網站模板文字誤認為本業。consumer_relevance 與 evidence_fit 使用 1–5 整數，5 代表高度符合；不要把 schema 範例值當成固定答案。",
     "不要捏造地址、價格、評價、獎項或服務。證據不足時使用台灣作為地區，並降低 confidence。",
     "同時輸出簡短定位解讀；不要提出優化建議，因為後端會用規則產生建議。",
@@ -102,9 +102,13 @@ function normalizeGeoQueryPlan(value, input = {}) {
     title: input.homepage?.metadata?.title,
     h1: input.homepage?.metadata?.h1
   });
-  const allowWebsiteDesign = /網站設計|網頁設計|web\s*design/i.test([industry, primaryOffering].join(" "));
+  const serviceDescription = [industry, primaryOffering].join(" ");
+  const allowedServiceTerms = {
+    websiteDesign: /網站設計|網頁設計|web\s*design/i.test(serviceDescription),
+    aiSearchVisibility: /\bseo\b|\bgeo\b|ai\s*搜尋|生成式搜尋|搜尋能見度|search\s*visibility/i.test(serviceDescription)
+  };
   const candidates = (Array.isArray(raw.query_candidates) ? raw.query_candidates : [])
-    .map((candidate, index) => normalizeCandidate(candidate, index, forbiddenTerms, topicTerms, allowWebsiteDesign))
+    .map((candidate, index) => normalizeCandidate(candidate, index, forbiddenTerms, topicTerms, allowedServiceTerms))
     .filter(Boolean)
     .slice(0, CANDIDATE_QUERY_MAX);
   const selectedQueries = selectRepresentativeQueries(candidates);
@@ -178,10 +182,10 @@ function normalizeReviewedQueryPlan(value) {
   };
 }
 
-function normalizeCandidate(value, index, forbiddenTerms, topicTerms, allowWebsiteDesign = false) {
+function normalizeCandidate(value, index, forbiddenTerms, topicTerms, allowedServiceTerms = {}) {
   if (!value || typeof value !== "object") return null;
   const text = cleanQuestion(value.text);
-  if (!text || containsForbiddenTerm(text, forbiddenTerms) || containsMetaSearchInstruction(text, allowWebsiteDesign)) return null;
+  if (!text || containsForbiddenTerm(text, forbiddenTerms) || containsMetaSearchInstruction(text, allowedServiceTerms)) return null;
   if (!topicTerms.some((term) => normalizeComparable(text).includes(term))) return null;
   // 模型自評只用來排序，不能作為刪題條件；可驗證的品牌、主題、意圖與重複度規則才負責放行。
   const consumerRelevance = Math.max(3, boundedRating(value.consumer_relevance));
@@ -247,9 +251,10 @@ function containsForbiddenTerm(text, forbiddenTerms) {
   return forbiddenTerms.some((term) => normalized.includes(term));
 }
 
-function containsMetaSearchInstruction(text, allowWebsiteDesign = false) {
-  if (/附上(?:可核對的)?來源|列出(?:具體)?(?:品牌|商家|網站)|\bseo\b|\bgeo\b/i.test(text)) return true;
-  return !allowWebsiteDesign && /網站設計|網頁設計/i.test(text);
+function containsMetaSearchInstruction(text, allowedServiceTerms = {}) {
+  if (/附上(?:可核對的)?來源|列出(?:具體)?(?:品牌|商家|網站)/i.test(text)) return true;
+  if (!allowedServiceTerms.aiSearchVisibility && /\bseo\b|\bgeo\b/i.test(text)) return true;
+  return !allowedServiceTerms.websiteDesign && /網站設計|網頁設計/i.test(text);
 }
 
 function cleanQuestion(value) {

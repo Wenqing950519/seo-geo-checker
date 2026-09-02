@@ -37,7 +37,7 @@ async function runRealLiteAudit(siteUrl) {
     status: "unavailable",
     provider: queryPlanning?.provider || "deepseek",
     model: queryPlanning?.model,
-    message_zh: "DeepSeek 產題未通過驗證；為避免用錯產業問題造成偏差，本次停止 Perplexity 實測並將 GEO 分數標為未知。"
+    message_zh: "DeepSeek 產題未通過驗證；為避免用錯產業問題造成偏差，本次停止 Perplexity 實測並將 AI Trust Index 標示為 unknown。"
   };
 
   return {
