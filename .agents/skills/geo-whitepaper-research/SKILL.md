@@ -13,7 +13,7 @@ Use the production GeoCheck measurement pipeline. DeepSeek may draft industry se
 - Question design follows `DeepSeek candidate generation -> human review -> frozen query-set JSON -> Perplexity batch search`.
 - Never run the whitepaper batch with dynamically generated per-site questions. Every site in the same comparison cohort must receive the same approved unbranded questions.
 - Require `review_status=approved`, `reviewed_by`, `reviewed_at`, a pinned `query_set_version`, and at least two questions.
-- Require a reviewed entity-master CSV with each site's canonical brand terms and official domains; do not derive these from the domain in a publishable cohort.
+- Require a reviewed entity-master CSV with each site's canonical brand terms and official domains; every input URL must match one reviewed, non-pending row before provider configuration or paid calls. Do not derive a publishable cohort's brand from the domain. Shared domains require an exact owned URL mapping.
 - Run one exact-entity authority query plus every approved unbranded query through Perplexity for each site.
 - Run one DeepSeek V4 Flash profile call per site for entity name, industry, business scope, geography, page purpose, structure, and observed topics.
 - Do not let DeepSeek change the AI Trust Index, search observations, citations, or deterministic rule points.

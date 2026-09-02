@@ -56,10 +56,11 @@ const querySet = normalizeQuerySet(JSON.parse(fs.readFileSync(querySetPath, "utf
 const masterPath = path.resolve(projectRoot, required(args, "master"));
 assertFile(masterPath, `Entity master file not found: ${masterPath}`);
 const master = loadEntityMaster(masterPath);
+const urls = readUrls(inputPath).slice(0, maxSites);
+assertReviewedEntityCoverage(urls, master);
 const perplexityCallsPerSite = 1 + querySet.queries.length;
 const perplexityConfig = getPerplexityConfig();
 const deepseekConfig = getDeepSeekConfig();
-const urls = readUrls(inputPath).slice(0, maxSites);
 fs.mkdirSync(outputDir, { recursive: true });
 fs.mkdirSync(path.join(outputDir, "raw"), { recursive: true });
 const jsonlPath = path.join(outputDir, "results.jsonl");
@@ -382,6 +383,39 @@ function readUrls(file) {
       return [];
     }
   });
+}
+
+function assertReviewedEntityCoverage(urls, master) {
+  const failures = [];
+  for (const url of urls) {
+    const entity = findEntityForUrl(master, url);
+    if (!entity) {
+      failures.push(`${url}: entity master has no matching official domain`);
+      continue;
+    }
+    const row = entity.row;
+    const hasCanonicalTerm = [row.official_name_zh, row.official_name_en, ...(row.aliases || [])].some(Boolean);
+    if (row.include_status === "pending") failures.push(`${url}: matched entity ${row.store_id} is still pending review`);
+    if (!hasCanonicalTerm) failures.push(`${url}: matched entity ${row.store_id} has no canonical brand term`);
+    if (!(row.official_domains || []).length) failures.push(`${url}: matched entity ${row.store_id} has no official domain`);
+    if (!row.reviewed_by || !row.reviewed_at || !row.truth_source) failures.push(`${url}: matched entity ${row.store_id} lacks review provenance`);
+    if (entity.sharedDomain && !(row.owned_urls || []).some((ownedUrl) => normalizeComparableUrl(ownedUrl) === normalizeComparableUrl(url))) {
+      failures.push(`${url}: shared official domain requires an exact owned_urls match`);
+    }
+  }
+  if (failures.length) throw new Error(`Entity master preflight failed before provider configuration or paid calls:\n- ${failures.join("\n- ")}`);
+}
+
+function normalizeComparableUrl(value) {
+  try {
+    const parsed = new URL(value);
+    parsed.hash = "";
+    parsed.search = "";
+    parsed.pathname = "/";
+    return parsed.toString();
+  } catch {
+    return "";
+  }
 }
 
 function normalizeUrl(value) {
