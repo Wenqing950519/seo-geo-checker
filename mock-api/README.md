@@ -1,16 +1,16 @@
 # GeoCheck Mock API
 
-GeoCheck 是偏向 GEO 搜尋實證的網站健檢服務。Algorithm V3 以 Perplexity 搜尋觀測作為主分數核心，搭配可引用內容與必要技術存取；DeepSeek 不參與計分。
+GeoCheck 的產品核心是 `AI Trust Index v1.0.0`：可見答案中的品牌採用率占 65%，已驗證第一方官方 URL 的來源證據占 35%。它不是 AI 模型的內部信任分數。`GEO Core` 保留答案層、來源層、原始 query-run 與 unknown；站內準備度與改善建議獨立呈現，不參與指數。
 
 ## 供應商角色
 
 | 服務 | 用途 |
 |---|---|
-| Perplexity Sonar | 只執行已通過 DeepSeek＋規則驗證或人工凍結的查詢；量測實體、品牌提及與官網引用 |
+| Perplexity Sonar | 只執行已通過 DeepSeek＋規則驗證或人工凍結的查詢；量測答案採用與已驗證官方 URL 證據 |
 | DeepSeek V4 Flash | 單站先辨識產業並產 5–8 題候選；白皮書逐站只做基本資訊與結構分類 |
-| 本地確定性規則 | 抓取、站內準備度、內容可引用性、分數上限與降級 |
+| 本地確定性規則 | 抓取、站內準備度、內容可引用性、query-run 覆蓋與分數封頂 |
 
-網站正式報告與白皮書 Skill 共用 `lib/geo-measurement.js`。單站流程若 DeepSeek 產題失敗，系統不呼叫 Perplexity 且 GEO 顯示未知；不再用固定產業模板補題。
+網站正式報告與白皮書 Skill 共用 `lib/geo-measurement.js`。單站流程若 DeepSeek 產題失敗，系統不呼叫 Perplexity 且 AI Trust Index 顯示 unknown；不再用固定產業模板補題。有效回答未採用品牌或未引用官方 URL 才是 0；拒答、失敗與無法解析輸出不進分母。
 
 ## 設定
 
@@ -49,7 +49,7 @@ Render 的 Build Command 維持 `npm install` 即可。根目錄 `postinstall` �
 
 - `GET /healthz`：健康檢查。
 - `GET /home`：網站首頁。
-- `POST /api/audit-real-lite`：正式 GEO V3 健檢。
+- `POST /api/audit-real-lite`：正式 AI Trust Index 健檢。
 - `POST /api/test-provider`：DeepSeek 連線測試。
 - `POST /api/test-search-provider`：Perplexity 連線測試。
 - `POST /api/search-context`：單次 Perplexity 搜尋脈絡。
@@ -67,7 +67,7 @@ node .agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs `
   --concurrency 2
 ```
 
-使用兩題人工凍結題庫時，每個新網站最多 3 次 Perplexity 與 1 次 DeepSeek；題庫必須先經 DeepSeek 草擬、人工審核並標記 approved。逐站 DeepSeek 只輸出研究描述 schema，不產生優化建議。若只想先排除抓取失敗，可使用 `run-rules-batch.mjs` 做零 API 預檢，但其 `geo_score` 必須為 `null`。
+使用兩題人工凍結題庫時，每個新網站最多 3 次 Perplexity 與 1 次 DeepSeek；題庫必須先經 DeepSeek 草擬、人工審核並標記 approved。逐站 DeepSeek 只輸出研究描述 schema，不產生優化建議。若只想先排除抓取失敗，可使用 `run-rules-batch.mjs` 做零 API 預檢，但其 `ai_trust_index` 必須為 `null`。
 
 ## 測試
 

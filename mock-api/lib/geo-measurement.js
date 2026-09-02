@@ -5,6 +5,7 @@ const { classifySite } = require("./site-type");
 const { getPerplexityGeoEvidence } = require("../providers/perplexity");
 const { evaluatePerplexityVisibility } = require("./perplexity-visibility");
 const { SCORING_VERSION, computeGeoAssessment } = require("./geo-assessment");
+const { AI_TRUST_INDEX_VERSION, computeAiTrustIndex } = require("./ai-trust-index");
 const { PARSER_VERSION } = require("./brand-match");
 const { resolveCitationRedirects } = require("./citation-resolve");
 const {
@@ -14,7 +15,7 @@ const {
 } = require("./query-planner");
 
 // parser 或 scoring 版本變更會改變 pipeline 版本，讓批次自動重測舊資料列。
-const GEO_PIPELINE_VERSION = `${ALGORITHM_VERSION}-query${QUERY_PLANNER_VERSION}-perplexity-p${PARSER_VERSION}-s${SCORING_VERSION}`;
+const GEO_PIPELINE_VERSION = `${ALGORITHM_VERSION}-query${QUERY_PLANNER_VERSION}-perplexity-p${PARSER_VERSION}-s${SCORING_VERSION}-trust${AI_TRUST_INDEX_VERSION}`;
 const PERPLEXITY_CALLS_PER_SITE = 3;
 
 async function measureGeoSite(siteUrl, options = {}) {
@@ -62,6 +63,7 @@ async function measureGeoSite(siteUrl, options = {}) {
     citationResolution
   });
   const geoAssessment = computeGeoAssessment(siteReadiness, perplexityObservation);
+  const aiTrustIndex = computeAiTrustIndex(perplexityObservation);
 
   return {
     algorithmVersion: ALGORITHM_VERSION,
@@ -82,7 +84,8 @@ async function measureGeoSite(siteUrl, options = {}) {
     searchEvidence,
     citationResolution,
     perplexityObservation,
-    geoAssessment
+    geoAssessment,
+    aiTrustIndex
   };
 }
 
@@ -130,14 +133,12 @@ async function safeResolveCitations(searchEvidence = {}) {
 }
 
 function conciseGeoComment(measurement) {
-  const geo = measurement?.geoAssessment;
+  const trust = measurement?.aiTrustIndex;
   const observation = measurement?.perplexityObservation;
-  const readiness = measurement?.siteReadiness;
-  if (!geo || geo.status !== "measured" || !Number.isFinite(geo.score)) {
-    return `Perplexity 搜尋證據不足；站內準備度 ${readiness?.score ?? "未知"} 分，未產生 GEO 分數。`;
+  if (!trust || trust.status !== "measured" || !Number.isFinite(trust.value)) {
+    return "AI Trust Index 為 unknown；沒有可用的可見回答 query-run，不以 0 分處理。";
   }
-  const entity = observation.authority?.entityGrounded ? "已完成實體對齊" : "外部實體證據不足";
-  return `GEO ${geo.score} 分；非品牌搜尋提及率 ${observation.mentionRate}%、官網引用率 ${observation.citationRate}%；${entity}。`;
+  return `AI Trust Index ${trust.value} 分；答案採用率 ${observation.mentionRate}%、已驗證官方 URL 引用率 ${observation.citationRate}%。`;
 }
 
 function boundedInt(value, fallback, min, max) {
@@ -147,6 +148,7 @@ function boundedInt(value, fallback, min, max) {
 
 module.exports = {
   GEO_PIPELINE_VERSION,
+  AI_TRUST_INDEX_VERSION,
   PARSER_VERSION,
   PERPLEXITY_CALLS_PER_SITE,
   QUERY_PLANNER_VERSION,

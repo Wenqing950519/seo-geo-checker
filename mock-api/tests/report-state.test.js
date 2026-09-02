@@ -20,7 +20,7 @@ const audit = { score: {}, positioning: {}, technical_seo: { issues: [] }, conte
 const unavailable = applyV2Audit(structuredClone(audit), input);
 assert.equal(unavailable.score.value, null);
 assert.ok(Number.isFinite(unavailable.score.site_readiness_value));
-assert.equal(unavailable.score.label, "GEO 證據不足");
+assert.equal(unavailable.score.label, "目前無可用證據");
 
 input.searchContext = {
   enabled: true,
@@ -31,7 +31,7 @@ input.searchContext = {
   ]
 };
 const measured = applyV2Audit(structuredClone(audit), input);
-assert.equal(measured.score.label, "Perplexity GEO 實測");
+assert.equal(measured.score.label, "高");
 assert.ok(Number.isFinite(measured.score.value));
 assert.equal(measured.score.evidence_status, "measured");
 console.log("report state tests passed");

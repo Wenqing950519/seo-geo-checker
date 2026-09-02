@@ -24,6 +24,7 @@ loadEnvFiles();
 const { assertSafePublicUrl } = require(path.join(projectRoot, "mock-api", "lib", "url-safety.js"));
 const {
   GEO_PIPELINE_VERSION,
+  AI_TRUST_INDEX_VERSION,
   PARSER_VERSION,
   PERPLEXITY_CALLS_PER_SITE,
   SCORING_VERSION,
@@ -84,7 +85,7 @@ await runPool(pending, concurrency, async (url) => {
   fs.appendFileSync(jsonlPath, `${JSON.stringify(result)}\n`, "utf8");
   rowsByUrl.set(url, result);
   completed += 1;
-  console.log(`[${completed}/${pending.length}] ${result.measurement_status} ${url} geo=${result.geo_score ?? "unknown"}`);
+  console.log(`[${completed}/${pending.length}] ${result.measurement_status} ${url} ai_trust=${result.ai_trust_index ?? "unknown"}`);
   if (delayMs) await sleep(delayMs);
 });
 
@@ -103,7 +104,10 @@ const methodology = {
   profile_version: RESEARCH_PROFILE_VERSION,
   parser_version: PARSER_VERSION,
   scoring_version: SCORING_VERSION,
-  scoring_model: "Perplexity search evidence + deterministic GeoCheck lanes",
+  scoring_model: "AI Trust Index: visible answer adoption 65% + verified first-party URL evidence 35%",
+  product_metric: "AI Trust Index",
+  research_metric: "GEO Core",
+  ai_trust_index_version: AI_TRUST_INDEX_VERSION,
   perplexity_model: perplexityConfig.model,
   deepseek_model: deepseekConfig.model,
   deepseek_model_release: deepseekConfig.modelRelease,
@@ -128,7 +132,7 @@ const methodology = {
   delay_ms: delayMs,
   representative_pages: representativePages,
   query_design: `one exact-entity authority query and ${querySet.queries.length} human-reviewed frozen unbranded discovery queries (${querySet.query_set_version}) shared by every site`,
-  claim_boundary: "Results describe this Perplexity model, fixed query set and collection window; they do not prove universal visibility across all AI systems.",
+  claim_boundary: "Results describe this Perplexity model, fixed approved query set and collection window. They measure answer adoption and verified first-party URL evidence, not an AI model's internal trust or universal visibility across AI systems.",
   api_usage_run_id: researchRunId,
   api_usage_summary_file: "api-usage-summary.json",
   api_usage_events_file: "api-usage-events.jsonl",
@@ -158,7 +162,10 @@ async function auditOne(url) {
       brand_id: entityProfile.brandId,
       master_dataset_version: entityProfile.datasetVersion,
       exclusion_reason_code: entity.row.exclusion_reason_code,
-      geo_score: null,
+      ai_trust_index: null,
+      answer_adoption_rate: null,
+      source_evidence_rate: null,
+      legacy_geo_score: null,
       site_readiness_score: null,
       perplexity_score: null,
       mention_rate: null,
@@ -195,7 +202,10 @@ async function auditOne(url) {
       domain: safeDomain(url),
       store_id: entityProfile?.storeId || null,
       brand_id: entityProfile?.brandId || null,
-      geo_score: null,
+      ai_trust_index: null,
+      answer_adoption_rate: null,
+      source_evidence_rate: null,
+      legacy_geo_score: null,
       site_readiness_score: null,
       perplexity_score: null,
       mention_rate: null,
@@ -233,7 +243,7 @@ function writeRawEvidence(measurement, measuredAt) {
 
 function researchRow(measurement, profileResult, profileError, measuredAt, { entity = null, entityProfile = null, rawRef = null } = {}) {
   const observation = measurement.perplexityObservation;
-  const geo = measurement.geoAssessment;
+  const trust = measurement.aiTrustIndex;
   const sources = collectSources(measurement.searchEvidence);
   const responseModel = measurement.searchEvidence?.authority?.model
     || measurement.searchEvidence?.discovery?.find((item) => item?.model)?.model
@@ -251,8 +261,13 @@ function researchRow(measurement, profileResult, profileError, measuredAt, { ent
     brand_terms: observation.brandTerms || [],
     brand_term_sources: observation.brandTermSources || [],
     input_unit_warning: observation.platformRootInput ? "platform_root_input" : null,
-    geo_score: geo.score,
-    geo_status: geo.status,
+    ai_trust_index: trust.value,
+    ai_trust_status: trust.status,
+    answer_adoption_rate: trust.components.answer_adoption.value,
+    source_evidence_rate: trust.components.source_evidence.value,
+    ai_trust_denominator: trust.denominator,
+    ai_trust_caps: trust.caps,
+    legacy_geo_score: measurement.geoAssessment.score,
     site_readiness_score: measurement.siteReadiness.score,
     perplexity_score: observation.score,
     mention_rate: observation.mentionRate,
@@ -273,10 +288,13 @@ function researchRow(measurement, profileResult, profileError, measuredAt, { ent
     deepseek_profile_execution: profileResult?.execution || null,
     deepseek_profile_error: profileError,
     optimization_advice_generated: false,
-    geo_lanes: geo.lanes,
-    geo_caps: geo.caps,
+    geo_core: {
+      answer_layer: trust.components.answer_adoption,
+      source_layer: trust.components.source_evidence,
+      query_run_denominator: trust.denominator
+    },
     site_readiness_breakdown: measurement.siteReadiness.breakdown,
-    measurement_status: geo.status === "measured" ? "success" : "insufficient_perplexity_evidence",
+    measurement_status: trust.status === "measured" ? "success" : "unknown",
     measured_at: measuredAt,
     response_model: responseModel,
     query_set_version: querySet?.query_set_version || null,
@@ -311,7 +329,7 @@ function compactEvidence(measurement, sources) {
 }
 
 function buildSummary(rows) {
-  const measured = rows.filter((row) => row.measurement_status === "success" && Number.isFinite(row.geo_score));
+  const measured = rows.filter((row) => row.measurement_status === "success" && Number.isFinite(row.ai_trust_index));
   const excludedByMaster = rows.filter((row) => row.measurement_status === "excluded_by_master");
   const profiles = rows.filter((row) => row.deepseek_profile_status === "success");
   return {
@@ -323,18 +341,18 @@ function buildSummary(rows) {
     refusal_or_empty_queries: rows.reduce((sum, row) => sum + (Number(row.excluded_query_count) || 0), 0),
     platform_root_input_sites: rows.filter((row) => row.input_unit_warning === "platform_root_input").length,
     deepseek_profile_successes: profiles.length,
-    geo_score: describe(measured.map((row) => row.geo_score)),
+    ai_trust_index: describe(measured.map((row) => row.ai_trust_index)),
     site_readiness_score: describe(measured.map((row) => row.site_readiness_score)),
     perplexity_score: describe(measured.map((row) => row.perplexity_score)),
-    mean_mention_rate: mean(measured.map((row) => row.mention_rate)),
-    mean_official_citation_rate: mean(measured.map((row) => row.official_citation_rate)),
+    mean_answer_adoption_rate: mean(measured.map((row) => row.answer_adoption_rate)),
+    mean_source_evidence_rate: mean(measured.map((row) => row.source_evidence_rate)),
     entity_grounded_rate: measured.length ? round(measured.filter((row) => row.entity_grounded).length / measured.length * 100, 1) : null,
     by_industry: groupCount(profiles.map((row) => row.deepseek_profile?.industry || "unknown"))
   };
 }
 
 function toCsv(rows) {
-  const columns = ["url", "domain", "site_type", "store_id", "brand_id", "term_origin", "input_unit_warning", "geo_score", "site_readiness_score", "perplexity_score", "mention_rate", "official_citation_rate", "measured_query_count", "excluded_query_count", "entity_grounded", "authority_known", "evidence_confidence", "concise_comment_zh", "deepseek_entity_name", "deepseek_industry", "deepseek_business_scope", "deepseek_profile_status", "measurement_status", "measured_at", "response_model", "query_set_version", "raw_ref", "pipeline_version", "profile_version", "parser_version", "scoring_version", "evidence_hash"];
+  const columns = ["url", "domain", "site_type", "store_id", "brand_id", "term_origin", "input_unit_warning", "ai_trust_index", "answer_adoption_rate", "source_evidence_rate", "legacy_geo_score", "site_readiness_score", "measured_query_count", "excluded_query_count", "entity_grounded", "evidence_confidence", "concise_comment_zh", "deepseek_entity_name", "deepseek_industry", "deepseek_business_scope", "deepseek_profile_status", "measurement_status", "measured_at", "response_model", "query_set_version", "raw_ref", "pipeline_version", "profile_version", "parser_version", "scoring_version", "evidence_hash"];
   const lines = [columns.join(",")];
   for (const row of rows) {
     const flat = { ...row, deepseek_entity_name: row.deepseek_profile?.entity_name, deepseek_industry: row.deepseek_profile?.industry, deepseek_business_scope: row.deepseek_profile?.business_scope };
@@ -396,7 +414,7 @@ function readJsonl(file) {
 }
 
 function stableResearchRow(row) {
-  return { url: row.url, geo_score: row.geo_score, perplexity_score: row.perplexity_score, mention_rate: row.mention_rate, official_citation_rate: row.official_citation_rate, deepseek_profile: row.deepseek_profile, measurement_status: row.measurement_status, pipeline_version: row.pipeline_version, profile_version: row.profile_version, parser_version: row.parser_version, scoring_version: row.scoring_version, evidence_hash: row.evidence_hash };
+  return { url: row.url, ai_trust_index: row.ai_trust_index, answer_adoption_rate: row.answer_adoption_rate, source_evidence_rate: row.source_evidence_rate, legacy_geo_score: row.legacy_geo_score, deepseek_profile: row.deepseek_profile, measurement_status: row.measurement_status, pipeline_version: row.pipeline_version, profile_version: row.profile_version, parser_version: row.parser_version, scoring_version: row.scoring_version, evidence_hash: row.evidence_hash };
 }
 
 function parseArgs(tokens) {

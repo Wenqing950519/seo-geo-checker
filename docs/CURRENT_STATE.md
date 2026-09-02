@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-08-10
+last_updated: 2026-09-02
 tags:
   - geocheck
   - current-state
@@ -12,9 +12,12 @@ tags:
 
 # GeoCheck 當前運作狀態
 
-更新日期：2026-08-01
+更新日期：2026-09-02
 
 ## 已完成
+
+- `[repo 已完成、未部署驗證]` AI Trust Index v1.0.0 已取代產品／報告的主分數：可見答案採用率 65%、已驗證第一方官方 URL 來源證據 35%。GEO Core 保留兩層、query-run 分母與原始證據；站內準備度與建議不進入此分數。
+- `[repo 已完成、未部署驗證]` 無有效可見回答時，AI Trust Index 為 `unknown`／`null`，不補成 0；少於兩個有效 query-run 時封頂 69。白皮書 batch、CSV、JSONL 與 methodology 已改輸出此 schema，舊 GEO V3 僅存 `legacy_geo_score` 供歷史追溯。
 
 - Algorithm V3.0.0 已切換為 GEO-first：Perplexity 搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。
 - Perplexity 無法量測時，整體 GEO 分數為未知；站內準備度不得冒充 GEO 分數。
@@ -23,6 +26,10 @@ tags:
 - 白皮書先由 DeepSeek 草擬候選題並強制人工審核凍結；使用兩題題庫時每站 Perplexity 3 次、DeepSeek 描述 1 次，並保留獨立硬上限、JSONL 續跑與資料集雜湊。
 - DeepSeek 改採官方 API 直接呼叫；單站結構化判讀的備援順序為 DeepSeek → GPT-5.6 Luna → Gemini，並記錄實際 provider。白皮書批次明確禁用備援，避免同一 cohort 靜默混用模型；部署後仍須以健康檢查驗證金鑰與連線。
 - 後台維持無公開入口的 `/<ADMIN_PATH_TOKEN>`，並以 `ADMIN_TOKEN` 驗證用量與研究代理請求。
+- GA4 使用者旅程 tracking schema v1.0 已在 repo 完成：涵蓋 landing、CTA、URL submit、分析開始／完成／失敗、報告查看、下一步、第二次分析與 lead submit；UTM 於同一 browser session 跨首頁／報告頁保留，受測網址與聯絡個資不送入自訂事件。已完成本機流程與去重測試；正式站部署後仍須以 GA4 DebugView／Realtime 驗收實際收件。
+- `[已確認 2026-08-14]` Product Activation 定義為 `result_viewed`，Business Conversion 定義為 `lead_submitted`，兩者為目前僅有的 GA4 Key Events。`second_analysis` 只代表 Repeat Intent；成功重複使用由 BigQuery／SQL 依同一匿名使用者後續新的 `analysis_completed → result_viewed` 流程判定。詳見 D-018。
+- `[已確認 2026-08-22]` 產品層核心指數命名為 `AI Trust Index`／AI 信任度；其可觀測定義是 AI 對品牌答案的採用率與引用來源證據的真實度。詳細方法以來源可驗證、品牌實體對齊、內容相關與主張支持度操作化，不代表模型內部信任。研究層暫稱 `GEO Core`，保留來源層、答案層與原始 `query-run`。
+- `[已確認 2026-08-22]` AI Trust Index／GEO Core 中，`unknown` 不等於 0；產品以特殊狀態標示目前沒有可用證據，統計上不得併入 0 的分母，也不得解讀為已證明品牌不存在。`query-run` 的重跑與分母影響須在詳細方法文件說明。
 
 ## 供應商實測
 

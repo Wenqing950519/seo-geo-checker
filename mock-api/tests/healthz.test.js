@@ -28,7 +28,7 @@ const ledger = path.resolve(__dirname, "..", "usage-events.jsonl");
     const llmsResponse = await fetch(`http://127.0.0.1:${port}/llms.txt`);
     const llmsText = await llmsResponse.text();
     assert.equal(llmsResponse.status, 200);
-    assert.match(llmsText, /Perplexity Sonar 是目前實際搜尋觀測的唯一來源/);
+    assert.match(llmsText, /AI Trust Index = 可見答案採用率 65%/);
     assert.match(llmsText, /DeepSeek V4 Flash/);
     assert.doesNotMatch(llmsText, /Brave Search/);
     assert.doesNotMatch(llmsText, /Google 與 AI 搜尋引擎/);

@@ -2,6 +2,7 @@ const { AppError } = require("./errors");
 const { ALGORITHM_VERSION, collectScoringSignals, computeScoreV2 } = require("./scoring-v2");
 const { classifySite, questionsForSite } = require("./site-type");
 const { measureGeoSite } = require("./geo-measurement");
+const { computeAiTrustIndex, AI_TRUST_INDEX_VERSION } = require("./ai-trust-index");
 
 async function runRealLiteAudit(siteUrl) {
   let measurement;
@@ -24,7 +25,7 @@ async function runRealLiteAudit(siteUrl) {
     priority_actions: [],
     limitations_zh: queryPlanning?.status === "ready"
       ? ["DeepSeek 先依網站證據產生候選搜尋題，後端通過品牌排除、意圖與重複度檢查後，才交由 Perplexity 實測。"]
-      : ["DeepSeek 未能產出有效搜尋題，因此未呼叫 Perplexity，也未顯示 GEO 分數。"]
+      : ["DeepSeek 未能產出有效搜尋題，因此未呼叫 Perplexity，AI Trust Index 顯示為 unknown。"]
   });
   const audit = applyV2Audit(auditSeed, { homepage, technical, representativePages, searchContext, measurement });
   audit.ai_validation = queryPlanning?.status === "ready" ? {
@@ -81,6 +82,7 @@ function applyV2Audit(audit, { homepage, technical, representativePages = [], se
     searchEvidence: searchContext
   });
   const geoAssessment = measurement?.geoAssessment || require("./geo-assessment").computeGeoAssessment(scored, perplexityObservation);
+  const aiTrustIndex = measurement?.aiTrustIndex || computeAiTrustIndex(perplexityObservation);
   audit.site_type = siteType;
   audit.perplexity_observation = perplexityObservation;
   audit.authority_evidence = perplexityObservation.authority;
@@ -94,28 +96,32 @@ function applyV2Audit(audit, { homepage, technical, representativePages = [], se
     : questionsForSite(siteType);
   audit.score = {
     ...audit.score,
-    value: geoAssessment.score,
-    geo_value: geoAssessment.score,
+    value: aiTrustIndex.value,
+    ai_trust_value: aiTrustIndex.value,
+    legacy_geo_value: geoAssessment.score,
     site_readiness_value: scored.score,
     technical_value: scored.score,
-    label: geoAssessment.status === "measured" ? "Perplexity GEO 實測" : "GEO 證據不足",
-    readiness_label: geoAssessment.score === null ? "Unknown" : labelForScore(geoAssessment.score),
+    label: aiTrustIndex.label,
+    readiness_label: aiTrustIndex.value === null ? "Unknown" : labelForScore(aiTrustIndex.value),
     site_readiness_label: labelForScore(scored.score),
-    summary_zh: geoAssessment.summary_zh,
-    evidence_status: geoAssessment.status,
+    summary_zh: aiTrustIndex.summary_zh,
+    evidence_status: aiTrustIndex.status,
     evidence_coverage: scored.evidenceCoverage,
+    query_run_coverage: aiTrustIndex.denominator.total_runs ? Math.round(aiTrustIndex.denominator.valid_runs / aiTrustIndex.denominator.total_runs * 100) : 0,
     evidence_confidence: perplexityObservation.confidence || "unknown",
-    algorithm_version: ALGORITHM_VERSION,
-    raw_score: geoAssessment.rawScore,
-    applied_cap: geoAssessment.caps.length ? Math.min(...geoAssessment.caps.map((item) => item.max)) : 100,
-    caps: geoAssessment.caps,
-    breakdown: geoAssessment.lanes,
+    algorithm_version: `ai-trust-${AI_TRUST_INDEX_VERSION}`,
+    raw_score: aiTrustIndex.raw_score,
+    applied_cap: aiTrustIndex.applied_cap,
+    caps: aiTrustIndex.caps,
+    breakdown: aiTrustIndex.components,
+    denominator: aiTrustIndex.denominator,
+    legacy_geo_assessment: geoAssessment,
     site_readiness_raw_score: scored.rawScore,
     site_readiness_cap: scored.cap,
     site_readiness_caps: scored.caps,
     site_readiness_breakdown: scored.breakdown,
     rules: scored.checks,
-    scoring_basis_zh: "GEO V3：DeepSeek 先產生並驗證產業搜尋題；Perplexity 實際搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。DeepSeek 不參與計分。"
+    scoring_basis_zh: "AI Trust Index v1：可見答案中的品牌採用率 65%，已驗證官方 URL 的來源證據 35%。unknown 不等於 0；DeepSeek 只協助產題，不參與計分。"
   };
   audit.priority_actions = rankDeterministicActions(buildDeterministicActions(signals));
   audit.technical_seo.issues = buildDeterministicIssues(signals);

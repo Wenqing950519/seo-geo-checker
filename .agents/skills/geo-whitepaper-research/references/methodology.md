@@ -1,4 +1,6 @@
-# GeoCheck whitepaper methodology
+# GeoCheck whitepaper methodology: GEO Core / AI Trust Index v1
+
+`GEO Core` is the research record; `AI Trust Index` is the product-facing aggregate. Neither measures an AI model's internal trust state.
 
 ## Measurement design
 
@@ -10,7 +12,9 @@ The production whitepaper mode separates question design from site measurement:
 4. GeoCheck deterministic evidence: crawl access, content citeability, and technical readiness from the shared production pipeline.
 5. DeepSeek V4 Flash profile: one bounded per-site call standardizes basic information, industry, business scope, geography, page purpose, structure, and observed topics.
 
-Algorithm V3 computes the GEO score from Perplexity observation (50%), content citeability (30%), and necessary technical access (20%). DeepSeek designs or classifies inputs but does not score and cannot override observed evidence.
+Each approved unbranded query produces one `query-run`. Only runs with a visible, answerable output enter the denominator. Refusals, unavailable provider results, and unparseable answers are `unknown`: preserve and exclude them, never convert them to zero.
+
+GEO Core keeps two layers separate: answer adoption is the share of valid visible answers that mention the aligned brand; source evidence is the share of those same runs that cite a URL verified as the brand's first-party official domain. The product displays `AI Trust Index = 0.65 × answer adoption + 0.35 × source evidence`. Direct entity/brand-name queries establish entity context and are reported separately; they do not enter this denominator. Fewer than two valid query-runs are capped at 69. A zero on a valid run is a measured zero, not `unknown`. DeepSeek designs or classifies inputs but does not score and cannot override observed evidence.
 
 ## Query governance
 
@@ -38,10 +42,10 @@ For the default two-question design, 400 sites require at most 1,200 Perplexity 
 
 | Field | Meaning |
 |---|---|
-| `geo_score` | Algorithm V3 score when Perplexity evidence is measurable; otherwise `null` |
-| `perplexity_score` | Search-observation component |
-| `mention_rate` | Share of measured unbranded queries mentioning the aligned entity |
-| `official_citation_rate` | Share of measured queries citing the official domain |
+| `ai_trust_index` | Product aggregate: 65% answer adoption plus 35% verified source evidence; otherwise `null` |
+| `answer_adoption_rate` | Share of valid visible unbranded answers mentioning the aligned entity |
+| `source_evidence_rate` | Share of the same valid answers citing a verified first-party official URL |
+| `geo_core` | Separate answer layer, source layer, and query-run denominator |
 | `entity_grounded` | Whether the authority query verified exact-entity alignment |
 | `source_urls` | Deduplicated citations and search-result URLs |
 | `site_readiness_score` | Deterministic owned-site readiness |
@@ -60,6 +64,6 @@ For the default two-question design, 400 sites require at most 1,200 Perplexity 
 
 Suggested citation:
 
-> GeoCheck Taiwan industry GEO evidence dataset, n=[measured sites], Algorithm V3 [pipeline version], Perplexity [model] with one authority query and [n] human-reviewed frozen discovery questions, DeepSeek V4 Flash descriptive profiling, collected [dates], query set [version], dataset SHA-256: [hash].
+> GeoCheck Taiwan industry GEO Core evidence dataset, n=[measured sites], AI Trust Index v1 [pipeline version], Perplexity [model] with one authority query and [n] human-reviewed frozen discovery questions, DeepSeek V4 Flash descriptive profiling, collected [dates], query set [version], dataset SHA-256: [hash].
 
 Use `run-rules-batch.mjs` only for crawl preflight. Rules-only results describe owned-site readiness, not AI visibility.

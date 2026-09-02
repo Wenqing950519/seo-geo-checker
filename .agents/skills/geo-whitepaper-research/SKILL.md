@@ -15,7 +15,7 @@ Use the production GeoCheck measurement pipeline. DeepSeek may draft industry se
 - Require `review_status=approved`, `reviewed_by`, `reviewed_at`, a pinned `query_set_version`, and at least two questions.
 - Run one exact-entity authority query plus every approved unbranded query through Perplexity for each site.
 - Run one DeepSeek V4 Flash profile call per site for entity name, industry, business scope, geography, page purpose, structure, and observed topics.
-- Do not let DeepSeek change `geo_score`, search observations, citations, or deterministic rule points.
+- Do not let DeepSeek change the AI Trust Index, search observations, citations, or deterministic rule points.
 - Do not request or output recommendations, actions, rewrites, expected impact, or optimization copy.
 - Preserve failed or unavailable evidence as `null` or `unknown`; never convert it to zero.
 - Freeze models, query design, collection period, pipeline/profile versions, failure rate, and dataset SHA-256.
@@ -52,7 +52,7 @@ node .agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs `
 
 With 400 new sites and two approved discovery questions, the exact batch maximum is 1,200 Perplexity calls and 400 DeepSeek calls. The separate drafting stage adds one DeepSeek call per cohort. State both budgets before execution. The scripts abort before the first paid call if a cap is insufficient or the query set is not approved.
 
-Use `scripts/run-rules-batch.mjs` only as an optional zero-API crawl preflight. Its `geo_score` remains `null` and it cannot support AI-visibility claims.
+Use `scripts/run-rules-batch.mjs` only as an optional zero-API crawl preflight. Its AI Trust Index remains `null` and it cannot support AI-visibility claims.
 
 ## Workflow
 
@@ -64,7 +64,7 @@ Use `scripts/run-rules-batch.mjs` only as an optional zero-API crawl preflight. 
 6. State planned sites, Perplexity calls, per-site DeepSeek calls, drafting calls, and all hard caps.
 7. Run the AI evidence batch with the approved `--query-set`. Resume from `results.jsonl` when interrupted.
 8. Separate crawl, Perplexity, and DeepSeek-profile failures in analysis.
-9. Use `geo_score`, mention rate, official citation rate, source URLs, and concise deterministic comments for quantitative findings.
+9. Use the AI Trust Index, answer-adoption rate, verified first-party URL evidence rate, source URLs, and concise deterministic comments for quantitative findings. Keep legacy GEO V3 fields out of new whitepaper conclusions.
 10. Use the DeepSeek profile only for grouping and descriptive context.
 11. Cite the dataset version, collection window, models, approved query set, sample size, failure rate, reviewer record, and SHA-256 hash.
 
@@ -72,7 +72,7 @@ Use `scripts/run-rules-batch.mjs` only as an optional zero-API crawl preflight. 
 
 - Query draft JSON: DeepSeek candidates, suggested pair, model/version, and mandatory review checklist.
 - Approved query-set JSON: human reviewer, review date, pinned version, and frozen comparison questions.
-- `results.jsonl`: resumable full evidence, query observations, source URLs, DeepSeek profile, scores, and hashes.
+- `results.jsonl`: resumable full evidence, GEO Core answer/source layers, query observations, source URLs, DeepSeek profile, and hashes.
 - `results.csv`: compact quantitative fields and concise comments for analysis.
 - `summary.json`: score distributions, mention/citation rates, entity-grounding rate, and industry counts.
 - `methodology.json`: models, versions, approved query design, call budgets, claim boundary, and dataset hash.

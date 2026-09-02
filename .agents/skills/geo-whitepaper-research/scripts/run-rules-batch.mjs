@@ -91,7 +91,7 @@ async function auditOne(url) {
       url,
       domain: new URL(url).hostname.replace(/^www\./, ""),
       site_type: signals.siteType,
-      geo_score: null,
+      ai_trust_index: null,
       site_readiness_score: scored.score,
       score_scope: "owned_site_readiness_only",
       readiness_raw_score: scored.rawScore,
@@ -114,7 +114,7 @@ async function auditOne(url) {
       url,
       domain: safeDomain(url),
       site_type: null,
-      geo_score: null,
+      ai_trust_index: null,
       site_readiness_score: null,
       score_scope: "owned_site_readiness_only",
       readiness_raw_score: null,
@@ -222,7 +222,7 @@ function describe(values) {
 }
 
 function toCsv(rows) {
-  const columns = ["url", "domain", "site_type", "geo_score", "site_readiness_score", "score_scope", "readiness_label", "evidence_coverage", "evidence_confidence", "summary_zh", "weakest_group", "top_failures", "crawl_status", "measured_at", "algorithm_version", "evidence_hash"];
+  const columns = ["url", "domain", "site_type", "ai_trust_index", "site_readiness_score", "score_scope", "readiness_label", "evidence_coverage", "evidence_confidence", "summary_zh", "weakest_group", "top_failures", "crawl_status", "measured_at", "algorithm_version", "evidence_hash"];
   const lines = [columns.join(",")];
   for (const row of rows) {
     lines.push(columns.map((column) => csvValue(column === "top_failures" ? (row[column] || []).join("|") : row[column])).join(","));
@@ -302,7 +302,7 @@ function readJsonl(file) {
 function stableResearchRow(row) {
   return {
     url: row.url,
-    geo_score: row.geo_score,
+    ai_trust_index: row.ai_trust_index,
     site_readiness_score: row.site_readiness_score,
     score_scope: row.score_scope,
     site_type: row.site_type,

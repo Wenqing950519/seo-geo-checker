@@ -177,27 +177,26 @@ function sitemapXml() {
 }
 
 function llmsTxt() {
-  return `# GEOCheck — Perplexity AI 搜尋能見度健檢
+  return `# GEOCheck — AI Trust Index
 
 > GEOCheck(${SITE_ORIGIN}) 是台灣的網站健檢與方法研究計畫。它在指定的 Perplexity Sonar
-> 查詢下，觀察品牌是否被提及、是否引用官網，並分開呈現網站的必要技術與內容訊號。
+> 查詢下，量測可見答案是否採用品牌，以及是否引用已驗證的第一方官方 URL；站內準備度另行呈現。
 
 ## 量測範圍
 
 - Perplexity Sonar 是目前實際搜尋觀測的唯一來源；GEOCheck 不會將結果外推為
   ChatGPT、Gemini 或其他生成式系統的可見度。
 - DeepSeek V4 Flash 只負責根據網站公開內容產生候選查詢與結構化描述；它不參與
-  GEO 分數、不改寫搜尋觀測，也不作為搜尋證據。
-- 本地確定性規則檢查網站抓取、必要技術存取與內容可引用性。這些是站內準備訊號，
-  不是 Perplexity GEO 分數的替代品。
-- 若候選查詢未通過驗證、Perplexity 無法取得足夠證據，GEO 分數會標為未知（null），
-  不會以 0 分或站內準備度取代。
+  AI Trust Index、不改寫搜尋觀測，也不作為搜尋證據。
+- AI Trust Index = 可見答案採用率 65% + 已驗證第一方 URL 來源證據 35%。直接品牌查詢僅用於實體對齊，不進入總分分母。
+- 本地確定性規則檢查網站抓取、必要技術存取與內容可引用性。這些是站內準備訊號，不是 AI Trust Index 的替代品。
+- 若沒有可判定的可見回答，AI Trust Index 會標為 unknown（null），不會以 0 分或站內準備度取代。
 
 ## 解讀限制
 
 - 每份報告都是特定時間、特定網站與指定查詢的單次快照；不保證收錄、排名、推薦或商業成效。
-- 「提及」、「官網引用」與「推薦」是不同觀測，報告不會將它們視為同一件事。
-- 現行 V3 分數屬未經校準的暫定模型，不應視為產業標準或生成式引擎的內部排序規則。
+- 「提及／答案採用」、「官方 URL 引用」與「推薦」是不同觀測，報告不會將它們視為同一件事。
+- 此指數不是產業標準或生成式引擎的內部排序規則，也不表示模型內部信任。
 
 ## 主要頁面
 
@@ -391,12 +390,12 @@ function realLiteReportHtml(report) {
   const scoreValue = Number.isFinite(score.value) ? score.value : "—";
   const readinessValue = Number.isFinite(score.site_readiness_value) ? score.site_readiness_value : "—";
   const scoreContext = score.evidence_status === "measured"
-    ? "此分數以 Perplexity 的實際搜尋提及與官網引用為主，不等同傳統 SEO 分數。"
-    : "Perplexity 搜尋證據不足，因此不顯示整體 GEO 分數；站內準備度仍可單獨參考。";
+    ? "AI Trust Index 量測可見答案是否採用品牌，以及是否引用已驗證的官方 URL；它不代表模型內部信任或傳統 SEO 分數。"
+    : "本次沒有可判定的可見回答，因此 AI Trust Index 為 unknown，不以 0 分處理。";
   const crawlQuality = report.homepage?.crawlQuality || {};
   const representativeSuccess = (report.representativePages || []).filter((page) => page.crawlQuality?.scorable).length;
-  const breakdownLabels = { technical_access: "必要技術存取", content_citeability: "內容可引用性", perplexity_observation: "Perplexity 搜尋實測" };
-  const breakdownRows = Object.entries(score.breakdown || {}).map(([key, value]) =>     `<tr><td>${escapeHtml(breakdownLabels[key] || key)}</td><td>${escapeHtml(value.score ?? "—")}</td><td>${escapeHtml(value.weight ?? "—")}%</td></tr>`
+  const breakdownLabels = { answer_adoption: "答案採用率", source_evidence: "來源證據率" };
+  const breakdownRows = Object.entries(score.breakdown || {}).map(([key, value]) =>     `<tr><td>${escapeHtml(breakdownLabels[key] || key)}</td><td>${escapeHtml(value.value ?? "—")}%</td><td>${escapeHtml(value.weight ?? "—")}%</td></tr>`
   ).join("");
   const matchedDomains = authority.matchedExternalDomains || [];
   const observationRows = (observation.observations || []).map((item) =>     `<tr><td>${escapeHtml(item.query || "")}</td><td>${item.brandMentioned ? "是" : "否"}</td><td>${item.firstPartyCited ? "是" : "否"}</td><td>${escapeHtml((item.sourceDomains || []).join(", ") || "—")}</td></tr>`
@@ -408,15 +407,15 @@ function realLiteReportHtml(report) {
 
   return `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/>${GA_TAG_HTML}
-<title>GeoCheck GEO 健檢報告</title>
+<title>GeoCheck AI Trust Index 報告</title>
 <style>
 body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}main{max-width:1040px;margin:0 auto;padding:48px 20px}.card{background:#fff;border:1px solid #e5edf5;border-radius:12px;padding:24px;margin:18px 0;box-shadow:0 8px 24px rgba(11,59,111,.08)}h1,h2,h3{color:#0b3b6f;line-height:1.3}.score{font-size:56px;font-weight:800;color:#00a99b}.readiness{font-size:28px;font-weight:750;color:#0b3b6f}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #e5edf5;padding:10px;vertical-align:top}.badge{display:inline-block;padding:4px 12px;border-radius:999px;background:#fff4e0;color:#9a6500;font-weight:700}.meta{color:#5a6b7e;font-size:.92rem}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{background:#f4f8fc;border-radius:10px;padding:14px}.report-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}a.button{display:inline-block;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700}a.button.secondary{background:#fff;color:#0b3b6f;border:1px solid #cdd9e5}@media(max-width:640px){main{padding:30px 14px}.card{padding:18px}.metrics{grid-template-columns:1fr}.score{font-size:48px}table{display:block;overflow-x:auto;white-space:nowrap}.report-nav a.button{width:100%;text-align:center}}
 </style></head><body><main>
 ${reportTopNavHtml()}
-<h1>GeoCheck GEO 網站健檢報告</h1><p>${escapeHtml(report.url)}</p>
+<h1>GeoCheck AI Trust Index 報告</h1><p>${escapeHtml(report.url)}</p>
 <p class="meta">Provider: ${escapeHtml(displayProvider(report.provider))} / Model: ${escapeHtml(displayModel(report.model))} / Attempts: ${escapeHtml(report.attempts || 1)} / Latency: ${escapeHtml(report.latencyMs)}ms</p>
-<section class="card"><h2>Perplexity GEO 實測分數</h2><div class="score">${escapeHtml(scoreValue)}</div><p><span class="badge">${escapeHtml(score.label || "GEO 證據不足")}</span></p><p>${scoreContext}</p><p>${escapeHtml(score.summary_zh || "")}</p><hr/><h3>站內準備度</h3><div class="readiness">${escapeHtml(readinessValue)} / 100</div><p class="meta">此數字只衡量網站可抓取與內容準備，不代表已被 AI 搜尋看見。</p></section>
-<section class="card"><h2>GEO 三層計分</h2><table><thead><tr><th>層級</th><th>分數</th><th>權重</th></tr></thead><tbody>${breakdownRows}</tbody></table></section>
+<section class="card"><h2>AI Trust Index</h2><div class="score">${escapeHtml(scoreValue)}</div><p><span class="badge">${escapeHtml(score.label || "目前無可用證據")}</span></p><p>${scoreContext}</p><p>${escapeHtml(score.summary_zh || "")}</p><p class="meta">有效 query-run：${escapeHtml(score.denominator?.valid_runs ?? 0)} / ${escapeHtml(score.denominator?.total_runs ?? 0)}；unknown 不計為 0。</p><hr/><h3>站內準備度</h3><div class="readiness">${escapeHtml(readinessValue)} / 100</div><p class="meta">站內準備度不進入 AI Trust Index；它只衡量網站可抓取與內容準備。</p></section>
+<section class="card"><h2>GEO Core：答案層與來源層</h2><table><thead><tr><th>層級</th><th>觀測值</th><th>產品權重</th></tr></thead><tbody>${breakdownRows}</tbody></table></section>
 <section class="card"><h2>搜尋問題設計</h2><p><strong>DeepSeek 判定產業：</strong>${escapeHtml(queryPlanning.industry || "未知")}；<strong>主要商品／服務：</strong>${escapeHtml(queryPlanning.primary_offering || "未知")}；<strong>信心：</strong>${escapeHtml(queryPlanning.confidence || "low")}。</p><p class="meta">先由 DeepSeek 依網站內容產生 ${escapeHtml(queryPlanning.candidate_count ?? 0)} 題候選，再由後端排除品牌詞、技術製作商、低相關與重複問題，選出代表題交給 Perplexity。DeepSeek 不參與分數。</p><table><thead><tr><th>候選非品牌問題</th><th>意圖</th><th>狀態</th></tr></thead><tbody>${candidateRows}</tbody></table></section>
 <section class="card"><h2>Perplexity 搜尋觀測</h2><div class="metrics"><div class="metric"><strong>有效查詢</strong><br/>${escapeHtml(observation.measuredQueryCount ?? 0)} / ${escapeHtml(observation.queryCount ?? 0)}</div><div class="metric"><strong>品牌提及率</strong><br/>${escapeHtml(observation.mentionRate ?? "—")}%</div><div class="metric"><strong>官網引用率</strong><br/>${escapeHtml(observation.citationRate ?? "—")}%</div></div><p><strong>實體對齊：</strong>${authority.entityGrounded ? "已找到同一品牌的外部證據" : "未找到足夠的同一實體證據"}</p><p><strong>相符外部來源：</strong>${escapeHtml(matchedDomains.join(", ") || "無")}</p><table><thead><tr><th>非品牌搜尋題</th><th>提及品牌</th><th>引用官網</th><th>來源網域</th></tr></thead><tbody>${observationRows}</tbody></table></section>
 <section class="card"><h2>資料抓取狀態</h2><p>抓取品質：${escapeHtml(crawlQuality.status || "unknown")}；方式：${escapeHtml(report.homepage?.fetchMethod || "unknown")}；覆蓋率：${escapeHtml(crawlQuality.coverage ?? 0)}%；成功代表頁：${escapeHtml(representativeSuccess)}。</p></section>
@@ -545,7 +544,7 @@ function realLiteReportMarkdown(report) {
   const observation = audit.perplexity_observation || {};
   const authority = audit.authority_evidence || {};
   const queryPlanning = audit.query_planning || {};
-  return `# GeoCheck GEO 網站健檢報告
+  return `# GeoCheck AI Trust Index 報告
 
 - URL: ${report.url}
 - Report ID: ${report.id}
@@ -554,7 +553,10 @@ function realLiteReportMarkdown(report) {
 
 ## 核心分數
 
-- Perplexity GEO 實測：${score.value ?? "未知"}
+- AI Trust Index：${score.value ?? "unknown"}
+- 答案採用率：${score.breakdown?.answer_adoption?.value ?? "unknown"}%（65%）
+- 來源證據率：${score.breakdown?.source_evidence?.value ?? "unknown"}%（35%）
+- 有效 query-run：${score.denominator?.valid_runs ?? 0} / ${score.denominator?.total_runs ?? 0}
 - 站內準備度：${score.site_readiness_value ?? "未知"}
 - 狀態：${score.evidence_status || "unknown"}
 
