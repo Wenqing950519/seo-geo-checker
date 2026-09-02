@@ -59,8 +59,9 @@ Render 的 Build Command 維持 `npm install` 即可。根目錄 `postinstall` �
 
 ```powershell
 node .agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs `
-  --input research-input/sites.csv `
-  --query-set research-input/restaurant-query-set.approved.json `
+  --input research-input/<approved-sites>.csv `
+  --master research-input/<approved-entity-master>.csv `
+  --query-set research-input/<approved-query-set>.json `
   --output-dir research-output/taiwan-sme-2026 `
   --max-perplexity-calls 1200 `
   --max-deepseek-calls 400 `

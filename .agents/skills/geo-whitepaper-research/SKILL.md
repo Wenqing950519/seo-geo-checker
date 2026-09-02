@@ -13,6 +13,7 @@ Use the production GeoCheck measurement pipeline. DeepSeek may draft industry se
 - Question design follows `DeepSeek candidate generation -> human review -> frozen query-set JSON -> Perplexity batch search`.
 - Never run the whitepaper batch with dynamically generated per-site questions. Every site in the same comparison cohort must receive the same approved unbranded questions.
 - Require `review_status=approved`, `reviewed_by`, `reviewed_at`, a pinned `query_set_version`, and at least two questions.
+- Require a reviewed entity-master CSV with each site's canonical brand terms and official domains; do not derive these from the domain in a publishable cohort.
 - Run one exact-entity authority query plus every approved unbranded query through Perplexity for each site.
 - Run one DeepSeek V4 Flash profile call per site for entity name, industry, business scope, geography, page purpose, structure, and observed topics.
 - Do not let DeepSeek change the AI Trust Index, search observations, citations, or deterministic rule points.
@@ -41,8 +42,9 @@ Run from the project root after human approval:
 
 ```powershell
 node .agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs `
-  --input research-input/sites.csv `
-  --query-set research-input/restaurant-query-set.approved.json `
+  --input research-input/<approved-sites>.csv `
+  --master research-input/<approved-entity-master>.csv `
+  --query-set research-input/<approved-query-set>.json `
   --output-dir research-output/taiwan-sme-2026 `
   --max-perplexity-calls 1200 `
   --max-deepseek-calls 400 `
@@ -60,7 +62,7 @@ Use `scripts/run-rules-batch.mjs` only as an optional zero-API crawl preflight. 
 2. Read [references/methodology.md](references/methodology.md).
 3. Use DeepSeek to draft 5-8 candidate questions from representative evidence.
 4. Human-review the candidates, freeze an approved cohort query set, and preserve both draft and approval record.
-5. Prepare a deduplicated UTF-8 TXT or CSV website list.
+5. Prepare a deduplicated UTF-8 TXT or CSV website list and a reviewed entity-master CSV for the same sites.
 6. State planned sites, Perplexity calls, per-site DeepSeek calls, drafting calls, and all hard caps.
 7. Run the AI evidence batch with the approved `--query-set`. Resume from `results.jsonl` when interrupted.
 8. Separate crawl, Perplexity, and DeepSeek-profile failures in analysis.

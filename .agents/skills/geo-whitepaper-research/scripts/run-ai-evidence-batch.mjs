@@ -52,8 +52,10 @@ assertFile(inputPath, `Input file not found: ${inputPath}`);
 const querySetPath = path.resolve(projectRoot, required(args, "query-set"));
 assertFile(querySetPath, `Query set file not found: ${querySetPath}`);
 const querySet = normalizeQuerySet(JSON.parse(fs.readFileSync(querySetPath, "utf8")));
-// --master：真值表提供品牌名稱、別名與官方網域；量測不再從網域推導品牌。
-const master = args.master ? loadEntityMaster(path.resolve(projectRoot, args.master)) : null;
+// --master：真值表提供品牌名稱、別名與官方網域；正式白皮書不得從網域推導品牌。
+const masterPath = path.resolve(projectRoot, required(args, "master"));
+assertFile(masterPath, `Entity master file not found: ${masterPath}`);
+const master = loadEntityMaster(masterPath);
 const perplexityCallsPerSite = 1 + querySet.queries.length;
 const perplexityConfig = getPerplexityConfig();
 const deepseekConfig = getDeepSeekConfig();
@@ -118,8 +120,8 @@ const methodology = {
   query_set_review_status: querySet.review_status,
   query_set_reviewed_by: querySet.reviewed_by,
   query_set_reviewed_at: querySet.reviewed_at,
-  entity_master_file: args.master || null,
-  entity_master_dataset_version: master?.datasetVersion || null,
+  entity_master_file: args.master,
+  entity_master_dataset_version: master.datasetVersion,
   raw_evidence_dir: "raw",
   planned_perplexity_calls: plannedPerplexityCalls,
   planned_deepseek_calls: plannedDeepSeekCalls,
