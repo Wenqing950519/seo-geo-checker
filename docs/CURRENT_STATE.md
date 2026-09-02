@@ -16,14 +16,14 @@ tags:
 
 ## 已完成
 
-- `[repo 已完成、未部署驗證]` AI Trust Index v1.0.0 已取代產品／報告的主分數：可見答案採用率 65%、已驗證第一方官方 URL 來源證據 35%。GEO Core 保留兩層、query-run 分母與原始證據；站內準備度與建議不進入此分數。
-- `[repo 已完成、未部署驗證]` 無有效可見回答時，AI Trust Index 為 `unknown`／`null`，不補成 0；少於兩個有效 query-run 時封頂 69。白皮書 batch、CSV、JSONL 與 methodology 已改輸出此 schema，舊 GEO V3 僅存 `legacy_geo_score` 供歷史追溯。
+- `[正式站已驗證 2026-09-02]` AI Trust Index v1.0.0 已取代產品／報告的主分數：可見答案採用率 65%、已驗證第一方官方 URL 來源證據 35%。GEO Core 保留兩層、query-run 分母與原始證據；站內準備度與建議不進入此分數。
+- `[正式站已驗證 2026-09-02]` 無有效可見回答時，AI Trust Index 為 `unknown`／`null`，不補成 0；少於兩個有效 query-run 時封頂 69。API、HTML 報告與 Markdown 已共同呈現此狀態、provider/model 與限制；舊 GEO V3 僅存 `legacy_geo_score` 供歷史追溯。
 
 - `[歷史 V3]` Algorithm V3.0.0 曾採 GEO-first：Perplexity 搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。既有 V3 資料保留追溯，不併入 AI Trust Index v1 或新白皮書統計。
 - `[歷史 V3]` Perplexity 無法量測時，整體 GEO 分數為未知；站內準備度不得冒充 GEO 分數。
-- DeepSeek 不參與計分。單站報告由 DeepSeek 先辨識產業並產 5–8 題候選，再由後端選兩題交給 Perplexity；產題失敗時停止計分。
+- DeepSeek 不參與計分。單站報告由 DeepSeek 先辨識產業並產候選題，再由後端選兩題交給 Perplexity；若首輪候選不合格會重產一次，仍不足五題時停止 Perplexity 並正確標示 `unknown`。這個保守路徑已驗證，但「自動題型備援是否可進入產品量測」尚待使用者決策。
 - 網站與 Skill 共用 `mock-api/lib/geo-measurement.js`，並由同步測試阻止權重漂移。
-- 白皮書先由 DeepSeek 草擬候選題並強制人工審核凍結；使用兩題題庫時每站 Perplexity 3 次、DeepSeek 描述 1 次，並保留獨立硬上限、JSONL 續跑與資料集雜湊。
+- 白皮書先由 DeepSeek 草擬候選題並強制人工審核凍結；使用兩題題庫時每站 Perplexity 3 次、DeepSeek 描述 1 次，並保留獨立硬上限、JSONL 續跑與資料集雜湊。正式 batch 會在任何 provider 設定或付費呼叫前，拒絕未覆蓋、pending、缺品牌／官方網域，或共用網域未明確對應 owned URL 的 entity-master 樣本。
 - DeepSeek 改採官方 API 直接呼叫；單站結構化判讀的備援順序為 DeepSeek → GPT-5.6 Luna → Gemini，並記錄實際 provider。白皮書批次明確禁用備援，避免同一 cohort 靜默混用模型；部署後仍須以健康檢查驗證金鑰與連線。
 - 後台維持無公開入口的 `/<ADMIN_PATH_TOKEN>`，並以 `ADMIN_TOKEN` 驗證用量與研究代理請求。
 - GA4 使用者旅程 tracking schema v1.0 已在 repo 完成：涵蓋 landing、CTA、URL submit、分析開始／完成／失敗、報告查看、下一步、第二次分析與 lead submit；UTM 於同一 browser session 跨首頁／報告頁保留，受測網址與聯絡個資不送入自訂事件。已完成本機流程與去重測試；正式站部署後仍須以 GA4 DebugView／Realtime 驗收實際收件。
@@ -35,8 +35,8 @@ tags:
 
 | 服務 | 狀態 | 證據 |
 |---|---|---|
-| Perplexity Sonar | 已啟用 | 2026-07-16 最終審計 6/6 呼叫成功。 |
-| DeepSeek V4 Flash | 待部署驗證 | 程式設定為 `deepseek-v4-flash`；尚未以正式 `DEEPSEEK_API_KEY` 執行 `POST /api/test-provider`。 |
+| Perplexity Sonar | 正式站已驗證 | 2026-09-02 `POST /api/test-search-provider` 回傳 HTTP 200、provider `perplexity`、model `sonar`。 |
+| DeepSeek V4 Flash | 正式站已驗證 | 2026-09-02 `POST /api/test-provider` 回傳 HTTP 200、provider `deepseek`、model `deepseek-v4-flash`。 |
 
 ## 線上部署實測（2026-08-10）
 
@@ -64,14 +64,13 @@ tags:
 
 結果符合產品目的：Hunterest 的站內結構雖較完整，但未因結構拿到高 GEO 分；壽司郎有實體與官網引用證據，因此 GEO 分較高。資料集 SHA-256：`83d50e17a6962342d5e1baf7c44ea3e97fb40bda0c4ff2ba7703b8304010cd6c`。
 
-## 上線前檢查
+## 尚未完成的交付門檻
 
-完整的 AI Trust Index v1 發布與正式環境驗收，見 `docs/DEPLOYMENT_RELEASE_CHECKLIST.md`；在該清單的 `deployment_verified` 與 `single_audit_verified` 完成前，不得將本機測試通過表述為正式站穩定。
+完整的 AI Trust Index v1 發布與正式環境驗收，見 `docs/DEPLOYMENT_RELEASE_CHECKLIST.md`。2026-09-02 已完成首頁、`/healthz`、legacy endpoint retirement、兩個 provider，以及 unknown 報告 API／HTML／Markdown 的受控驗證。
 
-1. Render 改為設定 `DEEPSEEK_API_KEY`、`PERPLEXITY_API_KEY`、`ADMIN_PATH_TOKEN` 與 `ADMIN_TOKEN`；移除不再使用的 `GEMINI_*` 與 `GEOCHECK_RESEARCH_API_*`。
-2. 部署後測試 `POST /api/test-provider` 與 `POST /api/test-search-provider`。
-4. 執行 `npm.cmd test`；任一同步、計分或安全測試失敗都不得部署。
-5. 白皮書批次執行前，先公告預計網站數與兩家供應商的硬上限。
+1. `[產品決策待確認]` 若 DeepSeek 兩輪後仍無法提供五題有效候選，產品要維持 `unknown`，或採用可見、版本化的固定題型備援。這會改變 query-run 的形成方式，不能由 Agent 自行決定。
+2. `[人工輸入待備齊]` 白皮書正式 batch 仍需要核可的 site list、凍結 query set 與覆蓋所有網址的 reviewed entity master；尚未開始任何正式付費收數。
+3. `[每次發布]` 執行 `npm.cmd test`；任一同步、計分或安全測試失敗都不得部署。
 
 ## 對外聲明
 
