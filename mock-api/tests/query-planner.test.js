@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const {
   CANDIDATE_QUERY_MIN,
   SELECTED_QUERY_COUNT,
+  buildGeoQueryPlanCorrectionPrompt,
   buildGeoQueryPlanPrompt,
   normalizeGeoQueryPlan,
   normalizeReviewedQueryPlan
@@ -94,5 +95,7 @@ const prompt = buildGeoQueryPlanPrompt(input);
 assert.match(prompt, /先根據頁面證據辨識網站實體/);
 assert.match(prompt, /不得把網站頁尾製作商/);
 assert.match(prompt, /5 到 8 個候選問題/);
+const correctionPrompt = buildGeoQueryPlanCorrectionPrompt(input, { candidates: [] });
+assert.match(correctionPrompt, /必須輸出 5 到 8 題/);
 
 console.log("query planner tests passed");

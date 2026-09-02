@@ -64,14 +64,25 @@ function buildGeoQueryPlanPrompt({ siteUrl, homepage = {}, representativePages =
 }
 
 async function buildGeoQueryPlan(input, options = {}) {
-  const result = await callStructuredJson(buildGeoQueryPlanPrompt(input), {
+  const requestOptions = {
     temperature: 0,
     attempts: options.attempts ?? 2,
     timeoutMs: options.timeoutMs ?? 35_000,
     operation: options.operation || "geo_query_planning",
     allowFallback: options.allowFallback !== false
-  });
-  const normalized = normalizeGeoQueryPlan(result.json, input);
+  };
+  let result = await callStructuredJson(buildGeoQueryPlanPrompt(input), requestOptions);
+  let normalized = normalizeGeoQueryPlan(result.json, input);
+  let semanticAttempts = 1;
+  if (normalized.status !== "ready" && options.allowSemanticRetry !== false) {
+    result = await callStructuredJson(buildGeoQueryPlanCorrectionPrompt(input, normalized), {
+      ...requestOptions,
+      attempts: 1,
+      operation: `${requestOptions.operation}_semantic_retry`
+    });
+    normalized = normalizeGeoQueryPlan(result.json, input);
+    semanticAttempts = 2;
+  }
   return {
     ...normalized,
     provider: result.provider,
@@ -80,9 +91,19 @@ async function buildGeoQueryPlan(input, options = {}) {
     usage: result.usage,
     latencyMs: result.latencyMs,
     attempts: result.attempts,
+    semanticAttempts,
     version: QUERY_PLANNER_VERSION,
     source: "deepseek_dynamic"
   };
+}
+
+function buildGeoQueryPlanCorrectionPrompt(input, failedPlan) {
+  return [
+    buildGeoQueryPlanPrompt(input),
+    "上一輪結果不能用於量測，因為它沒有通過候選題數量、非品牌或意圖多樣性檢查。請從頭重做。",
+    `上一輪通過規則的候選題只有 ${failedPlan.candidates.length} 題；這次必須輸出 5 到 8 題可通過的非品牌問題，並至少涵蓋兩種 intent。`,
+    "先自行檢查每一題：不得含品牌、網域、指定競品、列出來源或列出特定網站；每題必須包含至少一個 topic_terms 的核心詞。只有屬於網站實際本業的 SEO、GEO 或網站設計詞可出現。"
+  ].join("\n");
 }
 
 async function buildGeoQueryPlanResolved(input, options = {}) {
@@ -177,6 +198,7 @@ function normalizeReviewedQueryPlan(value) {
     usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
     latencyMs: 0,
     attempts: 0,
+    semanticAttempts: 0,
     version: QUERY_PLANNER_VERSION,
     source: "human_reviewed_frozen"
   };
@@ -321,6 +343,7 @@ module.exports = {
   QUERY_PLANNER_VERSION,
   SELECTED_QUERY_COUNT,
   buildGeoQueryPlan,
+  buildGeoQueryPlanCorrectionPrompt,
   buildGeoQueryPlanPrompt,
   buildGeoQueryPlanResolved,
   normalizeGeoQueryPlan,

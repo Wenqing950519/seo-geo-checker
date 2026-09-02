@@ -51,6 +51,7 @@ async function runRealLiteAudit(siteUrl) {
     interpretationModel: queryPlanning?.model,
     latencyMs: Number(queryPlanning?.latencyMs) || 0,
     attempts: Number(queryPlanning?.attempts) || 0,
+    semanticAttempts: Number(queryPlanning?.semanticAttempts) || 0,
     repairedJson: false,
     queryPlanning,
     homepage: {
@@ -141,6 +142,7 @@ function summarizeQueryPlanning(plan = {}) {
     status: plan.status || "unavailable",
     source: plan.source || "unknown",
     version: plan.version || null,
+    semantic_attempts: Number(plan.semanticAttempts) || 0,
     provider: plan.provider || null,
     model: plan.model || null,
     entity_name: plan.entity_name || "unknown",
