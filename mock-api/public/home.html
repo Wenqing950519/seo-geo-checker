@@ -825,13 +825,6 @@ async function postJson(path,payload,options={}){
   return data;
 }
 
-async function getJson(path){
-  const res=await fetch(`${API_BASE}${path}`);
-  const data=await res.json();
-  if(!res.ok)throw new Error(data.error||'Request failed');
-  return data;
-}
-
 document.getElementById('audit-form')?.addEventListener('submit',async(e)=>{
   e.preventDefault();
   const form=e.currentTarget;

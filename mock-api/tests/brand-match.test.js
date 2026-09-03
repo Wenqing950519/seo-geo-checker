@@ -9,7 +9,6 @@ const {
   getRegistrableDomain,
   isFirstParty,
   isPlatformRootInput,
-  matchTermsInText,
   textMatchesAnyTerm
 } = require("../lib/brand-match");
 const { evaluatePerplexityVisibility } = require("../lib/perplexity-visibility");
