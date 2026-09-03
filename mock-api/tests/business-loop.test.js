@@ -89,10 +89,10 @@ async function main() {
 
   const homePage = fs.readFileSync(path.resolve(__dirname, "../public/home.html"), "utf8");
   assert.equal(/顧問|付費|報價|NT\$|pilot_fix_pack|服務方案/.test(homePage), false);
-  assert.equal(homePage.includes("健檢結果與使用回饋"), true);
-  assert.equal(homePage.includes("GEO 量測與研究方法"), true);
+  assert.equal(homePage.includes("報告結果與使用心得"), true);
+  assert.equal(homePage.includes("這套分數是怎麼算的"), true);
   assert.equal(homePage.includes('id="method"'), true);
-  assert.equal(homePage.includes("未知不等於零分"), true);
+  assert.equal(homePage.includes("不會當成 0 分"), true);
   assert.equal(homePage.includes("目前的 50 / 30 / 20"), false);
   assert.equal(homePage.includes("暫定模型 · 未經校準"), false);
   assert.equal(homePage.includes('src="/analytics.js"'), true);

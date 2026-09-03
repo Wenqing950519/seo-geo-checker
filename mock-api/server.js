@@ -177,7 +177,7 @@ function sitemapXml() {
 }
 
 function llmsTxt() {
-  return `# GEOCheck — AI Trust Index
+  return `# GEOCheck — AI 信任值（AI Trust Index）
 
 > GEOCheck(${SITE_ORIGIN}) 是台灣的網站健檢與方法研究計畫。它在指定的 Perplexity Sonar
 > 查詢下，量測可見答案是否採用品牌，以及是否引用已驗證的第一方官方 URL；站內準備度另行呈現。
@@ -237,6 +237,55 @@ function normalizeUrl(input) {
   return parsed.toString();
 }
 
+const ISSUE_CHECK_LABELS = {
+  "Indexability": "搜尋收錄設定",
+  "Googlebot access": "Google 讀取權限",
+  "HTML title": "頁面標題",
+  "JavaScript rendering": "網頁內容呈現方式",
+  "Readable content": "首頁文字份量",
+  "OAI-SearchBot": "ChatGPT 讀取權限",
+  "Claude-SearchBot": "Claude 讀取權限",
+  "Sitemap": "網站地圖",
+  "Canonical": "主要網址設定",
+  "Meta description": "頁面摘要說明",
+  "H1": "首頁大標題",
+  "Structured data": "商家資料標記",
+  "Image alt": "圖片文字說明",
+  "Heading structure": "標題層級",
+  "Homepage fetchability": "首頁能不能被讀取"
+};
+
+const SEVERITY_LABELS = { high: "最優先", medium: "建議處理", low: "有空再做" };
+
+const ACTION_TYPE_LABELS = { technical: "網站設定", content: "網站內容", positioning: "品牌說明" };
+
+const SCORE_LABELS = {
+  "高": "AI 很常提到你",
+  "穩定": "AI 有一定機會提到你",
+  "待改善": "AI 偶爾才提到你",
+  "低": "AI 幾乎沒提到你",
+  "目前無可用證據": "這次資料不足，暫不評分",
+  "無法評估": "這次讀不到網站，無法評分"
+};
+
+const CRAWL_STATUS_LABELS = {
+  complete: "很順利，網站內容都讀得到",
+  partial: "只讀到部分內容",
+  insufficient: "幾乎讀不到內容",
+  unknown: "這次沒有取得讀取結果"
+};
+
+function friendlyLabel(map, value, fallback) {
+  const key = String(value ?? "").trim();
+  return map[key] || fallback || key || "—";
+}
+
+function formatReportTime(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "—";
+  return date.toLocaleString("zh-TW", { timeZone: "Asia/Taipei", hour12: false });
+}
+
 function reportHtml(report) {
   return realLiteReportHtml(report);
 }
@@ -245,52 +294,58 @@ function realLiteReportHtml(report) {
   const audit = report.audit || {};
   const issues = audit.technical_seo?.issues || [];
   const actions = audit.priority_actions || [];
-  const questions = audit.geo_questions || [];
   const gaps = audit.content_citeability?.gaps_zh || [];
   const score = audit.score || {};
   const observation = audit.perplexity_observation || {};
   const authority = audit.authority_evidence || {};
-  const aiValidation = audit.ai_validation || {};
-  const queryPlanning = audit.query_planning || {};
+  const measured = score.evidence_status === "measured";
   const scoreValue = Number.isFinite(score.value) ? score.value : "—";
   const readinessValue = Number.isFinite(score.site_readiness_value) ? score.site_readiness_value : "—";
-  const scoreContext = score.evidence_status === "measured"
-    ? "AI Trust Index 量測可見答案是否採用品牌，以及是否引用已驗證的官方 URL；它不代表模型內部信任或傳統 SEO 分數。"
-    : "本次沒有可判定的可見回答，因此 AI Trust Index 為 unknown，不以 0 分處理。";
+  const scoreContext = measured
+    ? "現在愈來愈多人直接問 AI「有沒有推薦的店」。AI 信任值就是在回答這類問題時，AI 有沒有講到你、有沒有把你的官網當成答案來源。分數越高，代表你在 AI 給的答案裡越常出現。"
+    : "這次沒有拿到足夠可判讀的 AI 回答，所以先不給分數。沒有分數不代表 0 分，只代表這次的資料還不足以下判斷。";
   const crawlQuality = report.homepage?.crawlQuality || {};
+  const crawlText = friendlyLabel(CRAWL_STATUS_LABELS, crawlQuality.status || "unknown", "這次沒有取得讀取結果");
   const representativeSuccess = (report.representativePages || []).filter((page) => page.crawlQuality?.scorable).length;
-  const breakdownLabels = { answer_adoption: "答案採用率", source_evidence: "來源證據率" };
-  const breakdownRows = Object.entries(score.breakdown || {}).map(([key, value]) =>     `<tr><td>${escapeHtml(breakdownLabels[key] || key)}</td><td>${escapeHtml(value.value ?? "—")}%</td><td>${escapeHtml(value.weight ?? "—")}%</td></tr>`
-  ).join("");
+  const breakdownLabels = {
+    answer_adoption: ["AI 回答裡有提到你的品牌", "代表 AI 認得你，也願意把你講出來。"],
+    source_evidence: ["AI 回答裡有引用你的官網", "代表 AI 把你的網站當成可信來源，顧客也比較有機會點進來。"]
+  };
+  const breakdownRows = Object.entries(score.breakdown || {}).map(([key, value]) => {
+    const [title, note] = breakdownLabels[key] || [key, ""];
+    const shown = Number.isFinite(value.value) ? `${value.value}%` : "資料不足";
+    return `<tr><td><strong>${escapeHtml(title)}</strong><br/><span class="meta">${escapeHtml(note)}</span></td><td>${escapeHtml(shown)}</td><td>${escapeHtml(value.weight ?? "—")}%</td></tr>`;
+  }).join("");
   const matchedDomains = authority.matchedExternalDomains || [];
-  const observationRows = (observation.observations || []).map((item) =>     `<tr><td>${escapeHtml(item.query || "")}</td><td>${item.brandMentioned ? "是" : "否"}</td><td>${item.firstPartyCited ? "是" : "否"}</td><td>${escapeHtml((item.sourceDomains || []).join(", ") || "—")}</td></tr>`
+  const observationRows = (observation.observations || []).map((item) =>
+    `<tr><td>${escapeHtml(item.query || "")}</td><td>${item.brandMentioned ? "有提到" : "沒提到"}</td><td>${item.firstPartyCited ? "有連到官網" : "沒有"}</td><td>${escapeHtml((item.sourceDomains || []).join("、") || "—")}</td></tr>`
   ).join("");
-  const issueRows = issues.map((issue) => `<tr><td>${escapeHtml(issue.severity || "")}</td><td>${escapeHtml(issue.check || "")}</td><td>${escapeHtml(issue.detail_zh || "")}</td><td>${escapeHtml(issue.impact_zh || "")}</td></tr>`).join("");
-  const actionRows = actions.map((action) => `<tr><td>${escapeHtml(action.priority || "")}</td><td>${escapeHtml(action.type || "")}</td><td>${escapeHtml(action.target_zh || "")}</td><td>${escapeHtml(action.recommendation_zh || "")}</td></tr>`).join("");
-  const selectedQueryIds = new Set((queryPlanning.selected_queries || []).map((item) => item.id));
-  const candidateRows = (queryPlanning.candidates || []).map((item) => `<tr><td>${escapeHtml(item.text || "")}</td><td>${escapeHtml(item.intent || "")}</td><td>${selectedQueryIds.has(item.id) ? "已選入實測" : "候選"}</td></tr>`).join("");
+  const issueRows = issues.map((issue) =>
+    `<tr><td>${escapeHtml(friendlyLabel(SEVERITY_LABELS, issue.severity, "建議處理"))}</td><td>${escapeHtml(friendlyLabel(ISSUE_CHECK_LABELS, issue.check, issue.check))}</td><td>${escapeHtml(issue.detail_zh || "")}</td><td>${escapeHtml(issue.impact_zh || "")}</td></tr>`
+  ).join("");
+  const actionRows = actions.map((action, index) =>
+    `<tr><td>第 ${index + 1} 件</td><td>${escapeHtml(friendlyLabel(ACTION_TYPE_LABELS, action.type, "網站內容"))}</td><td>${escapeHtml(action.target_zh || "")}</td><td>${escapeHtml(action.recommendation_zh || "")}</td></tr>`
+  ).join("");
 
   return `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/>${GA_TAG_HTML}
-<title>GeoCheck AI Trust Index 報告</title>
+<title>AI 信任值報告</title>
 <style>
 body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}main{max-width:1040px;margin:0 auto;padding:48px 20px}.card{background:#fff;border:1px solid #e5edf5;border-radius:12px;padding:24px;margin:18px 0;box-shadow:0 8px 24px rgba(11,59,111,.08)}h1,h2,h3{color:#0b3b6f;line-height:1.3}.score{font-size:56px;font-weight:800;color:#00a99b}.readiness{font-size:28px;font-weight:750;color:#0b3b6f}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #e5edf5;padding:10px;vertical-align:top}.badge{display:inline-block;padding:4px 12px;border-radius:999px;background:#fff4e0;color:#9a6500;font-weight:700}.meta{color:#5a6b7e;font-size:.92rem}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{background:#f4f8fc;border-radius:10px;padding:14px}.report-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}a.button{display:inline-block;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700}a.button.secondary{background:#fff;color:#0b3b6f;border:1px solid #cdd9e5}@media(max-width:640px){main{padding:30px 14px}.card{padding:18px}.metrics{grid-template-columns:1fr}.score{font-size:48px}table{display:block;overflow-x:auto;white-space:nowrap}.report-nav a.button{width:100%;text-align:center}}
 </style></head><body><main>
 ${reportTopNavHtml()}
-<h1>GeoCheck AI Trust Index 報告</h1><p>${escapeHtml(report.url)}</p>
-<p class="meta">Provider: ${escapeHtml(displayProvider(report.provider))} / Model: ${escapeHtml(displayModel(report.model))} / Attempts: ${escapeHtml(report.attempts || 1)} / Latency: ${escapeHtml(report.latencyMs)}ms</p>
-<section class="card"><h2>AI Trust Index</h2><div class="score">${escapeHtml(scoreValue)}</div><p><span class="badge">${escapeHtml(score.label || "目前無可用證據")}</span></p><p>${scoreContext}</p><p>${escapeHtml(score.summary_zh || "")}</p><p class="meta">有效 query-run：${escapeHtml(score.denominator?.valid_runs ?? 0)} / ${escapeHtml(score.denominator?.total_runs ?? 0)}；unknown 不計為 0。</p><hr/><h3>站內準備度</h3><div class="readiness">${escapeHtml(readinessValue)} / 100</div><p class="meta">站內準備度不進入 AI Trust Index；它只衡量網站可抓取與內容準備。</p></section>
-<section class="card"><h2>GEO Core：答案層與來源層</h2><table><thead><tr><th>層級</th><th>觀測值</th><th>產品權重</th></tr></thead><tbody>${breakdownRows}</tbody></table></section>
-<section class="card"><h2>搜尋問題設計</h2><p><strong>DeepSeek 判定產業：</strong>${escapeHtml(queryPlanning.industry || "未知")}；<strong>主要商品／服務：</strong>${escapeHtml(queryPlanning.primary_offering || "未知")}；<strong>信心：</strong>${escapeHtml(queryPlanning.confidence || "low")}。</p><p class="meta">先由 DeepSeek 依網站內容產生 ${escapeHtml(queryPlanning.candidate_count ?? 0)} 題候選，再由後端排除品牌詞、技術製作商、低相關與重複問題，選出代表題交給 Perplexity。DeepSeek 不參與分數。</p><table><thead><tr><th>候選非品牌問題</th><th>意圖</th><th>狀態</th></tr></thead><tbody>${candidateRows}</tbody></table></section>
-<section class="card"><h2>Perplexity 搜尋觀測</h2><div class="metrics"><div class="metric"><strong>有效查詢</strong><br/>${escapeHtml(observation.measuredQueryCount ?? 0)} / ${escapeHtml(observation.queryCount ?? 0)}</div><div class="metric"><strong>品牌提及率</strong><br/>${escapeHtml(observation.mentionRate ?? "—")}%</div><div class="metric"><strong>官網引用率</strong><br/>${escapeHtml(observation.citationRate ?? "—")}%</div></div><p><strong>實體對齊：</strong>${authority.entityGrounded ? "已找到同一品牌的外部證據" : "未找到足夠的同一實體證據"}</p><p><strong>相符外部來源：</strong>${escapeHtml(matchedDomains.join(", ") || "無")}</p><table><thead><tr><th>非品牌搜尋題</th><th>提及品牌</th><th>引用官網</th><th>來源網域</th></tr></thead><tbody>${observationRows}</tbody></table></section>
-<section class="card"><h2>資料抓取狀態</h2><p>抓取品質：${escapeHtml(crawlQuality.status || "unknown")}；方式：${escapeHtml(report.homepage?.fetchMethod || "unknown")}；覆蓋率：${escapeHtml(crawlQuality.coverage ?? 0)}%；成功代表頁：${escapeHtml(representativeSuccess)}。</p></section>
-<section class="card"><h2>DeepSeek 產業與問題規劃（不參與計分）</h2><p class="meta">${escapeHtml(aiValidation.message_zh || "AI 解讀暫時無法使用")}</p><p><strong>可能分類：</strong>${escapeHtml(audit.positioning?.perceived_category_zh || "未知")}</p><p><strong>信心等級：</strong>${escapeHtml(audit.positioning?.confidence || "low")}</p></section>
-<section class="card"><h2>技術與抓取問題</h2><table><thead><tr><th>嚴重度</th><th>檢查</th><th>問題</th><th>影響</th></tr></thead><tbody>${issueRows}</tbody></table></section>
-<section class="card"><h2>本次選入實測的 GEO 問題</h2><ul>${questions.map((q) => `<li>${escapeHtml(q.question_zh)} <span class="meta">(${escapeHtml(q.intent)}, value ${escapeHtml(q.business_value)})</span></li>`).join("")}</ul></section>
-<section class="card"><h2>內容可引用性缺口</h2><ul>${gaps.map((gap) => `<li>${escapeHtml(gap)}</li>`).join("")}</ul></section>
-<section class="card"><h2>優先修正的 3 件事</h2><table><thead><tr><th>優先級</th><th>類型</th><th>目標</th><th>怎麼做</th></tr></thead><tbody>${actionRows}</tbody></table></section>
-<section class="card"><h2>資料限制</h2><ul>${(audit.limitations_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
-<section class="card"><a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown" data-track-action="download_report">下載健檢報告</a> <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener" data-track-action="book_report_interpretation">預約報告解讀</a></section>
+<h1>你的網站在 AI 搜尋裡的表現</h1>
+<p>${escapeHtml(report.url)}</p>
+<p class="meta">檢測時間：${escapeHtml(formatReportTime(report.createdAt))}</p>
+<section class="card"><h2>AI 信任值</h2><div class="score">${escapeHtml(scoreValue)}</div><p><span class="badge">${escapeHtml(friendlyLabel(SCORE_LABELS, score.label, score.label || "這次資料不足，暫不評分"))}</span></p><p>${scoreContext}</p><p>${escapeHtml(score.summary_zh || "")}</p><p class="meta">這次一共問了 ${escapeHtml(score.denominator?.total_runs ?? 0)} 題，其中 ${escapeHtml(score.denominator?.valid_runs ?? 0)} 題拿到可以判讀的回答。沒拿到回答的題目不會被當成 0 分。</p></section>
+<section class="card"><h2>這個分數是怎麼來的</h2><p>AI 信任值只看兩件事：AI 有沒有講到你，以及 AI 有沒有把你的官網當成資料來源。</p><table><thead><tr><th>看的是什麼</th><th>這次的表現</th><th>占分數比重</th></tr></thead><tbody>${breakdownRows}</tbody></table></section>
+<section class="card"><h2>顧客這樣問的時候，AI 怎麼回答</h2><p>下面這些問題都沒有寫出你的店名或品牌名，模擬顧客還不認識你、只描述自己需求時會怎麼問。</p><div class="metrics"><div class="metric"><strong>拿到回答的題數</strong><br/>${escapeHtml(observation.measuredQueryCount ?? 0)} / ${escapeHtml(observation.queryCount ?? 0)}</div><div class="metric"><strong>有提到你的比例</strong><br/>${escapeHtml(observation.mentionRate ?? "—")}%</div><div class="metric"><strong>有連到你官網的比例</strong><br/>${escapeHtml(observation.citationRate ?? "—")}%</div></div><p><strong>網路上有沒有其他網站在談你：</strong>${authority.entityGrounded ? "有找到" : "這次沒有找到足夠的資料"}${matchedDomains.length ? `（${escapeHtml(matchedDomains.join("、"))}）` : ""}</p><table><thead><tr><th>顧客可能會問的問題</th><th>有提到你嗎</th><th>有連到你的官網嗎</th><th>AI 這次參考了哪些網站</th></tr></thead><tbody>${observationRows}</tbody></table></section>
+<section class="card"><h2>AI 讀得到你的網站嗎</h2><p>讀取結果：${escapeHtml(crawlText)}；另外成功讀到 ${escapeHtml(representativeSuccess)} 個內頁。</p><h3>網站基礎體質</h3><div class="readiness">${escapeHtml(readinessValue)} / 100</div><p class="meta">這一項不算進 AI 信任值。它看的是網站本身好不好讀：內容夠不夠、標題清不清楚、AI 與搜尋引擎進不進得來。體質好不保證 AI 會提到你，但體質差通常會讓後面的努力事倍功半。</p></section>
+<section class="card"><h2>網站上建議修正的地方</h2><table><thead><tr><th>重要程度</th><th>檢查項目</th><th>目前狀況</th><th>為什麼重要</th></tr></thead><tbody>${issueRows}</tbody></table></section>
+<section class="card"><h2>網站內容還少了什麼</h2><ul>${gaps.map((gap) => `<li>${escapeHtml(gap)}</li>`).join("")}</ul></section>
+<section class="card"><h2>如果只做三件事，先做這些</h2><table><thead><tr><th>順序</th><th>類別</th><th>要改哪裡</th><th>建議怎麼做</th></tr></thead><tbody>${actionRows}</tbody></table></section>
+<section class="card"><h2>這份報告不能保證什麼</h2><ul>${(audit.limitations_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
+<section class="card"><a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown" data-track-action="download_report">下載這份報告</a> <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener" data-track-action="book_report_interpretation">找人幫你解讀報告</a></section>
 </main>${reportTrackingHtml(report.id)}</body></html>`;
 }
 
@@ -366,55 +421,50 @@ function realLiteReportMarkdown(report) {
   const score = audit.score || {};
   const observation = audit.perplexity_observation || {};
   const authority = audit.authority_evidence || {};
-  const queryPlanning = audit.query_planning || {};
-  return `# GeoCheck AI Trust Index 報告
+  const answerRate = score.breakdown?.answer_adoption?.value;
+  const sourceRate = score.breakdown?.source_evidence?.value;
+  return `# 你的網站在 AI 搜尋裡的表現
 
-- URL: ${report.url}
-- Report ID: ${report.id}
-- Created At: ${report.createdAt}
-- Algorithm: ${score.algorithm_version || report.algorithmVersion || ""}
+- 網址：${report.url}
+- 檢測時間：${formatReportTime(report.createdAt)}
+- 報告編號：${report.id}
+- 版本：${score.algorithm_version || report.algorithmVersion || ""}
 
-## 核心分數
+## AI 信任值
 
-- AI Trust Index：${score.value ?? "unknown"}
-- 答案採用率：${score.breakdown?.answer_adoption?.value ?? "unknown"}%（65%）
-- 來源證據率：${score.breakdown?.source_evidence?.value ?? "unknown"}%（35%）
-- 有效 query-run：${score.denominator?.valid_runs ?? 0} / ${score.denominator?.total_runs ?? 0}
-- 站內準備度：${score.site_readiness_value ?? "未知"}
-- 狀態：${score.evidence_status || "unknown"}
+- AI 信任值：${score.value ?? "這次資料不足，暫不評分"}
+- AI 回答裡有提到你的品牌：${Number.isFinite(answerRate) ? `${answerRate}%` : "資料不足"}（占分數 65%）
+- AI 回答裡有引用你的官網：${Number.isFinite(sourceRate) ? `${sourceRate}%` : "資料不足"}（占分數 35%）
+- 拿到可判讀回答的題數：${score.denominator?.valid_runs ?? 0} / ${score.denominator?.total_runs ?? 0}（沒拿到回答的題目不算 0 分）
+- 網站基礎體質：${score.site_readiness_value ?? "資料不足"} / 100（不計入 AI 信任值）
 
 ${score.summary_zh || ""}
 
-## 搜尋問題設計
+## 顧客這樣問的時候，AI 怎麼回答
 
-- DeepSeek 判定產業：${queryPlanning.industry || "未知"}
-- 主要商品／服務：${queryPlanning.primary_offering || "未知"}
-- 候選題數：${queryPlanning.candidate_count ?? 0}
-- 選入實測：${(queryPlanning.selected_queries || []).map((item) => item.text).join("；") || "無"}
+下面這些問題都沒有寫出你的店名或品牌名，模擬顧客還不認識你時會怎麼問。
 
-## Perplexity 搜尋觀測
+- 拿到回答的題數：${observation.measuredQueryCount ?? 0} / ${observation.queryCount ?? 0}
+- 有提到你的比例：${observation.mentionRate ?? "資料不足"}%
+- 有連到你官網的比例：${observation.citationRate ?? "資料不足"}%
+- 網路上有沒有其他網站在談你：${authority.entityGrounded ? "有找到" : "這次沒有找到足夠的資料"}
+- 找到的相關網站：${(authority.matchedExternalDomains || []).join("、") || "無"}
 
-- 有效查詢：${observation.measuredQueryCount ?? 0} / ${observation.queryCount ?? 0}
-- 品牌提及率：${observation.mentionRate ?? "未知"}%
-- 官網引用率：${observation.citationRate ?? "未知"}%
-- 實體對齊：${authority.entityGrounded ? "是" : "否"}
-- 相符外部來源：${(authority.matchedExternalDomains || []).join(", ") || "無"}
+${(observation.observations || []).map((item) => `- ${item.query}：${item.brandMentioned ? "有提到你" : "沒提到你"}；${item.firstPartyCited ? "有連到官網" : "沒有連到官網"}`).join("\n")}
 
-${(observation.observations || []).map((item) => `- ${item.query}: 品牌提及=${item.brandMentioned ? "是" : "否"}；官網引用=${item.firstPartyCited ? "是" : "否"}`).join("\n")}
+## 網站上建議修正的地方
 
-## 技術與抓取問題
+${(audit.technical_seo?.issues || []).map((issue) => `- [${friendlyLabel(SEVERITY_LABELS, issue.severity, "建議處理")}] ${friendlyLabel(ISSUE_CHECK_LABELS, issue.check, issue.check)}：${issue.detail_zh}`).join("\n")}
 
-${(audit.technical_seo?.issues || []).map((issue) => `- [${issue.severity}] ${issue.check}: ${issue.detail_zh}`).join("\n")}
-
-## 內容可引用性
+## 網站內容還少了什麼
 
 ${(audit.content_citeability?.gaps_zh || []).map((item) => `- ${item}`).join("\n")}
 
-## 優先修正
+## 如果只做三件事，先做這些
 
-${(audit.priority_actions || []).map((action) => `- ${action.priority} ${action.target_zh}: ${action.recommendation_zh}`).join("\n")}
+${(audit.priority_actions || []).map((action, index) => `- 第 ${index + 1} 件（${friendlyLabel(ACTION_TYPE_LABELS, action.type, "網站內容")}）${action.target_zh}：${action.recommendation_zh}`).join("\n")}
 
-## 資料限制
+## 這份報告不能保證什麼
 
 ${(audit.limitations_zh || []).map((item) => `- ${item}`).join("\n")}
 `;
@@ -425,11 +475,11 @@ function markdownFilename(report) {
     try {
       return new URL(report.url).hostname.replace(/^www\./, "");
     } catch {
-      return "seo-geo-report";
+      return "ai-visibility-report";
     }
   })();
   const date = new Date().toISOString().slice(0, 10);
-  return `${host}-seo-geo-report-${date}.md`.replace(/[^a-zA-Z0-9._-]+/g, "-");
+  return `${host}-ai-visibility-report-${date}.md`.replace(/[^a-zA-Z0-9._-]+/g, "-");
 }
 
 async function handleRequest(req, res) {

@@ -276,6 +276,34 @@ tags:
 - **影響範圍**：`docs/AI_TRUST_INDEX_V1.md`、API schema、報告、首頁文案、白皮書 skill／輸出與測試。
 - **可追溯來源**：2026-09-02 使用者確認；本次對話；D-020。
 
+### D-022 2026 下半年信義區餐廳 AI 曝光度追蹤研究範圍
+
+- **日期**：2026-09-03 ｜ **狀態**：Confirmed
+- **決策者**：Wenqing950519
+- **決策內容**：
+  - 本篇對外報告名稱定為《2026 下半年信義區餐廳 AI 曝光度基準與變化追蹤報告》。
+  - 「下半年」為報告的對外時間框架；封面、摘要與方法章必須明示計畫觀測窗為 **2026-09-03 至 2026-12-31**，有效觀測以每波實際收集日期為準。不得暗示本研究持有 2026 年 7 至 8 月的 AI 回答觀測。
+  - 研究從單次橫斷面量測改為固定 cohort 的重複觀測。候選母體仍以既有 140 家信義區餐廳線索開始；最終店點樣本、去重網站 cohort 與共用網域歸屬，必須人工審核後凍結。
+  - 本文研究層以 GEO Core 的答案採用率、已驗證第一方 URL 來源證據率、有效分母與 unknown／失敗率為主要結果；AI Trust Index v1 可作產品層輔助呈現，不取代原始觀測，也不產生餐廳改善建議或因果結論。
+- **理由與依據**：使用者希望從 2026 年 9 月起累積可比較的觀測資料，並明確接受在「下半年」標題下揭露僅涵蓋 9 至 12 月的限制。
+- **決策邊界**：本決策不核准最終餐廳名單、各波精確日期、query set 文字、模型替代方案或個別餐廳結論；這些仍須在正式 batch 前依白皮書治理規則凍結或核准。
+- **影響範圍**：下半年研究登錄、cohort 審核表、query set、正式 AI 批次、方法章與出版透明聲明。
+- **可追溯來源**：2026-09-03 使用者確認；`research-input/xinyi-restaurants-h2-2026/research_registration_v1.md`。
+
+### D-023 產品對外語言改為商家白話；AI Trust Index 中文名定為「AI 信任值」
+
+- **日期**：2026-09-03 ｜ **狀態**：Confirmed
+- **決策者**：Wenqing950519
+- **決策內容**：
+  - 對外指標名稱定為 **「AI 信任值」**（原 AI Trust Index）。程式內部識別碼（`ai_trust_index`、`ai-trust-*` 版本字串、檔名）維持不變，只改顯示文案。
+  - 首頁與報告頁的使用者可見文字，一律改用一般商家看得懂的中文，不堆砌英文術語（原 `Technical SEO`、`Structured Data`、`E-E-A-T`、`P1–P3`、`query-run`、`canonical`、`JSON-LD` 等改為白話說明或加註說明）。
+  - **報告頁不再說明測試方法與模型**：移除 Provider／Model／Attempts／Latency 標頭、搜尋問題設計卡片、DeepSeek 產業規劃卡片，以及文案中的 Perplexity／DeepSeek 名稱。報告聚焦於商家要知道的事：AI 有沒有提到我、有沒有引用我的官網、我該先修什麼。
+  - 方法揭露改集中於首頁「我們怎麼做的」段落與 `/llms.txt`；研究層的供應商與模型仍完整保留在報告 JSON（`report.provider`、`report.model`、`audit.ai_validation`）與白皮書輸出，未刪除任何可追溯欄位。
+- **理由與依據**：使用者於 2026-09-03 指出主網頁與報告頁術語過重、報告花太多篇幅解釋測試方式，商家真正要的是「我的網站到底有沒有 AI 曝光度」。
+- **決策邊界**：本決策只改對外語言與報告資訊架構，**不改任何計分規則、權重、封頂或 unknown 處理**（仍依 D-021）。內部欄位名稱與研究輸出格式不變。
+- **影響範圍**：`mock-api/public/home.html`、`mock-api/server.js`（報告 HTML／Markdown）、`mock-api/lib/ai-trust-index.js`、`mock-api/lib/real-lite-audit-v2-core.js` 的顯示字串、`mock-api/tests/ai-trust-surface.test.js`、`mock-api/tests/business-loop.test.js`。
+- **可追溯來源**：2026-09-03 使用者指示；D-021。
+
 ---
 
 ## 仍待使用者確認

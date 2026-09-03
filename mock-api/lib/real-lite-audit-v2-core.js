@@ -24,8 +24,8 @@ async function runRealLiteAudit(siteUrl) {
     content_citeability: { strengths_zh: [], gaps_zh: [] },
     priority_actions: [],
     limitations_zh: queryPlanning?.status === "ready"
-      ? ["DeepSeek 先依網站證據產生候選搜尋題，後端通過品牌排除、意圖與重複度檢查後，才交由 Perplexity 實測。"]
-      : ["DeepSeek 未能產出有效搜尋題，因此未呼叫 Perplexity，AI Trust Index 顯示為 unknown。"]
+      ? ["測試題目不含你的店名或品牌名，模擬顧客還不認識你、只描述需求時的情況。"]
+      : ["這次無法針對你的產業產生合適的測試問題，所以沒有計算 AI 信任值；這不代表 0 分。"]
   });
   const audit = applyV2Audit(auditSeed, { homepage, technical, representativePages, searchContext, measurement });
   audit.ai_validation = queryPlanning?.status === "ready" ? {
@@ -122,7 +122,7 @@ function applyV2Audit(audit, { homepage, technical, representativePages = [], se
     site_readiness_caps: scored.caps,
     site_readiness_breakdown: scored.breakdown,
     rules: scored.checks,
-    scoring_basis_zh: "AI Trust Index v1：可見答案中的品牌採用率 65%，已驗證官方 URL 的來源證據 35%。unknown 不等於 0；DeepSeek 只協助產題，不參與計分。"
+    scoring_basis_zh: "AI 信任值 v1：AI 回答有提到品牌占 65%，AI 回答有引用官網占 35%。拿不到回答的題目標為未知，不當成 0 分。"
   };
   audit.priority_actions = rankDeterministicActions(buildDeterministicActions(signals));
   audit.technical_seo.issues = buildDeterministicIssues(signals);
@@ -130,9 +130,9 @@ function applyV2Audit(audit, { homepage, technical, representativePages = [], se
   audit.positioning = hardenPositioning(audit.positioning, homepage, searchContext);
   audit.limitations_zh = unique([
     ...audit.limitations_zh,
-    "本報告是首頁與公開技術檔案的單次快照，不等於實際收錄、排名或 AI 引用保證。",
-    "GPTBot、ClaudeBot、Google-Extended 的允許狀態只代表內容政策選擇，不列入搜尋能見度分數。",
-    "特定 AI 系統如何排序與引用內容沒有完整公開規則；未公開部分一律視為未知。"
+    "這份報告是某一個時間點、對首頁與公開檔案的一次檢查，不保證搜尋排名，也不保證 AI 之後一定會提到你。",
+    "要不要開放 AI 業者拿你的內容做訓練，是你的選擇，這一項不影響分數。",
+    "AI 怎麼挑選要講哪一家，業者並沒有完全公開；查不到的部分我們一律標成「不知道」，不會用猜的。"
   ]);
   return audit;
 }
@@ -202,44 +202,44 @@ function buildDeterministicActions(signals) {
   const actions = [];
   if (!signals.fetched || signals.noindex || signals.googlebotAllowed === false) {
     actions.push(action("technical", "首頁抓取與收錄設定",
-      "請先聯絡網站設計師檢查網站根目錄的 robots.txt、首頁 <head> 的 robots meta，以及伺服器的 X-Robots-Tag。移除誤設的 Disallow: / 或 noindex；若本來就是刻意不公開，則維持現狀。",
-      "這些設定會直接阻止 Google 或其他搜尋服務讀取首頁。", "恢復重要頁面的基本抓取與收錄資格。"));
+      "你的網站目前有設定擋住搜尋引擎。請幫忙維護網站的人拿掉這個限制（技術上是 robots.txt 的 Disallow、頁面上的 noindex 或伺服器的 X-Robots-Tag）；如果本來就刻意不公開，維持現狀即可。",
+      "有這些設定時，Google 與 AI 根本不會來讀你的首頁。", "讓重要頁面重新被搜尋引擎與 AI 讀得到。"));
   }
   if (!signals.title || !signals.h1) {
     actions.push(action("technical", "首頁標題",
-      "請網站設計師在首頁 <head> 補上清楚的 <title>，並在畫面主要內容放一個 H1。兩者都要直接寫出店名、服務與地區，不要只放圖片或 Logo。",
-      "AI 抓不到標題時，常見原因是 title 或 H1 缺少、太模糊，或只在 JavaScript 執行後才出現。", "讓搜尋引擎與 AI 一眼知道這間店是誰、做什麼。"));
+      "請在首頁補上一個清楚的頁面名稱（分頁上顯示的那行字）和一個大標題，兩處都直接寫出店名、做什麼、在哪裡，不要只放圖片或 Logo。",
+      "缺少標題或標題太模糊時，AI 就很難判斷這是誰的網站。", "讓搜尋引擎與 AI 一眼知道這間店是誰、做什麼。"));
   }
   if (signals.textLength < 300 || signals.renderGainRatio > 1.5) {
     actions.push(action("technical", "首頁可讀文字",
-      "請網站設計師把店名、服務、地區、營業特色與聯絡方式直接放進伺服器回傳的 HTML。若網站是 SPA，請加上 SSR 或預先渲染；不要等按鈕點擊後才載入主要內容。",
-      "畫面看得到不等於爬蟲拿得到；只靠圖片或 JavaScript 會讓部分 AI 讀到空白頁。", "提高不同爬蟲穩定理解首頁的機會。"));
+      "請把店名、服務、地區、特色與聯絡方式，用文字直接寫在首頁上，不要只放在圖片裡，也不要等點了按鈕才載入。若網站是靠程式動態產生內容，請幫忙維護網站的人加上預先渲染。",
+      "人眼看得到，不代表 AI 讀得到；只有圖片或動態載入時，AI 可能讀到一片空白。", "讓不同的 AI 與搜尋程式都能穩定讀懂首頁。"));
   }
   if (signals.oaiSearchAllowed === false || signals.claudeSearchAllowed === false) {
     const bots = [signals.oaiSearchAllowed === false && "OAI-SearchBot", signals.claudeSearchAllowed === false && "Claude-SearchBot"].filter(Boolean).join("、");
     actions.push(action("technical", "AI 搜尋爬蟲設定",
-      `如果您希望出現在 ChatGPT 或 Claude 搜尋，請網站設計師檢查 robots.txt 是否誤擋 ${bots}。只調整搜尋 bot 即可，不必同時開放 GPTBot、ClaudeBot 等訓練用途 bot。`,
-      "搜尋用途與模型訓練用途不同，應分開管理。", "在保留內容政策選擇的同時，增加 AI 搜尋可讀性。"));
+      `如果你希望出現在 ChatGPT 或 Claude 的回答裡，請幫忙維護網站的人確認是不是誤擋了它們的搜尋程式（${bots}）。只要開放搜尋用途即可，不必連帶開放拿內容去訓練的程式。`,
+      "「來搜尋」和「拿去訓練」是兩件事，可以分開決定。", "在不改變內容授權立場的前提下，讓 AI 搜尋讀得到你。"));
   }
   if (!signals.sitemapValid) {
     actions.push(action("technical", "sitemap.xml",
-      "請網站設計師建立可公開讀取的 sitemap.xml，只列出希望被搜尋到的正式網址，並在 robots.txt 最後加上完整的 Sitemap 網址。",
-      "網站地圖能協助搜尋服務發現重要頁面，但不是排名保證。", "減少重要服務頁沒有被發現的風險。"));
+      "請幫忙維護網站的人建立一份網站地圖（sitemap.xml），列出你希望被找到的頁面，並在 robots.txt 裡註明它的位置。",
+      "網站地圖能幫搜尋引擎找齊你的重要頁面，但不保證排名。", "降低重要服務頁一直沒被找到的風險。"));
   }
   if (!signals.validSchema || !signals.relevantSchema) {
     actions.push(action("technical", "結構化資料",
-      "請網站設計師依店家類型加入可通過驗證的 LocalBusiness 或 Organization JSON-LD，內容必須與頁面看得到的店名、地址、電話與服務一致。",
-      "只檢查是否有 JSON-LD 不夠；格式錯誤或類型不合也無法提供清楚語意。", "讓搜尋系統更準確辨認商家實體與服務。"));
+      "請幫忙維護網站的人加上給機器讀的商家資料標記（技術上是 LocalBusiness 或 Organization 的 JSON-LD），把店名、地址、電話、營業項目寫清楚，內容要和頁面上看到的一致。",
+      "只是「有加」不夠，格式錯或類型不對，機器一樣讀不懂。", "讓搜尋引擎與 AI 更準確認出你是哪一家店。"));
   }
   if (!signals.canonical) {
     actions.push(action("technical", "canonical 網址",
-      "請網站設計師在首頁 <head> 加上指向正式首頁網址的 rel='canonical'，並確認 http、https、www 與非 www 版本只保留一個主要版本。",
-      "canonical 能降低同一內容有多個網址時的判讀混亂。", "讓搜尋系統更清楚辨認正式網址；不代表排名保證。"));
+      "請幫忙維護網站的人指定一個「正式網址」（技術上是 rel=canonical），並確認有沒有 www、http 與 https 等版本最後都指向同一個。",
+      "同一頁有好幾個網址時，系統可能不知道哪一個才算數。", "讓搜尋引擎清楚知道你的正式網址；不代表排名保證。"));
   }
   if (signals.imageAltRatio < 0.8) {
     actions.push(action("content", "圖片替代文字",
-      "請替有資訊用途的圖片補上簡短 alt 文字，直接說明照片中的產品、服務或地點；純裝飾圖片可保留空 alt。",
-      "圖片缺少替代文字時，爬蟲與使用輔助工具的人較難理解內容。", "提高圖片資訊的可讀性與無障礙完整度。"));
+      "請替有資訊的圖片補上一句文字說明，直接寫出照片裡的產品、服務或地點；純裝飾用的圖片可以留空。",
+      "圖片沒有文字說明時，AI 和視障輔助工具都看不懂那張圖。", "讓圖片裡的資訊也能被讀懂。"));
   }
   const citeabilityActions = [
     ["serviceClarity", "服務資訊", "請在首頁清楚寫出提供什麼服務、服務誰、服務地區、價格或詢價方式，以及下一步如何聯絡。"],
@@ -251,7 +251,7 @@ function buildDeterministicActions(signals) {
   for (const [key, target, recommendation] of citeabilityActions) {
     if (!signals.geoSignals?.[key]) {
       actions.push(action("content", target, recommendation,
-        "具體、可核對的內容比空泛形容詞更容易被搜尋系統理解與引用。", "提高頁面回答實際問題的完整度；不保證會被 AI 引用。"));
+        "寫得具體、可以查證的內容，比空泛的形容詞更容易被 AI 讀懂與引用。", "讓網站更完整地回答顧客真正在問的問題；但不保證 AI 一定會引用。"));
     }
   }
   return actions;
@@ -259,20 +259,20 @@ function buildDeterministicActions(signals) {
 
 function buildDeterministicIssues(signals) {
   const issues = [];
-  if (signals.noindex) issues.push(issue("high", "Indexability", "首頁偵測到 noindex。", "搜尋服務可能不會收錄這個頁面。"));
-  if (signals.googlebotAllowed === false) issues.push(issue("high", "Googlebot access", "robots.txt 阻擋 Googlebot 首頁。", "會傷害傳統 Google 搜尋的抓取能力。"));
-  if (!signals.title) issues.push(issue("high", "HTML title", "首頁沒有可讀的 <title>。", "搜尋結果與 AI 都缺少明確頁面名稱。"));
-  if (signals.renderGainRatio > 1.5) issues.push(issue("high", "JavaScript rendering", "大部分文字只在 JavaScript 執行後出現。", "不支援完整渲染的爬蟲可能讀到空殼。"));
-  if (signals.textLength < 300) issues.push(issue("high", "Readable content", "首頁可讀文字少於 300 字。", "AI 缺少足夠內容判斷商家與服務。"));
-  if (signals.oaiSearchAllowed === false) issues.push(issue("medium", "OAI-SearchBot", "robots.txt 阻擋 OAI-SearchBot。", "可能降低 ChatGPT 搜尋摘要與引用可見度。"));
-  if (signals.claudeSearchAllowed === false) issues.push(issue("medium", "Claude-SearchBot", "robots.txt 阻擋 Claude-SearchBot。", "可能降低 Claude 搜尋索引可見度。"));
-  if (!signals.sitemapValid) issues.push(issue("medium", "Sitemap", "未確認可公開讀取的有效 sitemap.xml。", "搜尋服務較難完整發現重要頁面。"));
-  if (!signals.canonical) issues.push(issue("low", "Canonical", "首頁未偵測到 canonical 網址。", "多網址版本可能增加主要網址判讀的不確定性。"));
-  if (!signals.description) issues.push(issue("medium", "Meta description", "首頁未偵測到 meta description。", "搜尋結果與分享摘要較難清楚描述頁面。"));
-  if (!signals.h1) issues.push(issue("high", "H1", "首頁未偵測到清楚的 H1。", "頁面主題與商家服務較難被快速辨認。"));
-  if (!signals.validSchema || !signals.relevantSchema) issues.push(issue("medium", "Structured data", "未偵測到有效且符合網站類型的 JSON-LD。", "搜尋系統較難用結構化方式辨認商家實體。"));
-  if (signals.imageAltRatio < 0.8) issues.push(issue("low", "Image alt", "圖片 alt 覆蓋率約 " + Math.round(signals.imageAltRatio * 100) + "% 。", "部分圖片資訊不易被爬蟲與輔助工具理解。"));
-  if (!signals.headingStructure) issues.push(issue("low", "Heading structure", "標題層級缺漏或跳級。", "頁面資訊架構較不清楚。"));
+  if (signals.noindex) issues.push(issue("high", "Indexability", "首頁被設定成「不要被搜尋引擎收錄」。", "搜尋引擎與 AI 可能完全不會收錄這一頁。"));
+  if (signals.googlebotAllowed === false) issues.push(issue("high", "Googlebot access", "網站設定擋住了 Google 的檢索程式，讓它讀不到首頁。", "Google 搜尋可能找不到你。"));
+  if (!signals.title) issues.push(issue("high", "HTML title", "首頁沒有設定頁面名稱（瀏覽器分頁上顯示的那一行字）。", "搜尋結果與 AI 都不知道這一頁該怎麼稱呼。"));
+  if (signals.renderGainRatio > 1.5) issues.push(issue("high", "JavaScript rendering", "首頁大部分文字要等程式跑完才會出現。", "有些 AI 與搜尋程式只會讀到一片空白。"));
+  if (signals.textLength < 300) issues.push(issue("high", "Readable content", "首頁能讀到的文字少於 300 字。", "內容太少，AI 無法判斷你在做什麼生意。"));
+  if (signals.oaiSearchAllowed === false) issues.push(issue("medium", "OAI-SearchBot", "網站設定擋住了 ChatGPT 的搜尋程式。", "ChatGPT 在回答時比較不會引用到你。"));
+  if (signals.claudeSearchAllowed === false) issues.push(issue("medium", "Claude-SearchBot", "網站設定擋住了 Claude 的搜尋程式。", "Claude 在回答時比較不會引用到你。"));
+  if (!signals.sitemapValid) issues.push(issue("medium", "Sitemap", "沒有找到可公開讀取的網站地圖（列出全站頁面的清單檔）。", "搜尋引擎比較不容易找齊你的重要頁面。"));
+  if (!signals.canonical) issues.push(issue("low", "Canonical", "首頁沒有指定「主要網址」。", "同一頁有多個網址時，系統可能不確定哪一個才是正式版本。"));
+  if (!signals.description) issues.push(issue("medium", "Meta description", "首頁沒有寫摘要說明（搜尋結果標題下面那一段文字）。", "在搜尋結果或分享連結時，比較難一眼看懂你在做什麼。"));
+  if (!signals.h1) issues.push(issue("high", "H1", "首頁沒有明顯的大標題。", "一進來看不出這一頁在講什麼。"));
+  if (!signals.validSchema || !signals.relevantSchema) issues.push(issue("medium", "Structured data", "網站沒有加上給機器讀的商家資料標記（店名、地址、營業項目等）。", "搜尋引擎與 AI 較難確認你到底是哪一家店。"));
+  if (signals.imageAltRatio < 0.8) issues.push(issue("low", "Image alt", "約 " + Math.round(signals.imageAltRatio * 100) + "% 的圖片有補上文字說明。", "沒有文字說明的圖片，AI 與視障輔助工具都看不懂。"));
+  if (!signals.headingStructure) issues.push(issue("low", "Heading structure", "頁面的標題層級有跳號或缺漏。", "內容結構比較不清楚，不容易被摘錄。"));
   return issues;
 }
 
@@ -302,7 +302,7 @@ function mergeIssues(deterministic, generated) {
 function normalizeAudit(value) {
   const audit = value && typeof value === "object" ? value : {};
   audit.score = audit.score || {};
-  audit.score.summary_zh = String(audit.score.summary_zh || "已完成首頁與公開技術訊號檢查。");
+  audit.score.summary_zh = String(audit.score.summary_zh || "已完成首頁與公開設定的檢查。");
   audit.positioning = audit.positioning || {};
   for (const key of ["perceived_audience_zh", "perceived_use_cases_zh", "misunderstandings_or_risks_zh", "missing_signals_zh"]) {
     audit.positioning[key] = ensureArray(audit.positioning[key]);
@@ -321,14 +321,14 @@ function normalizeAudit(value) {
 
 function createFetchLimitedReport(siteUrl, error) {
   const audit = normalizeAudit({
-    score: { summary_zh: "本次無法讀取首頁，因此不能可靠判斷頁面內容。" },
-    positioning: { confidence: "low", misunderstandings_or_risks_zh: ["首頁無法公開讀取，搜尋引擎與 AI 也可能遇到相同問題。"] },
-    technical_seo: { issues: [issue("high", "Homepage fetchability", error.message, "搜尋服務可能無法讀取網站內容。") ] },
-    priority_actions: [action("technical", "網站主機、CDN 或防火牆", "請網站設計師檢查首頁是否回傳 403、5xx、驗證頁或封鎖一般爬蟲。確認後再重新檢測。", "沒有取得首頁就無法做可信的內容判讀。", "恢復基本抓取能力。")],
-    limitations_zh: ["首頁抓取失敗，所有未取得的項目都視為未知，未用猜測補值。"]
+    score: { summary_zh: "這次讀不到你的首頁，所以無法判斷網站內容。" },
+    positioning: { confidence: "low", misunderstandings_or_risks_zh: ["外部讀不到你的首頁，搜尋引擎與 AI 很可能也遇到同樣的狀況。"] },
+    technical_seo: { issues: [issue("high", "Homepage fetchability", `這次讀不到首頁（系統訊息：${error.message}）。`, "搜尋引擎與 AI 也可能同樣讀不到你的網站內容。") ] },
+    priority_actions: [action("technical", "網站主機、CDN 或防火牆", "請幫忙維護網站的人確認首頁是不是擋掉了一般訪客或機器人（例如出現錯誤頁、驗證頁或防火牆攔截）。處理後再檢測一次。", "沒有讀到首頁，就無法可靠地判斷網站內容。", "讓搜尋引擎與 AI 至少讀得到你的網站。")],
+    limitations_zh: ["這次讀不到首頁，所有沒拿到的資料都標成「不知道」，不會用猜的補上。"]
   });
   audit.score = { ...audit.score, value: null, geo_value: null, site_readiness_value: null, technical_value: null, raw_score: null, applied_cap: null, label: "無法評估", readiness_label: "Unknown", evidence_status: "unavailable", evidence_coverage: 0, evidence_confidence: "unavailable", algorithm_version: ALGORITHM_VERSION, rules: [] };
-  audit.ai_validation = { status: "unavailable", message_zh: "首頁未能成功抓取，因此本次不能判斷網站品質、搜尋排名或 AI 能見度。" };
+  audit.ai_validation = { status: "unavailable", message_zh: "這次讀不到首頁，因此無法判斷網站品質、搜尋排名或 AI 能見度。" };
   return {
     id: `real_lite_${Date.now()}`, url: siteUrl, createdAt: new Date().toISOString(), algorithmVersion: ALGORITHM_VERSION,
     provider: "local-fallback", model: "fetch-limited", latencyMs: 0, attempts: 0, repairedJson: false,
