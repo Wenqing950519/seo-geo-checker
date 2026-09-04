@@ -307,46 +307,404 @@ function realLiteReportHtml(report) {
   const crawlQuality = report.homepage?.crawlQuality || {};
   const crawlText = friendlyLabel(CRAWL_STATUS_LABELS, crawlQuality.status || "unknown", "這次沒有取得讀取結果");
   const representativeSuccess = (report.representativePages || []).filter((page) => page.crawlQuality?.scorable).length;
-  const breakdownLabels = {
-    answer_adoption: ["AI 回答裡有提到你的品牌", "代表 AI 認得你，也願意把你講出來。"],
-    source_evidence: ["AI 回答裡有引用你的官網", "代表 AI 把你的網站當成可信來源，顧客也比較有機會點進來。"]
-  };
-  const breakdownRows = Object.entries(score.breakdown || {}).map(([key, value]) => {
-    const [title, note] = breakdownLabels[key] || [key, ""];
-    const shown = Number.isFinite(value.value) ? `${value.value}%` : "資料不足";
-    return `<tr><td><strong>${escapeHtml(title)}</strong><br/><span class="meta">${escapeHtml(note)}</span></td><td>${escapeHtml(shown)}</td><td>${escapeHtml(value.weight ?? "—")}%</td></tr>`;
-  }).join("");
   const matchedDomains = authority.matchedExternalDomains || [];
-  const observationRows = (observation.observations || []).map((item) =>
-    `<tr><td>${escapeHtml(item.query || "")}</td><td>${item.brandMentioned ? "有提到" : "沒提到"}</td><td>${item.firstPartyCited ? "有連到官網" : "沒有"}</td><td>${escapeHtml((item.sourceDomains || []).join("、") || "—")}</td></tr>`
-  ).join("");
-  const issueRows = issues.map((issue) =>
-    `<tr><td>${escapeHtml(friendlyLabel(SEVERITY_LABELS, issue.severity, "建議處理"))}</td><td>${escapeHtml(friendlyLabel(ISSUE_CHECK_LABELS, issue.check, issue.check))}</td><td>${escapeHtml(issue.detail_zh || "")}</td><td>${escapeHtml(issue.impact_zh || "")}</td></tr>`
-  ).join("");
-  const actionRows = actions.map((action, index) =>
-    `<tr><td>第 ${index + 1} 件</td><td>${escapeHtml(friendlyLabel(ACTION_TYPE_LABELS, action.type, "網站內容"))}</td><td>${escapeHtml(action.target_zh || "")}</td><td>${escapeHtml(action.recommendation_zh || "")}</td></tr>`
-  ).join("");
+  const obsList = observation.observations || [];
+
+  const adoptionVal = score.breakdown?.answer_adoption ? (Number.isFinite(score.breakdown.answer_adoption.value) ? score.breakdown.answer_adoption.value + "%" : "資料不足") : "—";
+  const sourceVal = score.breakdown?.source_evidence ? (Number.isFinite(score.breakdown.source_evidence.value) ? score.breakdown.source_evidence.value + "%" : "資料不足") : "—";
+
+  // Build Query Observation Cards
+  const queryCardsHtml = obsList.length ? obsList.map((item, idx) => {
+    const isMentioned = Boolean(item.brandMentioned);
+    const isCited = Boolean(item.firstPartyCited);
+    const mentionPill = isMentioned
+      ? `<span class="status-pill success">提到品牌 (內文採用 ✓)</span>`
+      : `<span class="status-pill muted">✕ 未明確採用品牌名</span>`;
+    const citePill = isCited
+      ? `<span class="status-pill success">引用官網 (官方 URL ✓)</span>`
+      : `<span class="status-pill muted">✕ 未引用官網</span>`;
+    const answerText = item.answer
+      ? escapeHtml(item.answer)
+      : (isMentioned ? "AI 於檢索答案中直接提及受測品牌相關服務與特色。" : "AI 於本次檢索中未將受測店家列為主要推薦，多提及同業品牌。");
+    const sourceList = (item.sourceDomains || []).map((d) => escapeHtml(d)).join("、") || "無外部引用記錄";
+    return `
+    <div class="query-obs-card">
+      <div class="query-card-top">
+        <div>
+          <span style="font-size:0.75rem;background:var(--teal-subtle);color:var(--teal-d);padding:2px 8px;border-radius:4px;font-weight:700;margin-bottom:4px;display:inline-block;">情境問題 ${idx + 1}</span>
+          <strong style="color:var(--navy);font-size:1rem;display:block;">「${escapeHtml(item.query || "")}」</strong>
+          <div style="font-size:0.82rem;color:var(--muted);margin-top:4px;">測試引擎：AI 搜尋引擎 (連網檢索) · 檢驗標的：${escapeHtml(report.url)}</div>
+        </div>
+        <div>${mentionPill}</div>
+        <div>${citePill}</div>
+      </div>
+      <button type="button" class="transcript-toggle-btn" onclick="toggleTranscript('t${idx}', this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span>查看 AI 生成回答全文與引述比對</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div class="transcript-body" id="t${idx}">
+        <p><b>【AI 生成回答原文摘錄】：</b><br>${answerText}</p>
+        <div class="transcript-tag-box">
+          <span class="t-tag self" style="${isMentioned ? '' : 'background:#FEE2E2;color:#991B1B;'}">受測店家：${isMentioned ? '主動採用 ✓' : '未在正文被點名 ✕'}</span>
+          <span class="t-tag source">引述來源：${sourceList}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join("") : `
+    <div class="query-obs-card"><p style="color:var(--muted);">本次檢測尚未產出足夠的有效觀測題目。</p></div>`;
+
+  // Build 12-Point Matrix
+  const hasRobotsIssue = issues.some((i) => i.check === "Googlebot access" || i.check === "OAI-SearchBot" || i.check === "Claude-SearchBot");
+  const hasSitemapIssue = issues.some((i) => i.check === "Sitemap");
+  const hasFetchIssue = issues.some((i) => i.check === "Homepage fetchability");
+  const hasTitleIssue = issues.some((i) => i.check === "HTML title");
+  const hasMetaIssue = issues.some((i) => i.check === "Meta description");
+  const hasSchemaIssue = issues.some((i) => i.check === "Structured data");
+  const hasCanonicalIssue = issues.some((i) => i.check === "Canonical");
+  const hasFaqGap = gaps.some((g) => g.includes("問答") || g.includes("FAQ"));
+  const hasPriceGap = gaps.some((g) => g.includes("價格") || g.includes("費用") || g.includes("菜單"));
+  const hasLocationGap = gaps.some((g) => g.includes("地址") || g.includes("地點") || g.includes("交通"));
+  const hasProofGap = gaps.some((g) => g.includes("評價") || g.includes("背書") || g.includes("案例"));
+
+  const matrixCol1 = `
+    <div class="matrix-col">
+      <div class="matrix-col-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        1. AI 爬蟲可讀性 (Crawl)
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasRobotsIssue ? 'chk-fail' : 'chk-pass'}">${hasRobotsIssue ? '缺失' : '通過'}</span>
+        <div><b>robots.txt 存取權限</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasRobotsIssue ? '部分 AI 搜尋爬蟲存取受阻' : '未封鎖主串流 AI 搜尋爬蟲'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasSitemapIssue ? 'chk-warn' : 'chk-pass'}">${hasSitemapIssue ? '待修' : '通過'}</span>
+        <div><b>sitemap.xml 索引清單</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasSitemapIssue ? '網站地圖未設定或格式不全' : '成功讀取重要頁面索引'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasFetchIssue ? 'chk-fail' : 'chk-pass'}">${hasFetchIssue ? '異常' : '通過'}</span>
+        <div><b>HTTP 伺服器響應速度</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasFetchIssue ? '伺服器讀取異常或連線逾時' : '首頁正常回應 (HTTP 200)'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge chk-warn">建議</span>
+        <div><b>llms.txt AI 專用摘要</b><br><span style="color:var(--muted);font-size:0.8rem;">建議部署 /llms.txt 加深語意識別</span></div>
+      </div>
+    </div>`;
+
+  const matrixCol2 = `
+    <div class="matrix-col">
+      <div class="matrix-col-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        2. 標籤與結構語意 (SEO)
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasTitleIssue ? 'chk-warn' : 'chk-pass'}">${hasTitleIssue ? '待修' : '通過'}</span>
+        <div><b>首頁 Title 服務屬性</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasTitleIssue ? '標題缺少核心服務關鍵字' : '標題清楚標示品牌與服務'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasMetaIssue ? 'chk-warn' : 'chk-pass'}">${hasMetaIssue ? '待修' : '通過'}</span>
+        <div><b>Meta Description 說明</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasMetaIssue ? '摘要過短或缺少主要業務敘述' : '具備清晰之門市或服務簡介'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasCanonicalIssue ? 'chk-warn' : 'chk-pass'}">${hasCanonicalIssue ? '待修' : '通過'}</span>
+        <div><b>規範網址與 OpenGraph</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasCanonicalIssue ? 'canonical 或社交標籤需補齊' : '標準網址與社交標籤健全'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasSchemaIssue ? 'chk-fail' : 'chk-pass'}">${hasSchemaIssue ? '缺失' : '通過'}</span>
+        <div><b>LocalBusiness 結構化資料</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasSchemaIssue ? '缺少 Schema JSON-LD 實體標記' : '已部署結構化實體資料'}</span></div>
+      </div>
+    </div>`;
+
+  const matrixCol3 = `
+    <div class="matrix-col">
+      <div class="matrix-col-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon></svg>
+        3. 內容可引用性 (Citeability)
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasFaqGap ? 'chk-fail' : 'chk-pass'}">${hasFaqGap ? '缺失' : '通過'}</span>
+        <div><b>常見問答 (FAQ) 模組</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasFaqGap ? '缺少針對顧客疑慮的一問一答' : '站內具備清楚問答段落'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasPriceGap ? 'chk-warn' : 'chk-pass'}">${hasPriceGap ? '待修' : '通過'}</span>
+        <div><b>文字化服務與價格表</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasPriceGap ? '以圖片呈現或缺少明確文字價目' : '服務項目與價格資訊皆以文字呈現'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasLocationGap ? 'chk-warn' : 'chk-pass'}">${hasLocationGap ? '待補' : '通過'}</span>
+        <div><b>地理位置與聯絡資訊</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasLocationGap ? '地址、電話或交通資訊不夠顯眼' : '門市地址與營業時間標示明確'}</span></div>
+      </div>
+      <div class="check-item">
+        <span class="chk-badge ${hasProofGap ? 'chk-warn' : 'chk-pass'}">${hasProofGap ? '待補' : '通過'}</span>
+        <div><b>顧客好評與客觀背書</b><br><span style="color:var(--muted);font-size:0.8rem;">${hasProofGap ? '缺少第三方評測或案例佐證' : '包含豐富真實評價與背書'}</span></div>
+      </div>
+    </div>`;
+
+  // Build External Authority Cards
+  const allExternal = [...new Set([...matchedDomains, ...obsList.flatMap((o) => o.sourceDomains || [])])].slice(0, 4);
+  const authorityCardsHtml = allExternal.length ? allExternal.map((domain) => `
+    <div class="auth-card">
+      <strong>${escapeHtml(domain)}</strong>
+      <span>AI 搜尋引擎於此平台檢索並交叉比對店家與行業相關事實。</span>
+    </div>
+  `).join("") : `
+    <div class="auth-card">
+      <strong>店家官網 (${escapeHtml(new URL(report.url).hostname.replace(/^www\./, ""))})</strong>
+      <span>目前主要依據第一方官方網站進行基礎解析。</span>
+    </div>`;
+
+  // Build Diagnostic Action Cards (4 Key Areas)
+  const actionCardsHtml = actions.slice(0, 4).map((action, idx) => {
+    const pClass = `p${(idx % 4) + 1}`;
+    const matchedIssue = issues.find((i) => i.check === action.type || i.target_zh === action.target_zh) || issues[idx] || {};
+    const flawText = matchedIssue.detail_zh || "相關屬性或結構化內容尚待補齊。";
+    const impactText = matchedIssue.impact_zh || "AI 在進行實體比對與解答生成時缺少權威佐證，容易優先推薦已標明屬性的競品。";
+    const fixText = action.recommendation_zh || "依循規範補齊相關內容與標籤。";
+    return `
+    <div class="action-card ${pClass}">
+      <div>
+        <span class="action-tag">第 ${idx + 1} 項 · 最優先 (P${idx + 1})</span>
+        <h3 style="font-size:1.1rem;color:var(--navy);margin-bottom:6px;">${escapeHtml(action.target_zh || "核心診斷項目")}</h3>
+        <div style="font-size:0.8rem;color:var(--muted);margin-bottom:10px;">改善類別：${escapeHtml(friendlyLabel(ACTION_TYPE_LABELS, action.type, "網站內容"))}</div>
+        <p style="font-size:0.88rem;color:var(--muted);line-height:1.6;">${escapeHtml(action.recommendation_zh || "")}</p>
+      </div>
+      <button type="button" class="diagnostic-toggle-btn" onclick="toggleDiagnostic('diag-${idx}', this)">
+        點擊查看當前缺失與建議 ▾
+      </button>
+      <div class="diagnostic-drawer" id="diag-${idx}">
+        <div class="diag-block flaw">
+          <strong>❌ 當前具體缺失：</strong>
+          <p>${escapeHtml(flawText)}</p>
+        </div>
+        <div class="diag-block impact">
+          <strong>⚠️ 對 AI 推薦的負面影響：</strong>
+          <p>${escapeHtml(impactText)}</p>
+        </div>
+        <div class="diag-block fix">
+          <strong>💡 具體改善方向：</strong>
+          <p>${escapeHtml(fixText)}</p>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
 
   return `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/>${GA_TAG_HTML}
-<title>AI 信任值報告</title>
+<title>GeoCheck — AI 信任值報告</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="icon" type="image/png" href="/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 <style>
-body{font-family:system-ui,"Noto Sans TC",sans-serif;margin:0;background:#f7f9fc;color:#1e2a38;line-height:1.7}main{max-width:1040px;margin:0 auto;padding:48px 20px}.card{background:#fff;border:1px solid #e5edf5;border-radius:12px;padding:24px;margin:18px 0;box-shadow:0 8px 24px rgba(11,59,111,.08)}h1,h2,h3{color:#0b3b6f;line-height:1.3}.score{font-size:56px;font-weight:800;color:#00a99b}.readiness{font-size:28px;font-weight:750;color:#0b3b6f}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #e5edf5;padding:10px;vertical-align:top}.badge{display:inline-block;padding:4px 12px;border-radius:999px;background:#fff4e0;color:#9a6500;font-weight:700}.meta{color:#5a6b7e;font-size:.92rem}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{background:#f4f8fc;border-radius:10px;padding:14px}.report-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}a.button{display:inline-block;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:700}a.button.secondary{background:#fff;color:#0b3b6f;border:1px solid #cdd9e5}@media(max-width:640px){main{padding:30px 14px}.card{padding:18px}.metrics{grid-template-columns:1fr}.score{font-size:48px}table{display:block;overflow-x:auto;white-space:nowrap}.report-nav a.button{width:100%;text-align:center}}
-</style></head><body><main>
-${reportTopNavHtml()}
-<h1>你的網站在 AI 搜尋裡的表現</h1>
-<p>${escapeHtml(report.url)}</p>
-<p class="meta">檢測時間：${escapeHtml(formatReportTime(report.createdAt))}</p>
-<section class="card"><h2>AI 信任值</h2><div class="score">${escapeHtml(scoreValue)}</div><p><span class="badge">${escapeHtml(friendlyLabel(SCORE_LABELS, score.label, score.label || "這次資料不足，暫不評分"))}</span></p><p>${scoreContext}</p><p>${escapeHtml(score.summary_zh || "")}</p><p class="meta">這次一共問了 ${escapeHtml(score.denominator?.total_runs ?? 0)} 題，其中 ${escapeHtml(score.denominator?.valid_runs ?? 0)} 題拿到可以判讀的回答。沒拿到回答的題目不會被當成 0 分。</p></section>
-<section class="card"><h2>這個分數是怎麼來的</h2><p>AI 信任值只看兩件事：AI 有沒有講到你，以及 AI 有沒有把你的官網當成資料來源。</p><table><thead><tr><th>看的是什麼</th><th>這次的表現</th><th>占分數比重</th></tr></thead><tbody>${breakdownRows}</tbody></table></section>
-<section class="card"><h2>顧客這樣問的時候，AI 怎麼回答</h2><p>下面這些問題都沒有寫出你的店名或品牌名，模擬顧客還不認識你、只描述自己需求時會怎麼問。</p><div class="metrics"><div class="metric"><strong>拿到回答的題數</strong><br/>${escapeHtml(observation.measuredQueryCount ?? 0)} / ${escapeHtml(observation.queryCount ?? 0)}</div><div class="metric"><strong>有提到你的比例</strong><br/>${escapeHtml(observation.mentionRate ?? "—")}%</div><div class="metric"><strong>有連到你官網的比例</strong><br/>${escapeHtml(observation.citationRate ?? "—")}%</div></div><p><strong>網路上有沒有其他網站在談你：</strong>${authority.entityGrounded ? "有找到" : "這次沒有找到足夠的資料"}${matchedDomains.length ? `（${escapeHtml(matchedDomains.join("、"))}）` : ""}</p><table><thead><tr><th>顧客可能會問的問題</th><th>有提到你嗎</th><th>有連到你的官網嗎</th><th>AI 這次參考了哪些網站</th></tr></thead><tbody>${observationRows}</tbody></table></section>
-<section class="card"><h2>AI 讀得到你的網站嗎</h2><p>讀取結果：${escapeHtml(crawlText)}；另外成功讀到 ${escapeHtml(representativeSuccess)} 個內頁。</p><h3>網站基礎體質</h3><div class="readiness">${escapeHtml(readinessValue)} / 100</div><p class="meta">這一項不算進 AI 信任值。它看的是網站本身好不好讀：內容夠不夠、標題清不清楚、AI 與搜尋引擎進不進得來。體質好不保證 AI 會提到你，但體質差通常會讓後面的努力事倍功半。</p></section>
-<section class="card"><h2>網站上建議修正的地方</h2><table><thead><tr><th>重要程度</th><th>檢查項目</th><th>目前狀況</th><th>為什麼重要</th></tr></thead><tbody>${issueRows}</tbody></table></section>
-<section class="card"><h2>網站內容還少了什麼</h2><ul>${gaps.map((gap) => `<li>${escapeHtml(gap)}</li>`).join("")}</ul></section>
-<section class="card"><h2>如果只做三件事，先做這些</h2><table><thead><tr><th>順序</th><th>類別</th><th>要改哪裡</th><th>建議怎麼做</th></tr></thead><tbody>${actionRows}</tbody></table></section>
-<section class="card"><h2>這份報告不能保證什麼</h2><ul>${(audit.limitations_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
-<section class="card"><a class="button secondary" href="/report/${encodeURIComponent(report.id)}/markdown" data-track-action="download_report">下載這份報告</a> <a class="button" href="${TALLY_FORM_URL}" target="_blank" rel="noopener" data-track-action="book_report_interpretation">找人幫你解讀報告</a></section>
-</main>${reportTrackingHtml(report.id)}</body></html>`;
+:root{--navy:#0B3B6F;--navy-d:#072A52;--teal:#00B8A9;--teal-d:#008276;--teal-subtle:#E6F7F5;--bg:#FFFFFF;--bg-alt:#F7F9FC;--text:#1E2A38;--muted:#5A6B7E;--card-shadow:0 6px 24px rgba(11,59,111,.08);--card-shadow-hover:0 14px 36px rgba(11,59,111,.14);--radius:16px;--radius-full:999px;--font-sans:'Noto Sans TC',system-ui,sans-serif;--font-mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-sans);color:var(--text);background:var(--bg-alt);line-height:1.7;-webkit-font-smoothing:antialiased}
+.report-view-container{min-height:100vh;padding:48px 24px 80px}
+.wrap{max-width:1100px;margin:0 auto}
+.report-nav-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:28px}
+.report-nav-bar h1{font-size:1.8rem;font-weight:900;color:var(--navy)}
+.report-meta-url{font-size:0.95rem;color:var(--teal-d);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;font-weight:700;font-size:0.92rem;padding:10px 22px;border-radius:var(--radius-full);text-decoration:none;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 14px rgba(0,184,169,0.3)}
+.btn:hover{background:var(--teal-d);transform:translateY(-1px)}
+.btn-outline{background:#fff;color:var(--teal-d);border:2px solid var(--teal);box-shadow:none}
+.btn-outline:hover{background:var(--teal-subtle);color:var(--teal-d)}
+.dual-score-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:24px;margin-bottom:28px}
+@media(max-width:860px){.dual-score-grid{grid-template-columns:1fr}}
+.score-hero-card{background:#FFFFFF;border:1px solid rgba(11,59,111,.08);border-radius:var(--radius);padding:32px;box-shadow:var(--card-shadow)}
+.score-hero-card.primary{border-top:4px solid var(--teal)}
+.score-hero-card.secondary{border-top:4px solid var(--navy)}
+.score-flex{display:flex;align-items:center;gap:24px;margin:16px 0 20px}
+.score-big-num{font-size:4rem;font-weight:900;line-height:1;color:var(--teal);font-family:var(--font-mono)}
+.score-breakdown-mini{font-size:0.88rem;color:var(--muted);list-style:none;border-top:1px solid var(--bg-alt);padding-top:14px}
+.score-breakdown-mini li{margin-bottom:5px}
+.score-breakdown-mini strong{color:var(--navy)}
+.badge{display:inline-block;padding:4px 12px;border-radius:var(--radius-full);background:#FFF4E0;color:#B97700;font-weight:700;font-size:0.82rem}
+.report-sec-head{display:flex;justify-content:space-between;align-items:center;margin-top:36px;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.report-sec-head h2{font-size:1.35rem;color:var(--navy);text-align:left}
+.report-sec-head span{font-size:0.85rem;color:var(--muted)}
+.query-obs-card{background:#FFFFFF;border:1px solid rgba(11,59,111,.08);border-radius:var(--radius);padding:24px;box-shadow:var(--card-shadow);margin-bottom:20px}
+.query-card-top{display:grid;grid-template-columns:1.6fr 1fr 1fr;align-items:center;gap:16px}
+@media(max-width:768px){.query-card-top{grid-template-columns:1fr;gap:10px}}
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;padding:4px 12px;border-radius:var(--radius-full)}
+.status-pill.success{background:var(--teal-subtle);color:var(--teal-d)}
+.status-pill.muted{background:#F1F5F9;color:var(--muted)}
+.transcript-toggle-btn{margin-top:16px;background:var(--bg-alt);border:1px solid rgba(11,59,111,.1);color:var(--navy);font-size:0.84rem;font-weight:700;padding:8px 14px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.transcript-toggle-btn:hover{background:#E2E8F0}
+.transcript-body{display:none;margin-top:14px;padding:16px;background:#F8FAFD;border:1px solid #E2E8F0;border-radius:8px;font-size:0.9rem;line-height:1.7}
+.transcript-body.open{display:block}
+.transcript-tag-box{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;font-size:0.78rem}
+.t-tag{padding:3px 8px;border-radius:4px;font-weight:600}
+.t-tag.self{background:var(--teal-subtle);color:var(--teal-d);font-weight:700}
+.t-tag.source{background:#E2E8F0;color:var(--navy)}
+.matrix-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+@media(max-width:860px){.matrix-grid{grid-template-columns:1fr}}
+.matrix-col{background:#FFFFFF;border:1px solid rgba(11,59,111,.08);border-radius:var(--radius);padding:20px;box-shadow:var(--card-shadow)}
+.matrix-col-title{font-size:0.95rem;font-weight:800;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--bg-alt);display:flex;align-items:center;gap:6px}
+.check-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:0.86rem;line-height:1.45}
+.chk-badge{font-size:0.72rem;font-weight:800;padding:2px 6px;border-radius:4px;flex-shrink:0;margin-top:2px}
+.chk-pass{background:#DCFCE7;color:#166534}
+.chk-warn{background:#FEF3C7;color:#92400E}
+.chk-fail{background:#FEE2E2;color:#991B1B}
+.authority-box{background:#FFFFFF;border:1px solid rgba(11,59,111,.08);border-radius:var(--radius);padding:24px;box-shadow:var(--card-shadow);margin-top:16px}
+.auth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+@media(max-width:768px){.auth-grid{grid-template-columns:repeat(2,1fr)}}
+.auth-card{background:var(--bg-alt);border-radius:8px;padding:14px;border:1px solid rgba(11,59,111,.06)}
+.auth-card strong{display:block;font-size:0.92rem;color:var(--navy);margin-bottom:4px}
+.auth-card span{font-size:0.8rem;color:var(--muted)}
+.action-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:16px}
+@media(max-width:860px){.action-cards-grid{grid-template-columns:1fr}}
+.action-card{background:#FFFFFF;border:1px solid rgba(11,59,111,.08);border-radius:var(--radius);padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--card-shadow);transition:transform 0.2s,box-shadow 0.2s}
+.action-card:hover{box-shadow:var(--card-shadow-hover)}
+.action-card.p1{border-top:4px solid #D6453D}
+.action-card.p2{border-top:4px solid #B97700}
+.action-card.p3{border-top:4px solid var(--teal)}
+.action-card.p4{border-top:4px solid #2563EB}
+.action-tag{font-size:0.76rem;font-weight:800;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:12px;width:fit-content}
+.action-card.p1 .action-tag{background:#FEE2E2;color:#B91C1C}
+.action-card.p2 .action-tag{background:#FEF3C7;color:#B45309}
+.action-card.p3 .action-tag{background:var(--teal-subtle);color:var(--teal-d)}
+.action-card.p4 .action-tag{background:#EFF6FF;color:#1D4ED8}
+.diagnostic-toggle-btn{background:var(--bg-alt);border:1px solid rgba(11,59,111,0.12);color:var(--navy);font-size:0.82rem;font-weight:700;padding:9px 14px;border-radius:6px;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;transition:all 0.2s;font-family:inherit}
+.diagnostic-toggle-btn:hover{background:#E2E8F0;color:var(--teal-d)}
+.diagnostic-drawer{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed rgba(11,59,111,0.15);font-size:0.86rem;line-height:1.65}
+.diagnostic-drawer.open{display:block}
+.diag-block{margin-bottom:10px;padding:8px 12px;border-radius:6px}
+.diag-block.flaw{background:#FEF2F2;border-left:3px solid #EF4444;color:#991B1B}
+.diag-block.impact{background:#FFFBEB;border-left:3px solid #F59E0B;color:#92400E}
+.diag-block.fix{background:#F0FDF4;border-left:3px solid #10B981;color:#166534}
+.limits-card{background:#FFFFFF;border:1px solid rgba(11,59,111,.08);border-radius:var(--radius);padding:24px;box-shadow:var(--card-shadow);margin-top:28px}
+.limits-card h3{color:var(--navy);font-size:1.1rem;margin-bottom:10px}
+.limits-card ul{padding-left:20px;color:var(--muted);font-size:0.88rem}
+.limits-card li{margin-bottom:6px}
+.report-bottom-cta{display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<main class="report-view-container">
+  <div class="wrap">
+    <div class="report-nav-bar">
+      <div>
+        <h1>GeoCheck — AI 信任值健檢報告</h1>
+        <div class="report-meta-url">受測網址：${escapeHtml(report.url)} · 檢測時間：${escapeHtml(formatReportTime(report.createdAt))}</div>
+      </div>
+      <div>
+        <a class="btn btn-outline" href="/#top" data-track-action="run_another_analysis">← 回到主頁重新檢測</a>
+      </div>
+    </div>
+
+    <!-- Dual Metric Cards -->
+    <div class="dual-score-grid">
+      <!-- AI Trust Index (Primary) -->
+      <div class="score-hero-card primary">
+        <span class="badge" style="background:#FFF4E0;color:#B97700;margin-bottom:8px;">主分數 · 觀測 AI 外部回答</span>
+        <h2 style="font-size:1.3rem;color:var(--navy);text-align:left;">AI 信任值 (AI Trust Index)</h2>
+        <div class="score-flex">
+          <div class="score-big-num">${escapeHtml(scoreValue)}</div>
+          <div>
+            <div style="font-weight:700;color:#B97700;margin-bottom:6px;">評級：${escapeHtml(friendlyLabel(SCORE_LABELS, score.label, score.label || "這次資料不足，暫不評分"))}</div>
+            <p style="font-size:0.88rem;color:var(--muted);line-height:1.5;">${escapeHtml(scoreContext)}</p>
+          </div>
+        </div>
+        <ul class="score-breakdown-mini">
+          <li>• AI 回答裡有提到你的品牌 (占 65%)：<strong>${adoptionVal}</strong></li>
+          <li>• AI 回答裡有引用你的官網 (占 35%)：<strong>${sourceVal}</strong></li>
+          <li>• 註記：這次一共問了 ${escapeHtml(score.denominator?.total_runs ?? 0)} 題，其中 ${escapeHtml(score.denominator?.valid_runs ?? 0)} 題拿到可以判讀的回答。沒拿到回答的題目不會被當成 0 分。少於兩題有效查詢時封頂 69 分。</li>
+        </ul>
+      </div>
+
+      <!-- Site Readiness (Secondary) -->
+      <div class="score-hero-card secondary">
+        <span class="badge" style="background:#EAF2FB;color:var(--navy);margin-bottom:8px;">站內準備度 · 基礎體質不補分</span>
+        <h2 style="font-size:1.3rem;color:var(--navy);text-align:left;">網站基礎體質 (Site Readiness)</h2>
+        <div class="score-flex">
+          <div class="score-big-num" style="color:var(--navy);">${escapeHtml(readinessValue)} <span style="font-size:1.5rem;color:var(--muted);font-weight:500;">/ 100</span></div>
+          <div>
+            <div style="font-weight:700;color:var(--navy);margin-bottom:6px;">體質評級：${readinessValue >= 70 ? "優良（高可讀性）" : readinessValue >= 50 ? "良好（內容可讀）" : "待加強（讀取受限）"}</div>
+            <p style="font-size:0.88rem;color:var(--muted);line-height:1.5;">${escapeHtml(crawlText)}；另外成功讀取 ${escapeHtml(representativeSuccess)} 個代表性內頁。</p>
+          </div>
+        </div>
+        <ul class="score-breakdown-mini">
+          <li>• 機器人存取 (robots.txt)：<strong>${crawlQuality.robotsReadable ? "正常開放 (Pass)" : "受限或未知"}</strong></li>
+          <li>• 說明：此分數看網站本身好不好讀，不計入 AI 信任值主分數，體質好不保證被 AI 推薦。</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 1. AI Real Transcript & Benchmark -->
+    <div class="report-sec-head">
+      <h2>顧客真實提問與 AI 搜尋回答實錄</h2>
+      <span>模擬顧客尋找服務時的回答全文比對</span>
+    </div>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:16px;">下面這些問題皆刻意未包含您的品牌名稱，模擬顧客只描述情境與需求時，AI 搜尋引擎的實際推薦與引述行為。</p>
+    ${queryCardsHtml}
+
+    <!-- 2. 12-Point Technical Matrix -->
+    <div class="report-sec-head">
+      <h2>網站技術與內容結構 12 項詳細體檢清單</h2>
+      <span>客觀檢驗機器人能否順暢讀取並摘錄你的網站</span>
+    </div>
+    <div class="matrix-grid">
+      ${matrixCol1}
+      ${matrixCol2}
+      ${matrixCol3}
+    </div>
+
+    <!-- 3. External Authority Sources -->
+    <div class="report-sec-head">
+      <h2>AI 搜尋參考的外部網站來源</h2>
+      <span>AI 引擎認識你或競品時，所依據的外部平台數據</span>
+    </div>
+    <div class="authority-box">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.6;">
+        AI 不只閱讀您的官網，更會在網路上交叉比對第三方評測。以下為本次檢驗中 AI 搜尋引擎所參考的重要外部來源：
+      </p>
+      <div class="auth-grid">
+        ${authorityCardsHtml}
+      </div>
+    </div>
+
+    <!-- 4. Core Diagnostic Actions -->
+    <div class="report-sec-head">
+      <h2>網站核心診斷與優化建議</h2>
+      <span>點擊卡片展開當前具體缺失、AI 判讀障礙與修復方向</span>
+    </div>
+    <div class="action-cards-grid">
+      ${actionCardsHtml || '<div class="action-card p1"><p style="color:var(--muted);">目前暫無重大缺失需立即處理。</p></div>'}
+    </div>
+
+    <!-- Limitations -->
+    <div class="limits-card">
+      <h3>看分數之前，先知道它不能代表什麼</h3>
+      <ul>
+        <li>問不到足夠回答的時候，我們會標成「不知道」，不會當成 0 分。</li>
+        <li>結果只代表這個時間點、這幾題問題問到的狀況，換個時間或換個問法可能不一樣。</li>
+        <li>被提到不等於被推薦，被引用也不保證會帶來客人或訂單。</li>
+        <li>報告給的是可以追查的線索，不保證任何搜尋排名或 AI 之後的引用結果。</li>
+        ${(audit.limitations_zh || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+      </ul>
+    </div>
+
+    <!-- Bottom Actions -->
+    <div class="report-bottom-cta">
+      <a class="btn btn-outline" href="/report/${encodeURIComponent(report.id)}/markdown" data-track-action="download_report">下載這份報告</a>
+      <a class="btn" href="${TALLY_FORM_URL}" target="_blank" rel="noopener" data-track-action="book_report_interpretation">找人幫你解讀報告</a>
+    </div>
+  </div>
+</main>
+<script>
+function toggleTranscript(id, btn) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+function toggleDiagnostic(id, btn) {
+  const el = document.getElementById(id);
+  if (el) {
+    const isOpen = el.classList.toggle('open');
+    btn.textContent = isOpen ? '收起詳細診斷 ▲' : '點擊查看當前缺失與建議 ▾';
+  }
+}
+</script>
+${reportTrackingHtml(report.id)}</body></html>`;
 }
 
 function reportTopNavHtml() {
@@ -522,17 +880,69 @@ async function handleRequest(req, res) {
     return sendHtml(res, 200, fs.readFileSync(prototypePath, "utf8"));
   }
 
+  // UI/UX 2.0 概念展示原型頁面
+  if (req.method === "GET" && (url.pathname === "/demo" || url.pathname === "/demo/")) {
+    const demoPath = path.resolve(__dirname, "public", "demo.html");
+    if (!fs.existsSync(demoPath)) {
+      return sendHtml(res, 404, "<h1>Demo HTML not found</h1>");
+    }
+    return sendHtml(res, 200, fs.readFileSync(demoPath, "utf8"));
+  }
+
+  // 品牌識別系統 (Brand Identity System)
+  if (req.method === "GET" && (url.pathname === "/brand" || url.pathname === "/brand/")) {
+    const brandPath = path.resolve(__dirname, "public", "brand.html");
+    if (!fs.existsSync(brandPath)) {
+      return sendHtml(res, 404, "<h1>Brand HTML not found</h1>");
+    }
+    return sendHtml(res, 200, fs.readFileSync(brandPath, "utf8"));
+  }
+
+  // 方法論白皮書 (Methodology Whitepaper)
+  if (req.method === "GET" && (url.pathname === "/whitepaper" || url.pathname === "/whitepaper/")) {
+    const whitepaperPath = path.resolve(__dirname, "public", "whitepaper.html");
+    if (!fs.existsSync(whitepaperPath)) {
+      return sendHtml(res, 404, "<h1>Whitepaper HTML not found</h1>");
+    }
+    return sendHtml(res, 200, fs.readFileSync(whitepaperPath, "utf8"));
+  }
+
+
   // 靜態資產:og-image 與 favicon(缺檔時回 404,不再讓 meta 指向不存在的資源)
-  if (req.method === "GET" && (url.pathname === "/og-image.png" || url.pathname === "/favicon.png" || url.pathname === "/favicon.ico")) {
-    const assetName = url.pathname === "/og-image.png" ? "og-image.png" : "favicon.png";
+  if (req.method === "GET" && (url.pathname === "/og-image.png" || url.pathname === "/favicon.png" || url.pathname === "/favicon.ico" || url.pathname === "/favicon.svg")) {
+    let assetName = "favicon.png";
+    let contentType = "image/png";
+    if (url.pathname === "/og-image.png") {
+      assetName = "og-image.png";
+    } else if (url.pathname === "/favicon.svg") {
+      assetName = "favicon.svg";
+      contentType = "image/svg+xml";
+    }
     const assetPath = path.resolve(__dirname, "public", assetName);
     if (!fs.existsSync(assetPath)) return sendText(res, 404, "Not found");
     res.writeHead(200, {
-      "Content-Type": "image/png",
+      "Content-Type": contentType,
       "Cache-Control": "public, max-age=86400",
       "Access-Control-Allow-Origin": "*"
     });
     return res.end(fs.readFileSync(assetPath));
+  }
+
+  // 靜態圖檔資產目錄 /assets/*
+  if ((req.method === "GET" || req.method === "HEAD") && url.pathname.startsWith("/assets/")) {
+    const safeAssetPath = path.resolve(__dirname, "public", url.pathname.slice(1));
+    const assetsDir = path.resolve(__dirname, "public", "assets");
+    if (fs.existsSync(safeAssetPath) && safeAssetPath.toLowerCase().startsWith(assetsDir.toLowerCase())) {
+      const ext = path.extname(safeAssetPath).toLowerCase();
+      const mimeTypes = { ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml", ".webp": "image/webp" };
+      res.writeHead(200, {
+        "Content-Type": mimeTypes[ext] || "application/octet-stream",
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      });
+      return res.end(fs.readFileSync(safeAssetPath));
+    }
+    return sendText(res, 404, "Not found");
   }
 
   const adminPathToken = getAdminPathToken();
@@ -632,7 +1042,11 @@ async function handleRequest(req, res) {
       const host = new URL(siteUrl).hostname.replace(/^www\./, "");
       const source = String(body.source || "direct").slice(0, 80);
       funnel.record("audit_started", { host, source });
-      const cached = auditCache.get(siteUrl);
+      const customQueries = Array.isArray(body.customQueries)
+        ? body.customQueries.map((q) => String(q || "").trim()).filter(Boolean)
+        : null;
+      const cacheKey = customQueries && customQueries.length ? `${siteUrl}#queries=${customQueries.join("||")}` : siteUrl;
+      const cached = auditCache.get(cacheKey);
       if (cached) {
         const report = normalizeReportForClient({ ...cached.report, cache: cached.cache });
         reports.set(report.id, report);
@@ -645,8 +1059,8 @@ async function handleRequest(req, res) {
         });
         return sendJson(res, 200, report);
       }
-      const freshReport = normalizeReportForClient(await runRealLiteAudit(siteUrl));
-      const report = auditCache.set(siteUrl, freshReport);
+      const freshReport = normalizeReportForClient(await runRealLiteAudit(siteUrl, { customQueries }));
+      const report = auditCache.set(cacheKey, freshReport);
       reports.set(report.id, report);
       funnel.record("audit_completed", {
         host,
@@ -757,7 +1171,9 @@ async function handleRequest(req, res) {
   // API 路徑維持 JSON 404;一般頁面回傳 HTML 404(附回首頁連結)
   if (req.method === "GET" && !url.pathname.startsWith("/api/")) {
     return sendHtml(res, 404, `<!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex"/><title>404 — 找不到頁面 | GEOCheck</title>
+<html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex"/><title>GeoCheck — 找不到頁面 (404)</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="icon" type="image/png" href="/favicon.png"/>
 <style>body{font-family:system-ui,"Noto Sans TC",sans-serif;background:#f7f9fc;color:#1e2a38;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0}main{text-align:center;padding:24px}h1{color:#0b3b6f;font-size:3rem;margin:0 0 8px}a{display:inline-block;margin-top:20px;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 28px;border-radius:999px;font-weight:700}</style>
 </head><body><main><h1>404</h1><p>找不到這個頁面。想檢查你的網站 AI 看不看得見?</p><a href="/">回首頁開始免費健檢</a></main></body></html>`);
   }

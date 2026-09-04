@@ -91,6 +91,58 @@ async function measureGeoSite(siteUrl, options = {}) {
 
 async function resolveQueryPlanning(input, options = {}) {
   if (options.queryPlan) return normalizeReviewedQueryPlan(options.queryPlan);
+  if (Array.isArray(options.customQueries) && options.customQueries.length > 0) {
+    const cleanedQueries = options.customQueries
+      .map((q, idx) => {
+        const text = String(q || "").trim();
+        if (!text) return null;
+        return {
+          id: `custom_${idx + 1}`,
+          text,
+          intent: idx === 0 ? "awareness" : "consideration",
+          consumer_relevance: 5,
+          evidence_fit: 5,
+          rationale_zh: "使用者於檢測前置自選之顧客探索情境題"
+        };
+      })
+      .filter(Boolean);
+    if (cleanedQueries.length >= 1) {
+      return {
+        status: "ready",
+        reason: null,
+        entity_name: "custom",
+        industry: input.siteType?.industry || "custom",
+        primary_offering: "custom",
+        topic_terms: [],
+        geography: [],
+        target_audience: [],
+        evidence_basis: ["使用者自選檢測情境題"],
+        confidence: "high",
+        positioning: {
+          perceived_category_zh: input.siteType?.category || "自訂情境",
+          perceived_audience_zh: ["目標探索消費者"],
+          perceived_use_cases_zh: ["線上推薦與服務檢索"],
+          misunderstandings_or_risks_zh: [],
+          missing_signals_zh: [],
+          confidence: "high"
+        },
+        candidates: cleanedQueries,
+        selectedQueries: cleanedQueries,
+        queryPlan: {
+          query_set_version: "user-custom-v1",
+          queries: cleanedQueries.map(({ id, text, intent }) => ({ id, text, intent }))
+        },
+        provider: "user_custom",
+        model: "user-selected-queries",
+        usage: { inputTokens: 0, outputTokens: 0, totalTokens: 0 },
+        latencyMs: 0,
+        attempts: 0,
+        semanticAttempts: 0,
+        version: QUERY_PLANNER_VERSION,
+        source: "user_custom"
+      };
+    }
+  }
   try {
     const planner = typeof options.queryPlanner === "function" ? options.queryPlanner : buildGeoQueryPlanResolved;
     return await planner(input, options.queryPlannerOptions || {});

@@ -2,9 +2,9 @@ const core = require("./real-lite-audit-v2-core");
 const { fetchHomepage, fetchRepresentativePages } = require("./html-v2");
 const { fetchTechnicalSignals } = require("./technical-signals");
 
-async function runRealLiteAudit(siteUrl) {
+async function runRealLiteAudit(siteUrl, options = {}) {
   try {
-    return await core.runRealLiteAudit(siteUrl);
+    return await core.runRealLiteAudit(siteUrl, options);
   } catch (error) {
     if (!isModelProviderFailure(error)) throw error;
     return runDeterministicFallback(siteUrl, error);

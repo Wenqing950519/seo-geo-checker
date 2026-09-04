@@ -1,0 +1,2587 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoCheck — AI 信任值檢查（UI/UX 2.0 完整豐富版）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   DESIGN TOKENS & SYSTEM
+   ========================================================================== */
+:root {
+  --navy: #0B3B6F;
+  --navy-d: #072A52;
+  --navy-darkest: #05182C;
+  --teal: #00B8A9;
+  --teal-d: #008276;       /* Enhanced WCAG contrast for text: 4.6:1 */
+  --teal-subtle: #E6F7F5;
+  --bg: #FFFFFF;
+  --bg-alt: #F7F9FC;
+  --text: #1E2A38;
+  --muted: #5A6B7E;
+  --card-shadow: 0 6px 24px rgba(11,59,111,.08);
+  --card-shadow-hover: 0 14px 36px rgba(11,59,111,.14);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --radius-full: 999px;
+  --font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Accessibility Focus States */
+:focus-visible {
+  outline: 2px solid var(--teal-d);
+  outline-offset: 3px;
+}
+
+section { padding: 96px 24px; scroll-margin-top: 88px; }
+.wrap { max-width: 1100px; margin: 0 auto; }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 900; color: var(--navy); text-align: center; }
+.sub { color: var(--muted); text-align: center; max-width: 640px; margin: 16px auto 56px; font-size: 1.05rem; }
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal-subtle);
+  color: var(--teal-d);
+  font-weight: 700;
+  font-size: .85rem;
+  padding: 5px 16px;
+  border-radius: var(--radius-full);
+  letter-spacing: .06em;
+  margin-bottom: 16px;
+}
+.center { text-align: center; }
+
+/* ==========================================================================
+   TOP PROTOTYPE SWITCHER BAR
+   ========================================================================== */
+.demo-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #0B192C;
+  color: #E2E8F0;
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  font-size: 0.86rem;
+}
+.demo-badge {
+  background: var(--teal-d);
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+}
+.demo-tabs {
+  display: flex;
+  background: rgba(255,255,255,0.1);
+  padding: 3px;
+  border-radius: var(--radius-full);
+  gap: 4px;
+}
+.demo-tab-btn {
+  background: transparent;
+  border: none;
+  color: #CBD5E1;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+.demo-tab-btn:hover { color: #fff; }
+.demo-tab-btn.active {
+  background: var(--navy);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.demo-info-btn {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: inherit;
+}
+.demo-info-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+nav#nav {
+  position: sticky;
+  top: 48px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: .3s;
+  padding: 18px 24px;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(11,59,111,.06);
+}
+nav#nav.scrolled {
+  box-shadow: 0 2px 16px rgba(11,59,111,.08);
+  padding: 12px 24px;
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--navy);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.logo span { color: var(--teal); }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: .95rem;
+  font-weight: 500;
+  transition: .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--teal-d); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: .25s;
+  box-shadow: 0 4px 14px rgba(0,184,169,.35);
+}
+.btn:hover {
+  background: var(--teal-d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,130,118,.35);
+}
+.btn-nav { padding: 9px 22px; font-size: .9rem; }
+@media(max-width:820px) {
+  .nav-links li:not(:last-child) { display: none; }
+}
+
+/* ==========================================================================
+   HERO: FAITHFUL ORIGINAL RADAR, SWEEP & FLOATING NODES
+   ========================================================================== */
+.hero {
+  min-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 100px 24px 80px;
+  background: linear-gradient(180deg, #EAF3FB 0%, #F7FBFD 55%, #fff 100%);
+  overflow: hidden;
+}
+.hero-visual {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  border: 1.5px solid rgba(11,59,111,.10);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.ring.r1 { width: 420px; height: 420px; }
+.ring.r2 { width: 640px; height: 640px; border-color: rgba(11,59,111,.07); }
+.ring.r3 { width: 880px; height: 880px; border-color: rgba(11,59,111,.05); }
+.sweep {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 880px;
+  height: 880px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(0,184,169,.15), transparent 70deg);
+  animation: spin 9s linear infinite;
+}
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Floating Node Badges */
+.node {
+  position: absolute;
+  background: #fff;
+  border: 1px solid rgba(11,59,111,.12);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--radius-full);
+  padding: 8px 18px;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--navy);
+  animation: float 6s ease-in-out infinite;
+}
+.node b { color: var(--teal-d); }
+.n1 { top: 22%; left: 12%; }
+.n2 { top: 18%; right: 14%; animation-delay: 1.2s; }
+.n3 { bottom: 30%; left: 8%; animation-delay: 2.4s; }
+.n4 { bottom: 26%; right: 10%; animation-delay: 3.1s; }
+.n5 { top: 45%; right: 5%; animation-delay: 1.8s; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@media(max-width:820px) {
+  .n3, .n4, .n5 { display: none; }
+  .node { font-size: .75rem; padding: 6px 12px; }
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+}
+.hero h1 {
+  font-size: clamp(2.3rem, 5.8vw, 4.1rem);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.25;
+  letter-spacing: .01em;
+}
+.title-lock { display: inline-block; text-align: center; }
+.hero h1 em {
+  font-style: normal;
+  color: var(--teal);
+  position: relative;
+}
+.hero p.lead {
+  margin: 22px auto 32px;
+  font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+  color: var(--muted);
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+/* Hero URL Input Box */
+.url-box {
+  display: flex;
+  gap: 10px;
+  max-width: 580px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 8px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 36px rgba(11,59,111,.14);
+  border: 1px solid rgba(11,59,111,.08);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.url-box:focus-within {
+  border-color: var(--teal-d);
+  box-shadow: 0 10px 40px rgba(0,184,169,.22);
+}
+.url-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1.05rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-family: inherit;
+  min-width: 0;
+  color: var(--text);
+}
+.url-box input::placeholder { color: #94A3B8; }
+
+/* CUSTOM QUESTION MODULE (自訂問題折疊模組) */
+.custom-query-toggle-wrap {
+  margin-top: 14px;
+}
+/* Audit Setup & Confirmation Modal Styles */
+.setup-modal-box {
+  background: #FFFFFF;
+  border-radius: var(--radius);
+  max-width: 620px;
+  width: 100%;
+  padding: 34px 32px;
+  box-shadow: 0 24px 60px rgba(7,31,59,0.3);
+  position: relative;
+  animation: popIn 0.25s ease-out;
+}
+.site-preview-card {
+  background: var(--bg-alt);
+  border: 1px solid rgba(11,59,111,0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.site-preview-title {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--navy);
+  font-family: var(--font-mono);
+}
+.site-preview-meta {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.setup-q-block {
+  margin-bottom: 18px;
+}
+.setup-q-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.setup-q-header label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.dice-btn {
+  background: rgba(0,184,169,0.12);
+  border: 1px solid rgba(0,184,169,0.3);
+  color: var(--teal-d);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.dice-btn:hover {
+  background: var(--teal-d);
+  color: #fff;
+  border-color: var(--teal-d);
+}
+.dice-icon {
+  display: inline-block;
+  transition: transform 0.35s ease;
+}
+.setup-q-input {
+  width: 100%;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+  transition: all 0.2s;
+}
+.setup-q-input:focus {
+  border-color: var(--teal-d);
+  box-shadow: 0 0 0 3px rgba(0,184,169,0.15);
+}
+.setup-q-input.flash {
+  animation: flashHighlight 0.45s ease;
+}
+@keyframes flashHighlight {
+  0% { background-color: #E6F7F5; border-color: var(--teal); }
+  100% { background-color: #FFFFFF; border-color: #CBD5E1; }
+}
+
+/* Enhanced 4-Stage Audit Progress Box (Under Hero Input) */
+.audit-progress {
+  max-width: 580px;
+  margin: 20px auto 0;
+  text-align: left;
+  color: var(--navy);
+  background: #FFFFFF;
+  padding: 20px 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(11,59,111,.08);
+}
+.audit-progress-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: .88rem;
+  font-weight: 700;
+}
+.audit-progress-head strong {
+  color: var(--teal-d);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+.audit-progress-track {
+  height: 10px;
+  background: rgba(11,59,111,.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.audit-progress-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--teal), #35D4C5);
+  transition: width .5s ease;
+  position: relative;
+}
+.audit-progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: .75rem;
+}
+.audit-progress-steps span.active-step {
+  color: var(--teal-d);
+  font-weight: 700;
+}
+.audit-tip-box {
+  margin-top: 14px;
+  background: var(--bg-alt);
+  border-left: 3px solid var(--teal);
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: var(--navy);
+  border-radius: 4px;
+}
+.demo-skip-action {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+.demo-skip-btn {
+  background: none;
+  border: 1px dashed var(--teal-d);
+  color: var(--teal-d);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+.demo-skip-btn:hover { background: var(--teal-subtle); }
+
+.trust {
+  margin-top: 16px;
+  font-size: .88rem;
+  color: var(--muted);
+}
+.scroll-cue {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+  text-decoration: none;
+  color: var(--navy);
+  font-size: .9rem;
+  font-weight: 700;
+  animation: bounce 2s ease-in-out infinite;
+}
+.scroll-cue svg { display: block; margin: 6px auto 0; }
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 8px); }
+}
+
+/* Social Proof Strip */
+.proof-strip {
+  background: var(--bg-alt);
+  border-top: 1px solid rgba(11,59,111,.07);
+  border-bottom: 1px solid rgba(11,59,111,.07);
+  padding: 22px 24px;
+}
+.proof-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.proof-inner strong {
+  font-size: 1.6rem;
+  color: var(--navy);
+  font-weight: 900;
+}
+.proof-inner span {
+  display: block;
+  font-size: .85rem;
+  color: var(--muted);
+}
+.proof-divider {
+  width: 1px;
+  height: 38px;
+  background: rgba(11,59,111,.12);
+}
+
+/* ==========================================================================
+   PAIN POINTS (Refined with Lucide Vector SVGs)
+   ========================================================================== */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media(max-width:820px) { .grid3 { grid-template-columns: 1fr; } }
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(11,59,111,.06);
+  transition: .3s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow-hover);
+}
+.card .icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: rgba(0,184,169,.12);
+  color: var(--teal-d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.card h3 {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.card p {
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* ==========================================================================
+   MODULES (Checked Aspects)
+   ========================================================================== */
+.alt { background: var(--bg-alt); }
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media(max-width:860px) {
+  .modules-grid { grid-template-columns: 1fr; }
+}
+.module-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(11,59,111,.06);
+  transition: .25s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.module-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+.module-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.module-card .num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.module-card h3 {
+  color: var(--navy);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+}
+.module-card p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 14px;
+  flex: 1;
+}
+.module-card .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  font-size: .75rem;
+  background: var(--bg-alt);
+  border: 1px solid rgba(11,59,111,.08);
+  color: var(--navy);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+/* Citation Pill & Diagnostic Drawer Styles */
+.cite-source-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--teal-subtle);
+  color: var(--teal-d);
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  text-decoration: underline;
+  cursor: help;
+}
+.diagnostic-toggle-btn {
+  background: var(--bg-alt);
+  border: 1px solid rgba(11,59,111,0.12);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 9px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.diagnostic-toggle-btn:hover {
+  background: #E2E8F0;
+  color: var(--teal-d);
+}
+.diagnostic-drawer {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(11,59,111,0.15);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+.diagnostic-drawer.open {
+  display: block;
+}
+.diag-block {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+.diag-block.flaw { background: #FEF2F2; border-left: 3px solid #EF4444; color: #991B1B; }
+.diag-block.impact { background: #FFFBEB; border-left: 3px solid #F59E0B; color: #92400E; }
+.diag-block.fix { background: #F0FDF4; border-left: 3px solid #10B981; color: #166534; }
+
+/* ==========================================================================
+   REPORT PREVIEW + INTERACTIVE AI SEARCH OBSERVATION LENS
+   ========================================================================== */
+.report-preview-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+@media(max-width:880px) { .report-preview-grid { grid-template-columns: 1fr; } }
+.score-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 36px 28px;
+  text-align: center;
+  border: 1px solid rgba(11,59,111,.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.gauge {
+  position: relative;
+  width: 200px;
+  height: 120px;
+  margin: 0 auto 8px;
+}
+.gauge svg { width: 100%; height: auto; }
+.gauge .val {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--navy);
+  font-family: var(--font-mono);
+}
+.badge {
+  display: inline-block;
+  background: #FFF4E0;
+  color: #B97700;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: var(--radius-full);
+  font-size: .85rem;
+  margin-top: 8px;
+}
+.score-card p {
+  color: var(--muted);
+  font-size: .9rem;
+  margin-top: 16px;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* Interactive Lens inside Preview */
+.interactive-lens-container {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 28px 32px;
+  border: 1px solid rgba(11,59,111,.06);
+}
+.lens-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--bg-alt);
+  padding-bottom: 14px;
+}
+.lens-header h3 {
+  color: var(--navy);
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lens-toggle {
+  display: flex;
+  background: #E2E8F0;
+  padding: 3px;
+  border-radius: var(--radius-full);
+}
+.lens-tab-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  color: var(--muted);
+  font-family: inherit;
+  transition: .2s;
+}
+.lens-tab-btn.active {
+  background: #FFFFFF;
+  color: var(--navy);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.lens-dialog-box {
+  background: #F8FAFD;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.lens-query-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  font-size: 0.92rem;
+  color: var(--navy);
+  font-weight: 700;
+}
+.lens-answer-row {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.7;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #E5EDF5;
+}
+.highlight-mention {
+  background: #FEF08A;
+  color: #854D0E;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+.highlight-cite {
+  background: var(--teal-subtle);
+  color: var(--teal-d);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   METHOD TRANSPARENCY
+   ========================================================================== */
+.method-panel {
+  background: linear-gradient(145deg,#F4FAFD 0%,#EEF7F8 100%);
+  border: 1px solid rgba(0,184,169,.16);
+  border-radius: 24px;
+  padding: 36px;
+}
+.method-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.method-card {
+  background: #fff;
+  border: 1px solid rgba(11,59,111,.08);
+  border-radius: 14px;
+  padding: 24px 20px;
+  box-shadow: 0 4px 16px rgba(11,59,111,.05);
+}
+.method-card .method-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+.method-card h3 { color: var(--navy); font-size: 1rem; margin-bottom: 8px; }
+.method-card p { color: var(--muted); font-size: .88rem; line-height: 1.6; }
+.method-limits {
+  margin-top: 20px;
+  background: #fff;
+  border-left: 4px solid #E0A11B;
+  border-radius: 12px;
+  padding: 22px 24px;
+}
+.method-limits h3 { color: var(--navy); font-size: 1rem; margin-bottom: 10px; }
+.method-limits ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 28px; list-style: none; }
+.method-limits li { position: relative; padding-left: 20px; color: var(--muted); font-size: .88rem; }
+.method-limits li::before { content: "!"; position: absolute; left: 0; color: #B97700; font-weight: 900; }
+@media(max-width:900px) { .method-flow { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:600px) {
+  .method-panel { padding: 20px; }
+  .method-flow { grid-template-columns: 1fr; }
+  .method-limits ul { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   SERVICES & PROJECT CARDS
+   ========================================================================== */
+.svc .card { display: flex; flex-direction: column; }
+.svc .card ul { list-style: none; margin: 14px 0 22px; flex: 1; }
+.svc .card li { padding-left: 24px; position: relative; color: var(--muted); font-size: .92rem; margin-bottom: 8px; }
+.svc .card li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 900; }
+.svc .who { font-size: .85rem; color: var(--navy); background: var(--bg-alt); border-radius: 8px; padding: 8px 12px; margin-top: 4px; }
+.btn-outline { background: #fff; color: var(--teal-d); border: 2px solid var(--teal); box-shadow: none; }
+.btn-outline:hover { background: var(--teal-subtle); color: var(--teal-d); }
+.featured { border: 2px solid var(--teal); position: relative; }
+.featured::after {
+  content: "公開工具";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 2px 14px;
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   RESOURCES (ACCORDION)
+   ========================================================================== */
+.res-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; align-items: start; }
+@media(max-width:680px) { .res-row { grid-template-columns: 1fr; } }
+.res { background: #fff; border-radius: 12px; border: 1px solid rgba(11,59,111,.08); transition: .25s; overflow: hidden; }
+.res:hover { border-color: var(--teal); box-shadow: var(--card-shadow); }
+.res-head {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 22px;
+  font-family: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.res-head b { color: var(--navy); font-size: 1rem; display: block; margin-bottom: 6px; }
+.res-head span { color: var(--muted); font-size: .85rem; display: block; line-height: 1.6; }
+.res-head .arrow {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0,184,169,.12);
+  color: var(--teal-d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  transition: transform .3s;
+  margin-top: 2px;
+}
+.res.open .arrow { transform: rotate(180deg); }
+.res-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+.res.open .res-body { max-height: 400px; }
+.res-body p { padding: 0 22px 16px; color: var(--text); font-size: .92rem; }
+.res-body i { display: block; padding: 0 22px 20px; color: var(--teal-d); font-style: normal; font-size: .82rem; font-weight: 700; }
+
+/* ==========================================================================
+   STEPS
+   ========================================================================== */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: s; margin-top: 8px; }
+@media(max-width:820px) { .steps { grid-template-columns: 1fr; max-width: 420px; margin: 8px auto 0; } }
+.step { text-align: center; padding: 0 18px; position: relative; }
+.step::before {
+  counter-increment: s;
+  content: counter(s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--teal);
+  color: var(--teal-d);
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin: 0 auto 16px;
+  position: relative;
+  z-index: 2;
+}
+.step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: calc(50% + 36px);
+  width: calc(100% - 72px);
+  height: 2px;
+  background: rgba(0,184,169,.3);
+  z-index: 1;
+}
+@media(max-width:820px) {
+  .step::after { display: none !important; }
+  .step { margin-bottom: 32px; }
+}
+.step h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 6px; }
+.step p { color: var(--muted); font-size: .88rem; }
+
+/* ==========================================================================
+   FINAL CTA / LEAD FORM
+   ========================================================================== */
+.final {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-d) 100%);
+  color: #fff;
+  text-align: center;
+}
+.final h2 { color: #fff; }
+.final p.intro { color: rgba(255,255,255,.78); max-width: 560px; margin: 16px auto 36px; }
+.lead-form {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 34px 32px;
+  text-align: left;
+  box-shadow: 0 12px 40px rgba(0,0,0,.3);
+}
+.lead-form label { font-size: .85rem; font-weight: 700; color: var(--navy); display: block; margin-bottom: 6px; }
+.lead-form input, .lead-form textarea, .lead-form select {
+  width: 100%;
+  border: 1px solid #D5DEE8;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: .95rem;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color .2s;
+  color: var(--text);
+}
+.lead-form input:focus, .lead-form textarea:focus, .lead-form select:focus { border-color: var(--teal); }
+.lead-form .btn { width: 100%; text-align: center; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  background: var(--navy-d);
+  color: rgba(255,255,255,.7);
+  padding: 40px 24px;
+  font-size: .88rem;
+}
+.foot {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+footer button {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.85);
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin-left: 20px;
+}
+footer button:hover { color: var(--teal); }
+
+/* ==========================================================================
+   VIEW 2: ENRICHED & EXPANDED REPORT VIEW (內容大幅充實)
+   ========================================================================== */
+.report-view-container {
+  display: none;
+  background: var(--bg-alt);
+  min-height: 100vh;
+  padding: 48px 24px 80px;
+}
+.report-view-container.active { display: block; }
+.report-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.report-nav-bar h1 { font-size: 1.8rem; font-weight: 900; color: var(--navy); }
+.report-meta-url { font-size: 0.95rem; color: var(--teal-d); font-weight: 600; }
+.dual-score-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+@media(max-width:860px) { .dual-score-grid { grid-template-columns: 1fr; } }
+.score-hero-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11,59,111,.08);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--card-shadow);
+}
+.score-hero-card.primary { border-top: 4px solid var(--teal); }
+.score-hero-card.secondary { border-top: 4px solid var(--navy); }
+.score-flex { display: flex; align-items: center; gap: 24px; margin: 16px 0 20px; }
+.score-big-num { font-size: 4rem; font-weight: 900; line-height: 1; color: var(--teal); font-family: var(--font-mono); }
+.score-breakdown-mini { font-size: 0.88rem; color: var(--muted); list-style: none; border-top: 1px solid var(--bg-alt); padding-top: 14px; }
+.score-breakdown-mini li { margin-bottom: 5px; }
+.score-breakdown-mini strong { color: var(--navy); }
+
+/* Section Header in Report */
+.report-sec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 36px;
+  margin-bottom: 14px;
+}
+.report-sec-head h2 { font-size: 1.35rem; color: var(--navy); text-align: left; }
+.report-sec-head span { font-size: 0.85rem; color: var(--muted); }
+
+/* Responsive Query Observation Cards + Expandable AI Transcript */
+.query-obs-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11,59,111,.08);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 20px;
+}
+.query-card-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  align-items: center;
+  gap: 16px;
+}
+@media(max-width:768px) { .query-card-top { grid-template-columns: 1fr; gap: 10px; } }
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+.status-pill.success { background: var(--teal-subtle); color: var(--teal-d); }
+.status-pill.muted { background: #F1F5F9; color: var(--muted); }
+
+/* AI Generated Transcript Dropdown */
+.transcript-toggle-btn {
+  margin-top: 16px;
+  background: var(--bg-alt);
+  border: 1px solid rgba(11,59,111,.1);
+  color: var(--navy);
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.transcript-toggle-btn:hover { background: #E2E8F0; }
+.transcript-body {
+  display: none;
+  margin-top: 14px;
+  padding: 16px;
+  background: #F8FAFD;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.transcript-body.open { display: block; }
+.transcript-tag-box {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.78rem;
+}
+.t-tag {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.t-tag.competitor { background: #FEE2E2; color: #991B1B; }
+.t-tag.self { background: var(--teal-subtle); color: var(--teal-d); font-weight: 700; }
+.t-tag.source { background: #E2E8F0; color: var(--navy); }
+
+/* 12-Point Technical & Content Audit Matrix */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+@media(max-width:860px) { .matrix-grid { grid-template-columns: 1fr; } }
+.matrix-col {
+  background: #FFFFFF;
+  border: 1px solid rgba(11,59,111,.08);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+}
+.matrix-col-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--bg-alt);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+.chk-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.chk-pass { background: #DCFCE7; color: #166534; }
+.chk-warn { background: #FEF3C7; color: #92400E; }
+.chk-fail { background: #FEE2E2; color: #991B1B; }
+
+/* External Authority Evidence List */
+.authority-box {
+  background: #FFFFFF;
+  border: 1px solid rgba(11,59,111,.08);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+  margin-top: 16px;
+}
+.auth-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+@media(max-width:768px) { .auth-grid { grid-template-columns: repeat(2, 1fr); } }
+.auth-card {
+  background: var(--bg-alt);
+  border-radius: 8px;
+  padding: 14px;
+  border: 1px solid rgba(11,59,111,.06);
+}
+.auth-card strong { display: block; font-size: 0.92rem; color: var(--navy); margin-bottom: 4px; }
+.auth-card span { font-size: 0.8rem; color: var(--muted); }
+
+/* Priority Action & Diagnostic Cards (4 Key Areas) */
+.action-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 16px;
+}
+@media(max-width:860px) { .action-cards-grid { grid-template-columns: 1fr; } }
+.action-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(11,59,111,.08);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.action-card:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+.action-card.p1 { border-top: 4px solid #D6453D; }
+.action-card.p2 { border-top: 4px solid #B97700; }
+.action-card.p3 { border-top: 4px solid var(--teal); }
+.action-card.p4 { border-top: 4px solid #2563EB; }
+.action-tag { font-size: 0.76rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 12px; width: fit-content; }
+.action-card.p1 .action-tag { background: #FEE2E2; color: #B91C1C; }
+.action-card.p2 .action-tag { background: #FEF3C7; color: #B45309; }
+.action-card.p3 .action-tag { background: var(--teal-subtle); color: var(--teal-d); }
+.action-card.p4 .action-tag { background: #EFF6FF; color: #1D4ED8; }
+.copy-btn {
+  background: var(--bg-alt);
+  border: 1px solid rgba(11,59,111,.1);
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.copy-btn:hover { background: #E2E8F0; }
+
+/* ==========================================================================
+   ACCESSIBLE MODAL
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 31, 59, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+.modal-box {
+  background: #FFFFFF;
+  border-radius: var(--radius);
+  max-width: 560px;
+  width: 100%;
+  padding: 32px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  position: relative;
+  animation: popIn 0.25s ease-out;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.modal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 1.3rem;
+}
+.modal-box h2 { font-size: 1.35rem; color: var(--navy); margin-bottom: 14px; text-align: left; }
+.modal-box p { font-size: .95rem; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+
+<!-- TOP PROTOTYPE BAR -->
+<aside class="demo-bar" aria-label="Demo 控制面板">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span class="demo-badge">UI/UX 2.0 PROTOTYPE</span>
+    <span>GeoCheck 自訂情境與深度報告展示</span>
+  </div>
+  <div class="demo-tabs">
+    <button class="demo-tab-btn active" id="tab-btn-landing" onclick="switchView('landing')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      首頁（經典光影雷達 ＋ 自訂問題模組）
+    </button>
+    <button class="demo-tab-btn" id="tab-btn-report" onclick="switchView('report')">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+      深度報告頁（競品比對 ＋ 12 項體檢清單）
+    </button>
+  </div>
+  <div>
+    <button class="demo-info-btn" onclick="openModal('changes-modal')">💡 查看改版核心亮點</button>
+  </div>
+</aside>
+
+<!-- ========================================================================
+     VIEW 1: LANDING PAGE (Faithful Classic Hero + Custom Question Module)
+     ======================================================================== -->
+<div id="view-landing">
+  <!-- S0 Nav -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top">GEO<span>Check</span></a>
+      <ul class="nav-links">
+        <li><a href="#pain">為什麼要看</a></li>
+        <li><a href="#modules">檢查什麼</a></li>
+        <li><a href="#report-preview">報告長怎樣</a></li>
+        <li><a href="#method">怎麼量測</a></li>
+        <li><a href="#resources">基本觀念</a></li>
+        <li><a class="btn btn-nav" href="#top">免費檢查</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- S1 Hero: 經典雷達圓環 + 旋轉光影 + 浮動膠囊 + 置中大標 -->
+  <header class="hero" id="top">
+    <div class="hero-visual" aria-hidden="true">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+      <div class="sweep"></div>
+      <div class="node n1"><b>Google</b> 找得到你 ✓</div>
+      <div class="node n2"><b>ChatGPT</b> 有提到你嗎？</div>
+      <div class="node n3">AI 有沒有<b>連到你的官網</b></div>
+      <div class="node n4">AI 知道<b>你在賣什麼</b>嗎</div>
+      <div class="node n5"><b>AI</b> 怎麼形容你</div>
+    </div>
+
+    <div class="hero-content">
+      <h1><span class="title-lock">你現在的網站<br><em>AI 看得見</em>嗎？</span></h1>
+      <p class="lead">免費 SEO/GEO 健檢 — 60 秒檢查你的網站在 AI 引擎中的搜尋能見度，一鍵教會你如何提升你的網站被 AI 看見的機率。</p>
+
+      <!-- URL Input Box -->
+      <form id="audit-form" class="url-box" onsubmit="handleAuditSubmit(event)">
+        <input type="text" id="site-url" placeholder="https://your-website.com" value="https://buna.com.tw" required aria-label="網站網址">
+        <button class="btn" type="submit" id="audit-submit-btn">開始檢查</button>
+      </form>
+
+      <!-- 4-Stage Progressive Wait Loader -->
+      <div id="audit-progress" class="audit-progress" style="display:none;">
+        <div class="audit-progress-head">
+          <span id="audit-progress-stage">正在準備連線...</span>
+          <strong id="audit-progress-percent">0%</strong>
+        </div>
+        <div class="audit-progress-track">
+          <span id="audit-progress-fill" class="audit-progress-fill"></span>
+        </div>
+        <div class="audit-progress-steps">
+          <span id="pstep-1" class="active-step">1. 連線讀取</span>
+          <span id="pstep-2">2. 擬定題庫</span>
+          <span id="pstep-3">3. 問 AI 搜尋</span>
+          <span id="pstep-4">4. 整理指標</span>
+          <span id="pstep-5">5. 產出報告</span>
+        </div>
+        <div class="audit-tip-box" id="audit-tip-text">
+          💡 <b>你知道嗎？</b> AI 推薦商家時，會優先搜尋有明確服務條款、清楚地址與真實外部引用的實體。
+        </div>
+        <div class="demo-skip-action">
+          <button class="demo-skip-btn" type="button" onclick="skipToReport()">⚡ Demo 加速：直接進入報告頁</button>
+        </div>
+      </div>
+
+      <p class="trust">分數來自 AI 實際給出的回答與它引用的網站，不是猜的</p>
+    </div>
+
+    <a class="scroll-cue" href="#pain">往下看更多
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0B3B6F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </header>
+
+  <!-- Social Proof Strip -->
+  <div class="proof-strip">
+    <div class="proof-inner">
+      <div><strong>50+</strong><span>已經檢查過的網站</span></div>
+      <div class="proof-divider" aria-hidden="true"></div>
+      <div><strong>60 秒</strong><span>免費、不用註冊就能拿到報告</span></div>
+    </div>
+  </div>
+
+  <!-- S2 Pain Points (Refined with Lucide Vector SVGs) -->
+  <section id="pain">
+    <div class="wrap">
+      <div class="center"><span class="tag">為什麼要看這件事</span></div>
+      <h2>Google 找得到你，<br>不代表 AI 會推薦你</h2>
+      <p class="sub">愈來愈多顧客直接問 AI「附近有沒有推薦的」。這時候 AI 講出哪幾家，和 Google 排名是兩回事。</p>
+      <div class="grid3">
+        <div class="card">
+          <div class="icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><rect x="4" y="8" width="16" height="12" rx="2"></rect><circle cx="9" cy="13" r="1.5"></circle><circle cx="15" cy="13" r="1.5"></circle><path d="M9 17h6"></path></svg>
+          </div>
+          <h3>AI 不知道你是誰</h3>
+          <p>AI 不清楚你做什麼、服務誰，顧客問到你這一行的時候，它就直接講別人家。</p>
+        </div>
+        <div class="card">
+          <div class="icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+          </div>
+          <h3>網站沒壞，但沒東西可講</h3>
+          <p>網站看起來正常，不代表 AI 有東西可以引用。沒有把服務、價格、常見問題寫清楚，AI 就沒得摘。</p>
+        </div>
+        <div class="card">
+          <div class="icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          </div>
+          <h3>AI 把你講錯了</h3>
+          <p>AI 可能把你歸到錯的類別、配到錯的客群。網站上寫得含糊的店，在 AI 的答案裡幾乎等於不存在。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 Modules -->
+  <section id="modules" class="alt">
+    <div class="wrap">
+      <div class="center"><span class="tag">會檢查什麼</span></div>
+      <h2>五件事，看清楚 AI 現在怎麼看你</h2>
+      <p class="sub" style="margin-bottom:32px;">不只是掃描網站，而是從 AI 怎麼認識你開始，一路講到你該先修哪幾件事。</p>
+
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-card-head">
+            <div class="num">1</div>
+            <h3>AI 現在怎麼形容你</h3>
+          </div>
+          <p>看 AI 目前怎麼理解你的店家類別、目標客群、服務特色，以及常和哪些同業一起被提到。</p>
+          <div class="chips"><span class="chip">類別定位</span><span class="chip">目標客群</span><span class="chip">同業關聯</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-card-head">
+            <div class="num">2</div>
+            <h3>AI 讀不讀得到你的網站</h3>
+          </div>
+          <p>檢查網站是否被 robots.txt 擋住、標題與描述是否完整、商家資料有無標記，共 12 項具體檢查。</p>
+          <div class="chips"><span class="chip">爬蟲開放</span><span class="chip">標題描述</span><span class="chip">商家資料</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-card-head">
+            <div class="num">3</div>
+            <h3>網站有沒有東西可以被引用</h3>
+          </div>
+          <p>檢查你的內容好不好被 AI 摘錄：服務定價、常見問答、真實案例、以及可被查證的資格評價。</p>
+          <div class="chips"><span class="chip">服務價格</span><span class="chip">常見問答</span><span class="chip">真實案例</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-card-head">
+            <div class="num">4</div>
+            <h3>AI 信任值 (客觀量測)</h3>
+          </div>
+          <p>用不含店名的問題實際問 AI，分開記錄「品牌提到 (65%)」與「引用官網 (35%)」，沒問到的標成 unknown，不亂填 0 分。</p>
+          <div class="chips"><span class="chip">品牌提及率 65%</span><span class="chip">官網引用率 35%</span><span class="chip">未知不補零</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-card-head">
+            <div class="num">5</div>
+            <h3>先做這三件事 (具體建議)</h3>
+          </div>
+          <p>報告直接列出最該先修的重點，清楚說明要改哪一頁、為什麼要改、以及改完可能帶來的差別。</p>
+          <div class="chips"><span class="chip">明確改動位置</span><span class="chip">核心原因剖析</span><span class="chip">看得懂就能改</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4 Report Preview + AI Search Observation Lens -->
+  <section id="report-preview">
+    <div class="wrap">
+      <div class="center"><span class="tag">報告長怎樣</span></div>
+      <h2>你會拿到一份這樣的報告</h2>
+      <p class="sub">不是只丟一個分數給你，每一項都會說清楚它代表什麼、依據是什麼。</p>
+
+      <div class="report-preview-grid">
+        <!-- Animated Gauge Card -->
+        <div class="score-card">
+          <div class="gauge">
+            <svg viewBox="0 0 200 110" aria-hidden="true">
+              <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#EAF0F6" stroke-width="16" stroke-linecap="round"/>
+              <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#00B8A9" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="88" class="arc"/>
+            </svg>
+            <div class="val">65</div>
+          </div>
+          <div><strong style="color:var(--navy);font-size:1.1rem;">AI 信任值</strong></div>
+          <div><span class="badge">AI 偶爾才提到你</span></div>
+          <p>範例：AI 在部分回答裡有提到這家店，但很少直接引用官網。這是這次實際問到的結果，不代表以後一定都這樣。</p>
+          <div style="margin-top:20px;">
+            <a class="btn" href="#top" style="width:100%;padding:11px;text-decoration:none;">開始檢查我的網站 ↑</a>
+            <div style="font-size:0.78rem;color:var(--muted);margin-top:8px;text-align:center;">
+              輸入網址，約 60 秒產出專屬健檢報告
+            </div>
+            <button type="button" onclick="switchView('report')" style="background:none;border:none;color:var(--teal-d);font-size:0.8rem;cursor:pointer;text-decoration:underline;margin-top:6px;width:100%;text-align:center;">
+              (預覽：查看示範報告樣式)
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive AI Search Simulator inside Report Preview -->
+        <div class="interactive-lens-container">
+          <div class="lens-header">
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              AI 搜尋能見度觀測鏡
+            </h3>
+            <div class="lens-toggle">
+              <button class="lens-tab-btn active" id="lens-tab-opt" onclick="toggleLensMode('opt')">優化後店家 (被引用)</button>
+              <button class="lens-tab-btn" id="lens-tab-unopt" onclick="toggleLensMode('unopt')">未優化店家 (被忽略)</button>
+            </div>
+          </div>
+
+          <div class="lens-dialog-box">
+            <div class="lens-query-row">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <span>顧客實際提問：「台北信義區推薦有插座、安靜適合辦公的單品咖啡店？」</span>
+            </div>
+            <div class="lens-answer-row" id="lens-answer-text">
+              若您在尋找信義區適合專注辦公的空間，<span class="highlight-mention">布納咖啡館 (BUNA CAFE)</span> 是被高度提及的選擇。店內具備全店獨立插座、不限用餐時間與單品手沖餐點，多個工作者社群將其列為工作友善空間 <span class="cite-source-pill" title="AI 搜尋引擎於此處引用了官方網站作為背書來源">🔗 引用官網 [1]</span>。
+            </div>
+            <div id="lens-footnote" style="margin-top:8px;font-size:0.78rem;color:var(--muted);padding-left:4px;display:flex;align-items:center;gap:6px;">
+              <span>[1] 來源引用：buna.com.tw</span>
+              <span style="color:#94A3B8;">— AI 爬取官網之「不限時、插座配置」作為客觀回答依據</span>
+            </div>
+          </div>
+
+          <h4 style="font-size:0.95rem;color:var(--navy);margin-bottom:10px;">建議先處理的重點：</h4>
+          <div style="font-size:0.88rem;color:var(--muted);background:var(--bg-alt);padding:14px;border-radius:8px;">
+            <b>P1.</b> 首頁標題與 H1 補齊「不限時、插座」關鍵屬性<br>
+            <b>P2.</b> 於網站常見問題（FAQ）中直接回答顧客在意的低消與時段<br>
+            <b>P3.</b> 補齊 LocalBusiness 結構化資料標記
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 Method Transparency -->
+  <section id="method" class="alt">
+    <div class="wrap">
+      <div class="center"><span class="tag">我們怎麼做的</span></div>
+      <h2>這份報告是怎麼來的？</h2>
+      <p class="sub">我們不會直接問 AI「這個網站幾分」。而是先看得到什麼，再照實整理成報告。</p>
+      <div class="method-panel">
+        <div class="method-flow">
+          <article class="method-card">
+            <div class="method-num">1</div>
+            <h3>先讀你的網站</h3>
+            <p>用一般訪客都能看到的方式讀取首頁與重要頁面，確認 AI 和搜尋引擎實際拿得到哪些內容。</p>
+          </article>
+          <article class="method-card">
+            <div class="method-num">2</div>
+            <h3>想出顧客會問的問題</h3>
+            <p>依你的行業與服務整理出顧客會問的問題，並刻意不放店名，模擬顧客初次尋找服務的情境。</p>
+          </article>
+          <article class="method-card">
+            <div class="method-num">3</div>
+            <h3>真的拿去問 AI</h3>
+            <p>把這些問題實際問一次 Perplexity 等搜尋引擎，記錄它有沒有提到你、有沒有連到你的官網。</p>
+          </article>
+          <article class="method-card">
+            <div class="method-num">4</div>
+            <h3>照實整理成報告</h3>
+            <p>網站本身的體質和 AI 的實際回答分開呈現，不互相補分。沒問到的標成「不知道」，不亂填 0 分。</p>
+          </article>
+        </div>
+
+        <div class="method-limits">
+          <h3>看分數之前，先知道它不能代表什麼</h3>
+          <ul>
+            <li>問不到足夠回答的時候，我們會標成「不知道」，不會當成 0 分。</li>
+            <li>結果只代表這個時間點、這幾題問題問到的狀況，換個時間或換個問法可能不一樣。</li>
+            <li>被提到不等於被推薦，被引用也不保證會帶來客人或訂單。</li>
+            <li>報告給的是可以追查的線索，不保證任何搜尋排名或 AI 之後的引用結果。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S6 Project & Vision -->
+  <section id="project" class="svc">
+    <div class="wrap">
+      <div class="center"><span class="tag">這個站在做什麼</span></div>
+      <h2>一邊做免費檢查，一邊研究怎麼量才準</h2>
+      <p class="sub">GeoCheck 目前是一個研究與作品計畫，用真實網站不斷檢驗這套量法準不準、報告看不看得懂。</p>
+      <div class="grid3">
+        <div class="card featured">
+          <div class="icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          </div>
+          <h3>免費網站檢查</h3>
+          <ul>
+            <li>看你的網站 AI 讀不讀得到、內容夠不夠</li>
+            <li>實際問 AI，看它會不會提到你、連到你的官網</li>
+            <li>問不到的就說不知道，不亂給分</li>
+            <li>直接告訴你先改哪三件事</li>
+          </ul>
+          <div class="who">適合：想知道自己在 AI 眼中有沒有存在感的店家</div>
+          <div class="center" style="margin-top:20px"><a class="btn" href="#top">開始免費檢查</a></div>
+        </div>
+
+        <div class="card">
+          <div class="icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </div>
+          <h3>量測方法研究</h3>
+          <ul>
+            <li>研究「AI 有沒有看到你」到底該怎麼定義</li>
+            <li>確認哪些訊號真的看得出差別</li>
+            <li>把作法寫成別人也能重做一次的流程</li>
+            <li>整理成可以公開閱讀的資料</li>
+          </ul>
+          <div class="who">目前重點：把量法講清楚、可以被檢驗</div>
+          <div class="center" style="margin-top:20px"><a class="btn btn-outline" href="#resources">看看這些觀念</a></div>
+        </div>
+
+        <div class="card">
+          <div class="icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <h3>聊聊你的情況</h3>
+          <ul>
+            <li>說說你的網站與實際遇到的狀況</li>
+            <li>告訴我們報告哪裡看不懂</li>
+            <li>提出你想被解答的問題</li>
+            <li>看看有沒有可以合作的地方</li>
+          </ul>
+          <div class="who">適合：想把自己的網站做得更被 AI 看見的人</div>
+          <div class="center" style="margin-top:20px"><a class="btn btn-outline" href="#cta">留下資料</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 Resources (Accordion) -->
+  <section id="resources" class="alt">
+    <div class="wrap">
+      <div class="center"><span class="tag">基本觀念</span></div>
+      <h2>先搞懂幾件事，再動手改網站</h2>
+      <p class="sub">用白話講清楚幾個常見問題，點卡片就能展開。</p>
+      <div class="res-row">
+        <div class="res">
+          <button class="res-head" type="button" onclick="toggleAccordion(this)">
+            <span><b>AI 信任值是什麼？</b><span>和 Google 排名有什麼不一樣？</span></span>
+            <span class="arrow">▾</span>
+          </button>
+          <div class="res-body">
+            <p>Google 排名比的是誰排在搜尋結果前面；AI 信任值看的是另一件事：當顧客直接問 AI「有沒有推薦的店」，AI 的答案裡有沒有你、有沒有連到你的官網。網站被 Google 找得到，不代表 AI 會提到你。</p>
+            <i>報告裡會直接列出實際問到的結果與依據，你可以自己核對。</i>
+          </div>
+        </div>
+        <div class="res">
+          <button class="res-head" type="button" onclick="toggleAccordion(this)">
+            <span><b>為什麼 AI 都沒提到我？</b><span>通常不是運氣問題</span></span>
+            <span class="arrow">▾</span>
+          </button>
+          <div class="res-body">
+            <p>常見原因有三個：網站沒清楚寫出你做什麼、服務誰、在哪裡；內容太籠統，AI 找不到可以直接引用的句子；網路上缺少可以佐證你的資料。這個檢查會用你這一行顧客真正會問的問題，實際去問一次 AI。</p>
+            <i>報告裡會直接列出實際問到的結果與依據，你可以自己核對。</i>
+          </div>
+        </div>
+        <div class="res">
+          <button class="res-head" type="button" onclick="toggleAccordion(this)">
+            <span><b>網站要準備什麼？</b><span>先把最基本的事寫清楚</span></span>
+            <span class="arrow">▾</span>
+          </button>
+          <div class="res-body">
+            <p>提供什麼服務、服務誰、服務哪些地區、價格或怎麼詢價、怎麼聯絡你 — 這五件事寫清楚，就已經贏過很多同業。再加上常見問題、真實案例、可以查證的評價或資格，效果比任何單一技術設定都大。</p>
+            <i>報告裡會直接列出實際問到的結果與依據，你可以自己核對。</i>
+          </div>
+        </div>
+        <div class="res">
+          <button class="res-head" type="button" onclick="toggleAccordion(this)">
+            <span><b>有沒有可能是網站把 AI 擋住了？</b><span>這種情況比想像中常見</span></span>
+            <span class="arrow">▾</span>
+          </button>
+          <div class="res-body">
+            <p>有些網站的設定會直接把 AI 或搜尋引擎擋在門外，或是內容要等程式跑完才出現，結果 AI 讀到的是一片空白。這種問題人眼完全看不出來，但會讓後面所有努力白費。檢查報告會告訴你有沒有這種狀況。</p>
+            <i>報告裡會直接列出實際問到的結果與依據，你可以自己核對。</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S8 How it Works -->
+  <section id="flow">
+    <div class="wrap">
+      <div class="center"><span class="tag">怎麼用</span></div>
+      <h2>四個步驟，看見 AI 眼中的你</h2>
+      <p class="sub">從貼上網址到拿到報告，全程不用註冊帳號。</p>
+      <div class="steps">
+        <div class="step"><h3>貼上網址</h3><p>免費、不用註冊，貼上你的網站網址就可以開始。</p></div>
+        <div class="step"><h3>讀你的網站</h3><p>先看看 AI 和搜尋引擎現在讀得到你哪些內容。</p></div>
+        <div class="step"><h3>拿到報告</h3><p>五個面向的結果＋先做哪三件事，約 60 秒完成。</p></div>
+        <div class="step"><h3>有問題再聊</h3><p>如果願意，留下聯絡方式，告訴我們你的狀況。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S9 Final CTA / Lead Form -->
+  <section class="final" id="cta">
+    <div class="wrap">
+      <h2>想聊聊你的網站嗎？</h2>
+      <p class="intro">留下你的網站和目前遇到的狀況，可以幫助我們把工具做得更實用；需要進一步討論的話，我們會用 Email 跟你聯絡。</p>
+      <form class="lead-form" onsubmit="event.preventDefault(); alert('感謝您的填寫！在 Demo 模式下表單已成功驗收。');">
+        <label for="f-name">你的稱呼</label>
+        <input id="f-name" type="text" placeholder="王小明" autocomplete="name">
+        <label for="f-email">Email <span style="color:#D6453D">*</span></label>
+        <input id="f-email" type="email" placeholder="you@company.com" required autocomplete="email">
+        <label for="f-site">網站網址 <span style="color:#D6453D">*</span></label>
+        <input id="f-site" type="text" placeholder="https://your-website.com" required>
+        <label for="f-interest">你想聊什麼</label>
+        <select id="f-interest">
+          <option value="audit_feedback">報告結果與使用心得</option>
+          <option value="measurement_research">這套分數是怎麼算的</option>
+          <option value="portfolio_exchange">單純交流</option>
+        </select>
+        <label for="f-need">想解決什麼問題？（一句話描述即可）</label>
+        <textarea id="f-need" rows="3" placeholder="例如：想知道為什麼 ChatGPT 都推薦別家，沒有推薦我們"></textarea>
+        <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--muted);margin:4px 0 16px;">
+          <input id="f-consent" type="checkbox" required style="width:auto;margin:5px 0 0;">
+          <span>我同意 GEOCheck 為回覆本次交流，蒐集並使用上述聯絡資料；我可要求查詢、更正或刪除。</span>
+        </label>
+        <button class="btn" type="submit">送出資料</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- S10 Footer -->
+  <footer>
+    <div class="foot">
+      <div>© 2026 GEOCheck — 看看 AI 有沒有提到你</div>
+      <div>
+        <a href="#cta" style="color:rgba(255,255,255,.85);text-decoration:none;">聯絡交流</a>
+        <button type="button" onclick="openModal('privacy-modal')">隱私權政策</button>
+        <button type="button" onclick="openModal('terms-modal')">使用說明</button>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================================================
+     VIEW 2: REDESIGNED & ENRICHED REPORT VIEW (內容大幅充實)
+     ======================================================================== -->
+<div id="view-report" class="report-view-container">
+  <div class="wrap">
+    <div class="report-nav-bar">
+      <div>
+        <h1>AI 信任值健檢報告</h1>
+        <div class="report-meta-url" id="rep-meta-url">受測網址：https://buna.com.tw (布納咖啡館)</div>
+      </div>
+      <div>
+        <button class="btn btn-outline" onclick="switchView('landing')">← 回到主頁重新檢測</button>
+      </div>
+    </div>
+
+    <!-- Dual Metric Cards -->
+    <div class="dual-score-grid">
+      <!-- AI Trust Index (Primary) -->
+      <div class="score-hero-card primary">
+        <span class="badge" style="background:#FFF4E0;color:#B97700;margin-bottom:8px;">主分數 · 觀測 AI 外部回答</span>
+        <h2 style="font-size:1.3rem;color:var(--navy);text-align:left;">AI 信任值 (AI Trust Index)</h2>
+        <div class="score-flex">
+          <div class="score-big-num">65</div>
+          <div>
+            <div style="font-weight:700;color:#B97700;margin-bottom:6px;">評級：AI 偶爾提及，且有引用官網</div>
+            <p style="font-size:0.88rem;color:var(--muted);line-height:1.5;">
+              在兩次無偏誤的顧客問句測試中，AI 回答有引用官網 URL 作為事實來源。
+            </p>
+          </div>
+        </div>
+        <ul class="score-breakdown-mini">
+          <li>• 品牌採用率權重 (65%)：<strong>50%</strong> (1/2 題命中)</li>
+          <li>• 官方 URL 引用率權重 (35%)：<strong>100%</strong> (2/2 題命中)</li>
+          <li>• 註記：少於兩題有效查詢時封頂 69 分；無有效回答時標記 unknown，不強行補零。</li>
+        </ul>
+      </div>
+
+      <!-- Site Readiness (Secondary) -->
+      <div class="score-hero-card secondary">
+        <span class="badge" style="background:#EAF2FB;color:var(--navy);margin-bottom:8px;">站內準備度 · 基礎體質不補分</span>
+        <h2 style="font-size:1.3rem;color:var(--navy);text-align:left;">網站基礎體質 (Site Readiness)</h2>
+        <div class="score-flex">
+          <div class="score-big-num" style="color:var(--navy);">60</div>
+          <div>
+            <div style="font-weight:700;color:var(--navy);margin-bottom:6px;">體質評級：良好（內容可讀）</div>
+            <p style="font-size:0.88rem;color:var(--muted);line-height:1.5;">
+              機器人檔案正常開放，首頁成功解析，但缺少問答式 FAQ 結構化資料。
+            </p>
+          </div>
+        </div>
+        <ul class="score-breakdown-mini">
+          <li>• AI 爬蟲存取 (robots.txt)：<strong>正常開放 (Pass)</strong></li>
+          <li>• 內容可摘錄性：<strong>中等</strong> (缺少常見問答段落)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 1. AI GENERATED TRANSCRIPT & COMPETITOR BENCHMARK (AI 原文展開與競品比對) -->
+    <div class="report-sec-head">
+      <h2>顧客真實提問與 AI 搜尋回答實錄</h2>
+      <span>模擬顧客尋找服務時的回答全文比對</span>
+    </div>
+
+    <!-- Query 1 (可自訂替換) -->
+    <div class="query-obs-card">
+      <div class="query-card-top">
+        <div>
+          <span style="font-size:0.75rem;background:var(--teal-subtle);color:var(--teal-d);padding:2px 8px;border-radius:4px;font-weight:700;margin-bottom:4px;display:inline-block;" id="q1-type-badge">自訂提問情境</span>
+          <strong style="color:var(--navy);font-size:1rem;display:block;" id="q1-title">「台北新莊有推薦適合帶筆電工作、有插座且安靜的早午餐咖啡店嗎？」</strong>
+          <div style="font-size:0.82rem;color:var(--muted);margin-top:4px;">測試模型：Perplexity Sonar (連網搜尋) · 引用官網：buna.com.tw</div>
+        </div>
+        <div>
+          <span class="status-pill success">提到品牌 (內文採用 ✓)</span>
+        </div>
+        <div>
+          <span class="status-pill success">引用官網 (官方 URL ✓)</span>
+        </div>
+      </div>
+
+      <!-- Expandable AI Full Transcript -->
+      <button type="button" class="transcript-toggle-btn" onclick="toggleTranscript('t1', this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span>查看 AI 生成回答全文與競品比對</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+
+      <div class="transcript-body" id="t1">
+        <p><b>【AI 生成回答原文摘錄】：</b><br>
+        「在新莊地區若需要適合筆電辦公與插座環境的店家，主要推薦有以下幾處：首選為連鎖門市如 <span class="highlight-mention">Louisa (新莊中平店)</span>，具備固定插座席次；若偏好寬敞挑高與餐點多樣化，位於中正路的 <span class="highlight-mention">布納咖啡館 (BUNA CAFE)</span> 是熱門選擇，店內提供全店獨立插座、Wi-Fi 且不限用餐時間 <a href="#" class="highlight-cite">[1]</a>。另外亦有部分部落格推薦彼得好咖啡。」
+        </p>
+        <div class="transcript-tag-box">
+          <span class="t-tag competitor">提及競品：Louisa、彼得好咖啡</span>
+          <span class="t-tag self">受測店家：布納咖啡館 (主動採用 ✓)</span>
+          <span class="t-tag source">引述來源：buna.com.tw、vocus.cc、dcard.tw</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Query 2 (標準客觀題) -->
+    <div class="query-obs-card">
+      <div class="query-card-top">
+        <div>
+          <span style="font-size:0.75rem;background:#F1F5F9;color:var(--muted);padding:2px 8px;border-radius:4px;font-weight:700;margin-bottom:4px;display:inline-block;" id="q2-type-badge">題目二 · 系統標準題</span>
+          <strong style="color:var(--navy);font-size:1rem;display:block;" id="q2-title">「台北周邊哪裡有不限時、空間寬敞的聚餐咖啡館？」</strong>
+          <div style="font-size:0.82rem;color:var(--muted);margin-top:4px;">測試模型：Perplexity Sonar (連網搜尋) · 引用官網：buna.com.tw</div>
+        </div>
+        <div>
+          <span class="status-pill muted">✕ 未明確採用品牌名</span>
+        </div>
+        <div>
+          <span class="status-pill success">引用官網 (官方 URL ✓)</span>
+        </div>
+      </div>
+
+      <button type="button" class="transcript-toggle-btn" onclick="toggleTranscript('t2', this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span>查看 AI 生成回答全文與競品比對</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+
+      <div class="transcript-body" id="t2">
+        <p><b>【AI 生成回答原文摘錄】：</b><br>
+        「台北周邊空間寬敞且不限時的咖啡館，多數推薦陽明山戶外景觀餐廳，或公館商圈的老字號咖啡廳。另外在食記來源中，新北新莊地區的多人聚餐名單亦包含了這家連鎖庭園咖啡 <a href="#" class="highlight-cite">[1]</a>，但內文未直接以標題推薦該品牌。」
+        </p>
+        <div class="transcript-tag-box">
+          <span class="t-tag competitor">提及競品：陽明山景觀咖啡、公館不限時店</span>
+          <span class="t-tag self" style="background:#FEE2E2;color:#991B1B;">受測店家：未在正文被點名提及 ✕</span>
+          <span class="t-tag source">引述來源：tripadvisor.com, buna.com.tw</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 12-POINT DETAILED TECHNICAL & CONTENT AUDIT MATRIX (12 項詳細體檢表) -->
+    <div class="report-sec-head">
+      <h2>網站技術與內容結構 12 項詳細體檢清單</h2>
+      <span>客觀檢驗機器人能否順暢讀取並摘錄你的網站</span>
+    </div>
+
+    <div class="matrix-grid">
+      <!-- Col 1: 機器人存取 -->
+      <div class="matrix-col">
+        <div class="matrix-col-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          1. AI 爬蟲可讀性 (Crawl)
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-pass">通過</span>
+          <div><b>robots.txt 存取權限</b><br><span style="color:var(--muted);font-size:0.8rem;">未封鎖 GPTBot、Perplexity 等主串流 AI</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-pass">通過</span>
+          <div><b>sitemap.xml 索引清單</b><br><span style="color:var(--muted);font-size:0.8rem;">成功探索到分店與菜單網址</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-pass">通過</span>
+          <div><b>HTTP 伺服器響應速度</b><br><span style="color:var(--muted);font-size:0.8rem;">首頁 0.38 秒快速回應，無逾時風險</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-warn">建議</span>
+          <div><b>llms.txt AI 專用摘要</b><br><span style="color:var(--muted);font-size:0.8rem;">尚未部署 /llms.txt，建議補齊加深辨識</span></div>
+        </div>
+      </div>
+
+      <!-- Col 2: 標籤與實體語意 -->
+      <div class="matrix-col">
+        <div class="matrix-col-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          2. 標籤與結構語意 (SEO)
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-warn">待修</span>
+          <div><b>首頁 Title 服務屬性</b><br><span style="color:var(--muted);font-size:0.8rem;">目前只有店名，未提及「插座、不限時」</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-pass">通過</span>
+          <div><b>Meta Description 說明</b><br><span style="color:var(--muted);font-size:0.8rem;">字數達標，有簡短概述門市特色</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-pass">通過</span>
+          <div><b>OpenGraph 社交標籤</b><br><span style="color:var(--muted);font-size:0.8rem;">og:title 與 og:image 完整無缺</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-fail">缺失</span>
+          <div><b>LocalBusiness 結構化資料</b><br><span style="color:var(--muted);font-size:0.8rem;">缺少 Schema JSON-LD，AI 無法直接解析地址電話</span></div>
+        </div>
+      </div>
+
+      <!-- Col 3: 內容可引用性 -->
+      <div class="matrix-col">
+        <div class="matrix-col-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon></svg>
+          3. 內容可引用性 (Citeability)
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-fail">缺失</span>
+          <div><b>常見問答 (FAQ) 模組</b><br><span style="color:var(--muted);font-size:0.8rem;">缺少低消、訂位、Wi-Fi 密碼一問一答</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-warn">待修</span>
+          <div><b>文字化菜單與價格表</b><br><span style="color:var(--muted);font-size:0.8rem;">目前多為圖片菜單，AI 無法直接文字摘錄</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-pass">通過</span>
+          <div><b>地理位置與交通指引</b><br><span style="color:var(--muted);font-size:0.8rem;">各分店捷運與停車場標註明確</span></div>
+        </div>
+        <div class="check-item">
+          <span class="chk-badge chk-warn">待補</span>
+          <div><b>顧客好評與客觀背書</b><br><span style="color:var(--muted);font-size:0.8rem;">站內缺少可被引用的第三方評測與獎項</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. EXTERNAL AUTHORITY & CITATION EVIDENCE (外部公信力與引用源) -->
+    <div class="report-sec-head">
+      <h2>AI 搜尋參考的外部網站來源</h2>
+      <span>AI 引擎認識你或競品時，所依據的外部平台數據</span>
+    </div>
+
+    <div class="authority-box">
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.6;">
+        AI 不只閱讀您的官網，更會在網路上交叉比對第三方評測。以下是本次檢測中，AI 所檢索到的主要外部資料來源：
+      </p>
+      <div class="auth-grid">
+        <div class="auth-card">
+          <strong>愛食記 (ifoodie.tw)</strong>
+          <span>收錄 5 篇部落客食記，多次提及「空間大、適合聚餐」。</span>
+        </div>
+        <div class="auth-card">
+          <strong>方格子 / Vocus</strong>
+          <span>工作者專題文章將其收錄於「新莊插座咖啡廳懶人包」。</span>
+        </div>
+        <div class="auth-card">
+          <strong>Tripadvisor 貓途鷹</strong>
+          <span>累積 18 則顧客評價，整體評分 4.2 顆星。</span>
+        </div>
+        <div class="auth-card">
+          <strong style="color:var(--teal-d);">店家官網 (buna.com.tw)</strong>
+          <span>成功作為第一方正本來源被 AI 腳註引用。</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. FOUR KEY DIAGNOSTIC AREAS -->
+    <div class="report-sec-head">
+      <h2>網站四大核心診斷與優化建議</h2>
+      <span>點擊卡片展開當前具體缺失、AI 判讀障礙與修復方向</span>
+    </div>
+
+    <div class="action-cards-grid">
+      <!-- Area 1 -->
+      <div class="action-card p1">
+        <div>
+          <span class="action-tag">第 1 項 · 最優先 (P1)</span>
+          <h3 style="font-size:1.1rem;color:var(--navy);margin-bottom:6px;">首頁標題與實體屬性缺失</h3>
+          <div style="font-size:0.8rem;color:var(--muted);margin-bottom:10px;">診斷標的：首頁 &lt;title&gt; 與 &lt;h1&gt; 主標題</div>
+          <p style="font-size:0.88rem;color:var(--muted);line-height:1.6;">
+            首頁目前僅標示品牌名稱，未包含任何服務情境、營業特徵或目標客群等核心實體屬性。
+          </p>
+        </div>
+
+        <button type="button" class="diagnostic-toggle-btn" onclick="toggleDiagnostic('diag-1', this)">
+          點擊查看當前缺失與建議 ▾
+        </button>
+
+        <div class="diagnostic-drawer" id="diag-1">
+          <div class="diag-block flaw">
+            <strong>❌ 當前具體缺失：</strong>
+            <p>目前首頁標題僅寫「布納咖啡館」，爬蟲在解析 HTML 時，無法從第一權重標籤讀到「不限時、工作插座、單品手沖、多人聚餐」等實質服務關鍵字。</p>
+          </div>
+          <div class="diag-block impact">
+            <strong>⚠️ 對 AI 推薦的負面影響：</strong>
+            <p>當顧客詢問「信義區有插座安靜的咖啡店」時，AI 無法在首頁建立強實體關聯，會優先將回答席位推薦給在標題即寫明屬性的競品（如連鎖門市或其他工作咖啡廳）。</p>
+          </div>
+          <div class="diag-block fix">
+            <strong>💡 具體改善方向：</strong>
+            <p>將首頁標題優化為：「布納咖啡館 BUNA CAFE | 不限時、全店獨立插座與全日手沖餐飲」，並於首頁 H1 及首段前 100 字以純文字清楚描述服務特徵。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Area 2 -->
+      <div class="action-card p2">
+        <div>
+          <span class="action-tag">第 2 項 · 引用強化 (P2)</span>
+          <h3 style="font-size:1.1rem;color:var(--navy);margin-bottom:6px;">常見問答 FAQ 與可引用性缺失</h3>
+          <div style="font-size:0.8rem;color:var(--muted);margin-bottom:10px;">診斷標的：分店頁面與站內資訊模組</div>
+          <p style="font-size:0.88rem;color:var(--muted);line-height:1.6;">
+            網站缺少明確的一問一答格式，顧客最在意的低消、插座、訂位等問題未形成結構化句子。
+          </p>
+        </div>
+
+        <button type="button" class="diagnostic-toggle-btn" onclick="toggleDiagnostic('diag-2', this)">
+          點擊查看當前缺失與建議 ▾
+        </button>
+
+        <div class="diagnostic-drawer" id="diag-2">
+          <div class="diag-block flaw">
+            <strong>❌ 當前具體缺失：</strong>
+            <p>全站多為氛圍感宣傳文案與視覺圖片，沒有針對「是否有提供免費 Wi-Fi 與插座」、「用餐時間限制」、「低消規則」建立簡潔權威的 FAQ 段落。</p>
+          </div>
+          <div class="diag-block impact">
+            <strong>⚠️ 對 AI 推薦的負面影響：</strong>
+            <p>AI 搜尋引擎偏好直接摘錄精準、肯定的短句。缺少官方問答時，AI 會轉向第三方論壇（Dcard/PTT）抓取非官方甚至過時的討論作為答案。</p>
+          </div>
+          <div class="diag-block fix">
+            <strong>💡 具體改善方向：</strong>
+            <p>在門市頁面加入常見問答區塊（例如：「Q: 門市有提供插座嗎？ A: 全店座位皆配置獨立插座與免費高速 Wi-Fi」），大幅提升 AI 直接引用的機率。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Area 3 -->
+      <div class="action-card p3">
+        <div>
+          <span class="action-tag">第 3 項 · 實體識別 (P3)</span>
+          <h3 style="font-size:1.1rem;color:var(--navy);margin-bottom:6px;">LocalBusiness 結構化資料缺失</h3>
+          <div style="font-size:0.8rem;color:var(--muted);margin-bottom:10px;">診斷標的：全站 Header 腳本代碼</div>
+          <p style="font-size:0.88rem;color:var(--muted);line-height:1.6;">
+            未埋設 Schema.org JSON-LD 代碼，機器人無法直接以程式碼辨識門市地址、營業時間與座標。
+          </p>
+        </div>
+
+        <button type="button" class="diagnostic-toggle-btn" onclick="toggleDiagnostic('diag-3', this)">
+          點擊查看當前缺失與建議 ▾
+        </button>
+
+        <div class="diagnostic-drawer" id="diag-3">
+          <div class="diag-block flaw">
+            <strong>❌ 當前具體缺失：</strong>
+            <p>源代碼中完全缺乏 `schema.org/CafeOrCoffeeShop` 或 `Restaurant` 的 JSON-LD 標記，各分店經緯度與電話僅為純文字排版，難以被機器人直接提取。</p>
+          </div>
+          <div class="diag-block impact">
+            <strong>⚠️ 對 AI 推薦的負面影響：</strong>
+            <p>AI 在進行實體對齊（Entity Matching）時，無法將官網與 Google 商家、維基百科資料鏈結，降低對官網第一方事實權威度的評定。</p>
+          </div>
+          <div class="diag-block fix">
+            <strong>💡 具體改善方向：</strong>
+            <p>在全站加入標準 JSON-LD 腳本，明列門市名稱、英文名、地址、電話、營業時間段與線上預約網址，讓 AI 搜尋引擎 100% 確定實體真確性。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Area 4 -->
+      <div class="action-card p4">
+        <div>
+          <span class="action-tag">第 4 項 · 權威背書 (P4)</span>
+          <h3 style="font-size:1.1rem;color:var(--navy);margin-bottom:6px;">第三方客觀評價與情境背書不足</h3>
+          <div style="font-size:0.8rem;color:var(--muted);margin-bottom:10px;">診斷標的：外部資料源與數位足跡鏈結</div>
+          <p style="font-size:0.88rem;color:var(--muted);line-height:1.6;">
+            外部評測文章多偏向餐點擺盤，缺少集中在「工作友善、安靜辦公」等特定情境的權威第三方證據鏈。
+          </p>
+        </div>
+
+        <button type="button" class="diagnostic-toggle-btn" onclick="toggleDiagnostic('diag-4', this)">
+          點擊查看當前缺失與建議 ▾
+        </button>
+
+        <div class="diagnostic-drawer" id="diag-4">
+          <div class="diag-block flaw">
+            <strong>❌ 當前具體缺失：</strong>
+            <p>雖然愛食記與 Google Maps 有足夠星等，但評論中包含「插座、安靜、適合筆電」的特定上下文頻率偏低，外部佐證強度分散。</p>
+          </div>
+          <div class="diag-block impact">
+            <strong>⚠️ 對 AI 推薦的負面影響：</strong>
+            <p>AI 在回答專業工作者詢問時，會將「次要提及」給布納，而將「首選推薦」給社群討論中充斥工作插座標籤的特定競品。</p>
+          </div>
+          <div class="diag-block fix">
+            <strong>💡 具體改善方向：</strong>
+            <p>在 Google 商家設定中勾選「適合筆電工作」，並在官網引述工作者社群真實評測，引導目標客群留下具體情境評論，形成互證證據鏈。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================================
+     MODALS (Replaces window.alert)
+     ======================================================================== -->
+<div class="modal-overlay" id="privacy-modal" onclick="closeModalOnBackdrop(event, 'privacy-modal')">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" onclick="closeModal('privacy-modal')">✕</button>
+    <h2>隱私權政策與資料宣告</h2>
+    <p>本網站收集的個人資料（Email、網站網址、詢問內容）僅用於回覆本次交流與了解使用情境，不會分享給第三方，亦不用於未授權之行銷轉售目的。</p>
+    <p>所有測試產生之 AI 搜尋觀測紀錄皆為公開可重現之客觀數據，符合研究倫理規範。</p>
+    <button class="btn" style="width:100%;margin-top:12px;" onclick="closeModal('privacy-modal')">我知道了</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="terms-modal" onclick="closeModalOnBackdrop(event, 'terms-modal')">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" onclick="closeModal('terms-modal')">✕</button>
+    <h2>使用說明與量測極限</h2>
+    <p>1. <b>客觀觀察非排名保證</b>：本工具量測的是在指定時間點與指定題庫下，AI 搜尋引擎的回答行為，不保證任何未來商業流量或排名承諾。</p>
+    <p>2. <b>Unknown 不補零</b>：若特定題庫未獲得有效回答，系統將如實標示為 unknown，絕不以 0 分粗暴補全。</p>
+    <button class="btn" style="width:100%;margin-top:12px;" onclick="closeModal('terms-modal')">理解並返回</button>
+  </div>
+</div>
+
+<!-- AUDIT SETUP & CONFIRMATION MODAL -->
+<div class="modal-overlay" id="audit-confirm-modal" onclick="closeModalOnBackdrop(event, 'audit-confirm-modal')">
+  <div class="modal-box setup-modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close-btn" onclick="closeModal('audit-confirm-modal')">✕</button>
+    
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+      <span class="tag" style="margin-bottom:0;padding:3px 12px;font-size:0.78rem;">第一步 · 目標與題庫確認</span>
+      <span style="font-size:0.84rem;color:var(--muted);">準備進入 AI 搜尋能見度觀測</span>
+    </div>
+    <h2 style="font-size:1.45rem;color:var(--navy);text-align:left;margin-top:6px;margin-bottom:12px;">確認檢測目標與觀測問題</h2>
+
+    <!-- 網站基礎資料卡 -->
+    <div class="site-preview-card">
+      <div>
+        <div style="font-size:0.75rem;color:var(--muted);margin-bottom:2px;">你的網站：</div>
+        <div class="site-preview-title" id="confirm-site-url">https://buna.com.tw</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="site-preview-meta">預判產業：<strong>實體休閒餐飲 / 咖啡</strong></div>
+        <div class="site-preview-meta" style="color:var(--teal-d);font-weight:700;">● 伺服器連線正常 (HTTP 200)</div>
+      </div>
+    </div>
+
+    <!-- 兩個問題的欄位 (皆為選填) -->
+    <div class="setup-q-block">
+      <div class="setup-q-header">
+        <label for="setup-q1">題目一（選填 · 預設由系統推薦）：</label>
+        <button type="button" class="dice-btn" onclick="rollQuestion(1, this)" title="隨機切換不同真實情境題">
+          <span class="dice-icon">🎲</span> 隨機換題
+        </button>
+      </div>
+      <input type="text" class="setup-q-input" id="setup-q1" value="台北新莊有推薦適合帶筆電工作、有插座且安靜的早午餐咖啡店嗎？">
+    </div>
+
+    <div class="setup-q-block">
+      <div class="setup-q-header">
+        <label for="setup-q2">題目二（選填 · 預設由系統推薦）：</label>
+        <button type="button" class="dice-btn" onclick="rollQuestion(2, this)" title="隨機切換不同真實情境題">
+          <span class="dice-icon">🎲</span> 隨機換題
+        </button>
+      </div>
+      <input type="text" class="setup-q-input" id="setup-q2" value="台北周邊哪裡有不限時、空間寬敞的聚餐咖啡館？">
+    </div>
+
+    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:24px;line-height:1.5;">
+      💡 <b>小提示</b>：欄位為選填，可自由修改或點 <b>🎲 隨機換題</b>。建議<b>不要包含自己的店名</b>，才能精準模擬顧客還不認識你時，AI 到底會推薦誰。
+    </div>
+
+    <!-- 按鈕區 -->
+    <div style="display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;">
+      <button type="button" class="btn btn-outline" style="padding:10px 18px;font-size:0.9rem;" onclick="startConfirmedAudit(true)">
+        使用預設題直接開始
+      </button>
+      <button type="button" class="btn" style="padding:10px 22px;font-size:0.92rem;" onclick="startConfirmedAudit(false)">
+        確認題目，開始分析 (約 60 秒) →
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="changes-modal" onclick="closeModalOnBackdrop(event, 'changes-modal')">
+  <div class="modal-box" role="dialog" aria-modal="true" style="max-width:620px;">
+    <button class="modal-close-btn" onclick="closeModal('changes-modal')">✕</button>
+    <h2>本次 UI 體驗進化的三大看點</h2>
+    <div style="font-size:0.9rem;color:var(--muted);line-height:1.7;">
+      <p><b>1. 「開始檢查」前置確認彈窗 ＋ 🎲 骰子隨機換題</b>：輸入網址後不會直衝等待，而是先彈出網站確認卡片與兩道題目欄位（選填）。使用者可自由修改，或點擊 🎲 骰子秒換題（純前端題庫切換，完全不耗 API！）。</p>
+      <p><b>2. 報告頁加入「AI 生成回答原文 ＋ 競品提及比對」</b>：點擊即可展開 AI 實際生成的整段回答，清楚看到 AI 點名了哪幾家競爭對手（如 Louisa、星巴克），直擊老闆痛點。</p>
+      <p><b>3. 完整揭露「網站 12 項技術與內容詳細體檢矩陣」</b>：分門別類展示爬蟲存取權限、標籤結構、問答可引用性等 12 項具體檢查，讓報告內容深厚、具備極高實用指導價值。</p>
+    </div>
+    <button class="btn" style="width:100%;margin-top:16px;" onclick="closeModal('changes-modal')">開始體驗</button>
+  </div>
+</div>
+
+<script>
+/* View Switcher */
+function switchView(view) {
+  const landing = document.getElementById('view-landing');
+  const report = document.getElementById('view-report');
+  const btnLanding = document.getElementById('tab-btn-landing');
+  const btnReport = document.getElementById('tab-btn-report');
+
+  if (view === 'landing') {
+    landing.style.display = 'block';
+    report.classList.remove('active');
+    btnLanding.classList.add('active');
+    btnReport.classList.remove('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    landing.style.display = 'none';
+    report.classList.add('active');
+    btnLanding.classList.remove('active');
+    btnReport.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+/* Nav scroll state */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 40);
+}, { passive: true });
+
+/* Accordion */
+function toggleAccordion(btn) {
+  const card = btn.closest('.res');
+  const isOpen = card.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+}
+
+/* Interactive Lens inside Report Preview */
+function toggleLensMode(mode) {
+  const btnOpt = document.getElementById('lens-tab-opt');
+  const btnUnopt = document.getElementById('lens-tab-unopt');
+  const answer = document.getElementById('lens-answer-text');
+  const footnote = document.getElementById('lens-footnote');
+
+  if (mode === 'opt') {
+    btnOpt.classList.add('active');
+    btnUnopt.classList.remove('active');
+    answer.innerHTML = `若您在尋找信義區適合專注辦公的空間，<span class="highlight-mention">布納咖啡館 (BUNA CAFE)</span> 是被高度提及的選擇。店內具備全店獨立插座、不限用餐時間與單品手沖餐點，多個工作者社群將其列為工作友善空間 <span class="cite-source-pill" title="AI 搜尋引擎於此處引用了官方網站作為背書來源">🔗 引用官網 [1]</span>。`;
+    if (footnote) footnote.innerHTML = `<span>[1] 來源引用：buna.com.tw</span><span style="color:#94A3B8;">— AI 爬取官網之「不限時、插座配置」作為客觀回答依據</span>`;
+  } else {
+    btnUnopt.classList.add('active');
+    btnOpt.classList.remove('active');
+    answer.innerHTML = `在台北信義區，若您需要適合辦公與筆電工作的安靜咖啡店，多數推薦會集中於 Louisa 或某些連鎖門市；然而其他獨立小店因網站缺少明確的插座配置與營業時段資訊，未在本次檢索中被引用。`;
+    if (footnote) footnote.innerHTML = `<span style="color:#94A3B8;">（本次顧客問題搜尋中，未產生任何官網引用來源）</span>`;
+  }
+}
+
+/* Diagnostic Drawers Toggle */
+function toggleDiagnostic(id, btn) {
+  const drawer = document.getElementById(id);
+  const isOpen = drawer.classList.toggle('open');
+  btn.textContent = isOpen ? '收起詳細診斷 ▲' : '點擊查看當前缺失與建議 ▾';
+}
+
+/* Transcript Accordion in Report View */
+function toggleTranscript(id, btn) {
+  const body = document.getElementById(id);
+  body.classList.toggle('open');
+}
+
+/* 🎲 Client-Side Question Banks (No API cost) */
+const QUESTION_BANK_1 = [
+  "台北新莊有推薦適合帶筆電工作、有插座且安靜的早午餐咖啡店嗎？",
+  "新莊中正路周邊哪裡有環境舒適、提供插座且不限時的咖啡館？",
+  "台北捷運附近適合工作辦公、單品手沖選擇多的工作友善空間推薦？",
+  "新莊哪裡有座位寬敞、適合商務談事情或安靜讀書的咖啡廳？",
+  "雙北哪裡有採光好、提供高速 Wi-Fi 適合遠距工作的咖啡館？"
+];
+
+const QUESTION_BANK_2 = [
+  "台北周邊哪裡有不限時、空間寬敞的聚餐咖啡館？",
+  "新莊哪裡有寵物友善、環境寬敞可以久坐聊天的庭園餐廳？",
+  "新北適合家庭朋友多人聚會、餐點多樣且好停車的餐廳推薦？",
+  "台北附近有哪些適合週末聚會、甜點與鹹食餐點皆有口碑的咖啡店？",
+  "新莊適合多人辦公聚會或慶生下午茶的推薦場地？"
+];
+
+function rollQuestion(idx, btn) {
+  const input = document.getElementById(idx === 1 ? 'setup-q1' : 'setup-q2');
+  const bank = idx === 1 ? QUESTION_BANK_1 : QUESTION_BANK_2;
+  const current = input.value.trim();
+  const candidates = bank.filter(q => q !== current);
+  const chosen = candidates[Math.floor(Math.random() * candidates.length)] || bank[0];
+
+  // Rotate dice icon
+  const icon = btn.querySelector('.dice-icon');
+  if (icon) {
+    icon.style.transform = (icon.style.transform === 'rotate(360deg)') ? 'rotate(0deg)' : 'rotate(360deg)';
+  }
+
+  input.value = chosen;
+  input.classList.remove('flash');
+  void input.offsetWidth; // trigger reflow
+  input.classList.add('flash');
+}
+
+/* Hero Form Submit: Opens Intermediate Confirmation Modal */
+let activeAuditUrl = 'https://buna.com.tw';
+function handleAuditSubmit(e) {
+  e.preventDefault();
+  const input = document.getElementById('site-url');
+  let url = input.value.trim();
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    url = 'https://' + url;
+    input.value = url;
+  }
+  activeAuditUrl = url;
+  document.getElementById('confirm-site-url').textContent = url;
+  openModal('audit-confirm-modal');
+}
+
+/* 4-Stage Progressive Wait Loader triggered after confirmation */
+let auditTimer;
+let currentQ1 = "";
+let currentQ2 = "";
+
+function startConfirmedAudit(useDefaults) {
+  closeModal('audit-confirm-modal');
+
+  const q1Input = document.getElementById('setup-q1');
+  const q2Input = document.getElementById('setup-q2');
+
+  if (useDefaults) {
+    currentQ1 = QUESTION_BANK_1[0];
+    currentQ2 = QUESTION_BANK_2[0];
+    q1Input.value = currentQ1;
+    q2Input.value = currentQ2;
+  } else {
+    currentQ1 = q1Input.value.trim() || QUESTION_BANK_1[0];
+    currentQ2 = q2Input.value.trim() || QUESTION_BANK_2[0];
+  }
+
+  const btn = document.getElementById('audit-submit-btn');
+  const progressBox = document.getElementById('audit-progress');
+  const fill = document.getElementById('audit-progress-fill');
+  const pct = document.getElementById('audit-progress-percent');
+  const stage = document.getElementById('audit-progress-stage');
+  const tip = document.getElementById('audit-tip-text');
+
+  btn.disabled = true;
+  btn.textContent = '檢查中...';
+  progressBox.style.display = 'block';
+
+  const stages = [
+    { p: 20, stage: "正在連線到你的網站...", stepId: "pstep-1", tip: "💡 檢查 robots.txt 是否不小心把 GPTBot、ClaudeBot 等 AI 爬蟲阻擋在外。" },
+    { p: 45, stage: `正在載入觀測題目「${currentQ1.slice(0, 16)}...」`, stepId: "pstep-2", tip: "💡 絕不直接用品牌名發問，刻意模擬陌生顧客尋找服務時的無偏誤探索。" },
+    { p: 75, stage: "正在實際問 AI 搜尋引擎（Perplexity）...", stepId: "pstep-3", tip: "💡 記錄 AI 是否在答案中主動提到你、有沒有把你的官網列為來源。" },
+    { p: 95, stage: "正在比對競品提及與 12 項網站體質...", stepId: "pstep-4", tip: "💡 依據雙層指標計算 AI 信任度與網站基礎體質..." }
+  ];
+
+  let currentIdx = 0;
+  function nextStep() {
+    if (currentIdx >= stages.length) {
+      clearInterval(auditTimer);
+      fill.style.width = '100%';
+      pct.textContent = '100%';
+      stage.textContent = '檢查完成，正在為您開啟深度報告...';
+      setTimeout(() => {
+        // Dynamically update Report View Questions!
+        const q1El = document.getElementById('q1-title');
+        const q2El = document.getElementById('q2-title');
+        if (q1El) q1El.textContent = `「${currentQ1}」`;
+        if (q2El) q2El.textContent = `「${currentQ2}」`;
+
+        document.getElementById('rep-meta-url').textContent = `受測網址：${activeAuditUrl} (已完成深度檢測)`;
+        switchView('report');
+        btn.disabled = false;
+        btn.textContent = '開始檢查';
+        progressBox.style.display = 'none';
+      }, 700);
+      return;
+    }
+    const cur = stages[currentIdx];
+    fill.style.width = cur.p + '%';
+    pct.textContent = cur.p + '%';
+    stage.textContent = cur.stage;
+    tip.innerHTML = cur.tip;
+
+    document.querySelectorAll('.audit-progress-steps span').forEach(el => el.classList.remove('active-step'));
+    document.getElementById(cur.stepId)?.classList.add('active-step');
+    currentIdx++;
+  }
+
+  nextStep();
+  auditTimer = setInterval(nextStep, 2200);
+}
+
+function skipToReport() {
+  if (auditTimer) clearInterval(auditTimer);
+  const btn = document.getElementById('audit-submit-btn');
+  btn.disabled = false;
+  btn.textContent = '開始檢查';
+  document.getElementById('audit-progress').style.display = 'none';
+
+  const q1Input = document.getElementById('setup-q1');
+  const q2Input = document.getElementById('setup-q2');
+  const q1El = document.getElementById('q1-title');
+  const q2El = document.getElementById('q2-title');
+  if (q1El && q1Input) q1El.textContent = `「${q1Input.value.trim()}」`;
+  if (q2El && q2Input) q2El.textContent = `「${q2Input.value.trim()}」`;
+
+  switchView('report');
+}
+
+/* Modals */
+function openModal(id) { document.getElementById(id).classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+function closeModalOnBackdrop(e, id) { if (e.target === e.currentTarget) closeModal(id); }
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay').forEach(el => el.classList.remove('active'));
+  }
+});
+
+/* Copy snippet */
+function copySnippet(text) {
+  navigator.clipboard?.writeText(text).then(() => {
+    alert('已成功複製範例到剪貼簿：\n\n' + text);
+  }).catch(() => {
+    prompt('請手動複製內容：', text);
+  });
+}
+</script>
+</body>
+</html>

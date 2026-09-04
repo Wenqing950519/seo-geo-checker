@@ -304,6 +304,18 @@ tags:
 - **影響範圍**：`mock-api/public/home.html`、`mock-api/server.js`（報告 HTML／Markdown）、`mock-api/lib/ai-trust-index.js`、`mock-api/lib/real-lite-audit-v2-core.js` 的顯示字串、`mock-api/tests/ai-trust-surface.test.js`、`mock-api/tests/business-loop.test.js`。
 - **可追溯來源**：2026-09-03 使用者指示；D-021。
 
+### D-024 技術白皮書完成後全站 UI/UX 改版基準與 Hero 視覺鎖定
+
+- **日期**：2026-09-03 ｜ **狀態**：Confirmed
+- **決策者**：Wenqing950519
+- **決策內容**：
+  - **時程優先序**：全站大規模改版工作排定於「技術白皮書」撰寫完成後啟動，目前第一優先維持技術白皮書的研究、實驗與撰寫。
+  - **核心視覺資產鎖定 (Locked Core Asset)**：首頁經典 Hero 視覺（三層同心圓環、360 度旋轉雷達掃描光影、5 顆圍繞的浮動品牌知識膠囊、置中大氣主標題與網址輸入檢查列）為 GeoCheck 具備高度辨識度的品牌視覺核心，**列為絕對不可更動資產**。
+  - **改版參照標竿 (Design Benchmark)**：除了上述 Hero 畫面外，首頁其餘章節與深度診斷報告頁面，後續改版將參照 `https://scrunch.com/platform/site-diagnostics/`（Scrunch Site Diagnostics）之專業現代 SaaS 設計語言與功能架構（包含各分頁健康度卡片、Audit Score 圓環指標、AI 爬蟲存取與流量圖表、深入代碼與內容層級之診斷修復指引）。
+- **理由與依據**：使用者於 2026-09-03 明確指示；鎖定經典 Hero 作為品牌門面，並以 Scrunch Site Diagnostics 作為未來診斷功能與產品頁面演進的對標範本。
+- **影響範圍**：技術白皮書完成後之下一階段產品改版里程碑、前端頁面架構規劃。
+- **可追溯來源**：2026-09-03 使用者指示與截圖。
+
 ---
 
 ## 仍待使用者確認

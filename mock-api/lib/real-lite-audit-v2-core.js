@@ -4,10 +4,10 @@ const { classifySite, questionsForSite } = require("./site-type");
 const { measureGeoSite } = require("./geo-measurement");
 const { computeAiTrustIndex, AI_TRUST_INDEX_VERSION } = require("./ai-trust-index");
 
-async function runRealLiteAudit(siteUrl) {
+async function runRealLiteAudit(siteUrl, options = {}) {
   let measurement;
   try {
-    measurement = await measureGeoSite(siteUrl, { representativePageLimit: 3 });
+    measurement = await measureGeoSite(siteUrl, { representativePageLimit: 3, ...options });
   } catch (error) {
     if (error instanceof AppError && ["fetch_homepage", "browser_fetch", "browser_challenge", "crawl_quality"].includes(error.stage)) {
       return createFetchLimitedReport(siteUrl, error);

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoCheck — 品牌規範與設計系統</title>
+<meta name="description" content="GeoCheck 官方設計系統與品牌規範：包含色彩 Token、幾何標誌、排版層級、UI 組件規範與 AI 代理人機器可讀設計上下文。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Brand Primitive Colors */
+  --gc-navy: #0B3B6F;
+  --gc-navy-dark: #072A52;
+  --gc-navy-light: #164E8C;
+  --gc-mint: #00B8A9;
+  --gc-mint-dark: #007F75;
+  --gc-mint-light: #33C6B9;
+  --gc-mint-soft: #E9F9F7;
+
+  /* Neutrals & Surfaces */
+  --gc-bg: #FFFFFF;
+  --gc-bg-alt: #F7F9FC;
+  --gc-bg-card: #FFFFFF;
+  --gc-text: #1E2A38;
+  --gc-muted: #5A6B7E;
+  --gc-border: rgba(11, 59, 111, 0.1);
+  --gc-border-focus: rgba(0, 184, 169, 0.4);
+
+  /* Semantic Status Colors */
+  --gc-success: #27C93F;
+  --gc-warning: #B97700;
+  --gc-danger: #D6453D;
+
+  /* Layout & Metrics */
+  --gc-radius-sm: 8px;
+  --gc-radius-md: 14px;
+  --gc-radius-lg: 20px;
+  --gc-shadow-sm: 0 4px 14px rgba(11, 59, 111, 0.05);
+  --gc-shadow-md: 0 10px 30px rgba(11, 59, 111, 0.08);
+  --gc-shadow-lg: 0 20px 50px rgba(11, 59, 111, 0.12);
+
+  /* Fonts */
+  --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  font-family: var(--gc-font-sans);
+  color: var(--gc-text);
+  background: var(--gc-bg-alt);
+  line-height: 1.7;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: var(--gc-navy-dark);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Header & Tab Nav */
+header.ds-nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gc-border);
+}
+.ds-nav-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+}
+.ds-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: var(--gc-navy);
+}
+.ds-tabs {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.ds-tabs a {
+  text-decoration: none;
+  color: var(--gc-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.ds-tabs a:hover {
+  color: var(--gc-navy);
+  background: rgba(11, 59, 111, 0.05);
+}
+.ds-nav-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.btn-nav-link {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--gc-muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--gc-border);
+  background: #fff;
+  transition: 0.2s;
+}
+.btn-nav-link:hover {
+  color: var(--gc-navy);
+  border-color: var(--gc-navy);
+}
+@media (max-width: 860px) {
+  .ds-tabs { display: none; }
+}
+
+/* Page Container */
+.ds-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 24px 120px;
+}
+
+/* Hero Section */
+.ds-hero {
+  background: #fff;
+  border: 1px solid var(--gc-border);
+  border-radius: var(--gc-radius-lg);
+  padding: 48px 44px;
+  margin-bottom: 48px;
+  box-shadow: var(--gc-shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.ds-hero::after {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 184, 169, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gc-mint-soft);
+  color: var(--gc-mint-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+.ds-hero h1 {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--gc-navy);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+.ds-hero p {
+  font-size: 1.05rem;
+  color: var(--gc-muted);
+  max-width: 720px;
+  line-height: 1.7;
+}
+
+/* Section Header */
+.section-block {
+  margin-bottom: 64px;
+}
+.sec-title-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--gc-navy);
+  padding-bottom: 12px;
+  margin-bottom: 28px;
+}
+.sec-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sec-tag {
+  font-family: var(--gc-font-mono);
+  font-size: 0.8rem;
+  color: var(--gc-mint-dark);
+  font-weight: 700;
+}
+
+/* Grids */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+@media (max-width: 860px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Cards */
+.ds-card {
+  background: #fff;
+  border: 1px solid var(--gc-border);
+  border-radius: var(--gc-radius-md);
+  padding: 24px;
+  box-shadow: var(--gc-shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ds-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--gc-shadow-md);
+}
+
+/* Token Box (Click to copy) */
+.token-card {
+  background: #fff;
+  border: 1px solid var(--gc-border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.token-card:hover {
+  border-color: var(--gc-mint);
+  box-shadow: 0 4px 16px rgba(0, 184, 169, 0.12);
+}
+.token-preview {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  position: relative;
+}
+.token-meta {
+  padding: 14px 16px;
+  background: #fff;
+}
+.token-name {
+  font-family: var(--gc-font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gc-navy);
+}
+.token-val {
+  font-family: var(--gc-font-mono);
+  font-size: 0.78rem;
+  color: var(--gc-muted);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.token-copy-hint {
+  font-size: 0.7rem;
+  color: var(--gc-mint-dark);
+  font-weight: 600;
+}
+
+/* Logo Box */
+.logo-box {
+  background: #fff;
+  border: 1px solid var(--gc-border);
+  border-radius: var(--gc-radius-md);
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+}
+.logo-box.dark {
+  background: var(--gc-navy-dark);
+}
+.logo-box-tag {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-family: var(--gc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gc-muted);
+}
+.logo-box.dark .logo-box-tag {
+  color: rgba(255,255,255,0.6);
+}
+
+/* Machine-Readable AI Spec Card */
+.ai-agent-card {
+  background: #0B192C;
+  border: 1px solid rgba(0, 184, 169, 0.3);
+  border-radius: var(--gc-radius-md);
+  padding: 28px;
+  color: #E2E8F0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+.ai-agent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.ai-agent-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #33C6B9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.code-viewer {
+  background: #06101E;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 18px 20px;
+  font-family: var(--gc-font-mono);
+  font-size: 0.83rem;
+  line-height: 1.65;
+  color: #A5B4FC;
+  overflow-x: auto;
+  max-height: 480px;
+}
+
+/* Copy Button */
+.btn-copy-code {
+  background: rgba(0, 184, 169, 0.2);
+  border: 1px solid rgba(0, 184, 169, 0.4);
+  color: #33C6B9;
+  font-family: var(--gc-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-copy-code:hover {
+  background: var(--gc-mint);
+  color: #fff;
+}
+</style>
+</head>
+<body>
+
+<!-- Toast -->
+<div id="toast" class="toast">✓ Token 已複製到剪貼簿</div>
+
+<!-- Navigation -->
+<header class="ds-nav">
+  <div class="ds-nav-wrap">
+    <a class="ds-brand" href="/">
+      <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
+        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
+        <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+      </svg>
+      <span>GeoCheck<span style="color:var(--gc-mint)">.</span></span>
+    </a>
+
+    <ul class="ds-tabs">
+      <li><a href="#tokens">設計變數 (Tokens)</a></li>
+      <li><a href="#logo">標誌規格 (Logo)</a></li>
+      <li><a href="#typography">字體排印 (Type)</a></li>
+      <li><a href="#components">組件樣式 (UI)</a></li>
+      <li><a href="#ai-spec">AI 代理人上下文 (Agent Context)</a></li>
+    </ul>
+
+    <div class="ds-nav-actions">
+      <a class="btn-nav-link" href="/whitepaper">研究白皮書</a>
+      <a class="btn-nav-link" href="/">← 回到產品</a>
+    </div>
+  </div>
+</header>
+
+<main class="ds-container">
+
+  <!-- Hero -->
+  <div class="ds-hero">
+    <span class="ds-badge">設計規範系統</span>
+    <h1>GeoCheck 品牌設計系統與規範手冊</h1>
+    <p>
+      這是一份兼具<strong>絲滑互動體驗</strong>與<strong>機器可讀性（Machine-Readable）</strong>的設計系統。
+      不僅提供人類設計師可直接點擊複製的 Token，更內建結構化 JSON 規範，讓未來的 AI 在擴充與維護網站時能「一眼讀懂」視覺邏輯。
+    </p>
+  </div>
+
+  <!-- S1: Design Tokens -->
+  <section class="section-block" id="tokens">
+    <div class="sec-title-wrap">
+      <h2 class="sec-title">🎨 色彩設計變數系統</h2>
+      <span class="sec-tag">點擊任意卡片可直接複製代碼</span>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="token-card" onclick="copyText('#0B3B6F', 'var(--gc-navy)')">
+        <div class="token-preview" style="background:#0B3B6F;">Primary Navy</div>
+        <div class="token-meta">
+          <div class="token-name">--gc-navy</div>
+          <div class="token-val"><span>#0B3B6F</span><span class="token-copy-hint">點擊複製</span></div>
+        </div>
+      </div>
+
+      <div class="token-card" onclick="copyText('#00B8A9', 'var(--gc-mint)')">
+        <div class="token-preview" style="background:#00B8A9;">Accent Mint</div>
+        <div class="token-meta">
+          <div class="token-name">--gc-mint</div>
+          <div class="token-val"><span>#00B8A9</span><span class="token-copy-hint">點擊複製</span></div>
+        </div>
+      </div>
+
+      <div class="token-card" onclick="copyText('#072A52', 'var(--gc-navy-dark)')">
+        <div class="token-preview" style="background:#072A52;">Dark Base</div>
+        <div class="token-meta">
+          <div class="token-name">--gc-navy-dark</div>
+          <div class="token-val"><span>#072A52</span><span class="token-copy-hint">點擊複製</span></div>
+        </div>
+      </div>
+
+      <div class="token-card" onclick="copyText('#F7F9FC', 'var(--gc-bg-alt)')">
+        <div class="token-preview" style="background:#F7F9FC; color:#1E2A38; border-bottom:1px solid #E4EAF1;">Surface Light</div>
+        <div class="token-meta">
+          <div class="token-name">--gc-bg-alt</div>
+          <div class="token-val"><span>#F7F9FC</span><span class="token-copy-hint">點擊複製</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Semantics -->
+    <div class="grid-3">
+      <div class="token-card" onclick="copyText('#27C93F', 'var(--gc-success)')">
+        <div class="token-preview" style="background:#27C93F; height:50px;">完全採信 (Verified)</div>
+        <div class="token-meta">
+          <div class="token-name">--gc-success</div>
+          <div class="token-val"><span>#27C93F</span><span>官方引用驗證命中</span></div>
+        </div>
+      </div>
+
+      <div class="token-card" onclick="copyText('#B97700', 'var(--gc-warning)')">
+        <div class="token-preview" style="background:#B97700; height:50px;">未知/防呆 (Unknown/Cap)</div>
+        <div class="token-meta">
+          <div class="token-name">--gc-warning</div>
+          <div class="token-val"><span>#B97700</span><span>未成熟數據 / 封頂 69</span></div>
+        </div>
+      </div>
+
+      <div class="token-card" onclick="copyText('#D6453D', 'var(--gc-danger)')">
+        <div class="token-preview" style="background:#D6453D; height:50px;">未可觀測/P1 (Alert)</div>
+        <div class="token-meta">
+          <div class="token-name">--gc-danger</div>
+          <div class="token-val"><span>#D6453D</span><span>0 分或最優先修復</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S2: Logo Specifications -->
+  <section class="section-block" id="logo">
+    <div class="sec-title-wrap">
+      <h2 class="sec-title">📐 標誌與幾何結構</h2>
+      <span class="sec-tag">向量幾何 · 支援暗黑模式</span>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="logo-box">
+        <span class="logo-box-tag">亮色模式標誌</span>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
+            <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
+            <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+            <circle cx="38" cy="15" r="1.5" fill="#FFFFFF" />
+          </svg>
+          <span style="font-size:2rem; font-weight:900; color:var(--gc-navy); letter-spacing:-0.03em;">GeoCheck<span style="color:var(--gc-mint)">.</span></span>
+        </div>
+      </div>
+
+      <div class="logo-box dark">
+        <span class="logo-box-tag">暗色模式反白標誌</span>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="22" fill="rgba(255,255,255,0.06)" />
+            <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" />
+            <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+            <circle cx="38" cy="15" r="1.5" fill="#FFFFFF" />
+          </svg>
+          <span style="font-size:2rem; font-weight:900; color:#FFFFFF; letter-spacing:-0.03em;">GeoCheck<span style="color:var(--gc-mint)">.</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-card">
+      <h3 style="color:var(--gc-navy); font-size:1.1rem; margin-bottom:8px;">幾何構型意義 (Geometry Concept)</h3>
+      <p style="color:var(--gc-muted); font-size:0.92rem;">
+        標誌融合「探索雷達環」與「驗證勾」。雷達環象徵深入 LLM 搜尋模型探測非品牌搜尋意圖；驗證勾象徵可審計的第一方官方引用背書；右上方交點為數據信賴錨點（Signal Anchor Dot）。
+      </p>
+    </div>
+  </section>
+
+  <!-- S3: Machine-Readable Context for AI Agents (The Key Reference for AI!) -->
+  <section class="section-block" id="ai-spec">
+    <div class="sec-title-wrap">
+      <h2 class="sec-title">🤖 AI 代理人設計上下文 (Machine-Readable Context for AI)</h2>
+      <span class="sec-tag">為未來維護本站的 AI 量身定制</span>
+    </div>
+
+    <div class="ai-agent-card">
+      <div class="ai-agent-header">
+        <div class="ai-agent-title">
+          <span>⚡ GeoCheck System Tokens JSON</span>
+        </div>
+        <button class="btn-copy-code" onclick="copyCode('json-spec')">複製 JSON 規範</button>
+      </div>
+      <p style="font-size:0.86rem; color:#94A3B8; margin-bottom:14px;">
+        當未來任何 AI（Claude / Gemini / GPT / DeepSeek）需要修改首頁、新增報告組件或擴充白皮書時，可直接讀取此 JSON，保證 100% 風格相容，杜絕色彩漂移或排版錯亂。
+      </p>
+      <pre class="code-viewer" id="json-spec">{
+  "$schema": "https://geocheck.lisheng.cv/schemas/design-tokens-v1.json",
+  "name": "GeoCheck Design System",
+  "version": "1.0.0",
+  "design_principles": {
+    "essence": "From Black-box Speculation to Observable Evidence",
+    "tone": "Authoritative, Precise, Transparent, Accessible",
+    "aesthetic": "Tactile Modern Tech, Swiss Modernism, Monochromatic with Mint Highlight"
+  },
+  "tokens": {
+    "color": {
+      "primary": { "navy": "#0B3B6F", "navy_dark": "#072A52", "navy_light": "#164E8C" },
+      "accent": { "mint": "#00B8A9", "mint_dark": "#007F75", "mint_light": "#33C6B9", "mint_soft": "#E9F9F7" },
+      "surface": { "page_bg": "#F7F9FC", "card_bg": "#FFFFFF", "border": "rgba(11, 59, 111, 0.1)" },
+      "semantic": {
+        "success": "#27C93F",
+        "unknown_warning": "#B97700",
+        "alert_danger": "#D6453D",
+        "link_blue": "#175CD3"
+      }
+    },
+    "typography": {
+      "display": { "fontFamily": "'Noto Sans TC', sans-serif", "fontWeight": 900, "letterSpacing": "-0.02em" },
+      "body": { "fontFamily": "'Noto Sans TC', system-ui, sans-serif", "fontWeight": 400, "lineHeight": 1.7 },
+      "code_and_data": { "fontFamily": "'JetBrains Mono', monospace", "fontWeight": 600 }
+    },
+    "radii": { "sm": "8px", "md": "14px", "lg": "20px", "pill": "999px" },
+    "shadows": {
+      "card": "0 8px 30px rgba(11, 59, 111, 0.08)",
+      "window": "0 20px 50px rgba(11, 59, 111, 0.12)"
+    }
+  },
+  "ai_rules_for_code_generation": [
+    "Rule 1: Always use semantic colors. Do not introduce random purple, neon pink, or yellow outside of --gc-warning.",
+    "Rule 2: Any score display MUST honor the 65/35 breakdown: 65% Answer Adoption, 35% Official Citation.",
+    "Rule 3: Unknown states must NEVER be rendered as 0. They must use the amber warning tag (#B97700) with label '未知'.",
+    "Rule 4: Buttons must use border-radius: 999px (pill style) with --gc-mint background and white bold text.",
+    "Rule 5: For comparisons, use .compare-card and .search-compare__grid structure with subtle borders, never heavy solid colors."
+  ]
+}</pre>
+    </div>
+  </section>
+
+</main>
+
+<script>
+function copyText(val, name) {
+  navigator.clipboard.writeText(val).then(() => {
+    showToast(`已複製 ${name}: ${val}`);
+  });
+}
+
+function copyCode(id) {
+  const code = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    showToast(`已完整複製 AI 代理人設計規範 JSON！`);
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.innerText = `✓ ${msg}`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2400);
+}
+</script>
+
+</body>
+</html>

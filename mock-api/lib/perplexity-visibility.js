@@ -71,7 +71,8 @@ function evaluatePerplexityVisibility({
       firstPartyCited,
       citationCount: Array.isArray(result.citations) ? result.citations.length : 0,
       sourceDomains: [...new Set(urls.map(safeHostname).filter(Boolean))],
-      sourceTypes
+      sourceTypes,
+      answer: typeof result.answer === "string" ? result.answer : ""
     };
   });
 

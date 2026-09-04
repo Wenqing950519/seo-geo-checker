@@ -18,3 +18,8 @@ whitepaper_build/
 docs/.obsidian/workspace.json
 docs/.obsidian/workspace-mobile.json
 docs/.obsidian/cache
+
+mock-api/funnel-events.jsonl
+tmp/
+.workbuddy/
+*.db

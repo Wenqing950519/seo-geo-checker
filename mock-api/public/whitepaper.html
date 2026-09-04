@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoCheck — GEO 研究與方法論白皮書</title>
+<meta name="description" content="從黑盒猜測走向可觀測證據：AI 信任值、量測架構與透明度指南。深入解析 AI 如何檢索品牌、65/35 指標定義與 L2 可複現性研究規範。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<!-- KaTeX for Math rendering -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+<style>
+:root {
+  --navy: #0B3B6F;
+  --navy-dark: #072A52;
+  --navy-light: #164E8C;
+  --teal: #00B8A9;
+  --teal-dark: #007F75;
+  --bg-page: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --border-line: #E2E8F0;
+  --border-dark: #CBD5E1;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  
+  /* Ahrefs-inspired sharp geometry */
+  --sharp-radius: 2px;
+  --card-radius: 4px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  font-family: var(--sans);
+  color: var(--text-main);
+  background: var(--bg-page);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sharp Technical Header */
+header.ahrefs-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-line);
+  padding: 12px 24px;
+}
+.nav-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+.brand-subtitle {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-left: 1px solid var(--border-line);
+  padding-left: 10px;
+  margin-left: 6px;
+  font-weight: 600;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.nav-link {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: color 0.15s;
+}
+.nav-link:hover { color: var(--navy); }
+.btn-sharp {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  border: 1px solid var(--border-dark);
+  background: #FFFFFF;
+  padding: 5px 12px;
+  border-radius: var(--sharp-radius);
+  transition: all 0.15s;
+}
+.btn-sharp:hover {
+  background: var(--navy);
+  color: #FFFFFF;
+  border-color: var(--navy);
+}
+
+/* Main Layout */
+.page-layout {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 36px;
+  padding: 36px 24px 100px;
+}
+@media (max-width: 960px) {
+  .page-layout { grid-template-columns: 1fr; }
+  .sidebar-toc { display: none; }
+}
+
+/* Sticky TOC Sidebar (Ahrefs Style) */
+.sidebar-toc {
+  position: sticky;
+  top: 86px;
+  height: fit-content;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  background: #FFFFFF;
+  border: 1px solid var(--border-line);
+  border-radius: var(--card-radius);
+  padding: 20px;
+}
+.toc-heading {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--navy);
+}
+.toc-nav { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.toc-nav a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  padding: 5px 8px;
+  border-left: 2px solid transparent;
+  display: block;
+  transition: all 0.15s;
+}
+.toc-nav a:hover {
+  color: var(--navy);
+  border-left-color: var(--teal);
+  background: #F8FAFC;
+}
+
+/* Document Container */
+article.document-body {
+  background: #FFFFFF;
+  border: 1px solid var(--border-line);
+  border-radius: var(--card-radius);
+  padding: 52px 60px;
+}
+@media (max-width: 680px) {
+  article.document-body { padding: 28px 18px; }
+}
+
+/* Meta Bar */
+.meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.meta-tag {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: #F1F5F9;
+  border: 1px solid var(--border-line);
+  color: var(--navy);
+  padding: 2px 8px;
+  border-radius: var(--sharp-radius);
+}
+.meta-tag.accent {
+  background: #E6F8F6;
+  border-color: rgba(0, 184, 169, 0.4);
+  color: var(--teal-dark);
+}
+
+/* Title & Subtitle */
+h1.doc-title {
+  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+p.doc-lead {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* Visual Banner Frame */
+.doc-hero-banner {
+  margin: 0 0 36px;
+  border: 1px solid var(--border-line);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background: #072A52;
+}
+.doc-hero-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Refined Scientific Formula Panel */
+.formula-panel,
+.ahrefs-callout {
+  background: #F8FAFC;
+  border: 1px solid var(--border-line);
+  border-radius: 6px;
+  padding: 24px 28px;
+  margin: 28px 0 36px;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
+}
+.callout-header {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.callout-formula {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--navy-dark);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.callout-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Formal Research Boundary & Governance Box (Dignified Academic Styling) */
+.disclaimer-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-line);
+  border-radius: 6px;
+  padding: 24px 28px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+.disclaimer-box .disclaimer-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #F1F5F9;
+}
+.disclaimer-box .disclaimer-head svg {
+  color: var(--navy);
+  flex-shrink: 0;
+}
+.disclaimer-box h4 {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.disclaimer-box .disclaimer-sub {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+.disclaimer-box ol {
+  padding-left: 20px;
+  color: #334155;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin: 0;
+}
+.disclaimer-box li {
+  margin-bottom: 10px;
+}
+.disclaimer-box li:last-child {
+  margin-bottom: 0;
+}
+.disclaimer-box strong {
+  color: var(--navy-dark);
+}
+
+/* Sharp Typography */
+h2 {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  margin: 48px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-line);
+}
+h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 30px 0 12px;
+}
+p {
+  font-size: 0.98rem;
+  color: var(--text-main);
+  margin-bottom: 18px;
+  line-height: 1.8;
+}
+ul, ol {
+  padding-left: 22px;
+  margin-bottom: 22px;
+}
+li { margin-bottom: 6px; font-size: 0.96rem; }
+
+/* Architecture Flowchart Diagram (Clean System Architecture Blueprint on Light Surface) */
+.arch-flow-diagram {
+  margin: 32px 0 44px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-line);
+  border-radius: 8px;
+  padding: 36px 28px;
+  box-shadow: 0 4px 20px rgba(11, 59, 111, 0.04);
+}
+.flow-root-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flow-node-root {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 10px 22px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(11, 59, 111, 0.05);
+  letter-spacing: 0.02em;
+}
+.flow-node-root svg {
+  color: var(--teal);
+}
+.flow-connector-fork,
+.flow-connector-merge {
+  display: block;
+  max-width: 600px;
+  width: 100%;
+}
+.flow-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+@media (max-width: 720px) {
+  .flow-dual-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .flow-connector-fork,
+  .flow-connector-merge {
+    display: none;
+  }
+}
+.flow-card {
+  background: #F8FAFC;
+  border: 1px solid var(--border-line);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.flow-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+.flow-card-head {
+  padding: 16px 20px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-line);
+}
+.flow-card-head h4 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.flow-card-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--navy);
+  background: #EEF4FA;
+  padding: 3px 8px;
+  border-radius: 3px;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+.flow-card.pillar-2 .flow-card-badge {
+  color: var(--teal-dark);
+  background: #E6F8F6;
+}
+.flow-card-badge.aux {
+  color: #475569;
+  background: #EDF2F7;
+}
+.flow-card-sub {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+.flow-card-body {
+  padding: 16px 20px;
+  list-style: none;
+  margin: 0;
+}
+.flow-card-body li {
+  font-size: 0.88rem;
+  color: #334155;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.flow-card-body li:last-child {
+  margin-bottom: 0;
+}
+.flow-card-body li::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--navy-light);
+  flex-shrink: 0;
+}
+.flow-card.pillar-2 .flow-card-body li::before {
+  background: var(--teal-dark);
+}
+.flow-merge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flow-bottom-grid {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.flow-card.pillar-3 {
+  background: #FAFAFA;
+  border: 1px dashed var(--border-dark);
+}
+.flow-aux-notice {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #475569;
+  background: #EDF2F7;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.flow-bottom-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px 20px;
+}
+@media (max-width: 600px) {
+  .flow-bottom-items {
+    grid-template-columns: 1fr;
+  }
+}
+.flow-sub-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: #334155;
+}
+.flow-sub-item .bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94A3B8;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.flow-sub-item strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+.flow-sub-item p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Balanced Scientific Math Box */
+.math-box {
+  background: #F8FAFC;
+  border: 1px solid var(--border-line);
+  border-radius: 6px;
+  padding: 24px 28px;
+  margin: 24px 0;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
+}
+
+/* Sharp SVG Frame */
+.svg-frame {
+  margin: 32px 0;
+  text-align: center;
+  background: #FFFFFF;
+  border: 1px solid var(--border-line);
+  border-radius: var(--sharp-radius);
+  padding: 24px 16px;
+  overflow-x: auto;
+}
+.svg-frame svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Sharp Tables */
+table.sharp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0 32px;
+  font-size: 0.88rem;
+  border: 1px solid var(--border-line);
+}
+table.sharp-table th {
+  background: #F1F5F9;
+  color: var(--navy);
+  font-family: var(--mono);
+  font-weight: 700;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--border-line);
+  border-right: 1px solid var(--border-line);
+}
+table.sharp-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-line);
+  border-right: 1px solid var(--border-line);
+  vertical-align: top;
+}
+</style>
+</head>
+<body>
+
+<!-- Sharp Header -->
+<header class="ahrefs-nav">
+  <div class="nav-wrap">
+    <a class="brand-link" href="/">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+        <rect width="48" height="48" rx="2" fill="#F0F8FA" />
+        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
+        <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+      </svg>
+      <span>GeoCheck</span>
+      <span class="brand-subtitle">研究方法論</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="/brand">品牌規範 (BIS)</a>
+      <a class="btn-sharp" href="/">← 回到產品首頁</a>
+    </div>
+  </div>
+</header>
+
+<div class="page-layout">
+
+  <!-- TOC Sidebar (Ahrefs Style) -->
+  <aside class="sidebar-toc">
+    <div class="toc-heading">章節目錄</div>
+    <ul class="toc-nav">
+      <li><a href="#sec-disclaimer">研究邊界與重要聲明</a></li>
+      <li><a href="#sec-1">1. 緒論：為什麼需要 GEO</a></li>
+      <li><a href="#sec-2">2. 三權分立量測架構</a></li>
+      <li><a href="#sec-3">3. 單站產品檢測流程</a></li>
+      <li><a href="#sec-4">4. 白皮書研究批次流程</a></li>
+      <li><a href="#sec-5">5. 指標解讀：AI 信任值</a></li>
+      <li><a href="#sec-6">6. 證據判定四象限</a></li>
+      <li><a href="#sec-7">7. 網站技術準備度</a></li>
+      <li><a href="#sec-8">8. 研究限制與治理規範</a></li>
+    </ul>
+  </aside>
+
+  <!-- Document Main Content -->
+  <article class="document-body">
+
+
+
+    <h1 class="doc-title">GeoCheck GEO（生成式引擎優化）產品與方法論白皮書</h1>
+    <p class="doc-lead">從黑盒猜測走向可觀測證據：AI 信任值、量測架構與透明度指南</p>
+
+    <!-- Visual Banner: 3D Technical Dashboard -->
+    <div class="doc-hero-banner">
+      <img src="/assets/dashboard-banner.png" alt="GeoCheck AI Search Visibility Platform Architecture" />
+    </div>
+
+    <!-- Ahrefs Callout Box -->
+    <div class="ahrefs-callout">
+      <div class="callout-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        <span>核心量測算式（AI 信任值）</span>
+      </div>
+      <div class="callout-formula">AI 信任值 = 65% 可見答案採用率 + 35% 經核實第一方來源證據率</div>
+      <p class="callout-desc">
+        以客觀可觀測的公開 AI 輸出為基礎，結合「行為端回答採用」與「結構端官方引用」，拒絕黑盒盲猜與虛假排名承諾。
+      </p>
+    </div>
+
+    <!-- Disclaimer Box -->
+    <div class="disclaimer-box" id="sec-disclaimer">
+      <div class="disclaimer-head">
+        <h4>重要聲明與研究邊界</h4>
+      </div>
+      <ol>
+        <li><strong>非商業成效保證</strong>：GeoCheck 量測的是特定條件下「可觀測的搜尋與引用證據」，絕不承諾或保證任何搜尋引擎或 AI 平台的特定排名、推薦率、點擊流量、獲客量或營收轉換。</li>
+        <li><strong>非模型內部認知</strong>：產品指標「AI 信任值」（AI Trust Index）為系統量測「AI 在公開回答中採用品牌」與「引用第一方官方來源」之客觀證據率，不代表大型語言模型（LLM）內部神經網路的實際信念或真實偏好。</li>
+        <li><strong>未知不等於零</strong>：平台服務中斷、網路逾時、API 拒答或無法解析之回答，均歸類為「未知（unknown）」，一律排除於計分分母之外，絕不假定為「表現為 0 分」。</li>
+      </ol>
+    </div>
+
+    <!-- Section 1 -->
+    <h2 id="sec-1">1. 緒論：為什麼需要可觀測的 GEO 方法論？</h2>
+    <h3>1.1 從傳統 SEO 到 GEO（生成式引擎優化）</h3>
+    <p>傳統搜尋引擎（如 Google、Bing）的核心是「排序藍色連結（Ranked Blue Links）」，其評估體系以關鍵字排名、展示次數（Impressions）與點擊率（CTR）為中心。</p>
+    <p>生成式 AI 搜尋（如 Perplexity、ChatGPT Search、Google AI Overviews）改變了答案的呈現方式：<strong>AI 直接生成綜合解答，而非僅列出網頁清單。</strong></p>
+    <p>在生成式對話情境中，品牌面臨全新的曝光型態：</p>
+    <ul>
+      <li><strong>答案採用（Answer Adoption）</strong>：AI 在推薦解決方案或回答知識性問題時，是否主動提及該品牌？</li>
+      <li><strong>來源背書（Source Attribution）</strong>：AI 在正文下方或內文中，是否標註並引用該品牌的官方網頁作為證據來源？</li>
+    </ul>
+
+    <h3>1.2 當前市場痛點：黑盒巫術與過度承諾</h3>
+    <p>當前市場對 GEO 充滿焦慮與投機，常見問題包括：</p>
+    <ol>
+      <li><strong>虛假因果承諾</strong>：宣稱「填寫特定 Schema 標籤或改寫內容，即可 100% 登上 AI 推薦第一名」。事實上，生成式引擎具備隨機取樣（Temperature &gt; 0）與即時 RAG 動態重排序特性，不存在確定性的排名保證。</li>
+      <li><strong>混淆指標與構念</strong>：將網站內部的技術分數（例如 HTML 結構、結構化資料完整度）直接混充為「AI 已經喜愛並推薦你的網站」。</li>
+      <li><strong>無效填補與偏誤</strong>：測試 API 一旦拒答或連線失敗，許多工具直接把該次查詢記為 0 分，等於把「沒拿到資料」誤判成「品牌表現為零」。</li>
+    </ol>
+
+    <!-- Section 2 -->
+    <h2 id="sec-2">2. 量測架構：三權分立的指標體系</h2>
+    <p>為避免單一綜合分數遮蔽事實，GeoCheck 確立了「三權分立」的架構原則：</p>
+
+    <!-- Clean System Architecture Blueprint (Light, Authoritative Academic Topology) -->
+    <div class="arch-flow-diagram">
+      <!-- Root Node -->
+      <div class="flow-root-container">
+        <div class="flow-node-root">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>GeoCheck 三權分立量測架構</span>
+        </div>
+        <!-- Downward Fork Connector -->
+        <svg class="flow-connector-fork" width="100%" height="36" viewBox="0 0 600 36" fill="none" preserveAspectRatio="none">
+          <path d="M300 0 V16 H150 V36 M300 16 H450 V36" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="300" cy="0" r="3" fill="#64748B"/>
+          <circle cx="150" cy="36" r="3" fill="#64748B"/>
+          <circle cx="450" cy="36" r="3" fill="#64748B"/>
+        </svg>
+      </div>
+
+      <!-- Level 2: Two Primary Pillars (Split) -->
+      <div class="flow-dual-grid">
+        <!-- Pillar 1 -->
+        <div class="flow-card pillar-1">
+          <div class="flow-card-head">
+            <span class="flow-card-badge">面向一 · 產品核心指標</span>
+            <h4>1. 產品核心指標：AI 信任值</h4>
+            <div class="flow-card-sub">對齊商業曝光與官方背書</div>
+          </div>
+          <ul class="flow-card-body">
+            <li>答案採用率 (65%)</li>
+            <li>官網引用率 (35%)</li>
+            <li>有效查詢數不足封頂 (69分)</li>
+            <li>排除未回應題目 (標記為未知)</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="flow-card pillar-2">
+          <div class="flow-card-head">
+            <span class="flow-card-badge">面向二 · 研究基石層</span>
+            <h4>2. 研究基石層：GEO Core</h4>
+            <div class="flow-card-sub">可審計原始觀測紀錄 · 跨樣本對齊基準</div>
+          </div>
+          <ul class="flow-card-body">
+            <li>原始 Query-Run 執行次數紀錄</li>
+            <li>完整 Prompt 與 Answer 生成存檔</li>
+            <li>第一方來源 URL 與網域判定</li>
+            <li>實體對齊路徑與拒答紀錄</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Convergence Connector -->
+      <div class="flow-merge-container">
+        <svg class="flow-connector-merge" width="100%" height="36" viewBox="0 0 600 36" fill="none" preserveAspectRatio="none">
+          <path d="M150 0 V18 H300 V36 M450 0 V18 H300" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="150" cy="0" r="3" fill="#64748B"/>
+          <circle cx="450" cy="0" r="3" fill="#64748B"/>
+          <circle cx="300" cy="36" r="3" fill="#64748B"/>
+        </svg>
+      </div>
+
+      <!-- Level 3: Auxiliary Technical Layer -->
+      <div class="flow-bottom-grid">
+        <div class="flow-card pillar-3">
+          <div class="flow-card-head">
+            <div class="head-row" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+              <span class="flow-card-badge aux">面向三 · 輔助技術診斷</span>
+              <span class="flow-aux-notice">獨立診斷 · 不計入總分</span>
+            </div>
+            <h4>3. 輔助技術診斷：網站技術準備度</h4>
+            <div class="flow-card-sub">Site Tech Readiness · 機器可檢索性與結構化標準</div>
+          </div>
+          <div class="flow-bottom-items">
+            <div class="flow-sub-item">
+              <span class="bullet"></span>
+              <div>
+                <strong>HTTP 狀態與存取性</strong>
+                <p>200 / 301 重定向與伺服器回傳</p>
+              </div>
+            </div>
+            <div class="flow-sub-item">
+              <span class="bullet"></span>
+              <div>
+                <strong>Robots.txt / Sitemap</strong>
+                <p>搜尋與 AI 爬蟲存取規則</p>
+              </div>
+            </div>
+            <div class="flow-sub-item">
+              <span class="bullet"></span>
+              <div>
+                <strong>JSON-LD 結構化資料</strong>
+                <p>Organization / Schema 實體對齊</p>
+              </div>
+            </div>
+            <div class="flow-sub-item">
+              <span class="bullet"></span>
+              <div>
+                <strong>內容字數與標題層級</strong>
+                <p>H1–H3 階層與可閱讀內文深度</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3 & 4 -->
+    <h2 id="sec-3">3. 單站產品檢測流程：動態發現與即時分析</h2>
+    <p>單站檢測適用於一般使用者在首頁輸入單一網址後的即時檢測。核心流程包括：</p>
+    <ol>
+      <li><strong>多重抓取彈性保障</strong>：優先以輕量 HTTP 抓取目標頁面 HTML；遇客戶端渲染自動退回 Headless 瀏覽器渲染模式。</li>
+      <li><strong>非品牌題目生成與防呆</strong>：使用結構化 LLM（現行主力：<code>deepseek-v4-flash</code>）依頁面證據產出 5～8 個候選題，並以確定性正規表示式嚴格剔除包含受測品牌的題目。若兩輪無法湊齊 2 題合規非品牌題，系統主動停止搜尋並標示 <code>unknown</code>。</li>
+      <li><strong>實體查詢隔離</strong>：額外執行 1 次帶品牌名稱的實體查詢（Direct Entity Query），但僅用於綁定官方別名與網域，不併入非品牌發現的評分分母中。</li>
+    </ol>
+
+    <h2 id="sec-4">4. 白皮書研究批次流程：凍結題組與嚴謹母體</h2>
+    <p>當進行跨品牌、跨產業的基準調查或研究白皮書時，<strong>嚴禁使用單站檢測的動態題目</strong>。批次研究恪守以下原則：</p>
+    <ul>
+      <li><strong>受控題組（Frozen Query Set）</strong>：全體受測樣本面對完全相同的提示詞（Prompts）。題目一旦審定封存，不可事後調整以迎合特定品牌。</li>
+      <li><strong>實體主檔鎖定（Entity Master Lock）</strong>：在啟動 API 批量測試前，必須完成人工實體主檔審查，明確定義品牌正式名稱、已知別名、官方主網域與專屬路徑。</li>
+      <li><strong>Preflight 覆蓋防護</strong>：執行前進行程式化預檢。凡有未對齊實體或母體定義模糊者，系統直接阻擋執行。</li>
+      <li><strong>禁止靜默備援（No Silent Fallback）</strong>：研究批次中，搜尋供應商若連線中斷，一律記為失敗，禁止自動切換至其他模型，確保樣本處於同一模型基準線。</li>
+    </ul>
+
+    <!-- Section 5 -->
+    <h2 id="sec-5">5. 指標解讀：AI 信任值與評分規則</h2>
+    <p>在經審定的非品牌發現查詢集中，針對所有取得有效且可見回答的執行次數（\(N_{\text{valid}}\)），「AI 信任值」定義如下：</p>
+
+    <div class="math-box">
+      $$\text{AI Trust Index} = 100 \times \left( 0.65 \times \text{答案採用率} + 0.35 \times \text{來源證據率} \right)$$
+      <br>
+      $$\text{答案採用率} = \frac{\sum \text{提及已對齊品牌之有效查詢數}}{N_{\text{valid}}}$$
+      <br>
+      $$\text{來源證據率} = \frac{\sum \text{引用經核實第一方官方 URL 之有效查詢數}}{N_{\text{valid}}}$$
+    </div>
+
+    <p><strong>樣本不足封頂防呆（Coverage Cap at 69 分）</strong>：單次偶發的成功無法代表穩定的市場能見度。若受測網站有效查詢次數 \(N_{\text{valid}} &lt; 2\)，前端產品顯示分數嚴格封頂於 69 分，防止單一題目偶然被提及時產生虛假的滿分誤導。</p>
+
+    <!-- Section 6 with Prompt 2 SVG -->
+    <h2 id="sec-6">6. 證據判定：答案採用 vs. 來源證據四象限</h2>
+    <p>GeoCheck 將 AI 的輸出嚴格拆解為兩個獨立維度：答案層是否提及品牌（65%）、來源層是否引用官方網域（35%）。</p>
+
+    <!-- Prompt 2 SVG in sharp container -->
+    <div class="svg-frame">
+      <svg
+        width="800"
+        height="500"
+        viewBox="0 0 800 500"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="chart-title chart-desc"
+      >
+        <title id="chart-title">AI 信任值：答案採用 vs. 來源證據判定四象限</title>
+        <desc id="chart-desc">
+          X 軸為第一方官網引用率，權重 35%；Y 軸為可見答案採用率，權重 65%。
+          四象限依序為完全採信、二次提及、未可觀測與背景引用。
+        </desc>
+
+        <defs>
+          <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="150%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0B3B6F" flood-opacity="0.07" />
+          </filter>
+          <marker id="arrowNavy" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+            <path d="M0 0L8 4L0 8Z" fill="#0B3B6F"/>
+          </marker>
+        </defs>
+
+        <!-- Background -->
+        <rect width="800" height="500" rx="4" fill="#F8FAFC"/>
+
+        <!-- Title -->
+        <text x="400" y="34" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="800" fill="#0B3B6F">
+          AI 信任值：答案採用 vs. 來源證據判定四象限
+        </text>
+
+        <!-- Plot area subtle background -->
+        <rect x="126" y="66" width="610" height="350" rx="2" fill="#FFFFFF" stroke="#CBD5E1" />
+
+        <!-- Quadrant background areas -->
+        <rect x="136" y="76" width="290" height="160" rx="2" fill="#F1F5F9" />
+        <rect x="436" y="76" width="290" height="160" rx="2" fill="#E6F8F6" stroke="#00B8A9" stroke-opacity="0.4" />
+        <rect x="136" y="246" width="290" height="160" rx="2" fill="#F1F5F9" />
+        <rect x="436" y="246" width="290" height="160" rx="2" fill="#F8FAFC" />
+
+        <!-- Mid guide lines -->
+        <line x1="431" y1="76" x2="431" y2="406" stroke="#0B3B6F" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="4 4" />
+        <line x1="136" y1="241" x2="726" y2="241" stroke="#0B3B6F" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="4 4" />
+
+        <!-- Q2: 二次提及 -->
+        <g filter="url(#cardShadow)">
+          <rect x="158" y="101" width="246" height="110" rx="2" fill="#FFFFFF" stroke="#CBD5E1" />
+        </g>
+        <rect x="176" y="118" width="76" height="24" rx="2" fill="#E2E8F0" />
+        <text x="214" y="134" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#0B3B6F">二次提及</text>
+        <text x="176" y="164" font-family="sans-serif" font-size="14" font-weight="700" fill="#0B3B6F">AI 提及品牌</text>
+        <text x="176" y="184" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#475569">但引用第三方部落格</text>
+
+        <!-- Q1: 完全採信 -->
+        <g filter="url(#cardShadow)">
+          <rect x="458" y="101" width="246" height="110" rx="2" fill="#FFFFFF" stroke="#00B8A9" stroke-width="1.5" />
+        </g>
+        <rect x="476" y="118" width="76" height="24" rx="2" fill="#00B8A9" />
+        <text x="514" y="134" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#FFFFFF">完全採信</text>
+        <circle cx="679" cy="130" r="9" fill="#E6F8F6"/>
+        <path d="M675 130L678 133L683 127" stroke="#00B8A9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="476" y="164" font-family="sans-serif" font-size="14" font-weight="700" fill="#0B3B6F">AI 提及品牌＋引用官網</text>
+        <text x="476" y="184" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#007F75">最佳實證</text>
+
+        <!-- Q3: 未可觀測 -->
+        <g filter="url(#cardShadow)">
+          <rect x="158" y="271" width="246" height="110" rx="2" fill="#FFFFFF" stroke="#CBD5E1" />
+        </g>
+        <rect x="176" y="288" width="88" height="24" rx="2" fill="#F1F5F9" />
+        <text x="220" y="304" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#64748B">未可觀測</text>
+        <text x="176" y="334" font-family="sans-serif" font-size="14" font-weight="700" fill="#0B3B6F">品牌未出現於回答</text>
+        <text x="176" y="354" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#475569">或任何第一方引用</text>
+
+        <!-- Q4: 背景引用 -->
+        <g filter="url(#cardShadow)">
+          <rect x="458" y="271" width="246" height="110" rx="2" fill="#FFFFFF" stroke="#CBD5E1" />
+        </g>
+        <rect x="476" y="288" width="76" height="24" rx="2" fill="#E6F8F6" />
+        <text x="514" y="304" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#007F75">背景引用</text>
+        <text x="476" y="334" font-family="sans-serif" font-size="14" font-weight="700" fill="#0B3B6F">AI 參考了官網</text>
+        <text x="476" y="354" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#475569">但內文未主動推薦</text>
+
+        <!-- Axes -->
+        <line x1="126" y1="416" x2="749" y2="416" stroke="#0B3B6F" stroke-width="2" marker-end="url(#arrowNavy)" />
+        <line x1="126" y1="416" x2="126" y2="56" stroke="#0B3B6F" stroke-width="2" marker-end="url(#arrowNavy)" />
+
+        <!-- X ticks -->
+        <line x1="126" y1="416" x2="126" y2="422" stroke="#0B3B6F" stroke-width="1.5"/>
+        <line x1="431" y1="416" x2="431" y2="422" stroke="#0B3B6F" stroke-width="1.5"/>
+        <line x1="736" y1="416" x2="736" y2="422" stroke="#0B3B6F" stroke-width="1.5"/>
+        <text x="126" y="438" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#0B3B6F">0%</text>
+        <text x="431" y="438" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#0B3B6F">50%</text>
+        <text x="736" y="438" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#0B3B6F">100%</text>
+
+        <!-- Y ticks -->
+        <line x1="120" y1="416" x2="126" y2="416" stroke="#0B3B6F" stroke-width="1.5"/>
+        <line x1="120" y1="241" x2="126" y2="241" stroke="#0B3B6F" stroke-width="1.5"/>
+        <line x1="120" y1="66" x2="126" y2="66" stroke="#0B3B6F" stroke-width="1.5"/>
+        <text x="110" y="420" text-anchor="end" font-family="sans-serif" font-size="11" fill="#0B3B6F">0%</text>
+        <text x="110" y="245" text-anchor="end" font-family="sans-serif" font-size="11" fill="#0B3B6F">50%</text>
+        <text x="110" y="70" text-anchor="end" font-family="sans-serif" font-size="11" fill="#0B3B6F">100%</text>
+
+        <!-- X-axis label -->
+        <text x="431" y="464" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0B3B6F">
+          第一方官網引用率
+        </text>
+        <rect x="520" y="450" width="70" height="20" rx="2" fill="#E6F8F6" />
+        <text x="555" y="464" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#007F75">權重 35%</text>
+
+        <!-- Y-axis label -->
+        <g transform="translate(33 241) rotate(-90)">
+          <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#0B3B6F">
+            可見答案採用率
+          </text>
+          <rect x="62" y="-15" width="70" height="20" rx="2" fill="#E6F8F6" />
+          <text x="97" y="-1" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="700" fill="#007F75">權重 65%</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Section 7 & 8 -->
+    <h2 id="sec-7">7. 網站技術準備度：基礎建設與非因果限制</h2>
+    <p>網站技術準備度量測網站的機器可讀性（HTTP 存取性、Robots、Sitemap、Schema.org JSON-LD 與內容密度）。</p>
+    
+    <div class="ahrefs-callout">
+      <div class="callout-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>非因果架構原則</span>
+      </div>
+      <div class="callout-formula" style="font-size:1.05rem;">技術準備度 100 分 ≠ AI 一定會推薦你</div>
+      <p class="callout-desc">
+        結構化資料與機器存取性是 AI 能順暢檢索網頁的「必要條件（Prerequisite）」，但絕非「充分保證（Guarantee）」。技術準備度獨立診斷，不計入 AI 信任值總分。
+      </p>
+    </div>
+
+    <h2 id="sec-8">8. 研究限制與治理規範</h2>
+    <ol>
+      <li><strong>時間波動性（Temporal Drift）</strong>：生成式搜尋每週微調模型或更新索引。量測結果代表特定時點的可觀測狀態，不代表永久排名。</li>
+      <li><strong>單一引擎限制</strong>：本系統搜尋觀測主力為 Perplexity Sonar 系列，不可直接外推至所有 AI 模型。</li>
+      <li><strong>探索性相關分析</strong>：若探討 AI 信任值與客流量關係，嚴格定性為探索性相關，嚴禁宣稱因果關係。</li>
+      <li><strong>L2 可複現性承諾</strong>：演算法全公開、資料集計算 SHA-256 雜湊值防竄改、完整揭露 Unknown 與失敗記錄。</li>
+    </ol>
+
+  </article>
+
+</div>
+
+</body>
+</html>
