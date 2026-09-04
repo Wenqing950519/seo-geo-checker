@@ -16,9 +16,9 @@
 <meta name="description" content="輸入你的網站網址，60 秒看出顧客問 AI 的時候，AI 有沒有提到你、有沒有引用你的官網。免費、不用註冊。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://geocheck.lisheng.cv/">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
+<link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
+<link rel="apple-touch-icon" href="/favicon.png?v=radar-20260904">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://geocheck.lisheng.cv/">
@@ -1843,43 +1843,34 @@ footer a:hover{color:var(--teal)}
         <div class="site-preview-title" id="confirm-site-url">https://your-website.com</div>
       </div>
       <div style="text-align:right;">
-        <div class="site-preview-meta" id="confirm-site-industry">預判產業：<strong>實體門市 / 區域生活消費服務</strong></div>
-        <div class="site-preview-meta" style="color:var(--teal-d);font-weight:700;">● 伺服器連線正常 (HTTP 200)</div>
+        <div class="site-preview-meta" id="confirm-site-industry">產業：<strong>開始後依網站內容辨識</strong></div>
+        <div class="site-preview-meta" style="color:var(--muted);font-weight:700;">● 開始後會先驗證網站連線</div>
       </div>
     </div>
 
     <!-- 兩個問題的欄位 (皆為選填) -->
     <div class="setup-q-block">
       <div class="setup-q-header">
-        <label for="setup-q1">題目一（選填 · 預設由系統推薦）：</label>
-        <button type="button" class="dice-btn" onclick="rollQuestion(1, this)" title="隨機切換不同真實情境題">
-          <span class="dice-icon">🎲</span> 隨機換題
-        </button>
+        <label for="setup-q1">題目一（選填 · 留空會依網站內容規劃）：</label>
       </div>
-      <input type="text" class="setup-q-input" id="setup-q1" value="台北新莊有推薦適合帶筆電工作、有插座且安靜的早午餐咖啡店嗎？">
+      <input type="text" class="setup-q-input" id="setup-q1" placeholder="例如：顧客通常會怎麼找這類服務？" autocomplete="off">
     </div>
 
     <div class="setup-q-block">
       <div class="setup-q-header">
-        <label for="setup-q2">題目二（選填 · 預設由系統推薦）：</label>
-        <button type="button" class="dice-btn" onclick="rollQuestion(2, this)" title="隨機切換不同真實情境題">
-          <span class="dice-icon">🎲</span> 隨機換題
-        </button>
+        <label for="setup-q2">題目二（選填 · 留空會依網站內容規劃）：</label>
       </div>
-      <input type="text" class="setup-q-input" id="setup-q2" value="台北周邊哪裡有不限時、空間寬敞的聚餐咖啡館？">
+      <input type="text" class="setup-q-input" id="setup-q2" placeholder="例如：顧客在比較或決定前會問什麼？" autocomplete="off">
     </div>
 
     <div style="font-size:0.8rem;color:var(--muted);margin-bottom:24px;line-height:1.5;">
-      💡 <b>小提示</b>：欄位為選填，可自由修改或點 <b>🎲 隨機換題</b>。建議<b>不要包含自己的店名</b>，才能精準模擬顧客還不認識你時，AI 到底會推薦誰。
+      💡 <b>小提示</b>：留空時，系統會先讀取你的網站內容，再規劃與業態和地區相符的觀測題目。若自行輸入，請不要包含自己的店名，才能模擬顧客還不認識你時會怎麼問。
     </div>
 
     <!-- 按鈕區 -->
     <div style="display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;">
-      <button type="button" class="btn btn-outline" style="padding:10px 18px;font-size:0.9rem;" onclick="startConfirmedAudit(true)">
-        使用預設題直接開始
-      </button>
-      <button type="button" class="btn" style="padding:10px 22px;font-size:0.92rem;" onclick="startConfirmedAudit(false)">
-        確認題目，開始分析 (約 60 秒) →
+      <button type="button" class="btn" style="padding:10px 22px;font-size:0.92rem;" onclick="startConfirmedAudit()">
+        開始分析 (約 60 秒) →
       </button>
     </div>
   </div>
@@ -2015,50 +2006,6 @@ function closeModal(id){document.getElementById(id)?.classList.remove('active')}
 function closeModalOnBackdrop(e,id){if(e.target===e.currentTarget)closeModal(id)}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay').forEach(el=>el.classList.remove('active'))});
 
-const QUESTION_BANK_1 = [
-  "台北新莊有推薦適合帶筆電工作、有插座且安靜的早午餐咖啡店嗎？",
-  "新莊中正路周邊哪裡有環境舒適、提供插座且不限時的咖啡館？",
-  "台北捷運附近適合工作辦公、單品手沖選擇多的工作友善空間推薦？",
-  "新莊哪裡有座位寬敞、適合商務談事情或安靜讀書的咖啡廳？",
-  "雙北哪裡有採光好、提供高速 Wi-Fi 適合遠距工作的咖啡館？"
-];
-
-const QUESTION_BANK_2 = [
-  "台北周邊哪裡有不限時、空間寬敞的聚餐咖啡館？",
-  "新莊哪裡有寵物友善、環境寬敞可以久坐聊天的庭園餐廳？",
-  "新北適合家庭朋友多人聚會、餐點多樣且好停車的餐廳推薦？",
-  "台北附近有哪些適合週末聚會、甜點與鹹食餐點皆有口碑的咖啡店？",
-  "新莊適合多人辦公聚會或慶生下午茶的推薦場地？"
-];
-
-function rollQuestion(idx, btn) {
-  const input = document.getElementById(idx === 1 ? 'setup-q1' : 'setup-q2');
-  const bank = idx === 1 ? QUESTION_BANK_1 : QUESTION_BANK_2;
-  if (!input) return;
-  const current = input.value.trim();
-  const candidates = bank.filter(q => q !== current);
-  const chosen = candidates[Math.floor(Math.random() * candidates.length)] || bank[0];
-
-  const icon = btn.querySelector('.dice-icon');
-  if (icon) {
-    icon.style.transform = (icon.style.transform === 'rotate(360deg)') ? 'rotate(0deg)' : 'rotate(360deg)';
-  }
-
-  input.value = chosen;
-  input.classList.remove('flash');
-  void input.offsetWidth;
-  input.classList.add('flash');
-}
-
-function detectIndustryHint(url) {
-  const lower = url.toLowerCase();
-  if (lower.includes('cafe') || lower.includes('coffee') || lower.includes('buna')) return '實體休閒餐飲 / 咖啡';
-  if (lower.includes('hotel') || lower.includes('bnb') || lower.includes('inn') || lower.includes('stay')) return '觀光旅宿 / 飯店民宿';
-  if (lower.includes('clinic') || lower.includes('dent') || lower.includes('med')) return '專業醫療 / 診所健診';
-  if (lower.includes('law') || lower.includes('cpa') || lower.includes('tax')) return '專業法務 / 會計稅務';
-  return '實體門市 / 區域生活消費服務';
-}
-
 let pendingAuditTargetUrl = '';
 
 document.getElementById('audit-form')?.addEventListener('submit', (e) => {
@@ -2080,28 +2027,20 @@ document.getElementById('audit-form')?.addEventListener('submit', (e) => {
 
   const confirmSiteEl = document.getElementById('confirm-site-url');
   if (confirmSiteEl) confirmSiteEl.textContent = url;
-  const confirmIndEl = document.getElementById('confirm-site-industry');
-  if (confirmIndEl) confirmIndEl.innerHTML = `預判產業：<strong>${detectIndustryHint(url)}</strong>`;
-
   openModal('audit-confirm-modal');
 });
 
-function startConfirmedAudit(useDefaults) {
+function startConfirmedAudit() {
   closeModal('audit-confirm-modal');
   const q1Input = document.getElementById('setup-q1');
   const q2Input = document.getElementById('setup-q2');
-  let customQueries = [];
-  if (useDefaults) {
-    customQueries = [QUESTION_BANK_1[0], QUESTION_BANK_2[0]];
-    if (q1Input) q1Input.value = QUESTION_BANK_1[0];
-    if (q2Input) q2Input.value = QUESTION_BANK_2[0];
-  } else {
-    const q1 = q1Input ? q1Input.value.trim() : '';
-    const q2 = q2Input ? q2Input.value.trim() : '';
-    customQueries = [q1 || QUESTION_BANK_1[0], q2 || QUESTION_BANK_2[0]];
-  }
+  const q1 = q1Input ? q1Input.value.trim() : '';
+  const q2 = q2Input ? q2Input.value.trim() : '';
+  const customQueries = [q1, q2].filter(Boolean);
 
-  executeAudit(customQueries);
+  // An empty list deliberately leaves query planning to the evidence-backed
+  // server flow, which reads the submitted site before selecting questions.
+  executeAudit(customQueries.length ? customQueries : undefined);
 }
 
 async function executeAudit(customQueries) {
@@ -2121,7 +2060,7 @@ async function executeAudit(customQueries) {
 
   const loadingMessages = [
     '正在讀取你的網站...',
-    '正在載入自選觀測問題...',
+    '正在依網站內容規劃觀測問題...',
     '正在看 AI 怎麼理解你...',
     '正在檢查網站的基本設定...',
     '正在實際問 AI 搜尋引擎...',
