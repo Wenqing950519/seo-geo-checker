@@ -4,6 +4,7 @@ const {
   SELECTED_QUERY_COUNT,
   buildGeoQueryPlanCorrectionPrompt,
   buildGeoQueryPlanPrompt,
+  mergePreferredQueries,
   normalizeGeoQueryPlan,
   normalizeReviewedQueryPlan
 } = require("../lib/query-planner");
@@ -45,9 +46,19 @@ const plan = normalizeGeoQueryPlan(raw, input);
 assert.equal(plan.status, "ready");
 assert.ok(plan.candidates.length >= CANDIDATE_QUERY_MIN);
 assert.equal(plan.selectedQueries.length, SELECTED_QUERY_COUNT);
-assert.equal(new Set(plan.selectedQueries.map((item) => item.intent)).size, 2, "selected queries should cover distinct intents when possible");
+assert.equal(SELECTED_QUERY_COUNT, 4, "single-site audits must use four discovery questions for finer score resolution");
+assert.ok(new Set(plan.selectedQueries.map((item) => item.intent)).size >= 2, "selected queries should cover distinct intents when possible");
 assert.equal(plan.candidates.some((item) => /海港鮨|網站設計|SEO/.test(item.text)), false, "brand, footer-vendor, and unrelated service-term leakage must be rejected");
 assert.ok(plan.queryPlan.queries.every((query) => /壽司|日式|餐廳/.test(query.text)));
+
+const withOneUserQuery = mergePreferredQueries(plan, input, ["台北壽司餐廳適合約會嗎？"]);
+assert.equal(withOneUserQuery.status, "ready");
+assert.equal(withOneUserQuery.selectedQueries.length, SELECTED_QUERY_COUNT);
+assert.equal(withOneUserQuery.selectedQueries[0].id, "custom_1", "a supplied question must be retained while AI fills the remaining slots");
+assert.match(withOneUserQuery.queryPlan.query_set_version, /user-input-v1/);
+
+const brandUserQuery = mergePreferredQueries(plan, input, ["海港鮨值得吃嗎？"]);
+assert.equal(brandUserQuery.status, "invalid", "a branded question must not enter the discovery-score denominator");
 
 const visibilityToolRaw = {
   entity_name: "GeoCheck",

@@ -12,6 +12,8 @@ const {
 } = require("./lib/rate-limit");
 const { runRealLiteAudit } = require("./lib/real-lite-audit");
 const { createAuditCache } = require("./lib/audit-cache");
+const { GEO_PIPELINE_VERSION } = require("./lib/geo-measurement");
+const { buildAuditCacheKey, createD1ReportStore } = require("./lib/d1-report-store");
 const { createFunnelRecorder } = require("./lib/funnel-events");
 const { assertSafePublicUrl } = require("./lib/url-safety");
 const { testDeepSeekProvider } = require("./providers/deepseek");
@@ -28,6 +30,7 @@ const jobs = new Map();
 const reports = new Map();
 const leads = [];
 const auditCache = createAuditCache();
+const d1ReportStore = createD1ReportStore();
 const funnel = createFunnelRecorder();
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
 const GA_TAG_HTML = `
@@ -50,6 +53,20 @@ function sendJson(res, status, data) {
     "Access-Control-Allow-Headers": "Content-Type, X-Admin-Token"
   });
   res.end(body);
+}
+
+async function getStoredReport(reportId) {
+  const id = String(reportId || "");
+  const memoryReport = reports.get(id);
+  if (memoryReport) return memoryReport;
+  try {
+    const storedReport = await d1ReportStore.getById(id);
+    if (storedReport) reports.set(id, storedReport);
+    return storedReport;
+  } catch (error) {
+    console.error("D1 report lookup failed", error.message);
+    return null;
+  }
 }
 
 function sendHtml(res, status, html) {
@@ -1055,8 +1072,20 @@ async function handleRequest(req, res) {
       const customQueries = Array.isArray(body.customQueries)
         ? body.customQueries.map((q) => String(q || "").trim()).filter(Boolean)
         : null;
-      const cacheKey = customQueries && customQueries.length ? `${siteUrl}#queries=${customQueries.join("||")}` : siteUrl;
-      const cached = auditCache.get(cacheKey);
+      if (customQueries?.length && (customQueries.length > 4 || new Set(customQueries.map((query) => query.replace(/\s+/g, " ").toLowerCase())).size !== customQueries.length)) {
+        return sendJson(res, 400, { error: "自訂觀測題最多 4 題，且每題都必須不同；未填的題目會由系統依網站內容補足。", code: "invalid_custom_queries" });
+      }
+      const cacheKey = buildAuditCacheKey({ siteUrl, customQueries, pipelineVersion: GEO_PIPELINE_VERSION });
+      const memoryCacheKey = `audit:${cacheKey}`;
+      let cached = auditCache.get(memoryCacheKey);
+      if (!cached) {
+        try {
+          cached = await d1ReportStore.getByCacheKey(cacheKey);
+          if (cached) auditCache.set(memoryCacheKey, cached.report);
+        } catch (error) {
+          console.error("D1 report cache lookup failed", error.message);
+        }
+      }
       if (cached) {
         const report = normalizeReportForClient({ ...cached.report, cache: cached.cache });
         reports.set(report.id, report);
@@ -1070,8 +1099,13 @@ async function handleRequest(req, res) {
         return sendJson(res, 200, report);
       }
       const freshReport = normalizeReportForClient(await runRealLiteAudit(siteUrl, { customQueries }));
-      const report = auditCache.set(cacheKey, freshReport);
+      const report = auditCache.set(memoryCacheKey, freshReport);
       reports.set(report.id, report);
+      try {
+        await d1ReportStore.set(cacheKey, freshReport);
+      } catch (error) {
+        console.error("D1 report cache write failed", error.message);
+      }
       funnel.record("audit_completed", {
         host,
         reportId: report.id,
@@ -1091,7 +1125,7 @@ async function handleRequest(req, res) {
   }
 
   if (req.method === "GET" && url.pathname === "/api/rate-limit-state") {
-    return sendJson(res, 200, { ...getRateLimitState(), auditCache: auditCache.state() });
+    return sendJson(res, 200, { ...getRateLimitState(), auditCache: auditCache.state(), reportStore: d1ReportStore.state() });
   }
 
   const statusMatch = url.pathname.match(/^\/api\/status\/([^/]+)$/);
@@ -1110,21 +1144,21 @@ async function handleRequest(req, res) {
 
   const reportApiMatch = url.pathname.match(/^\/api\/report\/([^/]+)$/);
   if (req.method === "GET" && reportApiMatch) {
-    const report = reports.get(reportApiMatch[1]);
+    const report = await getStoredReport(reportApiMatch[1]);
     if (!report) return sendJson(res, 404, { error: "Report not found" });
     return sendJson(res, 200, normalizeReportForClient(report));
   }
 
   const reportMarkdownMatch = url.pathname.match(/^\/report\/([^/]+)\/markdown$/);
   if (req.method === "GET" && reportMarkdownMatch) {
-    const report = reports.get(decodeURIComponent(reportMarkdownMatch[1]));
+    const report = await getStoredReport(decodeURIComponent(reportMarkdownMatch[1]));
     if (!report) return sendHtml(res, 404, "<h1>Report not found</h1>");
     return sendMarkdown(res, markdownFilename(report), reportMarkdown(report));
   }
 
   const reportPageMatch = url.pathname.match(/^\/report\/([^/]+)$/);
   if (req.method === "GET" && reportPageMatch) {
-    const report = reports.get(decodeURIComponent(reportPageMatch[1]));
+    const report = await getStoredReport(decodeURIComponent(reportPageMatch[1]));
     if (!report) return sendHtml(res, 404, "<h1>Report not found</h1>");
     return sendHtml(res, 200, reportHtml(report));
   }

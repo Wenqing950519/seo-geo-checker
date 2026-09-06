@@ -1,4 +1,5 @@
 const { AppError } = require("./errors");
+const { randomUUID } = require("crypto");
 const { ALGORITHM_VERSION, collectScoringSignals, computeScoreV2 } = require("./scoring-v2");
 const { classifySite, questionsForSite } = require("./site-type");
 const { measureGeoSite } = require("./geo-measurement");
@@ -41,10 +42,11 @@ async function runRealLiteAudit(siteUrl, options = {}) {
   };
 
   return {
-    id: `real_lite_${Date.now()}`,
+    id: `real_lite_${randomUUID()}`,
     url: siteUrl,
     createdAt: new Date().toISOString(),
     algorithmVersion: ALGORITHM_VERSION,
+    pipelineVersion: measurement.pipelineVersion,
     provider: searchContext?.enabled ? "perplexity" : "local-rules",
     model: searchContext?.authority?.model || searchContext?.discovery?.find((item) => item?.model)?.model || "rules-v3",
     interpretationProvider: queryPlanning?.provider || "deepseek",

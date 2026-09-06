@@ -6,6 +6,7 @@ function createAuditCache(options = {}) {
   const entries = new Map();
 
   function keyFor(siteUrl) {
+    if (String(siteUrl || "").startsWith("audit:")) return String(siteUrl);
     const parsed = new URL(siteUrl);
     return `${parsed.protocol}//${parsed.host}`.toLowerCase();
   }

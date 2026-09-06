@@ -12,4 +12,8 @@ assert.equal(cache.get("https://example.com/"), null, "transient fetch failures 
 cache.set("https://example.com/", successful);
 assert.equal(cache.get("https://example.com/").report.id, "ok");
 
+cache.set("audit:four-question-auto-v1", successful);
+assert.equal(cache.get("audit:four-question-auto-v1").report.id, "ok", "opaque cache keys must retain the query-set identity");
+assert.equal(cache.get("audit:another-query-set"), null, "different query sets must never share a cached report");
+
 console.log("audit cache tests passed");

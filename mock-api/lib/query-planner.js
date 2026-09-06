@@ -1,9 +1,12 @@
 const { callStructuredJson } = require("../providers/structured-router");
 
-const QUERY_PLANNER_VERSION = "1.4.0";
+const QUERY_PLANNER_VERSION = "1.5.0";
 const CANDIDATE_QUERY_MIN = 5;
 const CANDIDATE_QUERY_MAX = 8;
-const SELECTED_QUERY_COUNT = 2;
+// Four independent discovery queries make a product score less sensitive to a
+// single answer. Frozen research query sets retain their own approved size.
+const SELECTED_QUERY_COUNT = 4;
+const MIN_REVIEWED_QUERY_COUNT = 2;
 
 function buildGeoQueryPlanPrompt({ siteUrl, homepage = {}, representativePages = [], siteType = "organization" } = {}) {
   const metadata = homepage.metadata || {};
@@ -107,7 +110,53 @@ function buildGeoQueryPlanCorrectionPrompt(input, failedPlan) {
 }
 
 async function buildGeoQueryPlanResolved(input, options = {}) {
-  return buildGeoQueryPlan(input, options);
+  const plan = await buildGeoQueryPlan(input, options);
+  return mergePreferredQueries(plan, input, options.preferredQueries);
+}
+
+function mergePreferredQueries(plan, input, preferredQueries = []) {
+  const rawPreferred = Array.isArray(preferredQueries) ? preferredQueries : [];
+  if (!rawPreferred.length || plan.status !== "ready") return plan;
+  const forbiddenTerms = buildForbiddenTerms({
+    entityName: plan.entity_name,
+    siteUrl: input.siteUrl,
+    title: input.homepage?.metadata?.title,
+    h1: input.homepage?.metadata?.h1
+  });
+  const preferred = rawPreferred.map((value, index) => {
+    const text = cleanQuestion(value);
+    if (!text || containsForbiddenTerm(text, forbiddenTerms)) return null;
+    return {
+      id: `custom_${index + 1}`,
+      text,
+      intent: ["recommendation", "comparison", "decision"][index % 3],
+      consumer_relevance: 5,
+      evidence_fit: 5,
+      rationale_zh: "使用者於檢測前置自選之顧客探索情境題"
+    };
+  });
+  if (preferred.some((query) => !query)) {
+    return { ...plan, status: "invalid", reason: "自訂觀測題不可包含品牌、網域或無效文字；請改成顧客尚未認識品牌時會問的問題。", selectedQueries: [], queryPlan: null };
+  }
+  const selected = preferred;
+  const candidates = [...plan.selectedQueries, ...plan.candidates];
+  for (const candidate of candidates) {
+    if (selected.length >= SELECTED_QUERY_COUNT) break;
+    if (selected.some((item) => querySimilarity(item.text, candidate.text) >= 0.72)) continue;
+    selected.push(candidate);
+  }
+  if (selected.length !== SELECTED_QUERY_COUNT) {
+    return { ...plan, status: "invalid", reason: "系統無法補足四個彼此不同的非品牌觀測題。", selectedQueries: [], queryPlan: null };
+  }
+  return {
+    ...plan,
+    selectedQueries: selected,
+    queryPlan: {
+      query_set_version: `${plan.queryPlan.query_set_version}+user-input-v1`,
+      queries: selected.map(({ id, text, intent }) => ({ id, text, intent }))
+    },
+    source: "deepseek_dynamic_with_user_queries"
+  };
 }
 
 function normalizeGeoQueryPlan(value, input = {}) {
@@ -173,8 +222,8 @@ function normalizeReviewedQueryPlan(value) {
       };
     })
     .filter(Boolean);
-  const ready = Boolean(approved) && queries.length >= SELECTED_QUERY_COUNT;
-  const selectedQueries = queries.slice(0, Math.max(SELECTED_QUERY_COUNT, queries.length));
+  const ready = Boolean(approved) && queries.length >= MIN_REVIEWED_QUERY_COUNT;
+  const selectedQueries = queries.slice();
   return {
     status: ready ? "ready" : "invalid",
     reason: ready ? null : "人工題庫必須標記 approved、記錄審核者與日期，且至少有兩題有效的非品牌搜尋問題",
@@ -341,11 +390,13 @@ module.exports = {
   CANDIDATE_QUERY_MAX,
   CANDIDATE_QUERY_MIN,
   QUERY_PLANNER_VERSION,
+  MIN_REVIEWED_QUERY_COUNT,
   SELECTED_QUERY_COUNT,
   buildGeoQueryPlan,
   buildGeoQueryPlanCorrectionPrompt,
   buildGeoQueryPlanPrompt,
   buildGeoQueryPlanResolved,
+  mergePreferredQueries,
   normalizeGeoQueryPlan,
   normalizeReviewedQueryPlan,
   selectRepresentativeQueries

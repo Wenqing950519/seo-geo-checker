@@ -11,7 +11,8 @@ assert.doesNotMatch(home, /台北新莊有推薦適合帶筆電工作/);
 assert.doesNotMatch(home, /const QUESTION_BANK_[12]/);
 assert.doesNotMatch(home, /detectIndustryHint/);
 assert.doesNotMatch(home, /伺服器連線正常/);
-assert.match(home, /const customQueries = \[q1, q2\]\.filter\(Boolean\);/);
+assert.match(home, /const customQueries = \[q1, q2, q3, q4\]\.filter\(Boolean\);/);
+assert.doesNotMatch(home, /customQueries\.length && customQueries\.length !== 4/);
 assert.match(home, /customQueries\.length \? customQueries : undefined/);
 assert.match(home, /留空.*依網站內容/);
 

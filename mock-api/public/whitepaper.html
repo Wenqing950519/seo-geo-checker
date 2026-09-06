@@ -800,7 +800,7 @@ table.sharp-table td {
     <p>單站檢測適用於一般使用者在首頁輸入單一網址後的即時檢測。核心流程包括：</p>
     <ol>
       <li><strong>多重抓取彈性保障</strong>：優先以輕量 HTTP 抓取目標頁面 HTML；遇客戶端渲染自動退回 Headless 瀏覽器渲染模式。</li>
-      <li><strong>非品牌題目生成與防呆</strong>：使用結構化 LLM（現行主力：<code>deepseek-v4-flash</code>）依頁面證據產出 5～8 個候選題，並以確定性正規表示式嚴格剔除包含受測品牌的題目。若兩輪無法湊齊 2 題合規非品牌題，系統主動停止搜尋並標示 <code>unknown</code>。</li>
+      <li><strong>非品牌題目生成與防呆</strong>：使用結構化 LLM（現行主力：<code>deepseek-v4-flash</code>）依頁面證據產出 5～8 個候選題，並以確定性正規表示式嚴格剔除包含受測品牌的題目。若兩輪無法湊齊可選出 4 題的合規非品牌題，系統主動停止搜尋並標示 <code>unknown</code>。</li>
       <li><strong>實體查詢隔離</strong>：額外執行 1 次帶品牌名稱的實體查詢（Direct Entity Query），但僅用於綁定官方別名與網域，不併入非品牌發現的評分分母中。</li>
     </ol>
 

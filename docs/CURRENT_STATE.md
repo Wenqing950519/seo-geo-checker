@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-09-02
+last_updated: 2026-09-06
 tags:
   - geocheck
   - current-state
@@ -12,7 +12,7 @@ tags:
 
 # GeoCheck 當前運作狀態
 
-更新日期：2026-09-02
+更新日期：2026-09-06
 
 ## 已完成
 
@@ -21,7 +21,8 @@ tags:
 
 - `[歷史 V3]` Algorithm V3.0.0 曾採 GEO-first：Perplexity 搜尋觀測 50%、內容可引用性 30%、必要技術存取 20%。既有 V3 資料保留追溯，不併入 AI Trust Index v1 或新白皮書統計。
 - `[歷史 V3]` Perplexity 無法量測時，整體 GEO 分數為未知；站內準備度不得冒充 GEO 分數。
-- DeepSeek 不參與計分。單站報告由 DeepSeek 先辨識產業並產候選題，再由後端選兩題交給 Perplexity；若首輪候選不合格會重產一次，仍不足五題時停止 Perplexity 並正確標示 `unknown`。這個保守路徑已驗證，但「自動題型備援是否可進入產品量測」尚待使用者決策。
+- `[已確認 2026-09-06]` DeepSeek 不參與計分。單站報告由 DeepSeek 先辨識產業並產候選題，再由後端選四題交給 Perplexity；若首輪候選不合格會重產一次，仍無法選出四題時停止 Perplexity 並正確標示 `unknown`。這個保守路徑已驗證，但「自動題型備援是否可進入產品量測」尚待使用者決策。
+- `[已建立待綁定 2026-09-06]` 專用 `geocheck-reports` D1（APAC；`audit_reports` migration 已遠端驗證）可保存單站成功報告，並以網站、題組模式／內容與 pipeline 版本作為快取身分；同題組且未過期才重用，避免不同自訂題或版本誤用舊結果。Render 尚未設定 D1 API token，現階段正式服務仍只使用 process-local cache。
 - 網站與 Skill 共用 `mock-api/lib/geo-measurement.js`，並由同步測試阻止權重漂移。
 - 白皮書先由 DeepSeek 草擬候選題並強制人工審核凍結；使用兩題題庫時每站 Perplexity 3 次、DeepSeek 描述 1 次，並保留獨立硬上限、JSONL 續跑與資料集雜湊。正式 batch 會在任何 provider 設定或付費呼叫前，拒絕未覆蓋、pending、缺品牌／官方網域，或共用網域未明確對應 owned URL 的 entity-master 樣本。
 - DeepSeek 改採官方 API 直接呼叫；單站結構化判讀的備援順序為 DeepSeek → GPT-5.6 Luna → Gemini，並記錄實際 provider。白皮書批次明確禁用備援，避免同一 cohort 靜默混用模型；部署後仍須以健康檢查驗證金鑰與連線。

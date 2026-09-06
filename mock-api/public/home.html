@@ -13,7 +13,7 @@
 </script>
 <script src="/analytics.js"></script>
 <title>GeoCheck — AI 搜尋能見度與信任值檢測</title>
-<meta name="description" content="輸入你的網站網址，60 秒看出顧客問 AI 的時候，AI 有沒有提到你、有沒有引用你的官網。免費、不用註冊。">
+<meta name="description" content="輸入你的網站網址，約 90 秒看出顧客問 AI 的時候，AI 有沒有提到你、有沒有引用你的官網。免費、不用註冊。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://geocheck.lisheng.cv/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
@@ -90,7 +90,7 @@
           "name": "檢查要錢嗎？需要註冊嗎？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "完全免費，也不用註冊。貼上網址後約 60 秒會產出一份報告，告訴你目前 AI 會不會提到你，以及建議先修哪三件事。"
+            "text": "完全免費，也不用註冊。貼上網址後約 90 秒會產出一份報告，告訴你目前 AI 會不會提到你，以及建議先修哪三件事。"
           }
         }
       ]
@@ -1348,7 +1348,7 @@ footer a:hover{color:var(--teal)}
   </div>
   <div class="hero-content">
     <h1 class="fade-item d1"><span class="title-lock">你現在的網站<br><em>AI 看得見</em>嗎？</span></h1>
-    <p class="lead fade-item d2">免費 SEO/GEO 健檢 — 60 秒檢查你的網站在 AI 引擎中的搜尋能見度，一鍵教會你如何提升你的網站被 AI 看見的機率。</p>
+    <p class="lead fade-item d2">免費 SEO/GEO 健檢 — 約 90 秒檢查你的網站在 AI 引擎中的搜尋能見度，一鍵教會你如何提升你的網站被 AI 看見的機率。</p>
     <form id="audit-form" class="url-box fade-item d3">
       <input type="url" placeholder="https://your-website.com" required aria-label="網站網址">
       <button class="btn" type="submit" data-track-cta="hero_start_audit">開始檢查</button>
@@ -1370,7 +1370,7 @@ footer a:hover{color:var(--teal)}
   <div class="proof-inner" style="max-width:720px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:center;text-align:center">
     <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">50+</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">已經檢查過的網站</span></div>
     <div class="proof-divider" style="width:1px;height:36px;background:rgba(11,59,111,.12)" aria-hidden="true"></div>
-    <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">60 秒</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">免費、不用註冊就能拿到報告</span></div>
+    <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">約 90 秒</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">免費、不用註冊就能拿到報告</span></div>
   </div>
 </div>
 
@@ -1863,7 +1863,7 @@ footer a:hover{color:var(--teal)}
       </div>
     </div>
 
-    <!-- 兩個問題的欄位 (皆為選填) -->
+    <!-- 四個問題的欄位 (各自選填；未填名額由 AI 補足) -->
     <div class="setup-q-block">
       <div class="setup-q-header">
         <label for="setup-q1">題目一（選填 · 留空會依網站內容規劃）：</label>
@@ -1878,14 +1878,28 @@ footer a:hover{color:var(--teal)}
       <input type="text" class="setup-q-input" id="setup-q2" placeholder="例如：顧客在比較或決定前會問什麼？" autocomplete="off">
     </div>
 
+    <div class="setup-q-block">
+      <div class="setup-q-header">
+        <label for="setup-q3">題目三（選填）：</label>
+      </div>
+      <input type="text" class="setup-q-input" id="setup-q3" placeholder="例如：不同選項之間通常怎麼比較？" autocomplete="off">
+    </div>
+
+    <div class="setup-q-block">
+      <div class="setup-q-header">
+        <label for="setup-q4">題目四（選填）：</label>
+      </div>
+      <input type="text" class="setup-q-input" id="setup-q4" placeholder="例如：下決定前還會確認什麼？" autocomplete="off">
+    </div>
+
     <div style="font-size:0.8rem;color:var(--muted);margin-bottom:24px;line-height:1.5;">
-      💡 <b>小提示</b>：留空時，系統會先讀取你的網站內容，再規劃與業態和地區相符的觀測題目。若自行輸入，請不要包含自己的店名，才能模擬顧客還不認識你時會怎麼問。
+      💡 <b>小提示</b>：你填的題目會優先採用，未填的名額由系統依網站內容補成四題。請不要包含自己的店名，才能模擬顧客還不認識你時會怎麼問。
     </div>
 
     <!-- 按鈕區 -->
     <div style="display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;">
       <button type="button" class="btn" style="padding:10px 22px;font-size:0.92rem;" onclick="startConfirmedAudit()">
-        開始分析 (約 60 秒) →
+        開始分析 (約 90 秒) →
       </button>
     </div>
   </div>
@@ -2049,9 +2063,13 @@ function startConfirmedAudit() {
   closeModal('audit-confirm-modal');
   const q1Input = document.getElementById('setup-q1');
   const q2Input = document.getElementById('setup-q2');
+  const q3Input = document.getElementById('setup-q3');
+  const q4Input = document.getElementById('setup-q4');
   const q1 = q1Input ? q1Input.value.trim() : '';
   const q2 = q2Input ? q2Input.value.trim() : '';
-  const customQueries = [q1, q2].filter(Boolean);
+  const q3 = q3Input ? q3Input.value.trim() : '';
+  const q4 = q4Input ? q4Input.value.trim() : '';
+  const customQueries = [q1, q2, q3, q4].filter(Boolean);
 
   // An empty list deliberately leaves query planning to the evidence-backed
   // server flow, which reads the submitted site before selecting questions.
@@ -2079,7 +2097,7 @@ async function executeAudit(customQueries) {
     '正在看 AI 怎麼理解你...',
     '正在檢查網站的基本設定...',
     '正在實際問 AI 搜尋引擎...',
-    '報告產生中，這一步可能需要 30-60 秒...'
+    '報告產生中，這一步可能需要 30-90 秒...'
   ];
   let messageIndex = 0;
   let messageTimer;
