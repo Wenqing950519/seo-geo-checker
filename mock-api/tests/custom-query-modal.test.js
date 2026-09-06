@@ -15,5 +15,10 @@ assert.match(home, /const customQueries = \[q1, q2, q3, q4\]\.filter\(Boolean\);
 assert.doesNotMatch(home, /customQueries\.length && customQueries\.length !== 4/);
 assert.match(home, /customQueries\.length \? customQueries : undefined/);
 assert.match(home, /留空.*依網站內容/);
+assert.match(home, /toggleCustomQueries/);
+assert.match(home, /setup-accordion-wrap/);
+assert.match(home, /setup-q-collapsible/);
+assert.match(home, /setup-q-input\{font-size:16px!important/);
+assert.match(home, /verify-tag/);
 
 console.log("custom query modal tests passed");
