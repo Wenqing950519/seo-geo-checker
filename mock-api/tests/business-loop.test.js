@@ -98,6 +98,9 @@ async function main() {
   assert.equal(homePage.includes('src="/analytics.js"'), true);
   assert.equal(homePage.includes("analysis_completed"), true);
   assert.equal(homePage.includes("window.GeoCheckAnalytics?.track"), true);
+  assert.equal(homePage.includes('href="/whitepaper" data-track-cta="nav_mobile_whitepaper">查看白皮書</a>'), true);
+  assert.equal(homePage.includes(".nav-mobile-only"), true);
+  assert.equal(homePage.includes("不是猜的"), false);
 
   const serverSource = fs.readFileSync(path.resolve(__dirname, "../server.js"), "utf8");
   assert.equal(/SEO\/GEO 顧問|#services|服務方案/.test(serverSource), false);

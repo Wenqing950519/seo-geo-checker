@@ -209,8 +209,10 @@ nav#nav.scrolled {
   box-shadow: 0 6px 18px rgba(0,130,118,.35);
 }
 .btn-nav { padding: 9px 22px; font-size: .9rem; }
+.nav-mobile-only { display: none; }
 @media(max-width:820px) {
-  .nav-links li:not(:last-child) { display: none; }
+  .nav-links li:not(.nav-mobile-only) { display: none; }
+  .nav-mobile-only { display: inline-flex; }
 }
 
 /* ==========================================================================
@@ -1446,6 +1448,7 @@ footer button:hover { color: var(--teal); }
         <li><a href="#method">怎麼量測</a></li>
         <li><a href="#resources">基本觀念</a></li>
         <li><a class="btn btn-nav" href="#top">免費檢查</a></li>
+        <li class="nav-mobile-only"><a class="btn btn-nav" href="/whitepaper">查看白皮書</a></li>
       </ul>
     </div>
   </nav>
@@ -1497,8 +1500,6 @@ footer button:hover { color: var(--teal); }
           <button class="demo-skip-btn" type="button" onclick="skipToReport()">⚡ Demo 加速：直接進入報告頁</button>
         </div>
       </div>
-
-      <p class="trust">分數來自 AI 實際給出的回答與它引用的網站，不是猜的</p>
     </div>
 
     <a class="scroll-cue" href="#pain">往下看更多
