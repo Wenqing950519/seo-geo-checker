@@ -336,3 +336,13 @@ tags:
 | — | §1 一句話定位 | 待 P2 構念定義後回填 |
 | — | §6 商業模式（付費部分賣什麼） | 使用者尚未想清楚 |
 | — | §7 失敗／停損訊號 | 使用者尚未定義 |
+
+### D-026 專案目錄分層與歷史資料整理
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（目錄整理範圍）
+- **決策者**：Wenqing950519
+- **決策內容**：使用者在 API／SDK 架構分析後，明確要求實際整理 repository，建立類似 apps／packages／services／docs 的結構，並考慮其指定的 2026-09 商業企劃路線。將 A 的資源與報告、共用規則、爬蟲、provider、HTTP 與研究工具分層，歷史規格歸檔、研究資料集中，維持 A 與研究入口可運作。
+- **落地方式**：核心純規則放 packages/geo-core；有 I/O 的爬蟲放 packages/crawler；A 報告放 apps/web/report；服務入口放 services/api。mock-api 保留相容 wrapper 與原有 env／ledger 路徑。sdk、monitor、developer-console 只保留 planned 責任說明。
+- **決策邊界**：這是使用者授權的檔案與 import 整理，不是商業轉型／定價／多引擎／Account／Project／Monitoring 功能的批准；不改 D-021／D-025、不刪原始研究證據、不部署。兩份策略提案的優先序差異列於 strategy/ROADMAP_ALIGNMENT.md，未自行升格為正式策略。
+- **驗證**：搬移前後完整測試通過，新增 core／相容入口與無外部呼叫的 HTTP 檢查；逐檔搬移表記錄來源 SHA-256。人工線上與付費量測未執行。
+- **追溯**：本次使用者要求；maintenance/layout-migration-2026-09-08.json；maintenance/REPOSITORY_CLEANUP.md。

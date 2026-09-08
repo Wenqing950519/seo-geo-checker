@@ -12,6 +12,12 @@ tags:
 
 # GeoCheck 當前運作狀態
 
+## 本機目錄整理（2026-09-08，尚未部署）
+
+依 D-026，主程式改為 `services/api/server.js`，A 資源／報告組裝在 `apps/web`，核心與 adapters 在 `packages`，測試在 `tests/regression`，研究資料集中 `research/inputs`、`outputs`、`sources`、`work`。`mock-api` 保留啟動與 import 相容 wrapper，以及既有 env／ledger 路徑。根目錄 README 與搬移表是新位置索引。
+
+搬移前後完整測試通過；另驗證新舊 HTTP 入口、首頁／資源位元一致及 mock 報告 JSON／HTML／Markdown，未連外量測。本次沒有新增 SDK、Developer Console、Account／Project 或 Monitoring，沒有改 scoring／query policy，也沒有部署。以下歷史線上驗證紀錄仍按其原日期解讀。
+
 更新日期：2026-09-06
 
 ## 已完成

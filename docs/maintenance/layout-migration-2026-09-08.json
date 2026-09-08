@@ -1,0 +1,1640 @@
+{
+  "date": "2026-09-08",
+  "status": "rewritten",
+  "policy": "No deletion. Raw research evidence keeps original bytes; moved executable paths may be updated.",
+  "entries": [
+    {
+      "from": "mock-api/lib/brand-match.js",
+      "to": "packages/geo-core/evidence/brand-match.js",
+      "bytes": 14387,
+      "sha256": "2aee99b435f578f332f6a8b5b6b6be4c2298a26adace835a536a2eac7310875b"
+    },
+    {
+      "from": "mock-api/lib/authority-evidence.js",
+      "to": "packages/geo-core/evidence/authority-evidence.js",
+      "bytes": 3851,
+      "sha256": "26fd87c462418ec348b6c36b502e308bba9490f701c21c480ffabfbed7420e0a"
+    },
+    {
+      "from": "mock-api/lib/perplexity-visibility.js",
+      "to": "packages/geo-core/evidence/perplexity-visibility.js",
+      "bytes": 5477,
+      "sha256": "dc36ca7f5e1cca79485dadc7c393d0bd7a169b3db3f19aaeebae44196d70f16f"
+    },
+    {
+      "from": "mock-api/lib/content-evidence.js",
+      "to": "packages/geo-core/site-analyzer/content-evidence.js",
+      "bytes": 6201,
+      "sha256": "d4227d3c9e77f44fa8448b894dd5600c36e5c045c3a7f98d4ac7c880966d049e"
+    },
+    {
+      "from": "mock-api/lib/crawl-quality.js",
+      "to": "packages/geo-core/site-analyzer/crawl-quality.js",
+      "bytes": 2555,
+      "sha256": "5a38b85cc9c59f8a2c499da6fc051494633b257d147d4ae134295af5e9592788"
+    },
+    {
+      "from": "mock-api/lib/site-type.js",
+      "to": "packages/geo-core/site-analyzer/site-type.js",
+      "bytes": 4642,
+      "sha256": "9ad0da2ae63137546379b1c6b2a813532ce8116a6a8baa1b047575c112efe51a"
+    },
+    {
+      "from": "mock-api/lib/scoring-v2.js",
+      "to": "packages/geo-core/scoring/scoring-v2.js",
+      "bytes": 1545,
+      "sha256": "525fa9edddaf9ca8eda1a074338f0ccd09c81d7658b8987e5e8702082bc6e1b9"
+    },
+    {
+      "from": "mock-api/lib/scoring-v2-core.js",
+      "to": "packages/geo-core/scoring/scoring-v2-core.js",
+      "bytes": 14454,
+      "sha256": "f9b973c3772a67dc33fb23377d7794eba389fbe64a09598be81029dc20f14980"
+    },
+    {
+      "from": "mock-api/lib/geo-assessment.js",
+      "to": "packages/geo-core/scoring/geo-assessment.js",
+      "bytes": 2867,
+      "sha256": "479605efc56a78a040c2af1c6b4ab00a582b5233547751ea131440a4c3b1669f"
+    },
+    {
+      "from": "mock-api/lib/ai-trust-index.js",
+      "to": "packages/geo-core/scoring/ai-trust-index.js",
+      "bytes": 3955,
+      "sha256": "0a073e721d22250d13bd2b09758c3674061e011ceed5a9758fd29a923808a991"
+    },
+    {
+      "from": "mock-api/lib/geo-probes.js",
+      "to": "packages/geo-core/query-generator/geo-probes.js",
+      "bytes": 3992,
+      "sha256": "30555b225322745049f543474ad4f75b55b2e7832426b435405de40dd9c67347"
+    },
+    {
+      "from": "mock-api/lib/html-v2.js",
+      "to": "packages/crawler/html-v2.js",
+      "bytes": 13747,
+      "sha256": "a50a87b5ed060593a518c9cdf7dd7479fef4559ace31c35574733b784fdc11dd"
+    },
+    {
+      "from": "mock-api/lib/browser-fetch-v2.js",
+      "to": "packages/crawler/browser-fetch-v2.js",
+      "bytes": 5416,
+      "sha256": "d1e9d39b2e1fdf4d101ed992985a4127d613bae182ef6e42d54fb01394c55aa9"
+    },
+    {
+      "from": "mock-api/lib/browser-runtime.js",
+      "to": "packages/crawler/browser-runtime.js",
+      "bytes": 720,
+      "sha256": "18749a0aade71923cffcb754d97299e7c58d9376dbcc314fed1f01e2ddfbe518"
+    },
+    {
+      "from": "mock-api/lib/scrapling-fetch.js",
+      "to": "packages/crawler/scrapling-fetch.js",
+      "bytes": 5853,
+      "sha256": "326cb90cbfe682d51433e464e692f6b8821d016218f581db1118072184a618cb"
+    },
+    {
+      "from": "mock-api/lib/google-translate-fetch.js",
+      "to": "packages/crawler/google-translate-fetch.js",
+      "bytes": 4003,
+      "sha256": "91a5de98d4fe62591d1b1ec2051be562c34da5cb9b9974bbddd63bd56d7ea6cc"
+    },
+    {
+      "from": "mock-api/lib/technical-signals.js",
+      "to": "packages/crawler/technical-signals.js",
+      "bytes": 7345,
+      "sha256": "effeadce282b63967b8c0bc5d92b3ad21f2a82291c6114ec02648868da51d423"
+    },
+    {
+      "from": "mock-api/lib/citation-resolve.js",
+      "to": "packages/crawler/citation-resolve.js",
+      "bytes": 2873,
+      "sha256": "bdff9076e81c894dc1cfa0d69b921f3e25dc1e2f16fe771a99bac74737ad091f"
+    },
+    {
+      "from": "mock-api/lib/url-safety.js",
+      "to": "packages/crawler/url-safety.js",
+      "bytes": 2041,
+      "sha256": "a02a8145c6ef3ac5a53a9dcc28036c3ccbf4d016e3069b2703af14d63cade69e"
+    },
+    {
+      "from": "mock-api/lib/errors.js",
+      "to": "packages/shared/errors.js",
+      "bytes": 1451,
+      "sha256": "accb51821cc656db7c526724bb99906a4f542ce9030a9a5b705bacbc650beed4"
+    },
+    {
+      "from": "mock-api/lib/env.js",
+      "to": "packages/shared/env.js",
+      "bytes": 1080,
+      "sha256": "e7a660cc9e9180015c4296b96e8cb81c27f29d0d17faa47ba1c96af988a3638a"
+    },
+    {
+      "from": "mock-api/lib/usage-meter.js",
+      "to": "packages/ai-providers/usage-meter.js",
+      "bytes": 4227,
+      "sha256": "7fc2d7bac84299b07a44a4869892992993a0426bc68373704e986e5f33a5eb44"
+    },
+    {
+      "from": "mock-api/lib/geo-measurement.js",
+      "to": "services/api/application/geo-measurement.js",
+      "bytes": 6468,
+      "sha256": "02d262661b4407f8d72890b4a8e391a8949e88fa218a510f5cb8f93c64003a47"
+    },
+    {
+      "from": "mock-api/lib/query-planner.js",
+      "to": "services/api/application/query-planner.js",
+      "bytes": 17759,
+      "sha256": "32a028c1d576272f9c3979eb69f710ecb20dae79b6d58df2ff96fc69a351a2e2"
+    },
+    {
+      "from": "mock-api/lib/audit-cache.js",
+      "to": "services/api/storage/audit-cache.js",
+      "bytes": 1815,
+      "sha256": "415a50800c52d73bd123547c9e77c4e4ac76ce8a81337969935a969756e84be4"
+    },
+    {
+      "from": "mock-api/lib/d1-report-store.js",
+      "to": "services/api/storage/d1-report-store.js",
+      "bytes": 5527,
+      "sha256": "e70f0b8520909618c34628bd7a7a153049452ce1dce35da8996248186becd821"
+    },
+    {
+      "from": "mock-api/lib/rate-limit.js",
+      "to": "services/api/guards/rate-limit.js",
+      "bytes": 3346,
+      "sha256": "2a9e54b9ed8707f3ba953a162ae107860cbf76abb231b90ecd01b88c82781dcc"
+    },
+    {
+      "from": "mock-api/lib/real-lite-audit.js",
+      "to": "apps/web/report/real-lite-audit.js",
+      "bytes": 3956,
+      "sha256": "cbe36dbe534a75da489add00e6f85727754428ecd4d7e0fa47d5f035c00e502c"
+    },
+    {
+      "from": "mock-api/lib/real-lite-audit-v2-core.js",
+      "to": "apps/web/report/real-lite-audit-v2-core.js",
+      "bytes": 23421,
+      "sha256": "abbacc7233a7f8ece258eeb518db4298d7ab77d364e20c10d34dd52875c439ff"
+    },
+    {
+      "from": "mock-api/lib/funnel-events.js",
+      "to": "apps/web/analytics/funnel-events.js",
+      "bytes": 639,
+      "sha256": "571ba5e0524ec4639f50674fdaebf2b69a734c93ad7be0de4b4957df11e8c2c6"
+    },
+    {
+      "from": "mock-api/lib/research-profile.js",
+      "to": "research/lib/research-profile.js",
+      "bytes": 5604,
+      "sha256": "48d566704df9c92a1271015045f21542712970fc499cecc4804b49c16db6225e"
+    },
+    {
+      "from": "mock-api/lib/entity-master.js",
+      "to": "research/lib/entity-master.js",
+      "bytes": 4515,
+      "sha256": "8c7f8c9ff25f4d2bcff6df23cb68ccf979e36feb2509e57054ba2120285d1ed1"
+    },
+    {
+      "from": "mock-api/providers/deepseek.js",
+      "to": "packages/ai-providers/deepseek.js",
+      "bytes": 5790,
+      "sha256": "4546ea508f1a935ebf044d7c2ccb2355396d12a64caee00d5e318f24f6e68169"
+    },
+    {
+      "from": "mock-api/providers/perplexity.js",
+      "to": "packages/ai-providers/perplexity.js",
+      "bytes": 10546,
+      "sha256": "6004aa73e6954a8c02e888f34504a175e7da1f96315606b4d4f04a2128018057"
+    },
+    {
+      "from": "mock-api/providers/brave.js",
+      "to": "packages/ai-providers/brave.js",
+      "bytes": 10764,
+      "sha256": "342eb5451a70e2f96004cadf3b6afc7b2e39b9ee9d749f57e5f70331c6003954"
+    },
+    {
+      "from": "mock-api/providers/agnes.js",
+      "to": "packages/ai-providers/agnes.js",
+      "bytes": 7522,
+      "sha256": "9eb3d5e30af9ad32d1cf07759f7f8686e39c804fe885d03486949ce4910c87c5"
+    },
+    {
+      "from": "mock-api/providers/structured-router.js",
+      "to": "packages/ai-providers/structured-router.js",
+      "bytes": 6155,
+      "sha256": "aabf1e4365fc5591d827659f4076d85dbed8055ea7865062ceb07550061fb074"
+    },
+    {
+      "from": "mock-api/server.js",
+      "to": "services/api/server.js",
+      "bytes": 62937,
+      "sha256": "9836a07227677869f0dca7d5573ee68eb7da4f536b110a7b297ff69113a5bd85"
+    },
+    {
+      "from": "mock-api/public/admin.html",
+      "to": "apps/web/public/admin.html",
+      "bytes": 4748,
+      "sha256": "798820a455e248ecb63b5d2414a97094a36af25cbe78c60de9c4172ca955301a"
+    },
+    {
+      "from": "mock-api/public/analytics.js",
+      "to": "apps/web/public/analytics.js",
+      "bytes": 6719,
+      "sha256": "541582e411a182715cea3ef8f53263ebec00c04b2c27a260f5ea663b6a598637"
+    },
+    {
+      "from": "mock-api/public/assets/dashboard-banner.png",
+      "to": "apps/web/public/assets/dashboard-banner.png",
+      "bytes": 1459554,
+      "sha256": "8bb4ed6c7f7dff23c3edbad891c2d878680d06aae0f571305bd22fc07f5b499a"
+    },
+    {
+      "from": "mock-api/public/assets/measurement-architecture.jpg",
+      "to": "apps/web/public/assets/measurement-architecture.jpg",
+      "bytes": 557806,
+      "sha256": "2c02237c31dbea7b9719a6635ce36dd08c13da5eb00f0e65fe1b4b21554b6145"
+    },
+    {
+      "from": "mock-api/public/assets/real-site-apoint-retina.jpg",
+      "to": "apps/web/public/assets/real-site-apoint-retina.jpg",
+      "bytes": 419887,
+      "sha256": "284eaca09e9e9fb183ecd56176d0969e129feef5bf3bcd750ba6fd7e32dd5047"
+    },
+    {
+      "from": "mock-api/public/assets/real-site-apoint.png",
+      "to": "apps/web/public/assets/real-site-apoint.png",
+      "bytes": 947029,
+      "sha256": "e5ee6ce6df52ddf06123644b4acebc80be45f4c45c62ddc3b6e1709d27835c77"
+    },
+    {
+      "from": "mock-api/public/brand.html",
+      "to": "apps/web/public/brand.html",
+      "bytes": 19976,
+      "sha256": "f171b0e4cac16d12fc81cc7a57480d79e6ad71bb96052b5951a5f1a1c71b89bd"
+    },
+    {
+      "from": "mock-api/public/demo.html",
+      "to": "apps/web/public/demo.html",
+      "bytes": 102174,
+      "sha256": "d1c5c9742abc6c02863ac235369b211ae9e96e938509454471d462b057c88dac"
+    },
+    {
+      "from": "mock-api/public/favicon.png",
+      "to": "apps/web/public/favicon.png",
+      "bytes": 4399,
+      "sha256": "e6711ffe19a4514851a5b123a51ac8bdd8e928f4e1791c6644d16ab649a3b6cc"
+    },
+    {
+      "from": "mock-api/public/favicon.svg",
+      "to": "apps/web/public/favicon.svg",
+      "bytes": 481,
+      "sha256": "975df98c531ca8dbf763b58339b9b4319828a729a262e5298e4e93e005ecf67d"
+    },
+    {
+      "from": "mock-api/public/home.html",
+      "to": "apps/web/public/home.html",
+      "bytes": 104422,
+      "sha256": "b6e30dae2dd515a7565d8540eb8b4c954c68f880bfc8a6882ed876951b683111"
+    },
+    {
+      "from": "mock-api/public/og-image.png",
+      "to": "apps/web/public/og-image.png",
+      "bytes": 63856,
+      "sha256": "dda16de917c186c5f491547e0abf98b451584198da5a8638975f5c5e9deb6f50"
+    },
+    {
+      "from": "mock-api/public/whitepaper.html",
+      "to": "apps/web/public/whitepaper.html",
+      "bytes": 36706,
+      "sha256": "8bfd76229e73e80e359f26f572c9d2febc0fa09d687f3b3def4fc4426521aecb"
+    },
+    {
+      "from": "mock-api/tests/ai-trust-index.test.js",
+      "to": "tests/regression/ai-trust-index.test.js",
+      "bytes": 1552,
+      "sha256": "cb273c2003e0102f399a7a4352138adaecb5986337570723f90cb6a19a246c7c"
+    },
+    {
+      "from": "mock-api/tests/ai-trust-surface.test.js",
+      "to": "tests/regression/ai-trust-surface.test.js",
+      "bytes": 1502,
+      "sha256": "b7d5721fd58fd3ff0af5d99a18054b7bc1dfa2ab669b665d48e6904941c81005"
+    },
+    {
+      "from": "mock-api/tests/algorithm-trust.test.js",
+      "to": "tests/regression/algorithm-trust.test.js",
+      "bytes": 5591,
+      "sha256": "ffdc25ac776b7886736894a4b1b4a8619fac4ca946078a79bd23eca9ff5a4b1c"
+    },
+    {
+      "from": "mock-api/tests/algorithm-v2.test.js",
+      "to": "tests/regression/algorithm-v2.test.js",
+      "bytes": 5376,
+      "sha256": "b240718e461ca5db8e077cbbe34c94a3a8726cab7cd6408da2e4936a2bb3ea9f"
+    },
+    {
+      "from": "mock-api/tests/audit-cache.test.js",
+      "to": "tests/regression/audit-cache.test.js",
+      "bytes": 1104,
+      "sha256": "eba2eaa14231a3a1a8efece6dd8ea1bff989f63602ec8d2e37841346357a1944"
+    },
+    {
+      "from": "mock-api/tests/brand-match.test.js",
+      "to": "tests/regression/brand-match.test.js",
+      "bytes": 11539,
+      "sha256": "2461b9bc1065884b23daec9fec3248f0d93d3d25d71a12653c103f4927c4553e"
+    },
+    {
+      "from": "mock-api/tests/browser-runtime.test.js",
+      "to": "tests/regression/browser-runtime.test.js",
+      "bytes": 1680,
+      "sha256": "13074b4ee27abf699ba783df1a21296a873c1e61c668811394ee64fb2aed56e5"
+    },
+    {
+      "from": "mock-api/tests/business-loop.test.js",
+      "to": "tests/regression/business-loop.test.js",
+      "bytes": 6738,
+      "sha256": "68eb3ccffd049f91745e887d815c6fdb26e2d4b07c7cbb1bbe3c262b8831b840"
+    },
+    {
+      "from": "mock-api/tests/crawler-v2.test.js",
+      "to": "tests/regression/crawler-v2.test.js",
+      "bytes": 5499,
+      "sha256": "825ea55f9ed3e721f08813574510237240e4719c3f4e76d27193d95ff116ee14"
+    },
+    {
+      "from": "mock-api/tests/custom-query-modal.test.js",
+      "to": "tests/regression/custom-query-modal.test.js",
+      "bytes": 1203,
+      "sha256": "38873395b52453c37056a58009198379d8d9532158abf288c8515343652b43ab"
+    },
+    {
+      "from": "mock-api/tests/d1-report-store.test.js",
+      "to": "tests/regression/d1-report-store.test.js",
+      "bytes": 2411,
+      "sha256": "3b5b3be3f4693f098146169e8fc2cd084d111712c83480affaa82502a55e70ee"
+    },
+    {
+      "from": "mock-api/tests/deepseek-provider.test.js",
+      "to": "tests/regression/deepseek-provider.test.js",
+      "bytes": 2378,
+      "sha256": "d83f38d58df6cb923a52978e33082686640e1b35258cb800e3996dfcec30a5bc"
+    },
+    {
+      "from": "mock-api/tests/favicon-version.test.js",
+      "to": "tests/regression/favicon-version.test.js",
+      "bytes": 597,
+      "sha256": "07d2088c754a2a6fea7235ee2bc5a35a3d6e5834781b5cf6359cd9e9427e2ea5"
+    },
+    {
+      "from": "mock-api/tests/geo-assessment.test.js",
+      "to": "tests/regression/geo-assessment.test.js",
+      "bytes": 6000,
+      "sha256": "1238c4809259d70e8b21de164627e1e5125f44615e8c47721d2b78531ad2a5bb"
+    },
+    {
+      "from": "mock-api/tests/healthz.test.js",
+      "to": "tests/regression/healthz.test.js",
+      "bytes": 3456,
+      "sha256": "3f4f2adfef77ae35e4524b2cf3e67c40fb7a0650c559466345a10d10d373b36e"
+    },
+    {
+      "from": "mock-api/tests/model-config.test.js",
+      "to": "tests/regression/model-config.test.js",
+      "bytes": 972,
+      "sha256": "fccf6d06a5f2fd77c8bc8aa90a5ead575af2dfa3cbb6f8634e319656aec8769d"
+    },
+    {
+      "from": "mock-api/tests/perplexity-provider.test.js",
+      "to": "tests/regression/perplexity-provider.test.js",
+      "bytes": 5438,
+      "sha256": "df36e60cc7e2700e5a73a75b6f88c1adb8d0bc58cc0d7431366d05e3e17b6dfc"
+    },
+    {
+      "from": "mock-api/tests/provider-config.test.js",
+      "to": "tests/regression/provider-config.test.js",
+      "bytes": 686,
+      "sha256": "dcacf6c037237b2f6de14a861af0282a65c52745f0df5dd6f9e422bd3af7dd27"
+    },
+    {
+      "from": "mock-api/tests/query-planner.test.js",
+      "to": "tests/regression/query-planner.test.js",
+      "bytes": 6471,
+      "sha256": "918155290bf83290e14cbcd245b7c836f7b9891ef1954527f4f4eac2fe3d9fa3"
+    },
+    {
+      "from": "mock-api/tests/report-state.test.js",
+      "to": "tests/regression/report-state.test.js",
+      "bytes": 2478,
+      "sha256": "19719ae75d62d6408890be3eb0557ed2193f06241511c88f6ad2372067044705"
+    },
+    {
+      "from": "mock-api/tests/robots-unknown.test.js",
+      "to": "tests/regression/robots-unknown.test.js",
+      "bytes": 1532,
+      "sha256": "643b5d266d38de37821b1cb840d78b1ff2eb037da219e7148f07d4688d3e68d3"
+    },
+    {
+      "from": "mock-api/tests/scrapling-fetch.test.js",
+      "to": "tests/regression/scrapling-fetch.test.js",
+      "bytes": 1479,
+      "sha256": "b49fe5a54e064ed5855098089237d7c9ef6ffe284576201416ebceb604275d18"
+    },
+    {
+      "from": "mock-api/tests/site-type.test.js",
+      "to": "tests/regression/site-type.test.js",
+      "bytes": 2009,
+      "sha256": "5ff2a70d65e87a56853bb70214524a4bdc7de434f69429442e765165567fa70e"
+    },
+    {
+      "from": "mock-api/tests/skill-sync.test.js",
+      "to": "tests/regression/skill-sync.test.js",
+      "bytes": 3719,
+      "sha256": "17204f94c35494cce252aeef55c15062e72a4a232a70faf9bc96c1230474a4d2"
+    },
+    {
+      "from": "mock-api/tests/structured-router.test.js",
+      "to": "tests/regression/structured-router.test.js",
+      "bytes": 1792,
+      "sha256": "df9d7499c9affcb7e6e73c3b80bf311249d6e72da91e2f324d4ca7dc80246276"
+    },
+    {
+      "from": "mock-api/tests/usage-meter.test.js",
+      "to": "tests/regression/usage-meter.test.js",
+      "bytes": 1272,
+      "sha256": "3d06f5446342d87b8de39dfbb039cdc77f52377e9214d7a753b51e69bccff396"
+    },
+    {
+      "from": "mock-api/tests/whitepaper-contract.test.js",
+      "to": "tests/regression/whitepaper-contract.test.js",
+      "bytes": 974,
+      "sha256": "7716aaa9dd819b6d7ebbae90c4d85d4fe8a893f2331f890203838516b127d21d"
+    },
+    {
+      "from": "mock-api/tests/whitepaper-preflight.test.js",
+      "to": "tests/regression/whitepaper-preflight.test.js",
+      "bytes": 2410,
+      "sha256": "ff7ab7ef2337aba6d777703a86f2d2d1d78add3538e35fa1c078badae0a75c07"
+    },
+    {
+      "from": "mock-api/migrations/0001_audit_reports.sql",
+      "to": "services/api/migrations/0001_audit_reports.sql",
+      "bytes": 553,
+      "sha256": "f7fb6167c08f0add45dc404f4d2b00443ec1784d21396c700e99d68ab0dfd701"
+    },
+    {
+      "from": "mock-api/wrangler.jsonc",
+      "to": "services/api/wrangler.jsonc",
+      "bytes": 347,
+      "sha256": "bfebe86975b2ab98bb55b46b6befe6babf0cf5ef81548ebf4b7d43ddbcb3d14a"
+    },
+    {
+      "from": "mock-api/README.md",
+      "to": "services/api/OPERATIONS.md",
+      "bytes": 5674,
+      "sha256": "5ed6b3aeb2266e435c5c92ae3282799fe58649afb05a92c943fd0aa886ed9450"
+    },
+    {
+      "from": "mock-api/scripts/install-browser-runtime.js",
+      "to": "scripts/runtime/install-browser-runtime.js",
+      "bytes": 1306,
+      "sha256": "537c8c27b91b64c18d5f661ac36e1a77906cccd0c0eeca15288db61c71192a98"
+    },
+    {
+      "from": "mock-api/scripts/install-scrapling-runtime.js",
+      "to": "scripts/runtime/install-scrapling-runtime.js",
+      "bytes": 1596,
+      "sha256": "d1cf4622ecbafc39113c32431b8aeb7adaec4766441b339e3729a50171c712fe"
+    },
+    {
+      "from": "mock-api/scripts/scrapling-fetch.py",
+      "to": "packages/crawler/scripts/scrapling-fetch.py",
+      "bytes": 4441,
+      "sha256": "d2690b33e87a2e85857e6a68e9e10376f711dff3194c1a0e7a7884491c8f1ff2"
+    },
+    {
+      "from": "mock-api/scripts/audit-batch.js",
+      "to": "research/scripts/audit-batch.js",
+      "bytes": 1604,
+      "sha256": "31da6f29e35293850d1639db18c8a3ca99be18b671b69458a053f428831853de"
+    },
+    {
+      "from": "mock-api/scripts/run-blind-model-evaluation.js",
+      "to": "research/scripts/run-blind-model-evaluation.js",
+      "bytes": 17460,
+      "sha256": "5be0ceeec4605397da237f8b4b47d6d482b207f0b1ddb623dcaad913559f5269"
+    },
+    {
+      "from": "mock-api/scripts/validate-geo-v3-live.mjs",
+      "to": "research/scripts/validate-geo-v3-live.mjs",
+      "bytes": 2707,
+      "sha256": "df0cc897bafae7c83fcc60c19b8cad3cd5b0e27c72f33cf4826ad347044da432"
+    },
+    {
+      "from": "research-input/final-validation-sites.txt",
+      "to": "research/inputs/final-validation-sites.txt",
+      "bytes": 74,
+      "sha256": "125027e994dc973ee8897a4658f33f942833cf845ed462c886d43856c04c1429"
+    },
+    {
+      "from": "research-input/parser2-validation-sites.txt",
+      "to": "research/inputs/parser2-validation-sites.txt",
+      "bytes": 52,
+      "sha256": "5e2176f86c9ad8d3a54f025ad48ce1444707385410edaba940a5be3a444c41f2"
+    },
+    {
+      "from": "research-input/query-set.pipeline-smoke.json",
+      "to": "research/inputs/query-set.pipeline-smoke.json",
+      "bytes": 616,
+      "sha256": "40a6ea51cbb41eb9c7f7387bfb1b20f48bac4b668d2b072d57907e16b85bc8ab"
+    },
+    {
+      "from": "research-input/query-set.xinyi-dining.example.json",
+      "to": "research/inputs/query-set.xinyi-dining.example.json",
+      "bytes": 1797,
+      "sha256": "96c7d6ef3687d8888e175c02451abdf306419448502b76a9bf94bfee88af7703"
+    },
+    {
+      "from": "research-input/restaurant_master.example.csv",
+      "to": "research/inputs/restaurant_master.example.csv",
+      "bytes": 906,
+      "sha256": "88e85c43f7becded10e291bdb412cb8510aa4a44bee69ca1ad309f0fb753457b"
+    },
+    {
+      "from": "research-input/xinyi-140.master.draft.csv",
+      "to": "research/inputs/xinyi-140.master.draft.csv",
+      "bytes": 18066,
+      "sha256": "268a6dfe9a3c1cc365562b43998b030aa6cc88cf8e427cb18c5a4366dab285b8"
+    },
+    {
+      "from": "research-input/xinyi-140.sites.draft.csv",
+      "to": "research/inputs/xinyi-140.sites.draft.csv",
+      "bytes": 2747,
+      "sha256": "b9ea735f5dc679f8fe211e224e2a21be363bfc00f4d37abaa143931b6565a755"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/api_usage_record_spec.md",
+      "to": "research/inputs/xinyi-restaurants-2026/api_usage_record_spec.md",
+      "bytes": 1951,
+      "sha256": "a6496e624bb80e47e8ed526420ae5455e86bde0f98ab501c756a4abe525a9a9a"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/api_usage_research_snapshot_2026-07-18.json",
+      "to": "research/inputs/xinyi-restaurants-2026/api_usage_research_snapshot_2026-07-18.json",
+      "bytes": 4519,
+      "sha256": "792e0547bf2745573e119660690edff23f128c647ce42abb2b2939f06a5a423a"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/booking_social_leads_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/booking_social_leads_v0.1.csv",
+      "bytes": 5997,
+      "sha256": "6247a25b6927d59e496474fee05c5000d332eccdbcdb3f3f83159b0b9a962e8e"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/brand_measurement_leads_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/brand_measurement_leads_v0.1.csv",
+      "bytes": 3597,
+      "sha256": "eae9d311f58f26694820b74081bda71f41c52bf5c2f90e59efa699a848bac18e"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/candidate_evidence_review_v0.2.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/candidate_evidence_review_v0.2.csv",
+      "bytes": 71700,
+      "sha256": "3c5a20a2ee8cb4eb4881a3868e9a5d7c921226461c1d67b9925bceb384861b12"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/candidate_evidence_review_v0.3.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/candidate_evidence_review_v0.3.csv",
+      "bytes": 71788,
+      "sha256": "1140034128dc72f17041e4131cabb24c441600282804302f6f2028ddcc0ac28f"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/candidate_url_leads_round2_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/candidate_url_leads_round2_v0.1.csv",
+      "bytes": 71125,
+      "sha256": "fde105b2d298a1e806ec7671900ca1ba9fc116478422cd1a949d846b929a582a"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/candidate_url_leads_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/candidate_url_leads_v0.1.csv",
+      "bytes": 42429,
+      "sha256": "c949703490e1ff99cf2325a48b75eeb1229a5399674db5f88173a0fba3731d3d"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/candidate_verification_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/candidate_verification_v0.1.csv",
+      "bytes": 20966,
+      "sha256": "b5f50c5fb4e79d697d267bcc8db2c37715e4c8a4de0f193d786471281e838b58"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/curated_brand_measurement_leads_v0.2.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/curated_brand_measurement_leads_v0.2.csv",
+      "bytes": 10216,
+      "sha256": "10916ee0c1fe636236c3fcd39e8995a316d4c63496a65f67a4fe25997ee241f0"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/curated_brand_measurement_leads_v0.3.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/curated_brand_measurement_leads_v0.3.csv",
+      "bytes": 9261,
+      "sha256": "d269a80a8097d7d9f3e8c61fce6eccf27f3f0f4d1e2f14bb2ec8db36b77a1661"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/followup_booking_social_candidates.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/followup_booking_social_candidates.csv",
+      "bytes": 1849,
+      "sha256": "942f73bc81508c3340112db8a603dcba8a8da41ec47823abd1b03d2b64bbda56"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/ranked_official_url_leads_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/ranked_official_url_leads_v0.1.csv",
+      "bytes": 41713,
+      "sha256": "db5bf4123f3cbba74df3aedaf0f29122419d1a281d99bd4b76adb6e1ddbfa3f4"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/ranked_official_url_leads_v0.2.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/ranked_official_url_leads_v0.2.csv",
+      "bytes": 45296,
+      "sha256": "89d81c8aaed24fe52b9cbbad1c52385da33e2bdce15a2c9005473edb5b9fcf8b"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/round1_official_lead_review.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/round1_official_lead_review.csv",
+      "bytes": 15449,
+      "sha256": "b8888e6e6ce0b1101a36d53e7b99b963ee11f8ca66a2ca163fb98a5d7df4acdd"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/round2_candidates.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/round2_candidates.csv",
+      "bytes": 18293,
+      "sha256": "5eafa2729051e31fef8f6c737eb04c2668c415b1600750ad9b03d2124d3a006e"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/round2_official_lead_review.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/round2_official_lead_review.csv",
+      "bytes": 17818,
+      "sha256": "41cff21819c6410ecd7454f799d642b3b4e24a61c8d616a6704a586ea9cd30a3"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/round3_brand_core_candidates.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/round3_brand_core_candidates.csv",
+      "bytes": 4428,
+      "sha256": "9d5c22dcb2190c62929eb2020d67b3473a34813c3f29d67bc3a450c6d55c1d6b"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/round3_candidates.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/round3_candidates.csv",
+      "bytes": 16178,
+      "sha256": "476a4b423e7cd0175da5c9533800197e509b297ec13c84055c64dc24f2df7c00"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/site_root_candidates_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/site_root_candidates_v0.1.csv",
+      "bytes": 9260,
+      "sha256": "7988f1ac2d816cf891a19b929d9c273f7fb3fc9649e9db0588ea067bda6e03b8"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/site_root_candidates_v0.1.summary.json",
+      "to": "research/inputs/xinyi-restaurants-2026/site_root_candidates_v0.1.summary.json",
+      "bytes": 398,
+      "sha256": "47d1919379aba6ebfa018f60f94ad44710fc7c0f94960d37b38587a95c48c627"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/stage1_research_registration.md",
+      "to": "research/inputs/xinyi-restaurants-2026/stage1_research_registration.md",
+      "bytes": 8161,
+      "sha256": "7206daa85cb82aae15c04dafe18a49f97f77a6d490007b9fd6a7316f7b31b26a"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/stage2_progress_2026-07-18.md",
+      "to": "research/inputs/xinyi-restaurants-2026/stage2_progress_2026-07-18.md",
+      "bytes": 4837,
+      "sha256": "1d0333840e69042968f3f0774b86aa4fb16ab6e8dd3e0a7fb15ded746d4bc925"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/stage2_source_collection_register.md",
+      "to": "research/inputs/xinyi-restaurants-2026/stage2_source_collection_register.md",
+      "bytes": 1365,
+      "sha256": "a1920ed85a32c67a7107861b92738fd8cd5c963957dd62a2f15f2f34221bf570"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/store_domain_evidence_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/store_domain_evidence_v0.1.csv",
+      "bytes": 76755,
+      "sha256": "c4dbfc14a9f2c939a9906e50b4a993a2cdd28743849515666d49a6d47c9769d5"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/supporting_store_leads_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/supporting_store_leads_v0.1.csv",
+      "bytes": 6099,
+      "sha256": "a20dd361a5aeddea08e83160166c0a96c022505147fd7ab6519115ab8721e5c6"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-2026/tfda_candidate_match_leads_v0.1.csv",
+      "to": "research/inputs/xinyi-restaurants-2026/tfda_candidate_match_leads_v0.1.csv",
+      "bytes": 39831,
+      "sha256": "d3d1d8f7a99ea742419d654d8b1960d902cf6734837866738e118926ba46b362"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-h2-2026/candidate_cohort_registry_v1.csv",
+      "to": "research/inputs/xinyi-restaurants-h2-2026/candidate_cohort_registry_v1.csv",
+      "bytes": 34587,
+      "sha256": "a8cccface2a275bbfee99143f97946804c3d9a37878e9e1f7ff2eff010a80a5c"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-h2-2026/COHORT_REGISTRY.md",
+      "to": "research/inputs/xinyi-restaurants-h2-2026/COHORT_REGISTRY.md",
+      "bytes": 1459,
+      "sha256": "7a56215ac79f39b6c44ff5879fc5e5ac8f776245b64c54c136984c4101071f3d"
+    },
+    {
+      "from": "research-input/xinyi-restaurants-h2-2026/research_registration_v1.md",
+      "to": "research/inputs/xinyi-restaurants-h2-2026/research_registration_v1.md",
+      "bytes": 6311,
+      "sha256": "a753bf2d8513bc52845959067ce699274110d10d219f5e257f5767f4000da530"
+    },
+    {
+      "from": "research-output/blind-deepseek-luna-2026-08-01T12-11-00/candidate-a.json",
+      "to": "research/outputs/blind-deepseek-luna-2026-08-01T12-11-00/candidate-a.json",
+      "bytes": 6045,
+      "sha256": "f960d73958b85d7ac18922cd0dbd0b7a57a7998baa01fc9b0c94da2d105f00e0"
+    },
+    {
+      "from": "research-output/blind-deepseek-luna-2026-08-01T12-11-00/candidate-b.json",
+      "to": "research/outputs/blind-deepseek-luna-2026-08-01T12-11-00/candidate-b.json",
+      "bytes": 5138,
+      "sha256": "eda8d6721863fad1481ee3ac975dadd14e484ddc7ae1c98e57ada59729fb534f"
+    },
+    {
+      "from": "research-output/blind-deepseek-luna-2026-08-01T12-11-00/comparison.json",
+      "to": "research/outputs/blind-deepseek-luna-2026-08-01T12-11-00/comparison.json",
+      "bytes": 1928,
+      "sha256": "d8592276ce72671fa0e8e266b61cce5e0901c1bfc43f1acea87ecc0febd3382f"
+    },
+    {
+      "from": "research-output/blind-deepseek-luna-2026-08-01T12-11-00/comparison.md",
+      "to": "research/outputs/blind-deepseek-luna-2026-08-01T12-11-00/comparison.md",
+      "bytes": 1284,
+      "sha256": "257be11ff79b127b736027ef8ad811f85b896a70e43d7aead8e5bf45390d3d9f"
+    },
+    {
+      "from": "research-output/blind-deepseek-luna-2026-08-01T12-11-00/input-evidence.json",
+      "to": "research/outputs/blind-deepseek-luna-2026-08-01T12-11-00/input-evidence.json",
+      "bytes": 8525,
+      "sha256": "eb0c6c5a878557e79b724e3f49a91b61bc76d3b33c018ebcd99ff8cd5d7c01ab"
+    },
+    {
+      "from": "research-output/blind-model-evaluation-2026-08-01T12-00-49/candidate-a.json",
+      "to": "research/outputs/blind-model-evaluation-2026-08-01T12-00-49/candidate-a.json",
+      "bytes": 365,
+      "sha256": "3bc596045e15389f2da96899861e992088e48417522563cc795428fb96667470"
+    },
+    {
+      "from": "research-output/blind-model-evaluation-2026-08-01T12-00-49/candidate-b.json",
+      "to": "research/outputs/blind-model-evaluation-2026-08-01T12-00-49/candidate-b.json",
+      "bytes": 5251,
+      "sha256": "3eea8b517ddda0f5f9f50de01bfa571c79d99546476c9eb4ac82ca354325dcb6"
+    },
+    {
+      "from": "research-output/blind-model-evaluation-2026-08-01T12-00-49/candidate-c.json",
+      "to": "research/outputs/blind-model-evaluation-2026-08-01T12-00-49/candidate-c.json",
+      "bytes": 4518,
+      "sha256": "02408b5ce2ba6171914b92fa0727abbe0bbbae7496749c9f29a1b993bb43c887"
+    },
+    {
+      "from": "research-output/blind-model-evaluation-2026-08-01T12-00-49/comparison.json",
+      "to": "research/outputs/blind-model-evaluation-2026-08-01T12-00-49/comparison.json",
+      "bytes": 2086,
+      "sha256": "dee7cf34e0d18d545e820ed9c9cf5598a2417ca2eeff24b1f365118fc5f76aba"
+    },
+    {
+      "from": "research-output/blind-model-evaluation-2026-08-01T12-00-49/comparison.md",
+      "to": "research/outputs/blind-model-evaluation-2026-08-01T12-00-49/comparison.md",
+      "bytes": 1379,
+      "sha256": "8cd134424f6b7ecb5dd3a54c8726aa0a6305a3950683935e47c241d2da7c95f9"
+    },
+    {
+      "from": "research-output/blind-model-evaluation-2026-08-01T12-00-49/input-evidence.json",
+      "to": "research/outputs/blind-model-evaluation-2026-08-01T12-00-49/input-evidence.json",
+      "bytes": 8500,
+      "sha256": "4ba3abbdb8f5f8b8708963f824cdede6d62241901811d7961cbcdddf9651aab4"
+    },
+    {
+      "from": "research-output/final-ai-evidence-audit-2026-07-16/methodology.json",
+      "to": "research/outputs/final-ai-evidence-audit-2026-07-16/methodology.json",
+      "bytes": 1190,
+      "sha256": "2b069e97f3dc4d27d9a10057496db432ce80583ce965188bf0e2f42295739b5c"
+    },
+    {
+      "from": "research-output/final-ai-evidence-audit-2026-07-16/results.csv",
+      "to": "research/outputs/final-ai-evidence-audit-2026-07-16/results.csv",
+      "bytes": 931,
+      "sha256": "30a16b025e09a7763cec356f80620eef32a9e238266a3982f728b46795168aaa"
+    },
+    {
+      "from": "research-output/final-ai-evidence-audit-2026-07-16/results.jsonl",
+      "to": "research/outputs/final-ai-evidence-audit-2026-07-16/results.jsonl",
+      "bytes": 6154,
+      "sha256": "0f84860f5bd779599621b27be3f4597ec04f7e1ce7d4ad67c89d4ce102e61e10"
+    },
+    {
+      "from": "research-output/final-ai-evidence-audit-2026-07-16/summary.json",
+      "to": "research/outputs/final-ai-evidence-audit-2026-07-16/summary.json",
+      "bytes": 665,
+      "sha256": "546e929d94144a33d712f1440c22136f8b656a1e38c59c04947b77db5414ede0"
+    },
+    {
+      "from": "research-output/final-validation-2026-07-16/methodology.json",
+      "to": "research/outputs/final-validation-2026-07-16/methodology.json",
+      "bytes": 442,
+      "sha256": "decabd1f81bb21d5d1bf89f3f8398427ed9172fa9926c623a72ab125e7c06909"
+    },
+    {
+      "from": "research-output/final-validation-2026-07-16/results.csv",
+      "to": "research/outputs/final-validation-2026-07-16/results.csv",
+      "bytes": 1232,
+      "sha256": "948d56a2082c3a9ef98f5e42d7659593d42a04aabfb682c4b3b130adfefd4a51"
+    },
+    {
+      "from": "research-output/final-validation-2026-07-16/results.jsonl",
+      "to": "research/outputs/final-validation-2026-07-16/results.jsonl",
+      "bytes": 27228,
+      "sha256": "08fa2a158369c0e18fd27568f75136d6cc714c756a23bb35193581927b19a082"
+    },
+    {
+      "from": "research-output/final-validation-2026-07-16/summary.json",
+      "to": "research/outputs/final-validation-2026-07-16/summary.json",
+      "bytes": 4513,
+      "sha256": "36310be6a643c98257dc4ee4cea2a9c9d6f48eb94469649bc8b7d8f9071ba373"
+    },
+    {
+      "from": "research-output/luna-availability-2026-08-01T12-10-00/candidate-a.json",
+      "to": "research/outputs/luna-availability-2026-08-01T12-10-00/candidate-a.json",
+      "bytes": 6162,
+      "sha256": "7d04cdfb4b570b11b7c45cd1d306b8e32833fe1ca6c099522dd80f5a6ef7d3b7"
+    },
+    {
+      "from": "research-output/luna-availability-2026-08-01T12-10-00/comparison.json",
+      "to": "research/outputs/luna-availability-2026-08-01T12-10-00/comparison.json",
+      "bytes": 1074,
+      "sha256": "01271f4c7bfce55767a12b9a306de30ea7175e2accb62c3f36679264b7fa4744"
+    },
+    {
+      "from": "research-output/luna-availability-2026-08-01T12-10-00/comparison.md",
+      "to": "research/outputs/luna-availability-2026-08-01T12-10-00/comparison.md",
+      "bytes": 1216,
+      "sha256": "7ec20ac8641b073f77cb95a01e9ad5f4857d07a3d123d172558cbe544c2b58a1"
+    },
+    {
+      "from": "research-output/luna-availability-2026-08-01T12-10-00/input-evidence.json",
+      "to": "research/outputs/luna-availability-2026-08-01T12-10-00/input-evidence.json",
+      "bytes": 8525,
+      "sha256": "7d2d972ae534b309e00afdf8c474aaee0a48bd5562590b7c040b4dcd897625fb"
+    },
+    {
+      "from": "research-output/parser2-validation-2026-07-19/api-usage-events.jsonl",
+      "to": "research/outputs/parser2-validation-2026-07-19/api-usage-events.jsonl",
+      "bytes": 5528,
+      "sha256": "e76b3da8fec436e0466258743a17fa57d284b43f61dd3337bc72de7c7dfe7e21"
+    },
+    {
+      "from": "research-output/parser2-validation-2026-07-19/api-usage-summary.json",
+      "to": "research/outputs/parser2-validation-2026-07-19/api-usage-summary.json",
+      "bytes": 8722,
+      "sha256": "7c884e1dc66020b15c91f9898aba287c43fa82e83e67026996b7fc179373fc8e"
+    },
+    {
+      "from": "research-output/parser2-validation-2026-07-19/methodology.json",
+      "to": "research/outputs/parser2-validation-2026-07-19/methodology.json",
+      "bytes": 1748,
+      "sha256": "096cda8f332763d32cac9db696468429b20270ad1c052f92336d820e0a6d23c5"
+    },
+    {
+      "from": "research-output/parser2-validation-2026-07-19/raw/hunterest.co.json",
+      "to": "research/outputs/parser2-validation-2026-07-19/raw/hunterest.co.json",
+      "bytes": 22717,
+      "sha256": "9b3c69ad2f3a911bc34a6cdafaf4e5565ad75567bcd10888cb5604a453766402"
+    },
+    {
+      "from": "research-output/parser2-validation-2026-07-19/raw/sushiro.com.tw.json",
+      "to": "research/outputs/parser2-validation-2026-07-19/raw/sushiro.com.tw.json",
+      "bytes": 22975,
+      "sha256": "ea43c58360049dda8ca267a1986d2bb3b78a923613bb7980f76ad88296b29826"
+    },
+    {
+      "from": "research-output/parser2-validation-2026-07-19/results.csv",
+      "to": "research/outputs/parser2-validation-2026-07-19/results.csv",
+      "bytes": 1479,
+      "sha256": "d2b809f9ab460408c5a4e9487db3389ddec443af891092d5acbdd6feb71f0138"
+    },
+    {
+      "from": "research-output/parser2-validation-2026-07-19/results.jsonl",
+      "to": "research/outputs/parser2-validation-2026-07-19/results.jsonl",
+      "bytes": 20600,
+      "sha256": "8f0a4b3891977dd5052796d99c492818008a247c358fc66c7f389bfd96bdcda6"
+    },
+    {
+      "from": "research-output/parser2-validation-2026-07-19/summary.json",
+      "to": "research/outputs/parser2-validation-2026-07-19/summary.json",
+      "bytes": 828,
+      "sha256": "11f3fdd1e83a65bb7213e147dbcb6503572ba6283a9aabc510b32ea228fae6cf"
+    },
+    {
+      "from": "research-output/planner-smoke-2026-07-23/api-usage-events.jsonl",
+      "to": "research/outputs/planner-smoke-2026-07-23/api-usage-events.jsonl",
+      "bytes": 2723,
+      "sha256": "315c42b499cffd63334f7faab25fea218baf55254defa719dfce38eb9271c1f2"
+    },
+    {
+      "from": "research-output/planner-smoke-2026-07-23/api-usage-summary.json",
+      "to": "research/outputs/planner-smoke-2026-07-23/api-usage-summary.json",
+      "bytes": 4879,
+      "sha256": "5d3cf02d2cae84c578f2dabb9df111d00e902050148f84af2b44f5b5921acb7f"
+    },
+    {
+      "from": "research-output/planner-smoke-2026-07-23/methodology.json",
+      "to": "research/outputs/planner-smoke-2026-07-23/methodology.json",
+      "bytes": 1993,
+      "sha256": "d957490d87fb1b3647a9a7c9a5d6b4d42cd1a08c7c4a3f1661e80cb0297ae115"
+    },
+    {
+      "from": "research-output/planner-smoke-2026-07-23/raw/hunterest.co.json",
+      "to": "research/outputs/planner-smoke-2026-07-23/raw/hunterest.co.json",
+      "bytes": 24876,
+      "sha256": "edb54632edbbc49ea5234c2e1ba0b61bc087977189f3cd5bfd4d3f5af8b5312d"
+    },
+    {
+      "from": "research-output/planner-smoke-2026-07-23/raw/sushiro.com.tw.json",
+      "to": "research/outputs/planner-smoke-2026-07-23/raw/sushiro.com.tw.json",
+      "bytes": 24500,
+      "sha256": "d15527a1d3989aea14c20b14c17e2693a938b654ec7190761a6428dfce29a67d"
+    },
+    {
+      "from": "research-output/planner-smoke-2026-07-23/results.csv",
+      "to": "research/outputs/planner-smoke-2026-07-23/results.csv",
+      "bytes": 1573,
+      "sha256": "388cc22585d61e6965fd11da4d885afa76516cc47fc64ee6a9313a9fca07027c"
+    },
+    {
+      "from": "research-output/planner-smoke-2026-07-23/results.jsonl",
+      "to": "research/outputs/planner-smoke-2026-07-23/results.jsonl",
+      "bytes": 10334,
+      "sha256": "ce6bc056d48016f2b39dca1c1c2b9ba15b795509a8aa36422f9c340db09cfa6a"
+    },
+    {
+      "from": "research-output/planner-smoke-2026-07-23/summary.json",
+      "to": "research/outputs/planner-smoke-2026-07-23/summary.json",
+      "bytes": 828,
+      "sha256": "f69bf60a5648a996395e0ed92433539833f00c69cf432cb25934252117a0a01e"
+    },
+    {
+      "from": "research-output/tfda-xinyi-dining-2026-07-18/tfda-filter-summary.json",
+      "to": "research/outputs/tfda-xinyi-dining-2026-07-18/tfda-filter-summary.json",
+      "bytes": 803,
+      "sha256": "23cccedafb1fe4fe2d0c31ba0a5f8d2d878a8a8f9a43779fc31bad18bf3b63e9"
+    },
+    {
+      "from": "research-output/tfda-xinyi-dining-2026-07-18/tfda-xinyi-dining-registry.csv",
+      "to": "research/outputs/tfda-xinyi-dining-2026-07-18/tfda-xinyi-dining-registry.csv",
+      "bytes": 405887,
+      "sha256": "2a240418fe7cd3109381846eb72c2eba0950c430a3fa6d2ae2b559611ff88fb3"
+    },
+    {
+      "from": "research-output/tfda-xinyi-dining-2026-07-18/tfda-xinyi-dining-registry.jsonl",
+      "to": "research/outputs/tfda-xinyi-dining-2026-07-18/tfda-xinyi-dining-registry.jsonl",
+      "bytes": 852576,
+      "sha256": "08fd310fe4210841cb5d6b26997ce18b92da8084bd120c91c36e93e3517fc687"
+    },
+    {
+      "from": "research-output/v3-rules-smoke-2026-07-16/methodology.json",
+      "to": "research/outputs/v3-rules-smoke-2026-07-16/methodology.json",
+      "bytes": 475,
+      "sha256": "85843c98622c64023d5b62686a3c68ffd0aa58ab7830ea5b032cb3150a75f658"
+    },
+    {
+      "from": "research-output/v3-rules-smoke-2026-07-16/results.csv",
+      "to": "research/outputs/v3-rules-smoke-2026-07-16/results.csv",
+      "bytes": 593,
+      "sha256": "7eb69f4c4f219202757f3b268bb96c4e4650cb8d0ed2555d330e0aa6af3d6b70"
+    },
+    {
+      "from": "research-output/v3-rules-smoke-2026-07-16/results.jsonl",
+      "to": "research/outputs/v3-rules-smoke-2026-07-16/results.jsonl",
+      "bytes": 4631,
+      "sha256": "e5b8a94be9394e9c08a730d42f5862a7e5242c9f74d1ed1e171ddb3d8c30ffd4"
+    },
+    {
+      "from": "research-output/v3-rules-smoke-2026-07-16/summary.json",
+      "to": "research/outputs/v3-rules-smoke-2026-07-16/summary.json",
+      "bytes": 4115,
+      "sha256": "fe730f506fcca2023ad00c44002bd0037fec96eecd240862c1279cf36fd26937"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-booking-social-details-2026-07-18/store-page-detail-usage.json",
+      "to": "research/outputs/xinyi-restaurant-booking-social-details-2026-07-18/store-page-detail-usage.json",
+      "bytes": 591,
+      "sha256": "16b3fda55b7a6ec8363b78eecf7bfb0c1cb87d8e4e354652473d76a31803b0a9"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-booking-social-details-2026-07-18/store-page-details.jsonl",
+      "to": "research/outputs/xinyi-restaurant-booking-social-details-2026-07-18/store-page-details.jsonl",
+      "bytes": 30378,
+      "sha256": "f8d37e903aaae3cb65e52e829879244b360c04cfebf0ab06ec22f5c65a273b8c"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-booking-social-discovery-2026-07-18/search-results.jsonl",
+      "to": "research/outputs/xinyi-restaurant-booking-social-discovery-2026-07-18/search-results.jsonl",
+      "bytes": 140051,
+      "sha256": "ebc8fc8c8ffd589c1438a3744d835f7e5b722e109d8e80db538b4e53df84c8bc"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-booking-social-discovery-2026-07-18/source-discovery-api-usage.json",
+      "to": "research/outputs/xinyi-restaurant-booking-social-discovery-2026-07-18/source-discovery-api-usage.json",
+      "bytes": 713,
+      "sha256": "a035412cdbf2ed0efc1507b38b582d1a48b3cc4814d579af485bbaa3d71808bd"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-brand-domain-verification-2026-07-18/direct-verification-usage.json",
+      "to": "research/outputs/xinyi-restaurant-brand-domain-verification-2026-07-18/direct-verification-usage.json",
+      "bytes": 673,
+      "sha256": "bed7e90289b220bc2ee72778acf866e7b8ae34e87bf4d34ff407a180931716ee"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-brand-domain-verification-2026-07-18/direct-verification.jsonl",
+      "to": "research/outputs/xinyi-restaurant-brand-domain-verification-2026-07-18/direct-verification.jsonl",
+      "bytes": 61522,
+      "sha256": "e01939947e01798f15f367c8dc65ec53ad6fb0c0efa52006a334b932e99af8c0"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-curated-brand-details-2026-07-18/store-page-detail-usage.json",
+      "to": "research/outputs/xinyi-restaurant-curated-brand-details-2026-07-18/store-page-detail-usage.json",
+      "bytes": 593,
+      "sha256": "c912c3989ad1b4c06064f7fc236b428a688e4cf636aeae99082f0c7c78c6554a"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-curated-brand-details-2026-07-18/store-page-details.jsonl",
+      "to": "research/outputs/xinyi-restaurant-curated-brand-details-2026-07-18/store-page-details.jsonl",
+      "bytes": 144150,
+      "sha256": "3ca3418949834358001a0b489277533bc1d0119f8cd5aebdbe33367fd3ea7de0"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-curated-brand-details-v0.3-2026-07-18/store-page-detail-usage.json",
+      "to": "research/outputs/xinyi-restaurant-curated-brand-details-v0.3-2026-07-18/store-page-detail-usage.json",
+      "bytes": 593,
+      "sha256": "04afefb1a82c8ebe6940306d6b87d5f4638d9c15b633d06ef09619b1d7bcb841"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-curated-brand-details-v0.3-2026-07-18/store-page-details.jsonl",
+      "to": "research/outputs/xinyi-restaurant-curated-brand-details-v0.3-2026-07-18/store-page-details.jsonl",
+      "bytes": 123661,
+      "sha256": "a7b74e85ce9c7e7eaca33297eafac6dc4c8bb2449c513c2662e9bfc7206a27e7"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-curated-brand-verification-2026-07-18/direct-verification-usage.json",
+      "to": "research/outputs/xinyi-restaurant-curated-brand-verification-2026-07-18/direct-verification-usage.json",
+      "bytes": 675,
+      "sha256": "62397423cbc3ed3de6bccc7f4db004c3acd7deb241f857190688c80cefb36345"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-curated-brand-verification-2026-07-18/direct-verification.jsonl",
+      "to": "research/outputs/xinyi-restaurant-curated-brand-verification-2026-07-18/direct-verification.jsonl",
+      "bytes": 107457,
+      "sha256": "0e0f26ed2f07badbdd7567e91e7ec4462f8d7826251cedf8210644bcd012e7c9"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-curated-brand-verification-v0.3-2026-07-18/direct-verification-usage.json",
+      "to": "research/outputs/xinyi-restaurant-curated-brand-verification-v0.3-2026-07-18/direct-verification-usage.json",
+      "bytes": 675,
+      "sha256": "28012c37e515af5425418f80f12631b2e641b1c14aba2777ae5d4fe811718365"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-curated-brand-verification-v0.3-2026-07-18/direct-verification.jsonl",
+      "to": "research/outputs/xinyi-restaurant-curated-brand-verification-v0.3-2026-07-18/direct-verification.jsonl",
+      "bytes": 96727,
+      "sha256": "c78bb883fdd40a78475e1195f3bf8a240fa5a866fe5277de02b5f75507ee0941"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-direct-verification-2026-07-18/direct-verification-usage.json",
+      "to": "research/outputs/xinyi-restaurant-direct-verification-2026-07-18/direct-verification-usage.json",
+      "bytes": 635,
+      "sha256": "c0b5d31593a80721ce1ead7204da9f6a5ea32ed501e5dcb8f5c03a354dba6289"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-direct-verification-2026-07-18/direct-verification.jsonl",
+      "to": "research/outputs/xinyi-restaurant-direct-verification-2026-07-18/direct-verification.jsonl",
+      "bytes": 159704,
+      "sha256": "e952562311c87af2988532057bf39a83feab4d17ea23ed748c130b4100b969f4"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-direct-verification-round2-2026-07-18/direct-verification-usage.json",
+      "to": "research/outputs/xinyi-restaurant-direct-verification-round2-2026-07-18/direct-verification-usage.json",
+      "bytes": 681,
+      "sha256": "2f5ec3c7dc7cdb12d6551c302aa2ceb512efec6b3487e6d9839760dc2ba715cf"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-direct-verification-round2-2026-07-18/direct-verification.jsonl",
+      "to": "research/outputs/xinyi-restaurant-direct-verification-round2-2026-07-18/direct-verification.jsonl",
+      "bytes": 308327,
+      "sha256": "577946f57b2ef0be7181b3b6083fa41339a68262f4126ddd1980e9913e805047"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-round1-page-details-2026-07-18/store-page-detail-usage.json",
+      "to": "research/outputs/xinyi-restaurant-round1-page-details-2026-07-18/store-page-detail-usage.json",
+      "bytes": 553,
+      "sha256": "e2f9ebb3df0be6591ff2f5bf0611cded8070dc81e1ca125c09f96cb3371a098c"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-round1-page-details-2026-07-18/store-page-details.jsonl",
+      "to": "research/outputs/xinyi-restaurant-round1-page-details-2026-07-18/store-page-details.jsonl",
+      "bytes": 235887,
+      "sha256": "d708518a4980844a30f4858687f455ceecf64ff8ef01a80b184c142251b6a9ad"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-round2-page-details-2026-07-18/store-page-detail-usage.json",
+      "to": "research/outputs/xinyi-restaurant-round2-page-details-2026-07-18/store-page-detail-usage.json",
+      "bytes": 597,
+      "sha256": "f74a9c0781ee1cca1baf5d005aa449ce4d3577eddf34f324a6f96287240b3a87"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-round2-page-details-2026-07-18/store-page-details.jsonl",
+      "to": "research/outputs/xinyi-restaurant-round2-page-details-2026-07-18/store-page-details.jsonl",
+      "bytes": 415174,
+      "sha256": "12faa2941c4bd27fb608eee74c34578c721bb42021aca0db18c756162af12a14"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-source-discovery-2026-07-18/search-results.jsonl",
+      "to": "research/outputs/xinyi-restaurant-source-discovery-2026-07-18/search-results.jsonl",
+      "bytes": 378911,
+      "sha256": "364c9454362de4a6aaf51048a85cd72cb9647588d4b245837ff7ee8dc9153e8e"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-source-discovery-2026-07-18/source-discovery-api-usage.json",
+      "to": "research/outputs/xinyi-restaurant-source-discovery-2026-07-18/source-discovery-api-usage.json",
+      "bytes": 684,
+      "sha256": "d35310528f84b1a5936eb220f43d9d3f6f8ed2c1bf511c0f73edf6b196492a04"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-source-discovery-round2-2026-07-18/search-results.jsonl",
+      "to": "research/outputs/xinyi-restaurant-source-discovery-round2-2026-07-18/search-results.jsonl",
+      "bytes": 801991,
+      "sha256": "4156a550ec72004cc5ca8165d7c5142488c2f822c6699671f903bd57355808a0"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-source-discovery-round2-2026-07-18/source-discovery-api-usage.json",
+      "to": "research/outputs/xinyi-restaurant-source-discovery-round2-2026-07-18/source-discovery-api-usage.json",
+      "bytes": 721,
+      "sha256": "fee4367b5da4049f057e6fd0fef3712af19ac541b66f63e3d41c953d6e68fbd6"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-source-discovery-round3-2026-07-18/search-results.jsonl",
+      "to": "research/outputs/xinyi-restaurant-source-discovery-round3-2026-07-18/search-results.jsonl",
+      "bytes": 792186,
+      "sha256": "ccd6fd2ac21a30863b19c3b29653a950ebb365a4b96984ca1c5cbf96e7edc3c8"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-source-discovery-round3-2026-07-18/source-discovery-api-usage.json",
+      "to": "research/outputs/xinyi-restaurant-source-discovery-round3-2026-07-18/source-discovery-api-usage.json",
+      "bytes": 716,
+      "sha256": "84463c632c94f2777a511e1fc0f620291cde811c639ddbac6a967e6055c1824b"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-supporting-source-details-2026-07-18/store-page-detail-usage.json",
+      "to": "research/outputs/xinyi-restaurant-supporting-source-details-2026-07-18/store-page-detail-usage.json",
+      "bytes": 592,
+      "sha256": "5cdda56761f87f1238c00a7ebbbd5c6b9130c36b20f2ca7d113ba33ff6d85147"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-supporting-source-details-2026-07-18/store-page-details.jsonl",
+      "to": "research/outputs/xinyi-restaurant-supporting-source-details-2026-07-18/store-page-details.jsonl",
+      "bytes": 98248,
+      "sha256": "b7a1af1a2b2ff8f9e1a3719f52d2117e0cf55dc1377ab5a1d8ba9e472afa361f"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-supporting-source-verification-2026-07-18/direct-verification-usage.json",
+      "to": "research/outputs/xinyi-restaurant-supporting-source-verification-2026-07-18/direct-verification-usage.json",
+      "bytes": 673,
+      "sha256": "040db51939a53d102bdc35ef5ec625a258f786dd9fe0380a000983910c3d760c"
+    },
+    {
+      "from": "research-output/xinyi-restaurant-supporting-source-verification-2026-07-18/direct-verification.jsonl",
+      "to": "research/outputs/xinyi-restaurant-supporting-source-verification-2026-07-18/direct-verification.jsonl",
+      "bytes": 86268,
+      "sha256": "1b88625cd601bf7e3d266428b719f54c0d4e74abc870f92d5b0ee247822f5eae"
+    },
+    {
+      "from": "research-sources/tfda/food-business-registry-2026-07-18.json.zip",
+      "to": "research/sources/tfda/food-business-registry-2026-07-18.json.zip",
+      "bytes": 19110234,
+      "sha256": "d530e024a26e9ad5b6a55b931ba4ff2716aaffa65701d4c8767973bc6e3114d4"
+    },
+    {
+      "from": "research-sources/tfda/food-openapi.json",
+      "to": "research/sources/tfda/food-openapi.json",
+      "bytes": 190343,
+      "sha256": "db613c80f1de3bdd86b98e37bb19c7f5e4f8a89fc644b604ebd45c9d370c2f44"
+    },
+    {
+      "from": "research-sources/tfda/source_acquisition_log.md",
+      "to": "research/sources/tfda/source_acquisition_log.md",
+      "bytes": 3114,
+      "sha256": "2476ff9982ef99515a8828ef0f28e607dca4c509e7f91dade5abb49bb70c4434"
+    },
+    {
+      "from": "research-sources/tfda/swagger-index.html",
+      "to": "research/sources/tfda/swagger-index.html",
+      "bytes": 753,
+      "sha256": "cc693e866c7bc7da9adf2d7eb7be74edc3569ae797318a924712a664d2dff684"
+    },
+    {
+      "from": "research-work/build_candidate_evidence_review.mjs",
+      "to": "research/work/build_candidate_evidence_review.mjs",
+      "bytes": 7826,
+      "sha256": "c17ffda96bf241448f38fe475d87a834876e43e4de56bca9f57b0846bb2248e7"
+    },
+    {
+      "from": "research-work/build_candidate_url_leads.mjs",
+      "to": "research/work/build_candidate_url_leads.mjs",
+      "bytes": 3803,
+      "sha256": "c7eca8d0f0978203fe90115a73b4468e01caaa8f63b787b8ce4d9322f49fee5a"
+    },
+    {
+      "from": "research-work/build_master_and_sites_draft.mjs",
+      "to": "research/work/build_master_and_sites_draft.mjs",
+      "bytes": 5767,
+      "sha256": "ada704e8447efafcc022abbdb0ea403ac9bf051b5e95bab916edd323c9d688c8"
+    },
+    {
+      "from": "research-work/build_research_usage_manifest.mjs",
+      "to": "research/work/build_research_usage_manifest.mjs",
+      "bytes": 3001,
+      "sha256": "ae9dcecf482d895a364c2b0b85db0f645ea201d014ab368a3bc439dbdb884e29"
+    },
+    {
+      "from": "research-work/build_site_root_candidates.mjs",
+      "to": "research/work/build_site_root_candidates.mjs",
+      "bytes": 3224,
+      "sha256": "663928c9e103be20d591dca5aece3847447ad654ce410bd99f37c1f71d07efc1"
+    },
+    {
+      "from": "research-work/build_store_domain_evidence_register.mjs",
+      "to": "research/work/build_store_domain_evidence_register.mjs",
+      "bytes": 6238,
+      "sha256": "cc7c6158c4e1e8ba9c0a8187085a3d82124e0b868a6b2827a7d7d64bbae53908"
+    },
+    {
+      "from": "research-work/discover_candidate_urls.mjs",
+      "to": "research/work/discover_candidate_urls.mjs",
+      "bytes": 6879,
+      "sha256": "5089971340d83fc5652b213ca55a8f2fa9771e383b6ef181e2f33a51256f0bce"
+    },
+    {
+      "from": "research-work/extract_booking_social_leads.mjs",
+      "to": "research/work/extract_booking_social_leads.mjs",
+      "bytes": 3100,
+      "sha256": "7b939eb89f22965271bffde69b6f5afec618ced8d3fc842175da2fd146155ad4"
+    },
+    {
+      "from": "research-work/extract_curated_brand_leads.mjs",
+      "to": "research/work/extract_curated_brand_leads.mjs",
+      "bytes": 5599,
+      "sha256": "a1ed661759bde167b17f74125f63a00f7e8b2cc7444a2109ff90fe1ccd3dd800"
+    },
+    {
+      "from": "research-work/extract_docx_text.py",
+      "to": "research/work/extract_docx_text.py",
+      "bytes": 1142,
+      "sha256": "0c41f69f57b7561ffc91834123801525e02b522dc1649550f31ee8ab91f6a7db"
+    },
+    {
+      "from": "research-work/extract_store_page_details.mjs",
+      "to": "research/work/extract_store_page_details.mjs",
+      "bytes": 9275,
+      "sha256": "78497db36323e3adccf26ba9420e0492fe51dcba9242dfd5e1ed90ec0116b455"
+    },
+    {
+      "from": "research-work/filter_brand_measurement_leads.mjs",
+      "to": "research/work/filter_brand_measurement_leads.mjs",
+      "bytes": 2395,
+      "sha256": "98ea23a13307c4cd5daa381668247c969a177cdec682d1122ef048dfaf332650"
+    },
+    {
+      "from": "research-work/filter_supporting_store_leads.mjs",
+      "to": "research/work/filter_supporting_store_leads.mjs",
+      "bytes": 2462,
+      "sha256": "685bef8c6565aebb376982e411c41ed3ab51c74a7bfa5f715ae83388bddb741f"
+    },
+    {
+      "from": "research-work/filter_tfda_registry.mjs",
+      "to": "research/work/filter_tfda_registry.mjs",
+      "bytes": 4437,
+      "sha256": "d73e6f669c61ede20bfb9f01317491a08032fa466eaa62dc10d911af7f760794"
+    },
+    {
+      "from": "research-work/GEO_RESEARCH_extracted.txt",
+      "to": "research/work/GEO_RESEARCH_extracted.txt",
+      "bytes": 34835,
+      "sha256": "67cf9b0e6f32eb3b7650a0f73e5a230b2b7d0bb949f12d4400fa2e21e30caf05"
+    },
+    {
+      "from": "research-work/match_candidates_to_tfda.mjs",
+      "to": "research/work/match_candidates_to_tfda.mjs",
+      "bytes": 6114,
+      "sha256": "025552b481752f05eeee330a2b75873c0b7dccd523b5b212e6fc85f5c71394cc"
+    },
+    {
+      "from": "research-work/prepare_brand_core_search.mjs",
+      "to": "research/work/prepare_brand_core_search.mjs",
+      "bytes": 2860,
+      "sha256": "26df9ffa11ef917bb868bbbac6308a2d58bff96aa222232d14f6993e7292f83b"
+    },
+    {
+      "from": "research-work/prepare_candidate_verification.py",
+      "to": "research/work/prepare_candidate_verification.py",
+      "bytes": 2333,
+      "sha256": "1289ef0730b0bbc8432f585c99e0b7b070fb825949c2a0afe9b2d7d75dfb953c"
+    },
+    {
+      "from": "research-work/rank_official_search_leads.mjs",
+      "to": "research/work/rank_official_search_leads.mjs",
+      "bytes": 8390,
+      "sha256": "a96ff272f9761c27498bb9f7abd275f8c5c298b0ecb2468561aac36d5275952c"
+    },
+    {
+      "from": "research-work/select_round2_candidates.mjs",
+      "to": "research/work/select_round2_candidates.mjs",
+      "bytes": 5732,
+      "sha256": "3e029ed8407ec9491741cde2108874fddcc0a4ab536652222a98f5024a9dd22b"
+    },
+    {
+      "from": "research-work/summarize_ranked_domains.mjs",
+      "to": "research/work/summarize_ranked_domains.mjs",
+      "bytes": 1820,
+      "sha256": "59ff7556dbb641794d76c9caf1eacfc0cc1d5173b1d9d5237dc1d81876966178"
+    },
+    {
+      "from": "research-work/verify_candidate_url_leads.mjs",
+      "to": "research/work/verify_candidate_url_leads.mjs",
+      "bytes": 10852,
+      "sha256": "0ce780254f11e6bd3273b1f9ec0f8928ab47970a116f869e1b9475badb9022ed"
+    },
+    {
+      "from": "business_docs/GEOCheck_BRD_2026-07-13.docx",
+      "to": "docs/archive/business/GEOCheck_BRD_2026-07-13.docx",
+      "bytes": 46598,
+      "sha256": "ca8ce5515bf962dcc0cf4852970ad3fce90c83724af3dc1acd15630d911b44bf"
+    },
+    {
+      "from": "business_docs/GEOCheck_BRD_2026-07-16.docx",
+      "to": "docs/archive/business/GEOCheck_BRD_2026-07-16.docx",
+      "bytes": 49063,
+      "sha256": "2851ee1d116a21fbe97c8fc3d2fa84348a9fd1c4ee1fd1a3f02dbe30a578cdac"
+    },
+    {
+      "from": "business_docs/GEOCheck_MRD_2026-07-13.docx",
+      "to": "docs/archive/business/GEOCheck_MRD_2026-07-13.docx",
+      "bytes": 46641,
+      "sha256": "f0c8733037c2b90fea9d3e63f01ea866bac2a7a510b5e076f554577a87aca978"
+    },
+    {
+      "from": "business_docs/GEOCheck_MRD_2026-07-16.docx",
+      "to": "docs/archive/business/GEOCheck_MRD_2026-07-16.docx",
+      "bytes": 48991,
+      "sha256": "f76eaa6a918645dd45c5a8d1dea8117bb610114c9d3be9a7aebd478048f67a04"
+    },
+    {
+      "from": "business_docs/GEOCheck_PRD_2026-07-13.docx",
+      "to": "docs/archive/business/GEOCheck_PRD_2026-07-13.docx",
+      "bytes": 49885,
+      "sha256": "bc66f041e5aea2ebea93f3a80eb6c8006c2bc640b0abc853bb672bd7d7a480b2"
+    },
+    {
+      "from": "business_docs/GEOCheck_PRD_2026-07-16.docx",
+      "to": "docs/archive/business/GEOCheck_PRD_2026-07-16.docx",
+      "bytes": 52453,
+      "sha256": "5111950e8fc8f824097ec908f31343119ed8b38c4141eb0626b6a45e2023f1ce"
+    },
+    {
+      "from": "seo-geo/agents/openai.yaml",
+      "to": "archive/seo-geo/agents/openai.yaml",
+      "bytes": 353,
+      "sha256": "57e0f91e26b4297735f43535a9d8ac304141aaa1d595194fb4734344a0448616"
+    },
+    {
+      "from": "seo-geo/assets/config.example.json",
+      "to": "archive/seo-geo/assets/config.example.json",
+      "bytes": 1395,
+      "sha256": "1f29e6605090c8725d437bb581848da7c97eb1aee9e426432dfc5003cd6cf457"
+    },
+    {
+      "from": "seo-geo/assets/questions.example.json",
+      "to": "archive/seo-geo/assets/questions.example.json",
+      "bytes": 790,
+      "sha256": "3fcd1358034848729bf71dda1f8250c8b07a63af312fcca1c8a95b2752d04e6a"
+    },
+    {
+      "from": "seo-geo/config.json",
+      "to": "archive/seo-geo/config.json",
+      "bytes": 715,
+      "sha256": "be37516ad16439064a4263d7ff79765f5ee4db332f7a7657f702aaac709b21ce"
+    },
+    {
+      "from": "seo-geo/data/audits/audit-20260718.json",
+      "to": "archive/seo-geo/data/audits/audit-20260718.json",
+      "bytes": 6058,
+      "sha256": "fb134fec07d0539240fb7378005a870706722522b31f04ac9bb3820b021ad545"
+    },
+    {
+      "from": "seo-geo/data/geo/geo-20260718.json",
+      "to": "archive/seo-geo/data/geo/geo-20260718.json",
+      "bytes": 2814,
+      "sha256": "490f4da885f7558175e2a2734688aa58294d78d11b930ede5a34b7064bf5c38c"
+    },
+    {
+      "from": "seo-geo/questions.json",
+      "to": "archive/seo-geo/questions.json",
+      "bytes": 1814,
+      "sha256": "246c3028c3dd9f673c4d4d45cbabe879faa4b936ae8fafc0986690e3c495b71a"
+    },
+    {
+      "from": "seo-geo/references/ai-positioning.md",
+      "to": "archive/seo-geo/references/ai-positioning.md",
+      "bytes": 1928,
+      "sha256": "c080f4da0231861991f59fa47815136665b44a709b0e2804471ec5b6cce4dde2"
+    },
+    {
+      "from": "seo-geo/references/audit-checklist.md",
+      "to": "archive/seo-geo/references/audit-checklist.md",
+      "bytes": 1762,
+      "sha256": "f695100e538a668611f55836b98d43a3535175d6ac4353d1481ab4bd868dc5ff"
+    },
+    {
+      "from": "seo-geo/references/competitor-map.md",
+      "to": "archive/seo-geo/references/competitor-map.md",
+      "bytes": 1311,
+      "sha256": "c8045db95ab53060dd7a3632540b1d4488c17fbdd88fafd6d4072fd401244c4e"
+    },
+    {
+      "from": "seo-geo/references/evidence-inventory.md",
+      "to": "archive/seo-geo/references/evidence-inventory.md",
+      "bytes": 1006,
+      "sha256": "140fe0f339f6932be8cd02508678269dc7ed73c51ccbe33cca389a5a54370b80"
+    },
+    {
+      "from": "seo-geo/references/geo-checklist.md",
+      "to": "archive/seo-geo/references/geo-checklist.md",
+      "bytes": 4124,
+      "sha256": "15dd221df44da0ec8d7351f6dd73f029c8cc286ed3e7a315a4bb6e3b700a1a88"
+    },
+    {
+      "from": "seo-geo/references/icp.md",
+      "to": "archive/seo-geo/references/icp.md",
+      "bytes": 1109,
+      "sha256": "76219f2c1228fc69f96643089fdcb624332c9e98937e9ac18e955552f1c15992"
+    },
+    {
+      "from": "seo-geo/references/recommendation-examples.md",
+      "to": "archive/seo-geo/references/recommendation-examples.md",
+      "bytes": 1392,
+      "sha256": "10a4207cb31937f41aeab85aa093a9dead35b18d2216a84c625b031c3b67039b"
+    },
+    {
+      "from": "seo-geo/references/report-template.md",
+      "to": "archive/seo-geo/references/report-template.md",
+      "bytes": 2972,
+      "sha256": "4d6682ac7898216dc2dae96b978f949a9cd02a2b34e69ca01ac31da33a77401e"
+    },
+    {
+      "from": "seo-geo/references/scoring-rubric.md",
+      "to": "archive/seo-geo/references/scoring-rubric.md",
+      "bytes": 1700,
+      "sha256": "4fdc50cbc1352d2646d3197d0d15488390333adf17ea0aee333e078d2cc3eb5a"
+    },
+    {
+      "from": "seo-geo/references/strategy.md",
+      "to": "archive/seo-geo/references/strategy.md",
+      "bytes": 881,
+      "sha256": "e89b1263d20bf1491b7c844f00801e5bbe2b63dc44b2720937a451162b0348a7"
+    },
+    {
+      "from": "seo-geo/reports/audit-report-20260718.md",
+      "to": "archive/seo-geo/reports/audit-report-20260718.md",
+      "bytes": 7082,
+      "sha256": "194cb834c383d2f0a32ca6c1bf0a4119d10e5e1928459e947ef8711afad6698f"
+    },
+    {
+      "from": "seo-geo/scripts/audit_checks.py",
+      "to": "archive/seo-geo/scripts/audit_checks.py",
+      "bytes": 8866,
+      "sha256": "6ed32c473f4ff8d5b36b975986288783ece4813cfef6da8fb31ee4806cfbf551"
+    },
+    {
+      "from": "seo-geo/scripts/diff.py",
+      "to": "archive/seo-geo/scripts/diff.py",
+      "bytes": 2663,
+      "sha256": "25788c5d6f8d3ffe11d352917b03dc4628a39d8de5045af5205a6699ae3b6d0e"
+    },
+    {
+      "from": "seo-geo/SKILL.md",
+      "to": "archive/seo-geo/SKILL.md",
+      "bytes": 14438,
+      "sha256": "c6b5c015b0705765f3f40b36170cbe8a64f3ed5a3e7d97d51d749835a9d4da07"
+    },
+    {
+      "from": "seo-geo.skill",
+      "to": "archive/seo-geo.skill",
+      "bytes": 24272,
+      "sha256": "bd82bd3fc5e49b6b9b2e6a20441573320cd74bcf64b6783e15e964f87f0454ef"
+    },
+    {
+      "from": "ALGORITHM_V2.md",
+      "to": "docs/archive/algorithms/ALGORITHM_V2.md",
+      "bytes": 4878,
+      "sha256": "df20b5a769f7fe07956d202f0a80caedf246e73f6ed9aaf8974ee23a4d1f9cd6"
+    },
+    {
+      "from": "ALGORITHM_V3.md",
+      "to": "docs/archive/algorithms/ALGORITHM_V3.md",
+      "bytes": 5844,
+      "sha256": "b16b27c724fbbb6fdda3cd31f59ff344700c71693b3e73733ec1256ff2144fc5"
+    },
+    {
+      "from": "2026_台灣餐飲_AI搜尋能見度_信義區140家候選池.md",
+      "to": "docs/research/plans/2026_台灣餐飲_AI搜尋能見度_信義區140家候選池.md",
+      "bytes": 26037,
+      "sha256": "92b65063c8063291451ae5da77558f9b3d59f38a449809c9d11b01da3a2aaee3"
+    },
+    {
+      "from": "2026_台灣餐飲_AI搜尋能見度_白皮書研究藍圖.md",
+      "to": "docs/research/plans/2026_台灣餐飲_AI搜尋能見度_白皮書研究藍圖.md",
+      "bytes": 17713,
+      "sha256": "47e8a66245bcb78333da1548148f6c714a38de5a66ed859e14212adbc03cd930"
+    },
+    {
+      "from": "GEOCheck_Technical_Whitepaper_V2_2026-07-13.docx",
+      "to": "docs/archive/specifications/GEOCheck_Technical_Whitepaper_V2_2026-07-13.docx",
+      "bytes": 194790,
+      "sha256": "7b003196af17b1e34770adde09f3cef01320a2f3e6f321692902e59de4398950"
+    },
+    {
+      "from": "GEOCheck_Technical_Whitepaper_V3_2026-07-16.docx",
+      "to": "docs/archive/specifications/GEOCheck_Technical_Whitepaper_V3_2026-07-16.docx",
+      "bytes": 196563,
+      "sha256": "963cb222696f28a032c8a5f57310131774b387d5bed8b00365c715d28d08441a"
+    },
+    {
+      "from": "GEO_Intelligence_Platform_PRD_Portfolio.docx",
+      "to": "docs/archive/specifications/GEO_Intelligence_Platform_PRD_Portfolio.docx",
+      "bytes": 49836,
+      "sha256": "09b2d87b3932fcfd46ae9d0d3d9236242ebbdcfc163f53d1881172d6f7ac22b6"
+    },
+    {
+      "from": "GEO_Intelligence_Platform_PRD_Portfolio_V3_2026-07-16.docx",
+      "to": "docs/archive/specifications/GEO_Intelligence_Platform_PRD_Portfolio_V3_2026-07-16.docx",
+      "bytes": 51101,
+      "sha256": "f43f27e19b435d1afff5b0530343c002b557183d83daa25f135fd640905dbb27"
+    },
+    {
+      "from": "docs/COMPETITIVE_INTEL_2026-09-07.md",
+      "to": "docs/strategy/COMPETITIVE_INTEL_2026-09-07.md",
+      "bytes": 57342,
+      "sha256": "e70aabedd8049b6addde1b7267675e37850d07ef4b48256233997d87c9288d3b"
+    },
+    {
+      "from": "docs/PRODUCT_STRATEGY_2026-09-07.md",
+      "to": "docs/strategy/PRODUCT_STRATEGY_2026-09-07.md",
+      "bytes": 17106,
+      "sha256": "bec2a4fb5f34d289a011395e06178e9aefe438b33e19e2bff03b1f48d2c87ff3"
+    },
+    {
+      "from": "docs/ROADMAP_OPTIONS_2026-09-07.md",
+      "to": "docs/strategy/ROADMAP_OPTIONS_2026-09-07.md",
+      "bytes": 21596,
+      "sha256": "ca02146261cb3f6964646279cd2cb8b03b67a1d71baf9e0d85c5520644d194a2"
+    },
+    {
+      "from": "docs/MULTI_ENGINE_API_SERVICE_BRIEF.md",
+      "to": "docs/strategy/MULTI_ENGINE_API_SERVICE_BRIEF.md",
+      "bytes": 11267,
+      "sha256": "926cd702234ebd27a788c35ab782ed8647141ef637e77c46bfca3a7235c16296"
+    },
+    {
+      "from": "docs/P1_CLAIM_AUDIT_2026-08-14.md",
+      "to": "docs/research/methodology/P1_CLAIM_AUDIT_2026-08-14.md",
+      "bytes": 15250,
+      "sha256": "06cd7a46aeacab246dbbc015d42e858e18c3c9eee89e88884a6e83a4bae3913b"
+    },
+    {
+      "from": "docs/P1_CONSTRUCT_WORKING_NOTES.md",
+      "to": "docs/research/methodology/P1_CONSTRUCT_WORKING_NOTES.md",
+      "bytes": 13031,
+      "sha256": "2d01723d42f4a5baf00cfd04759c67d9d58cea414c724dd5dbe375966c0df821"
+    },
+    {
+      "from": "docs/P1_HUMAN_WORK_REVIEW_2026-08-09.md",
+      "to": "docs/research/methodology/P1_HUMAN_WORK_REVIEW_2026-08-09.md",
+      "bytes": 8579,
+      "sha256": "803c9de274e4d294e6614142e055eeb077918265156cdb3b78a7b430a51b3e92"
+    }
+  ],
+  "identicalGroups": []
+}

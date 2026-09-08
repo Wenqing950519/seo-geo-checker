@@ -1,50 +1,17 @@
----
-type: index
-project: GeoCheck
-tags:
-  - geocheck
-  - index
----
+# GeoCheck 文件索引
 
-# GeoCheck docs — 專案共同事實來源
+目前狀態以 CURRENT_STATE 為準，正式方向以 DECISION_LOG 為準；策略提案、歷史規格與研究證據各自保留，不互相冒充。
 
-這個資料夾是 GeoCheck 的**共同事實來源（single source of truth）**。
-Agent（Codex / Claude Code）在重大任務前必須讀取此處；不得只依賴對話或自動記憶。
-
-## 角色分工
-
-| 角色 | 負責 |
-|---|---|
-| **Obsidian** | 你的閱讀、思考與書寫（本資料夾即 vault） |
-| **Git** | 版本紀錄與可追溯性 |
-| `AGENTS.md` / `CLAUDE.md` | 約束 Agent 行為 |
-| `docs/` | 專案的共同事實來源 |
-
-## 文件
-
-| 文件 | 內容 | 狀態 |
+| 區域 | 閱讀入口 | 用途 |
 |---|---|---|
-| [[PROJECT_CHARTER]] | 產品定義、目標使用者、研究問題、商業模式 | ⚠️ **多處 TODO 待你填寫** |
-| [[CURRENT_STATE]] | 營運現況、服務狀態、實測分數 | ✅ 2026-09-02 |
-| [[RESEARCH_STANDARD]] | 研究最高規範（Mandatory v1.0.0） | ✅ 完整 |
-| [[DECISION_LOG]] | 正式決策的唯一憑據 | ⚠️ D-001～003 待確認 |
-| [[DEPLOYMENT_RELEASE_CHECKLIST]] | AI Trust Index v1 發布與正式站驗收 | ✅ 2026-09-02 |
-| [[LEARNING_LOG]] | 你理解了什麼、還沒理解什麼 | 🔄 持續 |
+| 治理 | [PROJECT_CHARTER](PROJECT_CHARTER.md)、[RESEARCH_STANDARD](RESEARCH_STANDARD.md)、[DECISION_LOG](DECISION_LOG.md)、[LEARNING_LOG](LEARNING_LOG.md) | 目標、方法約束、正式決策與學習 |
+| 現況／操作 | [CURRENT_STATE](CURRENT_STATE.md)、[部署驗收](DEPLOYMENT_RELEASE_CHECKLIST.md)、[服務操作](../services/api/OPERATIONS.md) | 區分本機與線上驗證日期 |
+| 架構／契約 | [ARCHITECTURE](ARCHITECTURE.md)、[PRODUCT_BOUNDARY](PRODUCT_BOUNDARY.md)、[API_CONTRACT](API_CONTRACT.md)、[TASKS](TASKS.md) | 目前架構與尚未完成的平台提案 |
+| 產品規則 | [AI_TRUST_INDEX_V1](AI_TRUST_INDEX_V1.md)、[ANALYTICS_TRACKING](ANALYTICS_TRACKING.md) | 現行計分與事件定義 |
+| 專題資料 | [路線對照](strategy/ROADMAP_ALIGNMENT.md)、[整理紀錄](maintenance/REPOSITORY_CLEANUP.md) | strategy 是提案；research／whitepaper 是研究；archive 是歷史 |
 
-## 使用規則
+`docs/` 同時是 Obsidian vault，共用設定保持。`attachments/GEO_RESEARCH.md.docx` 仍是研究標準正本，沒有搬移。研究原始資料與工具在 repository 的 `research/`，不放本目錄根部。
 
-1. **文件衝突時停止重大變更**，指出衝突，不得自行挑方便的版本。
-2. `RESEARCH_STANDARD.md` 與其他文件衝突時，**以它為準**。
-3. `RESEARCH_STANDARD.md` 與 `attachments/GEO_RESEARCH.md.docx` 衝突時，**以 .docx 正本為準**。
-4. 未記入 `DECISION_LOG.md` 的方向，**不算正式決策**。
+舊 BRD／MRD／PRD 位於 `archive/business/`；舊 Word 規格位於 `archive/specifications/`；ALGORITHM V2／V3 位於 `archive/algorithms/`。P1 工作文件位於 `research/methodology/`。過往 locator 不回溯改寫，請以 [搬移表](maintenance/layout-migration-2026-09-08.json) 查 from／to。
 
-## 專案根目錄的相關文件
-
-這些不在 docs/ 內（保留原位以免破壞既有引用）：
-
-- `AI_TRUST_INDEX_V1.md` — 產品現行演算法規格 1.0.0
-- `ALGORITHM_V3.md` — 歷史演算法規格 3.0.0（追溯用）
-- `ALGORITHM_V2.md` — 前版規格（追溯用）
-- `GEOCheck_Technical_Whitepaper_V3_2026-07-16.docx` — 技術白皮書
-- `business_docs/` — BRD / MRD / PRD
-- `.agents/skills/geo-whitepaper-research/SKILL.md` — 白皮書研究流程
+本次重整授權見 D-026。B API、SDK、Monitoring、Account／Project 均不能只因有文件或目錄就標為已實作。

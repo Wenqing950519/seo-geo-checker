@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GeoCheck 競品研究的白話說明與下一步實驗。">
+  <title>GeoCheck｜這份競品報告在說什麼？</title>
+  <style>
+    :root {
+      --ink: #17201e;
+      --muted: #58615e;
+      --paper: #f5f0e6;
+      --paper-deep: #ede5d7;
+      --line: #cfc4b2;
+      --green: #0f5c4b;
+      --green-pale: #d8e7de;
+      --red: #a84632;
+      --red-pale: #f3ddd5;
+      --gold: #d5973d;
+      --navy: #243a55;
+      --shadow: 0 16px 45px rgba(34, 42, 38, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 88% 8%, rgba(213, 151, 61, .13), transparent 25rem),
+        radial-gradient(circle at 8% 70%, rgba(15, 92, 75, .10), transparent 25rem),
+        var(--paper);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Noto Serif TC", "PMingLiU", serif;
+      line-height: 1.75;
+      letter-spacing: .012em;
+    }
+
+    a { color: var(--green); text-underline-offset: .2em; }
+    a:hover { color: var(--red); }
+    button { font: inherit; }
+    .shell { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif;
+    }
+    .brand { font-weight: 800; letter-spacing: .08em; font-size: .9rem; }
+    .stamp { color: var(--muted); font-size: .8rem; }
+
+    .hero { min-height: 580px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; padding: 72px 0 64px; }
+    .eyebrow { margin: 0 0 18px; color: var(--green); font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-weight: 800; font-size: .83rem; letter-spacing: .12em; }
+    h1, h2, h3 { line-height: 1.15; font-weight: 700; }
+    h1 { max-width: 720px; margin: 0; font-size: clamp(3rem, 6.2vw, 6.8rem); letter-spacing: -.055em; }
+    h1 em { color: var(--green); font-style: normal; }
+    .lede { max-width: 580px; margin: 27px 0 0; color: #39433f; font-size: clamp(1.08rem, 1.8vw, 1.35rem); }
+    .jump { display: inline-flex; margin-top: 30px; align-items: center; gap: 10px; color: var(--ink); font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-weight: 750; text-decoration: none; }
+    .jump::after { content: "↓"; font-size: 1.4rem; color: var(--red); }
+
+    .verdict-card { position: relative; overflow: hidden; align-self: stretch; min-height: 390px; padding: 32px; background: var(--ink); color: #faf6ee; box-shadow: var(--shadow); }
+    .verdict-card::before, .verdict-card::after { position: absolute; content: ""; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; }
+    .verdict-card::before { width: 300px; height: 300px; right: -112px; top: -116px; }
+    .verdict-card::after { width: 190px; height: 190px; bottom: -108px; left: -75px; }
+    .verdict-label { position: relative; margin: 0; color: #c0d9cd; font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-weight: 800; font-size: .78rem; letter-spacing: .12em; }
+    .verdict { position: relative; margin: 28px 0 8px; color: #f2bf68; font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-size: clamp(3rem, 5vw, 5.25rem); font-weight: 900; line-height: .9; letter-spacing: -.06em; }
+    .verdict-card p:last-child { position: relative; max-width: 390px; margin: 25px 0 0; color: #e7eee9; font-size: 1.04rem; }
+
+    .section { padding: 72px 0; border-top: 1px solid var(--line); }
+    .section-label { color: var(--red); font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-weight: 800; font-size: .82rem; letter-spacing: .13em; }
+    h2 { margin: 9px 0 0; max-width: 800px; font-size: clamp(2rem, 3.8vw, 3.8rem); letter-spacing: -.045em; }
+    .section-intro { max-width: 700px; margin: 20px 0 0; color: var(--muted); font-size: 1.09rem; }
+
+    .three-evidence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 38px; background: var(--line); border: 1px solid var(--line); }
+    .evidence { min-height: 270px; padding: 26px; background: rgba(255,255,255,.42); }
+    .evidence-number { color: var(--gold); font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-size: 3.2rem; font-weight: 900; line-height: 1; }
+    .evidence h3 { margin: 19px 0 10px; font-size: 1.35rem; }
+    .evidence p { margin: 0; color: #4f5955; font-size: .96rem; }
+
+    .plain-box { margin-top: 36px; padding: 27px 30px; border-left: 6px solid var(--green); background: var(--green-pale); }
+    .plain-box p { margin: 0; font-size: 1.12rem; }
+    .plain-box strong { color: var(--green); }
+
+    .lanes { position: relative; display: grid; grid-template-columns: 1fr 42px 1fr 42px 1fr; gap: 0; margin: 38px 0 0; }
+    .lane { min-height: 228px; padding: 25px; border: 1px solid var(--line); background: rgba(255,255,255,.38); }
+    .lane--yes { background: var(--green-pale); border-color: #9cc6b1; }
+    .lane--no { background: var(--red-pale); border-color: #dda99c; }
+    .lane-kicker { color: var(--muted); font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-size: .8rem; font-weight: 800; letter-spacing: .09em; }
+    .lane h3 { margin: 13px 0 10px; font-size: 1.42rem; }
+    .lane p { margin: 0; font-size: .95rem; color: #46504c; }
+    .arrow { display: grid; place-items: center; color: var(--gold); font-size: 1.8rem; }
+
+    .comparison { width: 100%; margin-top: 34px; border-collapse: collapse; font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; }
+    .comparison th, .comparison td { padding: 16px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    .comparison th { color: var(--muted); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+    .comparison td:first-child { font-weight: 800; white-space: nowrap; }
+    .good { color: var(--green); font-weight: 800; }
+    .caution { color: var(--red); font-weight: 800; }
+
+    .experiment-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; margin-top: 38px; }
+    .experiment { padding: 26px; border-top: 5px solid var(--navy); background: #fffaf2; box-shadow: 0 8px 25px rgba(52, 52, 43, .06); }
+    .experiment:nth-child(2) { border-color: var(--green); }
+    .experiment:nth-child(3) { border-color: var(--gold); }
+    .experiment-step { color: var(--muted); font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-size: .78rem; font-weight: 800; letter-spacing: .1em; }
+    .experiment h3 { margin: 11px 0 12px; font-size: 1.42rem; }
+    .experiment p { color: #4d5652; font-size: .97rem; }
+    .gate { display: block; margin-top: 19px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink); font-size: .93rem; }
+
+    .do-not { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: start; }
+    .list { padding: 0; margin: 27px 0 0; list-style: none; counter-reset: items; }
+    .list li { position: relative; padding: 14px 0 14px 44px; border-top: 1px solid var(--line); counter-increment: items; }
+    .list li::before { position: absolute; left: 0; top: 14px; content: "0" counter(items); color: var(--red); font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-size: 1.1rem; font-weight: 900; }
+    .red-team { padding: 30px; background: var(--navy); color: #eef2f3; }
+    .red-team h3 { margin: 0; color: #f1c56d; font-size: 1.7rem; }
+    .red-team p { color: #e1eaec; }
+    .red-team ol { padding-left: 1.25rem; }
+    .red-team li { padding: 5px 0; }
+
+    .reality { margin-top: 38px; padding: 29px; background: #fffaf2; border: 1px solid var(--line); }
+    .reality h3 { margin: 0 0 14px; font-size: 1.55rem; }
+    .reality ul { margin: 0; padding-left: 1.25rem; }
+    .reality li { margin: 8px 0; }
+
+    details { margin-top: 38px; padding: 0; border: 1px solid var(--line); background: rgba(255,255,255,.36); }
+    summary { padding: 18px 22px; cursor: pointer; font-family: "Avenir Next Condensed", "Noto Sans TC", sans-serif; font-weight: 800; }
+    .details-content { padding: 0 22px 22px; color: var(--muted); }
+    .details-content ul { padding-left: 1.25rem; }
+
+    footer { padding: 38px 0 55px; color: var(--muted); font-size: .9rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 14px; }
+
+    @media (max-width: 800px) {
+      .shell { padding: 0 18px; }
+      .hero { grid-template-columns: 1fr; gap: 30px; min-height: auto; padding: 48px 0; }
+      .verdict-card { min-height: 300px; }
+      .three-evidence, .experiment-grid, .do-not { grid-template-columns: 1fr; }
+      .lanes { grid-template-columns: 1fr; gap: 0; }
+      .arrow { min-height: 35px; transform: rotate(90deg); }
+      .comparison { display: block; overflow-x: auto; white-space: normal; }
+      .comparison th, .comparison td { min-width: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div class="brand">GEOCHECK / 競品研究白話版</div>
+      <div class="stamp">研究日：2026.09.07 · 閱讀約 6 分鐘</div>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">先講結論</p>
+        <h1 id="page-title">GeoCheck 應該<strong>修改方向</strong>，<em>先別急著做大。</em></h1>
+        <p class="lede">市場確實有人付費買 AI 搜尋監測工具。但「用需求加權、再拿流量校正」不是空白創新；大工具已經在做其中一部分。</p>
+        <a class="jump" href="#why">為什麼是 Modify？</a>
+      </div>
+      <aside class="verdict-card" aria-label="研究判斷">
+        <p class="verdict-label">這不是產品決策，是研究建議</p>
+        <div class="verdict">MODIFY</div>
+        <p>保留 GeoCheck 的嚴謹測量能力，但先用少量真實顧問客戶驗證：這份報告是否真的幫他們做出更好的工作決定，並且願意持續付費。</p>
+      </aside>
+    </section>
+
+    <section class="section" id="why" aria-labelledby="why-heading">
+      <p class="section-label">01 / 為什麼不是 Continue？</p>
+      <h2 id="why-heading">三個事實，讓「直接做 SaaS」變得太早。</h2>
+      <p class="section-intro">這不是說 GeoCheck 沒有機會，而是說「多做一些監測功能」還不足以形成買單理由。</p>
+      <div class="three-evidence">
+        <article class="evidence">
+          <div class="evidence-number">01</div>
+          <h3>需求加權不是新東西</h3>
+          <p>Ahrefs 已把搜尋需求與 AI 平台使用比例放進 AI 可見度指標。GeoCheck 不能只改一個名稱，就說自己是唯一做法。</p>
+        </article>
+        <article class="evidence">
+          <div class="evidence-number">02</div>
+          <h3>基本功能已有便宜替代品</h3>
+          <p>Otterly 已能用 GSC 資料找題目；Mantis 月費從 20 美元起；Ahrefs 也把部分監測包進原本的 SEO 產品。</p>
+        </article>
+        <article class="evidence">
+          <div class="evidence-number">03</div>
+          <h3>市場有人付錢，但未必付給你</h3>
+          <p>Peec 公告自報已有超過 4 百萬美元 ARR。它證明這個類別有市場，不代表台灣小型顧問會為 GeoCheck 的版本續費。</p>
+        </article>
+      </div>
+      <div class="plain-box">
+        <p><strong>最重要的差別：</strong>「有人做這個功能」不等於「GeoCheck 沒機會」；但「還沒有人完整做」也不等於「這是藍海」。要問的是：客戶現在卡在哪個工作，而且 GeoCheck 能不能讓那件工作做得更好。</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="simple-model-heading">
+      <p class="section-label">02 / 把複雜名詞拆開</p>
+      <h2 id="simple-model-heading">四件看起來像同一件事，其實完全不同。</h2>
+      <p class="section-intro">若把它們混在一起，最後很容易做出一個很漂亮、但不知道代表什麼的分數。</p>
+      <div class="lanes" role="list" aria-label="四個不同的概念">
+        <article class="lane" role="listitem">
+          <div class="lane-kicker">第一步</div>
+          <h3>選題</h3>
+          <p>哪些問題值得觀察？可參考 GSC、客戶訪談、搜尋量或產業研究。</p>
+        </article>
+        <div class="arrow" aria-hidden="true">→</div>
+        <article class="lane lane--yes" role="listitem">
+          <div class="lane-kicker">第二步</div>
+          <h3>加權</h3>
+          <p>同樣被提到一次，買前問題和冷門問題要不要算一樣重？這是產品選擇，不是真實曝光本身。</p>
+        </article>
+        <div class="arrow" aria-hidden="true">→</div>
+        <article class="lane lane--no" role="listitem">
+          <div class="lane-kicker">第三與第四步</div>
+          <h3>校準與因果</h3>
+          <p>分數是否接近流量？被 AI 提到是否帶來轉換？這兩件事最難，也最不能靠想像補齊。</p>
+        </article>
+      </div>
+      <div class="reality">
+        <h3>GeoCheck 現在實際做到哪裡？</h3>
+        <ul>
+          <li><span class="good">已做到：</span>用四個非品牌問題，觀察 AI 答案是否採用品牌、是否引用可驗證的第一方來源。</li>
+          <li><span class="good">已做到：</span>沒有足夠有效回答時顯示 <code>unknown</code>，不硬算成 0。</li>
+          <li><span class="caution">還沒證明：</span>分數能預測真實 AI 流量、客戶轉換或商業成效。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="market-heading">
+      <p class="section-label">03 / 競爭現實</p>
+      <h2 id="market-heading">GeoCheck 不該和所有人比「功能表」。</h2>
+      <p class="section-intro">下表只保留會影響下一步決定的差異，不重複完整 17 維度矩陣。</p>
+      <table class="comparison">
+        <thead><tr><th>類型</th><th>市場上已經有的東西</th><th>GeoCheck 要避免的誤判</th></tr></thead>
+        <tbody>
+          <tr><td>Ahrefs</td><td>需求代理、AI visibility、既有 SEO 資料與付費渠道。</td><td>把「需求加權」說成獨家方法。</td></tr>
+          <tr><td>Otterly / Peec</td><td>GSC 找題、daily tracking、agency 報告、建議與整合。</td><td>以為加帳號、Project、報告就能形成留存。</td></tr>
+          <tr><td>Hogiah / awoo</td><td>繁中內容、在地教育、顧問交付、免費入口。</td><td>把「台灣化」當成不容易被複製的護城河。</td></tr>
+          <tr><td>GSC / GA4</td><td>Google 的生成式 AI 曝光與網站端事件資料。</td><td>只把資料畫成圖；客戶可能自己就能看。</td></tr>
+          <tr><td>手動工具 / 開源</td><td>少題、低頻、研究型的工作可用表格或自架替代。</td><td>以為所有人都需要每天自動重跑。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" aria-labelledby="wedge-heading">
+      <p class="section-label">04 / 先找到小而真實的切口</p>
+      <h2 id="wedge-heading">候選切口：幫顧問把「這個月該做什麼」說清楚。</h2>
+      <p class="section-intro">不是再做一張 AI 可見度儀表板。是把已有資料、少量可重現觀察與人工判讀，整理成客戶可以採取或暫緩的行動。</p>
+      <div class="plain-box">
+        <p><strong>一份有價值的月度決策報告會回答：</strong>這期優先改哪個頁面或實體資訊？根據哪個需求與答案證據？做完何時回看？沒有足夠證據時，哪些工作不該花錢？</p>
+      </div>
+      <details>
+        <summary>這個切口還不是護城河，為什麼仍值得先試？</summary>
+        <div class="details-content">
+          <p>因為一到兩人能先用服務方式完成，不必先養大量 prompt／engine 基礎設施。若客戶反覆使用，才可能累積經授權的垂直資料、已採用行動與回看紀錄。若其他工具加一張表就能做到同樣的交付，這個切口便不成立，應停止投資。</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="section" aria-labelledby="test-heading">
+      <p class="section-label">05 / 接下來不靠猜</p>
+      <h2 id="test-heading">三個實驗，決定要不要做成 SaaS。</h2>
+      <p class="section-intro">這些是投入門檻，不是已經驗證的結果。每一步失敗都應該縮小或停止方向，而不是多加功能。</p>
+      <div class="experiment-grid">
+        <article class="experiment">
+          <div class="experiment-step">E1 · 2–4 週</div>
+          <h3>先測付費工作</h3>
+          <p>找同一垂直的顧問，回顧一份真實客戶月報。用固定範圍、固定價格交付人工試點。</p>
+          <span class="gate"><strong>通過：</strong>至少 3 位真的付費並使用交付。稱讚、註冊、免費試用都不算。</span>
+        </article>
+        <article class="experiment">
+          <div class="experiment-step">E2 · 4–8 週</div>
+          <h3>再測加權有沒有用</h3>
+          <p>同一份資料做兩種排序：一般排序與需求輔助排序。看顧問選的行動、花的時間與客戶採用情況。</p>
+          <span class="gate"><strong>通過：</strong>至少 2 個客戶願意第二期付費，且報告工時中位數下降 30%。</span>
+        </article>
+        <article class="experiment">
+          <div class="experiment-step">E3 · 8–12 週</div>
+          <h3>最後才測校準</h3>
+          <p>把 Google AI 曝光與可識別 AI 流量分開，預先固定題目與方法，拿未參與建模的時間資料檢驗。</p>
+          <span class="gate"><strong>通過：</strong>加權模型對留出資料的誤差至少改善 10%，而且方向穩定；否則不推出校準分數。</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section do-not" aria-labelledby="stop-heading">
+      <div>
+        <p class="section-label">06 / 接下來六個月先不要做</p>
+        <h2 id="stop-heading">別用工程量，假裝自己在前進。</h2>
+        <ol class="list">
+          <li>全球 prompt index、無限 daily monitoring 或自建大規模抓取基礎設施。</li>
+          <li>SSO、複雜 API 銷售、完整白標平台與混合計費。</li>
+          <li>通用 AI 文章工廠、agent marketplace、全套 SEO crawler。</li>
+          <li>把「真實 AI 曝光」或「ROI」包成一個魔法分數。</li>
+          <li>跨所有產業的排名網站與大型 dashboard。</li>
+        </ol>
+      </div>
+      <aside class="red-team">
+        <h3>如果我是競爭對手</h3>
+        <p>我會用三步讓 GeoCheck 失去購買理由：</p>
+        <ol>
+          <li>把 GSC 匯入、意圖標記與繁中報告免費包進現有方案。</li>
+          <li>用既有 agency／顧問通路，送模板、教育與推薦獎勵。</li>
+          <li>複製「需求加權」文案，接上既有流量資料。</li>
+        </ol>
+        <p>GeoCheck 唯一能反擊的，不是更多圖表，而是客戶持續留下來的、可回查的決策歷史。</p>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="limits-heading">
+      <p class="section-label">07 / 這份研究沒有假裝知道的事</p>
+      <h2 id="limits-heading">目前最大的未知，正是下一步要測的東西。</h2>
+      <div class="reality">
+        <ul>
+          <li>沒有台灣顧問的付費訪談、續訂率、獲客成本或實際採購資料。</li>
+          <li>沒有證據顯示任何競品已公開、可靠地做到「個別客戶的可見度 → 轉換」校準。</li>
+          <li>沒有登入競品後台，也沒有 API 請求攔截證據；公開頁能看見的功能，不等於登入後的完整流程。</li>
+          <li>這份頁面不修改 GeoCheck 既有的研究優先序、AI 信任值定義或正式產品決策。</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <div>這是原始競品研究的白話導覽，不取代完整方法、來源與矩陣。價格與功能為 2026-09-07 公開頁面所見，供應商宣稱不等於獨立驗證。</div>
+      <nav class="footer-links" aria-label="延伸閱讀">
+        <a href="REPORT.md">完整研究報告</a>
+        <a href="MATRIX.md">18 個對象 × 17 維度矩陣</a>
+        <a href="CARDS.md">競品情報卡</a>
+        <a href="SOURCES.md">來源與證據限制</a>
+        <a href="TECHNICAL.md">公開技術觀察</a>
+      </nav>
+    </footer>
+  </main>
+</body>
+</html>

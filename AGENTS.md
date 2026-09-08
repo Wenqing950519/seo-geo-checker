@@ -141,8 +141,10 @@ Agent 的成功標準不是完成最多工作，而是同時提高：
 
 | Contract 用語 | 本 repo 實際位置 |
 |---|---|
-| 主程式 | `mock-api/`（非 `src/`） |
-| 測試 | `mock-api/tests/`（`npm.cmd test`） |
+| 主程式 | `services/api/`；A 資源與報告在 `apps/web/`；共用模組在 `packages/` |
+| 測試 | `tests/regression/` 及 `tests/*layout.test.js`（`npm.cmd test`） |
 | 研究 skill | `.agents/skills/geo-whitepaper-research/` |
-| 演算法規格 | `docs/AI_TRUST_INDEX_V1.md`（產品現行 v1.0.0）；`ALGORITHM_V3.md`、`ALGORITHM_V2.md` 僅供歷史追溯 |
+| 演算法規格 | `docs/AI_TRUST_INDEX_V1.md`（產品現行 v1.0.0）；`docs/archive/algorithms/` 僅供歷史追溯 |
 | 研究標準正本 | `docs/attachments/GEO_RESEARCH.md.docx` |
+
+目錄整理依 D-026。`mock-api/` 僅保留相容入口與既有私有 runtime 檔案；不得新增第二份實作。研究資料在 `research/inputs`、`outputs`、`sources`、`work`，舊路徑以 `docs/maintenance/layout-migration-2026-09-08.json` 追溯。planned README 不是功能完成或實作授權。

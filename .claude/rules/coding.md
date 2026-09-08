@@ -6,22 +6,22 @@
 
 | 用途 | 位置 |
 |---|---|
-| 主程式 | `mock-api/` |
-| 測試 | `mock-api/tests/` |
-| 量測核心 | `mock-api/lib/geo-measurement.js` |
-| 查詢規劃 | `mock-api/lib/query-planner.js` |
-| 研究 profile | `mock-api/lib/research-profile.js` |
-| Provider | `mock-api/providers/perplexity.js` |
-| Server | `mock-api/server.js` |
+| 主程式 | `services/api/`、`apps/web/`、`packages/` |
+| 測試 | `tests/regression/` |
+| 量測核心 | `services/api/application/geo-measurement.js` |
+| 查詢規劃 | `services/api/application/query-planner.js` |
+| 研究 profile | `research/lib/research-profile.js` |
+| Provider | `packages/ai-providers/perplexity.js` |
+| Server | `services/api/server.js` |
 | 研究 skill | `.agents/skills/geo-whitepaper-research/` |
-| 研究工具鏈 | `research-work/`（23 支 .mjs/.py） |
+| 研究工具鏈 | `research/work/`（23 支 .mjs/.py） |
 
-> 註：Contract 範本提到的 `src/` 與 `tests/` 在本 repo 對應 `mock-api/` 與 `mock-api/tests/`。
-> **不要為了符合範本而重新命名目錄**——那屬於未經要求的大規模重構。
+> 註：Contract 範本提到的 `src/` 與 `tests/` 在本 repo 對應 `services/api/`、`apps/web/`、`packages/` 與 `tests/regression/`。
+> 2026-09-08 已依使用者明確要求完成目錄整理（D-026）；mock-api 僅是相容入口。不得新增第二份核心實作。
 
 ## 修改前
 
-- 先讀相關模組、測試與現有規格（`ALGORITHM_V3.md`）
+- 先讀相關模組、測試與現有規格（`docs/AI_TRUST_INDEX_V1.md`）
 - 明說**要改什麼**與**不改什麼**
 - 採最小可驗證變更
 - 不順手重構
@@ -55,4 +55,4 @@ npm.cmd test
 ## 分支
 
 - 不直接在 `main` / `master` 上修改，走 feature branch
-- 目前分支：`feature/geo-measurement-audit-fixes`
+- 開始工作時查詢目前分支；不要依舊文件的分支名稱推定。
