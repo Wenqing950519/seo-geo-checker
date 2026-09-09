@@ -48,8 +48,9 @@ const server = http.createServer(async (req, res) => {
     }
     if (req.url === "/render") {
       if (!body.report || typeof body.report !== "object") return sendJson(res, 400, { error: "report_required" });
+      const html = reportHtml(normalizeReportForClient(body.report));
       res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
-      return res.end(reportHtml(normalizeReportForClient(body.report)));
+      return res.end(html);
     }
     return sendJson(res, 404, { error: "not_found" });
   } catch (error) {
