@@ -151,7 +151,25 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     try {
+      if (request.method === "GET" && url.pathname === "/healthz") {
+        let d1 = false;
+        try {
+          await env.REPORTS_DB.prepare("SELECT 1 AS ok").first();
+          d1 = true;
+        } catch { /* readiness stays false */ }
+        return json(d1 ? 200 : 503, {
+          ok: d1,
+          d1,
+          queue: Boolean(env.AUDIT_JOBS),
+          browser: Boolean(env.BROWSER),
+          container: Boolean(env.AUDIT_FALLBACK),
+          admission_enabled: String(env.AUDIT_ADMISSION_ENABLED || "").toLowerCase() === "true"
+        });
+      }
       if (request.method === "POST" && url.pathname === "/api/audit-real-lite") {
+        if (String(env.AUDIT_ADMISSION_ENABLED || "").toLowerCase() !== "true") {
+          return json(503, { error: "New audits are temporarily paused", code: "service_unavailable" });
+        }
         const body = await readBody(request);
         const siteUrl = normalizeUrl(body.url);
         const customQueries = Array.isArray(body.customQueries)

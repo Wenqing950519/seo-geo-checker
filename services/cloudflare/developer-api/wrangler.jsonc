@@ -5,6 +5,16 @@
   "compatibility_date": "2026-09-09",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
+  "vars": {
+    "DEVELOPER_API_QUOTA_WINDOW_STRATEGY": "rolling_24h",
+    "DEVELOPER_API_RESULT_RETENTION_DAYS": "30",
+    "DEVELOPER_API_TRIAL_DAYS": "7",
+    "DEVELOPER_API_FREE_ROUNDS_PER_WINDOW": "3",
+    "DEVELOPER_API_DAILY_BUDGET_TWD": "60",
+    "DEVELOPER_API_MONTHLY_BUDGET_TWD": "600",
+    "DEVELOPER_API_MAX_JOB_COST_TWD": "12",
+    "DEVELOPER_API_TWD_PER_USD": "31.535"
+  },
   "d1_databases": [{
     "binding": "DEVELOPER_DB",
     "database_name": "geocheck-developer-api",

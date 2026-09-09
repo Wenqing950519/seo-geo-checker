@@ -2,7 +2,6 @@ const { createHash, timingSafeEqual } = require("node:crypto");
 const { createDeveloperApiPrototype, DeveloperApiError, createFixtureProviders } = require("./application/developer-api-prototype.js");
 const { createDeveloperPlatformService } = require("./application/developer-platform-service.js");
 const { createPrototypeMeasurementResultStore } = require("./storage/developer-measurement-result-store.js");
-const { createSqliteDeveloperPlatformStore } = require("./storage/developer-platform-store.js");
 const { createD1DeveloperPlatformStore } = require("./storage/developer-platform-d1-store.js");
 const { createOfficialProvidersFromEnv, getOfficialProviderReadiness } = require("./application/official-search-providers.js");
 
@@ -17,7 +16,7 @@ function createDeveloperApiHttpHandler(options = {}) {
   const platformStore = config.platformEnabled
     ? options.platformStore || (config.developerD1Enabled
       ? createD1DeveloperPlatformStore({ config: source })
-      : createSqliteDeveloperPlatformStore({ filename: config.localDatabasePath }))
+      : createLocalPlatformStore(options, config.localDatabasePath))
     : null;
   const api = options.api || (config.platformEnabled
     ? createDeveloperPlatformService({
@@ -246,6 +245,13 @@ function createDeveloperApiHttpHandler(options = {}) {
       ...api.state()
     })
   };
+}
+
+function createLocalPlatformStore(options, filename) {
+  if (typeof options.createSqlitePlatformStore !== "function") {
+    throw new Error("Local developer platform storage requires createSqlitePlatformStore");
+  }
+  return options.createSqlitePlatformStore({ filename });
 }
 
 function normalizeConfig(source, options = {}) {

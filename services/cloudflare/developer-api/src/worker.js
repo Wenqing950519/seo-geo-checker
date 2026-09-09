@@ -11,6 +11,34 @@ const JSON_HEADERS = {
   "X-Content-Type-Options": "nosniff"
 };
 
+const REQUIRED_RUNTIME_SECRETS = [
+  "ADMIN_TOKEN",
+  "DEVELOPER_API_TOKEN_PEPPER",
+  "OPENAI_API_KEY",
+  "GEMINI_API_KEY",
+  "PERPLEXITY_API_KEY",
+  "ANTHROPIC_API_KEY"
+];
+
+function missingRuntimeSecrets(env) {
+  return REQUIRED_RUNTIME_SECRETS.filter((name) => !String(env[name] || "").trim());
+}
+
+async function healthResponse(env) {
+  const missing = missingRuntimeSecrets(env);
+  let d1 = false;
+  try {
+    await env.DEVELOPER_DB.prepare("SELECT 1 AS ok").first();
+    d1 = true;
+  } catch { /* readiness stays false */ }
+  const queue = Boolean(env.DEVELOPER_MEASUREMENTS);
+  const ok = d1 && queue && missing.length === 0;
+  return new Response(JSON.stringify({ ok, d1, queue, configuration_ready: missing.length === 0, missing }), {
+    status: ok ? 200 : 503,
+    headers: JSON_HEADERS
+  });
+}
+
 function workerConfig(env) {
   return {
     ...env,
@@ -92,24 +120,44 @@ function createRuntime(env) {
 }
 
 async function handleRequest(request, env) {
-  if (!new URL(request.url).pathname.startsWith("/v1/")) {
+  const pathname = new URL(request.url).pathname;
+  if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
+  if (!pathname.startsWith("/v1/")) {
     return new Response(JSON.stringify({ error: { code: "not_found", message: "Not found" } }), { status: 404, headers: JSON_HEADERS });
   }
-  const runtime = createRuntime(env);
-  const captured = createResponseCapture();
-  const handled = await runtime.handle({
-    req: nodeRequest(request),
-    res: captured.response,
-    url: new URL(request.url),
-    readJson: (_req, maxBytes) => readJsonRequest(request.clone(), maxBytes),
-    sendJson
-  });
-  return handled ? await captured.completed : new Response(null, { status: 404, headers: JSON_HEADERS });
+  if (missingRuntimeSecrets(env).length) {
+    return new Response(JSON.stringify({ error: { code: "configuration_incomplete", message: "Developer API is not ready" } }), {
+      status: 503,
+      headers: JSON_HEADERS
+    });
+  }
+  try {
+    const runtime = createRuntime(env);
+    const captured = createResponseCapture();
+    const handled = await runtime.handle({
+      req: nodeRequest(request),
+      res: captured.response,
+      url: new URL(request.url),
+      readJson: (_req, maxBytes) => readJsonRequest(request.clone(), maxBytes),
+      sendJson
+    });
+    return handled ? await captured.completed : new Response(null, { status: 404, headers: JSON_HEADERS });
+  } catch (error) {
+    console.error(JSON.stringify({ event: "developer_worker_error", code: error?.code || "runtime_unavailable" }));
+    return new Response(JSON.stringify({ error: { code: "service_unavailable", message: "Developer API is temporarily unavailable" } }), {
+      status: 503,
+      headers: JSON_HEADERS
+    });
+  }
 }
 
 export default {
   fetch: handleRequest,
   async queue(batch, env) {
+    if (missingRuntimeSecrets(env).length) {
+      for (const message of batch.messages) message.retry({ delaySeconds: 300 });
+      return;
+    }
     const runtime = createRuntime(env);
     for (const message of batch.messages) {
       const jobId = String(message.body?.job_id || "");
@@ -122,6 +170,7 @@ export default {
     }
   },
   async scheduled(_event, env, ctx) {
+    if (missingRuntimeSecrets(env).length) return;
     const runtime = createRuntime(env);
     ctx.waitUntil(runtime.workerApi.recoverPendingJobs());
   }

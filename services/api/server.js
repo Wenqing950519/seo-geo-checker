@@ -20,6 +20,7 @@ const { testDeepSeekProvider } = require("../../packages/ai-providers/deepseek.j
 const { searchPerplexity, testPerplexityProvider } = require("../../packages/ai-providers/perplexity.js");
 const { getUsageSummary } = require("../../packages/ai-providers/usage-meter.js");
 const { createDeveloperApiHttpHandler } = require("./developer-api-http.js");
+const { createSqliteDeveloperPlatformStore } = require("./storage/developer-platform-store.js");
 
 loadEnvFiles();
 
@@ -31,7 +32,7 @@ const jobs = new Map();
 const reports = new Map();
 const auditCache = createAuditCache();
 const d1ReportStore = createD1ReportStore();
-const developerApi = createDeveloperApiHttpHandler();
+const developerApi = createDeveloperApiHttpHandler({ createSqlitePlatformStore: createSqliteDeveloperPlatformStore });
 const funnel = createFunnelRecorder();
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
 const SECURITY_HEADERS = Object.freeze({
