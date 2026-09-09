@@ -1,6 +1,6 @@
 # GeoCheck A / Developer Platform B 邊界提案
 
-> 2026-09-08 更新：使用者已授權並進行目錄整理；B 契約仍是草案。現行 A API 見 `API_CONTRACT.md`，商業企劃的 Project／Monitoring 路線見 `strategy/ROADMAP_ALIGNMENT.md`。資料夾存在不代表功能完成。
+> 2026-09-09 更新：依 D-037，Developer API 的 customer／console／admin 後臺、tenant/key、持久 job、配額與成本 ledger、OpenAPI 及獨立 D1 adapter 已實作並通過本機測試。視覺前端、SDK client、金流、正式寄信、遠端 B D1、額度效期與保存期限仍未完成。現行 A API 見 `API_CONTRACT.md`；B 是附屬產品，不得改變 A。資料夾存在不代表已部署。
 
 A 與 B 應共用量測能力，但分別擁有使用者契約；B 對外提供可追溯的工作與證據，SDK 是 API client，Monitoring 是重複執行同一量測設定的使用方式。
 
@@ -23,14 +23,16 @@ A 與 B 應共用量測能力，但分別擁有使用者契約；B 對外提供�
 | 項目 | 判定 | 對前置設計的影響 |
 |---|---|---|
 | 附件宣稱 TA 已正式轉型 | 未見 D-025 以前決策正式確認；與 charter 既有定位／研究優先序有差距 | B 是本次授權的探索方向；不撤掉 A，不改章程，不推定優先於白皮書 |
-| OpenRouter 為全部模型統一搜尋入口 | 本次未驗證附件的外部 API、支援模型與價格主張 | adapter port 保留彈性；不鎖供應商，不據此採購或估毛利 |
+| OpenRouter 為全部模型統一搜尋入口 | Rejected（D-027）；正式量測需由 GeoCheck 分別管理官方搜尋 surface、金鑰與成本 | OpenRouter 不進 production measurement／fallback；四家官方 adapter 各自驗收 |
 | 官方原生 API / 路由商 API = 消費者 ChatGPT、Claude、Gemini 體驗 | 附件沒有提供可比性證據 | engine identity 必須記錄 access surface、路由商、model、搜尋工具與設定；不以模型名冒充消費者產品量測 |
-| 每次 16 calls / 固定 Credit / 毛利 | 現有 A 還有 authority、planner、重試與爬取；附件估算非完整服務成本 | 先量實際 attempt 與成本，再決定商業單位；未定價不自動回 402 |
+| 每次 16 calls / 固定 Credit / 毛利 | 現有 A 還有 authority、planner、重試與爬取；附件估算非完整服務成本 | B 已由 D-029／D-030 改為固定四引擎一輪與 Beta 輪數方案；仍須先量實際 attempt 與成本，未串金流不自動回 402 |
 | citation normalization / 多引擎總分 | 現有來源合併可能抹平語義；跨引擎有效性未證明 | 保留來源類型，先分引擎報告；新指標待使用者核准、版本化 |
 
 在上述差距解決前，可以進行使用者已授權的文件分析；正式轉型、計分改變及平台實作仍是後續獨立決策。本次不為附件補作外部技術事實認證。
 
 ## 3. 建議 public API surface
+
+**歷史草案標記**：本節原始request含 `engine_profiles`／`query_set` 等客戶選擇，與後續D-029固定四家不相容，保留僅供比較。不得照本節JSON實作首版B；新的互斥prompt／URL輸入、固定四家與候選routes見 [developer-api/BLUEPRINT §4](developer-api/BLUEPRINT.md#4-api-介面與內容邊界草案)。D-027～D-030是已確認決策，新設計中的其餘參數仍待確認。
 
 採 `/v1` JSON API。以下路徑與欄位均為候選契約，第一個版本只承諾有能力矩陣與驗收 fixture 的引擎。
 
@@ -73,13 +75,17 @@ A 與 B 應共用量測能力，但分別擁有使用者契約；B 對外提供�
 | Evidence | raw source reference/hash、original/resolved URL、source_kind、answer span、entity attribution、verification status/reason | 引用、搜尋來源、正文 URL、工具結果分開；claim support 未驗證保持 unknown |
 | Analysis | per_engine 的 valid/excluded/total、mention/source components、score status/value、policy version、caps；usage actual/estimated/unknown | 分析與原始值分開；未量到不能回零；沒有跨引擎總平均 |
 
-Canonical schema 必須保留所有 requested query-runs，包括 provider failure、refusal、parse error、skipped。現有 evaluator 先 filter enabled，不能直接沿用其 excluded count 作為完整失敗統計。成功回答未提及才是 measured zero；沒有有效回答為 unknown/null。job 可 succeeded 而 analysis unknown；一個引擎失敗但其他完成為 partial，回傳逐引擎狀態；pipeline 無法繼續才 failed。
+Canonical schema 必須保留所有 requested query-runs，包括 provider failure、refusal、parse error、skipped。現有 evaluator 先 filter enabled，不能直接沿用其 excluded count 作為完整失敗統計。成功回答未提及才是 measured zero；沒有有效回答為 unknown/null。依 D-029，B 只有四家都完成才可 `succeeded`；任一引擎最終失敗即為 `failed`，但成功引擎的資料仍放入 `partial_results` 並回傳逐引擎狀態。`failed` 不等於沒有資料，也不得產生完整四家比較。
 
 raw provider response 應有受控保存位置與 hash，公開 API 預設只回必要證據；不能把內部 env、錯誤原文或跨租戶引用資料直接送出。保存期限、下載權限與刪除規則需先定義，API 不承諾未實作的永久 raw download。
 
 ### 引用 adapter 契約
 
 SearchPort 接收 query、scope、engine profile、deadline、attempt context，回傳 answer、native citations、search results、tool metadata、usage 與 provider error。供應商解析保留原始定位，核心再評估 evidence；`isOfficialDomain` 不是 provider 自報值。
+
+首批規劃的官方 profile 為 `openai-web`（`gpt-5.6-luna`）、`google-web`（`gemini-3.5-flash-lite`）、`perplexity-sonar`（`sonar`）、`anthropic-web`（`claude-haiku-4-5-20251001`）。這些 model ID 已由 D-028 選定，並於 2026-09-09 完成 D-036 的 20 輪受控 benchmark；profile 狀態為 `controlled_benchmark_verified`，只代表本題組與本時段的能力、成本、延遲與 parser 成功，不代表資料保存、尖峰容量、長期穩定性或正式服務已驗證。
+
+DeepSeek 如後續核准，只能作為讀取既有觀測的統合輸出層；不是搜尋 engine，不增加 query-run 分母，不可覆寫原生回答、引用、`unknown` 或既有分數。
 
 `source_kind` 至少區分 `answer_citation`、`search_result`、`inline_url`、`tool_result`；無法定位來源是 `unresolved`，不可用 Markdown URL 正規式補成已驗證引用。canonical URL 可用於去重，但保留每個原始來源與 span。相同網域不證明答案主張被支持；URL 歸屬、來源內容、答案採用各自存狀態。
 
@@ -99,11 +105,15 @@ SDK 首發語言仍待確認；先完成 OpenAPI / JSON Schema 與錯誤 fixture
 
 ## 5. Jobs、預算與 Monitoring（建議）
 
-工作狀態為 `queued → running → succeeded | partial | failed`。API 在 job 與 reservation 可持久化後才回 202；worker 用 lease／heartbeat 與 attempt 記錄恢復。可由同一 Node 部署先運行 worker，不強制新增服務；儲存失敗時不能降級成只存 Map 卻仍承諾 durable job。
+工作狀態為 `queued → running → succeeded | failed`；`partial_results` 是 `failed` job 可攜帶的結果欄位，不是終態。API 在 job 與 reservation 可持久化後才回 202；worker 用 lease／heartbeat 與 attempt 記錄恢復。可由同一 Node 部署先運行 worker，不強制新增服務；儲存失敗時不能降級成只存 Map 卻仍承諾 durable job。
 
 成本控制必須覆蓋 planner、authority、discovery、fallback、retry 與人工 provider probe。流程為認證／驗證／入站限流 → 已授權 reuse → 原子預留 tenant 與全域預算 → durable job／outbox → worker claim → 每個外部 attempt 記錄與執行 → 結算／釋放剩餘預留。不能用先讀餘額再扣款的兩個獨立請求。儲存 adapter 必須以經驗證的原子操作維持「可用額不為負、同一 reservation 只結算一次、全域與租戶上限共同成立」；若資料庫能力不足，採單一 reservation writer，而非假設 D1 REST 多次呼叫天然是交易。
 
 外部 provider 不一定支援 idempotency；網路 timeout 後可能已計費，因此不承諾 exactly-once provider call。保存 ambiguous attempt，保留預算直到對帳，限制重試次數；worker 重啟不可無條件重做所有成功步驟。usage meter 的估價不足以當財務帳本，成本未知不等於免費。
+
+依 D-029，只有四家全數完成的 `succeeded` job 才能向客戶結算一次完整 request。provider／GeoCheck 系統失敗的 job 不向客戶計費，即使上游已收取部分 token 或搜尋費；這些實際或 ambiguous 成本仍需入內部帳本。request 基本費、內含 token 上限、超額規則與退款呈現尚待成本測試，不得由估價邏輯自行決定。
+
+依 D-030，Beta 免費試用為註冊後 7 天、每日最多 3 輪，不綁卡且不自動轉訂閱；暫定 Basic TWD 660／80 輪、Premium TWD 1,390／170 輪。每日免費輪數不累積，只有 `succeeded` 扣量。這些數字建立在單輪成本約 TWD 4 的假設上；在平均與 P95 成本、全成率及免費濫用控制通過人工核可前，不得啟用或宣稱已具約 48%～49% 毛利。
 
 Monitoring 初期是客戶排程腳本呼叫同一 API：固定 project/entity/query-set/engine profile，每次產生新 measurement，僅比較設定相容的 runs；query/model/parser 更換時標示 series break，unknown 不計為下降到零。代管 scheduler、alert threshold、時區與通知管道均後置。若日後做 webhook，需 owner-scoped subscription、簽章、timestamp、防重放、delivery ID、重試與目的 URL 安全驗證。
 

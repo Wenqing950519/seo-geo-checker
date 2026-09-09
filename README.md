@@ -1,6 +1,6 @@
 # GeoCheck
 
-GeoCheck 目前提供單站 AI 搜尋曝光診斷；此 repository 已按產品、核心規則、外部整合與研究資料分層。Developer API、SDK、Project 與 Monitoring 尚未實作，不因資料夾存在就視為可用功能。
+GeoCheck 目前提供單站 AI 搜尋曝光診斷；此 repository 已按產品、核心規則、外部整合與研究資料分層。Developer API 的 B0～B2 後臺、OpenAPI 與四家官方 adapter 已實作，20 輪受控 benchmark 全數成功；視覺前端、SDK client、付款、遠端 B D1 與公開部署仍未完成，因此不是已上線服務。
 
 ## 從這裡開始
 
@@ -47,6 +47,7 @@ geocheck/
 
 | 想做什麼 | 入口 |
 |---|---|
+| 接手附屬 API 的產品／安全與實作設計 | [2026-09-09 實測與審計](docs/developer-api/AUDIT_2026-09-09.md)、[B API 交接](docs/developer-api/HANDOFF.md)、[產品與架構](docs/developer-api/BLUEPRINT.md)、[防濫用與資安](docs/developer-api/SECURITY.md) |
 | 理解現在怎麼運作 | [CURRENT_STATE](docs/CURRENT_STATE.md)、[ARCHITECTURE](docs/ARCHITECTURE.md) |
 | 確認 A／B 與 API 範圍 | [PRODUCT_BOUNDARY](docs/PRODUCT_BOUNDARY.md)、[API_CONTRACT](docs/API_CONTRACT.md) |
 | 看後續順序 | [TASKS](docs/TASKS.md)、[路線與架構對照](docs/strategy/ROADMAP_ALIGNMENT.md) |

@@ -1,5 +1,5 @@
 const http = require("http");
-const { randomUUID, timingSafeEqual } = require("crypto");
+const { createHash, randomUUID, timingSafeEqual } = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const { loadEnvFiles } = require("../../packages/shared/env.js");
@@ -19,6 +19,7 @@ const { assertSafePublicUrl } = require("../../packages/crawler/url-safety.js");
 const { testDeepSeekProvider } = require("../../packages/ai-providers/deepseek.js");
 const { searchPerplexity, testPerplexityProvider } = require("../../packages/ai-providers/perplexity.js");
 const { getUsageSummary } = require("../../packages/ai-providers/usage-meter.js");
+const { createDeveloperApiHttpHandler } = require("./developer-api-http.js");
 
 loadEnvFiles();
 
@@ -28,11 +29,23 @@ const LEGACY_HOST = String(process.env.LEGACY_HOST || "geocheck.tungowo.com").to
 
 const jobs = new Map();
 const reports = new Map();
-const leads = [];
 const auditCache = createAuditCache();
 const d1ReportStore = createD1ReportStore();
+const developerApi = createDeveloperApiHttpHandler();
 const funnel = createFunnelRecorder();
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
+const SECURITY_HEADERS = Object.freeze({
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "DENY",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+});
+const PRIVATE_OPERATION_PATHS = new Set([
+  "/api/test-provider",
+  "/api/test-search-provider",
+  "/api/search-context",
+  "/api/rate-limit-state"
+]);
 const GA_TAG_HTML = `
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
@@ -44,15 +57,29 @@ const GA_TAG_HTML = `
   </script>
   <script src="/analytics.js"></script>`;
 
-function sendJson(res, status, data) {
+function sendJson(res, status, data, extraHeaders = {}) {
   const body = JSON.stringify(data, null, 2);
-  res.writeHead(status, {
+  const headers = {
+    ...SECURITY_HEADERS,
     "Content-Type": "application/json; charset=utf-8",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, X-Admin-Token"
-  });
+    "Access-Control-Allow-Headers": "Content-Type, X-Admin-Token, Authorization, Idempotency-Key",
+    ...extraHeaders
+  };
+  for (const [name, value] of Object.entries(headers)) if (value == null) delete headers[name];
+  res.writeHead(status, headers);
   res.end(body);
+}
+
+function sendPrivateJson(res, status, data, extraHeaders = {}) {
+  return sendJson(res, status, data, {
+    "Access-Control-Allow-Origin": null,
+    "Cache-Control": "no-store",
+    "CDN-Cache-Control": "no-store",
+    "X-Content-Type-Options": "nosniff",
+    ...extraHeaders
+  });
 }
 
 async function getStoredReport(reportId) {
@@ -71,6 +98,7 @@ async function getStoredReport(reportId) {
 
 function sendHtml(res, status, html) {
   res.writeHead(status, {
+    ...SECURITY_HEADERS,
     "Content-Type": "text/html; charset=utf-8",
     "Access-Control-Allow-Origin": "*"
   });
@@ -79,6 +107,7 @@ function sendHtml(res, status, html) {
 
 function sendText(res, status, text, contentType = "text/plain; charset=utf-8") {
   res.writeHead(status, {
+    ...SECURITY_HEADERS,
     "Content-Type": contentType,
     "Access-Control-Allow-Origin": "*"
   });
@@ -88,6 +117,7 @@ function sendText(res, status, text, contentType = "text/plain; charset=utf-8") 
 function sendHealth(res) {
   const body = '{"ok":true,"service":"geocheck"}\n';
   res.writeHead(200, {
+    ...SECURITY_HEADERS,
     "Content-Type": "application/json; charset=utf-8",
     "Content-Length": Buffer.byteLength(body),
     "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
@@ -102,6 +132,7 @@ function sendHealth(res) {
 
 function sendMarkdown(res, filename, markdown) {
   res.writeHead(200, {
+    ...SECURITY_HEADERS,
     "Content-Type": "text/markdown; charset=utf-8",
     "Content-Disposition": `attachment; filename="${filename}"`,
     "Access-Control-Allow-Origin": "*"
@@ -118,9 +149,9 @@ function isValidAdminToken(req) {
   const expected = process.env.ADMIN_TOKEN;
   const supplied = String(req.headers["x-admin-token"] || "");
   if (!expected || !supplied) return false;
-  const expectedBuffer = Buffer.from(expected);
-  const suppliedBuffer = Buffer.from(supplied);
-  return expectedBuffer.length === suppliedBuffer.length && timingSafeEqual(expectedBuffer, suppliedBuffer);
+  const expectedBuffer = createHash("sha256").update(expected).digest();
+  const suppliedBuffer = createHash("sha256").update(supplied).digest();
+  return timingSafeEqual(expectedBuffer, suppliedBuffer);
 }
 
 function normalizeOrigin(value) {
@@ -134,6 +165,7 @@ function requestHost(req) {
 function maybeRedirectLegacyHost(req, res, url) {
   if (!LEGACY_HOST || requestHost(req) !== LEGACY_HOST) return false;
   res.writeHead(301, {
+    ...SECURITY_HEADERS,
     "Location": `${SITE_ORIGIN}${url.pathname}${url.search}`,
     "Cache-Control": "public, max-age=3600"
   });
@@ -225,20 +257,29 @@ function llmsTxt() {
 `;
 }
 
-function readJson(req) {
+function readJson(req, maxBytes = 1_000_000) {
   return new Promise((resolve, reject) => {
     let body = "";
+    let settled = false;
     req.on("data", (chunk) => {
+      if (settled) return;
       body += chunk;
-      if (body.length > 1_000_000) {
-        req.destroy();
-        reject(new Error("Request body too large"));
+      if (Buffer.byteLength(body, "utf8") > maxBytes) {
+        settled = true;
+        body = "";
+        const error = new Error("Request body too large");
+        error.code = "request_too_large";
+        error.statusCode = 413;
+        reject(error);
       }
     });
     req.on("end", () => {
+      if (settled) return;
       try {
+        settled = true;
         resolve(body ? JSON.parse(body) : {});
       } catch (error) {
+        error.code = "invalid_json";
         reject(error);
       }
     });
@@ -872,6 +913,12 @@ async function handleRequest(req, res) {
 
   if (maybeRedirectLegacyHost(req, res, url)) return;
 
+  if (await developerApi.handle({ req, res, url, readJson, sendJson })) return;
+
+  if (req.method === "OPTIONS" && PRIVATE_OPERATION_PATHS.has(url.pathname)) {
+    return sendPrivateJson(res, 204, null, { Allow: "GET, POST, OPTIONS" });
+  }
+
   if (req.method === "OPTIONS") {
     return sendJson(res, 200, { ok: true });
   }
@@ -948,6 +995,7 @@ async function handleRequest(req, res) {
     const assetPath = path.resolve(__dirname, "../../apps/web/public", assetName);
     if (!fs.existsSync(assetPath)) return sendText(res, 404, "Not found");
     res.writeHead(200, {
+      ...SECURITY_HEADERS,
       "Content-Type": contentType,
       "Cache-Control": "public, max-age=86400",
       "Access-Control-Allow-Origin": "*"
@@ -963,6 +1011,7 @@ async function handleRequest(req, res) {
       const ext = path.extname(safeAssetPath).toLowerCase();
       const mimeTypes = { ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml", ".webp": "image/webp" };
       res.writeHead(200, {
+        ...SECURITY_HEADERS,
         "Content-Type": mimeTypes[ext] || "application/octet-stream",
         "Cache-Control": "public, max-age=86400",
         "Access-Control-Allow-Origin": "*"
@@ -983,6 +1032,7 @@ async function handleRequest(req, res) {
   // 舊路徑 /home 以 301 併入正典 /
   if (req.method === "GET" && url.pathname === "/home") {
     res.writeHead(301, {
+      ...SECURITY_HEADERS,
       "Location": "/",
       "Cache-Control": "public, max-age=3600",
       "Access-Control-Allow-Origin": "*"
@@ -991,8 +1041,8 @@ async function handleRequest(req, res) {
   }
 
   if (privateAdminPath && req.method === "GET" && url.pathname === `${privateAdminPath}/usage`) {
-    if (!isValidAdminToken(req)) return sendJson(res, 401, { error: "Unauthorized" });
-    return sendJson(res, 200, getUsageSummary({ limit: url.searchParams.get("limit") }));
+    if (!isValidAdminToken(req)) return sendPrivateJson(res, 401, { error: "Unauthorized" });
+    return sendPrivateJson(res, 200, getUsageSummary({ limit: url.searchParams.get("limit") }));
   }
 
   if (req.method === "POST" && url.pathname === "/api/audit") {
@@ -1004,9 +1054,10 @@ async function handleRequest(req, res) {
   }
 
   if (req.method === "POST" && url.pathname === "/api/test-provider") {
+    if (!isValidAdminToken(req)) return sendPrivateJson(res, 401, { error: "Unauthorized" });
     try {
       const result = await testDeepSeekProvider();
-      return sendJson(res, 200, {
+      return sendPrivateJson(res, 200, {
         ok: true,
         provider: result.json.provider || result.provider,
         message: result.json.message || "deepseek api works",
@@ -1015,30 +1066,32 @@ async function handleRequest(req, res) {
       });
     } catch (error) {
       console.error("test-provider failed", error);
-      return sendJson(res, error.statusCode || 500, toClientError(error));
+      return sendPrivateJson(res, error.statusCode || 500, toClientError(error));
     }
   }
 
   if (req.method === "POST" && url.pathname === "/api/test-search-provider") {
+    if (!isValidAdminToken(req)) return sendPrivateJson(res, 401, { error: "Unauthorized" });
     try {
       const result = await testPerplexityProvider();
-      return sendJson(res, 200, result);
+      return sendPrivateJson(res, 200, result);
     } catch (error) {
       console.error("test-search-provider failed", error);
-      return sendJson(res, error.statusCode || 500, toClientError(error));
+      return sendPrivateJson(res, error.statusCode || 500, toClientError(error));
     }
   }
 
   if (req.method === "POST" && url.pathname === "/api/search-context") {
+    if (!isValidAdminToken(req)) return sendPrivateJson(res, 401, { error: "Unauthorized" });
     try {
       const body = await readJson(req);
       const query = String(body.query || "").trim();
-      if (!query) return sendJson(res, 400, { error: "query is required" });
+      if (!query) return sendPrivateJson(res, 400, { error: "query is required" });
       const result = await searchPerplexity(query, { maxTokens: body.maxTokens || 700, operation: "search_context" });
-      return sendJson(res, 200, result);
+      return sendPrivateJson(res, 200, result);
     } catch (error) {
       console.error("search-context failed", error);
-      return sendJson(res, error.statusCode || 500, toClientError(error));
+      return sendPrivateJson(res, error.statusCode || 500, toClientError(error));
     }
   }
 
@@ -1051,6 +1104,7 @@ async function handleRequest(req, res) {
       const limit = checkAuditLimit({ req, url: siteUrl });
       if (!limit.allowed) {
         res.writeHead(limit.statusCode, {
+          ...SECURITY_HEADERS,
           "Content-Type": "application/json; charset=utf-8",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
@@ -1125,7 +1179,8 @@ async function handleRequest(req, res) {
   }
 
   if (req.method === "GET" && url.pathname === "/api/rate-limit-state") {
-    return sendJson(res, 200, { ...getRateLimitState(), auditCache: auditCache.state(), reportStore: d1ReportStore.state() });
+    if (!isValidAdminToken(req)) return sendPrivateJson(res, 401, { error: "Unauthorized" });
+    return sendPrivateJson(res, 200, { ...getRateLimitState(), auditCache: auditCache.state(), reportStore: d1ReportStore.state() });
   }
 
   const statusMatch = url.pathname.match(/^\/api\/status\/([^/]+)$/);
@@ -1175,8 +1230,13 @@ async function handleRequest(req, res) {
       if (body.site.length > 500) return sendJson(res, 400, { error: "site URL too long" });
       if (body.name && body.name.length > 100) return sendJson(res, 400, { error: "name too long" });
       if (body.need && body.need.length > 1000) return sendJson(res, 400, { error: "need description too long (max 1000 chars)" });
-      // Validate site URL format
-      try { new URL(body.site.trim()); } catch { return sendJson(res, 400, { error: "site must be a valid URL" }); }
+      // Validate site URL format and prevent dangerous schemes from entering the lead store.
+      try {
+        const leadSite = new URL(body.site.trim());
+        if (!["http:", "https:"].includes(leadSite.protocol)) throw new Error("unsupported protocol");
+      } catch {
+        return sendJson(res, 400, { error: "site must be a valid http(s) URL" });
+      }
 
       const lead = {
         id: randomUUID(),
@@ -1191,7 +1251,6 @@ async function handleRequest(req, res) {
         consentVersion: "2026-07-13",
         consentedAt: new Date().toISOString()
       };
-      leads.push(lead);
       // Persist to filesystem so leads survive server restarts
       const leadsFile = path.resolve(__dirname, "../../mock-api/leads.jsonl");
       fs.appendFileSync(leadsFile, JSON.stringify(lead) + "\n", "utf8");
@@ -1208,7 +1267,10 @@ async function handleRequest(req, res) {
         nextAction: "已收到資料；如需進一步了解，我們會透過 Email 聯絡"
       });
     } catch (error) {
-      return sendJson(res, 400, { error: error.message || "Invalid request" });
+      if (error?.code === "request_too_large") return sendJson(res, 413, { error: "Request body is too large" });
+      if (error?.code === "invalid_json" || error instanceof SyntaxError) return sendJson(res, 400, { error: "Invalid JSON" });
+      console.error("lead submission failed", { code: error?.code || "internal_error" });
+      return sendJson(res, 500, { error: "Unable to save lead" });
     }
   }
 

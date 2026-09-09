@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "observed_at_utc": "2026-09-08T16:49:05.784Z",
+  "observed_date_asia_taipei": "2026-09-09",
+  "command": "npm.cmd run smoke:official-providers -- --twd-per-usd=31.535",
+  "prompt_sha256": "72a610e16d07fd6fe7348bce49705e3457c0b89b11834a1e4fe8fca1d651a0a3",
+  "attempts_per_provider": 1,
+  "retry_count": 0,
+  "twd_per_usd": 31.535,
+  "providers": [
+    {
+      "profile_id": "openai-web",
+      "model": "gpt-5.6-luna",
+      "success": true,
+      "response_id_present": true,
+      "search_executed": true,
+      "citation_count": 1,
+      "answer_characters": 122,
+      "input_tokens": 17867,
+      "output_tokens": 199,
+      "total_tokens": 18066,
+      "search_requests": 2,
+      "duration_ms": 7833,
+      "cost_status": "estimated_list_price",
+      "cost_usd": 0.0238122
+    },
+    {
+      "profile_id": "google-web",
+      "model": "gemini-3.5-flash-lite",
+      "success": true,
+      "response_id_present": false,
+      "search_executed": true,
+      "citation_count": 1,
+      "answer_characters": 128,
+      "input_tokens": null,
+      "output_tokens": null,
+      "total_tokens": 144,
+      "search_requests": 3,
+      "duration_ms": 2682,
+      "cost_status": "estimated_range_free_allowance_unknown",
+      "cost_min_usd": 0.0000432,
+      "cost_max_usd": 0.04236
+    },
+    {
+      "profile_id": "perplexity-sonar",
+      "model": "sonar",
+      "success": true,
+      "response_id_present": true,
+      "search_executed": true,
+      "citation_count": 20,
+      "answer_characters": 59,
+      "input_tokens": 46,
+      "output_tokens": 46,
+      "total_tokens": 92,
+      "search_requests": 0,
+      "duration_ms": 2492,
+      "cost_status": "provider_reported",
+      "cost_usd": 0.00509
+    },
+    {
+      "profile_id": "anthropic-web",
+      "model": "claude-haiku-4-5-20251001",
+      "success": true,
+      "response_id_present": true,
+      "search_executed": true,
+      "citation_count": 1,
+      "answer_characters": 14,
+      "input_tokens": 8554,
+      "output_tokens": 276,
+      "total_tokens": 8830,
+      "search_requests": 1,
+      "duration_ms": 5288,
+      "cost_status": "estimated_list_price",
+      "cost_usd": 0.019934
+    }
+  ],
+  "round_cost": {
+    "usd_min": 0.0488794,
+    "usd_max": 0.0911962,
+    "twd_min": 1.541411879,
+    "twd_max": 2.875872167,
+    "original_assumption_twd": 4,
+    "repricing_gate_twd": 4.5,
+    "interpretation": "single_round_below_original_assumption_and_repricing_gate"
+  },
+  "limitations": [
+    "Only Perplexity returned provider-reported total cost; other costs use official list prices.",
+    "Google returned total tokens without an input/output split and its Search free allowance state is unknown, so its cost is a range.",
+    "One successful round does not estimate mean, p95, retry, failed-round, infrastructure, payment, or support cost.",
+    "The first console aggregation treated null provider costs as zero; the stored totals above were recomputed from captured usage after that bug was fixed and regression-tested."
+  ]
+}

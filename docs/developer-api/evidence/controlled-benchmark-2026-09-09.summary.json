@@ -1,0 +1,27 @@
+{
+  "event": "benchmark_completed",
+  "run_id": "bench_8d2f5a3f-a4df-4c88-a97f-549b5abae174",
+  "completed_at": "2026-09-09T00:04:02.254Z",
+  "summary": {
+    "completed_rounds": 20,
+    "all_four_success_rounds": 20,
+    "all_four_success_rate": 1,
+    "p95_round_cost_twd": 3.490287,
+    "maximum_round_cost_twd": 3.69144,
+    "total_accounted_cost_twd": 53.304851,
+    "p95_round_duration_ms": 11907,
+    "maximum_round_duration_ms": 12948,
+    "provider_failure_counts": {},
+    "checks": {
+      "completed_required_rounds": true,
+      "minimum_all_four_success_rounds": true,
+      "p95_round_cost_within_limit": true,
+      "every_round_within_duration_limit": true,
+      "total_budget_within_limit": true
+    },
+    "passed": true
+  },
+  "plan_version": "controlled-four-provider-20-v1",
+  "plan_sha256": "9e31f959cceeb3bcdfea9446a7ab74b484371cfc4bb8b23f1aa7b3c1e616f9ef",
+  "twd_per_usd": 31.535
+}

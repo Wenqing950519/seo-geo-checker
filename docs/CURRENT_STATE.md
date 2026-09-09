@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-09-06
+last_updated: 2026-09-09
 tags:
   - geocheck
   - current-state
@@ -18,7 +18,21 @@ tags:
 
 搬移前後完整測試通過；另驗證新舊 HTTP 入口、首頁／資源位元一致及 mock 報告 JSON／HTML／Markdown，未連外量測。本次沒有新增 SDK、Developer Console、Account／Project 或 Monitoring，沒有改 scoring／query policy，也沒有部署。以下歷史線上驗證紀錄仍按其原日期解讀。
 
-更新日期：2026-09-06
+依 D-027／D-028，Developer API 的搜尋供應商為 OpenAI、Google Gemini、Perplexity、Anthropic 官方 API 直連，不採 OpenRouter 作為正式量測路由。GPT-5.6 Luna、Gemini 3.5 Flash-Lite、Perplexity Sonar、Claude Haiku 4.5 已於 2026-09-09 以同一固定 prompt 各完成一次本機帳號 smoke，四家都回成功、搜尋執行證據與至少一筆引用；這只證明當次帳號、model ID、request／parser 可用。將 `DEVELOPER_API_MODE=official` 時，程式要求四家 server-side API key；缺任一把即以 `missing_provider_api_keys` 停止。DeepSeek 只保留為未決的統合輸出選項，不是量測 engine，也不參與分數。
+
+依 D-029／D-037／D-038，Developer API 是不影響產品 A 的附屬產品：每個已接受的分析固定執行四家，不提供客戶逐次選擇。四家全數完成才是 `succeeded` 並向客戶計一次完整 request；任一家最終失敗則整體 `failed` 且不向客戶計費，但回傳其他已完成供應商的 `partial_results`。B0～B2 後臺已有帳戶邀請／登入、API key、tenant 隔離、SQLite／獨立 D1 store、持久 job、lease/fencing、原子配額、provider attempt、成本／安全 ledger、結果 expiry／刪除，以及 customer／console／admin API；本機與 HTTP 測試已通過。沒有視覺前端、金流、正式寄信服務、任意 URL 抓取或公開 customer API。
+
+依 D-030，Developer API 的 Beta 商業方向為無綁卡 7 天試用，每天最多 3 輪，期滿不自動訂閱；暫定 Basic TWD 660／80 輪、Premium TWD 1,390／170 輪。只有四家全成才扣輪數。D-036 的 20 輪受控 benchmark 於 2026-09-09 完成：20／20 四家全成、P95 單輪成本 TWD 3.490287、最高 TWD 3.69144、最慢回合 12.948 秒，保守總成本 TWD 53.304851，四項門檻全數通過。使用者同日回報自接入後四家供應商後台累計 USD 1.093／TWD 34.467755；此值可能包含 benchmark 前 smoke 且未附帳單匯出，只能核對總預算，不能取代每輪 P95。這仍未包含 retry、失敗輪、基礎設施、金流、支援或真實客戶價值，不能直接確認毛利或 SLA。目前沒有串金流、建立訂閱或啟用免費流量。Platform mode 必須明確選本機 SQLite 或獨立 B D1。`geocheck-developer-api` D1 已以 APAC hint 建立並套用三個 migration；`geocheck-developer-d1-gateway` Worker 只綁定該資料庫，使用獨立 secret 驗證，Render 已保存 gateway URL／secret，未建立帳戶級 D1 token。線上唯讀 schema probe 經 gateway 成功看到 17 個 `developer_*` tables；未驗證正式 customer API，因目前 Render 線上版仍是舊 commit。客戶結果序列化大小上限為 512 KiB。
+
+線上 gateway 授權 batch write／read 亦已驗證；全域 admission 已設為 `false`／`private beta not released`，避免後臺正式發布前接單。
+
+2026-09-09 另完成 API／IT／資安審計：付費 probe 與營運狀態端點改為強制 admin token；`/v1` 禁快取與 wildcard CORS、遮蔽 tenant／上游成本／原生 metadata；token 固定時間比較；Gemini 關閉預設保存；provider response 限 2 MiB；URL 輸入拒絕 localhost、IP literal 與非預設埠；服務回應加入基礎安全標頭。完整證據、限制與人工門檻見 `developer-api/AUDIT_2026-09-09.md`。`packages/sdk` 仍只有邊界文件，沒有可安裝 client。
+
+D-036 benchmark 的固定題組、append-only 事件、獨立 summary 與重算工具均已保存；只記錄問題 hash、公開 reference URL、模型、usage、成本、延遲與數量，不保存回答或引用正文。完整報告見 `developer-api/BENCHMARK_2026-09-09.md`。技術前置門檻已通過，可進入前端／技術文件／API 管理 dashboard 的規劃，但尚未授權部署或公開營運。
+
+更新日期：2026-09-09
+
+附屬 API 的設計交接已整理至 `developer-api/HANDOFF.md`、`BLUEPRINT.md`、`SECURITY.md`，含候選客群、使用者流程、輸入／輸出、成功與扣量、配額／成本帳本、防濫用、資安與驗收案例。D-036 已授權並完成 20 輪付費前置驗證；除此之外，客群、配額窗、保存期限與付費週期仍依交接表待人工確認，沒有新增帳戶、金流、前端、部署或公開流量。舊單引擎 B／客戶選引擎草案由 D-029 固定四家決策取代。
 
 ## 已完成
 
@@ -44,6 +58,7 @@ tags:
 |---|---|---|
 | Perplexity Sonar | 正式站已驗證 | 2026-09-02 `POST /api/test-search-provider` 回傳 HTTP 200、provider `perplexity`、model `sonar`。 |
 | DeepSeek V4 Flash | 正式站已驗證 | 2026-09-02 `POST /api/test-provider` 回傳 HTTP 200、provider `deepseek`、model `deepseek-v4-flash`。 |
+| Developer API 固定四家 | 本機帳號 smoke 已驗證 | 2026-09-09 同一固定 prompt 各一次、無 retry；GPT-5.6 Luna、Gemini 3.5 Flash-Lite、Sonar、Claude Haiku 4.5 均回搜尋證據與引用。這不是正式站部署驗證。 |
 
 ## 線上部署實測（2026-08-10）
 

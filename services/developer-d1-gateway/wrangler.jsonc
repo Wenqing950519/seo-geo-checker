@@ -1,0 +1,21 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "geocheck-developer-d1-gateway",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-09-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "geocheck-developer-api",
+      "database_id": "cebce923-e5a4-460e-abf3-68bf5096e67c",
+      "migrations_dir": "../api/developer-api-migrations"
+    }
+  ]
+}

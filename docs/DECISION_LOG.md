@@ -346,3 +346,124 @@ tags:
 - **決策邊界**：這是使用者授權的檔案與 import 整理，不是商業轉型／定價／多引擎／Account／Project／Monitoring 功能的批准；不改 D-021／D-025、不刪原始研究證據、不部署。兩份策略提案的優先序差異列於 strategy/ROADMAP_ALIGNMENT.md，未自行升格為正式策略。
 - **驗證**：搬移前後完整測試通過，新增 core／相容入口與無外部呼叫的 HTTP 檢查；逐檔搬移表記錄來源 SHA-256。人工線上與付費量測未執行。
 - **追溯**：本次使用者要求；maintenance/layout-migration-2026-09-08.json；maintenance/REPOSITORY_CLEANUP.md。
+
+### D-027 Developer API 採官方搜尋 API 直連，不採 OpenRouter
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（架構方向）
+- **決策者**：Wenqing950519
+- **決策內容**：GeoCheck Developer API 的正式量測路徑分別直連 OpenAI、Google Gemini、Perplexity、Anthropic 的官方 API；OpenRouter 不作為 production measurement、fallback 或計費路由。四家都以支援原生 web search 的低成本、輕量模型為候選，並分開管理金鑰、儲值／帳務、限制與失敗。
+- **理由與依據**：AI 引用與 GEO 是產品核心，搜尋 surface 本身會影響回答與引用。路由商的搜尋選擇或 fallback 會讓結果混入另一層搜尋供應商，也會把儲值與成本歸屬改到不同路徑，因此正式證據需能追溯到各家官方 API。
+- **落地方式**：先建立 `official-engine-profiles` 登錄與 `SearchProvider` port，所有 Developer API profile 初始均為 `planned`。每家 adapter 需保留原生 evidence，再映射共同 observation envelope；不得抹除供應商差異。既有 A 的 Perplexity 路徑維持不變。
+- **決策邊界**：本決策不代表四家 adapter、Developer API、SDK、計費或監控已完成；不授權儲值、建立金鑰或付費呼叫。各家最終 model ID、搜尋參數、啟用順序、預算與跨引擎呈現仍待能力／成本測試後確認；不改 D-021、D-025 或現有 A 行為。
+- **影響範圍**：`services/api/application/official-engine-profiles.js`、`services/api/ports/search-provider.js`、未來官方 provider adapters、observation schema、usage／reservation ledger、Developer API 能力矩陣。
+- **可追溯來源**：2026-09-08 使用者本次確認；各家官方 web-search API 文件。
+
+### D-028 首批官方量測模型與 DeepSeek 統合層邊界
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（模型選定；啟用待驗證）
+- **決策者**：Wenqing950519
+- **決策內容**：首批官方搜尋 profile 分別選用 `gpt-5.6-luna`、`claude-haiku-4-5-20251001`、`gemini-3.5-flash-lite`、`sonar`，以低成本、輕量且具原生搜尋能力為優先。DeepSeek 若後續加入，只能讀取四家已完成的觀測來產生統合輸出／摘要；不作為第五個搜尋 engine。
+- **理由與依據**：使用者希望在每家官方帳戶獨立儲值與控管成本的前提下，先用輕量模型執行 GEO／引用觀測；統合文字可後置，不能改變可追溯的原始搜尋結果。
+- **決策邊界**：選定 model ID 不表示已完成帳戶可用性、web-search capability、價格、rate limit、資料保留、引用格式或成本驗證。所有 profile 保持 `selected_pending_smoke`，未取得明確儲值與測試授權前不得發出任何付費請求。DeepSeek 統合層尚未授權實作，且不得改寫回答、引用、分母、`unknown` 或 D-021 分數。
+- **驗證更新（2026-09-09，非新決策）**：使用者已於本輪明確要求實測；四家以同一固定 prompt 各一次、無 retry 的帳號 smoke 均成功，因此 runtime profile 更新為 `single_smoke_verified`。尚未驗證 rate limit、長期相容性、保存條款或正式 SLA，原決策邊界其餘部分不變。
+- **影響範圍**：官方 engine profile 登錄、未來 adapter fixture、成本預留、觀測 metadata、統合輸出 presenter 的邊界。
+- **可追溯來源**：2026-09-08 使用者本次確認；OpenAI Docs、Anthropic、Gemini、Perplexity 官方 model 文件。
+
+### D-029 附屬 Developer API 採固定四引擎、全成才成功與計費
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（產品與失敗／計費語義）
+- **決策者**：Wenqing950519
+- **決策內容**：Developer API 是不影響現有產品 A 的附屬產品。客戶每次提交 prompt 或 URL，GeoCheck 以不公開的內部流程固定呼叫 OpenAI、Google Gemini、Anthropic、Perplexity 四個官方 profile；不提供逐次選擇或少跑特定供應商。GeoCheck 將四家結果與強化分析包成一個專業 API 回應，而非對外呈現模型路由器。
+- **成功與回傳語義**：只有四家都完成才可標記 `succeeded`。任一家在有限重試後仍失敗，整個 job 標記 `failed`；已成功的 provider 結果仍以 `partial_results` 回傳，並逐家提供狀態與可公開的錯誤分類，但不得產生或宣稱完整四家比較結論。
+- **計費語義**：客戶只在四家都完成並取得完整結果時支付一次完整 request；外部 provider 或 GeoCheck 系統造成的失敗不向客戶計費。內部仍保存每家 attempt、token、搜尋工具與實際／未知成本，失敗時已發生的供應商成本由 GeoCheck 承擔並進入成本帳本。對外 request 基本費、token／超額用量門檻與價格尚待成本 smoke test 後另行確認。
+- **理由與取捨**：固定四家讓商品是跨平台 GEO 分析，而不是可替換的模型轉售；全成才成功可防止不完整樣本被誤當完整比較。代價是單一供應商不穩會提高整體失敗率與 GeoCheck 吸收的成本，因此 bounded retry、錯誤分類與成本觀測是上線前必要條件。
+- **決策邊界**：本決策不修改產品 A、D-021 分數、現有 A provider 路徑或公開報告；不代表 Developer API、SDK、金流、帳戶、儲值或 provider adapter 已獲准實作。DeepSeek 邊界仍依 D-028。
+- **影響範圍**：B 的 API／job schema、provider orchestration、`partial_results`、計費結算與 SDK 錯誤處理；產品 A 無影響。
+- **可追溯來源**：2026-09-08 使用者確認「附屬產品不影響產品 A」、「一家失敗則整體失敗但回傳部分結果」及「供應商／系統失敗不計費」。
+
+### D-032 Developer API Key 啟用門檻與訂閱方向
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（啟用與商業形式；未實作）
+- **決策者**：Wenqing950519
+- **決策內容**：帳戶註冊本身不開始免費試用；使用者首次進入 API Key 管理介面即開始試用／服務資格計時，即使當次沒有建立任何key也算。建立key前仍須在 Free、Basic、Premium 中選擇方案。Basic、Premium 的長期商業形式採訂閱制，而非一次性點數包；Free 仍維持不綁卡、不自動付費。
+- **決策邊界**：訂閱週期、額度在每期如何發放、是否自動續費、付款失敗、取消與降級、稅務及退款尚未決定。現階段未實作金流時，選擇付費方案不得假裝已付款或發放付費額度。D-030 的7天／每日3輪與無綁卡規則維持；本條僅取代其「註冊後立即起算」的時間解讀。
+- **可追溯來源**：使用者確認「進入 API Key 管理 dashboard，即使不創建key也算」；建立key必須從三方案選擇，付費採「訂閱制」。
+
+### D-031 Developer API 單題觀測與使用者問題優先
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（輸入規則；未實作）
+- **決策者**：Wenqing950519
+- **決策內容**：承接一輪一題、固定四家回答的提案，預設由服務自動生成觀測問題；若使用者提交的prompt已包含要觀測的問題，直接採用該問題，不另生成或改寫。四家使用同一個最終問題，保存effective_prompt及問題來源（user／generated）。輸入URL而未提供問題時，從有限頁面內容產生一题。
+- **決策邊界**：本決策不指定生成供應商或模板，也不授權付費呼叫。混合指令中問題的識別、多題輸入與資訊不足時的處理尚待契約設計，不得默默擴成多題或自行任選一題。P2的搜尋品質成功門檻仍待確認；不改A、計分、價格或D-029失敗扣量規則。
+- **可追溯來源**：使用者確認「預設會自己生成採用，不過如果使用者的打API的Prompt當中已經有提出問題，那就不用去生成」。
+
+### D-033 Developer API 選題與多題輸入的首版邊界
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（契約方向；未實作）
+- **決策者**：Wenqing950519
+- **決策內容**：無使用者問題時，首版先採可版本化、低成本的模板／規則自動生成，不額外呼叫LLM。後續以實測比較是否升級為LLM規劃，不將其視為本輪既定成本。單一`prompt`一律視為一個原樣觀測任務：系統不從自然語言猜選哪一題、不拆成多輪、也不替不同provider各自生成問題；四家接收相同effective_prompt。若客戶將多題寫在同一prompt，仍作同一任務處理，文件告知答案可比較性與完整性可能下降。
+- **理由與取捨**：四家先各自分析網站、各自出題再搜尋，至少會把4個觀測呼叫擴成8個外部呼叫，且問題不同，無法把結果解釋為相同條件下的跨平台比較。該做法可留作日後受控研究實驗，但不是首版商品流程。
+- **決策邊界**：不指定模板內容、URL資訊不足時的錯誤／fallback、prompt長度與輸出token上限；也不授權任何付費LLM planner。未來若做`questions[]`批次，需另定每題扣量、部分失敗與總成本，不從本條推得。
+- **可追溯來源**：使用者選擇先模板、後續再考慮LLM的C方向，並選擇多題輸入C方向；使用者提出四家各自選題的替代方案後，採首版不使用該方案的取捨。
+
+### D-034 Developer API 分層保存方向
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（原則；未凍結期限）
+- **決策者**：Wenqing950519
+- **決策內容**：資料保存採平衡的分層方向，不採「所有資料同一短期限」或預設長期保存一切。保存設計優先釐清內容類型、存放位置、存取權限與刪除／備份處理；保存較久本身不是主要顧慮。
+- **決策邊界**：客戶可讀結果、使用者prompt、URL HTML、供應商原始回應、citation、帳務metadata、log與備份各留多久尚未決定。不得把先前7／30／90天候選值視為已確認；供應商資料保留、跨境處理及條款仍須逐家查證。
+- **可追溯來源**：使用者選擇資料保存B方向，並指出核心是保存內容與方法而非單純保存時間。
+
+### D-035 Developer API 雛型僅以 D1 保存結果層
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（雛型儲存邊界；未實作）
+- **決策者**：Wenqing950519
+- **決策內容**：B 雛型使用獨立的 D1 結果層保存客戶可讀的結構化結果；不使用 R2 保存原始證據。原始 URL HTML、完整供應商 request／response、tool trace、除錯內容及使用者 cookie 均不進入雛型持久保存。不得共用或改動產品 A 的 `geocheck-reports` D1。
+- **理由與取捨**：先用最小持久層驗證結果交付與保留需求，降低儲存、刪除與敏感內容範圍；代價是無法用雛型重播原始供應商回應、完整除錯或保存網頁快照。
+- **決策邊界**：此條不是實作或建立遠端D1的授權，也未定結果保存期限、D1 schema、帳戶／配額帳本、raw evidence後續是否進R2。雛型必須在寫入前限制結果大小；D1單列2 MB上限及目前帳戶方案容量需在live前驗證，不能將任意provider原文塞進結果JSON。
+- **可追溯來源**：使用者確認「雛型先構建D1僅結果層」。
+
+  - **實作紀錄 2026-09-08**：使用者後續授權開始製作並自我驗證 API 雛型，直到需填入provider key環境變數即停止。已新增獨立B D1 migration／adapter、512 KiB結果序列化安全上限、fixture API與本機測試；未建立D1、未套用migration、未填key、未儲值或發出真實provider請求。
+
+### D-030 Developer API Beta 定價與無綁卡試用
+
+- **日期**：2026-09-08 ｜ **狀態**：Confirmed（Beta 商業契約方向；尚未啟用）
+- **決策者**：Wenqing950519
+- **決策內容**：Developer API 採低門檻 Beta 定價。新註冊使用者可免費試用 7 天，每天最多 3 輪；1 輪依 D-029 固定執行四家官方 profile。免費試用不要求綁信用卡、不自動轉為付費訂閱；試用結束後需由使用者主動購買。Beta 付費方案暫定 Basic 為 TWD 660／80 輪，Premium 為 TWD 1,390／170 輪。
+- **扣量與失敗**：只有四家全數完成的 `succeeded` job 才扣除免費或付費輪數；`failed` job 即使帶有 `partial_results` 也不扣量、不計費。免費輪數每日重置，不遞延累積。
+- **理由與取捨**：產品 A 與 Developer API 都尚未商業化，創辦人現階段以取得首批真實使用、建立信任及需求驗證為優先，並希望在出現真實使用者後才逐步投入官方 API 額度。無綁卡降低試用阻力，但會提高濫用與免費成本風險。
+- **財務假設與重估門檻**：80／170 輪以單輪完整成本約 TWD 4、金流費約 3% 推算，方案毛利約 48%～49%；這些是未驗證假設，不是已觀測結果。正式啟用前需以官方帳戶 smoke test 驗證平均與 P95 成本、四家全成率、失敗吸收成本及付款費率；若單輪成本高於 TWD 4.5，必須先重算額度或價格，不得直接上線。
+- **驗證更新（2026-09-09，非新決策）**：單次四家 smoke 的上游成本為 TWD 1.54～2.88，低於 TWD 4 假設與 TWD 4.5 門檻；僅 Perplexity 為 provider-reported 成本，其他依牌價估算，Google 因免費搜尋額度與 token 分拆未知而為區間。`n=1` 不足以驗證平均、P95、全成率、失敗吸收或毛利，定價決策不變。
+- **必要保護**：免費流量在啟用前仍需定義身分驗證、單人／單裝置與全域成本上限、濫用處理及服務關閉條件；本決策不自行確定這些參數。不得提供 unlimited 使用。
+- **決策邊界**：本決策是 Beta 價格與試用契約，不是永久價格承諾；不修改產品 A，也不授權串接金流、保存卡片、建立訂閱、儲值或發出付費 provider 請求。SDK、正式月費週期、額度效期、稅務與退款條款仍待後續確認。
+- **可追溯來源**：2026-09-08 使用者確認低端市場策略、約 45% 毛利方向、Basic／Premium 價格、7 天每日 3 輪及不強制綁卡。
+
+### D-036 Developer API 進入 20 輪受控供應商驗證
+
+- **日期**：2026-09-09 ｜ **狀態**：Confirmed（一次性測試授權；非公開上線授權）
+- **決策者**：Wenqing950519
+- **決策內容**：先以公開網站與不含個資的真實問題執行 20 個完整回合；每回合固定四家官方 provider 各一次。供應商總預算上限 TWD 120，四家全數成功至少 19／20，P95 單輪成本不超過 TWD 4.5，任何一回合端到端時間不超過 30 秒。
+- **執行邊界**：本輪不 retry、不公開 API、不建立前端、SDK、帳戶、金流或 dashboard。成本以 provider-reported 或官方牌價估算的保守上界計入；未知成本整輪暫列 TWD 12。每家 timeout 29 秒，輸出上限 1,024 tokens；OpenAI／Anthropic 搜尋上限 2 次，Google／Perplexity 依官方介面可用欄位控制並照實記錄。
+- **後續門檻**：四項條件全部通過後，才規劃前端、技術文件及 API 管理 dashboard；通過不等於已批准部署或正式營運。若任一門檻失敗，先停在診斷與修補，不以調低門檻宣稱通過。
+- **可追溯來源**：2026-09-09 使用者本次明確批准；固定題組與執行器位於 `docs/developer-api/evidence/controlled-benchmark-inputs-20-v1.json` 與 `scripts/developer-api/run-controlled-benchmark.cjs`。
+- **執行結果（2026-09-09）**：20／20 回合四家全成；P95 單輪成本 TWD 3.490287、最高 TWD 3.69144；P95 延遲 11.907 秒、最慢 12.948 秒；保守總成本 TWD 53.304851。四項門檻全部通過，允許進入前端／技術文件／API 管理 dashboard 的規劃階段，但不構成部署或公開營運授權。
+- **帳務對帳補充（2026-09-09，非新決策）**：使用者回報自接入後台累計 Claude USD 0.670、Gemini USD 0.008、OpenAI USD 0.300、Perplexity USD 0.115，合計 USD 1.093／TWD 34.467755（沿用 TWD 31.535／USD）。該範圍可能包含 benchmark 前 smoke，且未附帳單匯出，故只作總預算對帳，不取代事件檔的每輪成本與 P95；驗收判定仍採 TWD 53.304851 保守上界。
+
+### D-037 完成 Developer API 1～3 項，介面先做後臺
+
+- **日期**：2026-09-09 ｜ **狀態**：Confirmed（實作授權；非部署授權）
+- **決策者**：Wenqing950519
+- **決策內容**：完成產品基礎、三類介面的後臺契約，以及資安／營運驗證；視覺前端由使用者之後另行搭建。無法只靠本機確認的公開資訊可使用 Brave 瀏覽器查證並允許開視窗。
+- **落地範圍**：帳戶邀請與信箱驗證、登入 session、API key 建立／列出／撤銷、tenant 隔離、持久 job、配額 reservation／settlement、provider attempt／成本 ledger、結果期限與刪除、customer／console／admin API、OpenAPI、D1 adapter／migration runner、admission kill switch 及資安測試。
+- **人工邊界**：本決策不批准視覺前端、付款、正式寄信服務、建立 Cloudflare D1／API token、部署或公開流量。quota window、結果保存天數、production budget、事故負責人及付費週期仍由使用者拍板；程式將前兩項設為必填，不以便利預設冒充正式決策。
+- **執行更新（2026-09-09）**：使用者後續明確批准 APAC D1 及最低權限持久 token。`geocheck-developer-api` 已成功建立；Cloudflare UI 顯示 D1 token 權限只能套用整個帳戶，無法限制單一 database。因這會同時授權 A 與其他 D1，已在建立 token 前停止，等待使用者選擇接受帳戶級 D1 Read／Edit 或改採只綁定 B D1 的 Worker gateway。migration、`.env` 寫入與遠端 readiness 尚未執行。
+
+### D-038 Developer API D1 改採單庫 Worker gateway
+
+- **日期**：2026-09-09 ｜ **狀態**：Confirmed（架構與部署）
+- **決策者**：Wenqing950519
+- **決策內容**：因 Cloudflare 帳戶 D1 token 不能限制到單一 database，使用者選擇 Worker gateway。`geocheck-developer-d1-gateway` 以 in-process `DB` binding 只連到 `geocheck-developer-api`；Render 只持有 gateway URL 與獨立 shared secret，不持有可讀寫其他 D1 的帳戶 token。
+- **安全邊界**：gateway 只接受 Bearer 驗證後的單筆／batch data statements；拒絕 DDL、PRAGMA、ATTACH、transaction control、多 statement、非 scalar params及超量 request／response。schema migration 只由人工登入的 Wrangler OAuth 執行，不開 migration HTTP route；不得把 gateway secret、SQL 或 params 寫進 repo／log／前端。
+- **執行結果**：B D1 的 `0001`～`0003` migration 已全部套用；Worker 已部署至 `https://geocheck-developer-d1-gateway.bgo-career.workers.dev`，Render 已保存 gateway URL／secret。公開 health 回 200、未授權 query 回 401、授權唯讀 schema query 回 200 並確認 17 個 `developer_*` tables。未建立帳戶級 D1 API token，未改 A D1。
+- **執行補充**：授權 batch write／read 已回 200，全域 admission 已設為 `false`／`private beta not released`，避免後臺正式發布前接單。
+- **尚未代表**：Render 線上 customer API 尚未部署本工作樹程式；private beta、公開流量、edge rate limit、備份還原與事故告警仍未完成。

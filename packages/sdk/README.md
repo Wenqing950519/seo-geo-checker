@@ -1,3 +1,5 @@
-# Developer SDK — planned
+# Developer SDK — not implemented
 
-尚未發布 npm，沒有可用 client。先穩定 API_CONTRACT、schema、錯誤與 idempotency，再依實際整合者選首發語言。SDK 只包 HTTP 與型別／輪詢，不打包 crawler、provider 金鑰或 scoring 副本。完整 API 平台不是建立 Project／歷史 Run 的前置條件。
+目前目錄只有邊界文件，沒有可安裝、可 import 或可實測的 SDK client，也尚未發布 npm。2026-09-09 已驗證的是 `/v1` HTTP fixture 合約與四家 server-side 官方 adapter，不等於 SDK 已存在。
+
+首發語言、套件名稱、版本與 retry／polling 行為會形成公開契約，須由使用者拍板後再實作。SDK 只應包 HTTP、型別與輪詢，不打包 crawler、provider 金鑰、上游成本或 scoring 副本。

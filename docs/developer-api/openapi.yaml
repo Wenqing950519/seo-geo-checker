@@ -1,0 +1,200 @@
+openapi: 3.1.0
+info:
+  title: GeoCheck Developer API
+  version: 0.2.0
+  description: Private beta backend contract. One accepted measurement runs the fixed four-provider set; only four-provider success consumes one customer round.
+servers:
+  - url: https://api.example.invalid
+    description: Replace after deployment approval
+security:
+  - apiKey: []
+paths:
+  /v1/measurements:
+    post:
+      summary: Submit one fixed-four-provider measurement
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MeasurementRequest' }
+      responses:
+        '202': { description: Accepted or idempotent replay, content: { application/json: { schema: { $ref: '#/components/schemas/Job' } } } }
+        '400': { $ref: '#/components/responses/Error' }
+        '401': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+        '429': { $ref: '#/components/responses/Error' }
+        '503': { $ref: '#/components/responses/Error' }
+  /v1/jobs/{jobId}:
+    get:
+      summary: Read a tenant-scoped job
+      parameters: [ { $ref: '#/components/parameters/JobId' } ]
+      responses:
+        '200': { description: Job, content: { application/json: { schema: { $ref: '#/components/schemas/Job' } } } }
+        '404': { $ref: '#/components/responses/Error' }
+  /v1/measurements/{measurementId}:
+    parameters: [ { $ref: '#/components/parameters/MeasurementId' } ]
+    get:
+      summary: Read a completed tenant-scoped result
+      responses:
+        '200': { description: Result, content: { application/json: { schema: { $ref: '#/components/schemas/Measurement' } } } }
+        '409': { $ref: '#/components/responses/Error' }
+        '410': { $ref: '#/components/responses/Error' }
+    delete:
+      summary: Delete result content and retain a tombstone
+      responses:
+        '204': { description: Deleted }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+  /v1/usage:
+    get:
+      summary: Read the current tenant quota window
+      responses:
+        '200': { description: Usage, content: { application/json: { schema: { $ref: '#/components/schemas/Usage' } } } }
+  /v1/auth/verify:
+    post:
+      security: []
+      summary: Consume a one-time invitation token
+      requestBody: { $ref: '#/components/requestBodies/Token' }
+      responses:
+        '200': { description: Management session }
+        '400': { $ref: '#/components/responses/Error' }
+  /v1/auth/login-links:
+    post:
+      security: []
+      summary: Request a login link without revealing account existence
+      requestBody:
+        required: true
+        content: { application/json: { schema: { type: object, required: [email], properties: { email: { type: string, format: email } } } } }
+      responses:
+        '202': { description: Generic accepted response }
+  /v1/auth/login:
+    post:
+      security: []
+      summary: Consume a one-time login token
+      requestBody: { $ref: '#/components/requestBodies/Token' }
+      responses:
+        '200': { description: Management session }
+        '400': { $ref: '#/components/responses/Error' }
+  /v1/console/activation:
+    post:
+      security: [ { managementSession: [] } ]
+      summary: Start Free eligibility; paid plans require a payment grant
+      responses:
+        '200': { description: Entitlement and usage }
+        '402': { $ref: '#/components/responses/Error' }
+  /v1/console/api-keys:
+    get:
+      security: [ { managementSession: [] } ]
+      summary: List masked API keys
+      responses: { '200': { description: Key list } }
+    post:
+      security: [ { managementSession: [] } ]
+      summary: Create an API key; the secret is returned once
+      responses: { '201': { description: New key } }
+  /v1/console/api-keys/{keyId}:
+    delete:
+      security: [ { managementSession: [] } ]
+      summary: Revoke an API key immediately
+      parameters:
+        - { name: keyId, in: path, required: true, schema: { type: string } }
+      responses: { '204': { description: Revoked }, '404': { $ref: '#/components/responses/Error' } }
+  /v1/console/usage:
+    get:
+      security: [ { managementSession: [] } ]
+      summary: Read console usage
+      responses: { '200': { description: Usage } }
+  /v1/console/jobs:
+    get:
+      security: [ { managementSession: [] } ]
+      summary: List tenant jobs
+      responses: { '200': { description: Job list } }
+  /v1/admin/invitations:
+    post:
+      security: [ { adminToken: [] } ]
+      summary: Create an invitation for manual private-beta delivery
+      responses: { '201': { description: Invitation token } }
+  /v1/admin/outbox:
+    get:
+      security: [ { adminToken: [] } ]
+      summary: Read pending login tokens for the configured delivery process
+      responses: { '200': { description: Outbox } }
+  /v1/admin/overview:
+    get:
+      security: [ { adminToken: [] } ]
+      summary: Read operational counts and provider cost ledger
+      responses: { '200': { description: Overview } }
+  /v1/admin/security-events:
+    get:
+      security: [ { adminToken: [] } ]
+      summary: Read redacted security events
+      responses: { '200': { description: Events } }
+  /v1/admin/admission:
+    post:
+      security: [ { adminToken: [] } ]
+      summary: Pause or resume new measurements
+      responses: { '200': { description: Admission state } }
+components:
+  securitySchemes:
+    apiKey: { type: http, scheme: bearer, bearerFormat: gck_ API key }
+    managementSession: { type: http, scheme: bearer, bearerFormat: gcs_ session }
+    adminToken: { type: apiKey, in: header, name: X-Admin-Token }
+  parameters:
+    IdempotencyKey: { name: Idempotency-Key, in: header, required: true, schema: { type: string, minLength: 1, maxLength: 160 } }
+    JobId: { name: jobId, in: path, required: true, schema: { type: string } }
+    MeasurementId: { name: measurementId, in: path, required: true, schema: { type: string } }
+  requestBodies:
+    Token:
+      required: true
+      content: { application/json: { schema: { type: object, required: [token], properties: { token: { type: string } } } } }
+  responses:
+    Error:
+      description: Stable error envelope
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+  schemas:
+    MeasurementRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        prompt: { type: string, maxLength: 4000 }
+        url: { type: string, format: uri, maxLength: 2048 }
+        target: { type: string, maxLength: 200 }
+      anyOf: [ { required: [prompt] }, { required: [url] } ]
+    Job:
+      type: object
+      required: [job_id, measurement_id, status, created_at]
+      properties:
+        job_id: { type: string }
+        measurement_id: { type: string }
+        status: { enum: [queued, running, succeeded, failed] }
+        created_at: { type: string, format: date-time }
+        completed_at: { type: [string, 'null'], format: date-time }
+        error_code: { type: [string, 'null'] }
+        idempotent_replay: { type: boolean }
+    Measurement:
+      type: object
+      required: [measurement_id, status, engines]
+      properties:
+        measurement_id: { type: string }
+        status: { enum: [succeeded, failed] }
+        engines: { type: array, minItems: 4, maxItems: 4, items: { type: object } }
+        partial_results: { type: array, items: { type: object } }
+    Usage:
+      type: object
+      properties:
+        round_limit: { type: integer, minimum: 0 }
+        used_rounds: { type: integer, minimum: 0 }
+        reserved_rounds: { type: integer, minimum: 0 }
+        remaining_rounds: { type: integer, minimum: 0 }
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: string }
+            message: { type: string }

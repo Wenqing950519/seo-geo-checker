@@ -25,6 +25,9 @@ const ledger = path.resolve(__dirname, "../../mock-api/usage-events.jsonl");
     assert.match(response.headers.get("cache-control") || "", /no-store/);
     assert.equal(response.headers.get("cdn-cache-control"), "no-store");
     assert.equal(response.headers.get("surrogate-control"), "no-store");
+    assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+    assert.equal(response.headers.get("x-frame-options"), "DENY");
+    assert.equal(response.headers.get("referrer-policy"), "strict-origin-when-cross-origin");
     const legacyAudit = await fetch(`http://127.0.0.1:${port}/api/audit`, {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -43,6 +46,8 @@ const ledger = path.resolve(__dirname, "../../mock-api/usage-events.jsonl");
     assert.doesNotMatch(llmsText, /Google 與 AI 搜尋引擎/);
     const demoResponse = await fetch(`http://127.0.0.1:${port}/demo`);
     assert.equal(demoResponse.status, 200);
+    assert.equal(demoResponse.headers.get("x-content-type-options"), "nosniff");
+    assert.equal(demoResponse.headers.get("x-frame-options"), "DENY");
     const demoHtml = await demoResponse.text();
     assert.match(demoHtml, /AI 搜尋能見度觀測鏡/);
     const ledgerAfter = fs.existsSync(ledger) ? fs.readFileSync(ledger, "utf8") : "";

@@ -1,0 +1,142 @@
+{
+  "plan_version": "controlled-four-provider-20-v1",
+  "locale": "zh-TW",
+  "purpose": "Measure four-provider reliability, conservative TWD cost, and end-to-end round latency. Do not use answers as research or market conclusions.",
+  "success_definition": "A provider succeeds only when it returns a non-empty answer, confirms web search execution, and supplies at least one valid citation.",
+  "criteria": {
+    "required_rounds": 20,
+    "minimum_all_four_success_rounds": 19,
+    "p95_round_cost_twd_max": 4.5,
+    "maximum_round_duration_ms": 30000,
+    "total_budget_twd": 120
+  },
+  "limits": {
+    "attempts_per_provider": 1,
+    "max_output_tokens": 1024,
+    "max_search_requests_where_supported": 2,
+    "provider_timeout_ms": 29000,
+    "unknown_round_cost_reserve_twd": 12
+  },
+  "questions": [
+    {
+      "id": "q01-cbc-exchange-rate",
+      "category": "government-finance",
+      "reference_url": "https://www.cbc.gov.tw/",
+      "prompt": "請搜尋最新官方公開資訊：臺灣中央銀行公布的新臺幣兌美元銀行間收盤匯率是多少？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q02-mol-minimum-wage",
+      "category": "government-labor",
+      "reference_url": "https://www.mol.gov.tw/",
+      "prompt": "請搜尋最新官方公開資訊：臺灣目前的每月最低工資與每小時最低工資各是多少？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q03-thsr-refund",
+      "category": "transportation",
+      "reference_url": "https://www.thsrc.com.tw/",
+      "prompt": "請搜尋臺灣高鐵官方公開資訊：旅客最晚可在列車出發前何時辦理退票，手續費如何計算？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q04-tra-refund",
+      "category": "transportation",
+      "reference_url": "https://www.railway.gov.tw/",
+      "prompt": "請搜尋臺鐵官方公開資訊：網路訂票付款後若要退票，主要期限與退票手續費規則是什麼？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q05-post-parcel",
+      "category": "logistics",
+      "reference_url": "https://www.post.gov.tw/",
+      "prompt": "請搜尋中華郵政官方公開資訊：國內包裹資費主要依哪些條件計算，民眾在哪裡可以查到最新費率？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q06-nhi-waiting-period",
+      "category": "government-health",
+      "reference_url": "https://www.nhi.gov.tw/",
+      "prompt": "請搜尋健保署官方公開資訊：一般民眾在臺灣參加全民健康保險時，投保資格與等待期間的主要規則是什麼？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q07-invoice-prize",
+      "category": "government-tax",
+      "reference_url": "https://www.etax.nat.gov.tw/",
+      "prompt": "請搜尋財政部官方公開資訊：統一發票中獎後的領獎期限與主要領獎方式是什麼？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q08-tourism-entry",
+      "category": "travel",
+      "reference_url": "https://www.taiwan.net.tw/",
+      "prompt": "請搜尋臺灣官方觀光公開資訊：外國旅客規劃來臺旅遊時，可從哪個官方網站查詢入境與旅遊須知？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q09-seven-eleven-shipping",
+      "category": "retail-logistics",
+      "reference_url": "https://www.7-11.com.tw/",
+      "prompt": "請搜尋 7-ELEVEN 臺灣官方公開資訊：交貨便寄件的尺寸或重量限制與最新價格應如何查詢？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q10-familymart-shipping",
+      "category": "retail-logistics",
+      "reference_url": "https://www.family.com.tw/",
+      "prompt": "請搜尋全家便利商店官方公開資訊：店到店寄件的尺寸或重量限制與最新運費應如何查詢？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q11-cht-5g",
+      "category": "telecom",
+      "reference_url": "https://www.cht.com.tw/",
+      "prompt": "請搜尋中華電信官方公開資訊：消費者比較 5G 月租方案前，應確認哪些流量、網速或綁約條件？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q12-taiwan-mobile-5g",
+      "category": "telecom",
+      "reference_url": "https://www.taiwanmobile.com/",
+      "prompt": "請搜尋台灣大哥大官方公開資訊：消費者比較 5G 月租方案前，應確認哪些流量、網速或綁約條件？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q13-gogoro-plan",
+      "category": "mobility",
+      "reference_url": "https://www.gogoro.com/tw/",
+      "prompt": "請搜尋 Gogoro 臺灣官方公開資訊：購車前比較電池資費方案時，應了解哪些用量、費率與合約條件？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q14-kkday-cancellation",
+      "category": "travel-commerce",
+      "reference_url": "https://www.kkday.com/zh-tw/",
+      "prompt": "請搜尋 KKday 臺灣官方公開資訊：消費者下單旅遊商品前，要如何確認取消期限、退款規則與不可取消商品？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q15-klook-cancellation",
+      "category": "travel-commerce",
+      "reference_url": "https://www.klook.com/zh-TW/",
+      "prompt": "請搜尋 Klook 臺灣官方公開資訊：消費者下單旅遊商品前，要如何確認取消期限、退款規則與不可取消商品？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q16-pinkoi-seller-fees",
+      "category": "marketplace",
+      "reference_url": "https://www.pinkoi.com/",
+      "prompt": "請搜尋 Pinkoi 官方公開資訊：臺灣設計師申請開館前，應了解哪些平台費用、成交管理費或付款條件？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q17-shopline-plans",
+      "category": "commerce-saas",
+      "reference_url": "https://shopline.tw/",
+      "prompt": "請搜尋 SHOPLINE 臺灣官方公開資訊：商家比較開店方案前，應確認哪些方案費用、交易費或功能限制？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q18-ichef-pricing",
+      "category": "restaurant-saas",
+      "reference_url": "https://www.ichefpos.com/zh-tw/",
+      "prompt": "請搜尋 iCHEF 臺灣官方公開資訊：餐廳選擇 POS 方案前，應了解哪些月費、設備、試用與合約條件？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q19-hahow-refund",
+      "category": "education",
+      "reference_url": "https://hahow.in/",
+      "prompt": "請搜尋 Hahow 官方公開資訊：購買線上課程前，消費者應了解哪些退款期限與退款條件？請用繁體中文簡短回答並附來源。"
+    },
+    {
+      "id": "q20-104-job-seeker",
+      "category": "employment",
+      "reference_url": "https://www.104.com.tw/",
+      "prompt": "請搜尋 104 人力銀行官方公開資訊：求職者使用履歷與應徵服務前，應了解哪些公開的隱私或資料使用規則？請用繁體中文簡短回答並附來源。"
+    }
+  ]
+}

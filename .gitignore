@@ -24,3 +24,4 @@ mock-api/leads.jsonl
 tmp/
 .workbuddy/
 *.db
+services/developer-d1-gateway/worker-configuration.d.ts

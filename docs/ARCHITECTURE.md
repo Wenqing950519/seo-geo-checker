@@ -117,3 +117,19 @@ SDK 只包 HTTP、型別、認證、pagination、輪詢、取消等待與可控�
 支持抽核心的直接證據是 A 與研究 CLI 已共用 `measureGeoSite`，且同一入口混有 I/O、產品政策及 provider-specific evidence。反方最強理由是：目前尚無經驗證的 B 客戶需求，重寫平台會引入租戶、工作恢復與成本帳本，負擔遠大於單純拆函式。因此建議以原地模組化與單一 provider API 契約先驗證需求，不把「server.js 變短」當作成功指標。
 
 本次只查閱程式、既有測試與決策，未執行測試，不能宣稱現有測試通過或現網安全已驗證。後續契約、資料形狀與版本定義見 `PRODUCT_BOUNDARY.md`；可回退遷移與驗收門檻見 `TASKS.md`。
+
+## 8. 官方搜尋 provider 骨架（D-027）
+
+2026-09-08 設計交接：B 的現行候選流程見 [developer-api/BLUEPRINT](developer-api/BLUEPRINT.md)，安全見 [SECURITY](developer-api/SECURITY.md)，實作順序見 [HANDOFF](developer-api/HANDOFF.md)。前述單一provider API建議是歷史替代方案，不再適用D-029固定四家商品；仍可單家開發fixture，不能以單家對外提供B成功结果。SDK、Monitoring與A改用B流程均不在這次設計後的默認實作範圍。
+
+Developer API 的正式量測路徑採四家官方 API 直連：OpenAI web search、Google Search grounding、Perplexity Sonar、Anthropic web search。OpenRouter 不進 production measurement、fallback 或計費路徑；歷史文件中的 OpenRouter 內容只保留為被否決方案的分析紀錄。
+
+`services/api/application/official-engine-profiles.js` 登錄 provider、API family、原生 search surface、已選定 model ID 與實作狀態。四個 ID 是 D-028 指定的低成本候選，2026-09-09 已完成 D-036 的 20 輪、每家一次、無 retry 受控 benchmark，因此標為 `controlled_benchmark_verified`；這不是 production-ready 或 SLA 驗證。`services/api/application/official-search-providers.js` 已依官方契約實作 request／response parser、用量與版本化成本，且只會在 `DEVELOPER_API_MODE=official` 與四家 server-side key 齊備時建立；fixture 模式不發網路請求。`services/api/ports/search-provider.js` 定義 adapter 必須具有穩定 ID 與 `execute` 邊界，不把四家引用強壓成同一種資料。
+
+後續每個 adapter 必須保留原生回答、原生引用／搜尋事件、實際 model、search surface、locale、時間、usage、錯誤與 attempt，再映射至共同 observation envelope。共通欄位用來查詢；provider-specific evidence 用來追溯。任何 profile 從 `planned` 改為可用前，都需要無付費 fixture contract test、受控付費 smoke test 與人工核可。
+
+DeepSeek 可在未來作為統合輸出 presenter：它只讀取四家已保存的觀測，輸出摘要或比較文字。它不得發起搜尋、補造引用、覆寫原生 evidence、將 `unknown` 轉成零，或影響 D-021 的各引擎分數；是否建立此層另行決策。
+
+依 D-029，這條 Developer API 是產品 A 之外的附屬服務，不得修改或共用會改變 A 行為的 orchestration、計分與 presenter。B 接受一個客戶 prompt 或 URL 後，固定 fan-out 至四個官方 profile，不暴露逐次 engine 選擇；內部 prompt、provider 參數、強化分析與整合流程保持 server-side private。
+
+B 的完成規則是 all-or-failed：四個 profile 都完成才將 job 標記 `succeeded` 並產生完整比較；任一 profile 在 bounded retry 後仍失敗，job 標記 `failed`。成功的 provider evidence 不丟棄，改放在 `partial_results` 並標示逐家狀態，但 presenter 不得把它包裝成完整四家結論。只有 `succeeded` 可結算客戶的一次完整 request；provider／系統失敗已產生的實際或不確定成本仍寫入內部 ledger，由 GeoCheck 承擔。

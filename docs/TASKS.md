@@ -1,5 +1,7 @@
 # GeoCheck API／SDK 前置與漸進遷移任務
 
+> 2026-09-09 最新交接入口：[developer-api/HANDOFF](developer-api/HANDOFF.md)。D-037 已完成 B0～B2 後臺；下一步是人工拍板資料位置／保存／quota／預算後建立遠端 B D1，再做寄信與 edge 控制。視覺前端由使用者另搭；SDK client、金流與代管 Monitoring 仍是另案。
+
 > 2026-09-08 後續整理：依使用者新指示，已完成目錄與 import 分層、舊入口相容、測試搬移及 raw evidence 原位元保存，詳見 `maintenance/REPOSITORY_CLEANUP.md`。下文是先前平台遷移提案，不能整段視為已完成。T1 已有基線與目錄／HTTP regression；T2 僅完成實體檔案歸屬與純核心邊界，尚未全面注入 ports 或抽出 server renderer；T3–T5 未實作。Project／Run 可先於 SDK／public API，見 `strategy/ROADMAP_ALIGNMENT.md`。
 
 建議依「凍結 A 契約 → 原地抽核心 → 持久工作與隔離 → 單引擎 B → SDK／多引擎／監控」順序推進，每一階段都保留可回退的 A 路徑。
@@ -12,8 +14,8 @@
 |---|---|---|
 | D-B1 | B 首批使用者與具體使用情境、與白皮書優先序 | 先驗證「交付網站時量測」或「定時追蹤」之一；附件不能代替客戶證據；阻塞正式平台優先級 |
 | D-B2 | API 先 explicit queries 還是提供自動 planner；URL 是 origin 還是 page scope | 建議 B explicit query set、保留完整 URL；A 維持四題；阻塞 schema freeze |
-| D-B3 | 計分／來源語義與首個新增引擎 | 建議先 Perplexity 相容 profile，來源類型改善另升版；阻塞新指標、多引擎宣稱 |
-| D-B4 | retention、tenant 隔離、配額與計費單位 | 先完成 attempt 記錄與成本預留，未定價不實作 Credit 產品；阻塞公開付費流量 |
+| D-B3 | Provider 路由 | 已由 D-027 確認官方直連四家、不採 OpenRouter；各家模型、原生證據 mapping 與啟用順序仍待逐一驗證 |
+| D-B4 | retention、tenant 隔離、配額與計費單位 | D-029／D-030 已確認全成才扣量、無綁卡 7 天每日 3 輪、Basic 660／80 與 Premium 1390／170；成本、濫用、額度效期、token 上限與金流仍待驗證，阻塞公開流量 |
 | D-B5 | SDK 首發語言、是否代管 monitoring、服務驗收門檻 | 依首批整合者決定；不先發布 npm 或建 Developer Console；阻塞公開 SDK／代管排程 |
 
 正式方向由使用者確認後另記 DECISION_LOG。本次按要求不修改該檔。現有 D-021 的權重、unknown、分母與 cap，D-025 的 A 四題，以及研究人工審核門檻均維持。
@@ -58,7 +60,7 @@
 
 | 任務 | 產出 | 驗收與回退 |
 |---|---|---|
-| T4.1 | `/v1/measurements`、jobs、read/list、engine capabilities，先 private beta | 完整 tenant auth、202/Location、idempotency 409、429/503 Retry-After、unknown/partial schema；關閉 B route 不影響 A |
+| T4.1 | `/v1/measurements`、jobs、read/list、engine capabilities，先 private beta | 完整 tenant auth、202/Location、idempotency 409、429/503 Retry-After、unknown/failed + partial_results schema；關閉 B route 不影響 A |
 | T4.2 | 最小 SDK／HTTP 範例，首發語言依 D-B5 | create → wait → result → list；timeout、取消等待、pagination、safe retry contract tests；不內含 provider key 或 scoring |
 | T4.3 | A 以同一 application 進行內部 dogfooding | 首先維持同步 facade；不要求瀏覽器立即改 async，也不強制研究改 API |
 
