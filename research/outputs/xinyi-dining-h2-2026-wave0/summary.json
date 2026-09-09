@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-09-09T06:57:33.284Z",
+  "total_sites": 49,
+  "measured_sites": 37,
+  "excluded_by_master_sites": 0,
+  "failed_or_unknown_sites": 12,
+  "refusal_or_empty_queries": 0,
+  "platform_root_input_sites": 0,
+  "deepseek_profile_successes": 37,
+  "ai_trust_index": {
+    "mean": 1.7,
+    "median": 0,
+    "min": 0,
+    "max": 21.5
+  },
+  "site_readiness_score": {
+    "mean": 67.5,
+    "median": 70,
+    "min": 35,
+    "max": 93
+  },
+  "perplexity_score": {
+    "mean": 22.8,
+    "median": 28,
+    "min": 0,
+    "max": 42
+  },
+  "mean_answer_adoption_rate": 2.7,
+  "mean_source_evidence_rate": 0,
+  "entity_grounded_rate": 89.2,
+  "by_industry": {
+    "餐飲業": 10,
+    "百貨零售業": 1,
+    "零售百貨": 2,
+    "restaurant": 9,
+    "餐飲服務業": 5,
+    "hotel": 2,
+    "食品零售": 1,
+    "餐飲服務": 1,
+    "Restaurant": 1,
+    "Food & Beverage / Restaurants": 1,
+    "retail": 1,
+    "餐飲": 2,
+    "unknown": 1
+  },
+  "dataset_sha256": "03a0f5eb0053e45e40bbd86ce695e04e35fb0c4d087a132cdc1b689143d84907"
+}

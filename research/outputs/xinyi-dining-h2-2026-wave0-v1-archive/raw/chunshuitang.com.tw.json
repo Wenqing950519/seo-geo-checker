@@ -1,0 +1,440 @@
+{
+  "url": "https://www.chunshuitang.com.tw/",
+  "measured_at": "2026-09-09T06:12:54.447Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website chunshuitang.com.tw (title: 世界珍珠奶茶發源地｜春水堂人文茶館). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 春水堂人文茶館 | 春水堂\n\nThe exact website chunshuitang.com.tw is the official site titled「世界珍珠奶茶發源地｜春水堂人文茶館」[1]. A corroborating public source identifies「春水堂人文茶館」and「春水堂」as the same brand and links the Taiwan website chunshuitang.com.tw to it[2].",
+      "citations": [
+        "https://www.chunshuitang.com.tw/",
+        "https://zh.wikipedia.org/zh-tw/%E6%98%A5%E6%B0%B4%E5%A0%82%E4%BA%BA%E6%96%87%E8%8C%B6%E9%A4%A8",
+        "https://www.csgcshop.com/",
+        "https://www.mitsui-shopping-park.com.tw/mop/linkou/tw/shop.html?id=29",
+        "https://blog.udn.com/gloomybear/6031875",
+        "https://pulllalala.pixnet.net/blog/posts/8224943278",
+        "https://wanteatfood.com/10564",
+        "https://vocus.cc/article/637b2642fd897800011e5648",
+        "https://footinder.com.tw/%E5%8F%B0%E4%B8%AD%E5%B8%82%E8%A5%BF%E5%8D%80/172046/",
+        "https://eggie.tw/blog/post/233148426",
+        "https://mylovelybluesky.com/travel/taiwan/taiwanese-food/chun-shui-tang/",
+        "https://blog.footinder.app/%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A3%AB%E6%9E%97%E5%8D%80-2/%E5%8F%B0%E5%8C%97%E5%B8%82-%E5%A3%AB%E6%9E%97%E5%8D%80-%E6%98%A5%E6%B0%B4%E5%A0%82-%E5%A4%A9%E6%AF%8D%E5%BA%97/",
+        "https://achingfoodie.tw/chunshuitang/",
+        "http://centalife.centalineclub.com/%E8%A8%AA%E7%8F%8D%E7%8F%A0%E5%A5%B6%E8%8C%B6%E7%99%BC%E6%BA%90%E5%9C%B0-%E5%8F%B0%E4%B8%AD%E6%98%A5%E6%B0%B4%E5%A0%82/",
+        "https://lololo223344.pixnet.net/blog/posts/15337232301"
+      ],
+      "searchResults": [
+        {
+          "date": "2026-09-04",
+          "last_updated": "2026-09-05",
+          "place_metadata": null,
+          "snippet": "#### 華山店\n- 02-23416087\n- 台北市中正區八德路一段1號 (華山1914文化創意產業園區)",
+          "source": "web",
+          "title": "世界珍珠奶茶發源地｜春水堂人文茶館",
+          "url": "https://www.chunshuitang.com.tw/"
+        },
+        {
+          "date": "2009-12-20",
+          "last_updated": "2026-06-21",
+          "place_metadata": null,
+          "snippet": "**春水堂實業股份有限公司**，簡稱**春水堂人文茶館** 或**春水堂**，是一家源自臺灣臺中的連鎖茶館。主要商品為珍珠奶茶及泡沫紅茶等各式調和茶飲，並推廣半發酵茶葉，提倡雙杯式飲法及色香味三段品茗法。是聲稱發明珍珠奶茶的臺灣連鎖餐廳之一，另一家是翰林茶館。\n...\n|網站|臺灣春水堂人文茶館 chunshuitang.com.tw 臺灣茶湯會 tw.tp-tea.com 臺灣秋山堂 www.chioushan.com 日本春水堂 www.chunshuitang.jp 日本茶湯會 jp.tp-tea.com 香港春水堂 globallink.com.hk|",
+          "source": "web",
+          "title": "春水堂人文茶館 - 維基百科，自由的百科全書",
+          "url": "https://zh.wikipedia.org/zh-tw/%E6%98%A5%E6%B0%B4%E5%A0%82%E4%BA%BA%E6%96%87%E8%8C%B6%E9%A4%A8"
+        },
+        {
+          "date": "2026-09-04",
+          "last_updated": "2026-09-01",
+          "place_metadata": null,
+          "snippet": "# 春水良品｜春水堂唯一通路品牌，星級宅配美食與茶點宅配",
+          "source": "web",
+          "title": "春水良品｜春水堂唯一通路品牌，星級宅配美食與茶點宅配",
+          "url": "https://www.csgcshop.com/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-12",
+          "place_metadata": null,
+          "snippet": "- 02-26003432\n- http://www.chunshuitang.com.tw",
+          "source": "web",
+          "title": "春水堂| MITSUI OUTLET PARK 林口",
+          "url": "https://www.mitsui-shopping-park.com.tw/mop/linkou/tw/shop.html?id=29"
+        },
+        {
+          "date": "2012-02-16",
+          "last_updated": "2025-10-06",
+          "place_metadata": null,
+          "snippet": "照片中分店的住址：台中市西區五權西路一段2號B1\n網址：http://chunshuitang.com.tw/",
+          "source": "web",
+          "title": "台灣《台中》-尋找珍珠奶茶的源頭春水堂人文茶館",
+          "url": "https://blog.udn.com/gloomybear/6031875"
+        },
+        {
+          "date": "2018-04-09",
+          "last_updated": "2026-07-17",
+          "place_metadata": null,
+          "snippet": "地址：台中市西區大墩十九街9號\n營業時間：週一至週四 08:30~22:30 / 週五至週日 08:30~23:00\n官方網站：世界珍珠奶茶發源地│春水堂、春水堂35週年生日慶\n...\n電話： 04-2327-3647",
+          "source": "web",
+          "title": "台中下午茶│春水堂 大墩店。春水堂35週年 好康優惠大方送！在世界珍珠奶茶發源地 玩超有趣的泡沫紅茶、珍珠奶茶手搖體驗 [親子DIY/台中餐廳推薦/台中美食推薦/珍珠奶茶創始店] | pulllalala●愛吃鬼美食筆記 | 美食情報分享 | 痞客邦 | PIXNET",
+          "url": "https://pulllalala.pixnet.net/blog/posts/8224943278"
+        },
+        {
+          "date": "2026-02-15",
+          "last_updated": "2026-02-16",
+          "place_metadata": null,
+          "snippet": "## 春水堂 大直店 (附菜單) (訂位連結) 地址: 臺北市中山區敬業二路195、197號一樓 營業: 10:30–21:30 (週一~週日) (請見商家地圖資訊) 電話: 02 8502 0075 價位: NT$ 300~500 元 交通: 捷運 劍南路站 ( 150公尺、步行 2分鐘 )、開車可停 Times敬業一路停車場 官網: https://chunshuitang.com.tw",
+          "source": "web",
+          "title": "春水堂大直店- 珍珠奶茶的發源品牌",
+          "url": "https://wanteatfood.com/10564"
+        },
+        {
+          "date": "2022-11-21",
+          "last_updated": "2026-07-30",
+          "place_metadata": null,
+          "snippet": "地址： 403台中市西區四維街30號(地圖連結)\n電話：04-22297991\n營業時間：08:00-22:00\n有無吸菸區：一樓外騎樓\n交通/停車資訊：從台中火車站步行至創始店(四維店)大約15分鐘，附近有汽機車停車格。",
+          "source": "web",
+          "title": "世界第一杯珍珠奶茶在台中｜好好玩的沙龍",
+          "url": "https://vocus.cc/article/637b2642fd897800011e5648"
+        },
+        {
+          "date": "2023-10-11",
+          "last_updated": "2025-06-19",
+          "place_metadata": null,
+          "snippet": "|地址|403 台中市西區 四維街30號|\n|電話|04 2229 7991|\n|營業時間|星期一 08:00–22:00 星期二 08:00–22:00 星期三 08:00–22:00 星期四 08:00–22:00 星期五 08:00–22:00 星期六 08:00–22:00 星期日 08:00–22:00|",
+          "source": "web",
+          "title": "台中市西區 春水堂 四維創始店",
+          "url": "https://footinder.com.tw/%E5%8F%B0%E4%B8%AD%E5%B8%82%E8%A5%BF%E5%8D%80/172046/"
+        },
+        {
+          "date": "2025-04-28",
+          "last_updated": "2025-11-17",
+          "place_metadata": null,
+          "snippet": "- 地址：新北市板橋區新站路28號3F\n...\n- 電話：02-29560159\n- 營業時間：週一~週日：11:00~22:00\n- 官網：https://chunshuitang.com.tw/",
+          "source": "web",
+          "title": "[板橋美食] 春水堂(板橋大遠百店) 珍珠奶茶始祖必點牛肉麵.香酥 ...",
+          "url": "https://eggie.tw/blog/post/233148426"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-01-19",
+          "place_metadata": null,
+          "snippet": "春水堂在台湾已经有36家，刘汉介先生在台中创立台中阳羡茶行，当年他把传统的茶道冷饮化了，创造出来了泡沫红茶，改变了喝冷茶的习惯，带动了市场。早期，粉圆在当地人的心中是小时候妈妈在家吃的小点心，随后在1987年，该店的店长把粉圆喝泡沫红茶混在一起煮给熟客，顾客的反应很好，马上改成上市饮料。",
+          "source": "web",
+          "title": "台湾台中美食 | 春水堂 人文茶馆 - 台湾珍珠奶茶创始店",
+          "url": "https://mylovelybluesky.com/travel/taiwan/taiwanese-food/chun-shui-tang/"
+        },
+        {
+          "date": "2024-05-16",
+          "last_updated": "2026-08-05",
+          "place_metadata": null,
+          "snippet": "|地址|111 台北市士林區 忠誠路二段200號B棟 3F|\n|電話|02 2874 5484|\n|營業時間|星期一 11:00–21:30 星期二 11:00–21:30星期三 11:00–21:30星期四 11:00–21:30星期五 11:00–22:00星期六 11:00–22:00星期日 11:00–21:30|",
+          "source": "web",
+          "title": "台北市士林區春水堂天母店",
+          "url": "https://blog.footinder.app/%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A3%AB%E6%9E%97%E5%8D%80-2/%E5%8F%B0%E5%8C%97%E5%B8%82-%E5%A3%AB%E6%9E%97%E5%8D%80-%E6%98%A5%E6%B0%B4%E5%A0%82-%E5%A4%A9%E6%AF%8D%E5%BA%97/"
+        },
+        {
+          "date": "2026-02-02",
+          "last_updated": "2026-05-29",
+          "place_metadata": null,
+          "snippet": "|分店|電話|住址|時間|\n|--|--|--|--|\n|大直店|02-85020075|台北市中山區敬業二路195一樓|每日：10:30~22:00|",
+          "source": "web",
+          "title": "春水堂的2026年外送、外帶、菜單、優惠、最新品項和分店介紹",
+          "url": "https://achingfoodie.tw/chunshuitang/"
+        },
+        {
+          "date": "2018-01-15",
+          "last_updated": "2026-08-19",
+          "place_metadata": null,
+          "snippet": "當年位於台中四維街的「陽羨茶行」，也就是泡沫紅茶的發源地，在三十一年後被重新裝修，定位為春水堂創始店。該店以復刻改造的形象重生，讓附近的老街坊，回味當年的純真味道。",
+          "source": "web",
+          "title": "訪珍珠奶茶發源地台中春水堂- 薈訊CentaLife",
+          "url": "http://centalife.centalineclub.com/%E8%A8%AA%E7%8F%8D%E7%8F%A0%E5%A5%B6%E8%8C%B6%E7%99%BC%E6%BA%90%E5%9C%B0-%E5%8F%B0%E4%B8%AD%E6%98%A5%E6%B0%B4%E5%A0%82/"
+        },
+        {
+          "date": "2022-11-13",
+          "last_updated": "2026-05-30",
+          "place_metadata": null,
+          "snippet": "官方網站 https://www.chunshuitang.com.tw/",
+          "source": "web",
+          "title": "[台北]捷運市政府站-春水堂人文茶館松菸店(葷素餐廳) | lololo的素食生活 | 美食情報分享 | 痞客邦 | PIXNET",
+          "url": "https://lololo223344.pixnet.net/blog/posts/15337232301"
+        }
+      ],
+      "usage": {
+        "inputTokens": 133,
+        "outputTokens": 94,
+        "totalTokens": 227
+      },
+      "latencyMs": 9746,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是 **10 家位於台北市信義區**、在整理型美食推薦中常被提及的餐廳，並附上簡要理由；我優先選擇有明確信義區地址、且出現在多個推薦清單中的店家。[1][2][3][4][5][7][9][10]\n\n- **鼎泰豐（信義 A4／101／遠百 A13 擇一）**：小籠包是信義區最具代表性的經典選擇，且多篇信義美食清單都列入。[3][5][10]\n- **心潮飯店**：主打時髦復古風台菜，常被列為信義區的米其林／精緻餐酒館型代表。[5]\n- **The Ukai Taipei**：位於高樓層、常見於信義區高級餐廳推薦，適合約會或特別聚餐。[5]\n- **饗饗**：信義區知名吃到飽與景觀餐廳之一，常出現在「必吃」與高",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 268,
+          "totalTokens": 318
+        },
+        "latencyMs": 5599,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下先以**信義區、晚餐每人約 500–999 元**為範圍，挑出 10 家較符合的餐廳；其中部分店家在資料中只有「均消」或「起價」，實際晚餐花費仍會因點餐內容與是否另加服務費而變動。[2][4][5][7]\n\n- **Chili’s 美式餐廳**：位於信義區忠孝東路五段，資料顯示均消約 **NT$400**，屬於信義區少見的平價美式餐廳，晚餐預算 500–999 元很容易達成且有聚餐氛圍。[5][6]\n- **Gumgum 雞翅啤酒吧**：位於信義區光復南路巷內，資料顯示均消約 **NT$500**，適合想吃美式炸物、雞翅和小酌的人，預算落在你的範圍內。[5][6]\n- **GYUU NIKU ステーキ專門店**：同樣",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://blog.myfunnow.com/cn/blog/415",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/",
+          "https://jamesdiscover.tw/blog/320696",
+          "https://buy.line.me/u/article/527418"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n台北信義評分最高的平價餐酒館推薦【Hoda Bistro】，Dcard與PTT人氣推薦必吃的台北信義餐酒館，2026年Hoda Bistro最新菜單與用餐心得分享，信義商圈至今都是國內外觀光客最愛去的景點，除了到微風信義用餐外，週邊還有許多特色餐廳值得朝聖！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店\n...\n· 均消 $500",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n咖啡下午茶甜點\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n**■ 台北寒舍艾美酒店 探索廚房**\n地址：110台北市信義區松仁路38號\n電話：0266228018\n營業時間：06:30–10:00、11:30–14:00、15:00–17:00、18:00–21:00\n...\n**■ 新葡苑 遠百信義A13店**\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n營業時間：11:00–14:30、17:00–21:30\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃9 豬跳舞小館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n店家資訊：\n📍台北市信義區忠孝東路五段412-6號1樓\n⏰13:00 - 14:00 / 17:00 - 22:00\n💰 均消 NT＄400，預訂最高現省 50 元\n...\n📍台北市信義區光復南路473巷11弄38號\n⏰星期一 12:0...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2025-09-10",
+            "place_metadata": null,
+            "snippet": "## 本文目錄\n- 台北平價餐廳推薦＃1 Chili's 美式餐廳\n- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃9 豬跳舞小館\n- 台北平價餐廳推薦＃10 AN58 承德店\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n店家資訊：\n📍台北市信義區忠孝東路五段412-6號1樓\n⏰13:00 - 14:00 / ...",
+            "source": "web",
+            "title": "2025 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐不用花 ...",
+            "url": "https://blog.myfunnow.com/cn/blog/415"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n|大味王吃到飽火鍋|$250起| |\n|新大戈壁蒙古烤肉|$499起+10%| |\n|涮乃葉日式涮涮鍋|$480起+10%| |\n...\n|愛烤愛對囉|$499起+10%| |\n...\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n- 星期六:...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "美食品嚐 · 臺北\n平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          },
+          {
+            "date": "2025-12-27",
+            "last_updated": "2026-09-03",
+            "place_metadata": null,
+            "snippet": "|類型|平均價位|推薦理由|個人評分|\n...\n|小吃攤組合|200-500元|可多元嘗試，味道地道|9/10|\n|日式定食|300-450元|營養均衡，環境乾淨|8/10|\n|台式簡餐|250-400元|家常口味，飽足感足|7/10|\n|火鍋午間套餐|350-500元|湯頭鮮美，適合聚餐|8.5/10|",
+            "source": "web",
+            "title": "台北500元餐廳推薦：平價美食終極指南與必吃清單",
+            "url": "https://jamesdiscover.tw/blog/320696"
+          },
+          {
+            "date": "2021-12-28",
+            "last_updated": "2026-07-29",
+            "place_metadata": null,
+            "snippet": "*10.* 90sec PIZZA 九十秒窯烤披薩",
+            "source": "web",
+            "title": "小資吃飽首選！台北東區10間「500元內美食餐廳」推薦",
+            "url": "https://buy.line.me/u/article/527418"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 256,
+          "totalTokens": 320
+        },
+        "latencyMs": 4652,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

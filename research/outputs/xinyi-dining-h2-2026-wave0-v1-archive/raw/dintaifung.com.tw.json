@@ -1,0 +1,440 @@
+{
+  "url": "https://www.dintaifung.com.tw/",
+  "measured_at": "2026-09-09T06:13:26.954Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website dintaifung.com.tw (title: 鼎泰豐・Din Tai Fung・ディンタイフォン・딘타이펑). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 鼎泰豐 | Din Tai Fung\n\nThe exact website dintaifung.com.tw is publicly associated with the Taiwanese restaurant brand 鼎泰豐 / Din Tai Fung in multiple sources, including Wikipedia entries listing www.dintaifung.com.tw as the brand’s website and a LinkedIn company profile naming Din Tai Fung with website https://dintaifung.com.tw.[1][2] A UK page for Din Tai Fung also directs readers to www.dintaifung.com.tw, corroborating the same brand.[3]\n\nUnknown: whether the specific legal entity behind dintaifung.com.tw is the same as any particular corporate registrant cannot be verified from the retained public sources alone.[1][2][3]",
+      "citations": [
+        "https://zh.wikipedia.org/zh-tw/%E9%BC%8E%E6%B3%B0%E8%B1%90",
+        "https://wiki.hijodeputin.com/content/wikipedia_en_all_maxi_2025-08/Din_Tai_Fung",
+        "https://www.linkedin.com/company/dintaifung",
+        "https://www.klook.com/zh-HK/activity/18435-din-tai-fung-taipei/",
+        "https://tripomatic.com/zh/poi/ding-tai-feng-poi:21124",
+        "https://www.dintaifung.tw/login",
+        "https://en.wikipedia.org/wiki/Din_Tai_Fung",
+        "https://guidetotaipei.com/visit/din-tai-fung-%E9%BC%8E%E6%B3%B0%E8%B1%90-dingtaifeng",
+        "https://dintaifung-uk.com/discover/about-us/",
+        "https://zh.wikipedia.org/wiki/%E9%BC%8E%E6%B3%B0%E8%B1%90",
+        "https://taiwanrice.org/din-tai-fung-%E9%BC%8E%E6%B3%B0%E8%B1%90/",
+        "https://greatnewplaces.com/culinary/dintaifung-vivocity/",
+        "https://pipichocho.com/din-tai-fung/",
+        "https://apps.apple.com/tw/app/%E9%BC%8E%E6%B3%B0%E8%B1%90/id1108359809",
+        "https://dintaifung-uk.com/wp-content/uploads/2022/10/Din-Tai-Fung-Web-Menu-2022.pdf"
+      ],
+      "searchResults": [
+        {
+          "date": "2006-01-08",
+          "last_updated": "2026-06-19",
+          "place_metadata": null,
+          "snippet": "**鼎泰豐**（閩南語白話字：Téng-thài-hong; 客語四縣腔：dinˋ tai fungˊ；英語：Din Tai Fung）是臺灣一家以麵食生產銷售為主的連鎖餐廳，以小籠包等上海點心聞名，總店開設於臺北市信義路二段的永康商圈。\n...\n|總部|臺灣臺北市大安區信義路2段192號2至4樓、194號1至4樓|\n...\n|網站|www.dintaifung.com.tw|",
+          "source": "web",
+          "title": "鼎泰豐 - 維基百科，自由的百科全書",
+          "url": "https://zh.wikipedia.org/zh-tw/%E9%BC%8E%E6%B3%B0%E8%B1%90"
+        },
+        {
+          "date": "2023-08-26",
+          "last_updated": "2026-08-29",
+          "place_metadata": null,
+          "snippet": "|Website|www.dintaifung.com.tw|\n...\n**Din Tai Fung** is a Taiwanese restaurant chain specializing in Chinese cuisine, particularly famous for its xiaolongbao.\n...\n- Din Tai Fung official website (Global) (in Chinese)",
+          "source": "web",
+          "title": "Din Tai Fung",
+          "url": "https://wiki.hijodeputin.com/content/wikipedia_en_all_maxi_2025-08/Din_Tai_Fung"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-31",
+          "place_metadata": null,
+          "snippet": "Din Tai Fung is a world-renowned Taiwanese restaurant group celebrated for its mastery of the Xiao Long Bao.\n...\n**Website:** https://dintaifung.com.tw",
+          "source": "web",
+          "title": "Din Tai Fung | Hospitality",
+          "url": "https://www.linkedin.com/company/dintaifung"
+        },
+        {
+          "date": "2025-08-29",
+          "last_updated": "2025-08-29",
+          "place_metadata": null,
+          "snippet": "# 鼎泰豐\n...\n【鼎泰豊南西店】暫停營業公告：因應內部規劃調整，南西店於 8月18日（一）至9月23日（二）期間不營業。\n造成不便，敬請見諒。\n...\n- 鼎泰豐 台灣全店皆可使用（信義店僅限外帶），各店最新營業時間請查看以下鏈接：https://www.dintaifung.com.tw/store.php?spm=Activity.SectionCollapse.Link&clickId=50296b05a7\n## 聯繫我們",
+          "source": "web",
+          "title": "鼎泰豐- 捷運台北101 / 世貿站的小籠包名店- Klook香港",
+          "url": "https://www.klook.com/zh-HK/activity/18435-din-tai-fung-taipei/"
+        },
+        {
+          "date": "2025-01-01",
+          "last_updated": "2025-01-14",
+          "place_metadata": null,
+          "snippet": "Official website http://www.dintaifung.com.hk/indexe.php\n...\n地址 Shop 306, 3/F, Silvercord, 30 Canton Rd., Tsim Sha Tsui, Kowloon, Hong Kong",
+          "source": "web",
+          "title": "香港, Zhong guo的鼎泰豐",
+          "url": "https://tripomatic.com/zh/poi/ding-tai-feng-poi:21124"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-05",
+          "place_metadata": null,
+          "snippet": "Dintaifung.tw（以下稱「本網站」）係由鼎泰豐小吃店股份有限公司（以下統稱為「本公司」）所建置提供，依據本會員服務使用同意書、本網站上的其他公告內容、使用規範及注意事項（以下合稱為「本同意書」）所提供的服務。",
+          "source": "web",
+          "title": "鼎泰豐電子商務網站. 登入",
+          "url": "https://www.dintaifung.tw/login"
+        },
+        {
+          "date": "2006-12-07",
+          "last_updated": "2026-08-13",
+          "place_metadata": null,
+          "snippet": "**Din Tai Fung** is a Taiwanese restaurant chain specializing in Chinese cuisine, particularly famous for its xiaolongbao.\nBased in Taipei, Taiwan, Din Tai Fung also has branches in Hong Kong, Indonesia, Japan, Macau, China, Malaysia, the Philippines, Singapore, South Korea, Thailand, the United Ara...",
+          "source": "web",
+          "title": "Din Tai Fung - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Din_Tai_Fung"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-03",
+          "place_metadata": null,
+          "snippet": "Opening Hours\nMonday - Friday:\n10:00 am-9:00 pm\nSaturday - Sunday:\n9:00 am-9:00 pm\nOfficial Website\nDin Tai Fung (鼎泰豐)",
+          "source": "web",
+          "title": "Din Tai Fung (鼎泰豐, Dingtaifeng) - Guide to Taipei.com",
+          "url": "https://guidetotaipei.com/visit/din-tai-fung-%E9%BC%8E%E6%B3%B0%E8%B1%90-dingtaifeng"
+        },
+        {
+          "date": "2022-09-20",
+          "last_updated": "2026-05-28",
+          "place_metadata": null,
+          "snippet": "For more information, please visit www.dintaifung.com.tw\n## Din Tai Fung UK",
+          "source": "web",
+          "title": "About Us",
+          "url": "https://dintaifung-uk.com/discover/about-us/"
+        },
+        {
+          "date": "2006-01-08",
+          "last_updated": "2026-05-22",
+          "place_metadata": null,
+          "snippet": "|總部|臺灣臺北市大安區信義路2段192號2至4樓、194號1至4樓|\n...\n|网站|www.dintaifung.com.tw|\n**鼎泰豐**（閩南語白話字：Téng-thài-hong; 客語四縣腔：dinˋ tai fungˊ；英語：Din Tai Fung）是臺灣一家以麵食生產銷售為主的連鎖餐廳，以小籠包等上海點心聞名，總店開設於臺北市信義路二段的永康商圈。",
+          "source": "web",
+          "title": "鼎泰豐 - 维基百科，自由的百科全书",
+          "url": "https://zh.wikipedia.org/wiki/%E9%BC%8E%E6%B3%B0%E8%B1%90"
+        },
+        {
+          "date": "2026-07-06",
+          "last_updated": "2026-07-12",
+          "place_metadata": null,
+          "snippet": "**Din Tai Fung**, known in Chinese as **鼎泰豐**, is an internationally acclaimed Taiwanese restaurant brand.\n...\nVisit Official Website",
+          "source": "web",
+          "title": "Din Tai Fung 鼎泰豐",
+          "url": "https://taiwanrice.org/din-tai-fung-%E9%BC%8E%E6%B3%B0%E8%B1%90/"
+        },
+        {
+          "date": "2025-08-25",
+          "last_updated": "2026-08-23",
+          "place_metadata": null,
+          "snippet": "Don’t hesitate to contact us if you have any questions.\nl Via Email: [email protected]",
+          "source": "web",
+          "title": "Din Tai Fung VivoCity - Singapore - Great New Places",
+          "url": "https://greatnewplaces.com/culinary/dintaifung-vivocity/"
+        },
+        {
+          "date": "2021-04-13",
+          "last_updated": "2026-08-17",
+          "place_metadata": null,
+          "snippet": "在1958年創立的鼎泰豐，發展到現在總共在台灣有12間門市，而其中9間都位於台北地區，另外三間則分別開在新竹、台中、高雄。\n...\n**鼎泰豐 101店**\n- 地址：台北市信義區市府路45號B1\n- 交通資訊：台北101/世貿站 步行約1分鐘\n- 營業時間：11:00-21:00\n- 電話：02 8101-7799\n- 官網：https://www.dintaifung.com.tw/",
+          "source": "web",
+          "title": "鼎泰豐｜台北101/世貿站｜除了小籠包以外我的必吃推薦！",
+          "url": "https://pipichocho.com/din-tai-fung/"
+        },
+        {
+          "date": "2018-07-01",
+          "last_updated": "2026-09-06",
+          "place_metadata": null,
+          "snippet": "鼎泰豐為了服務客戶所開發的應用程式, 開啟網路或wifi後可觀察哪個分店離自身較近, 還有叫號顯示功能, 可以讓您不必待在原地等候。\n...\n- Din Tai Fung Co., Ltd",
+          "source": "web",
+          "title": "鼎泰豐 - App Store",
+          "url": "https://apps.apple.com/tw/app/%E9%BC%8E%E6%B3%B0%E8%B1%90/id1108359809"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-31",
+          "place_metadata": null,
+          "snippet": "home of the world-famous \nXiao Long Bao  \n(Steamed Dumplings)",
+          "source": "web",
+          "title": "[PDF] Din-Tai-Fung-Web-Menu-2022.pdf",
+          "url": "https://dintaifung-uk.com/wp-content/uploads/2022/10/Din-Tai-Fung-Web-Menu-2022.pdf"
+        }
+      ],
+      "usage": {
+        "inputTokens": 140,
+        "outputTokens": 163,
+        "totalTokens": 303
+      },
+      "latencyMs": 4502,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是 **10 家位於台北市信義區**、常被美食整理文推薦的餐廳，並附上**簡要推薦理由**；其中地址與推薦脈絡主要來自信義區美食彙整文章。[1][2][3][4][5][7][9][10]\n\n- **鼎泰豐（信義 A4／101／A13 皆有分店）**：小籠包與中式點心是經典招牌，且在信義區有多個據點，方便安排聚餐。[3][5]\n- **心潮飯店**：主打時髦復古風台菜，常被列為信義區代表性的聚餐餐廳。[5]\n- **The Ukai Taipei**：屬於高級餐飲選擇，常見於信義區米其林／高端餐廳推薦名單。[5]\n- **侯布雄法式餐廳**：精緻法式料理定位明確，適合慶祝、約會或重要餐敘。[5]\n- **饗 A Joy**：位於台",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 268,
+          "totalTokens": 318
+        },
+        "latencyMs": 5370,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、以**每人晚餐約 500–999 元**較容易落在可接受範圍的餐廳建議；我優先挑選有信義區地址、且搜尋結果中可見菜單/價位屬於中價位或明確低於 1,000 元附近的店家。[1][2][5][7][9]\n\n- **Hoda Bistro**：被整理為「信義評分最高的平價餐酒館」之一，適合晚餐聚餐與約會，屬於信義區中價位餐酒館選項。[2]\n- **BaganHood 蔬食餐酒館**：主打精緻異國料理與披薩，屬餐酒館型態，通常較容易落在你要的晚餐預算帶。[1]\n- **激安の食事酒場 市府二號店**：搜尋結果明確提到「暢飲兩小時只要 $698」，晚餐預算落在 500–999 元範圍內相當合適。[",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【BaganHood】台北信義蔬食餐酒館推薦，特色必吃精緻異國料理、每日限量披薩！創造嶄新飲食風格\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n…\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區莊敬路327號/** **02 8780 9559**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n**■ 台北寒舍艾美酒店 探索廚房**\n地址：110台北市信義區松仁路38號\n電話：0266228018\n營業時間：06:30–10:00、11:30–14:00、15:00–17:00、18:00–21:00\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~2...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃1 Chili's 美式餐廳\n- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n- 台北平價餐廳推薦＃5 獅子甜點\n- 台北平價餐廳推薦＃6 Gumgum 雞翅啤酒吧\n- 台北平價餐廳推薦＃7 Musée Kitchen & Bar\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n- 台北平價餐廳推薦＃9 豬跳舞小館\n- 台北平價餐廳推薦＃10 AN58 承德店\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2025-10-01",
+            "last_updated": "2025-10-19",
+            "place_metadata": null,
+            "snippet": "均消 $1200今日營業: 11:30-14:00, 17:30-21:30臺北市信義區和平東路三段215號牛排精緻高級約會餐廳\n...\n均消 $1000現正營業: 11:30-23:00臺北市信義區松智路17號46F咖哩酒吧景觀餐廳\n...\n均消 $800今日營業: 11:00-14:00, 17:00-21:00臺北市信義區仁愛路四段506號中式料理火鍋合菜\n…",
+            "source": "web",
+            "title": "台北1000元以內餐廳推薦！ Saffron 46及其他354家精選",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n...\n《**樂葵法式鐵板燒微風南山店**》Google評價高又不貴，十道精緻料理價格只要1650元＋10%，適合約會慶生、犒賞自己或同事請客，這間真的很可以。\n...\n地址：台北市信義區松智路17號5樓（微風南山5F）\n電話：02 6605 7122\n...\n**香米泰式料理 信義遠百A13店\n** 地址：台北市信義區松仁路58號4樓\n營業時間：\n...\n電話：02-27786806",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n|--|--|--|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n|大味王吃到飽火鍋|$250起| |\n...\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 261,
+          "totalTokens": 325
+        },
+        "latencyMs": 5720,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

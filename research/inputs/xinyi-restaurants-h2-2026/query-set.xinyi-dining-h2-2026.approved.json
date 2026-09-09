@@ -1,0 +1,25 @@
+{
+  "query_set_version": "xinyi-dining-2026h2-v2.0",
+  "industry": "台灣餐飲（台北市信義區）",
+  "review_status": "approved",
+  "reviewed_by": "eason",
+  "reviewed_at": "2026-09-09",
+  "note": "2026 下半年信義區餐廳追蹤研究正式核准真實搜尋情境題組（v2.0）。由研究者人工審核凍結，涵蓋約會慶生、大眾聚餐與火鍋燒肉三大台灣消費者向生成式 AI 搜尋之自然核心意圖。全體 cohort 必須使用完全相同的題目，不得逐站動態產生。",
+  "queries": [
+    {
+      "id": "dating-celebration-01",
+      "intent": "recommendation",
+      "text": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+    },
+    {
+      "id": "gathering-general-01",
+      "intent": "recommendation",
+      "text": "台北信義區聚餐推薦？"
+    },
+    {
+      "id": "hotpot-bbq-01",
+      "intent": "comparison",
+      "text": "信義區想吃高評價的火鍋或燒肉推薦？"
+    }
+  ]
+}

@@ -1,0 +1,440 @@
+{
+  "url": "https://www.dt101.com.tw/",
+  "measured_at": "2026-09-09T06:13:49.392Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website dt101.com.tw (title: 首頁). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: UNKNOWN\n\nUnknown: no public source in the gathered results clearly verifies the exact entity for dt101.com.tw or provides corroborated aliases for that specific website.[4]",
+      "citations": [
+        "https://store.dtno1.com/collections/frontpage",
+        "https://imagenex.com/products/dt101",
+        "http://www.economik.com/stedman/dt101-desktop-pop-filter/",
+        "https://wanderlog.com/place/details/3050170/diamond-tonys-italian-restaurant-101",
+        "https://www.tvcmall.com/details/dt101-1-9-inch-screen-smart-watch-multi-sport-mode-bracelet-with-ecg-nfc-function-support-bluetooth-call-wireless-charging-silicone-strap-black-sku680501754a.html",
+        "https://dtno1.com/products/",
+        "https://www.trinitytec.net/cn/blog-23",
+        "https://www.kingston.com/datasheets/DT101_tw.pdf",
+        "https://dunscertified.dnb.com.tw/DUNSCertifiedProfile/656244145",
+        "https://qqkz.com/v/www.dt.com.tw/",
+        "https://primetechnetsolutions.com/product/dt101g2-8gb/",
+        "https://grand.whoops.com.tw/product/dekton-dt101/",
+        "https://www.digitimes.com.tw/svc/svc_abs.asp?showtype=100",
+        "http://www.dtresearch.com.tw/zh/Contact/office.html",
+        "https://t-one-tw.com/"
+      ],
+      "searchResults": [
+        {
+          "date": "2025-01-23",
+          "last_updated": "2025-05-18",
+          "place_metadata": null,
+          "snippet": "DT101 Plus\n$39.99\n$28.99\n5 reviews",
+          "source": "web",
+          "title": "Home page",
+          "url": "https://store.dtno1.com/collections/frontpage"
+        },
+        {
+          "date": "2000-01-01",
+          "last_updated": "2026-02-03",
+          "place_metadata": null,
+          "snippet": "The DT101 Multibeam Profiling Sonar (i.e. Multibeam Echo Sounder) is a single instrument integrating the sonar, motion reference unit (MRU), and sound velocity sensor into one sleek and compact unit.\n...\n300 m Unit\n837B-000-442\nSensor Interface Relay Box (DT100 SIR)\nOption\n837-000-007\nIP Address*\nOp...",
+          "source": "web",
+          "title": "DT101 *Please see DT101Xi",
+          "url": "https://imagenex.com/products/dt101"
+        },
+        {
+          "date": "2025-01-01",
+          "last_updated": "2025-06-09",
+          "place_metadata": null,
+          "snippet": "Stands & Accessories\nPop Filter\nStedman DT101 Desktop Pop Filter\n...\nThe DT101 Desktop Pop Filter is the world's first free-standing pop filter made to sit upon a desktop without the use of a microphone stand or boom arm.",
+          "source": "web",
+          "title": "Stedman DT101 Desktop Pop Filter",
+          "url": "http://www.economik.com/stedman/dt101-desktop-pop-filter/"
+        },
+        {
+          "date": "2025-12-11",
+          "last_updated": "2026-08-16",
+          "place_metadata": null,
+          "snippet": "###### Address\n85F, No. 7號, Section 5, Xinyi Rd, Xicun Village, Xinyi District, Taipei City, Taiwan 110\n###### Website\nhttps://www.dt101.com.tw/\n###### Phone\n+886 2 8101 0016\n###### Hours\nSuSunday: 11:45AM–3PM, 5:45–10PM\nMoMonday: 11:45AM–3PM, 5:45–10PM\nTuTuesday: 11:45AM–3PM, 5:45–10PM\nWeWednesday:...",
+          "source": "web",
+          "title": "Diamond Tony's Italian Restaurant 101, Taipei, Taiwan - Wanderlog",
+          "url": "https://wanderlog.com/place/details/3050170/diamond-tonys-italian-restaurant-101"
+        },
+        {
+          "date": "2025-03-11",
+          "last_updated": "2025-03-29",
+          "place_metadata": null,
+          "snippet": "DT101 1.9 inch Screen Smart Watch Multi-Sport Mode Bracelet with ECG / NFC Function Support Bluetooth-compatible Call / Wireless Charging (Silicone Strap) - Black",
+          "source": "web",
+          "title": "DT101 1.9 inch Screen Smart Watch Multi-Sport Mode Bracelet with ECG / NFC Function Support Bluetooth-compatible Call / Wireless Charging (Silicone Strap) - Black",
+          "url": "https://www.tvcmall.com/details/dt101-1-9-inch-screen-smart-watch-multi-sport-mode-bracelet-with-ecg-nfc-function-support-bluetooth-call-wireless-charging-silicone-strap-black-sku680501754a.html"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-28",
+          "place_metadata": null,
+          "snippet": "DTNO.1 Company Introduction, one of the best smartwatches brand, Manufacturer in China",
+          "source": "web",
+          "title": "Products - DTNO.1",
+          "url": "https://dtno1.com/products/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-07-01",
+          "place_metadata": null,
+          "snippet": "*DT10* 的**多波示波器+模擬盒是專門為解決嵌入式軟體的問題而研發的，它的功能與邏輯分析器或示波器的功能很相似**。它可以捕獲並顯示運行時軟體的特徵，並在示波器上即時顯示不斷更新的精確時間圖表。",
+          "source": "web",
+          "title": "DT10功能介紹--DT10多波示波器-創提部落格-創提科技有限公司",
+          "url": "https://www.trinitytec.net/cn/blog-23"
+        },
+        {
+          "date": null,
+          "last_updated": "2025-07-02",
+          "place_metadata": null,
+          "snippet": "•• Capacities2 — 2GB, 4GB, 8GB, 16GB",
+          "source": "web",
+          "title": "Kingston DataTraveler 101",
+          "url": "https://www.kingston.com/datasheets/DT101_tw.pdf"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-25",
+          "place_metadata": null,
+          "snippet": "|公司名稱|鋒朋有限公司|\n|公司型態|非公開發行有限公司|\n|公司實際營運地址|臺灣114063臺北市內湖區瑞光路478巷18弄22號4樓|\n|電話|+886-2-26275366|\n...\n|電子郵件|Contact Us|\n|公司網站| |\n...\n|公司主要行業別 (中文)|螺絲機械零售業 未分類其他機械器具批發 未分類其他通用機械設備製造 其他未分類專用機械設備製造|",
+          "source": "web",
+          "title": "鄧白氏第三方企業認證檔案",
+          "url": "https://dunscertified.dnb.com.tw/DUNSCertifiedProfile/656244145"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-19",
+          "place_metadata": null,
+          "snippet": "www.dt.com.tw\n...\nThis page is not www.dt.com.tw Official website.",
+          "source": "web",
+          "title": "Website SEO Query",
+          "url": "https://qqkz.com/v/www.dt.com.tw/"
+        },
+        {
+          "date": "2018-02-05",
+          "last_updated": "2025-12-08",
+          "place_metadata": null,
+          "snippet": "DT101G2/8GB Portable storage in a capless, swivel designWith DataTraveler®101 G2, budget-conscious users get an easy way to store, carry and transfer data between computers and other devices.",
+          "source": "web",
+          "title": "DT101G2/8GB - Primetech Network System Corporation",
+          "url": "https://primetechnetsolutions.com/product/dt101g2-8gb/"
+        },
+        {
+          "date": "2025-10-01",
+          "last_updated": "2025-11-10",
+          "place_metadata": null,
+          "snippet": "NT$238 原始價格：NT$238。NT$179目前價格：NT$179。",
+          "source": "web",
+          "title": "【格蘭登】西班牙Dekton 帝通石DT101",
+          "url": "https://grand.whoops.com.tw/product/dekton-dt101/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-28",
+          "place_metadata": null,
+          "snippet": "或來信至 member@digitimes.com(一個工作日內將回覆您的來信)。",
+          "source": "web",
+          "title": "會員服務說明",
+          "url": "https://www.digitimes.com.tw/svc/svc_abs.asp?showtype=100"
+        },
+        {
+          "date": "2019-01-01",
+          "last_updated": "2025-09-30",
+          "place_metadata": null,
+          "snippet": "sales_asia@dtresearch.com\n...\n美商定誼科技台北分公司\n電話: +886 (2) 2298 1039\n傳真: +886 (2) 2298 1106\n24890新北市五股區五權七路36號4樓、6樓",
+          "source": "web",
+          "title": "DT Research™ - 美商定誼科技| 強固型平板電腦, 醫療推車 ...",
+          "url": "http://www.dtresearch.com.tw/zh/Contact/office.html"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-02",
+          "place_metadata": null,
+          "snippet": "Tel：(04)2247-5880 Fax：(04)2247-5880 Line ID：esse7720\nE-mail\n[email protected]\nTel：(04)2247-5880 Fax：(04)2247-5880 Line ID：esse7720\nE-mail\n[email protected]",
+          "source": "web",
+          "title": "台鉅團體服,台北,台中,高雄,嘉義,台南,新竹,桃園,T-SHIRT,POLO 外套 ...",
+          "url": "https://t-one-tw.com/"
+        }
+      ],
+      "usage": {
+        "inputTokens": 116,
+        "outputTokens": 38,
+        "totalTokens": 154
+      },
+      "latencyMs": 2559,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下推薦 10 家**位於台北市信義區**、且在整理型美食清單中常被提及的餐廳；我用的是「適合聚餐／約會／慶生／口碑穩定」這類實用角度來選。[2][3][5][7][9]\n\n| 餐廳 | 大致類型 | 簡要理由 |\n|---|---|---|\n| **鼎泰豐（101店／A4／A13）** | 小籠包／台菜點心 | 觀光與在地都很常見，信義區有多個分店，適合想吃經典台灣代表菜的人。[3] |\n| **心潮飯店** | 台菜餐酒館 | 被列為信義區米其林／熱門推薦餐廳之一，風格時髦，適合聚餐與約會。[5] |\n| **饗饗** | 吃到飽／景觀餐廳 | 常見於信義區高人氣吃到飽名單，地點與景觀優勢明顯，",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 262,
+          "totalTokens": 312
+        },
+        "latencyMs": 9666,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是**台北市信義區**、適合**每人晚餐預算約 500～999 元**的 10 家餐廳；我優先選擇有明確地址、且公開資訊顯示屬於平價到中價位區間的店家。部分店家實際消費會因餐點與是否含飲品/服務費而浮動，建議訂位前再確認當日菜單與低消。[1][6][7][8][9]\n\n| 餐廳 | 類型 | 為什麼推薦 | 預算符合度 |\n|---|---|---|---|\n| **激安の食事酒場-市府二號店** | 居酒屋 | 有暢飲方案，適合聚餐、下班小酌，價位落在中等預算內。[1][2] | 約 500～999 |\n| **來吧台北** | 日式餐酒館 | 主打調酒暢飲與聚會氛圍，適合晚餐加聊天續攤。[1][2] | 約 500～999 |\n",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！\n...\n【PLAYING Hookah Bar 餐廳水煙館】台北信義下午茶推薦，水煙與美食的美味饗宴，嚴選一系列甜點直接圈粉啦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區松智路17號5 樓/02 2723 8055**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "平均消費\n...\n現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理\n...\n10.下港吔羊肉爐、羊肉專賣店",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n📍台北市信義區忠孝東路五段412-6號1樓\n...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n- 信義區美食推薦 燒石鼎石頭小火鍋信義店\n- 信義區美食推薦 辛喬麻辣私房湯底麻辣鴛鴦\n...\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n...\n地址：台北市信義區信義路四段3...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n...\n### 『 兩餐 』 두끼 韓國年糕火鍋吃到飽-信義店\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n- ...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "美食品嚐 · 臺北\n平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 263,
+          "totalTokens": 327
+        },
+        "latencyMs": 12295,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

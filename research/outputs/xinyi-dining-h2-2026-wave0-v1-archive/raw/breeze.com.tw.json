@@ -1,0 +1,440 @@
+{
+  "url": "https://www.breeze.com.tw/",
+  "measured_at": "2026-09-09T06:12:17.924Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website breeze.com.tw (title: 微風廣場 - Breeze Center 微風廣場). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 微風廣場 | Breeze Center[15][4]\n\nThe website breeze.com.tw is publicly associated with 微風廣場 / Breeze Center, with the site itself listing 微風廣場 on its branch information page and public sources corroborating that name and brand.[15][4] The exact legal entity name behind the site is not fully verified from the available public sources, so that part is unknown.[2][10]",
+      "citations": [
+        "https://roo.cash/blog/breeze-center-article/",
+        "https://job.taiwanjobs.gov.tw/internet/jobwanted/company_desc2.aspx?EMPLOYER_ID=91719&BRANCH_ID=",
+        "https://play.google.com/store/apps/details?id=com.richi.breezevip&hl=zh_TW",
+        "https://zh.wikipedia.org/zh-tw/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4",
+        "https://ilabor.ntpc.gov.tw/cloud/GoodJob/job_company/442179638",
+        "https://apps.apple.com/tw/app/breeze-ride-order-anything/id1553449744",
+        "https://zh.wikipedia.org/wiki/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4",
+        "https://zh.wikipedia.org/zh-hant/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4",
+        "https://play.google.com/store/apps/details?id=social.breeze.breeze_app&hl=zh_TW",
+        "https://www.1111.com.tw/corp/490030/",
+        "http://tamsui.dils.tku.edu.tw/wiki/index.php/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4",
+        "https://www.superdelivery.com/en/zh-tw/do/psl/1052/?word=BREEZE&so=score&vi=1",
+        "https://www.104.com.tw/company/153sv9cg",
+        "https://www.yelp.com/biz/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4-%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80",
+        "https://www.breeze.com.tw/branches/001"
+      ],
+      "searchResults": [
+        {
+          "date": "2026-03-16",
+          "last_updated": "2026-09-08",
+          "place_metadata": null,
+          "snippet": "袋鼠金融導讀｜微風廣場位於台北市松山區復興南路一段39號，毗鄰捷運忠孝復興站5號出口，是台北時尚愛好者的購物與美食聖地。這座購物中心集合了國際精品、特色餐廳以及生活品牌，提供消費者多元的購物與休閒體驗。\n...\n微風廣場（Breeze Center）位於台北市忠孝復興站旁，共 B2～9F，是台北東區精品百貨地標。B1-B2 為美食街與超市，1F 國際精品，2-4F 流行時尚，5-6F 餐廳，7F 微風美食廣場，9F 電影城。\n...\n## 微風廣場營業時間\n週日至週三：上午 11:00 至晚上 9:30\n週四至週六（含例假日前夕）：上午 11:00 至晚上 10:00\n客服電話：(02)660...",
+          "source": "web",
+          "title": "微風廣場樓層介紹：微風廣場餐廳、品牌一覽",
+          "url": "https://roo.cash/blog/breeze-center-article/"
+        },
+        {
+          "date": "2023-12-18",
+          "last_updated": "2025-05-13",
+          "place_metadata": null,
+          "snippet": "聯絡人\n陳先生\n聯絡方式\n不開放顯示\n公司網址\nwww.breezecenter.com.tw\n公司地址\n台北市松山區復興南路一段３９號１樓",
+          "source": "web",
+          "title": "台灣就業通-找工作-公司資訊 - 微風廣場實業股份有限公司",
+          "url": "https://job.taiwanjobs.gov.tw/internet/jobwanted/company_desc2.aspx?EMPLOYER_ID=91719&BRANCH_ID="
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-19",
+          "place_metadata": null,
+          "snippet": "支援服務電子郵件地址\napp_service@breeze.com.tw\n...\n微風廣場實業股份有限公司\nbeverly_chen@breeze.com.tw\n105041台湾台北市松山區\n復興南路一段３９號\n+886 928 351 769",
+          "source": "web",
+          "title": "微風積點禮遇會員",
+          "url": "https://play.google.com/store/apps/details?id=com.richi.breezevip&hl=zh_TW"
+        },
+        {
+          "date": "2006-11-01",
+          "last_updated": "2026-09-08",
+          "place_metadata": null,
+          "snippet": "**微風廣場**（Breeze Center）是台灣連鎖零售品牌，包括購物中心（6間）、美食廣場（1間）等店型，於2001年由塑膠用品製造商三僑國際與本土飲料大廠黑松合資成立。\n...\n|網站|www.breezecenter.com|\n...\n|地址|臺灣臺北市松山區復興南路一段39號|\n...\n|營業時間|週日 ~ 週三 11:00 am ~ 09:30 pm 週四 ~ 週六（含例假日前夕）11:00 am ~ 10:00 pm|\n...\n|公共運輸|台北捷運 板南線 文湖線忠孝復興站|\n|網站|www.breeze.com.tw|\n|電話|+886 2 6600-8888|",
+          "source": "web",
+          "title": "微風廣場 - 維基百科，自由的百科全書",
+          "url": "https://zh.wikipedia.org/zh-tw/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4"
+        },
+        {
+          "date": "1995-06-29",
+          "last_updated": "2025-05-28",
+          "place_metadata": null,
+          "snippet": "|公司地址|臺北市松山區復興南路一段３９號１樓 [ 地圖 ]|\n|公司網址|www.breezecenter.com.tw|",
+          "source": "web",
+          "title": "求職管道",
+          "url": "https://ilabor.ntpc.gov.tw/cloud/GoodJob/job_company/442179638"
+        },
+        {
+          "date": "2024-08-03",
+          "last_updated": "2025-06-27",
+          "place_metadata": null,
+          "snippet": "Get Ready to Supercharge Your Life with Breeze: Your All-In-One Super App!",
+          "source": "web",
+          "title": "Breeze: Ride & Order Anything",
+          "url": "https://apps.apple.com/tw/app/breeze-ride-order-anything/id1553449744"
+        },
+        {
+          "date": "2006-11-01",
+          "last_updated": "2026-08-23",
+          "place_metadata": null,
+          "snippet": "**微風廣場**（Breeze Center）是台灣連鎖零售品牌，包括購物中心（6間）、美食廣場（1間）等店型，於2001年由塑膠用品製造商三僑國際與本土飲料大廠黑松合資成立。\n...\n|网站|www.breezecenter.com|\n...\n|地址|臺灣臺北市松山區復興南路一段39號|\n...\n|网站|www.breeze.com.tw|\n|电话|+886 2 6600-8888|",
+          "source": "web",
+          "title": "微風廣場 - 维基百科，自由的百科全书",
+          "url": "https://zh.wikipedia.org/wiki/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4"
+        },
+        {
+          "date": "2006-11-01",
+          "last_updated": "2026-05-05",
+          "place_metadata": null,
+          "snippet": "|微風廣場（Breeze Center）| |台北市松山區復興南路一段39號（位於台北捷運 板南線 文湖線忠孝復興站）|2001年10月26日|原址曾為專門生產汽水的黑松臺北中崙工廠（1937年落成），廠區土地於1994年對外公開標售。1995年6月，黑松與土地得標者三僑國際共同合資成立「三僑實業」（後更名為「微風廣場實業」，英文名稱同樣為「Breeze Development」），配合政府推動之工商綜合區之土地政策，自1998年9月開始在原本的工廠用地上動工興建。商場建築的造型由三門建築師事務所與澳洲The Buchan Group負責設計，總樓地板面積為23,000坪，營業租賃面積為12,...",
+          "source": "web",
+          "title": "微風廣場 - 維基百科，自由的百科全書",
+          "url": "https://zh.wikipedia.org/zh-hant/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-18",
+          "place_metadata": null,
+          "snippet": "+31647069688\n支援服務電子郵件地址\nhallo@breeze.social",
+          "source": "web",
+          "title": "Breeze - App for Real Dates - Google Play 應用程式",
+          "url": "https://play.google.com/store/apps/details?id=social.breeze.breeze_app&hl=zh_TW"
+        },
+        {
+          "date": "2014-07-06",
+          "last_updated": "2026-02-27",
+          "place_metadata": null,
+          "snippet": "- ## 公司網址\nhttp://www.breezecenter.com\n...\n2001年10月––位於復興南路一段的大型購物心––微風廣場，將零售、餐飲、休閒、服務結為一體的多功能購物空間。",
+          "source": "web",
+          "title": "微風廣場實業股份有限公司 | 徵才中 - 1111人力銀行",
+          "url": "https://www.1111.com.tw/corp/490030/"
+        },
+        {
+          "date": null,
+          "last_updated": "2025-11-03",
+          "place_metadata": null,
+          "snippet": "微風廣場(Breeze Center）是台灣的一個連鎖零售品牌，包括購物中心（5間）、商場（1間）、美食廣場（4間）等業種，於2001年由塑膠用品製造商三僑國際與本土飲料大廠黑松合資成立，現任董事長是廖鎮漢。除了位於台北市復興南路與市民大道交叉口的本館外，在台北市內尚有9處分館及1件開發案。\n...\n位於105台北市松山區復興南路一段39號（台北捷運文湖線忠孝復興站5號出口）",
+          "source": "web",
+          "title": "微風廣場",
+          "url": "http://tamsui.dils.tku.edu.tw/wiki/index.php/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4"
+        },
+        {
+          "date": "2025-06-17",
+          "last_updated": "2025-06-17",
+          "place_metadata": null,
+          "snippet": "Available as a single item\n...\nJPY 3,000 OFF優惠券發行中",
+          "source": "web",
+          "title": "以批發價從日本進口\"BREEZE\"",
+          "url": "https://www.superdelivery.com/en/zh-tw/do/psl/1052/?word=BREEZE&so=score&vi=1"
+        },
+        {
+          "date": "2021-01-22",
+          "last_updated": "2026-09-02",
+          "place_metadata": null,
+          "snippet": "台北市信義區忠孝東路5段68號\n### 公司網址\nhttp://www.breezecenter.com/",
+          "source": "web",
+          "title": "微風廣場實業股份有限公司📢｜徵才中",
+          "url": "https://www.104.com.tw/company/153sv9cg"
+        },
+        {
+          "date": "2024-04-12",
+          "last_updated": "2024-12-23",
+          "place_metadata": null,
+          "snippet": "No. 39, Section 1, Fuxing South Road 復興南路一段39號 Songshan District, 台北市 105 Taiwan\n...\n|Mon||Closed now|",
+          "source": "web",
+          "title": "微風廣場 - Songshan District, TPE",
+          "url": "https://www.yelp.com/biz/%E5%BE%AE%E9%A2%A8%E5%BB%A3%E5%A0%B4-%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80"
+        },
+        {
+          "date": "2026-09-04",
+          "last_updated": "2026-09-08",
+          "place_metadata": null,
+          "snippet": "一般營業時間：\n週日 ~ 週三 11:00 am ~ 09:30 pm\n週四 ~ 週六 (含例假日前夕) 11:00 am ~ 10:00 pm\n客服電話\n(02)66008888\n聯絡我們\n[email protected]\n...\n台北市松山區復興南路一段39號\n鄰近捷運\n捷運忠孝復興站5號出口\n...\n服務專線｜02-6606-9768\n...\nStore Information｜10 corso como 微風廣場台北市松山區中崙里復興南路一段39號1樓\n營業時間｜週日 ~ 週三11:00-21:30週四 ~ 週六（含例假日前夕） 11:00-22:00\n…",
+          "source": "web",
+          "title": "館別資訊 - 微風廣場",
+          "url": "https://www.breeze.com.tw/branches/001"
+        }
+      ],
+      "usage": {
+        "inputTokens": 125,
+        "outputTokens": 96,
+        "totalTokens": 221
+      },
+      "latencyMs": 7505,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、且在多個美食整理中反覆出現的餐廳；我用「餐點特色、用途、口碑常見度」作為簡要推薦理由。[2][3][5][7][9]\n\n| 餐廳 | 推薦理由 |\n|---|---|\n| **鼎泰豐（信義A4／101／A13）** | 小籠包是代表性招牌，分店位於信義核心商圈，適合第一次到信義區用餐的人。[3] |\n| **饗 A Joy** | 位於台北101高樓層，主打高價位自助餐與景觀體驗，常被列為信義區吃到飽代表。[5][7] |\n| **旭集 和食集錦** | 以日式 buffet 見長，常出現在信義區吃到飽推薦名單，適合聚餐。[5][7] |\n| **探索廚房** | 多篇整理都把它列為信義區熱門吃到飽選項，適合多人",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 272,
+          "totalTokens": 322
+        },
+        "latencyMs": 10502,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、較符合**每人晚餐預算約 500–999 元**的餐廳建議；我優先挑選有明確店名、地址落在信義區、且來源中可見價格帶或均消資訊的店家。[1][2][3][5][6][7][8][9]\n\n| 餐廳 | 類型/特色 | 為何適合這個預算 |\n|---|---|---|\n| **激安の食事酒場－市府二號店** | 居酒屋 | 來源提到**暢飲兩小時 698 元**，晚餐預算內很容易控制，適合聚餐。[1][2] |\n| **來吧台北** | 日式餐酒館 | 來源提到**3 小時調酒暢飲 1000 元**，若點餐不多，整體可落在 500–999 元區間。[1][2] |\n| **初殿鍋物** | 火鍋 | 來源提到**平日套餐 299 元起",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！\n...\n【PLAYING Hookah Bar 餐廳水煙館】台北信義下午茶推薦，水煙與美食的美味饗宴，嚴選一系列甜點直接圈粉啦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區松智路17號5 樓/02 2723 8055**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "平均消費\n...\n現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理\n...\n10.下港吔羊肉爐、羊肉專賣店",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n📍台北市信義區忠孝東路五段412-6號1樓\n...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n- 信義區美食推薦 燒石鼎石頭小火鍋信義店\n- 信義區美食推薦 辛喬麻辣私房湯底麻辣鴛鴦\n...\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n...\n地址：台北市信義區信義路四段3...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n...\n### 『 兩餐 』 두끼 韓國年糕火鍋吃到飽-信義店\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n- ...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "美食品嚐 · 臺北\n平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 271,
+          "totalTokens": 335
+        },
+        "latencyMs": 10779,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

@@ -476,3 +476,21 @@ tags:
 - **成本與安全邊界**：選用 Workers Paid 的 USD 5/月起點與 USD 10 警戒，不升 Cloudflare Pro。設定 Free WAF managed/custom rules、單一 `/v1/*` rate-limit、no-cache、TLS/HSTS；Workers 是 origin，不再使用 Render edge proxy。Render 保留七天，除非使用者再明確授權不得停用或刪除。
 - **SDK**：建立 MIT `@geocheck/sdk@0.1.0-beta.1` TypeScript client，具 typed measurement/job/result/usage、顯式 idempotency key、2 秒 polling 與 `Retry-After`；不含 server 邏輯或 provider secrets，且不自動重送 POST。公開 npm publish 只在帳號登入並確認持有 scope 後執行。
 - **驗證邊界**：先以 fixture、contract、Pages/Workers preview、D1 dry-run/import hash 與合成 Time Travel restore 驗證；付費 provider smoke 必須在執行當下另行確認。完成前不得把 dry-run、preview、fixture 或 Browser Run API 回應宣稱為正式客戶或供應商成功。
+
+### D-040 三層產品架構與 Developer API 共用量測基礎
+
+- **日期**：2026-09-09 ｜ **狀態**：Confirmed（產品方向；分階段實作）
+- **決策者**：Wenqing950519
+- **決策內容**：GeoCheck 的主要產品架構採「短測引流 → SaaS Dashboard → 診斷型 Agent」。短測用來建立單次基線與問題認知；Dashboard 保存跨期、跨引擎 Run 與差異；Agent 解釋既有證據、提出可複製的改善材料與異常提醒。Developer API 是三層產品共用的四引擎量測基礎，也可作為外部技術產品，但不得反向改寫產品 A 已確認的計分、`unknown` 或報告語義。
+- **Agent 邊界**：Agent 只能提供診斷、解釋、提醒與由使用者自行採用的材料，不直接登入或修改客戶 CMS、網站或第三方帳戶；因此不改 `PROJECT_CHARTER.md §1` 的「只診斷、不代執行」邊界。
+- **決策邊界**：這是產品方向，不代表 Project、視覺 Dashboard、排程、Agent、金流、正式寄信或公開 customer API 已完成或已部署。餐飲是否為最佳付費灘頭堡、第一 buyer／ICP、Dashboard／Agent 定價、留存機制及 AI citation 與營收的關係仍待驗證。
+- **與既有決策的關係**：D-029 的固定四引擎、全成才成功／扣量與 `partial_results` 契約維持；其「附屬產品」解讀更新為 Developer API 可同時作為共用基礎與外部產品，但整合不得影響產品 A 現行行為。D-039 的本期實作與發布邊界不變。
+- **可追溯來源**：`docs/research/business-plan-2026-09-09/multi-agent-business-plan-workflow.md` Stage One `0.1`、`Part 6 P0-1`；使用者 2026-09-09 確認其中明示決策為最新決策。
+
+### D-041 藍新金流為預定 payment rail
+
+- **日期**：2026-09-09 ｜ **狀態**：Confirmed（供應商選定；尚未串接）
+- **決策者**：Wenqing950519
+- **決策內容**：GeoCheck 未來需要台灣新台幣收款、信用卡定期定額及發票流程時，優先採用藍新金流（NewebPay）作為 payment rail；商業與技術設計以其 MPG、信用卡定期定額及相關加值服務的官方文件與正式商務條件為準。
+- **決策邊界**：本決策只選定供應商，不授權現在建立商店、保存付款憑證、串接 production API、啟用扣款或對外宣稱可付款。實際費率、申請資格、退款／取消、失敗重試、電子發票方案、稅務與上線驗收尚未確認；D-030／D-032 的試用與訂閱語義維持，D-039 的「付款不在本期」維持。
+- **可追溯來源**：`docs/research/business-plan-2026-09-09/multi-agent-business-plan-workflow.md` Stage One `Part 6 P1-4`；使用者 2026-09-09 確認其中明示決策為最新決策；藍新官方 MPG／定期定額文件只用於能力核對，不構成已串接證據。

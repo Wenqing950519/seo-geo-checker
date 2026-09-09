@@ -1,0 +1,440 @@
+{
+  "url": "https://ichiran.com.tw/Shop/index.aspx",
+  "measured_at": "2026-09-09T06:16:34.735Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website ichiran.com.tw (title: 一蘭拉麵| 一蘭台灣官方購物網 - 一蘭、一蘭拉麵、拉麵、一蘭台灣購物網、一蘭購物、一蘭伴手禮、台灣一蘭、日本食品、博多細麵、捲麵、豚骨拉麵、一蘭商品、伴手禮、拉麵商品、即食麵、釜醬汁豚骨拉麵、博多拉麵、日本泡麵、日本進口、福岡、九州、日本). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 一蘭台灣購物網 | 一蘭台灣官方購物網[13]\n\nThe exact entity is the Taiwan shopping site for Ichiran, tied to the Ichiran brand and named on the site as 一蘭台灣購物網[13]. Public corroboration also shows the brand name 一蘭ICHIRAN used for Taiwan retail and products, but the exact legal operator is not verifiable from the available public sources, so that part is unknown[13][15].",
+      "citations": [
+        "https://taipeiexpats.com/blog/ichiran-ramen/",
+        "https://play.google.com/store/apps/details?id=jp.co.ichiran.app&hl=zh_TW",
+        "https://play.google.com/store/apps/details?id=com.ichiran.android&hl=zh_TW",
+        "https://www.tripadvisor.com/Restaurant_Review-g13808515-d12895117-Reviews-Ichiran_Ramen_Taiwan_Taipei_Shop-Xinyi_District_Taipei.html",
+        "https://www.skm.com.tw/brand/12652",
+        "https://giftshop-tw.line.me/voucher/322197888",
+        "https://en.wikipedia.org/wiki/Ichiran",
+        "https://blog.yuyansoftware.com.tw/2024/12/ichiran-ramen-shin-kong-a11/",
+        "https://www.tw.coupang.com/products/Ichiran-%E4%B8%80%E8%98%AD-%E9%9B%99%E5%8F%A3%E5%91%B3%E9%AB%98%E7%B4%9A%E5%A5%97%E7%B5%84-10%E9%A3%9F%E5%85%A5-%E5%8D%9A%E5%A4%9A%E7%B4%B0%E9%BA%B5%E7%9B%B4%E9%BA%B5%E6%B9%AF%E5%BA%95-+-%E9%87%9C%E9%86%AC%E8%B1%9A%E9%AA%A8%E6%B9%AF%E5%BA%95-+-%E7%B4%85%E8%89%B2%E7%A7%98%E5%82%B3%E7%B2%89%E6%9C%AB--1.19kg--1%E7%B5%84-491043145302017",
+        "https://www.gltjp.com/en/directory/item/14748/",
+        "https://menutaiwan.com/tw/restaurants/gw3DdCgmqt?OpBrowser=1",
+        "https://apps.apple.com/tw/app/%E4%B8%80%E8%98%AD%E5%8F%B0%E7%81%A3/id1516580422",
+        "https://ichiran.com.tw/shop/products.aspx",
+        "https://24h.pchome.com.tw/prod/DBAY49-A900I7CUD",
+        "https://24h.pchome.com.tw/search/?brands=1_516897902358323329"
+      ],
+      "searchResults": [
+        {
+          "date": "2024-10-23",
+          "last_updated": "2024-11-02",
+          "place_metadata": null,
+          "snippet": "Ichiran is about 5 minutes on foot from Xiangshan MRT.",
+          "source": "web",
+          "title": "Ichiran Ramen: Taipei's 24-hour Restaurant - Taipei Expats",
+          "url": "https://taipeiexpats.com/blog/ichiran-ramen/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-06",
+          "place_metadata": null,
+          "snippet": "5-3-2, NAKASU, HAKATA-KU\nFUKUOKA, 福岡県 810-0801\nJapan\n+81 90-9154-1338",
+          "source": "web",
+          "title": "一蘭公式アプリ- Google Play 應用程式",
+          "url": "https://play.google.com/store/apps/details?id=jp.co.ichiran.app&hl=zh_TW"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-22",
+          "place_metadata": null,
+          "snippet": "支援服務電子郵件地址\ncs.hk@ichiran.com\n隱私權政策\n開發人員資訊\n香港商一蘭有限公司台灣分公司\nichirantw.omiyage@ichiran.com\n110414台湾台北市信義區\n松仁路101號11樓之1\n+886 905 913 591",
+          "source": "web",
+          "title": "一蘭香港- Google Play 應用程式",
+          "url": "https://play.google.com/store/apps/details?id=com.ichiran.android&hl=zh_TW"
+        },
+        {
+          "date": "2017-12-03",
+          "last_updated": "2025-12-10",
+          "place_metadata": null,
+          "snippet": "1F, No. 97, Songren Road, Xinyi District, Xinyi District, Taipei 110 Taiwan\nWebsite\n+886 2 2758 3868Improve this listing\nAbout\n...\nNo hours available\n## Reviews",
+          "source": "web",
+          "title": "ICHIRAN RAMEN - TAIWAN TAIPEI SHOP, Xinyi District - Restaurant Reviews, Photos & Phone Number - Tripadvisor",
+          "url": "https://www.tripadvisor.com/Restaurant_Review-g13808515-d12895117-Reviews-Ichiran_Ramen_Taiwan_Taipei_Shop-Xinyi_District_Taipei.html"
+        },
+        {
+          "date": "2025-09-11",
+          "last_updated": "2025-09-12",
+          "place_metadata": null,
+          "snippet": "一蘭從來只專注於「天然豚骨湯拉麵」，每碗拉麵都是由四十位以上的師傅精心研製， 憑著對拉麵的熱忱，不斷地鑽研，只為了極力追求正宗的豚骨湯拉麵，將美味推向更高層次。\n...\n台北信義新天地A11 B1F\n(02)2729-9866\nWhat’s New",
+          "source": "web",
+          "title": "一蘭ICHIRAN 專櫃/門市",
+          "url": "https://www.skm.com.tw/brand/12652"
+        },
+        {
+          "date": "2025-07-30",
+          "last_updated": "2025-08-10",
+          "place_metadata": null,
+          "snippet": "客服聯繫方式: 02-2758-2258\n其他說明事項: 客服服務時間： 週一至週五上午9點至下午4點 ※如非客服回應時間，歡迎來信或於LINE官方帳號留言 客服信箱：ichirantw.omiyage@ichiran.com LINE官方帳號: @ichirantw\n【冊子】經典油飯(375g/盒)-3盒/10盒【墊腳石】",
+          "source": "web",
+          "title": "【一蘭拉麵】 經典好味道-便當盒組 | LINE 禮物",
+          "url": "https://giftshop-tw.line.me/voucher/322197888"
+        },
+        {
+          "date": "2015-09-21",
+          "last_updated": "2026-07-22",
+          "place_metadata": null,
+          "snippet": "Outside of Japan, Ichiran has restaurants in Hong Kong, Taipei, Taichung, and Brooklyn, New York.\n...\n## See also\n...\n- Official website",
+          "source": "web",
+          "title": "Ichiran - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Ichiran"
+        },
+        {
+          "date": "2024-12-14",
+          "last_updated": "2026-09-08",
+          "place_metadata": null,
+          "snippet": "台灣人大概都非常熟悉「一蘭拉麵」(Ichiran)，台北本店是在信義區，松仁路東側的店面。台北別館 (2店) 位於信義新光A11、B1。台北目前 (2024年12月) 只有這兩家店。",
+          "source": "web",
+          "title": "豚骨拉麵",
+          "url": "https://blog.yuyansoftware.com.tw/2024/12/ichiran-ramen-shin-kong-a11/"
+        },
+        {
+          "date": "2024-09-23",
+          "last_updated": "2025-06-09",
+          "place_metadata": null,
+          "snippet": "每組包含10份麵條，以及搭配的液體湯底和紅色秘傳粉末，可依個人喜好調整辣度。一蘭拉麵以其獨特的湯頭和麵條而聞名，嚴選食材，確保每一口都充滿濃郁的風味。",
+          "source": "web",
+          "title": "Ichiran 一蘭 雙口味高級套組 10食入 博多細麵直麵湯底 + 釜醬豚骨湯底 + 紅色秘傳粉末, 1.19kg, 1組 - 麵條 | 酷澎",
+          "url": "https://www.tw.coupang.com/products/Ichiran-%E4%B8%80%E8%98%AD-%E9%9B%99%E5%8F%A3%E5%91%B3%E9%AB%98%E7%B4%9A%E5%A5%97%E7%B5%84-10%E9%A3%9F%E5%85%A5-%E5%8D%9A%E5%A4%9A%E7%B4%B0%E9%BA%B5%E7%9B%B4%E9%BA%B5%E6%B9%AF%E5%BA%95-+-%E9%87%9C%E9%86%AC%E8%B1%9A%E9%AA%A8%E6%B9%AF%E5%BA%95-+-%E7%B4%85%E8%89%B2%E7%A7%98%E5%82%B3%E7%B2%89%E6%9C%AB--1.19kg--1%E7%B5%84-491043145302017"
+        },
+        {
+          "date": "2025-08-27",
+          "last_updated": "2026-09-05",
+          "place_metadata": null,
+          "snippet": "- **Postal Code**\n818-0117\n- **Address**\n2-6-2 Saifu, Dazaifu City, Fukuoka\n- **Telephone**\n050-1808-2430\n- **Closed**\nOpen every day\n- **Business Hours**\n9:00 am - 7:00 pm (Last Order - 6:45 pm) Note that you may not be able to enter if it is too crowded near the last order time.\n...\n- **Official W...",
+          "source": "web",
+          "title": "Ichiran Dazaifu Sando - What to Eat, Access, Hours & Price",
+          "url": "https://www.gltjp.com/en/directory/item/14748/"
+        },
+        {
+          "date": "2017-06-16",
+          "last_updated": "2026-04-02",
+          "place_metadata": null,
+          "snippet": "大家應該對這拉麵不陌生吧 加叉燒加麵加辣太讚了(*≧ω≦) （但我這次沒加半熟蛋🥚 📍一蘭拉麵台北本店 🏡台北市信義區松仁路97號 ☎️02-2758-3868 ⏱24小時營業",
+          "source": "web",
+          "title": "一蘭拉麵Ichiran ラーメン台灣台北本店 - MENU 美食誌",
+          "url": "https://menutaiwan.com/tw/restaurants/gw3DdCgmqt?OpBrowser=1"
+        },
+        {
+          "date": "2025-11-02",
+          "last_updated": "2026-08-10",
+          "place_metadata": null,
+          "snippet": "3. 利用店舖收尋，輕鬆尋找離您最近的一蘭！不僅台灣，出國到日本、香港、紐約觀光時，也能輕鬆享用一蘭的美味。",
+          "source": "web",
+          "title": "一蘭台灣 - App Store",
+          "url": "https://apps.apple.com/tw/app/%E4%B8%80%E8%98%AD%E5%8F%B0%E7%81%A3/id1516580422"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-09-07",
+          "place_metadata": null,
+          "snippet": "所有商品(符合關鍵字商品：32件)\n...\n一蘭拉麵-炎 捲麵",
+          "source": "web",
+          "title": "一蘭台灣購物網",
+          "url": "https://ichiran.com.tw/shop/products.aspx"
+        },
+        {
+          "date": "2023-01-01",
+          "last_updated": "2025-07-25",
+          "place_metadata": null,
+          "snippet": "# ICHIRAN 一蘭 一蘭台灣限定組合-單手不燙款 (697g)",
+          "source": "web",
+          "title": "ICHIRAN 一蘭 一蘭台灣限定組合-單手不燙款 (697g) - PChome 24h購物",
+          "url": "https://24h.pchome.com.tw/prod/DBAY49-A900I7CUD"
+        },
+        {
+          "date": "2023-01-01",
+          "last_updated": "2025-12-11",
+          "place_metadata": null,
+          "snippet": "食品飲料\n品牌\nICHIRAN 一蘭\n產地",
+          "source": "web",
+          "title": "一蘭ICHIRAN - PChome 24h購物",
+          "url": "https://24h.pchome.com.tw/search/?brands=1_516897902358323329"
+        }
+      ],
+      "usage": {
+        "inputTokens": 228,
+        "outputTokens": 103,
+        "totalTokens": 331
+      },
+      "latencyMs": 3378,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是 **10 家位於台北市信義區**、且在多篇信義美食推薦中反覆出現的餐廳；我用「適合的場景／特色」作為簡要推薦理由，方便你快速挑選。[1][2][3][5][7][9]\n\n- **鼎泰豐（101店／A4／A13）**：小籠包最具代表性，適合第一次到信義區、想吃經典台灣名店的人。[3]\n- **心潮飯店**：主打時髦復古風台菜，常被列為信義區米其林／約會聚餐推薦。[5]\n- **The Ukai Taipei**：高樓景觀與精緻餐飲兼具，適合慶生、紀念日或正式聚餐。[5]\n- **侯布雄法式餐廳**：法式高端料理代表，常出現在信義區高級餐廳推薦名單中。[5]\n- **饗 A Joy**：以高價位吃到飽與台北101景觀聞名，適合想",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 265,
+          "totalTokens": 315
+        },
+        "latencyMs": 5302,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下推薦以**台北市信義區**、且可作為**每人晚餐約 500–999 元**的餐廳為主；我優先挑選資料中明確出現於信義區、且價位落在這個區間內或常見平均消費接近此區間的店家[1][5][6][8][9]。\n\n- **Chili’s 美式餐廳**：屬於信義區少數能以相對可控預算吃到的美式餐廳，資料指出其在信義區屬於「不用花大錢也能吃到」的選項，適合聚餐[7]。\n- **Gumgum 雞翅啤酒吧**：屬於信義區平價聚餐名單中的熱門店，適合晚餐配炸物、啤酒與多人分享[7]。\n- **Gyuu Niku ステーキ專門店**：以牛排類餐點為主，出現在台北平價餐廳推薦名單中，價位與 500–999 元區間相符[",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！\n...\n【PLAYING Hookah Bar 餐廳水煙館】台北信義下午茶推薦，水煙與美食的美味饗宴，嚴選一系列甜點直接圈粉啦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區松智路17號5 樓/02 2723 8055**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "平均消費\n...\n現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理\n...\n10.下港吔羊肉爐、羊肉專賣店",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n📍台北市信義區忠孝東路五段412-6號1樓\n...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n- 信義區美食推薦 燒石鼎石頭小火鍋信義店\n- 信義區美食推薦 辛喬麻辣私房湯底麻辣鴛鴦\n...\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n...\n地址：台北市信義區信義路四段3...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n...\n### 『 兩餐 』 두끼 韓國年糕火鍋吃到飽-信義店\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n- ...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "美食品嚐 · 臺北\n平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 259,
+          "totalTokens": 323
+        },
+        "latencyMs": 10806,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

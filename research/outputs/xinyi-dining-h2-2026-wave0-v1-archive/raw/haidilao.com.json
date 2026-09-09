@@ -1,0 +1,440 @@
+{
+  "url": "https://www.haidilao.com/",
+  "measured_at": "2026-09-09T06:15:07.620Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website haidilao.com (title: 海鸿达（北京）餐饮管理有限公司). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 海鸿达（北京）餐饮管理有限公司 | 海底捞国际控股有限公司[11][12]\n\nThe exact website entity is **unknown** beyond these corroborating public sources; public evidence supports that the site/app brand is **海底捞** and the app publisher is **海鸿达（北京）餐饮管理有限公司**[11], while the listed corporate parent/brand is **HAIDILAO INTERNATIONAL HOLDING LTD. 海底撈國際控股有限公司**[12].  \nA direct public source explicitly tying **haidilao.com** to the named Beijing company was not verified from the available evidence, so exact entity alignment remains **unknown**[1][8].",
+      "citations": [
+        "https://www.waiqicha.com/ds/d_1180716002384951256.html",
+        "https://play.google.com/store/apps/details?id=com.haidilao.intl&hl=zh",
+        "https://tracxn.com/d/companies/haidilao/__WopP8ZeqZdDOM-SKZM7IBaKgqOldtNbSEltZVkp4FQw",
+        "https://www.globaldata.com/company-profile/haidilao-international-holding-ltd/locations/",
+        "https://sg.trip.com/moments/poi--haidilao-hot-pot-vivocity-56570159/",
+        "https://www.bloomberg.com/profile/company/6862:HK",
+        "https://jiuyezp.hxu.edu.cn/company/view/id/920848",
+        "https://seo.chinaz.com/haidilao.com",
+        "https://pitchbook.com/profiles/company/233559-64",
+        "https://www.zhaopin.com/companydetail/CZL1239296940.htm",
+        "https://sj.qq.com/appdetail/com.haidilao",
+        "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0325/2025032501303.pdf",
+        "https://www.career.zju.edu.cn/jyxt/sczp/zpztgl/ckZpgwXq.zf?zpxxbh=4BA0B8D2FE24666BE0653A68DD0E9B18",
+        "https://play.google.com/store/apps/details?id=com.haidilao.intl&hl=zh_HK",
+        "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0324/2026032400912.pdf"
+      ],
+      "searchResults": [
+        {
+          "date": "2021-03-06",
+          "last_updated": "2025-10-28",
+          "place_metadata": null,
+          "snippet": "法定代表人： 梁杨兵 统一社会信用代码： 911103025695414934\n电话： 18001379913 官网： www.haidilao.com\n简介： 海鸿达（北京）餐饮管理有限公司成立于2011-01-26，法定代表人为梁杨兵，注册资本为32500万元人民币，统一社会信用代码为911103025695414934，企业地址位于北京市大兴区盛吉街13号院3号楼四层408室，所属行业为租赁和商务服务业，经营范围包含：餐饮管理；提供送餐服务（限分公司经营）；销售食用农产品、医疗器械（I类、II类）、针纺织品、服装鞋帽、珠宝首饰、家庭用品、日用品、家用电器、电子产品、通讯器材、机械设备、五...",
+          "source": "web",
+          "title": "海鸿达（北京）餐饮管理有限公司",
+          "url": "https://www.waiqicha.com/ds/d_1180716002384951256.html"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-18",
+          "place_metadata": null,
+          "snippet": "qiuw1@haidilao.com\n1 Paya Lebar Link #09-04 Paya Lebar Quarter\nSingapore 408533\n+86 155 0753 2281",
+          "source": "web",
+          "title": "Haidilao - Google Play 上的应用",
+          "url": "https://play.google.com/store/apps/details?id=com.haidilao.intl&hl=zh"
+        },
+        {
+          "date": "2026-08-26",
+          "last_updated": "2026-08-27",
+          "place_metadata": null,
+          "snippet": "Haidilao International Holding Ltd is a distributor of seafood and a China-based company principally engaged in the restaurant operation business.\n...\n- **Website**\nhaidilao.com",
+          "source": "web",
+          "title": "Haidilao - 2026 Company Profile & Team",
+          "url": "https://tracxn.com/d/companies/haidilao/__WopP8ZeqZdDOM-SKZM7IBaKgqOldtNbSEltZVkp4FQw"
+        },
+        {
+          "date": null,
+          "last_updated": "2025-08-13",
+          "place_metadata": null,
+          "snippet": "7th Floor, No.1 Building, No. 398 Yard, Zhongdong Road, Dongxiaokou Town, Changping District, Beijing, Beijing\nwww.haidilao.com",
+          "source": "web",
+          "title": "Haidilao International Holding Ltd Locations - Headquarters & Offices – GlobalData",
+          "url": "https://www.globaldata.com/company-profile/haidilao-international-holding-ltd/locations/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-10",
+          "place_metadata": null,
+          "snippet": "海底捞 Haidilao Hot Pot @VivoCity Address:\n1 HarbourFront Walk, #03-09 Vivocity, Singapore 098585\n海底捞 Haidilao Hot Pot @VivoCity Opening times:\nOpen 11:00-Next day2:00",
+          "source": "web",
+          "title": "[2026 Singapore Restaurant] 海底捞 Haidilao Hot Pot ...",
+          "url": "https://sg.trip.com/moments/poi--haidilao-hot-pot-vivocity-56570159/"
+        },
+        {
+          "date": "2024-09-11",
+          "last_updated": "2025-02-04",
+          "place_metadata": null,
+          "snippet": "Haidilao International Holding Ltd.\noperates Chinese cuisine restaurant brand focusing on hot pot cuisine.",
+          "source": "web",
+          "title": "Haidilao International Holding Ltd - Company Profile and News",
+          "url": "https://www.bloomberg.com/profile/company/6862:HK"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-20",
+          "place_metadata": null,
+          "snippet": "单位地址：\n北京市大兴区盛吉街13号院3号楼四层408室\n...\n单位联系人：\n张畅\n联系电话：\n1****227527（登录后查看联系方式）",
+          "source": "web",
+          "title": "[单位]海鸿达（北京）餐饮管理有限公司",
+          "url": "https://jiuyezp.hxu.edu.cn/company/view/id/920848"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-13",
+          "place_metadata": null,
+          "snippet": "haidilao.com是海鸿达（北京）餐饮管理有限公司旗下网站，网站成立于2007年10月30日，在餐饮美食行业中排名3871位。已开启GZIP压缩，用户主要来自美国，主要流量来自直接访问。\nhaidilao.com的域名年龄为18年7个月14天，注册商为Alibaba Cloud Computing (Beijing) Co.,Ltd.，DNS为ns1.dnsv5.com,ns2.dnsv5.com，域名更新时间是2021年09月13日，域名过期时间是2030年10月30日，距离过期还有1600天。解析出来的IP有：47.93.138.35[中国北京北京 阿里云]。",
+          "source": "web",
+          "title": "站长工具",
+          "url": "https://seo.chinaz.com/haidilao.com"
+        },
+        {
+          "date": "2024-12-31",
+          "last_updated": "2025-06-17",
+          "place_metadata": null,
+          "snippet": "Haidilao, founded in Sichuan in 1998, is a prominent Chinese hot pot restaurant operator.\nFollowing the spinoff of its international unit Super Hi, Haidilao now focuses solely on managing restaurants in Greater China.By the end of 2024, the chain operated over 1,300 stores in Greater China, generati...",
+          "source": "web",
+          "title": "Haidilao International 2025 Company Profile: Stock Performance & Earnings | PitchBook",
+          "url": "https://pitchbook.com/profiles/company/233559-64"
+        },
+        {
+          "date": "2020-05-22",
+          "last_updated": "2026-05-12",
+          "place_metadata": null,
+          "snippet": "企业名称 海鸿达（北京）餐饮管理有限公司北京第七十三分公司\n法人代表 童飞跃\n...\n西铁营中路1号",
+          "source": "web",
+          "title": "海鸿达(北京)餐饮管理有限公司北京第七十三分公司 - 智联招聘",
+          "url": "https://www.zhaopin.com/companydetail/CZL1239296940.htm"
+        },
+        {
+          "date": "2026-08-24",
+          "last_updated": "2026-08-25",
+          "place_metadata": null,
+          "snippet": "主办者\n海鸿达（北京）餐饮管理有限公司",
+          "source": "web",
+          "title": "海底捞app-官方正版软件2026最新版本免费下载",
+          "url": "https://sj.qq.com/appdetail/com.haidilao"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-15",
+          "place_metadata": null,
+          "snippet": "Grand Cayman, KY1-1111 in Cayman Islands, and the address of the principal place of business is 7th Floor, \nNo. 1 Building, No. 398 Yard, Zhongdong Road, Dongxiaokou Town, Changping District in Beijing, the PRC.",
+          "source": "web",
+          "title": "HAIDILAO INTERNATIONAL HOLDING LTD. 海底撈國際控股有限公司",
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/0325/2025032501303.pdf"
+        },
+        {
+          "date": "2026-02-25",
+          "last_updated": "2026-04-24",
+          "place_metadata": null,
+          "snippet": "外商投资企业 住宿和餐饮业 北京市朝阳区\n...\n- 联系人：张先生\n- 联系电话：\n- 电子邮箱：rlzybzpz@haidilao.com\n...\n- 地址：北京市朝阳区",
+          "source": "web",
+          "title": "管培生 - 浙江大学就业服务平台",
+          "url": "https://www.career.zju.edu.cn/jyxt/sczp/zpztgl/ckZpgwXq.zf?zpxxbh=4BA0B8D2FE24666BE0653A68DD0E9B18"
+        },
+        {
+          "date": "2025-12-10",
+          "last_updated": "2025-12-12",
+          "place_metadata": null,
+          "snippet": "qiuw1@haidilao.com\n1 Paya Lebar Link #09-04 Paya Lebar Quarter Singapore 408533\n+86 155 0753 2281",
+          "source": "web",
+          "title": "Haidilao - Google Play 應用程式",
+          "url": "https://play.google.com/store/apps/details?id=com.haidilao.intl&hl=zh_HK"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-09",
+          "place_metadata": null,
+          "snippet": "The address of the Company’s registered office is Cricket Square, Hutchins Drive, PO Box 2681,\nGrand Cayman, KY1-1111 in Cayman Islands, and the address of the principal place of business is 7th Floor, \nNo. 1 Building, No. 398 Yard, Zhongdong Road, Dongxiaokou Town, Changping District in Beijing, th...",
+          "source": "web",
+          "title": "HAIDILAO INTERNATIONAL HOLDING LTD. 海底撈國際 ...",
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0324/2026032400912.pdf"
+        }
+      ],
+      "usage": {
+        "inputTokens": 126,
+        "outputTokens": 153,
+        "totalTokens": 279
+      },
+      "latencyMs": 3942,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是 **10 家位於台北市信義區**、常被整理進信義區美食推薦清單的餐廳，並附上簡要理由；我優先選擇了有較明確地址、且在多個信義區餐廳整理中反覆出現的店家。[1][2][3][4][5][7][9]\n\n- **鼎泰豐（101店）**：小籠包知名度高，位於信義核心商圈，適合第一次來信義區用餐的人。[3]\n- **心潮飯店**：主打台菜與復古餐酒氛圍，是信義區常見的聚餐、約會推薦店。[5]\n- **The Ukai Taipei**：高樓景觀與精緻餐飲兼具，常被列入信義區高級餐廳名單。[5]\n- **侯布雄法式餐廳**：米其林等級法餐，適合慶祝、商務聚餐或重視餐飲體驗的場合。[5]\n- **饗A Joy**：大型吃到",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 266,
+          "totalTokens": 316
+        },
+        "latencyMs": 4864,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區、每人晚餐預算約 500–999 元**的餐廳，並附上簡要理由；我優先選擇搜尋結果中明確提到信義區、且價位大致落在你要的區間內的店家。[1][2][3][6][7][8][9][10]\n\n- **Hoda Bistro**：被整理為信義區「評分最高的平價餐酒館」，適合晚餐聚餐，屬於有質感但仍在中價位範圍的選擇。[1]\n- **來吧台北**：信義區評價不錯的日式餐酒館，還有 3 小時調酒暢飲方案，適合朋友聚餐或下班小酌。[1]\n- **初殿鍋物**：位於永春站一帶，平日套餐 299 元起，代表晚餐用預算 500–999 元可輕鬆升級到更完整的火鍋內容。[1][2]\n- **Chili’s 美式餐",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://blog.myfunnow.com/cn/blog/415",
+          "https://travel.yam.com/article/138602",
+          "https://www.mecocute.com/xinyi-district-food/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店\n...\n· 均消 $300\n...\n· 均消 $65",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區基隆路二段81號/ ** **02-2377-9007**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n**■ Lady nara統一時代店**\n地址：110台北市信義區忠孝東路五段8號3F\n電話：0227201519\n...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃9 豬跳舞小館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n### 台北平價餐廳推薦＃1 Chili's 美式餐廳\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n📍台北市信義區忠孝東路五段412-6號1樓\n⏰13:00 - 14:00 / 17:00 - 22:00\n...\n📍台北市信義區光復南路473巷11弄38號\n⏰星期一 12:00 ...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2025-09-10",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃9 豬跳舞小館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n店家資訊：\n📍台北市信義區忠孝東路五段412-6號1樓\n⏰13:00 - 14:00 / 17:00 - 22:00\n💰 均消 NT＄400，預訂最高現省 50 元\n...\n台北約會餐廳平價選擇來了！一樣為你帶來 5 家在 FunNow 上評價高、均消 500 元以下，而且氣氛浪漫的餐廳，想帶男女朋友出...",
+            "source": "web",
+            "title": "2025 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐不用花 ...",
+            "url": "https://blog.myfunnow.com/cn/blog/415"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|貴族世家|$430起+10% *一般門市無服務費|$250～380|\n|我家牛排|$400起+10%|$210～370|\n|兩餐|$299起+10%| |\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n|大味王吃到飽火鍋|$250起| |\n...\n|涮樂和牛|$499起+10%| |\n...\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n...\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n- 星期一: 11:00 – 21:30\n- 星期二...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "《**樂葵法式鐵板燒微風南山店**》Google評價高又不貴，十道精緻料理價格只要1650元＋10%，適合約會慶生、犒賞自己或同事請客，這間真的很可以。\n...\n** 地址：台北市信義區松仁路58號4樓\n...\n台北信義區火鍋推薦「**燒石鼎石頭小火鍋信義店**」，菜單提供超過50種鍋物口味，價格最便宜170元起，自助吧冰沙、冷飲、咖啡、冰淇淋、豬油拌飯和白飯免費自取，用餐不另收服務費。\n...\n可以看到**101大樓煙火的景觀餐廳** 推薦「**Flare Taipei**」信義區餐酒館，營業時間原本只有晚上，現在中午也有營業囉！菜單還多了商業午餐選擇，要是在台北信義區附近洽公、出差或開會想...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 268,
+          "totalTokens": 332
+        },
+        "latencyMs": 5980,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

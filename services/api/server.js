@@ -932,6 +932,7 @@ async function handleRequest(req, res) {
     return sendText(res, 200, robotsTxt());
   }
 
+
   if (req.method === "GET" && url.pathname === "/sitemap.xml") {
     return sendText(res, 200, sitemapXml(), "application/xml; charset=utf-8");
   }
@@ -982,6 +983,32 @@ async function handleRequest(req, res) {
     return sendHtml(res, 200, fs.readFileSync(whitepaperPath, "utf8"));
   }
 
+  // Developer Platform 介紹介面 (Showcase / Landing)
+  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers" || url.pathname === "/developers/")) {
+    const devPath = path.resolve(__dirname, "../../apps/web/public/developers.html");
+    if (!fs.existsSync(devPath)) {
+      return sendHtml(res, 404, "<h1>Developers HTML not found</h1>");
+    }
+    return sendHtml(res, 200, fs.readFileSync(devPath, "utf8"));
+  }
+
+  // Developer Platform 技術文件 (SDK & API Docs)
+  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/docs" || url.pathname === "/developers/docs/")) {
+    const docsPath = path.resolve(__dirname, "../../apps/web/public/developers-docs.html");
+    if (!fs.existsSync(docsPath)) {
+      return sendHtml(res, 404, "<h1>Developer Docs HTML not found</h1>");
+    }
+    return sendHtml(res, 200, fs.readFileSync(docsPath, "utf8"));
+  }
+
+  // Developer Platform 管理控制台 (Console Dashboard)
+  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/console" || url.pathname === "/developers/console/")) {
+    const consolePath = path.resolve(__dirname, "../../apps/web/public/developers-console.html");
+    if (!fs.existsSync(consolePath)) {
+      return sendHtml(res, 404, "<h1>Developer Console HTML not found</h1>");
+    }
+    return sendHtml(res, 200, fs.readFileSync(consolePath, "utf8"));
+  }
 
   // 靜態資產:og-image 與 favicon(缺檔時回 404,不再讓 meta 指向不存在的資源)
   if (req.method === "GET" && (url.pathname === "/og-image.png" || url.pathname === "/favicon.png" || url.pathname === "/favicon.ico" || url.pathname === "/favicon.svg")) {

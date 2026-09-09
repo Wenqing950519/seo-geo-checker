@@ -1,0 +1,440 @@
+{
+  "url": "https://www.hooters.com.tw/",
+  "measured_at": "2026-09-09T06:15:14.623Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website hooters.com.tw (title: Hooters 美式餐廳). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: Hooters 美式餐廳 | Hooters\n\nThe website hooters.com.tw clearly refers to Hooters 美式餐廳 on its own site pages, including “關於我們about hooters” and multiple restaurant/event pages under the same domain[11][14]. A corroborating public source also identifies the same Taiwan brand as Hooters and links it to the official website[6].",
+      "citations": [
+        "https://shin.tw/taipei-hooters/",
+        "https://www.hooters.com.tw/en/party/tour-group/",
+        "https://www.yelp.com/biz/hooters-%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80",
+        "https://www.tripadvisor.com.tw/Restaurant_Review-g13806900-d4844849-Reviews-Hooters_Taipei-Songshan_Taipei.html",
+        "https://www.hooters.com.tw/en/party/party-world/",
+        "https://ifoodie.tw/en/post/64867cd077b9e9627e64e743",
+        "https://taiwanrestaurantsf.com/hooters/",
+        "https://www.hooters.com.tw/party/private-party/",
+        "https://taiwanderers.com/hooters-rooftop-bar-taipei-101/",
+        "https://www.card.rakuten.com.tw/corp/merchant/cpn-sp.xhtml?code=d1040",
+        "https://www.hooters.com.tw/about-hooters/",
+        "https://www.tripadvisor.com/Restaurant_Review-g13808515-d12720595-Reviews-Hooters_Xinyi-Xinyi_District_Taipei.html",
+        "https://plumpyblog.com/hooters/",
+        "https://www.hooters.com.tw/category/event/",
+        "https://www.hooters.com/location-list/index.php/Taiwan"
+      ],
+      "searchResults": [
+        {
+          "date": "2022-02-14",
+          "last_updated": "2025-02-15",
+          "place_metadata": null,
+          "snippet": "電話： 02 2729 0168\n營業時間：11:00-1:00，五、六到2:00\n地址： 110台北市信義區松仁路58號14樓 / 遠百信義A13\n...\n## 店家/景點資訊\n...\n- 所在地址：110臺灣台北市信義區松仁路58號14樓\n- 營業時間：日 一 二 三 四 五 六 11:00-01:00\n- 店家電話：02 2729 0168",
+          "source": "web",
+          "title": "最高樓美式餐廳！一覽台北101、信義區百萬級美景，翹臀辣妹熱舞，氣氛好到炸，戶外區超搶手，建議訂位～ | 阿新筆記",
+          "url": "https://shin.tw/taipei-hooters/"
+        },
+        {
+          "date": "2024-11-21",
+          "last_updated": "2025-02-25",
+          "place_metadata": null,
+          "snippet": "專線 : (02)7709-6927 行銷部\n專線服務時間 : 週一~週五10:00-18:00",
+          "source": "web",
+          "title": "Tour Group - Hooters 美式餐廳",
+          "url": "https://www.hooters.com.tw/en/party/tour-group/"
+        },
+        {
+          "date": "2024-07-23",
+          "last_updated": "2025-02-22",
+          "place_metadata": null,
+          "snippet": "No. 18, Qingcheng Street 慶城街18號 Songshan District, 台北市 105 Taiwan",
+          "source": "web",
+          "title": "Hooters - Songshan District, TPE",
+          "url": "https://www.yelp.com/biz/hooters-%E5%8F%B0%E5%8C%97%E5%B8%82%E6%9D%BE%E5%B1%B1%E5%8D%80"
+        },
+        {
+          "date": "2019-07-09",
+          "last_updated": "2025-02-25",
+          "place_metadata": null,
+          "snippet": "日上午11:30 - 上午12:00\n一上午11:30 - 上午12:00\n二上午11:30 - 上午12:00\n三上午11:30 - 上午12:00\n四上午11:30 - 上午1:00\n五上午11:30 - 上午1:00\n...\n位置和聯絡方式台灣 松山台北 No. 18, Qingcheng St, Songshan District+886 2 2716 5168",
+          "source": "web",
+          "title": "HOOTERS美式餐廳 (松山) - 餐廳/美食評論 - Tripadvisor",
+          "url": "https://www.tripadvisor.com.tw/Restaurant_Review-g13806900-d4844849-Reviews-Hooters_Taipei-Songshan_Taipei.html"
+        },
+        {
+          "date": "2024-11-21",
+          "last_updated": "2025-02-13",
+          "place_metadata": null,
+          "snippet": "專線 : (02)7709-6927 行銷部\n專線服務時間 : 週一~週五10:00-18:00",
+          "source": "web",
+          "title": "Not reserved - Hooters 美式餐廳",
+          "url": "https://www.hooters.com.tw/en/party/party-world/"
+        },
+        {
+          "date": "2024-01-08",
+          "last_updated": "2024-11-08",
+          "place_metadata": null,
+          "snippet": "地點:台北市信義區松仁路58號14樓 **Location: 14F, No. 58, Songren Rd., Xinyi Dist., Taipei City**\n電話:0227290168 **Phone: 0227290168**\n官網:https://www.hooters.com.tw **Official Website: https://www.hooters.com.tw**\n營業時間:11:00-01:00/週五週六11:00-02:00 **Business Hours: 11:00 AM - 1:00 AM / Friday & Saturday 11:00 AM - ...",
+          "source": "web",
+          "title": "Hooters American Restaurant/Xinyi Branch/2023 Full Menu/Enjoy the dazzling night view of the three skyscrapers in Xinyi/Hooters Girls performance is amazing/Enjoy American food to your heart's content | 小卡的美麗日誌 - 愛食記",
+          "url": "https://ifoodie.tw/en/post/64867cd077b9e9627e64e743"
+        },
+        {
+          "date": "2024-12-24",
+          "last_updated": "2026-01-11",
+          "place_metadata": null,
+          "snippet": "地址：台北市松山區慶城街18號\n電話：02-2716-5168\n...\n地址：台北市信義區松仁路58號14樓(遠百A13)\n電話：02-2729-0168\n...\n地址：新竹縣竹北市莊敬北路18號4樓 (遠百竹北)\n電話：03-550-3978\n...\n官方網站：點此進入",
+          "source": "web",
+          "title": "台北信義－Hooters - 台灣食坊美食通",
+          "url": "https://taiwanrestaurantsf.com/hooters/"
+        },
+        {
+          "date": "2024-12-17",
+          "last_updated": "2025-01-05",
+          "place_metadata": null,
+          "snippet": "專線 : (02)7709-6927 行銷部\n專線服務時間 : 週一~週五10:00-18:00",
+          "source": "web",
+          "title": "最High派對包場餐廳 - 派對場地租借 - Hooters 美式餐廳",
+          "url": "https://www.hooters.com.tw/party/private-party/"
+        },
+        {
+          "date": "2024-04-05",
+          "last_updated": "2026-06-26",
+          "place_metadata": null,
+          "snippet": "Hooters Xinyi Branch is open daily from 11am until 1am (and stays open until 2am on Friday and Saturdays)\n...\nHooters Songshan is open daily from 11.30am until midnight (and open until 1am on Fridays and Saturdays).\n...\nHooters Xinyi Branch, Far Eastern Department Store Xinyi A13 Store, 110, Taiwan,...",
+          "source": "web",
+          "title": "Taipei Hooters food menu and...",
+          "url": "https://taiwanderers.com/hooters-rooftop-bar-taipei-101/"
+        },
+        {
+          "date": "2024-07-04",
+          "last_updated": "2025-06-22",
+          "place_metadata": null,
+          "snippet": "地址:台北市松山區慶城街18號1樓\n電話:02-2716-5168\n- 信義店\n- 營業時間:以官網公告為主\n地址:台北市信義區松仁路58號14樓(遠百A13)\n電話:02-2729-0168\n- 竹北店\n- 營業時間:以官網公告為主\n地址:新竹縣竹北市莊敬北路18號4樓(遠百竹北)\n電話:03-550-3978",
+          "source": "web",
+          "title": "樂天信用卡－線上即可申辦",
+          "url": "https://www.card.rakuten.com.tw/corp/merchant/cpn-sp.xhtml?code=d1040"
+        },
+        {
+          "date": "2024-11-21",
+          "last_updated": "2025-10-18",
+          "place_metadata": null,
+          "snippet": "全球獨一無二，歡樂用餐氣氛的美式餐廳",
+          "source": "web",
+          "title": "關於我們about hooters",
+          "url": "https://www.hooters.com.tw/about-hooters/"
+        },
+        {
+          "date": "2017-12-12",
+          "last_updated": "2025-11-02",
+          "place_metadata": null,
+          "snippet": "(34 reviews)\n...\nNo. 91, Songren Road, Xinyi District, Xinyi District, Taipei 110 Taiwan\nWebsite\n+886 2 8780 9888\n...\nSunday\n11:00 AM - 11:45 PM\nMonday\n11:00 AM - 11:45 PM\nTuesday\n11:00 AM - 11:45 PM\nWednesday\n11:00 AM - 11:45 PM\nThursday\n11:00 AM - 11:45 PM\nFriday\n11:00 AM - 11:45 PM\nSaturday\n11:00...",
+          "source": "web",
+          "title": "HOOTERS XINYI, Xinyi District - Restaurant Reviews ... - Tripadvisor",
+          "url": "https://www.tripadvisor.com/Restaurant_Review-g13808515-d12720595-Reviews-Hooters_Xinyi-Xinyi_District_Taipei.html"
+        },
+        {
+          "date": "2024-12-17",
+          "last_updated": "2025-08-07",
+          "place_metadata": null,
+          "snippet": "📍地址｜台北市松山區慶城街18號\n📍電話｜02 2716 5168\n📍營業時間｜週日～週四 11:30~00:00\n週五～週六 11:30~01:00\nHooters 信義店\n📍地址｜信義區松仁路58號14樓（A13)\n📍電話｜02 2716 5168\n📍營業時間｜週日～週四 11:00~01:00\n週五～週六 11:00~02:00\nHooters 竹北店\n📍地址｜信義區松仁路58號14樓（A13)\n📍電話｜02 2716 5168\n📍營業時間｜週日～週四 11:00~22:00\n週五～週六 11:00~00:00",
+          "source": "web",
+          "title": "Hooters 慶城店｜台北美食｜美式餐廳啤酒招牌辣雞翅，服務人員超親切 – 胖貓咪的奇幻旅程",
+          "url": "https://plumpyblog.com/hooters/"
+        },
+        {
+          "date": "2024-07-01",
+          "last_updated": "2025-07-02",
+          "place_metadata": null,
+          "snippet": "🦉Hooters 慶城店 歡樂午餐🍽️ 週一~週五11:30~ 16:00 (國定假日、補班日、3天以上連假除外) Monday~Friday 11:30~16:00 (Excluding Holidays)",
+          "source": "web",
+          "title": "〈活動訊息〉彙整頁面 - Hooters 美式餐廳",
+          "url": "https://www.hooters.com.tw/category/event/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-01-16",
+          "place_metadata": null,
+          "snippet": "Taipei\nZhubei\nXinyi District\nFar Eastern Xinyi",
+          "source": "web",
+          "title": "All locations in Taiwan",
+          "url": "https://www.hooters.com/location-list/index.php/Taiwan"
+        }
+      ],
+      "usage": {
+        "inputTokens": 122,
+        "outputTokens": 87,
+        "totalTokens": 209
+      },
+      "latencyMs": 8871,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是 **10 家位於台北市信義區**、常被推薦的餐廳；我以搜尋結果中重複出現、評價高或適合聚餐/約會的店家為主，並附上簡要理由。[1][2][3][5][7][9]\n\n- **鼎泰豐（101店／A4／A13）**：以小籠包和整體穩定品質聞名，屬於信義區最具代表性的熱門餐廳之一。[3]\n- **心潮飯店 Sinchao Rice Shoppe**：主打時髦復古風台菜，常被列為信義區米其林或精緻餐酒類推薦。[5]\n- **The Ukai Taipei**：高樓景觀與精緻餐飲兼具，適合慶生、約會或正式聚餐。[5]\n- **鮨中澤**：在信義區米其林/高端日料名單中常被提到，適合重視食材與板前體驗的客人。[5]\n- **饗 A Joy**：",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 265,
+          "totalTokens": 315
+        },
+        "latencyMs": 6040,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、且多數公開資訊顯示**晚餐每人約落在 500–999 元**區間的餐廳，並附上簡要推薦理由；其中少數店家屬於「單點彈性價位」，實際消費會依點餐內容上下浮動。[1][2][3][5][6][8][9]\n\n- **激安の食事酒場－市府二號店**：兩小時暢飲約 **698 元**，很適合聚餐、下班小酌，價位剛好落在你的預算內。[1][2]\n- **Chili’s 美式餐廳（信義店）**：信義區少數相對親民的美式餐廳，適合想吃漢堡、肋排、分享餐又不想超支的人。[7]\n- **Gumgum 雞翅啤酒吧**：主打雞翅與啤酒，適合朋友聚會；公開資訊顯示均消約 **500 元**，符合預算帶。[",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！\n...\n【PLAYING Hookah Bar 餐廳水煙館】台北信義下午茶推薦，水煙與美食的美味饗宴，嚴選一系列甜點直接圈粉啦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區松智路17號5 樓/02 2723 8055**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "平均消費\n...\n現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理\n...\n10.下港吔羊肉爐、羊肉專賣店",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n📍台北市信義區忠孝東路五段412-6號1樓\n...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n- 信義區美食推薦 燒石鼎石頭小火鍋信義店\n- 信義區美食推薦 辛喬麻辣私房湯底麻辣鴛鴦\n...\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n...\n地址：台北市信義區信義路四段3...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n...\n### 『 兩餐 』 두끼 韓國年糕火鍋吃到飽-信義店\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n- ...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "美食品嚐 · 臺北\n平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 267,
+          "totalTokens": 331
+        },
+        "latencyMs": 5075,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

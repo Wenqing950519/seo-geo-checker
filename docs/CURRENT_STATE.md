@@ -12,6 +12,10 @@ tags:
 
 # GeoCheck 當前運作狀態
 
+## 最新產品方向（決策不等於實作）
+
+依 D-040／D-041，產品方向已確認為「短測引流 → SaaS Dashboard → 診斷型 Agent」，Developer API 作共用四引擎量測基礎並可作外部技術產品；未來台灣付款優先採藍新金流。這只同步產品與供應商決策：目前沒有可據此新增的部署證據，視覺 Dashboard、Agent、藍新串接、正式寄信與公開 customer API 仍不得標為已完成。餐飲 beachhead、第一 buyer、Dashboard／Agent 定價、留存及 citation→營收仍是待驗證項目。
+
 ## 本機目錄整理（2026-09-08，尚未部署）
 
 依 D-026，主程式改為 `services/api/server.js`，A 資源／報告組裝在 `apps/web`，核心與 adapters 在 `packages`，測試在 `tests/regression`，研究資料集中 `research/inputs`、`outputs`、`sources`、`work`。`mock-api` 保留啟動與 import 相容 wrapper，以及既有 env／ledger 路徑。根目錄 README 與搬移表是新位置索引。
@@ -36,6 +40,7 @@ D-036 benchmark 的固定題組、append-only 事件、獨立 summary 與重算�
 
 ## 已完成
 
+- `[白皮書研究 Wave 0 基準波已完成 2026-09-09]` 信義區餐廳追蹤研究（xinyi-dining-h2-2026-wave0）正式收數與基準報告完成。以 Reviewed Entity Master（63 家門市實體）映射至 49 個去重官方根網域，100% 通過 `assertReviewedEntityCoverage` 契約驗證。採用經核定凍結之三大真實情境題組（v2.0，SHA-256 `8b30d91a3a74b46d29338fd4034fe68feb44a338d2c98530b51109b7be3c5954`）。37 站完整量測成功，12 站技術受限（WAF/SPA）標記 `unknown` 不補 0。全域 111 次獨立查詢驗證了官方網域引用率 0% 的重大發現，以及三大情境破零代表（WILDWOOD、饗食天堂、合‧shabu）與霸榜心智。資料集 SHA-256：`03a0f5eb0053e45e40bbd86ce695e04e35fb0c4d087a132cdc1b689143d84907`。完整基準報告位於 `research/outputs/xinyi-dining-h2-2026-wave0/wave0-baseline-report.md`。
 - `[正式站已驗證 2026-09-02]` AI Trust Index v1.0.0 已取代產品／報告的主分數：可見答案採用率 65%、已驗證第一方官方 URL 來源證據 35%。GEO Core 保留兩層、query-run 分母與原始證據；站內準備度與建議不進入此分數。
 - `[正式站已驗證 2026-09-02]` 無有效可見回答時，AI Trust Index 為 `unknown`／`null`，不補成 0；少於兩個有效 query-run 時封頂 69。API、HTML 報告與 Markdown 已共同呈現此狀態、provider/model 與限制；舊 GEO V3 僅存 `legacy_geo_score` 供歷史追溯。
 
@@ -91,7 +96,7 @@ D-036 benchmark 的固定題組、append-only 事件、獨立 summary 與重算�
 完整的 AI Trust Index v1 發布與正式環境驗收，見 `docs/DEPLOYMENT_RELEASE_CHECKLIST.md`。2026-09-02 已完成首頁、`/healthz`、legacy endpoint retirement、兩個 provider，以及 unknown 報告 API／HTML／Markdown 的受控驗證。
 
 1. `[產品決策待確認]` 若 DeepSeek 兩輪後仍無法提供五題有效候選，產品要維持 `unknown`，或採用可見、版本化的固定題型備援。這會改變 query-run 的形成方式，不能由 Agent 自行決定。
-2. `[人工輸入待備齊]` 白皮書正式 batch 仍需要核可的 site list、凍結 query set 與覆蓋所有網址的 reviewed entity master；尚未開始任何正式付費收數。
+2. `[白皮書後續追蹤]` 2026-09-09 已完成 Wave 0 基準波收數、大數據分析與基準報告（`research/outputs/xinyi-dining-h2-2026-wave0/wave0-baseline-report.md`）。下一階段為 10 月初進行之 Wave 1 縱向追蹤（追蹤推薦名單穩定度與引用漂移），以及評估 Playwright/Stealth 爬取受 WAF 阻擋大型飯店網域。
 3. `[每次發布]` 執行 `npm.cmd test`；任一同步、計分或安全測試失敗都不得部署。
 
 ## 對外聲明

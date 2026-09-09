@@ -1,0 +1,254 @@
+{
+  "generated_at": "2026-09-09T06:06:53.972Z",
+  "algorithm_version": "3.0.0-rules",
+  "total_sites": 63,
+  "successful_sites": 47,
+  "failed_sites": 16,
+  "crawl_success_rate": 74.6,
+  "site_readiness_score": {
+    "mean": 67.8,
+    "median": 70,
+    "min": 35,
+    "max": 97
+  },
+  "readiness_bands": {
+    "Needs Work": {
+      "count": 18,
+      "mean": 58.6,
+      "median": 58.5,
+      "min": 49,
+      "max": 66
+    },
+    "Decent": {
+      "count": 20,
+      "mean": 76.6,
+      "median": 77,
+      "min": 70,
+      "max": 84
+    },
+    "Strong": {
+      "count": 5,
+      "mean": 89,
+      "median": 87,
+      "min": 85,
+      "max": 97
+    },
+    "Critical": {
+      "count": 4,
+      "mean": 39,
+      "median": 40,
+      "min": 35,
+      "max": 41
+    }
+  },
+  "by_industry": {
+    "restaurant": {
+      "count": 45,
+      "mean": 68.8,
+      "median": 71,
+      "min": 35,
+      "max": 97
+    },
+    "ecommerce": {
+      "count": 1,
+      "mean": 49,
+      "median": 49,
+      "min": 49,
+      "max": 49
+    },
+    "organization": {
+      "count": 1,
+      "mean": 41,
+      "median": 41,
+      "min": 41,
+      "max": 41
+    }
+  },
+  "by_evidence_confidence": {
+    "high": {
+      "count": 47,
+      "mean": 67.8,
+      "median": 70,
+      "min": 35,
+      "max": 97
+    }
+  },
+  "rule_pass_rates": {
+    "homepage_fetch": {
+      "known": 47,
+      "pass": 47,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "indexable": {
+      "known": 47,
+      "pass": 46,
+      "partial": 0,
+      "fail": 1,
+      "pass_rate": 97.9
+    },
+    "googlebot_access": {
+      "known": 47,
+      "pass": 47,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "oai_search_access": {
+      "known": 47,
+      "pass": 47,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "claude_search_access": {
+      "known": 47,
+      "pass": 47,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "sitemap_valid": {
+      "known": 47,
+      "pass": 29,
+      "partial": 0,
+      "fail": 18,
+      "pass_rate": 61.7
+    },
+    "homepage_in_sitemap": {
+      "known": 47,
+      "pass": 10,
+      "partial": 0,
+      "fail": 37,
+      "pass_rate": 21.3
+    },
+    "sitemap_declared": {
+      "known": 47,
+      "pass": 21,
+      "partial": 0,
+      "fail": 26,
+      "pass_rate": 44.7
+    },
+    "canonical": {
+      "known": 47,
+      "pass": 20,
+      "partial": 0,
+      "fail": 27,
+      "pass_rate": 42.6
+    },
+    "title": {
+      "known": 47,
+      "pass": 47,
+      "partial": 0,
+      "fail": 0,
+      "pass_rate": 100
+    },
+    "description": {
+      "known": 47,
+      "pass": 40,
+      "partial": 0,
+      "fail": 7,
+      "pass_rate": 85.1
+    },
+    "h1": {
+      "known": 47,
+      "pass": 14,
+      "partial": 0,
+      "fail": 33,
+      "pass_rate": 29.8
+    },
+    "open_graph": {
+      "known": 47,
+      "pass": 29,
+      "partial": 0,
+      "fail": 18,
+      "pass_rate": 61.7
+    },
+    "valid_schema": {
+      "known": 47,
+      "pass": 20,
+      "partial": 0,
+      "fail": 27,
+      "pass_rate": 42.6
+    },
+    "relevant_schema": {
+      "known": 47,
+      "pass": 16,
+      "partial": 0,
+      "fail": 31,
+      "pass_rate": 34
+    },
+    "readable_text": {
+      "known": 47,
+      "pass": 28,
+      "partial": 12,
+      "fail": 7,
+      "pass_rate": 59.6
+    },
+    "initial_html_text": {
+      "known": 47,
+      "pass": 35,
+      "partial": 0,
+      "fail": 12,
+      "pass_rate": 74.5
+    },
+    "render_consistency": {
+      "known": 47,
+      "pass": 38,
+      "partial": 0,
+      "fail": 9,
+      "pass_rate": 80.9
+    },
+    "image_alt": {
+      "known": 47,
+      "pass": 14,
+      "partial": 5,
+      "fail": 28,
+      "pass_rate": 29.8
+    },
+    "heading_structure": {
+      "known": 47,
+      "pass": 8,
+      "partial": 0,
+      "fail": 39,
+      "pass_rate": 17
+    },
+    "faq": {
+      "known": 47,
+      "pass": 6,
+      "partial": 0,
+      "fail": 41,
+      "pass_rate": 12.8
+    },
+    "cases": {
+      "known": 47,
+      "pass": 1,
+      "partial": 0,
+      "fail": 46,
+      "pass_rate": 2.1
+    },
+    "comparisons": {
+      "known": 47,
+      "pass": 14,
+      "partial": 0,
+      "fail": 33,
+      "pass_rate": 29.8
+    },
+    "proof": {
+      "known": 47,
+      "pass": 27,
+      "partial": 0,
+      "fail": 20,
+      "pass_rate": 57.4
+    },
+    "service_clarity": {
+      "known": 47,
+      "pass": 34,
+      "partial": 0,
+      "fail": 13,
+      "pass_rate": 72.3
+    }
+  },
+  "dataset_sha256": "f58015f1535124445fd7cee4ab6e80ebee2cc0815c2481802672cb4561d0a6cb"
+}

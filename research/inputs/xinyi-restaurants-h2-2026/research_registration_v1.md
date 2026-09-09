@@ -46,11 +46,15 @@
 
 ## 4. 正式量測前的閘門
 
-1. 人工完成候選 cohort registry：資格、官方網址、共用網域歸屬、排除理由與審核者。
-2. 核准店點 cohort、去重網站清單與 exact reviewed entity master；計算並記錄輸入檔 SHA-256。
-3. 由 DeepSeek 產生或整理候選題後，人工審核並另存 approved query set，包含 `query_set_version`、`reviewed_by`、`reviewed_at` 與至少兩題無品牌查詢。
-4. 每波開始前凍結該波的日期／時區、模型、網站輸入 hash、query-set 版本、預算與硬上限；若 model、query 或 cohort 改變，須新版本並分開報告。
-5. 透過 whitepaper preflight，確認沒有 pending entity、缺官方網域、未覆蓋 URL 或未映射的共用網域後，才可執行付費 batch。
+1. [已完成 2026-09-09] 人工完成候選 cohort registry：70 筆候選逐列審核，63 家合格（`include`）、7 家排除（`exclude`）並完整記錄排除理由、地址、營業、證據 URL 與審核者 `eason`。
+2. [已完成 2026-09-09，經方案 A 確立為 63 家合格餐廳對應 49 個去重根網域] 核准店點 cohort、去重網站清單與 exact reviewed entity master；計算並記錄輸入檔 SHA-256：
+   - `xinyi-70.cohort_registry.reviewed.csv`: `811bb9c9ba205c1ca31e5d9f47691a22a725e8815b3b5dee378e6e19a35ec5f7`
+   - `xinyi-70.entity_master.reviewed.csv`: `7293782a31876806d5c9da6fe45fd26dbf10670d8fbafe2b1cc024d71e8b110a`
+   - `xinyi-49.sites.approved.csv`: `2a455be2198afb77cd02f8219b054b6268786d69c1be5c5fd4ea3374e20bfd4b`
+   - `query-set.xinyi-dining-h2-2026.approved.json`: `8b30d91a3a74b46d29338fd4034fe68feb44a338d2c98530b51109b7be3c5954`
+3. [已完成 2026-09-09，升級真實情境題組 v2.0] 人工審核並另存 approved query set，包含 `query_set_version: xinyi-dining-2026h2-v2.0`、`reviewed_by: eason`、`reviewed_at: 2026-09-09`、`review_status: approved`，包含三題真實無品牌搜尋問題（約會慶生推薦、信義區聚餐推薦、高評價火鍋或燒肉推薦）。
+4. [待每波凍結] 每波開始前凍結該波的日期／時區、模型、網站輸入 hash、query-set 版本、預算與硬上限；若 model、query 或 cohort 改變，須新版本並分開報告。
+5. [進行中] 透過 whitepaper preflight / zero-API 抓取預檢，確認沒有 pending entity、缺官方網域、未覆蓋 URL 或未映射的共用網域，並標記網站連線基線後，才可執行付費 batch。
 
 ## 5. 預計證據包與交付結構
 

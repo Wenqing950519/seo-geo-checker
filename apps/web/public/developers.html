@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoCheck for Developers — 跨生成式搜尋引擎的客觀 GEO 觀測 API & SDK</title>
+<meta name="description" content="GeoCheck Developer API 與官方 TypeScript SDK：一次呼叫，同步取得 OpenAI、Google Gemini、Perplexity 與 Anthropic 四大主流搜尋引擎之原生回答與官方引用證據。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
+<link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Brand Primitive Colors */
+  --gc-navy: #0B3B6F;
+  --gc-navy-dark: #072A52;
+  --gc-navy-light: #164E8C;
+  --gc-mint: #00B8A9;
+  --gc-mint-dark: #007F75;
+  --gc-mint-light: #33C6B9;
+  --gc-mint-soft: #E9F9F7;
+
+  /* Neutrals & Surfaces */
+  --gc-bg: #FFFFFF;
+  --gc-bg-alt: #F7F9FC;
+  --gc-card: #FFFFFF;
+  --gc-text: #1E2A38;
+  --gc-muted: #5A6B7E;
+  --gc-border: rgba(11, 59, 111, 0.1);
+  --gc-border-focus: rgba(0, 184, 169, 0.4);
+
+  /* Semantic Status Colors */
+  --gc-success: #27C93F;
+  --gc-warning: #B97700;
+  --gc-danger: #D6453D;
+
+  /* Layout & Metrics */
+  --gc-radius-sm: 8px;
+  --gc-radius-md: 14px;
+  --gc-radius-lg: 20px;
+  --gc-radius-pill: 999px;
+  --gc-shadow-sm: 0 4px 14px rgba(11, 59, 111, 0.05);
+  --gc-shadow-md: 0 10px 30px rgba(11, 59, 111, 0.08);
+  --gc-shadow-lg: 0 20px 50px rgba(11, 59, 111, 0.12);
+
+  /* Fonts */
+  --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: var(--gc-font-sans);
+  color: var(--gc-text);
+  background: var(--gc-bg-alt);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: var(--gc-navy-dark);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: var(--gc-radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: var(--gc-shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* Navigation */
+header.dev-nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gc-border);
+}
+.nav-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+}
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+  letter-spacing: -0.02em;
+}
+.brand-badge {
+  font-family: var(--gc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gc-mint-dark);
+  background: var(--gc-mint-soft);
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+.nav-links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--gc-muted);
+  transition: color 0.2s ease;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--gc-navy);
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--gc-radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--gc-mint);
+  color: #FFFFFF;
+}
+.btn-primary:hover {
+  background: var(--gc-mint-dark);
+  box-shadow: 0 4px 14px rgba(0, 184, 169, 0.3);
+}
+.btn-outline {
+  background: #FFFFFF;
+  color: var(--gc-navy);
+  border-color: var(--gc-border);
+}
+.btn-outline:hover {
+  border-color: var(--gc-navy);
+  background: var(--gc-bg-alt);
+}
+.btn-navy {
+  background: var(--gc-navy);
+  color: #FFFFFF;
+}
+.btn-navy:hover {
+  background: var(--gc-navy-dark);
+}
+
+/* Hero Section */
+.dev-hero {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 64px 24px 72px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gc-mint-soft);
+  color: var(--gc-mint-dark);
+  font-family: var(--gc-font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--gc-radius-pill);
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 184, 169, 0.2);
+}
+.hero-tag::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gc-mint);
+}
+.dev-hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: var(--gc-navy);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.dev-hero p.hero-desc {
+  font-size: 1.1rem;
+  color: var(--gc-muted);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero-ctas .btn {
+  padding: 12px 26px;
+  font-size: 0.95rem;
+}
+
+/* Engine Architecture Widget */
+.hero-preview-card {
+  background: #0B192C;
+  border: 1px solid rgba(0, 184, 169, 0.25);
+  border-radius: var(--gc-radius-lg);
+  padding: 28px;
+  box-shadow: var(--gc-shadow-lg);
+  color: #FFFFFF;
+}
+.preview-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+.header-dot-group {
+  display: flex;
+  gap: 6px;
+}
+.header-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.header-dot.red { background: #FF5F56; }
+.header-dot.yellow { background: #FFBD2E; }
+.header-dot.green { background: #27C93F; }
+.header-badge {
+  font-family: var(--gc-font-mono);
+  font-size: 0.74rem;
+  color: var(--gc-mint-light);
+  background: rgba(0, 184, 169, 0.15);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.engine-stream-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.engine-stream-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--gc-radius-sm);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+.engine-stream-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 184, 169, 0.3);
+}
+.engine-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.engine-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  font-family: var(--gc-font-mono);
+}
+.engine-name {
+  font-weight: 700;
+  color: #F1F5F9;
+}
+.engine-model {
+  font-family: var(--gc-font-mono);
+  font-size: 0.75rem;
+  color: #94A3B8;
+  margin-left: 6px;
+}
+.engine-status-tag {
+  font-family: var(--gc-font-mono);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.engine-status-tag.ok {
+  background: rgba(39, 201, 63, 0.15);
+  color: #27C93F;
+}
+
+/* Feature Grid */
+.features-section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+.sec-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+.sec-header h2 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.sec-header p {
+  color: var(--gc-muted);
+  font-size: 1.05rem;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.feature-card {
+  background: #FFFFFF;
+  border: 1px solid var(--gc-border);
+  border-radius: var(--gc-radius-md);
+  padding: 28px 24px;
+  box-shadow: var(--gc-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--gc-shadow-md);
+  border-color: rgba(0, 184, 169, 0.4);
+}
+.feature-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--gc-mint-soft);
+  color: var(--gc-mint-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.feature-card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--gc-navy);
+  margin-bottom: 10px;
+}
+.feature-card p {
+  font-size: 0.92rem;
+  color: var(--gc-muted);
+  line-height: 1.65;
+}
+
+/* Interactive Code Snippet Section */
+.code-showcase-section {
+  background: #FFFFFF;
+  border-top: 1px solid var(--gc-border);
+  border-bottom: 1px solid var(--gc-border);
+  padding: 72px 24px;
+}
+.code-showcase-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+  align-items: center;
+}
+.code-showcase-info h2 {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+.code-showcase-info p {
+  font-size: 1.05rem;
+  color: var(--gc-muted);
+  margin-bottom: 24px;
+}
+.code-feature-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.code-feature-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.94rem;
+  color: var(--gc-text);
+}
+.code-feature-bullets svg {
+  color: var(--gc-mint);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.terminal-box {
+  background: #06101E;
+  border: 1px solid rgba(0, 184, 169, 0.2);
+  border-radius: var(--gc-radius-md);
+  overflow: hidden;
+  box-shadow: var(--gc-shadow-lg);
+}
+.terminal-bar {
+  background: #0B192C;
+  padding: 10px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tab-group {
+  display: flex;
+  gap: 8px;
+}
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  font-family: var(--gc-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.tab-btn.active {
+  background: rgba(0, 184, 169, 0.2);
+  color: var(--gc-mint-light);
+}
+.copy-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #CBD5E1;
+  font-family: var(--gc-font-mono);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.copy-btn:hover {
+  background: var(--gc-mint);
+  border-color: var(--gc-mint);
+  color: #FFFFFF;
+}
+.terminal-content {
+  padding: 22px;
+  font-family: var(--gc-font-mono);
+  font-size: 0.84rem;
+  line-height: 1.7;
+  color: #E2E8F0;
+  overflow-x: auto;
+  min-height: 280px;
+}
+.terminal-content pre { margin: 0; }
+.c-keyword { color: #F472B6; }
+.c-string { color: #34D399; }
+.c-func { color: #60A5FA; }
+.c-comment { color: #64748B; font-style: italic; }
+
+/* Pricing Section */
+.pricing-section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 80px 24px 96px;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+.pricing-card {
+  background: #FFFFFF;
+  border: 1px solid var(--gc-border);
+  border-radius: var(--gc-radius-lg);
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: var(--gc-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--gc-shadow-md);
+}
+.pricing-card.featured {
+  border-color: var(--gc-mint);
+  box-shadow: 0 12px 36px rgba(0, 184, 169, 0.12);
+}
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  right: 28px;
+  background: var(--gc-mint);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--gc-radius-pill);
+  letter-spacing: 0.05em;
+}
+.plan-name {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+  margin-bottom: 8px;
+}
+.plan-desc {
+  font-size: 0.9rem;
+  color: var(--gc-muted);
+  min-height: 48px;
+  margin-bottom: 20px;
+}
+.plan-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+.plan-currency {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gc-navy);
+}
+.plan-price {
+  font-family: var(--gc-font-mono);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+  line-height: 1;
+}
+.plan-cycle {
+  font-size: 0.88rem;
+  color: var(--gc-muted);
+}
+.plan-features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+.plan-features-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--gc-text);
+}
+.plan-features-list svg {
+  color: var(--gc-mint);
+  flex-shrink: 0;
+}
+.pricing-card .btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.95rem;
+}
+
+/* Footer */
+footer.dev-footer {
+  background: var(--gc-navy-dark);
+  color: #94A3B8;
+  padding: 48px 24px;
+  font-size: 0.88rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.footer-links a {
+  color: #CBD5E1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--gc-mint-light);
+}
+
+@media (max-width: 990px) {
+  .dev-hero { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .code-showcase-container { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="toast" class="toast">✓ 已複製代碼到剪貼簿</div>
+
+<!-- Header -->
+<header class="dev-nav">
+  <div class="nav-container">
+    <a href="/developers" class="brand-group">
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
+        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
+        <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+      </svg>
+      <span class="brand-title">GeoCheck<span style="color:var(--gc-mint)">.</span></span>
+      <span class="brand-badge">DEVELOPERS</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/" target="_blank">產品首頁</a></li>
+      <li><a href="/developers/docs">技術文件 (Docs)</a></li>
+      <li><a href="#pricing">方案價格 (Pricing)</a></li>
+      <li><a href="/brand" target="_blank">品牌規範</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="/developers/docs" class="btn btn-outline">閱讀文件</a>
+      <a href="/developers/console" class="btn btn-primary">進入控制台</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="dev-hero">
+  <div>
+    <div class="hero-tag">4 大官方搜尋引擎直連 · 客觀透明計費</div>
+    <h1>跨生成式搜尋引擎的<br>客觀 GEO 引用觀測 API</h1>
+    <p class="hero-desc">
+      一次呼叫，並發探測 <strong>OpenAI</strong>、<strong>Google Gemini</strong>、<strong>Perplexity</strong> 與 <strong>Anthropic</strong> 四大主流搜尋引擎。
+      取得原生客觀回答與官方來源引用證據，四家全成才扣量、部分失敗不計費，徹底消除黑箱猜測。
+    </p>
+    <div class="hero-ctas">
+      <a href="/developers/console" class="btn btn-primary">立即免費試用 API</a>
+      <a href="/developers/docs" class="btn btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        閱讀技術文件
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Interactive Preview Widget -->
+  <div class="hero-preview-card">
+    <div class="preview-card-header">
+      <div class="header-dot-group">
+        <div class="header-dot red"></div>
+        <div class="header-dot yellow"></div>
+        <div class="header-dot green"></div>
+      </div>
+      <div class="header-badge">LIVE 4-ENGINE PARALLEL RUN</div>
+    </div>
+
+    <div class="engine-stream-list">
+      <div class="engine-stream-item">
+        <div class="engine-meta">
+          <div class="engine-icon" style="background:#10A37F; color:#fff;">OA</div>
+          <div>
+            <div class="engine-name">OpenAI</div>
+            <span class="engine-model">gpt-5.6-luna</span>
+          </div>
+        </div>
+        <span class="engine-status-tag ok">✓ 搜尋執行 · 2 筆引用</span>
+      </div>
+
+      <div class="engine-stream-item">
+        <div class="engine-meta">
+          <div class="engine-icon" style="background:#4285F4; color:#fff;">G</div>
+          <div>
+            <div class="engine-name">Google Gemini</div>
+            <span class="engine-model">gemini-3.5-flash-lite</span>
+          </div>
+        </div>
+        <span class="engine-status-tag ok">✓ Grounding · 3 筆引用</span>
+      </div>
+
+      <div class="engine-stream-item">
+        <div class="engine-meta">
+          <div class="engine-icon" style="background:#20B2AA; color:#fff;">PX</div>
+          <div>
+            <div class="engine-name">Perplexity</div>
+            <span class="engine-model">sonar</span>
+          </div>
+        </div>
+        <span class="engine-status-tag ok">✓ Web Index · 4 筆引用</span>
+      </div>
+
+      <div class="engine-stream-item">
+        <div class="engine-meta">
+          <div class="engine-icon" style="background:#D97706; color:#fff;">CL</div>
+          <div>
+            <div class="engine-name">Anthropic Claude</div>
+            <span class="engine-model">claude-haiku-4.5</span>
+          </div>
+        </div>
+        <span class="engine-status-tag ok">✓ Search Tool · 2 筆引用</span>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:0.78rem; color:#94A3B8; font-family:var(--gc-font-mono);">
+      <span>P95 延遲: 11.9s</span>
+      <span style="color:var(--gc-mint-light);">計費結算: 4/4 全成 (扣 1 輪)</span>
+    </div>
+  </div>
+</section>
+
+<!-- Feature Section -->
+<section class="features-section">
+  <div class="sec-header">
+    <h2>為企業級 GEO 監測打造的開發者基礎設施</h2>
+    <p>嚴謹、可追溯、防模型漂移。專為需要真正量測 AI 曝光度與引用率的產品團隊而生。</p>
+  </div>
+
+  <div class="grid-4">
+    <div class="feature-card">
+      <div class="feature-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+      </div>
+      <h3>四大官方直連</h3>
+      <p>分別直連 OpenAI、Gemini、Perplexity、Anthropic 官方 API。不走二次轉售路由，確保搜尋上下文真實可信。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>全成才扣量原則</h3>
+      <p>只有四家模型皆成功取得觀測才扣除配額。任一家失敗則整體失敗且不計費，並完整保留已完成的 partial_results。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <h3>官方 TypeScript SDK</h3>
+      <p><code>@geocheck/sdk</code> 提供完整型別定義、顯式冪等鍵 (Idempotency Key) 與兩秒輪詢輔助，內建 Retry-After 規範。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+      </div>
+      <h3>分層審計與隱私</h3>
+      <p>結果層 30 天持久保存與刪除支援。不存留未授權原始網頁快照與使用者 Cookie，遵循企業級資料安全標準。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Code Showcase Section -->
+<section class="code-showcase-section">
+  <div class="code-showcase-container">
+    <div class="code-showcase-info">
+      <h2>只需 3 行程式碼，<br>搞定多引擎 GEO 觀測</h2>
+      <p>使用 <code>@geocheck/sdk</code>，您可以將複雜的並發呼叫、任務輪詢、延遲等待與錯誤降級化繁為簡。</p>
+      
+      <ul class="code-feature-bullets">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>完整 TypeScript 型別推導，自動提示四引擎結構化欄位。</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>自動處理非同步 Job 輪詢狀態與 HTTP 409 Retry-After。</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>支援網址 (URL) 自動分析或自然語言 Prompt 直觀觀測。</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Code Block -->
+    <div class="terminal-box">
+      <div class="terminal-bar">
+        <div class="tab-group">
+          <button class="tab-btn active" onclick="switchTab('ts')">TypeScript SDK</button>
+          <button class="tab-btn" onclick="switchTab('curl')">cURL</button>
+          <button class="tab-btn" onclick="switchTab('py')">Python</button>
+        </div>
+        <button class="copy-btn" onclick="copySnippet()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          複製代碼
+        </button>
+      </div>
+
+      <div class="terminal-content">
+        <pre id="code-ts"><code><span class="c-keyword">import</span> { GeoCheckClient } <span class="c-keyword">from</span> <span class="c-string">"@geocheck/sdk"</span>;
+
+<span class="c-keyword">const</span> client = <span class="c-keyword">new</span> <span class="c-func">GeoCheckClient</span>({ 
+  apiKey: process.env.GEOCHECK_API_KEY! 
+});
+
+<span class="c-comment">// 發起跨 4 大搜尋引擎的觀測任務</span>
+<span class="c-keyword">const</span> accepted = <span class="c-keyword">await</span> client.<span class="c-func">createMeasurement</span>(
+  { input: { type: <span class="c-string">"url"</span>, url: <span class="c-string">"https://example.com"</span> }, locale: <span class="c-string">"zh-TW"</span> },
+  crypto.<span class="c-func">randomUUID</span>()
+);
+
+<span class="c-comment">// 自動輪詢並等待四家引擎全成結果</span>
+<span class="c-keyword">const</span> result = <span class="c-keyword">await</span> client.<span class="c-func">pollMeasurement</span>(accepted.measurement_id);
+
+console.<span class="c-func">log</span>(result.engines); <span class="c-comment">// [OpenAI, Gemini, Perplexity, Anthropic]</span></code></pre>
+
+        <pre id="code-curl" style="display:none;"><code>curl -X POST https://api.geocheck.lisheng.cv/v1/measurements \
+  -H "Authorization: Bearer gck_live_xxxxxxxxxxxx" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: $(uuidgen)" \
+  -d '{
+    "input": {
+      "type": "url",
+      "url": "https://example.com"
+    },
+    "locale": "zh-TW"
+  }'</code></pre>
+
+        <pre id="code-py" style="display:none;"><code>import requests, uuid
+
+api_key = "gck_live_xxxxxxxxxxxx"
+headers = {
+    "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json",
+    "Idempotency-Key": str(uuid.uuid4())
+}
+
+# 建立觀測任務
+response = requests.post(
+    "https://api.geocheck.lisheng.cv/v1/measurements",
+    headers=headers,
+    json={"input": {"type": "url", "url": "https://example.com"}, "locale": "zh-TW"}
+)
+job = response.json()
+print("Job created:", job["measurement_id"])</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing-section" id="pricing">
+  <div class="sec-header">
+    <h2>透明簡約的定價方案</h2>
+    <p>無論個人研究或企業自動化整合，皆享受四引擎全成保證與客觀數據標準。</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- Plan 1: Free Trial -->
+    <div class="pricing-card">
+      <div class="plan-name">Free Trial</div>
+      <div class="plan-desc">7 天無負擔免費體驗，快速驗證產品 GEO 曝光現況。</div>
+      <div class="plan-price-wrap">
+        <span class="plan-currency">NT$</span>
+        <span class="plan-price">0</span>
+        <span class="plan-cycle">/ 7 天試用</span>
+      </div>
+      <ul class="plan-features-list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>每天 3 輪</strong>完整四引擎觀測（每日重置）</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>免綁信用卡、期滿不自動續費</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>支援官方 TypeScript SDK 與 REST API</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>固定 OpenAI、Gemini、Perplexity、Anthropic 四引擎</span>
+        </li>
+      </ul>
+      <a href="/developers/console" class="btn btn-outline">開始 7 天試用</a>
+    </div>
+
+    <!-- Plan 2: Basic (Featured) -->
+    <div class="pricing-card featured">
+      <span class="popular-badge">最受歡迎</span>
+      <div class="plan-name">Basic 入門方案</div>
+      <div class="plan-desc">為中小型網站及行銷團隊提供穩定的週期性 GEO 引用監測。</div>
+      <div class="plan-price-wrap">
+        <span class="plan-currency">NT$</span>
+        <span class="plan-price">660</span>
+        <span class="plan-cycle">/ 月</span>
+      </div>
+      <ul class="plan-features-list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>每月 80 輪</strong>完整四引擎觀測</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>四家全成才扣量，失敗不計費</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>標準 API 呼叫速率與並發支援</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>包含第一方官方網域與權威外部網域比對報告</span>
+        </li>
+      </ul>
+      <a href="/developers/console" class="btn btn-primary">選擇 Basic 方案</a>
+    </div>
+
+    <!-- Plan 3: Premium -->
+    <div class="pricing-card">
+      <div class="plan-name">Premium 旗艦方案</div>
+      <div class="plan-desc">為大型專案、代理商與高頻監測系統提供深度效能與支援。</div>
+      <div class="plan-price-wrap">
+        <span class="plan-currency">NT$</span>
+        <span class="plan-price">1,390</span>
+        <span class="plan-cycle">/ 月</span>
+      </div>
+      <ul class="plan-features-list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>每月 170 輪</strong>完整四引擎觀測</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>四家全成才扣量，部分失敗提供 partial_results</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>最高佇列優先級與長效 30 天數據保存</span>
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>專屬技術支援與高併發連線能力</span>
+        </li>
+      </ul>
+      <a href="/developers/console" class="btn btn-outline">選擇 Premium 方案</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="dev-footer">
+  <div class="footer-wrap">
+    <div>
+      <span style="font-weight:900; color:#FFFFFF;">GeoCheck for Developers</span>
+      <p style="margin-top:4px; font-size:0.8rem; color:#64748B;">© 2026 GeoCheck. 基於可觀測證據的 GEO 診斷與量測平台。</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/developers/docs">技術文件</a></li>
+      <li><a href="/developers/console">控制台</a></li>
+      <li><a href="/brand">品牌規範</a></li>
+      <li><a href="/whitepaper">研究白皮書</a></li>
+      <li><a href="/">回到首頁</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+let currentTab = 'ts';
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('code-ts').style.display = tab === 'ts' ? 'block' : 'none';
+  document.getElementById('code-curl').style.display = tab === 'curl' ? 'block' : 'none';
+  document.getElementById('code-py').style.display = tab === 'py' ? 'block' : 'none';
+}
+
+function copySnippet() {
+  const codeEl = document.getElementById(`code-${currentTab}`);
+  navigator.clipboard.writeText(codeEl.innerText).then(() => {
+    showToast('已複製代碼到剪貼簿');
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.innerText = `✓ ${msg}`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2400);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,440 @@
+{
+  "url": "https://www.smithandwollensky.com.tw/",
+  "measured_at": "2026-09-09T06:21:46.280Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website smithandwollensky.com.tw (title: Smith & Wollensky). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: Smith & Wollensky Taipei | Smith & Wollensky Taiwan\n\nThe website smithandwollensky.com.tw is publicly associated with Smith & Wollensky in Taiwan, including Taipei and Taichung locations[4][11]. The exact entity alignment is supported by the site itself and corroborating public listings that name the same website and brand[2][3][12][14].",
+      "citations": [
+        "https://sandy33333.pixnet.net/blog/posts/3050900432",
+        "https://www.linkedin.com/company/swbpr",
+        "https://wanderlog.com/place/details/440399/smith--wollensky-taipei",
+        "https://smithandwollensky.com.tw/",
+        "https://www.tripadvisor.com/Restaurant_Review-g13808515-d15855168-Reviews-Smith_and_Wollensky-Xinyi_District_Taipei.html",
+        "https://www.smithandwollensky.com/contact-us/",
+        "https://en.wikipedia.org/wiki/Smith_&_Wollensky",
+        "https://www.trip.com/moments/poi-smith-and-wollensky-taipei-120235460/",
+        "http://media.corporate-ir.net/media_files/irol/12/129194/documents/consumer_fact_sheet_aug05.pdf",
+        "https://x.com/smithwollensky",
+        "https://smithandwollensky.com.tw/en",
+        "https://eggie.tw/blog/post/227384783",
+        "https://globalfoodelicious.com/smith-wollensky-taipei-steakhouse/",
+        "https://www.taiwannews.com.tw/news/5889102",
+        "https://smithandwollensky.com.tw/zh_TW/menu/taipei"
+      ],
+      "searchResults": [
+        {
+          "date": "2024-08-26",
+          "last_updated": "2026-09-08",
+          "place_metadata": null,
+          "snippet": "⬇Smith&Wollensky位於信義區微風南山47樓\n...\n史密斯華倫斯基牛排館 Smith & Wollensky\n線上訂位：https://smithandwollensky.com.tw/zh_TW/reserve\n包廂介紹：https://smithandwollensky.com.tw/zh_TW/event/taipei\n官網：https://smithandwollensky.com.tw/zh_TW\n地址：台北微風南山47樓",
+          "source": "web",
+          "title": "食記// 微風南山。史密斯華倫斯基牛排館Smith & Wollensky。8 ...",
+          "url": "https://sandy33333.pixnet.net/blog/posts/3050900432"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-09-01",
+          "place_metadata": null,
+          "snippet": "**Website:** https://smithandwollensky.com.tw\n### Locations\n- 朝富路, 213號, Xitun District, Taichung City 40757, TW, Taichung, Taichung, Taiwan\n- 松智路17號, 台北, 台灣 110, TW, Taipei, Taiwan (HQ)",
+          "source": "web",
+          "title": "Smith & Wollensky Taipei | Restaurants",
+          "url": "https://www.linkedin.com/company/swbpr"
+        },
+        {
+          "date": "2025-07-23",
+          "last_updated": "2026-04-29",
+          "place_metadata": null,
+          "snippet": "Smith & Wollensky in Taipei is a top-notch steakhouse that has quickly become a favorite among locals and visitors.\n...\n###### Address\n47F, No. 17號, Songzhi Rd, Xinyi District, Taipei City, Taiwan 110\n###### Website\nhttp://www.smithandwollensky.com.tw/\n###### Phone\n+886 2 2345 5647\n###### Hours\nSuSu...",
+          "source": "web",
+          "title": "Smith & Wollensky - Taipei",
+          "url": "https://wanderlog.com/place/details/440399/smith--wollensky-taipei"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-05-08",
+          "place_metadata": null,
+          "snippet": "台北\n台北市信義區松智路17號47樓\n(微風南山)\n(02)2345-5647\n台中\n...\n台中\n台中市西屯區朝富路213號34樓\n(CBD時代廣場)\n(04)2252-5647",
+          "source": "web",
+          "title": "Smith & Wollensky",
+          "url": "https://smithandwollensky.com.tw/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-03-11",
+          "place_metadata": null,
+          "snippet": "(82 reviews)\n...\nNo. 17, Songzhi Road 47F, Breeze NanShan, Xinyi District, Taipei 110 Taiwan\nWebsite\n+886 2 2345 5647\n…\n...\nClosed now\n• Opens at 11:30 AM\nSunday\n12:00 AM - 1:00 AM11:30 AM - 11:00 PM\nMonday\n11:30 AM - 11:00 PM\nTuesday\n11:30 AM - 11:00 PM\nWednesday\n11:30 AM - 11:00 PM\nThursday\n11:30 ...",
+          "source": "web",
+          "title": "Smith and Wollensky - Xinyi District Restaurants - Tripadvisor",
+          "url": "https://www.tripadvisor.com/Restaurant_Review-g13808515-d15855168-Reviews-Smith_and_Wollensky-Xinyi_District_Taipei.html"
+        },
+        {
+          "date": "2026-07-15",
+          "last_updated": "2026-08-26",
+          "place_metadata": null,
+          "snippet": "The Smith & Wollensky Restaurant Group, Inc.\n5 Dry Dock Ave, Suite 2010\nBoston, MA 02210\n...\n617.530.9000\nONLINE ORDERS & PPX LOYALTY\n617.530.9431",
+          "source": "web",
+          "title": "Contact Us & Reservation Assistance - Smith & Wollensky",
+          "url": "https://www.smithandwollensky.com/contact-us/"
+        },
+        {
+          "date": "2006-07-08",
+          "last_updated": "2026-08-18",
+          "place_metadata": null,
+          "snippet": "**Smith & Wollensky** is the name of several high-end American and international steakhouses, with locations in New York, Boston, Chicago, Miami Beach, Las Vegas, London, Taipei, Philippines, Taichung and Seoul.\n...\n|Website|smithandwollensky.com|\n...\nThe brand's second restaurant in Taiwan opened i...",
+          "source": "web",
+          "title": "Smith & Wollensky - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Smith_&_Wollensky"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-09-05",
+          "place_metadata": null,
+          "snippet": "Smith & Wollensky - Taipei Address:\n47F No. 17, Songzhi Rd, Xinyi District, Xinyi District\nSmith & Wollensky - Taipei Opening times:\nCurrently closed 11:30-22:00\nFor reference only",
+          "source": "web",
+          "title": "[2026 Taipei Restaurant] Smith & Wollensky",
+          "url": "https://www.trip.com/moments/poi-smith-and-wollensky-taipei-120235460/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-13",
+          "place_metadata": null,
+          "snippet": "Contact Information: 797 Third Avenue & 49th Street, New York, NY 10022 \nTel.\n212-753-1530; Fax 212-751-5446\n...\nSMITH & WOLLENSKY RESTAURANT LOCATIONS \nNew York \n797 Third Avenue & 49th Street \nNew York, NY 10022 \nTel.\n212-753-1530 \nFax 212-751-5446 \n...\nTel.\n212-935-2888 \nFax 212-371-9264\nContact ...",
+          "source": "web",
+          "title": "[PDF] SMITH & WOLLENSKY",
+          "url": "http://media.corporate-ir.net/media_files/irol/12/129194/documents/consumer_fact_sheet_aug05.pdf"
+        },
+        {
+          "date": "2009-04-28",
+          "last_updated": "2026-08-14",
+          "place_metadata": null,
+          "snippet": "America's Steakhouse.\nPrime dry-aged steaks in-house, premium seafood, award-winning wine lists, upscale private event spaces.",
+          "source": "web",
+          "title": "Smith & Wollensky (@smithwollensky) / Posts / X - Twitter",
+          "url": "https://x.com/smithwollensky"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-13",
+          "place_metadata": null,
+          "snippet": "TAIPEI\n47 F., No. 17, Songzhi Rd., Xinyi District., Taipei 110, Taiwan (Breeze Nanshan)\n+886 2 2345 5647\nTAICHUNG\n...\nTAICHUNG\n34 F., No. 213, Chaofu Rd.,Xitun Dist., Taichung 407, Taiwan (CBD Time Square)\n+886 4 2252-5647",
+          "source": "web",
+          "title": "Taipei",
+          "url": "https://smithandwollensky.com.tw/en"
+        },
+        {
+          "date": "2020-10-15",
+          "last_updated": "2025-09-27",
+          "place_metadata": null,
+          "snippet": "**Smith & Wollensky Taipei**\n- 地址：台北市松智路17號(微風南山47樓)\n- 交通：\n**捷運台北101/世貿站**4號出口步行5分鐘\n- 電話：02-23455647\n- 用餐區營業時間:週日~週四 11:30am~10:00pm；週五~週六 11:30am~11:00pm\n- 酒吧區營業時間:週日~週四 11:30am~1:00am；週五~週六 11:30am~2:00am\n- 官網：http://www.smithandwollensky.com.tw",
+          "source": "web",
+          "title": "[台北美食] 南山微風47F景觀牛排館「Smith & Wollensky Taipei ...",
+          "url": "https://eggie.tw/blog/post/227384783"
+        },
+        {
+          "date": "2019-07-20",
+          "last_updated": "2026-03-11",
+          "place_metadata": null,
+          "snippet": "餐廳: 史密斯華倫斯基牛排館 Smith & Wollensky Taipei\n地址: 台北市信義區松智路17號 47F (微風南山) (Map)\n捷運站: 象山與台北101捷運站\n.\nWebsite: http://www.smithandwollensky.com.tw/\nFacebook: https://www.facebook.com/smithandwollenskytaipei/\nReservation online: https://pse.is/K3X4T\n.",
+          "source": "web",
+          "title": "Smith & Wollensky Taipei 》噶瑪蘭威士忌紐約客牛排不再是隱藏菜單",
+          "url": "https://globalfoodelicious.com/smith-wollensky-taipei-steakhouse/"
+        },
+        {
+          "date": null,
+          "last_updated": "2025-12-04",
+          "place_metadata": null,
+          "snippet": "TAIPEI (Taiwan News) — American steakhouse Smith & Wollensky opened a new location on Wednesday (June 12) in Taichung's Seventh Redevelopment Zone.",
+          "source": "web",
+          "title": "Smith & Wollensky opens second steakhouse in Taiwan | Taiwan News | Jun. 13, 2024 16:07",
+          "url": "https://www.taiwannews.com.tw/news/5889102"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-04-18",
+          "place_metadata": null,
+          "snippet": "週一~週五 MON.~FRI.\n11:30~15:00\n國定假日不適用 Not available on public holidays.",
+          "source": "web",
+          "title": "極品美饌",
+          "url": "https://smithandwollensky.com.tw/zh_TW/menu/taipei"
+        }
+      ],
+      "usage": {
+        "inputTokens": 124,
+        "outputTokens": 90,
+        "totalTokens": 214
+      },
+      "latencyMs": 7461,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下推薦 10 家**位於台北市信義區**、且在整理型文章中多次出現的餐廳，並簡要說明推薦理由；這些店家涵蓋**餐酒館、日式、牛排、火鍋、泰式、台菜、早午餐**等不同類型，適合不同情境。[1][2][3][5][7][9]\n\n- **心潮飯店**：主打復古風台菜與餐酒館氛圍，常被列為信義區代表性聚餐店。[5]\n- **The Ukai Taipei**：高樓景觀與精緻料理兼具，常出現在信義區高級餐廳推薦中。[5][7]\n- **饗 A Joy**：以高空景觀與大型吃到飽體驗著稱，適合慶生或特別聚餐。[5]\n- **旭集和食集錦**：日式 buffet 風格明確，常被歸在信義區熱門吃到飽名單。[5]\n- **NARA Thai Cuisine**：泰式料理",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 269,
+          "totalTokens": 319
+        },
+        "latencyMs": 9687,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下推薦 **10 家位於台北市信義區**、晚餐每人預算約 **500–999 元** 內可考慮的餐廳；我以你提供的資料中可確認「位於信義區」且價格帶接近此區間的店家為主，並簡要說明各自適合的理由。部分店家在來源中只有概略價位或主打餐型，**實際消費仍可能因單點、套餐、服務費而上下浮動**。[1][2][5][7][9]\n\n| 餐廳 | 大致類型 | 為什麼推薦 |\n|---|---|---|\n| **Hoda Bistro** | 餐酒館 | 來源提到它是信義區評分高的平價餐酒館，適合約會或聚餐，通常較容易把晚餐控制在你的預算帶內。[2] |\n| **BaganHood** | 蔬食餐酒館 | 主打精緻異國料理與每日限量披薩，適合想吃得有特色、又不想超出中",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【BaganHood】台北信義蔬食餐酒館推薦，特色必吃精緻異國料理、每日限量披薩！創造嶄新飲食風格\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n…\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區莊敬路327號/** **02 8780 9559**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n**■ 台北寒舍艾美酒店 探索廚房**\n地址：110台北市信義區松仁路38號\n電話：0266228018\n營業時間：06:30–10:00、11:30–14:00、15:00–17:00、18:00–21:00\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~2...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃1 Chili's 美式餐廳\n- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n- 台北平價餐廳推薦＃5 獅子甜點\n- 台北平價餐廳推薦＃6 Gumgum 雞翅啤酒吧\n- 台北平價餐廳推薦＃7 Musée Kitchen & Bar\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n- 台北平價餐廳推薦＃9 豬跳舞小館\n- 台北平價餐廳推薦＃10 AN58 承德店\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2025-10-01",
+            "last_updated": "2025-10-19",
+            "place_metadata": null,
+            "snippet": "均消 $1200今日營業: 11:30-14:00, 17:30-21:30臺北市信義區和平東路三段215號牛排精緻高級約會餐廳\n...\n均消 $1000現正營業: 11:30-23:00臺北市信義區松智路17號46F咖哩酒吧景觀餐廳\n...\n均消 $800今日營業: 11:00-14:00, 17:00-21:00臺北市信義區仁愛路四段506號中式料理火鍋合菜\n…",
+            "source": "web",
+            "title": "台北1000元以內餐廳推薦！ Saffron 46及其他354家精選",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n...\n《**樂葵法式鐵板燒微風南山店**》Google評價高又不貴，十道精緻料理價格只要1650元＋10%，適合約會慶生、犒賞自己或同事請客，這間真的很可以。\n...\n地址：台北市信義區松智路17號5樓（微風南山5F）\n電話：02 6605 7122\n...\n**香米泰式料理 信義遠百A13店\n** 地址：台北市信義區松仁路58號4樓\n營業時間：\n...\n電話：02-27786806",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n|--|--|--|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n|大味王吃到飽火鍋|$250起| |\n...\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 265,
+          "totalTokens": 329
+        },
+        "latencyMs": 9885,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

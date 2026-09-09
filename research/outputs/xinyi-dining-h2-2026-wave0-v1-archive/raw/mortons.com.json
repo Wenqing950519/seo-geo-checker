@@ -1,0 +1,440 @@
+{
+  "url": "https://www.mortons.com/",
+  "measured_at": "2026-09-09T06:19:27.713Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website mortons.com (title: Morton's The Steakhouse | The Best Steak Anywhere). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: Morton's The Steakhouse\n\nmortons.com is publicly associated with Morton's The Steakhouse through sources that explicitly list the website as https://mortons.com and name the company/brand accordingly[2][4][5]. The exact entity is a steak restaurant chain headquartered in Houston, Texas, and publicly described as a wholly owned subsidiary of Landry’s[3][4].",
+      "citations": [
+        "https://www.yelp.com/biz/mortons-the-steakhouse-new-york-2",
+        "https://www.linkedin.com/company/morton's-the-steakhouse",
+        "https://www.wikiwand.com/en/articles/Morton's_The_Steakhouse",
+        "https://en.wikipedia.org/wiki/Morton's_The_Steakhouse",
+        "https://www.opentable.com/r/mortons-the-steakhouse-midtown-manhattan-new-york",
+        "http://84.74.53.98/kiwix/wikipedia_en_all_maxi_2021-12/A/Morton's_The_Steakhouse",
+        "https://postmates.com/store/mortons-the-steakhouse-227-w-trade-st-150/bzHjjX6NQGOo3TsYBNt9eQ",
+        "https://www.visithoustontexas.com/listings/mortons-the-steakhouse-downtown/20190/",
+        "https://www.zippia.com/morton-s-the-steakhouse-careers-31950/history/",
+        "https://www.opentable.com/r/mortons-the-steakhouse-saratoga-springs",
+        "https://downtownhouston.org/go/mortons-the-steakhouse",
+        "https://www.yelp.com/biz/mortons-the-steakhouse-fort-lauderdale",
+        "https://postmates.com/store/mortons-the-steakhouse-170-south-market-street/Tei66sfvQVuQ7St7giNOGQ",
+        "https://www.tripadvisor.com/Restaurant_Review-g52024-d439878-Reviews-Morton_s_The_Steakhouse-Portland_Oregon.html",
+        "https://leadiq.com/c/mortons-the-steakhouse/5a1d85ed240000240060501a"
+      ],
+      "searchResults": [
+        {
+          "date": "2019-06-17",
+          "last_updated": "2025-02-25",
+          "place_metadata": null,
+          "snippet": "551 5th Ave New York, NY 10017\n45th St & 46th St\nMidtown East, Midtown WestGet directions\n|Mon||Closed now|",
+          "source": "web",
+          "title": "Morton's The Steakhouse - New York, NY",
+          "url": "https://www.yelp.com/biz/mortons-the-steakhouse-new-york-2"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-09-01",
+          "place_metadata": null,
+          "snippet": "**Website:** https://mortons.com\n### Locations\n- 1510 West Loop South, Houston, Texas 77027, US, Houston, Texas, United States (HQ)",
+          "source": "web",
+          "title": "Morton's The Steakhouse | Hospitality",
+          "url": "https://www.linkedin.com/company/morton's-the-steakhouse"
+        },
+        {
+          "date": "2017-09-03",
+          "last_updated": "2025-03-03",
+          "place_metadata": null,
+          "snippet": "**Morton's The Steakhouse** is a chain of steak restaurants with locations in the United States and franchised abroad, founded in Chicago in 1978.\nIt is a wholly owned subsidiary of Landry's.\n...\n|Headquarters|1510 West Loop S, Houston, Texas, United States|",
+          "source": "web",
+          "title": "Morton's The Steakhouse - Wikiwand",
+          "url": "https://www.wikiwand.com/en/articles/Morton's_The_Steakhouse"
+        },
+        {
+          "date": "2006-04-05",
+          "last_updated": "2026-08-14",
+          "place_metadata": null,
+          "snippet": "**Morton's The Steakhouse** is a chain of steak restaurants with locations in the United States and franchised abroad, founded in Chicago in 1978.\nIt is a wholly owned subsidiary of Landry's.\n...\n|Headquarters|1510 West Loop S, Houston, Texas , United States|\n...\n|Website|www.mortons.com|",
+          "source": "web",
+          "title": "Morton's The Steakhouse - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Morton's_The_Steakhouse"
+        },
+        {
+          "date": "2026-09-04",
+          "last_updated": "2026-09-07",
+          "place_metadata": null,
+          "snippet": "551 5th Ave (entrance on 45th St.), New York, NY 10176\n...\n- Hours of operation\nMon 12:00 pm–9:00 pm\nTue–Fri 12:00 pm–10:00 pm\nSat 4:00 pm–10:00 pm\nSun 4:00 pm–9:00 pm\nHappy Hour\nMon–Fri, Sun 4:00 pm–6:30 pm\n- Contact\n(212) 972-3315\n- Website\nhttps://www.mortons.com/location/mortons-the-steakhouse-n...",
+          "source": "web",
+          "title": "Morton's The Steakhouse - Midtown Manhattan, New York, NY",
+          "url": "https://www.opentable.com/r/mortons-the-steakhouse-midtown-manhattan-new-york"
+        },
+        {
+          "date": "2014-04-16",
+          "last_updated": "2026-08-28",
+          "place_metadata": null,
+          "snippet": "**Morton's The Steakhouse** is a chain of steak restaurants with locations in the United States and franchised abroad, founded in Chicago in 1978.\nIt is a wholly owned subsidiary of Landry's, Inc.\n...\n|Headquarters|1510 West Loop S, Houston, Texas , United States|\n...\n|Website|www.mortons.com|",
+          "source": "web",
+          "title": "Morton's The Steakhouse",
+          "url": "http://84.74.53.98/kiwix/wikipedia_en_all_maxi_2021-12/A/Morton's_The_Steakhouse"
+        },
+        {
+          "date": "2020-06-23",
+          "last_updated": "2025-09-26",
+          "place_metadata": null,
+          "snippet": "x Available Friday 3:45 PM\n227 W.\nTrade St. #150, Charlotte, NC 28202\n...\n4:00 PM - 9:00 PM\n5:00 PM - 9:00 PM\n4:00 PM - 10:00 PM\n...\nMorton’s The Steakhouse (227 W. Trade St. #150) is located at: 227 W.\nTrade St. #150 , Charlotte",
+          "source": "web",
+          "title": "Morton's The Steakhouse (227 W. Trade St. #150) - Postmates",
+          "url": "https://postmates.com/store/mortons-the-steakhouse-227-w-trade-st-150/bzHjjX6NQGOo3TsYBNt9eQ"
+        },
+        {
+          "date": "2024-01-10",
+          "last_updated": "2026-07-03",
+          "place_metadata": null,
+          "snippet": "- 1001 McKinney Houston, TX 77002\n- (713) 659-3700\n-\n...\n##### General - Hours Monday-Friday 5:30 to 10:00 Saturday 5:30 to 11:00 Sunday 5:00- to 10:00 - Price $$$$ (Meal, including one drink, tax and tip for $61 or more) - Seating Capacity 210 - Reservations Required - Recommended - Languages Spoke...",
+          "source": "web",
+          "title": "Morton's, The Steakhouse - Downtown | Restaurants in Houston, TX",
+          "url": "https://www.visithoustontexas.com/listings/mortons-the-steakhouse-downtown/20190/"
+        },
+        {
+          "date": "2023-07-21",
+          "last_updated": "2025-10-25",
+          "place_metadata": null,
+          "snippet": "Morton's The Steakhouse may also be known as or be related to Morton s Restaurant Group Inc, Morton's Restaurant Group, Morton's Restaurant Group Inc, Morton's Restaurant Group, Inc. and Morton's The Steakhouse.",
+          "source": "web",
+          "title": "Morton's The Steakhouse History",
+          "url": "https://www.zippia.com/morton-s-the-steakhouse-careers-31950/history/"
+        },
+        {
+          "date": "2026-09-03",
+          "last_updated": "2026-09-08",
+          "place_metadata": null,
+          "snippet": "342 Jefferson Street, Saratoga Springs, NY 12866\n...\n- Hours of operation\nDinner\nWed–Sun 5:00 pm–9:00 pm\n- Phone number\n(518) 682-5999\n- Website\nhttp://www.mortons.com/saratogasprings/\n...\n- Private party contact\nColleen Carlson: (518) 581-5750\n- Location\n342 Jefferson Street, Saratoga Springs, NY 1...",
+          "source": "web",
+          "title": "Morton's The Steakhouse - Saratoga Springs Restaurant",
+          "url": "https://www.opentable.com/r/mortons-the-steakhouse-saratoga-springs"
+        },
+        {
+          "date": "2026-08-25",
+          "last_updated": "2026-08-25",
+          "place_metadata": null,
+          "snippet": "**Suite A4**\n1001 McKinney St\nHouston, TX 77002\n(713) 659-3700\n## Hours\nMon - Fri 11AM -9PM",
+          "source": "web",
+          "title": "Morton's The Steakhouse",
+          "url": "https://downtownhouston.org/go/mortons-the-steakhouse"
+        },
+        {
+          "date": "2020-02-20",
+          "last_updated": "2025-02-03",
+          "place_metadata": null,
+          "snippet": "500 E Broward Blvd Ste 127 Fort Lauderdale, FL 33394Get directions\n|Mon||\n|--|--|\n...\n|Sat||\n|Sun||Closed now|\n...\nHi Princessa, Our Power Hour is Mon-Thur 4:45-6:30pm, 9pm-Close; Fri-Sun 5pm-Close.Annie P., Business ManagerMore than 5 years ago 1 person found this helpfulSee question details",
+          "source": "web",
+          "title": "Morton's The Steakhouse - Fort Lauderdale, FL",
+          "url": "https://www.yelp.com/biz/mortons-the-steakhouse-fort-lauderdale"
+        },
+        {
+          "date": "2020-05-07",
+          "last_updated": "2026-07-26",
+          "place_metadata": null,
+          "snippet": "170 South Market Street, San Jose, CA 95113\n...\n4:00 PM - 9:00 PM\n5:00 PM - 9:00 PM\n4:00 PM - 10:00 PM\n...\nMorton’s The Steakhouse (170 South Market Street) is located at: 170 South Market Street , San Jose",
+          "source": "web",
+          "title": "Morton's The Steakhouse (170 South Market Street) Menu San Jose",
+          "url": "https://postmates.com/store/mortons-the-steakhouse-170-south-market-street/Tei66sfvQVuQ7St7giNOGQ"
+        },
+        {
+          "date": "2007-07-18",
+          "last_updated": "2025-10-01",
+          "place_metadata": null,
+          "snippet": "213 SW Clay St, Portland, OR 97201-5811\nWebsite\n+1 503-248-2100\n...\nClosed now\n• Opens at 5:00 PM\nSunday\n4:00 PM - 9:00 PM\nMonday\n5:00 PM - 9:00 PM\nTuesday\n5:00 PM - 9:00 PM\nWednesday\n5:00 PM - 9:00 PM\nThursday\n5:00 PM - 9:00 PM\nFriday\n4:00 PM - 10:00 PM\nSaturday\n4:00 PM - 10:00 PM\n## Reviews",
+          "source": "web",
+          "title": "MORTON'S THE STEAKHOUSE, Portland - Downtown - Restaurant Reviews, Photos & Reservations - Tripadvisor",
+          "url": "https://www.tripadvisor.com/Restaurant_Review-g52024-d439878-Reviews-Morton_s_The_Steakhouse-Portland_Oregon.html"
+        },
+        {
+          "date": "2026-06-26",
+          "last_updated": "2026-07-08",
+          "place_metadata": null,
+          "snippet": "The company operates more than 500 high-end and casual dining establishments around the world, including well-known concepts, such as Landry’s Seafood, Bubba Gump Shrimp Co., Rainforest Cafe, Morton’s The Steakhouse, The Oceanaire, McCormick & Schmick’s, Mitchell’s Fish Market, Chart House, Saltgras...",
+          "source": "web",
+          "title": "Morton's The Steakhouse Company Overview, Contact ...",
+          "url": "https://leadiq.com/c/mortons-the-steakhouse/5a1d85ed240000240060501a"
+        }
+      ],
+      "usage": {
+        "inputTokens": 124,
+        "outputTokens": 85,
+        "totalTokens": 209
+      },
+      "latencyMs": 2889,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下推薦 10 家**位於台北市信義區**、且在多份美食整理中常被提到的餐廳；我也附上每家**簡要理由**，方便你依用途挑選。[1][2][3][4][5][7][9][10]\n\n| 餐廳 | 類型/特色 | 簡要理由 |\n|---|---|---|\n| **鼎泰豐（101店）** | 小籠包、台菜 | 國際知名度高，常被列為信義區代表餐廳之一，適合觀光或帶客人用餐。[3] |\n| **心潮飯店** | 台菜餐酒館 | 被食記整理列為信義區米其林/推薦餐廳之一，風格時髦，適合聚餐與約會。[5] |\n| **The Ukai Taipei** | 高級鐵板燒/精緻餐飲 | 常出現在信義區高端餐廳名單，適合慶生、紀念日或正式宴客。[5][7] |\n| **侯布",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 267,
+          "totalTokens": 317
+        },
+        "latencyMs": 4692,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下推薦以**台北市信義區**、且較符合**每人晚餐約 500–999 元**的範圍為主；其中部分店家在搜尋結果中提供的是套餐、均消或吃到飽價位，因此我優先挑選落在這個預算帶內、且資訊較明確的餐廳。[1][2][5][7][8][9]\n\n- **涮乃葉 信義遠百店**：日式涮涮鍋吃到飽，搜尋結果顯示位於信義區松仁路 58 號 7 樓，屬於信義商圈內的中價位聚餐選擇，適合想吃得飽又不超出預算。[9]\n- **香米泰式料理 信義遠百 A13 店**：位於信義區松仁路 58 號 4 樓，屬於泰式料理餐廳，適合多人分享、口味選擇多，也符合晚餐預算帶。[8]\n- **杭州小籠湯包（信義區範圍店",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【BaganHood】台北信義蔬食餐酒館推薦，特色必吃精緻異國料理、每日限量披薩！創造嶄新飲食風格\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n…\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區莊敬路327號/** **02 8780 9559**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n**■ 台北寒舍艾美酒店 探索廚房**\n地址：110台北市信義區松仁路38號\n電話：0266228018\n營業時間：06:30–10:00、11:30–14:00、15:00–17:00、18:00–21:00\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~2...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃1 Chili's 美式餐廳\n- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n- 台北平價餐廳推薦＃5 獅子甜點\n- 台北平價餐廳推薦＃6 Gumgum 雞翅啤酒吧\n- 台北平價餐廳推薦＃7 Musée Kitchen & Bar\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n- 台北平價餐廳推薦＃9 豬跳舞小館\n- 台北平價餐廳推薦＃10 AN58 承德店\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2025-10-01",
+            "last_updated": "2025-10-19",
+            "place_metadata": null,
+            "snippet": "均消 $1200今日營業: 11:30-14:00, 17:30-21:30臺北市信義區和平東路三段215號牛排精緻高級約會餐廳\n...\n均消 $1000現正營業: 11:30-23:00臺北市信義區松智路17號46F咖哩酒吧景觀餐廳\n...\n均消 $800今日營業: 11:00-14:00, 17:00-21:00臺北市信義區仁愛路四段506號中式料理火鍋合菜\n…",
+            "source": "web",
+            "title": "台北1000元以內餐廳推薦！ Saffron 46及其他354家精選",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n...\n《**樂葵法式鐵板燒微風南山店**》Google評價高又不貴，十道精緻料理價格只要1650元＋10%，適合約會慶生、犒賞自己或同事請客，這間真的很可以。\n...\n地址：台北市信義區松智路17號5樓（微風南山5F）\n電話：02 6605 7122\n...\n**香米泰式料理 信義遠百A13店\n** 地址：台北市信義區松仁路58號4樓\n營業時間：\n...\n電話：02-27786806",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n|--|--|--|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n|大味王吃到飽火鍋|$250起| |\n...\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 262,
+          "totalTokens": 326
+        },
+        "latencyMs": 5132,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

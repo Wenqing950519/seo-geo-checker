@@ -1,0 +1,440 @@
+{
+  "url": "https://tw.celavi.com/",
+  "measured_at": "2026-09-09T06:12:50.470Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website tw.celavi.com (title: CÉ LA VI Taipei – Sky-High Dining, Cocktails & Nightlife with a View). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: CÉ LA VI Taipei\n\nThe website tw.celavi.com is publicly tied to CÉ LA VI Taipei on its own pages, including its FAQ and contact page, which identify the venue as CÉ LA VI Taipei and list the Taipei Nanshan Plaza / Breeze Nanshan address in Xinyi District, Taipei[7][8][12]. An external public source also explicitly links the same website to “CÉ LA VI Taipei”[10].",
+      "citations": [
+        "https://wanderlog.com/place/details/437929/c%C3%A9-la-vi-taipei",
+        "https://www.linkedin.com/company/c%C3%A9-la-vi-taipei",
+        "https://www.linkedin.com/company/my-celavi",
+        "https://www.1111.com.tw/corp/72564620/",
+        "https://www.lifestyleasia.com/bk/travel/debut-ce-la-vi-taipei/",
+        "https://www.linkedin.com/company/celavi",
+        "https://tw.celavi.com/zh-tw/faq",
+        "https://tw.celavi.com/faq",
+        "https://www.datanyze.com/companies/ce-la-vi/369313038",
+        "https://www.starfishconcept.com/portfolio/ce-la-vi-taipei/",
+        "https://www.tripadvisor.com/Restaurant_Review-g13808515-d17477374-Reviews-CE_LA_VI_Taipei-Xinyi_District_Taipei.html",
+        "https://tw.celavi.com/contact-us",
+        "https://sylvia128.com/post-588344821/",
+        "https://www.klook.com/en-US/activity/111699-ce-la-vi-taipei/",
+        "https://www.1111.com.tw/corp/72564620"
+      ],
+      "searchResults": [
+        {
+          "date": "2025-08-07",
+          "last_updated": "2026-05-19",
+          "place_metadata": null,
+          "snippet": "48樓, No. 17號, Songzhi Rd, Xinyi District, Taipei City, Taiwan 110\n...\nhttp://tw.celavi.com/\n###### Phone\n+886 909 956 000",
+          "source": "web",
+          "title": "CÉ LA VI Taipei - Wanderlog",
+          "url": "https://wanderlog.com/place/details/437929/c%C3%A9-la-vi-taipei"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-09-01",
+          "place_metadata": null,
+          "snippet": "**Website:** facebook.com/celavitaipei\n...\n- 48F, No. 17, SongZhi Road, Taipei, Taipei City 11047, TW, Taipei, Taipei City, Taiwan (HQ)",
+          "source": "web",
+          "title": "CÉ LA VI Taipei | Entertainment",
+          "url": "https://www.linkedin.com/company/c%C3%A9-la-vi-taipei"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-31",
+          "place_metadata": null,
+          "snippet": "- 1585 Rio Vista Ave., Los Angeles, CA 90023, US, Los Angeles, California, United States (HQ)",
+          "source": "web",
+          "title": "Celavi Beauty & Cosmetics | Personal Care Product Manufacturing",
+          "url": "https://www.linkedin.com/company/my-celavi"
+        },
+        {
+          "date": "2019-01-14",
+          "last_updated": "2025-02-16",
+          "place_metadata": null,
+          "snippet": "- 傳真(02)27110011\n- 公司網址https://www.celavi.com/en/taipei/\n- 公司位置台北市大安區忠孝東路四段197號10樓之7",
+          "source": "web",
+          "title": "CE LA VI Taipei_台北標誌性地點股份有限公司 | 公司資訊 - 1111人力銀行",
+          "url": "https://www.1111.com.tw/corp/72564620/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-01-18",
+          "place_metadata": null,
+          "snippet": "CÉ LA VI Taipei, 48/F, No.17, Songzhi Rd., Taipei, +886 909 956 000",
+          "source": "web",
+          "title": "How the debut of CÉ LA VI Taipei put Taiwan on Asia’s must-visit nightlife map",
+          "url": "https://www.lifestyleasia.com/bk/travel/debut-ce-la-vi-taipei/"
+        },
+        {
+          "date": "2025-05-25",
+          "last_updated": "2026-09-01",
+          "place_metadata": null,
+          "snippet": "- Breeze Nanshan 17 Songzhi Road, Xinyi District, 48 F, Taipei , 11001, TW, Xinyi District, Taipei, Taiwan",
+          "source": "web",
+          "title": "CÉ LA VI | LinkedIn",
+          "url": "https://www.linkedin.com/company/celavi"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-26",
+          "place_metadata": null,
+          "snippet": "* 週二 9:00pm – 02:30am\n* 週三至週日11:00am – 02:30am\n###\n松智路17號, 微風南山48樓, 信義區, 臺北 11001",
+          "source": "web",
+          "title": "餐廳預訂的最低消費是多少？ - CÉ LA VI Taipei",
+          "url": "https://tw.celavi.com/zh-tw/faq"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-26",
+          "place_metadata": null,
+          "snippet": "48 F, Breeze Nanshan 17 Songzhi Road, Xinyi District, Taipei 11001",
+          "source": "web",
+          "title": "FAQ | CÉ LA VI TAIPEI",
+          "url": "https://tw.celavi.com/faq"
+        },
+        {
+          "date": "2025-01-01",
+          "last_updated": "2025-02-14",
+          "place_metadata": null,
+          "snippet": "Websitewww.celavi.com\nPerched on the 57th floor of Marina Bay Sands, CÉ LA VI takes rooftop dining to the highest level.",
+          "source": "web",
+          "title": "Ce La Vi Company Profile | Management and Employees List",
+          "url": "https://www.datanyze.com/companies/ce-la-vi/369313038"
+        },
+        {
+          "date": "2019-10-05",
+          "last_updated": "2026-04-02",
+          "place_metadata": null,
+          "snippet": "CÉ LA VI Taipei營業時間\nCÉ LA VI Sky Bar & Lounge\n星期日-星期四21:00-02:30\n星期五-星期六21:00-04:30\nCÉ LA VI Restaurant (2019.4.29 正式營業)\n星期日-星期四12:00-02:30\n星期五-星期六12:00-04:30\n地址 : 台北市信義區松智路17號48樓\n...\n官方網站 : tw.celavi.com\nE-mail預約: [email protected]\n預約專線 : +886-909-956-000",
+          "source": "web",
+          "title": "全球餐飲生活品牌CÉ LA VI首度進駐台北 - STARFiSH Concept",
+          "url": "https://www.starfishconcept.com/portfolio/ce-la-vi-taipei/"
+        },
+        {
+          "date": "2019-08-12",
+          "last_updated": "2025-09-19",
+          "place_metadata": null,
+          "snippet": "No. 17, Songzhi Road 48/f, Xinyi District, Taipei 110 Taiwan\nWebsite\n+886 909 956 000\n...\nTuesday\n9:00 PM - 2:30 AM\nWednesday\n11:00 AM - 2:30 AM\nThursday\n11:00 AM - 2:30 AM\nFriday\n11:00 AM - 3:00 AM\n...\n11:00 AM - 3:00 AM",
+          "source": "web",
+          "title": "CÉ LA VI Taipei - Xinyi District Restaurants - Tripadvisor",
+          "url": "https://www.tripadvisor.com/Restaurant_Review-g13808515-d17477374-Reviews-CE_LA_VI_Taipei-Xinyi_District_Taipei.html"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-09-01",
+          "place_metadata": null,
+          "snippet": "TAIPEI NANSHAN PLAZA\n48 F, Breeze Nanshan17 songzhi road\nXinyi district 11001\nE: general-tpe@celavi.com\nT: +(886) 9 0995 6000\n...\nMon: Closed\nTue: 12:00–02:30\nWed / Thur / Sun: 11:00–02:30\nFri / Sat: 11:00–03:00\n...\nMon: Closed\nTue: 12:00–02:30\nWed / Thur / Sun: 11:00–02:30\nFri / Sat: 11:00–03:00\n.....",
+          "source": "web",
+          "title": "Contact Us - CÉ LA VI Taipei",
+          "url": "https://tw.celavi.com/contact-us"
+        },
+        {
+          "date": "2026-04-21",
+          "last_updated": "2026-09-06",
+          "place_metadata": null,
+          "snippet": "**地址：台北市信義區松智路17號48樓 (捷運台北101/世貿站4號出口)**\n**電話：0909-956-000**\n**營業時間：12:00-22:00**\n**網址： https://tw.celavi.com**",
+          "source": "web",
+          "title": "微風南山餐廳｜CELAVI Taipei，享受亞洲辛香料帶給味蕾 ...",
+          "url": "https://sylvia128.com/post-588344821/"
+        },
+        {
+          "date": "2025-08-01",
+          "last_updated": "2025-08-06",
+          "place_metadata": null,
+          "snippet": "- Address: 48F, No. 17, Songzhi Road, Xinyi District, Taipei City\n- Restaurant phone number: 09-09956000",
+          "source": "web",
+          "title": "CE LA VI Taipei - Klook United States",
+          "url": "https://www.klook.com/en-US/activity/111699-ce-la-vi-taipei/"
+        },
+        {
+          "date": "2019-01-14",
+          "last_updated": "2025-05-17",
+          "place_metadata": null,
+          "snippet": "## 公司網址https://www.celavi.com/en/taipei/\n## 公司位置台北市大安區忠孝東路四段197號10樓之7",
+          "source": "web",
+          "title": "CE LA VI Taipei_台北標誌性地點股份有限公司 | 公司資訊 - 1111人力銀行",
+          "url": "https://www.1111.com.tw/corp/72564620"
+        }
+      ],
+      "usage": {
+        "inputTokens": 134,
+        "outputTokens": 100,
+        "totalTokens": 234
+      },
+      "latencyMs": 3241,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、在多個美食清單中常被推薦的餐廳，並附上簡要理由；我優先選擇了資料中同時出現、且有明確地址的店家。[1][2][3][4][5][7][9]\n\n- **鼎泰豐（101店／A4／A13）**：小籠包是信義區最具代表性的經典選擇，且分店多、評價穩定，適合第一次到信義區用餐的人。[3]\n- **心潮飯店**：主打時髦復古風台菜，常被列為信義區的米其林/精緻餐廳代表，適合聚餐或請客。[5]\n- **The Ukai Taipei**：位於高樓層景觀餐廳類型，常被列入信義區高級餐廳名單，適合慶祝或約會。[5]\n- **侯布雄法式餐廳**：屬於信義區知名法式高端餐",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 260,
+          "totalTokens": 310
+        },
+        "latencyMs": 5215,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、以**每人晚餐約 500–999 元**較容易達成的餐廳建議；我優先選擇搜尋結果中明確出現在信義區、且價位或消費區間接近這個預算帶的店家。部分店家在搜尋結果中只提供「均消」或套餐價，實際晚餐金額仍會因點餐內容而變動。[1][2][5][7][9]\n\n| 餐廳 | 類型 / 位置線索 | 為什麼適合這個預算 |\n|---|---|---|\n| **Hoda Bistro** | 信義區平價餐酒館 | 以「平價餐酒館」定位，適合晚餐聚餐，較容易把人均控制在 500–999 元。[2] |\n| **激安の食事酒場-市府二號店** | 信義區居酒屋 | 文章明確提到兩小時暢飲 698 元，晚餐預算落在此區間內，適合想吃",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【BaganHood】台北信義蔬食餐酒館推薦，特色必吃精緻異國料理、每日限量披薩！創造嶄新飲食風格\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n…\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區莊敬路327號/** **02 8780 9559**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n**■ 台北寒舍艾美酒店 探索廚房**\n地址：110台北市信義區松仁路38號\n電話：0266228018\n營業時間：06:30–10:00、11:30–14:00、15:00–17:00、18:00–21:00\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~2...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃1 Chili's 美式餐廳\n- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n- 台北平價餐廳推薦＃5 獅子甜點\n- 台北平價餐廳推薦＃6 Gumgum 雞翅啤酒吧\n- 台北平價餐廳推薦＃7 Musée Kitchen & Bar\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n- 台北平價餐廳推薦＃9 豬跳舞小館\n- 台北平價餐廳推薦＃10 AN58 承德店\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2025-10-01",
+            "last_updated": "2025-10-19",
+            "place_metadata": null,
+            "snippet": "均消 $1200今日營業: 11:30-14:00, 17:30-21:30臺北市信義區和平東路三段215號牛排精緻高級約會餐廳\n...\n均消 $1000現正營業: 11:30-23:00臺北市信義區松智路17號46F咖哩酒吧景觀餐廳\n...\n均消 $800今日營業: 11:00-14:00, 17:00-21:00臺北市信義區仁愛路四段506號中式料理火鍋合菜\n…",
+            "source": "web",
+            "title": "台北1000元以內餐廳推薦！ Saffron 46及其他354家精選",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n...\n《**樂葵法式鐵板燒微風南山店**》Google評價高又不貴，十道精緻料理價格只要1650元＋10%，適合約會慶生、犒賞自己或同事請客，這間真的很可以。\n...\n地址：台北市信義區松智路17號5樓（微風南山5F）\n電話：02 6605 7122\n...\n**香米泰式料理 信義遠百A13店\n** 地址：台北市信義區松仁路58號4樓\n營業時間：\n...\n電話：02-27786806",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n|--|--|--|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n|大味王吃到飽火鍋|$250起| |\n...\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 265,
+          "totalTokens": 329
+        },
+        "latencyMs": 4835,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

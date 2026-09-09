@@ -1,0 +1,440 @@
+{
+  "url": "https://www.paradisegp.com/",
+  "measured_at": "2026-09-09T06:20:15.198Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website paradisegp.com (title: Paradise Group - A diners‘ paradise). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: Paradise Group | Paradise Group Holdings\n\nThe exact website paradisegp.com is publicly associated with Paradise Group, a Singapore-based food-and-beverage restaurant group, and with Paradise Group Holdings Pte. Ltd.; the site’s About Us page explicitly names Paradise Group and describes it as a “diners’ paradise,” while the Terms & Conditions page gives a registered address for Paradise Group IHQ in Singapore.[12] Corroborating public sources also tie paradisegp.com to Paradise Group Holdings and describe the same restaurant group.[49][10]",
+      "citations": [
+        "https://www.linkedin.com/company/paradisegroupusa",
+        "https://www.paradisegp.com/terms-conditions/",
+        "https://recordowl.com/company/paradise-group-holdings-pte-ltd",
+        "https://en.wikipedia.org/wiki/Paradise_Group_Holdings",
+        "https://sglocalhub.com/biz/paradise-group-holdings-pte-ltd-107-defu-lane-10-05-01-paradise-group-ihq-singapore-539224",
+        "https://sg.everydayonsales.com/24-30-march-2026-paradise-group-paradise-gourmet-rewards-flash-sale-up-to-30-bonus-credits-promotion/",
+        "https://www.datanyze.com/companies/paradise-dynasty/372578922",
+        "https://sglocalhub.com/biz/paradise-classic-at-parkway-parade-80-marine-parade-rd-01-35-parkway-parade-singapore-449269",
+        "https://www.goodjobs.com.sg/employers/paradise-group-holdings-pte-ltd",
+        "https://pitchbook.com/profiles/company/127522-09",
+        "https://privateequityinfo.com/directory/private-equity-portfolio-company/1/paradise-group-holdings",
+        "https://www.paradisegp.com/about-us/",
+        "https://tracxn.com/d/companies/paradise-group/__EGLB4c6h9-Z86FY_gKBEB-aYD7lPh3haXpfn_4xjjBs",
+        "https://www.punggoldigitaldistrict.sg/shop/stores/Paradise%20Classic",
+        "https://danielfooddiary.com/2017/10/14/paradisegroup/"
+      ],
+      "searchResults": [
+        {
+          "date": null,
+          "last_updated": "2026-09-01",
+          "place_metadata": null,
+          "snippet": "**Website:** https://paradisegp.com/usa/\n### Locations\n- Irvine, CA 92614, US, Irvine, California, United States (HQ)",
+          "source": "web",
+          "title": "Paradise Group USA | Food and Beverage Services",
+          "url": "https://www.linkedin.com/company/paradisegroupusa"
+        },
+        {
+          "date": "2024-02-07",
+          "last_updated": "2026-05-24",
+          "place_metadata": null,
+          "snippet": "Our registered address is at 107 Defu Lane 10 #05-01 Paradise Group IHQ Singapore 539224.\n...\nIf you do not agree to any change to the Terms then you must immediately stop using the App/Website.\n1.3 All enquiries may be directed to our website moderator at marketing@paradisegroup.com.sg.",
+          "source": "web",
+          "title": "Terms & Conditions",
+          "url": "https://www.paradisegp.com/terms-conditions/"
+        },
+        {
+          "date": "2024-11-22",
+          "last_updated": "2025-07-14",
+          "place_metadata": null,
+          "snippet": "The address of this company registered office is 107 DEFU LANE 10 #05-01 PARADISE GROUP IHQ SINGAPORE 539224 located at PARADISE GROUP IHQ\n...\n|Name & Position|Contact Number|Fax Number|\n...\n|C Chua Tee Yeong Eldwin -|-|-|-|\n|U Contact|+6564876489|-|",
+          "source": "web",
+          "title": "PARADISE GROUP HOLDINGS PTE. LTD. (200815151R)",
+          "url": "https://recordowl.com/company/paradise-group-holdings-pte-ltd"
+        },
+        {
+          "date": "2012-03-08",
+          "last_updated": "2026-09-02",
+          "place_metadata": null,
+          "snippet": "|Number of locations|48 in Singapore, 63 overseas|\n...\n|Website|www.paradisegp.com|",
+          "source": "web",
+          "title": "Paradise Group Holdings - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Paradise_Group_Holdings"
+        },
+        {
+          "date": "2026-09-02",
+          "last_updated": "2026-09-06",
+          "place_metadata": null,
+          "snippet": "Strategically situated at *107 Defu Lane 10, #05-01 Paradise Group IHQ, Singapore 539224*, Paradise Group Holdings Pte Ltd is easy to find for residents and visitors alike.\n...\nIf you have any questions or book an appointment, you can contact their team at **+65 6487 6489**.\n...\nYes, you can visit t...",
+          "source": "web",
+          "title": "Paradise Group Holdings Pte Ltd - South Asian restaurant",
+          "url": "https://sglocalhub.com/biz/paradise-group-holdings-pte-ltd-107-defu-lane-10-05-01-paradise-group-ihq-singapore-539224"
+        },
+        {
+          "date": "2026-03-28",
+          "last_updated": "2026-03-28",
+          "place_metadata": null,
+          "snippet": "Date: 24-30 March 2026\nTime: Daily, during restaurant operating hours\nVenue: All 66 Paradise Group outlets across Singapore (Beauty in The Pot, Paradise Dynasty, LeNu, Le Shrimp, and more)",
+          "source": "web",
+          "title": "24-30 March 2026: Paradise Group: Paradise Gourmet Rewards Flash Sale Up to 30% Bonus Credits Promotion - SG.EverydayOnSales.com",
+          "url": "https://sg.everydayonsales.com/24-30-march-2026-paradise-group-paradise-gourmet-rewards-flash-sale-up-to-30-bonus-credits-promotion/"
+        },
+        {
+          "date": "2014-02-13",
+          "last_updated": "2025-03-26",
+          "place_metadata": null,
+          "snippet": "Main Industry\nRestaurants, Hospitality\nWebsitewww.paradisegp.com\n...\n|1|first + last|JohnSmith@paradisegroup.com.sg|",
+          "source": "web",
+          "title": "Paradise Dynasty Company Profile | Management and Employees List",
+          "url": "https://www.datanyze.com/companies/paradise-dynasty/372578922"
+        },
+        {
+          "date": "2026-09-02",
+          "last_updated": "2026-09-06",
+          "place_metadata": null,
+          "snippet": "To learn more or book an appointment, you can easily reach out to their team at **+65 6570 9625**.\n...\nYes, you can visit their official website for more information.\n...\n80 Marine Parade Rd, #01-35 Parkway Parade, Singapore 449269\n+65 6570 9625\n### Official Website\nwww.paradisegp.com\n...\nCLOSED\nMon...",
+          "source": "web",
+          "title": "Paradise Classic 樂天经典 at Parkway Parade - Singaporean restaurant",
+          "url": "https://sglocalhub.com/biz/paradise-classic-at-parkway-parade-80-marine-parade-rd-01-35-parkway-parade-singapore-449269"
+        },
+        {
+          "date": "2024-10-28",
+          "last_updated": "2024-10-29",
+          "place_metadata": null,
+          "snippet": "Poised as a diners’ paradise for Oriental cuisine, Paradise Group offers gourmet menus of exceptional value in a wide variety of restaurant concepts together with a catering arm.",
+          "source": "web",
+          "title": "goodjobs: Employer Detail - Paradise Group Holdings Pte Ltd",
+          "url": "https://www.goodjobs.com.sg/employers/paradise-group-holdings-pte-ltd"
+        },
+        {
+          "date": "2025-01-01",
+          "last_updated": "2025-04-22",
+          "place_metadata": null,
+          "snippet": "Operator of the multi-concept restaurant chain intended to offer gourmet menus.\nThe company manages and operates a chain of restaurants across Asia offering various dining concepts to cater to different pricing points and cuisine styles.\n...\n##### Websitewww.paradisegp.com\n##### Corporate Office\n- 1...",
+          "source": "web",
+          "title": "Paradise Group 2025 Company Profile: Valuation, Funding & Investors | PitchBook",
+          "url": "https://pitchbook.com/profiles/company/127522-09"
+        },
+        {
+          "date": null,
+          "last_updated": "2025-02-24",
+          "place_metadata": null,
+          "snippet": "https://www.paradisegp.com\nParadise Group Holdings Pte Ltd is a pan-Asian, multi-concept restaurant group with more than 70 outlets in nine countries....",
+          "source": "web",
+          "title": "Paradise Group Holdings - Portfolio Company Profile, Executives and Private Equity Owner",
+          "url": "https://privateequityinfo.com/directory/private-equity-portfolio-company/1/paradise-group-holdings"
+        },
+        {
+          "date": "2023-08-22",
+          "last_updated": "2026-08-21",
+          "place_metadata": null,
+          "snippet": "Incorporated in 2008, Singapore-based Paradise Group has built a food and beverage empire across cities, with a clear vision of providing diners exceptional value through quality cuisine across a variety of dining concepts.\n...\nPoised as a diners’ paradise, Paradise Group offers gourmet menus of exc...",
+          "source": "web",
+          "title": "About Us",
+          "url": "https://www.paradisegp.com/about-us/"
+        },
+        {
+          "date": "2026-07-16",
+          "last_updated": "2026-08-18",
+          "place_metadata": null,
+          "snippet": "Paradise Group is a late stage company based in Singapore (Singapore), founded in 2002 by Edlan Chua and Eldwin Chua.\nIt operates as a Chain of casual dining restaurant.\n...\n### Company Details\n- **Website**\nparadisegp.com\n- **Social**\n- **Email ID**\n*****@paradisegroup.com.sg\n- **Phone Number**\n+65...",
+          "source": "web",
+          "title": "Paradise Group - 2026 Company Profile & Team",
+          "url": "https://tracxn.com/d/companies/paradise-group/__EGLB4c6h9-Z86FY_gKBEB-aYD7lPh3haXpfn_4xjjBs"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-07-16",
+          "place_metadata": null,
+          "snippet": "#01-52, 84 Punggol Way\nPunggol Coast Mall\nOpening Hours\nMonday to Friday\n11am to 10pm (Last Order at 9:30pm)\nSaturday to Sunday\n10:30am to 10pm (Last Order at 9:30pm)\nSubject to changes by the store.\nWebsite\nhttps://www.paradisegp.com/paradise-classic/",
+          "source": "web",
+          "title": "Paradise Classic | Stores",
+          "url": "https://www.punggoldigitaldistrict.sg/shop/stores/Paradise%20Classic"
+        },
+        {
+          "date": "2017-10-14",
+          "last_updated": "2026-06-17",
+          "place_metadata": null,
+          "snippet": "Changi Airport Terminal 3 #03-32, Funan #B1-01, Wisma #01-18, Paya Lebar Quarter #03-08, Suntec City Mall, #B1-110, Westgate #02-13**",
+          "source": "web",
+          "title": "9 Paradise Group Restaurant Concepts – 20% OFF Dine-In Includes Beauty In The Pot, Paradise Dynasty, Le Shrimp, LeNu | DanielFoodDiary.com",
+          "url": "https://danielfooddiary.com/2017/10/14/paradisegroup/"
+        }
+      ],
+      "usage": {
+        "inputTokens": 123,
+        "outputTokens": 114,
+        "totalTokens": 237
+      },
+      "latencyMs": 3303,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、在你提供的整理文中被多次提及、且較適合一般聚餐/約會/慶生的餐廳；我也附上**簡要理由**，方便你快速挑選。[1][2][3][5][7][9]\n\n- **鼎泰豐（信義A4／101／遠百A13）**：小籠包是代表性招牌，分店多、交通方便，適合第一次到信義區用餐的人。[3][5]\n- **心潮飯店**：主打時髦復古風台菜，常被列為信義區的米其林／推薦餐廳，適合聚餐與帶客人用餐。[5]\n- **The Ukai Taipei**：屬高檔餐廳，常出現在信義區米其林與高級餐廳推薦名單，適合慶生或特別場合。[5]\n- **侯布雄法式餐廳**：法式高級餐飲代表，常被列入信義區頂級餐廳",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 262,
+          "totalTokens": 312
+        },
+        "latencyMs": 4538,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下推薦 **10 家位於台北市信義區**、適合**每人晚餐預算約 500–999 元**的餐廳；我也附上簡要理由。由於你要的是「晚餐預算」，我優先挑選搜尋結果中明確出現信義區地址、且屬於平價到中價位、適合晚餐聚餐的店家[1][2][6][8][9]。\n\n| 餐廳 | 類型 | 簡要理由 |\n|---|---|---|\n| **激安の食事酒場-市府二號店** | 居酒屋 | 搜尋結果提到兩小時暢飲 **698 元**，很符合 500–999 元預算，適合晚餐聚餐或小酌[1][2]。 |\n| **來吧台北** | 日式餐酒館 | 搜尋結果提到 **3 小時調酒暢飲 1000 元**，接近你的預算上緣，適合約會或朋友聚餐[1][2]。 |\n| **初殿�",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！\n...\n【PLAYING Hookah Bar 餐廳水煙館】台北信義下午茶推薦，水煙與美食的美味饗宴，嚴選一系列甜點直接圈粉啦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區松智路17號5 樓/02 2723 8055**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "平均消費\n...\n現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理\n...\n10.下港吔羊肉爐、羊肉專賣店",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n📍台北市信義區忠孝東路五段412-6號1樓\n...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n- 信義區美食推薦 燒石鼎石頭小火鍋信義店\n- 信義區美食推薦 辛喬麻辣私房湯底麻辣鴛鴦\n...\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n...\n地址：台北市信義區信義路四段3...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n...\n### 『 兩餐 』 두끼 韓國年糕火鍋吃到飽-信義店\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n- ...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "美食品嚐 · 臺北\n平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 261,
+          "totalTokens": 325
+        },
+        "latencyMs": 10010,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

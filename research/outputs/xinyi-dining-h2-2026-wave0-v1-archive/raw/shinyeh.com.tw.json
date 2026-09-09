@@ -1,0 +1,440 @@
+{
+  "url": "https://www.shinyeh.com.tw/content/zh/info/Index.aspx",
+  "measured_at": "2026-09-09T06:21:14.233Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website shinyeh.com.tw (title: 欣葉國際餐飲集團-官方網站-有情 用心 真知味). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 欣葉國際餐飲集團 | 欣葉國際餐飲股份有限公司\n\nThe website shinyeh.com.tw is publicly associated with 欣葉國際餐飲集團 on the site itself[7] and with 欣葉國際餐飲股份有限公司 in multiple public company listings that explicitly give shinyeh.com.tw as the company website[1][4][10][13]. The exact entity alignment is verified as the Shin Yeh restaurant group brand and its corporate company name[1][4][7][10][13].",
+      "citations": [
+        "https://www.linkedin.com/company/shinyeh-international-%E6%AC%A3%E8%91%89%E5%9C%8B%E9%9A%9B%E9%A4%90%E9%A3%B2%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8",
+        "https://api.lib.ntnu.edu.tw:8443/server/api/core/bitstreams/48612e0e-1454-4dff-a51f-451240ac3645/content",
+        "https://mygov.tw/company/12107610",
+        "https://www.yes123.com.tw/wk_index/comp_info.asp?p_id=20161226174953_12107610",
+        "https://shop.shinyeh.com/zh-TW/pages/store",
+        "https://data.bznk.com/12107610",
+        "https://www.shinyeh.com.tw/content/zh/info/Brand.aspx",
+        "https://smb.nss.com.tw/company/%E6%AC%A3%E8%91%89%E5%9C%8B%E9%9A%9B%E9%A4%90%E9%A3%B2%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/",
+        "https://info.technews.tw/company/12107610-%E6%AC%A3%E8%91%89%E5%9C%8B%E9%9A%9B%E9%A4%90%E9%A3%B2%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8",
+        "https://api.1111.com.tw/corp/1175622/",
+        "https://events.104.com.tw/shinyeh/20230620111948/?jobsource=AD_380904_",
+        "https://today.line.me/tw/v3/article/EXrowza",
+        "https://www.104.com.tw/company/5k8k3o0",
+        "https://ryoritaiwan.fcdc.org.tw/columns/160",
+        "https://www.jobforum.tw/discussTopic.asp?id=239436"
+      ],
+      "searchResults": [
+        {
+          "date": null,
+          "last_updated": "2026-08-31",
+          "place_metadata": null,
+          "snippet": "欣葉國際餐飲股份有限公司於1977年成立，目前旗下品牌包含 欣葉台菜、食藝軒(台北101 / 85f)、欣葉小聚、欣葉日本料理、呷哺呷哺、咖哩匠、paparich 共18家分店，海外包含新加坡、及中國青島。\n...\n**Website:** shinyeh.com.tw",
+          "source": "web",
+          "title": "Shin Yeh Restaurant Group 欣葉國際餐飲股份有限公司 | Food and Beverage Services",
+          "url": "https://www.linkedin.com/company/shinyeh-international-%E6%AC%A3%E8%91%89%E5%9C%8B%E9%9A%9B%E9%A4%90%E9%A3%B2%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8"
+        },
+        {
+          "date": null,
+          "last_updated": "2024-09-19",
+          "place_metadata": null,
+          "snippet": "2012 年 \n...\n欣葉國際餐飲集團(2012 年1 月6 日)。欣葉國際餐飲集團官方網站。取自\nhttp://www.shinyeh.com.tw/。\n...\n關於欣葉 \nhttp://www.shinyeh.com.tw/about.php\n2012 年 \n...\n欣葉國際餐飲集團(2012 年1 月6 日)。欣葉國際餐飲集團官方網站。取自\nhttp://www.shinyeh.com.tw/。\n...\n關於欣葉 \nhttp://www.shinyeh.com.tw/about.php ",
+          "source": "web",
+          "title": "國立臺灣師範大學",
+          "url": "https://api.lib.ntnu.edu.tw:8443/server/api/core/bitstreams/48612e0e-1454-4dff-a51f-451240ac3645/content"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-04",
+          "place_metadata": null,
+          "snippet": "|公司登記營業地址|臺北市中山區雙城街34之1之2號34之1號2樓34之1 臺北市中山區雙城街|\n...\n欣葉國際餐飲股份有限公司的營業地址為 臺北市中山區雙城街34之1之2號34之1號2樓34之1。",
+          "source": "web",
+          "title": "欣葉國際餐飲股份有限公司｜統編12107610 - 統一編號查詢",
+          "url": "https://mygov.tw/company/12107610"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-09-03",
+          "place_metadata": null,
+          "snippet": "服務時間：\n週一至週五\n09：00至18：00\n02-2656-0123轉3\n欣葉國際餐飲股份有限公司\n...\n企業電話：\n02-26528999\n企業傳真：\n02-27910123\n企業地址：\n台北市內湖區潭美街221號1樓\n企業網址：\nhttp://www.shinyeh.com.tw\n相關連結：",
+          "source": "web",
+          "title": "欣葉國際餐飲-工作徵才簡介",
+          "url": "https://www.yes123.com.tw/wk_index/comp_info.asp?p_id=20161226174953_12107610"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-03-18",
+          "place_metadata": null,
+          "snippet": "|**欣葉台菜**|創始店|台北市中山區雙城街34-1號 電話：(02)2596-3255|\n...\n|**欣葉台菜**|忠孝店|台北市大安區忠孝東路4段112號2樓 電話：(02)2752-9299|\n|**欣葉台菜**|南西店|台北市中山區南京西路12號8樓(新光三越南西店1館) 電話：(02)2523-6757|\n...\n|**欣葉Shabu Shabu**|雙城總店|台北市中山區雙城街26號 電話：(02)2595-5595|",
+          "source": "web",
+          "title": "銷售通路欣葉線上風味選-冷凍食品、料理包、調理包",
+          "url": "https://shop.shinyeh.com/zh-TW/pages/store"
+        },
+        {
+          "date": "2026-08-16",
+          "last_updated": "2026-09-07",
+          "place_metadata": null,
+          "snippet": "|統一編號|12107610|\n|公司名稱|欣葉國際餐飲股份有限公司|\n|負責人|李秀英|\n|地址|臺北市中山區雙城街34之1之2號、34之1號2樓、34之1號地下1樓|\n...\n|12107610|欣葉國際餐飲股份有限公司|臺北市中山區雙城街34之1之2號、34之1號2樓、34之1號地下1樓|",
+          "source": "web",
+          "title": "統編12107610 | 欣葉國際餐飲股份有限公司",
+          "url": "https://data.bznk.com/12107610"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-09-03",
+          "place_metadata": null,
+          "snippet": "若貴賓有用餐體驗(餐點、服務、環境)回饋\n或身體不適狀況，\n可直接電洽禮賓服務《智能專線》 02-8979-8560\n（服務時段為上班日週一至週五09:30～17:30，非上班時間請使用留言）\n可於官網《聯絡我們-意見回饋》留下相關聯絡資訊\n將會有專人盡快與您聯繫，為您服務。",
+          "source": "web",
+          "title": "欣葉品牌| 欣葉國際餐飲集團",
+          "url": "https://www.shinyeh.com.tw/content/zh/info/Brand.aspx"
+        },
+        {
+          "date": "2022-03-03",
+          "last_updated": "2026-08-29",
+          "place_metadata": null,
+          "snippet": "公司統編：12107610\n登記地址：臺北市中山區雙城街３４之１之２號３４之１號２樓３４之１\n資本額：309421530\n...\n餐廳之經營。\n進出口貿易業務。\n家庭用塑膠器具運動器具登山用品之製造買賣。\n除許可業務外，得經營法令非禁止或限制之業務 ZZ99999",
+          "source": "web",
+          "title": "欣葉國際餐飲股份有限公司 - 戰國策集團商家情報網",
+          "url": "https://smb.nss.com.tw/company/%E6%AC%A3%E8%91%89%E5%9C%8B%E9%9A%9B%E9%A4%90%E9%A3%B2%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/"
+        },
+        {
+          "date": "2025-07-22",
+          "last_updated": "2025-12-17",
+          "place_metadata": null,
+          "snippet": "|變更日期|公司名稱|登記地址|負責人|資本總額(元)|",
+          "source": "web",
+          "title": "欣葉國際餐飲股份有限公司",
+          "url": "https://info.technews.tw/company/12107610-%E6%AC%A3%E8%91%89%E5%9C%8B%E9%9A%9B%E9%A4%90%E9%A3%B2%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8"
+        },
+        {
+          "date": "2025-05-05",
+          "last_updated": "2025-05-05",
+          "place_metadata": null,
+          "snippet": "- 公司網址 http://www.shinyeh.com.tw\n- 公司位置 台北市內湖區潭美街223號\n- 產業類別 餐廳╱餐館",
+          "source": "web",
+          "title": "欣葉台菜_欣葉餐廳(欣葉國際餐飲股份有限公司-總管理處)｜1111人力銀行",
+          "url": "https://api.1111.com.tw/corp/1175622/"
+        },
+        {
+          "date": "2025-01-01",
+          "last_updated": "2025-06-03",
+          "place_metadata": null,
+          "snippet": "|地區|品牌|地址|立即應徵|\n...\n|臺北 臺北|欣葉-鐘菜|台北市中山區樂群二路199號|立即應徵|\n|欣葉台菜-創始店|台北市中山區雙城街34-1號|立即應徵|\n|欣葉台菜-信義A9店|台北市信義區松壽路9號8樓|立即應徵|\n|欣葉日料-信義A11店|台北市信義區松壽路11號5樓|立即應徵|\n|唐點小聚-美麗華店|台北市中山區敬業三路20號5樓|立即應徵|",
+          "source": "web",
+          "title": "【欣葉國際餐飲】從欣葉出發，開始夢想新頁。多品牌聯合招募中",
+          "url": "https://events.104.com.tw/shinyeh/20230620111948/?jobsource=AD_380904_"
+        },
+        {
+          "date": "2026-08-06",
+          "last_updated": "2026-08-23",
+          "place_metadata": null,
+          "snippet": "隨著欣葉．生活．廚房「辣菜脯肉包」與「蔬食雪菜包」於欣葉線上風味選正式上架，即將迎來創業50週年的欣葉國際餐飲集團，也展開新階段品牌布局。自1977年創立以來，欣葉始終秉持傳承台灣飲食文化的初心，從一道道經典台菜出發，期盼將半世紀累積的料理經驗，延伸至家庭餐桌與日常生活。",
+          "source": "web",
+          "title": "迎戰一人家庭時代！欣葉50週年加速布局零售市場從台菜 ...",
+          "url": "https://today.line.me/tw/v3/article/EXrowza"
+        },
+        {
+          "date": "2026-07-22",
+          "last_updated": "2026-09-07",
+          "place_metadata": null,
+          "snippet": "台北市內湖區潭美街221號\n### 公司網址\nhttps://www.shinyeh.com.tw/content/zh/info/Index.aspx\n### 相關連結",
+          "source": "web",
+          "title": "欣葉國際餐飲股份有限公司  ｜徵才中 - 104人力銀行",
+          "url": "https://www.104.com.tw/company/5k8k3o0"
+        },
+        {
+          "date": "2025-05-13",
+          "last_updated": "2025-09-05",
+          "place_metadata": null,
+          "snippet": "以臺灣料理著稱的欣葉餐廳，三十多年來以翻轉葉片作為企業標誌，葉片兩端微微地上揚，呈現出飛舞的動感，更象徵著每位欣葉人常掛臉龐的微笑，傳達欣葉笑容可掬、親切自然的服務文化。",
+          "source": "web",
+          "title": "台菜品牌國際化欣葉餐廳 - 料理．台灣",
+          "url": "https://ryoritaiwan.fcdc.org.tw/columns/160"
+        },
+        {
+          "date": "2021-01-27",
+          "last_updated": "2025-09-13",
+          "place_metadata": null,
+          "snippet": "李董事長傳承自母親的好廚藝，1977年在台北市雙城街巷弄內起家，歷經逾40年，堅持手做，嚴選當令新鮮食材，品味獨到，推陳出新，台灣菜價值翻漲成高質感大菜，從11張桌子的小餐館躍升跨足全球餐飲集團。",
+          "source": "web",
+          "title": "【欣葉國際餐飲】母子同心台菜揚威重要推手【幸福企業大賞",
+          "url": "https://www.jobforum.tw/discussTopic.asp?id=239436"
+        }
+      ],
+      "usage": {
+        "inputTokens": 134,
+        "outputTokens": 127,
+        "totalTokens": 261
+      },
+      "latencyMs": 10181,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是 **10 家位於台北市信義區**、常見於在地美食推薦清單中的餐廳，並附上簡要理由；我優先選擇了評價高、用途明確（聚餐、約會、慶生、家庭用餐）且在多個信義區美食整理中反覆出現的店家。[1][2][3][5][7][9]\n\n- **鼎泰豐 101店**：信義區代表性名店，適合第一次到信義區、想吃小籠包與經典台菜的人。[3]\n- **心潮飯店**：以時髦復古風台菜聞名，常被列為信義區的米其林／特色餐廳代表。[5]\n- **The Ukai Taipei**：高樓景觀與精緻餐飲兼具，適合約會、慶生或特殊節日用餐。[5]\n- **饗 A Joy**：被列為信義區高人氣吃到飽餐廳之一，主打景觀與豐富菜色。[5]\n- **",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 266,
+          "totalTokens": 316
+        },
+        "latencyMs": 10282,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是 **10 家位於台北市信義區**、通常可落在 **每人晚餐約 500～999 元** 的餐廳建議；我優先挑選了搜尋結果中明確出現在信義區、且屬於平價到中價位、適合晚餐的店家。[1][2][5][7][9]\n\n- **Hoda Bistro**：搜尋結果將它列為信義區「評分最高的平價餐酒館」之一，適合想吃精緻料理又不想超過中價位預算的人。[2]\n- **BaganHood 蔬食餐酒館**：主打蔬食與異國料理，屬於信義區質感餐酒館類型，晚餐人均通常可落在你的預算範圍內。[1]\n- **激安の食事酒場－市府二號店**：以居酒屋與暢飲方案聞名，搜尋結果提到兩小時暢飲 698 元，符合 500～999 元的晚餐預算帶。[1][2]\n- **初�",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【BaganHood】台北信義蔬食餐酒館推薦，特色必吃精緻異國料理、每日限量披薩！創造嶄新飲食風格\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n…\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區莊敬路327號/** **02 8780 9559**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n**■ 台北寒舍艾美酒店 探索廚房**\n地址：110台北市信義區松仁路38號\n電話：0266228018\n營業時間：06:30–10:00、11:30–14:00、15:00–17:00、18:00–21:00\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~2...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃1 Chili's 美式餐廳\n- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n- 台北平價餐廳推薦＃5 獅子甜點\n- 台北平價餐廳推薦＃6 Gumgum 雞翅啤酒吧\n- 台北平價餐廳推薦＃7 Musée Kitchen & Bar\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n- 台北平價餐廳推薦＃9 豬跳舞小館\n- 台北平價餐廳推薦＃10 AN58 承德店\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2025-10-01",
+            "last_updated": "2025-10-19",
+            "place_metadata": null,
+            "snippet": "均消 $1200今日營業: 11:30-14:00, 17:30-21:30臺北市信義區和平東路三段215號牛排精緻高級約會餐廳\n...\n均消 $1000現正營業: 11:30-23:00臺北市信義區松智路17號46F咖哩酒吧景觀餐廳\n...\n均消 $800今日營業: 11:00-14:00, 17:00-21:00臺北市信義區仁愛路四段506號中式料理火鍋合菜\n…",
+            "source": "web",
+            "title": "台北1000元以內餐廳推薦！ Saffron 46及其他354家精選",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n...\n《**樂葵法式鐵板燒微風南山店**》Google評價高又不貴，十道精緻料理價格只要1650元＋10%，適合約會慶生、犒賞自己或同事請客，這間真的很可以。\n...\n地址：台北市信義區松智路17號5樓（微風南山5F）\n電話：02 6605 7122\n...\n**香米泰式料理 信義遠百A13店\n** 地址：台北市信義區松仁路58號4樓\n營業時間：\n...\n電話：02-27786806",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n|--|--|--|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n|大味王吃到飽火鍋|$250起| |\n...\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 265,
+          "totalTokens": 329
+        },
+        "latencyMs": 4423,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

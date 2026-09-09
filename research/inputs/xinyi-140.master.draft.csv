@@ -1,74 +1,74 @@
-﻿store_id,brand_id,official_name_zh,official_name_en,aliases,official_domains,owned_urls,shared_domain_flag,branch_name,district,include_status,exclusion_reason_code,reviewed_by,reviewed_at,truth_source,dataset_version
-XY-001,BR-DINTAIFUNG,鼎泰豐,,,dintaifung.com.tw,,true,101店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-002,BR-SHILINGSHABU,食令 Shabu,,,shilingshabu.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-003,BR-APOINTSTEAK,艾朋牛排餐酒館,,,apointsteak.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-004,,紫艷中餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-005,BR-HOSTSHABU,合.Shabu,,,hostshabu.com,http://www.hostshabu.com.tw/,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-006,,樂軒松阪亭,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-007,,隨意鳥101高空觀景餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-008,,LA FARFALLA 義式餐廳,,,,,false,台北艾麗酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-009,BR-INDIANFOODTAIWAN,馬友友印度廚房,,,indianfoodtaiwan.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-010,,泰市場海鮮自助餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-011,,凱菲屋,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-012,BR-ICHIRAN,一蘭拉麵,,,ichiran.com.tw,,false,台灣台北本店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-013,BR-TEXASROADHOUSE,Texas Roadhouse,,,texasroadhouse.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-014,,彩日本料理,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-015,BR-INPARADISE,INPARADISE 饗饗,,,inparadise.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-016,,Top Cap Steakhouse,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-017,,海底撈台灣信義店,,,,,false,微風南山,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-018,BR-DINTAIFUNG,鼎泰豐,,,dintaifung.com.tw,,true,信義新光A4店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-019,,泰集 Thai Bazaar,,,,,false,微風信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-020,,探索廚房,,,,,false,台北寒舍艾美酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-021,BR-LAWRYS,勞瑞斯牛肋排餐廳,,,lawrys.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-022,BR-STARFISHCONCEPT,CÉ LA VI Taipei,,,starfishconcept.com,https://tw.celavi.com/zh-tw|https://tw.celavi.com/,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
-XY-023,,侯布雄法式餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-024,BR-KANPAICLASSIC,老乾杯,,,kanpaiclassic.com.tw,,false,台北信義店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-025,,French Windows－British TeaHouse,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-026,BR-SHINYEH,欣葉台菜,,,shinyeh.com.tw,,true,信義A9店,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
-XY-027,BR-MEATLOVE,Meat Love 橡木炭火韓國烤肉,,,meatlove.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-028,BR-SAFFRON46,Saffron 46,,,saffron46.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-029,,春水堂,,,,,false,松菸店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-030,BR-WOOLLOOMOOLOO,Woolloomooloo,,,woolloomooloo.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-031,,馬辣頂級麻辣鴛鴦火鍋信義店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-032,BR-EATOGETHER,饗食天堂信義店,,,eatogether.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-033,,Smith & Wollensky 牛排館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-034,,頂鮮101美食美景餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-035,,心潮飯店 Sinchao Rice Shoppe,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-036,BR-HOOTERS,Hooters Xinyi 美式餐廳,,,hooters.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-037,BR-KARENTEPPANYAKI,凱林鐵板燒,,,karenteppanyaki.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-038,,DA ANTONIO By 大安東尼,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-039,BR-PARADISEGP,樂天皇朝台灣,,,paradisegp.com,,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
-XY-040,BR-TGIFRIDAYS,TGI Friday's,,,tgifridays.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-041,BR-SHINYEH,欣葉日本料理信義店,,,shinyeh.com.tw,,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
-XY-042,,莫爾頓牛排館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-043,,春水堂,,,,,false,信義新光三越A9店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-044,BR-THAITOWN,瓦城泰國料理,,,thaitown.com.tw,,true,台北阪急店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-045,,GB鮮釀餐廳信義店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-046,,Bel Air Bar & Grill,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-047,,茶苑,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-048,,漂亮台式海鮮餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-049,,燒肉同話,,,,,false,台北光復南店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-050,,厲家菜,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-051,,小南門傳統豆花美食,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-052,,徐淮人家,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-053,BR-ELITECONCEPTS,夜上海,,,elite-concepts.com,,true,,信義區,pending,,,,shared_group_root_needs_manual_scope_decision,xinyi-140-draft-v0.1
-XY-054,BR-JOYCECAFETW,Joyce East,,,joycecafetw.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-055,,添好運台北信義店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-056,,Ziga Zaga,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-057,BR-WILDWOOD,原木燒烤餐廳 Wildwood,,,wildwood.com.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-058,,日本橋海鮮丼 辻半,,,,,false,微風信義店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-059,,穆記小吃牛肉麵館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-060,,橘色涮涮屋新光三越A9店,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-061,BR-RICEBAR,時時香,,,ricebar.com.tw,,false,微風南山店,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-062,,L.A PHO 越南美食餐廳,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-063,,寒舍食譜,,,,,false,台北寒舍艾美酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-064,BR-UKAI,The Ukai Taipei,,,ukai.co.jp,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-065,,愛爾蘭瘋薯,,,,,false,信義威秀,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-066,BR-85TD101,85TD Chinese Restaurant,,,85td-101.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-067,BR-JKSTUDIO,JK STUDIO,,,jkstudio.tw,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
-XY-068,,雲錦中餐廳,,,,,false,台北君悅酒店,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-069,,味美早餐店 Wei Mei Breakfast Restaurant,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
-XY-070,BR-TWGTEA,TWG Tea at Taipei 101,,,twgtea.com,,false,,信義區,pending,,,,brand_root_candidate_needs_manual_confirmation,xinyi-140-draft-v0.1
+store_id,brand_id,official_name_zh,official_name_en,aliases,official_domains,owned_urls,shared_domain_flag,branch_name,district,include_status,exclusion_reason_code,reviewed_by,reviewed_at,truth_source,dataset_version
+XY-001,BR-DINTAIFUNG,鼎泰豐,Din Tai Fung,鼎泰豐|Din Tai Fung|鼎泰豊,dintaifung.com.tw,https://www.dintaifung.com.tw/store-detail.php?id=252,true,101店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-002,BR-SHILINGSHABU,食令 Shabu,Shiling Shabu,食令|食令shabu|食令火鍋,shilingshabu.com,http://www.shilingshabu.com/,false,101旗艦店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-003,BR-APOINTSTEAK,艾朋牛排餐酒館,A Point Steak & Bar,艾朋|艾朋牛排|A Point Steak,apointsteak.com.tw,https://www.apointsteak.com.tw/,false,,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-004,BR-WTPE-YEN,紫艷中餐廳,YEN Chinese Restaurant,紫艷|台北W飯店紫艷|YEN,marriott.com,https://www.marriott.com/en-us/hotels/tpewh-w-taipei/dining/yen-chinese-restaurant/,true,台北W飯店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-005,BR-HOSTSHABU,合.Shabu,Host Shabu,合Shabu|合火鍋|Host Shabu,hostshabu.com,https://www.hostshabu.com/hostshabulocation.html,false,BELLAVITA店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-006,BR-ROKEN,樂軒松阪亭,Roken Matsusaka Tei,樂軒|樂軒和牛|松阪亭,skm.com.tw,https://www.skm.com.tw/brand/11129,true,信義新光A4店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-007,BR-DIAMONDTONY,隨意鳥101高空觀景餐廳,Diamond Tony's 101 Restaurant,隨意鳥地方|隨意鳥101|Diamond Tony's,dt101.com.tw,https://www.dt101.com.tw/,true,101店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-008,BR-HUMBLE-FARFALLA,LA FARFALLA 義式餐廳,La Farfalla,La Farfalla|艾麗義式餐廳|台北艾麗LA FARFALLA,humblehousehotels.com,https://www.humblehousehotels.com/zh-tw/websev?cat=restaurant&id=1,true,台北艾麗酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-009,BR-INDIANFOOD,馬友友印度廚房,Mayur Indian Kitchen,馬友友印度廚房|MIK|Mayur Indian Kitchen,indianfoodtaiwan.com,https://www.indianfoodtaiwan.com/zh,false,基隆路店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-010,BR-SPICEMARKET,泰市場海鮮自助餐廳,Spice Market Seafood Buffet,泰市場|泰市場自助餐廳|Spice Market,regenttaiwan.com,https://www.regenttaiwan.com/dining/outside-dining/spice-market,true,大直英迪格店（原誠品信義店）,信義區,excluded,not_in_district,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-011,BR-HYATT-CAFE,凱菲屋,Café Grand Hyatt Taipei,凱菲屋|君悅凱菲屋|Cafe Grand Hyatt,hyatt.com,https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cafe,true,台北君悅酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-012,BR-ICHIRAN,一蘭拉麵,Ichiran Ramen,一蘭|一蘭拉麵|天然豚骨拉麵專門店 一蘭,ichiran.com.tw,https://ichiran.com.tw/shop/stores.aspx,false,台灣台北本店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-013,BR-TEXASROADHOUSE,Texas Roadhouse 德州鮮切牛排,Texas Roadhouse,Texas Roadhouse|德州鮮切牛排|德州牛排,texasroadhouse.com.tw,https://texasroadhouse.com.tw/,false,微風松高店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-014,BR-HYATT-IRODORI,彩日本料理,Irodori Grand Hyatt Taipei,彩日本料理|君悅彩日本料理|Irodori,hyatt.com,https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/irodori,true,台北君悅酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-015,BR-INPARADISE,INPARADISE 饗饗,INPARADISE,饗饗|INPARADISE|饗饗信義店,inparadise.com.tw,https://inparadise.com.tw/zh-TW/store/Xinyi,false,微風信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-016,BR-TC-STEAK,Top Cap Steakhouse,Top Cap Steakhouse by Danny,Top Cap Steakhouse|教父牛排Top Cap|TC Steakhouse,dannycompany.com.tw,https://www.dannycompany.com.tw/home/top-cap-steakhouse/,true,信義新光A4店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-017,BR-HAIDILAO,海底撈火鍋,Haidilao Hot Pot,海底撈|海底撈火鍋|Haidilao,haidilao.com,https://www.haidilao.com/tw/,true,微風南山店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-018,BR-DINTAIFUNG,鼎泰豐,Din Tai Fung,鼎泰豐|Din Tai Fung|鼎泰豊,dintaifung.com.tw,https://www.dintaifung.com.tw/store-detail.php?id=253,true,信義新光A4店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-019,BR-THAIBAZAAR,泰集 Thai Bazaar,Thai Bazaar,泰集|Thai Bazaar|泰集泰式料理,thaibazaar.com.tw,http://www.thaibazaar.com.tw/,false,微風信義店,信義區,excluded,closed_business,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-020,BR-LM-LATESTRECIPE,探索廚房,Latest Recipe Le Meridien Taipei,探索廚房|寒舍艾美探索廚房|Latest Recipe,lemeridien-taipei.com,https://www.lemeridien-taipei.com/websev?cat=restaurant&id=5,true,台北寒舍艾美酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-021,BR-LAWRYS,勞瑞斯牛肋排餐廳,Lawry's The Prime Rib Taipei,勞瑞斯|勞瑞斯牛排|Lawry's,lawrys.com.tw,https://www.lawrys.com.tw/about.php,false,台北店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-022,BR-CELAVI,CÉ LA VI Taipei,CÉ LA VI Taipei,CÉ LA VI|CELAVI|Ce La Vi Taipei,celavi.com,https://tw.celavi.com/zh-tw,false,微風南山店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-023,BR-ROBUCHON,L'Atelier de Joël Robuchon 侯布雄法式餐廳,L'Atelier de Joël Robuchon Taipei,侯布雄|侯布雄法式餐廳|Joël Robuchon,bellavita.com.tw,https://www.bellavita.com.tw/cht/store.php?d=94,true,BELLAVITA店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-024,BR-KANPAICLASSIC,老乾杯,Kanpai Classic,老乾杯|乾杯老乾杯|Kanpai Classic,kanpaiclassic.com.tw,https://www.kanpaiclassic.com.tw/zh/branch,false,台北信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-025,BR-FRENCHWINDOWS,琺蘭綺瑥朵英式茶館,French Windows,琺蘭綺瑥朵|French Windows|英國皇家茶館,frenchwindows.com,,false,,信義區,excluded,closed_business,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-026,BR-SHINYEH-TW,欣葉台菜,Shin Yeh Taiwanese Cuisine,欣葉|欣葉台菜|Shin Yeh,shinyeh.com.tw,https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=1&Id=1,true,信義A9店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-027,BR-MEATLOVE,Meat Love 橡木炭火韓國烤肉,Meat Love Korean BBQ,Meat Love|Meat Love韓式烤肉|韓國烤肉Meat Love,meatlove.tw,https://meatlove.tw/,false,信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-028,BR-SAFFRON46,Saffron 46 番紅花四十六,Saffron 46,Saffron 46|番紅花四十六|Saffron46,saffron46.com,https://www.saffron46.com/,false,微風南山店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-029,BR-CHUNSHUITANG,春水堂人文茶館,Chun Shui Tang,春水堂|春水堂人文茶館|Chun Shui Tang,chunshuitang.com.tw,https://www.chunshuitang.com.tw/location-detail/41,true,松菸店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-030,BR-WOOLLOOMOOLOO,Woolloomooloo,Woolloomooloo,Woolloomooloo|WXYZ|信義Woolloomooloo,woolloomooloo.tw,https://woolloomooloo.tw/,false,信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-031,BR-MALA,馬辣頂級麻辣鴛鴦火鍋,Mala Hot Pot,馬辣|馬辣頂級麻辣火鍋|Mala Hot Pot,mala.com.tw,https://www.mala.com.tw/,false,信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-032,BR-EATOGETHER,饗食天堂,Eatogether,饗食天堂|Eatogether|饗食天堂信義店,eatogether.com.tw,https://www.eatogether.com.tw/zh-TW/store/EAT007,false,信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-033,BR-SWSTEAK,Smith & Wollensky Taipei,Smith & Wollensky,Smith & Wollensky|史密斯華倫斯基|S&W,smithandwollensky.com.tw,https://smithandwollensky.com.tw/,false,微風南山店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-034,BR-DINGXIAN101,頂鮮101美食美景餐廳,Ding Xian 101,頂鮮101|頂鮮台南擔仔麵|Ding Xian,dingxian.com.tw,https://dingxian.com.tw/,false,101店,信義區,excluded,closed_business,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-035,BR-SINCHAO,心潮飯店 Sinchao Rice Shoppe,Sinchao Rice Shoppe,心潮飯店|Sinchao Rice Shoppe|心潮,breeze.com.tw,https://www.breeze.com.tw/floor/store/267,true,微風信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-036,BR-HOOTERS,Hooters Taipei Xinyi 美式餐廳,Hooters Taipei Xinyi,Hooters|Hooters信義|美式餐廳Hooters,hooters.com.tw,https://www.hooters.com.tw/en/category/event/xinyi/,false,信義A13店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-037,BR-KAREN,凱林鐵板燒,Karen Teppanyaki,凱林鐵板燒|Karen Teppanyaki|凱林,karenteppanyaki.com,http://karenteppanyaki.com/,false,台北101店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-038,BR-DA-ANTONIO,DA ANTONIO By 大安東尼,DA ANTONIO by Diamond Tony's,大安東尼|DA ANTONIO|隨意鳥大安東尼,dt101.com.tw,https://www.dt101.com.tw/,true,台北101店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-039,BR-PARADISE-DYNASTY,樂天皇朝,Paradise Dynasty,樂天皇朝|Paradise Dynasty|八色小籠包,paradisegp.com,https://www.paradisegp.com/tc/tw/,true,微風信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-040,BR-TGIFRIDAYS,TGI FRIDAYS 星期五餐廳,TGI FRIDAYS,TGI Friday's|星期五餐廳|FRIDAYS,tgifridays.com.tw,https://tgifridays.com.tw/,false,信義餐廳,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-041,BR-SHINYEH-JP,欣葉日本料理,Shin Yeh Japanese Buffet,欣葉日本料理|欣葉日料|Shin Yeh JP,shinyeh.com.tw,https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=4&Id=13,true,信義新光A11店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-042,BR-MORTONS,莫爾頓牛排館,Morton's The Steakhouse Taipei,莫爾頓|莫爾頓牛排|Morton's,mortons.com,https://www.mortons.com/location/mortons-the-steakhouse-taipei-taiwan/,false,微風信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-043,BR-CHUNSHUITANG,春水堂人文茶館,Chun Shui Tang,春水堂|春水堂人文茶館|Chun Shui Tang,chunshuitang.com.tw,https://www.chunshuitang.com.tw/location-detail/40,true,信義新光三越A9店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-044,BR-THAITOWN,瓦城泰國料理,Thai Town Cuisine,瓦城|瓦城泰國料理|Thai Town,thaitown.com.tw,https://www.thaitown.com.tw/store/1,true,台北統一時代店（原阪急店）,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-045,BR-GBBREWERY,GB鮮釀餐廳,Gordon Biersch Brewery Restaurant,GB鮮釀餐廳|GB鮮釀|Gordon Biersch,gbarestaurants.com.tw,https://www.gbarestaurants.com.tw/,false,台北信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-046,BR-HYATT-BELAIR,寶艾西餐廳 Bel Air Bar & Grill,Bel Air Bar & Grill Grand Hyatt Taipei,寶艾西餐廳|君悅寶艾|Bel Air Bar & Grill,hyatt.com,https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/bel-air-bar-and-grill,true,台北君悅酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-047,BR-HYATT-CHAYUAN,茶苑,Cha Yuan Grand Hyatt Taipei,茶苑|君悅茶苑|Cha Yuan,hyatt.com,https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cha-yuan,true,台北君悅酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-048,BR-HYATT-PEARL,漂亮廣式海鮮餐廳,Pearl Liang Grand Hyatt Taipei,漂亮廣式海鮮餐廳|君悅漂亮餐廳|Pearl Liang,hyatt.com,https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/pearl-liang,true,台北君悅酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-049,BR-CHAGETHER,燒肉同話,Chagether Yakiniku,燒肉同話|Chagether|燒肉同話台北光復南店,chagether.com.tw,http://www.chagether.com.tw/,false,台北光復南店,信義區,excluded,closed_business,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-050,BR-FAMILYLI,厲家菜,Family Li Imperial Cuisine,厲家菜|宮廷料理厲家菜|Family Li,bellavita.com.tw,https://www.bellavita.com.tw/,true,BELLAVITA店,信義區,excluded,closed_business,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-051,BR-SNMFOOD,小南門傳統豆花美食,South Gate Traditional Douhua,小南門豆花|小南門傳統美食|小南門點心,snmfood.com.tw,http://www.snmfood.com.tw/,false,微風松高店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-052,BR-XUHUAI,徐淮人家,Xu Huai Ren Jia,徐淮人家|徐淮人家信義店,xuhuai.tw,,false,信義店,信義區,excluded,closed_business,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-053,BR-YESHANGHAI,夜上海,Ye Shanghai Taipei,夜上海|Ye Shanghai|夜上海台北店,elite-concepts.com,https://www.elite-concepts.com/restaurants/ye-shanghai/taipei/zh/,true,信義新光A4店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-054,BR-JOYCEEAST,Joyce East 義法餐廳,Joyce East,Joyce East|Joyce East餐廳|Joyce West,joycecafetw.com,https://www.joycecafetw.com/joyce-east,false,,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-055,BR-TIMHOWAN,添好運,Tim Ho Wan,添好運|添好運點心專門店|Tim Ho Wan,timhowan.com.tw,https://www.timhowan.com.tw/store/xinyi,false,信義新光A4店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-056,BR-HYATT-ZIGAZAGA,Ziga Zaga 義大利餐廳,Ziga Zaga Grand Hyatt Taipei,Ziga Zaga|君悅Ziga Zaga|ZigaZaga,hyatt.com,https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/ziga-zaga,true,台北君悅酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-057,BR-WILDWOOD,WILDWOOD 原木燒烤牛排海鮮餐廳,WILDWOOD Live Fire Cuisine,Wildwood|WILDWOOD|原木燒烤Wildwood,wildwood.com.tw,https://www.wildwood.com.tw/,false,信義新光A9店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-058,BR-TSUJIHAN,日本橋海鮮丼 辻半,Tsujihan Seafood Donburi,日本橋海鮮丼辻半|辻半|Tsujihan,tsujihan.com.tw,https://tsujihan.com.tw/,false,微風信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-059,BR-MUKI,穆記牛肉麵,Mu Ki Beef Noodles,穆記|穆記牛肉麵|穆記小吃牛肉麵館,,https://www.facebook.com/mukibeefnoodles/,false,,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-060,BR-ORANGESHABU,橘色涮涮屋,Orange Shabu Shabu,橘色涮涮屋|橘色火鍋|Orange Shabu,orangeshabu.com,https://orangeshabu.com/zh-TW/store/store_A9,false,信義新光A9店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-061,BR-RICEBAR,時時香 RICE BAR,RICE BAR,時時香|RICE BAR|瓦城時時香,ricebar.com.tw,https://ricebar.com.tw/store/11,false,微風南山店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-062,BR-LAPHO,L.A PHO 越南河粉美食餐廳,L.A PHO Vietnam Restaurant,L.A PHO|LA PHO|洛杉磯越南河粉,,https://www.facebook.com/LAPHOTW/,false,台北Neo19店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-063,BR-LM-MYHUMBLEHOUSE,寒舍食譜,My Humble House Le Meridien Taipei,寒舍食譜|艾美寒舍食譜|My Humble House,lemeridien-taipei.com,https://www.lemeridien-taipei.com/websev?cat=restaurant&id=2,true,台北寒舍艾美酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-064,BR-UKAI,The Ukai Taipei,The Ukai Taipei,The Ukai Taipei|Ukai鐵板燒|Ukai鳥匠,ukai-tpe.com.tw,https://www.ukai-tpe.com.tw/,false,微風南山店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-065,BR-IRELANDSPOTATO,愛爾蘭瘋薯,Ireland's Potato,愛爾蘭瘋薯|Ireland's Potato|瘋薯,irelandspotato.com.tw,http://www.irelandspotato.com.tw/,false,信義威秀影城店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-066,BR-85TD,捌伍添第 85TD,85TD Chinese Restaurant,捌伍添第|85TD|捌伍添第中餐廳,85td-101.com,https://www.85td-101.com/,false,台北101旗艦店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-067,BR-JKSTUDIO,JK STUDIO 義法餐廳,JK STUDIO Modern European Cuisine,JK STUDIO|JK Studio義法餐廳|JK法式餐酒館,jkstudio.tw,https://jkstudio.tw/,false,台北信義店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-068,BR-HYATT-YUNJIN,雲錦中餐廳,Yun Jin Chinese Restaurant Grand Hyatt Taipei,雲錦中餐廳|君悅雲錦|Yun Jin,hyatt.com,https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/yun-jin,true,台北君悅酒店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-069,BR-WEIMEI,味美早餐店,Wei Mei Breakfast Restaurant,味美早餐|味美早餐店|Wei Mei Breakfast,,https://goo.gl/maps/weimei,false,莊敬店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
+XY-070,BR-TWGTEA,TWG Tea,TWG Tea Salon & Boutique,TWG Tea|TWG|TWG沙龍,twgtea.com,https://twgtea.com/locations/asia-pacific/taiwan/taipei/twg-tea-salon-boutique-at-taipei-101-mall,false,台北101店,信義區,included,,eason,2026-09-09,official_site|field_verification,xinyi-dining-2026h2-v1.0
 XY-071,,Just Grill,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
 XY-072,,永心鳳茶,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1
 XY-073,,歐帕希臘小館,,,,,false,,信義區,pending,,,,no_confirmed_brand_root,xinyi-140-draft-v0.1

@@ -1,0 +1,563 @@
+{
+  "url": "https://www.wildwood.com.tw/cgi-sys/suspendedpage.cgi",
+  "measured_at": "2026-09-09T06:56:29.361Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v2.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v2.0",
+      "queries": [
+        "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？",
+        "台北信義區聚餐推薦？",
+        "信義區想吃高評價的火鍋或燒肉推薦？"
+      ],
+      "queryIds": [
+        "dating-celebration-01",
+        "gathering-general-01",
+        "hotpot-bbq-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "recommendation",
+        "comparison"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website wildwood.com.tw (title: WebSite Has Been Suspended). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: UNKNOWN\n\nThe exact entity behind wildwood.com.tw cannot be verified from the available public sources. The only clearly matching source points to “WILDWOOD” as a Taipei restaurant and provides the site URL, but there is no corroborating official identity information for the website itself beyond that mention[2][13].",
+      "citations": [
+        "https://home.wildwood-tx.com/Home_v2/Signup?email=",
+        "https://maiimage.com/wildwood/",
+        "https://crossbell.io/notes/74954-328",
+        "https://wildwood-tx.com/association-management-faqs/",
+        "https://tw.eztable.com/restaurant/16726",
+        "https://yeka.xlog.page/wildcard-website?locale=zh",
+        "https://wildwood-tx.com/contact/",
+        "https://www.harpersbazaar.com/tw/life/food/g64349847/wildwood-spring-new-menu/",
+        "https://yeka.xlog.app/yeka-website?locale=en",
+        "https://www.bbb.org/us/tx/san-antonio/profile/property-management/wildwood-management-group-inc-0825-27917",
+        "https://taiwannews.com.tw/news/6135772",
+        "https://bayase.com/post/wildcard-closure-formcard-cloud-residents-hit-again/",
+        "http://www.wildwood.com.tw/img/wildwood_menu_a%20la%20carte.pdf",
+        "https://blake.com.tw/blog/post/wildwood",
+        "https://yeka.xlog.page/wildcard-com?locale=en"
+      ],
+      "searchResults": [
+        {
+          "date": null,
+          "last_updated": "2026-08-21",
+          "place_metadata": null,
+          "snippet": "Email info@wildwood-tx.com or call us at (210) 732-0000.",
+          "source": "web",
+          "title": "Sign Up - Login - Wildwood Management Group",
+          "url": "https://home.wildwood-tx.com/Home_v2/Signup?email="
+        },
+        {
+          "date": "2019-12-24",
+          "last_updated": "2025-07-17",
+          "place_metadata": null,
+          "snippet": "WILDWOOD原木燒烤牛排海鮮餐廳\n餐廳地址：台北市信義區松壽路9號4樓（新光三越信義新天地A9館4樓）\n預約專線：02-2722-8886\n營業時間：午餐 11:30~15:00 晚餐17:30~21:30(例假日到22:00）\n週五、六宵夜時段：21:30~00:30\n粉絲頁：https://www.facebook.com/wildwood.tw/\n官網：http://www.wildwood.com.tw/",
+          "source": "web",
+          "title": "台北美食。WILDWOOD 原木燒烤餐廳｜2019米其林餐盤推薦～龍眼木柴燒牛排海鮮品嚐食材最原始的美味，超值商業午餐大推！！｜新光三越信義商圈絕美約會餐廳！台北約會餐廳推薦 @麥仔の食尚生活",
+          "url": "https://maiimage.com/wildwood/"
+        },
+        {
+          "date": "2025-07-14",
+          "last_updated": "2025-10-29",
+          "place_metadata": null,
+          "snippet": "然而，2025年7月12日，WildCard因上游发卡机构政策调整及相关部门的明确要求，正式宣布停止所有业务运营，官网一度无法访问。这一消息让许多用户感到措手不及，尤其是那些账户中仍有余额的用户。就在7月14日，WildCard官网意外恢复访问，用户可以登录后台查询卡号和CVV信息，但充值和提现功能依然受限，引发了广泛讨论。\n...\n根据最新消息，WildCard官网自2025年7月14日起恢复了部分功能，用户能够登录账户查看卡信息，包括卡号和CVV码。然而，官网的恢复仅限于基础的查询功能，充值、提现以及部分外部接口对接的可用性仍存疑。",
+          "source": "web",
+          "title": "野卡WildCard官网恢复访问，但依然无法正常充值和提现",
+          "url": "https://crossbell.io/notes/74954-328"
+        },
+        {
+          "date": "2026-05-06",
+          "last_updated": "2026-08-19",
+          "place_metadata": null,
+          "snippet": "If you have questions after reviewing our association management FAQs, Board Members and Homeowners can **chat** ** 24/7:** Ask “Willow” in the Owner Portal",
+          "source": "web",
+          "title": "Association management FAQs",
+          "url": "https://wildwood-tx.com/association-management-faqs/"
+        },
+        {
+          "date": "2025-10-08",
+          "last_updated": "2025-10-28",
+          "place_metadata": null,
+          "snippet": "### 地址\n台北市信義區松壽路9號\n### 交通方式\n...\n### 營業時間\n|午餐|11:30-15:00|週一 - 週日|\n|--|--|--|\n|晚餐|17:30-21:30|週一,週二,週三,週四,週日|\n|晚餐|17:30-22:00|週五,週六|",
+          "source": "web",
+          "title": "Wildwood 原木燒烤餐廳｜訂位優惠五折起",
+          "url": "https://tw.eztable.com/restaurant/16726"
+        },
+        {
+          "date": "2025-07-14",
+          "last_updated": "2025-07-21",
+          "place_metadata": null,
+          "snippet": "然而，2025 年 7 月 12 日，WildCard 因上游发卡机构政策调整及相关部门的明确要求，正式宣布停止所有业务运营，官网一度无法访问。这一消息让许多用户感到措手不及，尤其是那些账户中仍有余额的用户。就在 7 月 14 日，WildCard 官网意外恢复访问，用户可以登录后台查询卡号和 CVV 信息，但充值和提现功能依然受限，引发了广泛讨论。\n...\n根据最新消息，WildCard 官网自 2025 年 7 月 14 日起恢复了部分功能，用户能够登录账户查看卡信息，包括卡号和 CVV 码。然而，官网的恢复仅限于基础的查询功能，充值、提现以及部分外部接口对接的可用性仍存疑。",
+          "source": "web",
+          "title": "野卡WildCard官网恢复访问，但依然无法正常充值和提现 - 野卡WildCard",
+          "url": "https://yeka.xlog.page/wildcard-website?locale=zh"
+        },
+        {
+          "date": "2026-05-06",
+          "last_updated": "2026-07-09",
+          "place_metadata": null,
+          "snippet": "Use the contact form below to reach the Wildwood team for:\n- General questions\n- Feedback or suggestions regarding your community\n...\nA Wildwood Management Group representative will respond during business hours.",
+          "source": "web",
+          "title": "Contact Wildwood ...",
+          "url": "https://wildwood-tx.com/contact/"
+        },
+        {
+          "date": "2025-04-02",
+          "last_updated": "2026-01-23",
+          "place_metadata": null,
+          "snippet": "**地址：**台北市信義區松壽路9號4樓 （新光三越A9）\n**電話：**(02) 2722 8886\n**營業時間：**午餐時段每日上午11:30至下午3:00；晚餐時段週日至週四每日下午5:30至晚上9:30、週五及週六每日下午5:30至晚上10:00\n…",
+          "source": "web",
+          "title": "WILDWOOD新任主廚首推全新菜單！「乾式熟成乳牛肋眼、燉煙燻豬 ...",
+          "url": "https://www.harpersbazaar.com/tw/life/food/g64349847/wildwood-spring-new-menu/"
+        },
+        {
+          "date": "2025-07-14",
+          "last_updated": "2025-07-18",
+          "place_metadata": null,
+          "snippet": "According to relevant authorities, WildCard will officially cease operations starting July 12, 2025, and the official website was temporarily inaccessible, causing significant inconvenience for users.\nHowever, the good news is that as of July 14, 2025, the WildCard official website has resumed acces...",
+          "source": "web",
+          "title": "The WildCard official website has resumed access, and you can view card information, but recharge and withdrawal are still not available. - 野卡WildCard",
+          "url": "https://yeka.xlog.app/yeka-website?locale=en"
+        },
+        {
+          "date": "2010-02-02",
+          "last_updated": "2025-11-11",
+          "place_metadata": null,
+          "snippet": "- Primary Fax: (210) 733-3415\n...\n- Other Phone: (210) 853-0023",
+          "source": "web",
+          "title": "Wildwood Management Group Inc | BBB Business Profile",
+          "url": "https://www.bbb.org/us/tx/san-antonio/profile/property-management/wildwood-management-group-inc-0825-27917"
+        },
+        {
+          "date": "2025-06-17",
+          "last_updated": "2025-10-19",
+          "place_metadata": null,
+          "snippet": "TAIPEI (Taiwan News) – Wildwood Restaurant in Taipei is launching a new weekend-only brunch, available Saturdays and Sundays from 11 a.m. to 5 p.m., starting June 21.",
+          "source": "web",
+          "title": "Wildwood Taipei debuts weekend brunch menu",
+          "url": "https://taiwannews.com.tw/news/6135772"
+        },
+        {
+          "date": "2025-10-10",
+          "last_updated": "2025-10-21",
+          "place_metadata": null,
+          "snippet": "如图所示，Wildcard关停在今天中午，访问官网打不开了，直接显示一个短视频\n~~官网目前已无法访问~~\n目前暂时恢复了官网访问，但是要注意，依然有提示：\n...\n**官方说法**：上游发卡机构政策变化 + 相关部门的“明确要求”，Wildcard 被强制关停 **实际含义**： **可能涉嫌灰色支付/跨境违规业务**，如境内用户绕开外汇管制、虚拟卡对接境外",
+          "source": "web",
+          "title": "Wildcard关停！野卡也跑路了，继Formcard之后，又一云居民 ...",
+          "url": "https://bayase.com/post/wildcard-closure-formcard-cloud-residents-hit-again/"
+        },
+        {
+          "date": null,
+          "last_updated": "2025-12-02",
+          "place_metadata": null,
+          "snippet": "Taiwan black pork chop\nTaiwan spring chicken\nWildwood cheeseburger",
+          "source": "web",
+          "title": "A LA CARTE MENU",
+          "url": "http://www.wildwood.com.tw/img/wildwood_menu_a%20la%20carte.pdf"
+        },
+        {
+          "date": "2019-11-14",
+          "last_updated": "2026-06-03",
+          "place_metadata": null,
+          "snippet": "**WILDWOOD 原木燒烤餐廳**\n地址：台北市松壽路9號 新光三越信義新天地A9館4F\n電話：02-2722-8886\n營業時間：午餐11:30~15:00 晚餐17:30~21:30(週五、六及例假日前一天營業至22:00)",
+          "source": "web",
+          "title": "WILDWOOD原木燒烤餐廳｜米其林推薦原木燒烤牛排海鮮餐廳｜台北 ...",
+          "url": "https://blake.com.tw/blog/post/wildwood"
+        },
+        {
+          "date": "2025-07-13",
+          "last_updated": "2025-10-04",
+          "place_metadata": null,
+          "snippet": "On July 12, the WildCard official website suddenly became inaccessible, followed by an official announcement clearly stating that they \"did not run away,\" but that the server was temporarily shut down and the system was in urgent recovery.\n...\nAccording to WildCard's latest service announcement (upd...",
+          "source": "web",
+          "title": "WildCard announced that it has not gone bankrupt, and card-related ...",
+          "url": "https://yeka.xlog.page/wildcard-com?locale=en"
+        }
+      ],
+      "usage": {
+        "inputTokens": 120,
+        "outputTokens": 67,
+        "totalTokens": 187
+      },
+      "latencyMs": 2862,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？",
+        "answer": "有，**信義區**很適合約會或生日慶祝的高級餐廳不少，以下幾間在你提供的資料裡都有被列為約會／慶生取向，且評價與氛圍都偏高檔。[1][5][6][9]\n\n| 餐廳 | 類型/特色 | 適合場合 |\n|---|---|---|\n| **寶艾西餐廳** | 米其林餐盤肯定，歐式宮廷風、大理石噴泉造景，主打乾式熟成牛排與海鮮 | 求婚、生日、正式約會[5] |\n| **WILDWOOD** | 乾式熟成牛排、現流海鮮、原木燒烤風格 | 約會、慶生、重視餐點質感[6] |\n| **SEA TO SKY** | 地中海景觀餐廳，屬於高單價型 | 紀念日、生日、想要景觀氛圍[9] |\n| **竹苑高級Shabu** | 高級火",
+        "citations": [
+          "https://dalang.tw/%E8%A9%95%E5%88%86%E6%9C%80%E9%AB%98%E5%8F%B0%E5%8C%97%E7%B4%84%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E9%AB%98%E7%B4%9A%E9%A4%90%E5%BB%B3",
+          "https://www.gotrip.hk/%E5%8F%B0%E5%8C%97%E9%A4%90%E5%BB%B3/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%B4%84%E6%9C%83%E9%A4%90%E5%BB%B3-%E4%BF%A1%E7%BE%A9%E5%8D%80-%E5%8F%B0%E5%8C%97-aplt-859083/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%B2%BE%E7%B7%BB%E9%AB%98%E7%B4%9A",
+          "https://blog.myfunnow.com/blog/5494",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://www.mirueat.com.tw/2025/08/10_8.html",
+          "https://ningl.tw/taipeidating/",
+          "https://www.mecocute.com/xinyi-district-food/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-01-12",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【囍聚精緻鍋物】台北大巨蛋附近高評價慶生約會火鍋餐廳推薦，專人桌邊代煮服務，大啖季節限定鱈場蟹、頂級A5和牛\n…\n...\n【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳",
+            "source": "web",
+            "title": "【台北約會餐廳推薦】精選20間浪漫首選：週年紀念、氛圍感爆表",
+            "url": "https://dalang.tw/%E8%A9%95%E5%88%86%E6%9C%80%E9%AB%98%E5%8F%B0%E5%8C%97%E7%B4%84%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2000-01-01",
+            "last_updated": "2025-03-29",
+            "place_metadata": null,
+            "snippet": "找相似餐廳附近火鍋精緻高級約會餐廳午餐",
+            "source": "web",
+            "title": "台北『信義區高級餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E9%AB%98%E7%B4%9A%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2024-04-15",
+            "last_updated": "2026-01-16",
+            "place_metadata": null,
+            "snippet": "## 台北信義區約會餐廳2023｜15間台北信義區約會餐廳推介名單\n- 台北信義區約會餐廳推介1）Cafe by Another Round 小醉好\n...\n- 台北信義區約會餐廳推介4）Flare Taipei\n- 台北信義區約會餐廳推介5）Wannaeat 好想吃甜點工作室\n...\n- 地址：臺北市信義區忠孝東路五段61號\n- 電話：0227566629\n...\n- 地址：臺北市信義區松壽路12號6樓\n- 電話：0277362785\n...\n- 地址：台北市信義區松高路11號6樓\n- 電話：0287866099\n- 營業時間：星期一 12:00-14:30, 18:00-21:30\n......",
+            "source": "web",
+            "title": "15間台北信義區必食約會餐廳推介！ - GOtrip.hk",
+            "url": "https://www.gotrip.hk/%E5%8F%B0%E5%8C%97%E9%A4%90%E5%BB%B3/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%B4%84%E6%9C%83%E9%A4%90%E5%BB%B3-%E4%BF%A1%E7%BE%A9%E5%8D%80-%E5%8F%B0%E5%8C%97-aplt-859083/"
+          },
+          {
+            "date": "2024-01-04",
+            "last_updated": "2025-04-05",
+            "place_metadata": null,
+            "snippet": "# 台北市『信義區精緻高級餐廳』 | 精選TOP 15間熱門店家台北市信義區精緻高級 (424)v:71\n...\n今日營業: 18:30-22:00",
+            "source": "web",
+            "title": "台北『信義區精緻高級餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%B2%BE%E7%B7%BB%E9%AB%98%E7%B4%9A"
+          },
+          {
+            "date": "2026-07-23",
+            "last_updated": "2026-08-12",
+            "place_metadata": null,
+            "snippet": "在 Google 上擁有 4.9 星超高評價的 Hoda Bistro，是信義區極具話題性的質感約會餐酒館。店內以沉穩隱密的情境暗色調搭配溫柔黃光，營造出溫馨而私密的二人世界。\n...\n獲得米其林餐盤肯定的寶艾西餐廳，以大理石噴泉造景與優雅古典的歐式宮廷氣派聞名，是台北最頂級的求婚與慶生聖地。主廚嚴選頂級美國乾式熟成牛排與產地直送頂級海鮮，搭配傳統法式精細工法呈現。",
+            "source": "web",
+            "title": "信義區約會去哪裡？精選質感約會餐廳與周邊飯店推薦- 台北 - FunNow",
+            "url": "https://blog.myfunnow.com/blog/5494"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路28號5樓/** **02-8729-2628**\n...\n- **Range Bistrokaya餐酒館 Google ** **4.8分/2,952則**\n- **台北市信義區忠孝東路五段71巷25號/** **02 2753 0108**\n...\n- **台北市信義區基隆路二段81號/ ** **02-2377-9007**\n...\n信義百貨美食「WILDWOOD」主打優雅享受乾式熟成牛排、現流海鮮與新鮮蔬果的原木燒烤質樸美味，是熱門台北約會餐廳推薦。**→閱讀全文**\n...\n(**2025.06更新**)在美食一級戰區的信義區，想尋覓精緻的約會、慶生餐廳或餐...",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n電話：0227290002\n...\n電話：0227201519\n營業時段：星期日、11:00–21:30",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-10",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "**▌台北約會餐廳　10**\n10 JK STUDIO\n地址：台北市信義區基隆路一段147巷5弄13號\n電話：02-2766-1891\n時間：11:30–15:00、17:30–22:00 （週一公休）",
+            "source": "web",
+            "title": "台北約會餐廳怎麼選？幫你整理好10間超浪漫的 ...",
+            "url": "https://www.mirueat.com.tw/2025/08/10_8.html"
+          },
+          {
+            "date": "2026-08-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "## 30 間台北約會慶生餐廳 收錄清單\n|店名|特色|包廂/包場|捷運|預算參考/人|2026壽星優惠|\n|--|--|--|--|--|--|\n|威士威信義安和店|酒品暢飲/平價餐飲|Ｖ|信義安和站|600up|–|\n|瀧厚Set Meal|套餐式排餐|Ｖ|市政府站|800up|阿芙加朵|\n|竹苑高級Shabu|現流海鮮高級火鍋|Ｖ|忠孝敦化站|2000up|可預訂生日壽司蛋糕|\n|Botega del Vin|道地北義料理餐酒館|Ｖ|忠孝敦化站|1000up|–|\n|A Beach 101&Pizza|海灘風高CP值異國料理|Ｖ|信義101站|300up|1-4人贈送無酒精慶生特調5人以...",
+            "source": "web",
+            "title": "台北約會餐廳推薦｜30家情侶約會、紀念日浪漫清單 – 寗好生活 Ning's ...",
+            "url": "https://ningl.tw/taipeidating/"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n...\n台北信義區美食**《君曜雞湯》** 在網路擁有「雞湯界LV」稱號的好喝雞湯火鍋，餐廳提供可歡唱的大包廂空間，適合重要節日、生日慶祝、活動派對和長官升遷等推薦\n…\n...\n地址：台北市信義區信...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 51,
+          "outputTokens": 255,
+          "totalTokens": 306
+        },
+        "latencyMs": 8410,
+        "attempts": 1,
+        "queryId": "dating-celebration-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台北信義區聚餐推薦？",
+        "answer": "台北**信義區聚餐**很適合選在百貨商圈、捷運站附近，方便集合也容易找座位。[6] 如果你想要我直接挑餐廳，我可以先給你一份依情境分類的推薦清單。\n\n- **家庭聚餐**：**饗食天堂（信義店）**，屬於菜色多元的自助百匯，適合多人一起吃、口味選擇多。[5]\n- **朋友聚餐**：**香米泰式料理 信義遠百A13店**，主打泰式料理，資料中提到環境優雅、有質感，適合朋友聚餐。[9]\n- **約會／慶生**：**樂葵法式鐵板燒 微風南山店**，主打 A5 和牛、龍蝦等食材，偏精緻路線，適合特別場合。[9]\n- **餐酒館聚會**：**Hoda Bistro**、**Flare Taipei**，都被整理在信義區聚餐／美食推薦名單中，適合聊天聚會與",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E5%AE%B6%E4%BA%BA%E8%81%9A%E9%A4%90",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E8%81%9A%E9%A4%90",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://www.klook.com/zh-TW/blog/xinyi-restaurant-fnb-taipei-taiwan/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://supertaste.tvbs.com.tw/pack/346434"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "11071台灣台北市信義區忠孝東路五段61號\n02 2756 0639\n...\n【PLAYING Hookah Bar 餐廳水煙館】台北信義下午茶推薦，水煙與美食的美味饗宴，嚴選一系列甜點直接圈粉啦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "台北信義評分最高的平價餐酒館推薦【Hoda Bistro】，Dcard與PTT人氣推薦必吃的台北信義餐酒館，2026年Hoda Bistro最新菜單與用餐心得分享，信義商圈至今都是國內外觀光客最愛去的景點，除了到微風信義用餐外，週邊還有許多特色餐廳值得朝聖！\n...\n11071台灣台北市信義區忠孝東路五段61號\n02 2756 0639",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2014-01-01",
+            "last_updated": "2024-12-09",
+            "place_metadata": null,
+            "snippet": "“精緻泰式料理吃到飽，超厚月亮蝦餅，美味新疆菜與雲南菜，信義區家庭聚餐首選。”\n...\n· 均消 $880\n...\n· 均消 $1000",
+            "source": "web",
+            "title": "台北『信義區家人聚餐餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E5%AE%B6%E4%BA%BA%E8%81%9A%E9%A4%90"
+          },
+          {
+            "date": "2025-06-14",
+            "last_updated": "2025-06-25",
+            "place_metadata": null,
+            "snippet": "營業中1.明水然・樂 遠百信義店\n...\n· 均消 $1600\n...\n· 均消 $600",
+            "source": "web",
+            "title": "台北『信義區聚餐餐廳』| TOP精選15間最新店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E8%81%9A%E9%A4%90"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "#### 菜色多元的人氣自助百匯，適合家庭聚餐\n「饗食天堂」因選擇多樣化，一直是餐廳類吃到飽自助餐（Buffet）名列前矛的推薦，改裝後食材大升級，端出了現做嫩煎干貝、香煎天使紅蝦、法式羊肩排、焗烤生蠔、和牛握壽司、龍膽石斑湯…等高檔菜色，不限點餐次數”呷免驚”。**→閱讀全文**\n...\n- **台北市信義區市府路45號B1/** **電話：02 8101 7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "因為交通便利，信義區幾乎是我約會、朋友聚餐的首選。這裡捷運網路密集，被市政府站與台北101/世貿站兩大捷運站包夾，開車族也別擔心，除了新光三越（A4、A8、A9、A11）、遠百信義A13、微風信義與微風南山等百貨都有獨立停車位，捷運站周邊更有高胃納量的公有停車場。",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2024-09-12",
+            "last_updated": "2025-08-29",
+            "place_metadata": null,
+            "snippet": "# 【2025信義區美食推薦】9家必吃餐廳，早午餐、聚餐首選",
+            "source": "web",
+            "title": "【2025信義區美食推薦】9家必吃餐廳，早午餐、聚餐首選",
+            "url": "https://www.klook.com/zh-TW/blog/xinyi-restaurant-fnb-taipei-taiwan/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n> 信義區聚餐推薦！潮品集【火焰瀨尿燒鵝】超霸氣！新光三越A4店\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n...\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\n...\n台北信義區微風南山美食《**樂葵法式鐵板燒微風南山店**》是適合約會聚餐的餐廳推薦，菜單主打**日本A5和牛**、**龍蝦**、**當季\n…\n...\n地址：台北市信義區松智路17號5樓（微風南山5F）\n電話：02 6605 7122\n...\n《**香米泰式料理 信義遠百A13店**》地點位在遠東百貨信義A13的4樓，用餐環境優雅有質感，跟朋友約在這吃飯聚餐很推薦。\n...\n可以看到**101大樓煙火的景觀...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          }
+        ],
+        "usage": {
+          "inputTokens": 37,
+          "outputTokens": 264,
+          "totalTokens": 301
+        },
+        "latencyMs": 4422,
+        "attempts": 1,
+        "queryId": "gathering-general-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "信義區想吃高評價的火鍋或燒肉推薦？",
+        "answer": "信義區如果想吃**高評價火鍋**，可優先看**明水然・樂信義松菸店**、**辛殿麻辣鍋**、**岩漿火鍋微風信義店**；如果想吃**燒肉**，你這組結果裡沒有直接列出信義區燒肉店的高評價名單，因此燒肉部分目前**資料不足**。[1][6][7]\n\n可先參考這幾家火鍋：\n\n- **明水然・樂 信義松菸店**：在愛食記的信義區聚餐火鍋推薦頁面中列為「評分最高」店家。[1]\n- **辛殿麻辣鍋**：出現在信義區火鍋吃到飽與多篇火鍋推薦名單中，屬於熱門高評價選項。[6][7]\n- **岩漿火鍋 微風信義店**：被多篇信義區火鍋推薦收錄，主打麻辣鍋與膠原鈣骨湯。[2][7",
+        "citations": [
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E8%81%9A%E9%A4%90%E7%81%AB%E9%8D%8B%E6%8E%A8%E8%96%A6",
+          "https://www.da-rank.com/blog/Top10-XinyiHotpot-Recommendations",
+          "https://www.gomaji.com/blog/%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%81%AB%E9%8D%8B/",
+          "https://nowhot01.com/taipei-xinyi-hotpot-recommend/",
+          "https://www.gotrip.hk/%E5%8F%B0%E5%8C%97%E9%A4%90%E5%BB%B3/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E5%8D%80%E6%89%93%E9%82%8A%E7%88%90-%E4%BF%A1%E7%BE%A9%E5%8D%80-%E5%8F%B0%E5%8C%97-aplt-852062/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%81%AB%E9%8D%8B%E5%90%83%E5%88%B0%E9%A3%BD",
+          "https://sansalife.com/xinyi-hotpot/",
+          "https://sfexplorer.tw/content/551",
+          "https://www.rayuncle.com/xinyi-hotpot/",
+          "https://supertaste.tvbs.com.tw/food/357215"
+        ],
+        "searchResults": [
+          {
+            "date": "2025-07-21",
+            "last_updated": "2026-03-28",
+            "place_metadata": null,
+            "snippet": "評分最高\n平均消費\n營業中\n1.明水然・樂 信義松菸店",
+            "source": "web",
+            "title": "台北信義區聚餐火鍋推薦Top 15 推薦！ 海底撈信義店 - 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E8%81%9A%E9%A4%90%E7%81%AB%E9%8D%8B%E6%8E%A8%E8%96%A6"
+          },
+          {
+            "date": "2026-07-23",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "## 信義區火鍋推薦 綜合比較表\n|品牌名稱|價位帶|核心湯底／技術|適合對象|\n|--|--|--|--|\n|**岩漿火鍋**|中價位|漢方麻辣、膠原鈣骨湯|能吃辣、朋友聚餐|\n|**黑武士火鍋**|中高價位|8小時牛骨湯、A5和牛|家庭聚餐、和牛愛好者|\n|**橘色涮涮屋**|中高價位|日式湯頭、壽喜燒|約會、慶生|\n|**合‧shabu**|高價位|昆布蔬果清湯|商務聚餐、重視隱私|\n|**小川鍋物**|中高價位|節氣時令蔬菜鍋|重視食材產地的聚餐|\n|**初殿鍋物**|中低價位|多種湯底＋自助吧|學生、朋友小聚|\n...\n目前查到CP值較高的平價選項包括燒石鼎（170元起個人小火鍋）與...",
+            "source": "web",
+            "title": "信義區火鍋推薦：7家在地人氣鍋物精選，麻辣鍋、日式涮涮屋",
+            "url": "https://www.da-rank.com/blog/Top10-XinyiHotpot-Recommendations"
+          },
+          {
+            "date": "2021-12-02",
+            "last_updated": "2025-01-17",
+            "place_metadata": null,
+            "snippet": "地址： 11051台北市信義區松壽路12號 （ATT 4 FUN 7樓）\n電話： 02 7737 8758\n...\n電話: (02) 2720-5726\n營業時間: 11:30~2:00\n...\n地址：台北市信義區逸仙路42巷9號\n電話：02-8786-7299\n營業時間：11:30–23:00",
+            "source": "web",
+            "title": "台北信義區火鍋｜精選10大人氣必吃推薦！",
+            "url": "https://www.gomaji.com/blog/%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%81%AB%E9%8D%8B/"
+          },
+          {
+            "date": "2024-12-18",
+            "last_updated": "2025-03-28",
+            "place_metadata": null,
+            "snippet": "這裡的火鍋選擇絕對能滿足你的味蕾。本文精選信義區最值得一試的火鍋店，推薦CP值高、口味豐富的餐廳，\n...\n想在台北信義區尋找創新又美味的麻辣鍋？「食徒頂即鍋」絕對是饕客不可錯過的選擇！\n...\n「呷哺呷哺火鍋店」以其高CP值的個人小火鍋和獨門秘製鍋底，成為上班族與小資族的美食首選。\n...\n- 電話：02-27229669\n...\n想在信義區享受澎湃海鮮與新鮮肉品的美味鍋物？「小川鍋物」位於新光三越信義A4館B2，提供以極高CP值著稱的火鍋料理，\n是逛街、看電影後的聚餐首選！推薦餐點包含飛鳥鍋套餐（$598），搭配豐富肉品與健康火鍋食材，及鮭狩鍋套餐（$1088），\n…\n...\n- 📍台北市...",
+            "source": "web",
+            "title": "「信義區火鍋推薦」2024冬季火鍋攻略、10間高評價火鍋店、信義區火鍋推薦清單！ - 現在夯什麼",
+            "url": "https://nowhot01.com/taipei-xinyi-hotpot-recommend/"
+          },
+          {
+            "date": "2025-01-20",
+            "last_updated": "2025-08-14",
+            "place_metadata": null,
+            "snippet": "- 台北信義區打邊爐推介2）紅九九個人鴛鴦鍋\n...\n整體評分：★★★★★\n...\n整體評分：★★★★",
+            "source": "web",
+            "title": "台北信義區打邊爐2025｜15間台北信義區必食火鍋推介！",
+            "url": "https://www.gotrip.hk/%E5%8F%B0%E5%8C%97%E9%A4%90%E5%BB%B3/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E5%8D%80%E6%89%93%E9%82%8A%E7%88%90-%E4%BF%A1%E7%BE%A9%E5%8D%80-%E5%8F%B0%E5%8C%97-aplt-852062/"
+          },
+          {
+            "date": "2024-08-01",
+            "last_updated": "2025-02-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.辛殿麻辣鍋",
+            "source": "web",
+            "title": "台北『信義區火鍋吃到飽』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%81%AB%E9%8D%8B%E5%90%83%E5%88%B0%E9%A3%BD"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-01-17",
+            "place_metadata": null,
+            "snippet": "**信義區火鍋推薦清單**\n**辛殿麻辣鍋 信義店**\n...\n**岩漿火鍋 微風信義店**】\n地 址 ：110台北市信義區忠孝東路五段68號4樓 (地圖)\n電 話 ：02-27290299\n營業時間 ：週日-週三11:00-21:30、週四-週六11:00-22:00\n...\n地 址 ：110台北市信義區松壽路12號5 樓 (地圖)\n電 話 ：0277379784\n營業時間 ：11:00~22:00\n...\n**撈王鍋物料理**】\n地 址 ：110台北市信義區松壽路12號ATT 4 FUN 信義店9樓 (地圖)\n電 話 ：0277379784\n營業時間 ：11:00~22:00\n...\n**...",
+            "source": "web",
+            "title": "【2024信義區火鍋】精選 7 間 必吃信義區麻辣火鍋! @混血珊莎的奇幻旅程",
+            "url": "https://sansalife.com/xinyi-hotpot/"
+          },
+          {
+            "date": "2025-11-06",
+            "last_updated": "2026-04-23",
+            "place_metadata": null,
+            "snippet": "## 好啦！廢話不多說，立刻奉上我精選的10家「信義區火鍋推薦」名單！每家我都吃過至少兩次以上（有些甚至N刷），保證真實體驗！\n...\n- **地址：** 臺北市信義區松高路11號B2 (信義誠品商場B2)\n- **營業時間：** 週日~週四 11:00-21:30 / 週五~週六 11:00-22:00 (配合百貨)\n...\n- **地址：** 臺北市信義區松壽路12號5樓 (ATT 4 FUN)\n- **營業時間：** 週一~週四 11:30-22:00 / 週五 11:30-22:30 / 週六 11:00-22:30 / 週日 11:00-22:00\n...\n- **地址：** 臺北市...",
+            "source": "web",
+            "title": "信義區火鍋推薦：精選10大熱門店，麻辣鍋、日式涮涮鍋等五大派系 ...",
+            "url": "https://sfexplorer.tw/content/551"
+          },
+          {
+            "date": "2025-04-17",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "## 信義區火鍋推薦#新開幕聚餐首選-岩漿火鍋｜微風信義店\n...\n### 岩漿火鍋訂位資訊\n- 服務專線 02-27290299\n- 營業時間 週日-週三11:00-21:30 週四-週六11:00-22:00\n...\n- 電話：02-77370773\n- 地址：110台北市信義區松壽路12號9F（Att 4 Fun）\n...\n## 信義區火鍋#7-Beef King日本頂級A5和牛鍋物放題火鍋吃到飽推薦\n...\n- 電話：02-2723-7722",
+            "source": "web",
+            "title": "2025【信義區火鍋推薦】Top11台北高級火鍋百貨美食,A5和牛 ...",
+            "url": "https://www.rayuncle.com/xinyi-hotpot/"
+          },
+          {
+            "date": "2026-02-23",
+            "last_updated": "2026-08-13",
+            "place_metadata": null,
+            "snippet": "|預算區間|推薦店家|\n...\n|150～300元｜平價火鍋|砸鍋賣鐵、燒石鼎、 大味王|\n|300～600元｜中價位個人鍋|樂崎火鍋、 紅九九、 食焱廠、 尬鍋、 隱鍋、 輕鬆煮、 金大鋤|",
+            "source": "web",
+            "title": "2026台北火鍋懶人包！25家推薦名單：黃仁勳愛店 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/food/357215"
+          }
+        ],
+        "usage": {
+          "inputTokens": 46,
+          "outputTokens": 263,
+          "totalTokens": 309
+        },
+        "latencyMs": 4573,
+        "attempts": 1,
+        "queryId": "hotpot-bbq-01",
+        "queryIntent": "comparison"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-09-09T06:06:53.972Z",
+  "mode": "rules_only",
+  "input_file": "research\\inputs\\xinyi-restaurants-h2-2026\\xinyi-63.sites.approved.csv",
+  "algorithm_version": "3.0.0-rules",
+  "scoring_engine_version": "3.0.0",
+  "site_count": 63,
+  "result_count": 63,
+  "concurrency": 2,
+  "delay_ms": 300,
+  "representative_pages": 0,
+  "paid_ai_calls": 0,
+  "overall_geo_available": false,
+  "dataset_sha256": "f58015f1535124445fd7cee4ab6e80ebee2cc0815c2481802672cb4561d0a6cb"
+}

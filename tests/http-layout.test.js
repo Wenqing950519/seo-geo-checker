@@ -33,7 +33,16 @@ async function check(entry) {
       child.stdout.on('data',data=>{if(String(data).includes(`localhost:${port}`)){clearTimeout(timer);resolve();}});
     });
     const base=`http://127.0.0.1:${port}`;
-    for(const [route,file] of [['/','home.html'],['/analytics.js','analytics.js'],['/favicon.svg','favicon.svg'],['/og-image.png','og-image.png'],['/assets/real-site-apoint.png','assets/real-site-apoint.png']]) {
+    for(const [route,file] of [
+      ['/','home.html'],
+      ['/analytics.js','analytics.js'],
+      ['/favicon.svg','favicon.svg'],
+      ['/og-image.png','og-image.png'],
+      ['/assets/real-site-apoint.png','assets/real-site-apoint.png'],
+      ['/developers','developers.html'],
+      ['/developers/docs','developers-docs.html'],
+      ['/developers/console','developers-console.html']
+    ]) {
       const response=await fetch(base+route);
       assert.equal(response.status,200,`${entry}: ${route}`);
       assert.deepEqual(Buffer.from(await response.arrayBuffer()),fs.readFileSync(path.join(root,'apps/web/public',file)),`${route} must serve original asset bytes`);

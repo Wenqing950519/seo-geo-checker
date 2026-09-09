@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeoCheck Developer API & SDK 技術文件</title>
+<meta name="description" content="GeoCheck Developer API 與官方 TypeScript SDK 完整技術文件：快速開始、4 引擎架構說明、REST API 參考與錯誤碼指南。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
+<link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Brand Primitive Colors */
+  --gc-navy: #0B3B6F;
+  --gc-navy-dark: #072A52;
+  --gc-navy-light: #164E8C;
+  --gc-mint: #00B8A9;
+  --gc-mint-dark: #007F75;
+  --gc-mint-light: #33C6B9;
+  --gc-mint-soft: #E9F9F7;
+
+  /* Neutrals & Surfaces */
+  --gc-bg: #FFFFFF;
+  --gc-bg-alt: #F7F9FC;
+  --gc-card: #FFFFFF;
+  --gc-text: #1E2A38;
+  --gc-muted: #5A6B7E;
+  --gc-border: rgba(11, 59, 111, 0.1);
+  --gc-border-focus: rgba(0, 184, 169, 0.4);
+
+  /* Semantic Status Colors */
+  --gc-success: #27C93F;
+  --gc-warning: #B97700;
+  --gc-danger: #D6453D;
+
+  /* Layout & Metrics */
+  --gc-radius-sm: 8px;
+  --gc-radius-md: 14px;
+  --gc-radius-lg: 20px;
+  --gc-radius-pill: 999px;
+  --gc-shadow-sm: 0 4px 14px rgba(11, 59, 111, 0.05);
+  --gc-shadow-md: 0 10px 30px rgba(11, 59, 111, 0.08);
+
+  /* Fonts */
+  --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  font-family: var(--gc-font-sans);
+  color: var(--gc-text);
+  background: var(--gc-bg);
+  line-height: 1.7;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: var(--gc-navy-dark);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--gc-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* Header */
+header.docs-nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gc-border);
+}
+.nav-wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 12px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+}
+.docs-badge {
+  font-family: var(--gc-font-mono);
+  font-size: 0.72rem;
+  color: var(--gc-mint-dark);
+  background: var(--gc-mint-soft);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.nav-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.nav-actions a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gc-muted);
+  transition: 0.2s;
+}
+.nav-actions a:hover { color: var(--gc-navy); }
+.btn-console {
+  background: var(--gc-navy);
+  color: #fff !important;
+  padding: 6px 16px;
+  border-radius: var(--gc-radius-pill);
+  font-weight: 700 !important;
+  font-size: 0.84rem !important;
+  transition: 0.2s;
+}
+.btn-console:hover { background: var(--gc-navy-dark); }
+
+/* Main Layout */
+.docs-layout {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 220px;
+  min-height: calc(100vh - 64px);
+}
+
+/* Sidebar */
+aside.docs-sidebar {
+  position: sticky;
+  top: 61px;
+  height: calc(100vh - 61px);
+  overflow-y: auto;
+  padding: 28px 20px 60px 28px;
+  border-right: 1px solid var(--gc-border);
+  font-size: 0.88rem;
+}
+.sidebar-section {
+  margin-bottom: 24px;
+}
+.sidebar-heading {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gc-muted);
+  margin-bottom: 10px;
+}
+.sidebar-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sidebar-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: var(--gc-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+.sidebar-links a:hover {
+  background: var(--gc-bg-alt);
+  color: var(--gc-navy);
+}
+.sidebar-links a.active {
+  background: var(--gc-mint-soft);
+  color: var(--gc-mint-dark);
+  font-weight: 700;
+}
+.method-badge {
+  font-family: var(--gc-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.method-badge.post { background: #E0F2FE; color: #0284C7; }
+.method-badge.get { background: #DCFCE7; color: #16A34A; }
+.method-badge.delete { background: #FEE2E2; color: #DC2626; }
+
+/* Main Content Area */
+main.docs-content {
+  padding: 36px 48px 120px;
+  max-width: 860px;
+}
+.content-header {
+  border-bottom: 1px solid var(--gc-border);
+  padding-bottom: 24px;
+  margin-bottom: 36px;
+}
+.content-header h1 {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.content-header p {
+  font-size: 1.05rem;
+  color: var(--gc-muted);
+}
+
+.docs-section {
+  margin-bottom: 56px;
+}
+.docs-section h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--gc-navy);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.docs-section h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--gc-navy);
+  margin: 28px 0 12px;
+}
+.docs-section p {
+  font-size: 0.95rem;
+  color: #334155;
+  margin-bottom: 16px;
+  line-height: 1.75;
+}
+.docs-section ul {
+  margin: 0 0 20px 20px;
+  color: #334155;
+  font-size: 0.95rem;
+}
+.docs-section li { margin-bottom: 8px; }
+
+/* Code Blocks */
+.code-container {
+  background: #06101E;
+  border: 1px solid rgba(0, 184, 169, 0.2);
+  border-radius: var(--gc-radius-md);
+  margin: 16px 0 28px;
+  overflow: hidden;
+  box-shadow: var(--gc-shadow-sm);
+}
+.code-header {
+  background: #0B192C;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.code-lang {
+  font-family: var(--gc-font-mono);
+  font-size: 0.75rem;
+  color: #94A3B8;
+  font-weight: 600;
+}
+.btn-copy {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #CBD5E1;
+  font-family: var(--gc-font-mono);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn-copy:hover {
+  background: var(--gc-mint);
+  border-color: var(--gc-mint);
+  color: #fff;
+}
+.code-body {
+  padding: 16px 20px;
+  font-family: var(--gc-font-mono);
+  font-size: 0.83rem;
+  line-height: 1.65;
+  color: #E2E8F0;
+  overflow-x: auto;
+}
+.code-body pre { margin: 0; }
+.k { color: #F472B6; }
+.s { color: #34D399; }
+.f { color: #60A5FA; }
+.c { color: #64748B; font-style: italic; }
+
+/* Callout / Note Box */
+.callout {
+  border-radius: var(--gc-radius-sm);
+  padding: 16px 18px;
+  margin: 20px 0;
+  font-size: 0.9rem;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.callout.info {
+  background: var(--gc-mint-soft);
+  border-left: 4px solid var(--gc-mint);
+  color: var(--gc-navy-dark);
+}
+.callout.warn {
+  background: #FEF3C7;
+  border-left: 4px solid #B97700;
+  color: #78350F;
+}
+
+/* Tables */
+.docs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 28px;
+  font-size: 0.88rem;
+}
+.docs-table th, .docs-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--gc-border);
+}
+.docs-table th {
+  background: var(--gc-bg-alt);
+  font-weight: 700;
+  color: var(--gc-navy);
+}
+.docs-table code {
+  font-family: var(--gc-font-mono);
+  font-size: 0.82rem;
+  background: var(--gc-bg-alt);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--gc-navy-dark);
+}
+
+/* Right TOC */
+aside.docs-toc {
+  position: sticky;
+  top: 61px;
+  height: calc(100vh - 61px);
+  overflow-y: auto;
+  padding: 28px 24px 60px 16px;
+  font-size: 0.82rem;
+}
+.toc-title {
+  font-weight: 800;
+  color: var(--gc-navy);
+  margin-bottom: 12px;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.toc-list a {
+  color: var(--gc-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+  line-height: 1.4;
+}
+.toc-list a:hover {
+  color: var(--gc-mint-dark);
+}
+
+@media (max-width: 1100px) {
+  .docs-layout { grid-template-columns: 240px minmax(0, 1fr); }
+  aside.docs-toc { display: none; }
+}
+@media (max-width: 768px) {
+  .docs-layout { grid-template-columns: 1fr; }
+  aside.docs-sidebar { display: none; }
+  main.docs-content { padding: 24px 20px 80px; }
+}
+</style>
+</head>
+<body>
+
+<div id="toast" class="toast">✓ 已複製代碼到剪貼簿</div>
+
+<!-- Header -->
+<header class="docs-nav">
+  <div class="nav-wrap">
+    <a href="/developers" class="brand-group">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
+        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
+        <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+      </svg>
+      <span class="brand-name">GeoCheck<span style="color:var(--gc-mint)">.</span></span>
+      <span class="docs-badge">DOCS v0.1</span>
+    </a>
+
+    <div class="nav-actions">
+      <a href="/developers">首頁 (Showcase)</a>
+      <a href="/developers/console" class="btn-console">API 控制台</a>
+    </div>
+  </div>
+</header>
+
+<div class="docs-layout">
+  <!-- Left Navigation -->
+  <aside class="docs-sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-heading">快速開始</div>
+      <ul class="sidebar-links">
+        <li><a href="#quickstart" class="active">簡介與安裝</a></li>
+        <li><a href="#auth">身分認證 (API Key)</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-heading">核心概念</div>
+      <ul class="sidebar-links">
+        <li><a href="#architecture">四引擎架構</a></li>
+        <li><a href="#settlement">全成才扣量原則</a></li>
+        <li><a href="#idempotency">冪等鍵機制</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-heading">官方 SDK</div>
+      <ul class="sidebar-links">
+        <li><a href="#sdk-guide">@geocheck/sdk 指南</a></li>
+        <li><a href="#sdk-methods">核心方法說明</a></li>
+        <li><a href="#sdk-errors">異常與重試處理</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-heading">REST API 參考</div>
+      <ul class="sidebar-links">
+        <li>
+          <a href="#endpoint-create">建立觀測
+            <span class="method-badge post">POST</span>
+          </a>
+        </li>
+        <li>
+          <a href="#endpoint-poll">取得結果
+            <span class="method-badge get">GET</span>
+          </a>
+        </li>
+        <li>
+          <a href="#endpoint-job">查詢任務狀態
+            <span class="method-badge get">GET</span>
+          </a>
+        </li>
+        <li>
+          <a href="#endpoint-usage">用量與配額
+            <span class="method-badge get">GET</span>
+          </a>
+        </li>
+        <li>
+          <a href="#endpoint-delete">刪除結果
+            <span class="method-badge delete">DEL</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-heading">附錄</div>
+      <ul class="sidebar-links">
+        <li><a href="#error-codes">HTTP 錯誤代碼表</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="docs-content">
+    <div class="content-header">
+      <h1>GeoCheck Developer API & SDK 文件</h1>
+      <p>面向現代產品與自動化系統的客觀 GEO 引用量測開發者指南。</p>
+    </div>
+
+    <!-- Quickstart -->
+    <section class="docs-section" id="quickstart">
+      <h2>快速開始 (Quickstart)</h2>
+      <p>
+        GeoCheck 提供兩種整合方式：官方 TypeScript SDK (<code>@geocheck/sdk</code>) 或標準 REST HTTP API。
+        SDK 內建型別推導、顯式冪等鍵與 <code>Retry-After</code> 智慧輪詢，推薦於 Node.js / Bun 專案中優先使用。
+      </p>
+
+      <h3>安裝官方 SDK</h3>
+      <div class="code-container">
+        <div class="code-header">
+          <span class="code-lang">BASH</span>
+          <button class="btn-copy" onclick="copySnippet('install-cmd')">複製</button>
+        </div>
+        <div class="code-body">
+          <pre id="install-cmd"><code>npm install @geocheck/sdk</code></pre>
+        </div>
+      </div>
+
+      <h3 id="auth">身分認證 (Authentication)</h3>
+      <p>
+        所有對 Developer API 的請求皆必須在 HTTP 標頭中帶入 Bearer API 金鑰：
+      </p>
+      <div class="code-container">
+        <div class="code-header">
+          <span class="code-lang">HTTP HEADER</span>
+        </div>
+        <div class="code-body">
+          <pre><code>Authorization: Bearer gck_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></pre>
+        </div>
+      </div>
+      <p>
+        您可以在 <a href="/developers/console" style="color:var(--gc-mint-dark); font-weight:700;">API 控制台</a> 建立您的第一把 API 金鑰。金鑰以 <code>gck_</code> 為前綴，建立時只展示一次。
+      </p>
+    </section>
+
+    <!-- Core Concepts -->
+    <section class="docs-section" id="architecture">
+      <h2>核心概念 (Core Concepts)</h2>
+
+      <h3>四引擎並行架構 (4-Engine Parallel Architecture)</h3>
+      <p>
+        不同於單純包裝單一模型的轉售 API，GeoCheck 每次觀測固定直接呼叫 4 大官方搜尋 API：
+      </p>
+      <table class="docs-table">
+        <thead>
+          <tr><th>引擎 (Provider)</th><th>模型識別碼 (Model ID)</th><th>搜尋機制</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>OpenAI</td><td><code>gpt-5.6-luna</code></td><td>原生 Web Search Tool</td></tr>
+          <tr><td>Google Gemini</td><td><code>gemini-3.5-flash-lite</code></td><td>Google Search Grounding</td></tr>
+          <tr><td>Perplexity</td><td><code>sonar</code></td><td>即時網頁索引用量</td></tr>
+          <tr><td>Anthropic Claude</td><td><code>claude-haiku-4.5</code></td><td>官方 Web Search Capability</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="settlement">全成才扣量原則 (Strict All-Succeed Settlement)</h3>
+      <div class="callout info">
+        <div>
+          <strong>保證零扣冤枉額度：</strong>
+          只有當上述 4 家官方引擎全數完成搜尋與回答時，任務狀態才標記為 <code>succeeded</code> 並扣除 1 輪配額。
+          若任一家模型發生超時或網路失敗，整個任務標記為 <code>failed</code>，<strong>不計費、不扣除額度</strong>，但系統仍會回傳已成功的 <code>partial_results</code> 供開發者排查。
+        </div>
+      </div>
+
+      <h3 id="idempotency">顯式冪等鍵 (Idempotency Key)</h3>
+      <p>
+        建立觀測時必須傳入 <code>Idempotency-Key</code> 標頭（例如 UUID v4）。若因網路瞬斷重試發送相同請求，系統會安全重放原有任務，絕不會產生重複排程或重複扣量。
+      </p>
+    </section>
+
+    <!-- SDK Guide -->
+    <section class="docs-section" id="sdk-guide">
+      <h2>TypeScript SDK 使用手冊</h2>
+      <p>官方客戶端 <code>@geocheck/sdk</code> 提供純淨、無副作用的封裝，不含多餘依賴。</p>
+
+      <h3 id="sdk-methods">完整範例 (End-to-End Example)</h3>
+      <div class="code-container">
+        <div class="code-header">
+          <span class="code-lang">TYPESCRIPT</span>
+          <button class="btn-copy" onclick="copySnippet('sdk-full-code')">複製</button>
+        </div>
+        <div class="code-body">
+          <pre id="sdk-full-code"><code><span class="k">import</span> { GeoCheckClient, GeoCheckApiError } <span class="k">from</span> <span class="s">"@geocheck/sdk"</span>;
+
+<span class="k">const</span> client = <span class="k">new</span> <span class="f">GeoCheckClient</span>({
+  apiKey: process.env.GEOCHECK_API_KEY!,
+  baseUrl: <span class="s">"https://api.geocheck.lisheng.cv"</span> <span class="c">// 預設</span>
+});
+
+<span class="k">try</span> {
+  <span class="c">// 1. 建立非同步觀測任務</span>
+  <span class="k">const</span> job = <span class="k">await</span> client.<span class="f">createMeasurement</span>({
+    input: { type: <span class="s">"url"</span>, url: <span class="s">"https://mybrand.com"</span> },
+    locale: <span class="s">"zh-TW"</span>
+  }, crypto.<span class="f">randomUUID</span>());
+
+  console.<span class="f">log</span>(<span class="s">`任務建立成功: ${job.measurement_id}`</span>);
+
+  <span class="c">// 2. 自動輪詢結果 (尊重 Retry-After)</span>
+  <span class="k">const</span> result = <span class="k">await</span> client.<span class="f">pollMeasurement</span>(job.measurement_id, {
+    intervalMs: 2000,
+    timeoutMs: 120000
+  });
+
+  <span class="c">// 3. 輸出四家引擎觀測結果</span>
+  result.engines.forEach(engine => {
+    console.<span class="f">log</span>(<span class="s">`[${engine.id}] 狀態: ${engine.status}`</span>);
+    console.<span class="f">log</span>(<span class="s">`引用數: ${engine.citations?.length || 0}`</span>);
+  });
+
+} <span class="k">catch</span> (err) {
+  <span class="k">if</span> (err <span class="k">instanceof</span> GeoCheckApiError) {
+    console.<span class="f">error</span>(<span class="s">`API 錯誤 (${err.status}): ${err.code} - ${err.message}`</span>);
+  }
+}</code></pre>
+        </div>
+      </div>
+
+      <h3 id="sdk-errors">錯誤處理與自定義重試</h3>
+      <p>
+        當發生非 2xx 回應時，SDK 會拋出 <code>GeoCheckApiError</code>，其中包含 <code>status</code> (HTTP 狀態碼)、<code>code</code> (錯誤碼字串) 以及伺服器建議的 <code>retryAfterMs</code>。
+      </p>
+    </section>
+
+    <!-- REST API Reference -->
+    <section class="docs-section" id="endpoint-create">
+      <h2>REST API 參考 (API Reference)</h2>
+
+      <h3>建立觀測任務 (Create Measurement)</h3>
+      <p><code>POST /v1/measurements</code></p>
+      <p>接受網址或自訂問題，非同步發起四引擎平行搜尋觀測。</p>
+
+      <table class="docs-table">
+        <thead>
+          <tr><th>標頭 (Header)</th><th>必填</th><th>說明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Authorization</code></td><td>是</td><td><code>Bearer &lt;API_KEY&gt;</code></td></tr>
+          <tr><td><code>Idempotency-Key</code></td><td>是</td><td>隨機唯一字串 (UUID v4)</td></tr>
+          <tr><td><code>Content-Type</code></td><td>是</td><td><code>application/json</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="code-container">
+        <div class="code-header"><span class="code-lang">REQUEST BODY JSON</span></div>
+        <div class="code-body">
+          <pre><code>{
+  "input": {
+    "type": "url",
+    "url": "https://example.com"
+  },
+  "locale": "zh-TW"
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="code-container">
+        <div class="code-header"><span class="code-lang">RESPONSE 202 ACCEPTED</span></div>
+        <div class="code-body">
+          <pre><code>{
+  "job_id": "job_3f42b8...",
+  "measurement_id": "msmt_81a2...",
+  "status": "queued",
+  "created_at": "2026-09-09T14:30:00.000Z"
+}</code></pre>
+        </div>
+      </div>
+
+      <h3 id="endpoint-poll">取得觀測結果 (Get Measurement Result)</h3>
+      <p><code>GET /v1/measurements/:measurement_id</code></p>
+      <p>若任務仍在執行中，回傳 <code>409 Conflict</code> (附帶 <code>Retry-After</code> 標頭)；若已完成則回傳 <code>200 OK</code> 完整結構。</p>
+
+      <div class="code-container">
+        <div class="code-header"><span class="code-lang">RESPONSE 200 OK</span></div>
+        <div class="code-body">
+          <pre><code>{
+  "measurement_id": "msmt_81a2...",
+  "status": "succeeded",
+  "engines": [
+    {
+      "id": "openai",
+      "model": "gpt-5.6-luna",
+      "status": "succeeded",
+      "answer": "...",
+      "citations": [
+        { "url": "https://example.com/about", "title": "Example Official" }
+      ]
+    },
+    {
+      "id": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "status": "succeeded",
+      "answer": "...",
+      "citations": [...]
+    },
+    {
+      "id": "perplexity",
+      "model": "sonar",
+      "status": "succeeded",
+      "answer": "...",
+      "citations": [...]
+    },
+    {
+      "id": "anthropic",
+      "model": "claude-haiku-4.5",
+      "status": "succeeded",
+      "answer": "...",
+      "citations": [...]
+    }
+  ],
+  "created_at": "2026-09-09T14:30:00.000Z",
+  "completed_at": "2026-09-09T14:30:11.850Z"
+}</code></pre>
+        </div>
+      </div>
+
+      <h3 id="endpoint-job">查詢任務狀態 (Get Job Status)</h3>
+      <p><code>GET /v1/jobs/:job_id</code></p>
+      <p>查詢任務輕量狀態 (<code>queued</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code>)，不包含龐大的四引擎結果內容。</p>
+
+      <h3 id="endpoint-usage">用量與配額 (Get Usage)</h3>
+      <p><code>GET /v1/usage</code></p>
+      <div class="code-container">
+        <div class="code-header"><span class="code-lang">RESPONSE 200 OK</span></div>
+        <div class="code-body">
+          <pre><code>{
+  "plan": "free",
+  "used_rounds": 1,
+  "reserved_rounds": 0,
+  "remaining_rounds": 2,
+  "quota_limit": 3,
+  "window_strategy": "daily",
+  "expires_at": "2026-09-16T14:30:00.000Z"
+}</code></pre>
+        </div>
+      </div>
+
+      <h3 id="endpoint-delete">刪除觀測結果 (Delete Measurement Content)</h3>
+      <p><code>DELETE /v1/measurements/:measurement_id</code></p>
+      <p>依個資與合規要求主動刪除結果內容，成功回傳 <code>204 No Content</code>。後續再查詢該 ID 將回傳 <code>410 Gone</code>。</p>
+    </section>
+
+    <!-- Error Codes -->
+    <section class="docs-section" id="error-codes">
+      <h2>HTTP 錯誤代碼表</h2>
+      <table class="docs-table">
+        <thead>
+          <tr><th>狀態碼</th><th>錯誤代碼 (Code)</th><th>含義與建議處置</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>400</td><td><code>invalid_request</code></td><td>請求參數不合法，請核對 JSON 結構與 URL 格式</td></tr>
+          <tr><td>401</td><td><code>auth_required</code></td><td>未帶入有效之 Bearer API 金鑰</td></tr>
+          <tr><td>402</td><td><code>payment_required</code></td><td>方案額度耗盡或所選付費方案尚未完成權益開通</td></tr>
+          <tr><td>403</td><td><code>trial_not_started</code></td><td>控制台尚未啟用，請先至 Console 選擇方案</td></tr>
+          <tr><td>404</td><td><code>not_found</code></td><td>找不到指定的 Job ID 或 Measurement ID</td></tr>
+          <tr><td>409</td><td><code>result_not_ready</code></td><td>四引擎正在量測中，請依 <code>Retry-After</code> 稍後再查詢</td></tr>
+          <tr><td>410</td><td><code>content_deleted</code></td><td>該觀測結果已依資料保存策略或主動指示刪除</td></tr>
+          <tr><td>429</td><td><code>rate_limited</code></td><td>呼叫超出速率限制，請稍候重試</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Right TOC -->
+  <aside class="docs-toc">
+    <div class="toc-title">本頁目錄</div>
+    <ul class="toc-list">
+      <li><a href="#quickstart">快速開始</a></li>
+      <li><a href="#auth">身分認證</a></li>
+      <li><a href="#architecture">四引擎架構</a></li>
+      <li><a href="#settlement">全成才扣量原則</a></li>
+      <li><a href="#idempotency">冪等鍵機制</a></li>
+      <li><a href="#sdk-guide">TypeScript SDK 指南</a></li>
+      <li><a href="#sdk-methods">完整程式碼範例</a></li>
+      <li><a href="#endpoint-create">建立觀測 API</a></li>
+      <li><a href="#endpoint-poll">取得結果 API</a></li>
+      <li><a href="#endpoint-usage">用量與配額 API</a></li>
+      <li><a href="#error-codes">HTTP 錯誤代碼表</a></li>
+    </ul>
+  </aside>
+</div>
+
+<script>
+function copySnippet(id) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    showToast('已複製代碼到剪貼簿');
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.innerText = `✓ ${msg}`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2400);
+}
+</script>
+
+</body>
+</html>

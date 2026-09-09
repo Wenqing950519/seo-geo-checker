@@ -1,0 +1,440 @@
+{
+  "url": "https://www.bellavita.com.tw/cht/",
+  "measured_at": "2026-09-09T06:12:15.371Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website bellavita.com.tw (title: BELLAVITA). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: BELLAVITA | 寶麗廣塲\n\nThe exact website bellavita.com.tw corresponds to BELLAVITA 寶麗廣塲, a shopping mall in Taipei’s Xinyi District, with the official site listing the name and address at 松仁路28號.[3][6] Public third-party sources that explicitly match this website also identify it as Bellavita Shopping Mall / BELLAVITA in Taipei.[10][13]\n\nUnknown: no additional official corroboration for other aliases beyond the supported names was verified from the available public sources.[3][6][10][13]",
+      "citations": [
+        "https://tw.trip.com/moments/theme/poi-bellavita-18170901-restaurant-993134/",
+        "https://shps89060328.pixnet.net/blog/posts/44170132",
+        "https://www.bellavita.com.tw/cht/about.php",
+        "https://tw.trip.com/moments/theme/poi-bellavita-18170901-store-993139/",
+        "https://www.travelking.com.tw/eng/tourguide/scenery104670.html",
+        "https://www.bellavita.com.tw/m/cht/about.php",
+        "https://www.1111.com.tw/corp/51745684/",
+        "https://zh.wikipedia.org/zh-cn/%E5%AF%B6%E9%BA%97%E5%BB%A3%E5%A0%B4?oldformat=true",
+        "https://www.bellavita.com.tw/eng/brands.php",
+        "https://en.wikipedia.org/wiki/Bellavita",
+        "https://www.elle.com/tw/life/foodie/g24389972/bellavita-new-sytyle/",
+        "https://www.bellavita.com.tw/eng/dining.php",
+        "https://tw.hotels.com/go/taiwan/bellavita-shopping-mall",
+        "https://coolsis.cool-style.com.tw/life-style/food/34886",
+        "https://www.bellavita.com.tw/eng/floor.php?f=3"
+      ],
+      "searchResults": [
+        {
+          "date": "2025-10-13",
+          "last_updated": "2025-10-13",
+          "place_metadata": null,
+          "snippet": "BELLAVITA的地址：\n台北信義區信義區松仁路28號\nWow!",
+          "source": "web",
+          "title": "2025 BELLAVITA餐廳推薦(於8 月更新)",
+          "url": "https://tw.trip.com/moments/theme/poi-bellavita-18170901-restaurant-993134/"
+        },
+        {
+          "date": "2025-12-04",
+          "last_updated": "2025-12-10",
+          "place_metadata": null,
+          "snippet": "**BELLAVITA貴婦百貨**在市政府捷運站3號出口附近,信義區的精華地帶,在貴婦百貨喝下午茶推薦, **bar & restaurant A3下午茶**三層蛋糕點心架,有鹹食也有甜食,搭配熱茶一起吃,享受午後悠閒,實現體驗一日貴婦,下午茶時間從下午2:30到4:30,加收一成服務費、可刷卡,水資另計。\n...\n分類:餐廳、調酒、下午茶\n營業時間:7:30-24:00\n訂位(02)87292866、(02)87292867\n地址:台北市信義區松仁路28號 BELLAVITA 寶麗廣塲 1F/2F\nEmail:aaa@bellavita.com.tw\n每人平均價位:500-1500\n可否刷卡...",
+          "source": "web",
+          "title": "三貓繪飯",
+          "url": "https://shps89060328.pixnet.net/blog/posts/44170132"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-04-12",
+          "place_metadata": null,
+          "snippet": "BELLAVITA寶麗廣塲資訊: 地址：台北市信義區松仁路28號 週日至週四11:00-21:30， 週五、週六及假日前夕 11:00-22:00 服務專線(02)8729-2771 </td></tr></table></td></tr></table>",
+          "source": "web",
+          "title": "商塲資訊> BELLAVITA 寶麗廣塲",
+          "url": "https://www.bellavita.com.tw/cht/about.php"
+        },
+        {
+          "date": "2025-01-01",
+          "last_updated": "2025-11-08",
+          "place_metadata": null,
+          "snippet": "BELLAVITA的地址：\n台北信義區信義區松仁路28號\n...\n📍BELLAVITA寶麗廣場 地址：： 台灣台北市信義區松仁路28號 營業時間：10:30-22:00 #台灣景點 #台灣 #台北",
+          "source": "web",
+          "title": "2025 BELLAVITA購物推薦(於11 月更新)| Trip Moments",
+          "url": "https://tw.trip.com/moments/theme/poi-bellavita-18170901-store-993139/"
+        },
+        {
+          "date": "2025-01-01",
+          "last_updated": "2025-10-05",
+          "place_metadata": null,
+          "snippet": "Located in the prosperous Xinyi Commercial Districts, the boutique department store, Bellavita had its grand opening on the 21st of September, 2009.",
+          "source": "web",
+          "title": "Bellavita - Taipei City List of Attractions - Taiwan Travel",
+          "url": "https://www.travelking.com.tw/eng/tourguide/scenery104670.html"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-07-18",
+          "place_metadata": null,
+          "snippet": "BELLAVITA 寶麗廣塲營業地址\n◎台北市信義區松仁路28號\nBELLAVITA 寶麗廣塲營業時間\n◎周日至周四 10:30 - 22:00\n◎例(國定)假日前夕 10:30 - 22:30\nBELLAVITA 寶麗廣塲 交通資訊",
+          "source": "web",
+          "title": "美好生活的節奏人文氣息的涵養自然純淨的幸福 - Bellavita",
+          "url": "https://www.bellavita.com.tw/m/cht/about.php"
+        },
+        {
+          "date": "2026-04-24",
+          "last_updated": "2026-04-28",
+          "place_metadata": null,
+          "snippet": "- ## 公司網址\nhttp://www.bellavita.com.tw/\n- ## 公司位置\n台北市信義區松仁路28號｜市政府站\n- ## 產業類別\n百貨相關\n…",
+          "source": "web",
+          "title": "震怡股份有限公司| 徵才中 - 1111人力銀行",
+          "url": "https://www.1111.com.tw/corp/51745684/"
+        },
+        {
+          "date": "2009-12-22",
+          "last_updated": "2026-08-14",
+          "place_metadata": null,
+          "snippet": "**宝丽广场**（BELLAVITA），是一位于台湾台北市信义计划区的购物中心，2009年9月21日开幕启用。\n...\n|网站|www.bellavita.com.tw|\n|网站|www.bellavita.com.tw|\n...\n|地址|中华民国（台湾）台北市信义区松仁路28号25°02′22″N 121°34′04″E﻿ / ﻿25.03956°N 121.56771°E|\n...\n|营业时间|周日至周四11:00-21:30 周五、周六及假日前夕 11:00-22:00|\n...\n|电话|+886 2 8729-2771|",
+          "source": "web",
+          "title": "宝丽广场 - 维基百科，自由的百科全书",
+          "url": "https://zh.wikipedia.org/zh-cn/%E5%AF%B6%E9%BA%97%E5%BB%A3%E5%A0%B4?oldformat=true"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-07",
+          "place_metadata": null,
+          "snippet": "| |© ALL RIGHTS RESERVED BY BELLAVITA.COM| |",
+          "source": "web",
+          "title": "shop > brands - Bellavita",
+          "url": "https://www.bellavita.com.tw/eng/brands.php"
+        },
+        {
+          "date": "2021-04-14",
+          "last_updated": "2026-09-02",
+          "place_metadata": null,
+          "snippet": "The **Bellavita** Shopping Center (Chinese: 寶麗廣塲; pinyin: *Bǎo lì guǎng chǎng*) is a luxury shopping mall in Xinyi Special District, Taipei, Taiwan that opened on September 21, 2009.\n...\n|Location|No. 28, Songren Road, Xinyi District, Taipei, Taiwan|\n...\n|Website|http://www.bellavita.com.tw/|",
+          "source": "web",
+          "title": "Bellavita - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Bellavita"
+        },
+        {
+          "date": "2018-10-30",
+          "last_updated": "2025-08-06",
+          "place_metadata": null,
+          "snippet": "，相較之下平常似乎較少走進奢華氛圍的BELLAVITA，現在BELLAVITA B2美食廣場將百分之九十的空間重新改裝，換上了全新面貌的千坪空間，打造浪漫的歐式氛圍，除此之外更是國內第一處美食廣場由專人平板點餐及送餐的服務！",
+          "source": "web",
+          "title": "BELLAVITA美食廣場全新面貌：歐式浪漫空間、異國美食餐廳進駐，首創國內平板點餐！",
+          "url": "https://www.elle.com/tw/life/foodie/g24389972/bellavita-new-sytyle/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-17",
+          "place_metadata": null,
+          "snippet": "| |© ALL RIGHTS RESERVED BY BELLAVITA.COM| |",
+          "source": "web",
+          "title": "gourmet > fine dining - Bellavita",
+          "url": "https://www.bellavita.com.tw/eng/dining.php"
+        },
+        {
+          "date": "2025-06-03",
+          "last_updated": "2025-06-03",
+          "place_metadata": null,
+          "snippet": "**位置資訊： **No. 28, Songren Road, Xinyi District, Taipei City, Taiwan 110\n**營業時間： **Daily from 10.30am to 10pm\n**電話： **+886 (0)2 8729 2771",
+          "source": "web",
+          "title": "Bellavita Shopping Mall - Go Guides",
+          "url": "https://tw.hotels.com/go/taiwan/bellavita-shopping-mall"
+        },
+        {
+          "date": "2022-09-02",
+          "last_updated": "2025-07-31",
+          "place_metadata": null,
+          "snippet": "**Heritage Bakery & Café 美式咖啡烘培坊**\n地址:110 臺北市松仁路28號 B1 (BELLAVITA 百貨 B1)\n營業時間: 週日至週四 11:00-21:30 / 週五至週六 11:00-22:00\n官方網站 : http://www.heritage.com.tw/",
+          "source": "web",
+          "title": "人氣咖啡甜點店「Heritage」進駐BELLAVITA！限定甜點、鹹食、咖啡必點！",
+          "url": "https://coolsis.cool-style.com.tw/life-style/food/34886"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-17",
+          "place_metadata": null,
+          "snippet": "| |© ALL RIGHTS RESERVED BY BELLAVITA.COM| |",
+          "source": "web",
+          "title": "floor guide > b1 art gallery - Bellavita",
+          "url": "https://www.bellavita.com.tw/eng/floor.php?f=3"
+        }
+      ],
+      "usage": {
+        "inputTokens": 119,
+        "outputTokens": 136,
+        "totalTokens": 255
+      },
+      "latencyMs": 4374,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是 **10 家位於台北市信義區**、且在整理型美食指南中常被推薦的餐廳；我也附上每家簡要理由，方便你快速挑選。這些店多集中在信義商圈，適合聚餐、約會、慶生或逛街順吃。[1][2][3][5][7][9]\n\n- **鼎泰豐（信義A4／101／A13）**：小籠包是招牌，分店多、穩定度高，適合想吃經典台灣味或帶外地朋友用餐。[3]\n- **心潮飯店**：主打時髦復古風台菜，且被列為信義區米其林上榜餐廳之一，適合聚餐與拍照。[5]\n- **旭集和食集錦（信義區分店）**：屬於高人氣吃到飽，品項完整，適合想一次吃到多種日式料理的人。[5][7]\n- **饗饗（信義區分店）**：以高樓",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 269,
+          "totalTokens": 319
+        },
+        "latencyMs": 12452,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、晚餐**每人約 500–999 元**，且從搜尋結果可支持其價格帶與類型的餐廳；我也簡要列出推薦理由。部分店家的「每人晚餐預算」未直接標示，以下是依搜尋結果中的**均消、套餐價、吃到飽/定價**推估是否落在你的預算區間，這部分屬於合理推斷。  \n\n| 餐廳 | 推薦理由 | 預算依據 |\n|---|---|---|\n| **Hoda Bistro** | 搜尋結果指出它是信義區評分高的平價餐酒館，適合約會或聚餐，菜色與調酒選擇多，氛圍感強。[2] | 屬於平價餐酒館類型，符合約 500–999 元的晚餐預算範圍。[2] |\n| **激安の食事酒場－市府二號店** | 主打日式居酒屋與暢飲方案，適合朋友聚餐",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【BaganHood】台北信義蔬食餐酒館推薦，特色必吃精緻異國料理、每日限量披薩！創造嶄新飲食風格\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n…\n...\n【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區莊敬路327號/** **02 8780 9559**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n**■ 台北寒舍艾美酒店 探索廚房**\n地址：110台北市信義區松仁路38號\n電話：0266228018\n營業時間：06:30–10:00、11:30–14:00、15:00–17:00、18:00–21:00\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~2...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃1 Chili's 美式餐廳\n- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n- 台北平價餐廳推薦＃5 獅子甜點\n- 台北平價餐廳推薦＃6 Gumgum 雞翅啤酒吧\n- 台北平價餐廳推薦＃7 Musée Kitchen & Bar\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n- 台北平價餐廳推薦＃9 豬跳舞小館\n- 台北平價餐廳推薦＃10 AN58 承德店\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2025-10-01",
+            "last_updated": "2025-10-19",
+            "place_metadata": null,
+            "snippet": "均消 $1200今日營業: 11:30-14:00, 17:30-21:30臺北市信義區和平東路三段215號牛排精緻高級約會餐廳\n...\n均消 $1000現正營業: 11:30-23:00臺北市信義區松智路17號46F咖哩酒吧景觀餐廳\n...\n均消 $800今日營業: 11:00-14:00, 17:00-21:00臺北市信義區仁愛路四段506號中式料理火鍋合菜\n…",
+            "source": "web",
+            "title": "台北1000元以內餐廳推薦！ Saffron 46及其他354家精選",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/1000%E5%85%83%E4%BB%A5%E5%85%A7"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n...\n《**樂葵法式鐵板燒微風南山店**》Google評價高又不貴，十道精緻料理價格只要1650元＋10%，適合約會慶生、犒賞自己或同事請客，這間真的很可以。\n...\n地址：台北市信義區松智路17號5樓（微風南山5F）\n電話：02 6605 7122\n...\n**香米泰式料理 信義遠百A13店\n** 地址：台北市信義區松仁路58號4樓\n營業時間：\n...\n電話：02-27786806",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n|--|--|--|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n|大味王吃到飽火鍋|$250起| |\n...\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 259,
+          "totalTokens": 323
+        },
+        "latencyMs": 11341,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

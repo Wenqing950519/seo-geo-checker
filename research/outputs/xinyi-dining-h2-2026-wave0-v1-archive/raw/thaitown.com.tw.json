@@ -1,0 +1,440 @@
+{
+  "url": "https://www.thaitown.com.tw/",
+  "measured_at": "2026-09-09T06:22:34.209Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website thaitown.com.tw (title: 瓦城泰國料理｜全國最大泰國料理第一品牌！). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 瓦城泰國料理 | 瓦城泰統股份有限公司\n\nThe website thaitown.com.tw is publicly associated with the brand 瓦城泰國料理, and TTFB瓦城泰統集團 lists the service email domain thaitown.com.tw for the 瓦城 brand[1][2]. This supports the entity as the Thai restaurant brand 瓦城泰國料理 under the瓦城泰統 group; other similarly named entities are not verified here[1][2].",
+      "citations": [
+        "https://ifgmall.fg-retail.com.tw/Brand/brandPony?id=4032&dian_id=1",
+        "https://wanderlog.com/place/details/4074411",
+        "https://footinder.com.tw/%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80/180475/",
+        "https://tiffany0118.tw/thaitown/",
+        "https://wanderlog.com/place/details/2624625/thai-town-cuisine-taichung-lihpao-outlet-mall-store",
+        "https://wwang17.pixnet.net/blog/posts/16004130192",
+        "https://hanblog.tw/thaitown2025/",
+        "https://www.thaitownsydney.com.au/",
+        "https://www.104.com.tw/company/wjm40k8",
+        "https://goodness0983.pixnet.net/blog/posts/31886517",
+        "https://flyblog.cc/thai-town-cuisin/",
+        "https://footinder.com.tw/%E6%A1%83%E5%9C%92%E5%B8%82%E8%98%86%E7%AB%B9%E5%8D%80/63929/",
+        "https://eggie.tw/blog/posts/8233538339",
+        "https://www.ttfb.com/contact-us",
+        "https://misshuan.tw/thaitown-2025-1102/"
+      ],
+      "searchResults": [
+        {
+          "date": "2024-07-12",
+          "last_updated": "2024-09-28",
+          "place_metadata": null,
+          "snippet": "- 樓層1F 都會潮流\n- 電話02-2697-1356\n- 官網www.thaitown.com.tw",
+          "source": "web",
+          "title": "瓦城泰國料理",
+          "url": "https://ifgmall.fg-retail.com.tw/Brand/brandPony?id=4032&dian_id=1"
+        },
+        {
+          "date": "2025-08-10",
+          "last_updated": "2026-09-01",
+          "place_metadata": null,
+          "snippet": "###### Address\n2樓, No. 20號, Jingye 3rd Rd, Zhongshan District, Taipei City, Taiwan 10491\n...\nhttp://www.thaitown.com.tw/\n...\n+886 2 2175 3355",
+          "source": "web",
+          "title": "Thai Town Cuisine - Miramar Store, Taipei, Taiwan - Reviews, Ratings, Tips and Why You Should Go – Wanderlog",
+          "url": "https://wanderlog.com/place/details/4074411"
+        },
+        {
+          "date": "2023-08-17",
+          "last_updated": "2025-04-06",
+          "place_metadata": null,
+          "snippet": "|地址|330 桃園市桃園區 南平路370號2樓|\n|電話|03 316 2990|",
+          "source": "web",
+          "title": "桃園市桃園區 瓦城泰國料理 – 桃園中正店",
+          "url": "https://footinder.com.tw/%E6%A1%83%E5%9C%92%E5%B8%82%E6%A1%83%E5%9C%92%E5%8D%80/180475/"
+        },
+        {
+          "date": "2022-03-25",
+          "last_updated": "2025-07-28",
+          "place_metadata": null,
+          "snippet": "瓦城泰國料理-台北三越信義店(新光三越A9) 地址：台北市松壽路9號7樓 電話：(02)2723-9987 營業時間： 週一~週四 11:00~15:00",
+          "source": "web",
+          "title": "[泰式料理]瓦城泰國料理(附線上訂位)/台北泰式料理餐廳推薦/捷運市政府站美食 @小佳的幻想世界",
+          "url": "https://tiffany0118.tw/thaitown/"
+        },
+        {
+          "date": "2024-12-30",
+          "last_updated": "2026-07-11",
+          "place_metadata": null,
+          "snippet": "###### Address\n1F, No. 201 號, Furong Rd, Yuemei Village, Houli District, Taichung City, Taiwan 421\n...\nhttp://www.thaitown.com.tw/\n...\n+886 4 2558 5277\n...\nMoMonday: 11AM–3PM, 5–9:30PM\nTuTuesday: 11AM–3PM, 5–9:30PM\nWeWednesday: 11AM–3PM, 5–9:30PM\nThThursday: 11AM–3PM, 5–9:30PM\nFrFriday: 11AM–3PM, 5–...",
+          "source": "web",
+          "title": "Thai Town Cuisine - Taichung Lihpao Outlet Mall Store - Wanderlog",
+          "url": "https://wanderlog.com/place/details/2624625/thai-town-cuisine-taichung-lihpao-outlet-mall-store"
+        },
+        {
+          "date": "2020-02-22",
+          "last_updated": "2026-06-25",
+          "place_metadata": null,
+          "snippet": "**地址：台北市中正區忠孝西路一段66號12樓 **\n**電話：02-23111125 **\n**官方網站：https://www.thaitown.com.tw/**",
+          "source": "web",
+          "title": "【台北中正】瓦城泰國料理台北三越站前店｜4人迎新春饗宴泰國奶茶 ...",
+          "url": "https://wwang17.pixnet.net/blog/posts/16004130192"
+        },
+        {
+          "date": "2025-03-17",
+          "last_updated": "2026-07-12",
+          "place_metadata": null,
+          "snippet": "官網: https://www.thaitown.com.tw/\n分店資訊: https://www.thaitown.com.tw/tw/store\n瓦城泰國料理 中壢大江店\n地址: 桃園市中壢區中園路二段509號4樓\n電話: 03-468-0488",
+          "source": "web",
+          "title": "[泰式料理] 瓦城泰國料理– 菜色美味豐富，聚餐好選擇，台灣最知名的泰 ...",
+          "url": "https://hanblog.tw/thaitown2025/"
+        },
+        {
+          "date": "2025-01-17",
+          "last_updated": "2026-07-28",
+          "place_metadata": null,
+          "snippet": "2 Campbell Street Haymarket\n...\n+61 281 885 011",
+          "source": "web",
+          "title": "Thaitown Sydney",
+          "url": "https://www.thaitownsydney.com.au/"
+        },
+        {
+          "date": "2026-07-01",
+          "last_updated": "2026-08-15",
+          "place_metadata": null,
+          "snippet": "新北市中和區建一路176號7樓之1",
+          "source": "web",
+          "title": "瓦城泰統股份有限公司📢｜徵才中",
+          "url": "https://www.104.com.tw/company/wjm40k8"
+        },
+        {
+          "date": "2008-10-20",
+          "last_updated": "2026-07-19",
+          "place_metadata": null,
+          "snippet": "**店家網址**：http://www.thaitown.com.tw/index.html\n**這次是去**：環球店\n地址：台北縣中和市中山路三段122號4樓\n電話：(02)7731-7778\n**消費方式**：有2種，一是**點菜式** 的，一是**組合套餐**，但都是另加一成服務費",
+          "source": "web",
+          "title": "【食記】瓦城泰國料理",
+          "url": "https://goodness0983.pixnet.net/blog/posts/31886517"
+        },
+        {
+          "date": "2024-09-01",
+          "last_updated": "2025-11-25",
+          "place_metadata": null,
+          "snippet": "官網：https://www.thaitown.com.tw/\n...\n地址：台中市北區三民路三段161號A棟中友百貨12樓\n電話：(04)2220-5678\n營業時間：11:00~15:00；17:00~22:00",
+          "source": "web",
+          "title": "瓦城中友店餐點",
+          "url": "https://flyblog.cc/thai-town-cuisin/"
+        },
+        {
+          "date": "2023-10-11",
+          "last_updated": "2026-08-05",
+          "place_metadata": null,
+          "snippet": "|地址|338 桃園市蘆竹區 南崁路一段112號6樓|\n|電話|03 321 1321|",
+          "source": "web",
+          "title": "桃園市蘆竹區瓦城泰國料理- 桃園台茂店",
+          "url": "https://footinder.com.tw/%E6%A1%83%E5%9C%92%E5%B8%82%E8%98%86%E7%AB%B9%E5%8D%80/63929/"
+        },
+        {
+          "date": "2023-10-31",
+          "last_updated": "2026-06-08",
+          "place_metadata": null,
+          "snippet": "- 地址：台北市士林區天母東路68號7樓(**天母新光三越** 1館)\n- 電話：02-28736680\n- 營業時間：週一~五11:00–15:00, 17:00–21:30 週六、日11:00~22:00\n- 官網：https://www.thaitown.com.tw/",
+          "source": "web",
+          "title": "[天母美食] 瓦城泰國料理天母三越店泰式料理連鎖餐廳#士林北投天母 ...",
+          "url": "https://eggie.tw/blog/posts/8233538339"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-01",
+          "place_metadata": null,
+          "snippet": "|品牌|服務專線|服務信箱|\n|--|--|--|\n|瓦城|0800-086680|service@thaitown.com.tw|",
+          "source": "web",
+          "title": "聯絡我們- TTFB瓦城泰統集團",
+          "url": "https://www.ttfb.com/contact-us"
+        },
+        {
+          "date": "2025-11-08",
+          "last_updated": "2025-12-08",
+          "place_metadata": null,
+          "snippet": "地址：台中市復興路四段186號4樓",
+          "source": "web",
+          "title": "台中東區美食【瓦城】帶壽星來吃泰式料理餐廳！打折還送 ...",
+          "url": "https://misshuan.tw/thaitown-2025-1102/"
+        }
+      ],
+      "usage": {
+        "inputTokens": 132,
+        "outputTokens": 113,
+        "totalTokens": 245
+      },
+      "latencyMs": 8003,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、且在多篇信義區餐廳整理文中反覆出現、適合不同場合的餐廳；我也附上每家**簡要推薦理由**，方便你快速挑選。[2][3][5][7][9]\n\n| 餐廳 | 類型 | 簡要理由 |\n|---|---|---|\n| **鼎泰豐（101店／A4／A13）** | 小籠包／中式 | 信義區經典名店，搜尋結果中多次被列為高評價、最具代表性的信義區餐廳之一，適合觀光客與家庭聚餐。[3][4][10] |\n| **心潮飯店 Sinchao Rice Shoppe** | 台菜／餐酒館 | 多篇文章將它列入信義區必吃與米其林相關推薦，主打時髦台菜與聚餐氛圍。[5] |\n| **The Ukai Taipei** | 高級餐廳／鐵板燒 | 常被列為信義區米其",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 262,
+          "totalTokens": 312
+        },
+        "latencyMs": 9674,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下是**10 家位於台北市信義區**、較符合你所說**每人晚餐預算約 500～999 元**的餐廳；我優先挑選有明確信義區地址、且公開資訊顯示價位大致落在這個區間或相近的店家[1][2][5][6][7][8][9]。\n\n- **激安の食事酒場－市府二號店**：居酒屋型態，資料顯示兩小時暢飲約 **698 元**，很適合把晚餐預算控制在 500～999 元內[1][2]。\n- **Chili’s 美式餐廳（信義店）**：屬於信義區少見的平價美式餐廳，公開資料提到人均消費約 **500 元**，適合聚餐[7]。\n- **Gumgum 雞翅啤酒吧**：主打炸雞翅與啤酒，資料顯示均消約 **500 元**，晚餐預算好掌控[7]。\n-",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！\n...\n【PLAYING Hookah Bar 餐廳水煙館】台北信義下午茶推薦，水煙與美食的美味饗宴，嚴選一系列甜點直接圈粉啦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區松智路17號5 樓/02 2723 8055**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "平均消費\n...\n現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理\n...\n10.下港吔羊肉爐、羊肉專賣店",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n📍台北市信義區忠孝東路五段412-6號1樓\n...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n- 信義區美食推薦 燒石鼎石頭小火鍋信義店\n- 信義區美食推薦 辛喬麻辣私房湯底麻辣鴛鴦\n...\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n...\n地址：台北市信義區信義路四段3...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n...\n### 『 兩餐 』 두끼 韓國年糕火鍋吃到飽-信義店\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n- ...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "美食品嚐 · 臺北\n平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 260,
+          "totalTokens": 324
+        },
+        "latencyMs": 5768,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}

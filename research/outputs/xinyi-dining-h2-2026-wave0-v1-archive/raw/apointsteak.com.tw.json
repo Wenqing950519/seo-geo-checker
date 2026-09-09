@@ -1,0 +1,440 @@
+{
+  "url": "https://www.apointsteak.com.tw/",
+  "measured_at": "2026-09-09T06:11:54.991Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v1.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v1.0",
+      "queries": [
+        "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？"
+      ],
+      "queryIds": [
+        "broad-01",
+        "budget-mid-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "decision"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website apointsteak.com.tw (title: 牛排館榮獲Tripadvisor 滿分五顆星推薦|台北牛排館信義區唯一絕佳視野夜景聚會場所 | 艾朋牛排館). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 艾朋牛排餐酒館 | A Point Steak & Bar\n\nThe website apointsteak.com.tw is publicly associated with 艾朋牛排餐酒館 / A Point Steak & Bar, including its own site pages and multiple public pages that quote the site address and contact details.[2][7][8][11] The Tripadvisor listing for the same restaurant brand at Xinyi District also matches this entity.[12]",
+      "citations": [
+        "https://beri.tw/a-point-steak/",
+        "https://www.apointsteak.com.tw/ec99/rwd1153/news3.asp?newsno=70",
+        "https://msfood.pixnet.net/blog/posts/16186938764",
+        "https://yummyyummy.tw/apoint/",
+        "https://imccp.com/apointsteak/",
+        "https://nasheat.tw/a-point/",
+        "https://www.apointsteak.com.tw/ec99/rwd1153/category.asp?category_id=5",
+        "https://snoopyblog.com/blog/post/apointsteak",
+        "https://msfood.pixnet.net/blog/post/186938764",
+        "https://shff.tw/apoint/",
+        "https://eggie.tw/blog/post/225629945",
+        "https://cn.tripadvisor.com/Restaurant_Review-g13808515-d14090509-Reviews-or30-A_Point_Steak_Bar-Xinyi_District_Taipei.html",
+        "https://stancylife.com/a-point-steak-bar/",
+        "https://nash.tw/a-point/",
+        "https://www.yelp.com/biz/%E8%89%BE%E6%9C%8B%E7%89%9B%E6%8E%92%E9%A4%90%E9%85%92%E9%A4%A8-%E4%BF%A1%E7%BE%A9%E5%8D%80"
+      ],
+      "searchResults": [
+        {
+          "date": "2024-08-04",
+          "last_updated": "2025-12-02",
+          "place_metadata": null,
+          "snippet": "✅營業時間：午餐11:30~15:00(最後點餐14:00)\n晚餐17:30~21:30(最後點餐21:00)\n宵夜21:30~03:00(最後點餐2:00)",
+          "source": "web",
+          "title": "艾朋牛排餐酒館｜台北信義區高級牛排餐廳西班牙豪華木炭烤箱的 ...",
+          "url": "https://beri.tw/a-point-steak/"
+        },
+        {
+          "date": "2020-05-11",
+          "last_updated": "2025-09-03",
+          "place_metadata": null,
+          "snippet": "地址：台北市信義區忠孝東路五段139號2樓 (市府捷運站4號出口 步行2-3分鐘)\n電話： 02 2756 7788\n...\n官網： http://www.apointsteak.com.tw/",
+          "source": "web",
+          "title": "愛吃鬼Mina - 牛排館榮獲Tripadvisor 滿分五顆星推薦 - 艾朋牛排餐酒館",
+          "url": "https://www.apointsteak.com.tw/ec99/rwd1153/news3.asp?newsno=70"
+        },
+        {
+          "date": "2025-06-26",
+          "last_updated": "2026-05-03",
+          "place_metadata": null,
+          "snippet": "地址：台北市信義區忠孝東路五段139號2樓\n電話：02-2756-7788\n營業時間：週一至週日 11: 30-15 : 00、 17 : 30-03: 00",
+          "source": "web",
+          "title": "台北高人氣牛排餐酒館推薦：艾朋套餐菜單、壽星優惠一次看",
+          "url": "https://msfood.pixnet.net/blog/posts/16186938764"
+        },
+        {
+          "date": "2021-06-29",
+          "last_updated": "2025-04-28",
+          "place_metadata": null,
+          "snippet": "電話:02 2756 7788\n營業時間:週日～週四：11:30-15:00、 17:30-3:00/週五、週六：11:30-15:00、17:30-4:00",
+          "source": "web",
+          "title": "台北市政府美食艾朋牛排餐酒館，怎麼吃高級牛排最便宜～餐券購買推薦！ - YummyFood＊呀咪懂吃",
+          "url": "https://yummyyummy.tw/apoint/"
+        },
+        {
+          "date": "2022-12-06",
+          "last_updated": "2025-07-06",
+          "place_metadata": null,
+          "snippet": "營業時間：11:30~15:00、17:30~03:00\n電話：(02)27567788\n官網：http://www.apointsteak.com.tw/",
+          "source": "web",
+          "title": "艾朋牛排餐酒館。台北信義區浪漫夜景輕鬆氣氛約會晚餐/宵夜選擇 | 啾啾愛亂拍",
+          "url": "https://imccp.com/apointsteak/"
+        },
+        {
+          "date": "2021-01-11",
+          "last_updated": "2025-09-07",
+          "place_metadata": null,
+          "snippet": "台北市信義區忠孝東路五段139號2樓(捷運市政府站4號出口)\n...\n午餐：11:30~15:00(最後點餐及收客時間為14:00)\n晚餐：17:30~21:30(最後點餐時間為21:00)\n...\n週五至週六21:30~04:00(最後點餐及收客時間為03:00)\n週日至週四21:30~03:00(最後點餐及收客時間為2:00)",
+          "source": "web",
+          "title": "艾朋牛排餐酒館|台北牛排館推薦中午開到凌晨的宵夜選擇(菜單)",
+          "url": "https://nasheat.tw/a-point/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-08-18",
+          "place_metadata": null,
+          "snippet": "#### 營業時間 Business Hours\n- 午餐 Lunch：11:30~15:00\n(最後點餐及收客時間為14:00)\n- 晚餐 Dinner：17:30~21:30\n(最後點餐時間為21:00)\n- 宵夜 Late Night Meals：\n21:30~03:00(最後點餐及收客時間為2:00)\n#### TEL : 02-2756-7788 FAX : 02-2749-2863\n- 台北市信義區忠孝東路五段139號2樓\n(捷運市政府站4號出口)",
+          "source": "web",
+          "title": "晚餐<br><span>Dinner</span> - 餐別- 牛排館榮獲 ...",
+          "url": "https://www.apointsteak.com.tw/ec99/rwd1153/category.asp?category_id=5"
+        },
+        {
+          "date": "2019-11-24",
+          "last_updated": "2025-03-23",
+          "place_metadata": null,
+          "snippet": "**台北市信義區忠孝東路五段139號2樓**\n**電話：(02)2756 7788**\n**營業時間：週一至週日11:30-15:00、17:30-凌晨04:00**\n**官方網站：⇒http://www.apointsteak.com.tw**",
+          "source": "web",
+          "title": "【吃喝．台北】信義區約會餐廳／À Point Steak & Bar 艾朋牛排餐酒館～信義區絕佳景觀，大推鮮嫩多汁果木燻烤牛排 @史努比遊樂園",
+          "url": "https://snoopyblog.com/blog/post/apointsteak"
+        },
+        {
+          "date": "2025-06-26",
+          "last_updated": "2025-07-22",
+          "place_metadata": null,
+          "snippet": "電話：02-2756-7788\n營業時間：週一至週日 11: 30-15 : 00、 17 : 30-03: 00",
+          "source": "web",
+          "title": "台北高人氣牛排餐酒館推薦：艾朋套餐菜單、壽星優惠一次看－Food誌小姐的日嚐筆記｜痞客邦",
+          "url": "https://msfood.pixnet.net/blog/post/186938764"
+        },
+        {
+          "date": "2019-07-02",
+          "last_updated": "2025-09-07",
+          "place_metadata": null,
+          "snippet": "電話：02-27567788\n...\n官方網站：⇒http://www.apointsteak.com.tw",
+          "source": "web",
+          "title": "台北艾朋牛排餐酒館給你超頂級的料理饗宴Prime美國頂級老饕牛排",
+          "url": "https://shff.tw/apoint/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-01-15",
+          "place_metadata": null,
+          "snippet": "- 地址：台北市\n**信義區**忠孝東路五段139號2樓\n...\n- 營業時間：午餐11:30-15:00、晚餐17:30-03:00\n- 電話：02-2756-7788\n- 官網：http://www.apointsteak.com.tw/",
+          "source": "web",
+          "title": "[信義區美食] 艾朋牛排餐酒館 A Point Steak & Bar 適合宵夜約會牛排館！信義區市政府站美食 @蛋寶趴趴go－蛋寶趴趴go｜痞客邦",
+          "url": "https://eggie.tw/blog/post/225629945"
+        },
+        {
+          "date": "2020-01-01",
+          "last_updated": "2026-02-25",
+          "place_metadata": null,
+          "snippet": "上午11:30 - 下午3:00下午5:30 - 下午9:30",
+          "source": "web",
+          "title": "艾朋牛排餐酒馆(Xinyi District) - 餐厅/美食点评 - Tripadvisor",
+          "url": "https://cn.tripadvisor.com/Restaurant_Review-g13808515-d14090509-Reviews-or30-A_Point_Steak_Bar-Xinyi_District_Taipei.html"
+        },
+        {
+          "date": "2024-06-07",
+          "last_updated": "2025-02-24",
+          "place_metadata": null,
+          "snippet": "**艾朋牛排餐酒館**」信義區忠孝東路上面市政府捷運四號出口，營業到凌晨三點，浪漫約會的情侶深夜不怕餓肚子，引進五星飯店才會使用的「 **西班牙JOSPER百萬烤箱果木燻烤牛排**」實在太厲害！",
+          "source": "web",
+          "title": "信義區高檔牛排館就是不一樣，還有新鮮活跳跳龍蝦買一送一超划算",
+          "url": "https://stancylife.com/a-point-steak-bar/"
+        },
+        {
+          "date": "2021-01-11",
+          "last_updated": "2026-06-05",
+          "place_metadata": null,
+          "snippet": "> 台北市信義區忠孝東路五段139號2樓(捷運市政府站4號出口)\n...\n> 午餐：11:30~15:00(最後點餐及收客時間為14:00)\n> 晚餐：17:30~21:30(最後點餐時間為21:00)\n> 宵夜：\n> 週五至週六21:30~04:00(最後點餐及收客時間為03:00)\n> 週日至週四21:30~03:00(最後點餐及收客時間為2:00)",
+          "source": "web",
+          "title": "艾朋牛排餐酒館|台北牛排館推薦中午開到凌晨的宵夜選擇 ...",
+          "url": "https://nash.tw/a-point/"
+        },
+        {
+          "date": "2022-05-08",
+          "last_updated": "2024-12-02",
+          "place_metadata": null,
+          "snippet": "2/F, No. 139, Section 5, Zhongxiao East Road 忠孝東路五段139號2樓 Xinyi District, 台北市 110 Taiwan",
+          "source": "web",
+          "title": "艾朋牛排餐酒館 - Xinyi District, TPE",
+          "url": "https://www.yelp.com/biz/%E8%89%BE%E6%9C%8B%E7%89%9B%E6%8E%92%E9%A4%90%E9%85%92%E9%A4%A8-%E4%BF%A1%E7%BE%A9%E5%8D%80"
+        }
+      ],
+      "usage": {
+        "inputTokens": 160,
+        "outputTokens": 98,
+        "totalTokens": 258
+      },
+      "latencyMs": 5167,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區的餐廳，簡要說明理由？",
+        "answer": "以下是 10 家**位於台北市信義區**、在整理信義區餐廳推薦中反覆出現、且適合不同情境的餐廳；我並簡要寫出各自的推薦理由。這些店家多來自信義區美食清單、聚餐／約會推薦與百貨商圈餐廳整理，因此**代表性與實用性較高**。[1][2][3][5][7][9]\n\n- **鼎泰豐（101店／A4／A13）**：小籠包是經典招牌，且在多份信義區餐廳整理中都被列入必吃名單，適合第一次到信義區用餐的人。[3][5]\n- **心潮飯店**：主打時髦復古風台菜，常被列為信義區米其林／精緻台菜代表，適合聚餐或請客。[5]\n- **The Ukai Taipei**：位於信義區高樓層、以高級餐飲與景觀著稱，適合慶祝或約會。[",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://wanteatfood.com/recommend/82283",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://niniyeh.com/xinyi-food-guide/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳\n...\n110台灣臺北市信義區忠孝東路四段553巷46弄11號\n02 3762 2557\n...\n110台灣臺北市信義區忠孝東路五段68號微風信義4樓\n...\n110台灣台北市信義區基隆路一段147巷5弄1號1樓\n02 2767 9595\n...\n110台灣台北市信義區忠孝東路五段68號4樓",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-09-06",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "1 信義區美食｜Second Floor 貳樓微風南山店\n2 信義區美食｜京都餃子的王將 台北統一時代店\n3 信義區美食｜穆記牛肉麵\n4 信義區美食｜富士豬排 とんかつ富士 熟成豬排 微風南山店\n...\n9 信義區美食｜Engolili 英格莉莉 統一時代店\n10 信義區美食｜炒湘湘 微風信義店",
+            "source": "web",
+            "title": "信義區美食推薦｜44間必吃美食清單，小籠包／漢堡 - 在地老饕阿府",
+            "url": "https://wanteatfood.com/recommend/82283"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **「鼎泰豐」遠百信義A13(4.5分/2,625則)：台北市松仁路58號/02-8780-5200**\n- **「鼎泰豐」信義A4(4.6分/3,997則)：** **台北市信義區松高路19號B2/** **02-2345-2528**\n- **「鼎泰豐」101店(4.5分/12,382則)：** **台北市信義區市府路45號B1/** **02-8101-7799**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2025-01-10",
+            "last_updated": "2025-05-22",
+            "place_metadata": null,
+            "snippet": "**信義區美食推薦：微風信義餐廳**\n...\n▶︎地址：110台北市信義區忠孝東路五段68號4樓（Google Map）\n▶︎營業時間：11:00–14:30、17:30–21:00\n...\n▶︎地址：110台北市信義區忠孝東路五段68號45樓（Google Map）\n...\n▶︎地址：110台北市信義區松壽路12號ATT 4 FUN百貨6樓（Google Map）\n▶︎營業時間：11:30–14:00、14:30–16:30、17:30–21:00（週末至21:30）\n...\n▶︎地址：110台北市信義區基隆路一段147巷25號1樓（Google Map）\n▶︎營業時間：11:30–22:3...",
+            "source": "web",
+            "title": "信義區美食推薦！Top20火鍋燒烤/餐酒館/高級餐廳/平價美食推薦！",
+            "url": "https://www.kkday.com/zh-tw/blog/185865/asia-taiwan-taipei-xinyi-food"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-08-08",
+            "place_metadata": null,
+            "snippet": "|美食類型|編輯推薦|網友推薦|\n|米其林餐廳|心潮飯店、NARA Thai Cuisine、The Ukai Taipei、侯布雄法式餐廳|鮨中澤、捌伍添第、牡丹、川雅|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|\n|早午餐餐廳|貳樓、Brun不然、Miacucina、M One Cafe、Flare Taipei|11日和、TAMED FOX、rén bistronomy、LEAVES Cafe、waku waku burger、W...",
+            "source": "web",
+            "title": "2026信義區美食：解鎖吃到飽天花板、台菜餐酒館 - 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-08-23",
+            "place_metadata": null,
+            "snippet": "**內容目錄** 隱藏\n...\n2 信義區美食｜JACK BROTHERS STEAKHOUSE 傑克兄弟牛排",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "台北信義區生意最好的吃到飽，首推**寒舍艾美酒店探索廚房**！\n...\n地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n...\n**■ 明水然・樂-遠百信義店**\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00\n...\n地址：110台北市信義區松高路12號2樓（新光三越信義A8二樓）\n電話：022729000...",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2025-08-12",
+            "last_updated": "2026-09-06",
+            "place_metadata": null,
+            "snippet": "【**Lit Lit早午餐酒吧 台北大巨蛋**】\n- 地址：台北市**信義區** 忠孝東路四段515號\n- 電話：02-27600793\n...\n- 地址：台北市**信義區** 信義路五段122號\n- 電話：02-27221369\n- 營業時間：11:00~15:00 / 17:30~22:00\n...\n- 地址：台北市吳興街345巷6號\n- 電話：02-27201148\n...\n- 地址：台北市**信義區** 光復南路585號\n- 電話：02-87809222\n...\n**【王鍋屋·酸白菜鍋專門店 SHABU ONG 】**\n- 地址：台北市信義區逸仙路50巷20號1樓\n- 電話：02-27...",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n...\n- 信義區美食推薦 如嫣私廚職人料理\n...\n這篇《**信義區美食**》推薦幾間適合聚餐名單參考\n君曜雞湯、KameKona夏威夷鐵板燒逸仙店、四川吳抄手信義店\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n…\n...\n地址：台北市信義區信義路四段393號\n電話：02 272...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-07-31",
+            "last_updated": "2026-09-07",
+            "place_metadata": null,
+            "snippet": "地點：台北信義新天地A4館 6F\n電話：02-2345-8585\n...\n地點：台北市信義區松壽路9號4樓 (新光三越A9)\n電話：(02) 2722 8886\n…\n...\n電話： 02 2729 0538\n...\n地點：台北信義新天地A11館 3F",
+            "source": "web",
+            "title": "台北信義區美食懶人包！信義新光三越必吃餐廳超過15家推薦",
+            "url": "https://www.elle.com/tw/life/foodie/g69066222/shin-kong-mitsukoshi-food-recommendations/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 50,
+          "outputTokens": 265,
+          "totalTokens": 315
+        },
+        "latencyMs": 5374,
+        "attempts": 1,
+        "queryId": "broad-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "請推薦 10 家位於台北市信義區、每人晚餐預算約 500 到 999 元的餐廳，簡要說明理由？",
+        "answer": "以下先以「**信義區、晚餐每人約 500–999 元**」為條件，挑出 10 家較符合的餐廳；其中部分店家是根據公開整理文與菜單價位推估落在這個區間，實際消費仍會因點餐內容而不同。[1][2][6][8][9]\n\n| 餐廳 | 類型 | 為什麼推薦 |\n|---|---|---|\n| **激安の食事酒場-市府二號店** | 居酒屋 | 文中主打兩小時暢飲 **$698**，很適合晚餐聚餐，且屬於信義區常見的下班小酌選擇。[1][2] |\n| **來吧台北** | 日式餐酒館 | 文章標示 **3 小時調酒暢飲 1000 元**，接近你的預算上限，適合想吃晚餐兼聚會的人。[1][2] |\n| **Chili’s 美式餐廳** | 美式餐廳 | 平價餐廳",
+        "citations": [
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://blog.myfunnow.com/blog/415",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://travel.yam.com/article/138602",
+          "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-08-29",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-08-31",
+            "place_metadata": null,
+            "snippet": "【激安の食事酒場-市府二號店】台北信義居酒屋美食推薦，暢飲兩小時只要$698，道地日式風情聚會紓壓！\n...\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦\n...\n【初殿鍋物】台北永春站人氣火鍋美食推薦，平日套餐299元起，信義區必吃的平價火鍋餐廳推薦！\n...\n【PLAYING Hookah Bar 餐廳水煙館】台北信義下午茶推薦，水煙與美食的美味饗宴，嚴選一系列甜點直接圈粉啦！",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2022-09-01",
+            "last_updated": "2025-03-27",
+            "place_metadata": null,
+            "snippet": "###### 2025 百選店名單1.朱記餡餅粥店 遠東百貨信義A13店",
+            "source": "web",
+            "title": "台北『信義區便宜餐廳』| 精選TOP 15間熱門店家- 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E4%BE%BF%E5%AE%9C%E9%A4%90%E5%BB%B3"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-08-22",
+            "place_metadata": null,
+            "snippet": "- **台北市信義區松仁路227號/02-2720-8119/營業時間：06:00-13:30(假日至14:00)**\n...\n- **台北市信義區松智路17號5 樓/02 2723 8055**",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶 ...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-04-29",
+            "place_metadata": null,
+            "snippet": "平均消費\n...\n現正營業: 11:30-19:00\n臺北市信義區忠孝東路五段372巷27弄73之1號\n...\n今日營業: 00:00-02:00, 17:00-00:00\n臺北市信義區基隆路一段126號\n合菜宵夜中式料理\n...\n10.下港吔羊肉爐、羊肉專賣店",
+            "source": "web",
+            "title": "台北500元以上餐廳 Top 15 推薦！ 穗川小農鍋物、MRT bistro 復興南京餐酒館... | 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/500%E5%85%83%E4%BB%A5%E4%B8%8A"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-08-04",
+            "place_metadata": null,
+            "snippet": "地址：110台北市信義區松仁路38號\n電話：0266228018\n...\n地址：〒110台北市信義區松仁路58號A13 五樓\n電話：0227229846\n...\n地址：台北市信義區松高路19號6F(新光三越信義新天地A4館，捷運市府站３號出口)\n電話：(02)2772-2687~8\n營業時間：\n平日中餐11:30~14:30，假日中餐11:00~14:30\n平日晚餐17:30~21:30，假日晚餐 17:30~21:30\n...\n地址：110台北市信義區松仁路58號14樓\n電話：0287860466\n營業時間：11:15–15:00、17:15–00:00",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2023-01-03",
+            "last_updated": "2026-08-24",
+            "place_metadata": null,
+            "snippet": "- 台北平價餐廳推薦＃2 杭州小籠湯包\n- 台北平價餐廳推薦＃3 Alleycat's Pizza\n- 台北平價餐廳推薦＃4 GYUU NIKU ステーキ專門店\n...\n- 台北平價餐廳推薦＃8 Plan B 歐陸街頭市集小酒館\n...\n首先是小編精選的五家平價聚餐餐廳，這幾家高 cp 值餐廳不但交通方便、人均消費在 500 元以下、在 FunNow 上的評價也都有 4.8 星以上！小資族還不趕快做筆記！\n...\n平價餐廳台北很難找，尤其是在高級餐廳林立的信義區。Chili’s 以道地的美式料理聞名，是少數不用花大錢就能在信義區吃到的美食！\n...\n📍台北市信義區忠孝東路五段412-6號1樓\n...",
+            "source": "web",
+            "title": "2026 台北平價餐廳排行榜！精選10 間熱門平價餐廳，吃大餐 ...",
+            "url": "https://blog.myfunnow.com/blog/415"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-08-15",
+            "place_metadata": null,
+            "snippet": "- 信義區美食推薦 君曜雞湯\n- 信義區美食推薦 樂葵法式鐵板燒微風南山店\n- 信義區美食推薦 香米泰國料理\n- 信義區美食推薦 如嫣私廚職人料理\n- 信義區美食推薦 安吉食堂\n- 信義區美食推薦 燒石鼎石頭小火鍋信義店\n- 信義區美食推薦 辛喬麻辣私房湯底麻辣鴛鴦\n...\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n豐雞號莊敬店、汆食作伙鍋 統一時代店、刁民酸菜魚台北信義店\nFlare Taipei、小醉好Cafe by Another Round、燒肉中山ZONZEN 台北信義店\n安吉食堂、辛喬麻辣私房湯底麻辣鴛鴦、香米泰式料理\n...\n地址：台北市信義區信義路四段3...",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-10-09",
+            "last_updated": "2026-08-10",
+            "place_metadata": null,
+            "snippet": "|【吃到飽餐廳】|【價位】|沙拉吧|\n...\n|想肉了自助式火鍋燒肉吃到飽|$500起| |\n...\n### 『 兩餐 』 두끼 韓國年糕火鍋吃到飽-信義店\n聯絡電話：02 7745 2220\n店家地址：110台灣台北市信義區松壽路12號4F\n營業時間：\n- 星期一: 11:00 – 22:00\n- 星期二: 11:00 – 22:00\n- 星期三: 11:00 – 22:00\n- 星期四: 11:00 – 22:00\n- 星期五: 11:00 – 23:00\n…\n### 涮乃葉 信義遠百店\n聯絡電話：02 2723 0698\n店家地址：110台灣台北市信義區松仁路58號7樓\n營業時間：\n- ...",
+            "source": "web",
+            "title": "台北、新北平價吃到飽推薦：500元內吃遍火鍋、牛排、燒肉！ - 輕旅行",
+            "url": "https://travel.yam.com/article/138602"
+          },
+          {
+            "date": "2025-08-04",
+            "last_updated": "2025-08-20",
+            "place_metadata": null,
+            "snippet": "美食品嚐 · 臺北\n平價餐廳·中式·麵條·晚餐·台式·午餐 中山區",
+            "source": "web",
+            "title": "臺北最佳平價餐廳",
+            "url": "https://www.klook.com/zh-TW/fnb/city-category/19-129-taipei-mid-range-restaurants/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 64,
+          "outputTokens": 260,
+          "totalTokens": 324
+        },
+        "latencyMs": 5195,
+        "attempts": 1,
+        "queryId": "budget-mid-01",
+        "queryIntent": "decision"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}
