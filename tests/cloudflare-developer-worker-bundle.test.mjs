@@ -10,6 +10,7 @@ try {
   await runWrangler(outputDir);
   const bundle = await readFile(path.join(outputDir, "worker.js"), "utf8");
   const auditWorker = await readFile("services/cloudflare/audit/src/worker.js", "utf8");
+  const pagesHeaders = await readFile("apps/web/public/_headers", "utf8");
   const auditConfig = JSON.parse(await readFile("services/cloudflare/audit/wrangler.jsonc", "utf8"));
   const developerConfig = JSON.parse(await readFile("services/cloudflare/developer-api/wrangler.jsonc", "utf8"));
   assert.doesNotMatch(bundle, /node:sqlite/, "Workers bundle must not include the local SQLite runtime");
@@ -19,7 +20,13 @@ try {
   assert.equal(developerConfig.vars.DEVELOPER_API_RESULT_RETENTION_DAYS, "30");
   assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "false");
   assert.equal(auditConfig.containers[0].image_build_context, "../../..");
+  assert.deepEqual(auditConfig.routes, [
+    { pattern: "geocheck.lisheng.cv/api/*", zone_name: "lisheng.cv" },
+    { pattern: "geocheck.lisheng.cv/report/*", zone_name: "lisheng.cv" }
+  ]);
   assert.match(auditWorker, /AUDIT_ADMISSION_ENABLED/, "Audit Worker must guard new paid jobs with an admission switch");
+  assert.match(auditWorker, /Strict-Transport-Security/, "Audit Worker responses must enable HSTS");
+  assert.match(pagesHeaders, /Strict-Transport-Security:\s*max-age=31536000/i, "Pages responses must enable HSTS");
   console.log("cloudflare developer worker bundle tests passed");
 } finally {
   await rm(outputDir, { recursive: true, force: true });

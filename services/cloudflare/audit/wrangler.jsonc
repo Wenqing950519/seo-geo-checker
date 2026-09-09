@@ -5,6 +5,10 @@
   "compatibility_date": "2026-09-09",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
+  "routes": [
+    { "pattern": "geocheck.lisheng.cv/api/*", "zone_name": "lisheng.cv" },
+    { "pattern": "geocheck.lisheng.cv/report/*", "zone_name": "lisheng.cv" }
+  ],
   "browser": { "binding": "BROWSER" },
   "d1_databases": [{
     "binding": "REPORTS_DB",

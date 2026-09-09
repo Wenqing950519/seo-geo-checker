@@ -5,9 +5,18 @@ const JSON_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
   "Cache-Control": "no-store",
   "CDN-Cache-Control": "no-store",
+  "Strict-Transport-Security": "max-age=31536000",
   "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "strict-origin-when-cross-origin"
 };
+
+function withSecurityHeaders(response) {
+  const headers = new Headers(response.headers);
+  headers.set("Strict-Transport-Security", "max-age=31536000");
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
 
 export class AuditFallbackContainer extends Container {
   defaultPort = 8080;
@@ -205,8 +214,8 @@ export default {
       const pageMatch = url.pathname.match(/^\/report\/([^/]+)$/);
       if (request.method === "GET" && pageMatch) {
         const report = await getReport(env.REPORTS_DB, decodeURIComponent(pageMatch[1]));
-        if (!report) return new Response("<h1>Report not found</h1>", { status: 404, headers: { "Content-Type": "text/html; charset=utf-8" } });
-        return invokeContainer(env, `render-${pageMatch[1]}`, "/render", { report });
+        if (!report) return withSecurityHeaders(new Response("<h1>Report not found</h1>", { status: 404, headers: { "Content-Type": "text/html; charset=utf-8" } }));
+        return withSecurityHeaders(await invokeContainer(env, `render-${pageMatch[1]}`, "/render", { report }));
       }
       if (request.method === "POST" && url.pathname === "/api/leads") {
         const body = await readBody(request);
