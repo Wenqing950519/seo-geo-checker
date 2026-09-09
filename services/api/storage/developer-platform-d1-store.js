@@ -6,7 +6,8 @@ const MAX_D1_RESPONSE_BYTES = 2 * 1024 * 1024;
 function createD1DeveloperPlatformStore(options = {}) {
   const config = normalizeConfig(options.config || process.env);
   const fetchImpl = options.fetch || globalThis.fetch;
-  if (!config.enabled) throw new Error("Developer D1 platform store configuration is incomplete");
+  const execute = options.execute || null;
+  if (!config.enabled && !execute) throw new Error("Developer D1 platform store configuration is incomplete");
 
   async function request(payload) {
     const controller = new AbortController();
@@ -34,10 +35,12 @@ function createD1DeveloperPlatformStore(options = {}) {
   }
 
   async function query(sql, params = []) {
+    if (execute) return (await execute({ sql, params: normalizeParams(params) }))[0] || { results: [] };
     return (await request({ sql, params: normalizeParams(params) }))[0] || { results: [] };
   }
 
   async function batch(statements) {
+    if (execute) return execute({ batch: statements.map(({ sql, params = [] }) => ({ sql, params: normalizeParams(params) })) });
     return request({ batch: statements.map(({ sql, params = [] }) => ({ sql, params: normalizeParams(params) })) });
   }
 
@@ -576,6 +579,22 @@ function createD1DeveloperPlatformStore(options = {}) {
   };
 }
 
+function createBoundD1DeveloperPlatformStore(options = {}) {
+  const db = options.db;
+  if (!db || typeof db.prepare !== "function" || typeof db.batch !== "function") {
+    throw new TypeError("A Cloudflare D1 binding is required");
+  }
+  return createD1DeveloperPlatformStore({
+    ...options,
+    execute: async (payload) => {
+      if (Array.isArray(payload.batch)) {
+        return db.batch(payload.batch.map(({ sql, params }) => db.prepare(sql).bind(...params)));
+      }
+      return [await db.prepare(payload.sql).bind(...payload.params).all()];
+    }
+  });
+}
+
 function normalizeConfig(source) {
   const gatewayUrl = String(source.GEOCHECK_DEVELOPER_D1_GATEWAY_URL || source.gatewayUrl || "").trim().replace(/\/+$/, "");
   const gatewayToken = String(source.GEOCHECK_DEVELOPER_D1_GATEWAY_TOKEN || source.gatewayToken || "").trim();
@@ -653,4 +672,4 @@ function mapBudgetWindow(row) {
   };
 }
 
-module.exports = { createD1DeveloperPlatformStore };
+module.exports = { createBoundD1DeveloperPlatformStore, createD1DeveloperPlatformStore };

@@ -20,7 +20,7 @@ const PERPLEXITY_CALLS_PER_SITE = 3;
 
 async function measureGeoSite(siteUrl, options = {}) {
   const representativePageLimit = boundedInt(options.representativePageLimit, 3, 0, 5);
-  const homepage = await fetchHomepage(siteUrl);
+  const homepage = options.homepage || await fetchHomepage(siteUrl);
   const finalUrl = homepage.finalUrl || homepage.url || siteUrl;
   const siteType = classifySite({ url: finalUrl, metadata: homepage.metadata, text: homepage.text });
   const technical = await fetchTechnicalSignals(siteUrl, homepage);

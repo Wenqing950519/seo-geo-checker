@@ -214,6 +214,43 @@ async function fetchHomepage(url) {
   };
 }
 
+function createHomepageFromHtml(html, siteUrl, options = {}) {
+  const fetchMethod = String(options.fetchMethod || "browser-run");
+  const result = decorateResult({
+    ...processHtml(String(html || ""), fetchMethod),
+    statusCode: Number(options.statusCode || 200),
+    finalUrl: String(options.finalUrl || siteUrl),
+    headers: options.headers || { contentType: "text/html", xRobotsTag: "" }
+  }, siteUrl);
+  const crawlQuality = assessCrawlQuality(result);
+  if (!crawlQuality.scorable) {
+    throw new AppError("首頁資料不足，無法產生可信分數", {
+      statusCode: 422,
+      stage: "crawl_quality",
+      retryable: false,
+      details: { crawlQuality, fetchMethod }
+    });
+  }
+  return {
+    ...result,
+    crawlQuality,
+    initialHtml: "",
+    initialText: "",
+    initialTextLength: 0,
+    renderAttempted: true,
+    renderGain: result.text.length,
+    renderError: "",
+    crawlDiagnostics: {
+      http: { status: "not_used" },
+      browser: crawlQuality,
+      scraplingDynamic: { status: "not_used" },
+      scraplingStealth: { status: "not_used" },
+      googleTranslate: { status: "not_used" },
+      selectedMethod: fetchMethod
+    }
+  };
+}
+
 function shouldUseGoogleTranslateFallback(result) {
   if (process.env.DISABLE_GOOGLE_TRANSLATE_FETCH === "true") return false;
   return !result || !assessCrawlQuality(result).scorable;
@@ -345,4 +382,4 @@ function shouldTryBrowserFallback(error) {
   return error.stage === "fetch_homepage" && (error.retryable || error.details?.httpStatus === 401 || error.details?.httpStatus === 403);
 }
 
-module.exports = { assessCrawlQuality, extractInternalLinks, extractMetadata, fetchHomepage, fetchRepresentativePages, looksClientRendered, stripHtml };
+module.exports = { assessCrawlQuality, createHomepageFromHtml, extractInternalLinks, extractMetadata, fetchHomepage, fetchRepresentativePages, looksClientRendered, stripHtml };

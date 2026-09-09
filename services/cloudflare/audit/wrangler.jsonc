@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../node_modules/wrangler/config-schema.json",
+  "name": "geocheck-audit-api",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "browser": { "binding": "BROWSER" },
+  "d1_databases": [{
+    "binding": "REPORTS_DB",
+    "database_name": "geocheck-reports",
+    "database_id": "dc0c172d-3042-42a2-a77b-cc57a6d8a0e9",
+    "migrations_dir": "../../api/migrations"
+  }],
+  "queues": {
+    "producers": [{ "binding": "AUDIT_JOBS", "queue": "geocheck-audit-jobs" }],
+    "consumers": [{ "queue": "geocheck-audit-jobs", "max_batch_size": 1, "max_batch_timeout": 5, "max_retries": 3, "dead_letter_queue": "geocheck-audit-jobs-dlq" }]
+  },
+  "containers": [{ "class_name": "AuditFallbackContainer", "image": "./Dockerfile", "max_instances": 2, "instance_type": "basic" }],
+  "durable_objects": { "bindings": [{ "name": "AUDIT_FALLBACK", "class_name": "AuditFallbackContainer" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["AuditFallbackContainer"] }],
+  "vars": { "AUDIT_PIPELINE_VERSION": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0" }
+}

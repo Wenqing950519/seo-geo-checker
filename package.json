@@ -19,11 +19,19 @@
     "gateway:dry-run": "npx wrangler deploy --dry-run --config services/developer-d1-gateway/wrangler.jsonc",
     "gateway:migrate": "npx wrangler d1 migrations apply geocheck-developer-api --remote --config services/developer-d1-gateway/wrangler.jsonc",
     "gateway:deploy": "npx wrangler deploy --config services/developer-d1-gateway/wrangler.jsonc",
+    "sdk:build": "npm --prefix packages/sdk run build",
+    "sdk:pack": "cd packages/sdk && npm pack --dry-run",
+    "audit-leads:dry-run": "node scripts/cloudflare/prepare-audit-lead-import.cjs",
     "start": "node services/api/server.js",
     "test:layout": "node tests/repository-layout.test.js && node tests/http-layout.test.js",
     "verify:layout": "node scripts/maintenance/verify-layout.cjs"
   },
   "dependencies": {
     "playwright": "^1.60.0"
+  },
+  "devDependencies": {
+    "@cloudflare/containers": "^0.3.7",
+    "@cloudflare/puppeteer": "^1.4.0",
+    "typescript": "^7.0.2"
   }
 }

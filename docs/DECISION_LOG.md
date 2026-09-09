@@ -467,3 +467,12 @@ tags:
 - **執行結果**：B D1 的 `0001`～`0003` migration 已全部套用；Worker 已部署至 `https://geocheck-developer-d1-gateway.bgo-career.workers.dev`，Render 已保存 gateway URL／secret。公開 health 回 200、未授權 query 回 401、授權唯讀 schema query 回 200 並確認 17 個 `developer_*` tables。未建立帳戶級 D1 API token，未改 A D1。
 - **執行補充**：授權 batch write／read 已回 200，全域 admission 已設為 `false`／`private beta not released`，避免後臺正式發布前接單。
 - **尚未代表**：Render 線上 customer API 尚未部署本工作樹程式；private beta、公開流量、edge rate limit、備份還原與事故告警仍未完成。
+
+### D-039 全面 Cloudflare 遷移與 Developer API Beta
+
+- **日期**：2026-09-09 ｜ **狀態**：Confirmed（實作與預檢授權；正式帳務／DNS／公開發佈待執行時確認）
+- **決策者**：Wenqing950519
+- **決策內容**：不新增 Render service。A 主網站改為靜態 Pages 與同網域 A Worker；B 使用 `api.geocheck.lisheng.cv` 的 Worker、直接 D1 binding 與 Queue。A audit 改為可恢復非同步 job；Browser Run 優先，Container 中既有 Playwright／Scrapling 只在 Browser Run 失敗時作抓取備援。A、B 的 D1 分離，B 30 天結果保存、固定四家、四家全成才扣量與 `partial_results` 契約不變。既有 A lead 一次性遷往 A 專用 D1，付款、訂閱、正式寄信與視覺 customer/console 不在本期。
+- **成本與安全邊界**：選用 Workers Paid 的 USD 5/月起點與 USD 10 警戒，不升 Cloudflare Pro。設定 Free WAF managed/custom rules、單一 `/v1/*` rate-limit、no-cache、TLS/HSTS；Workers 是 origin，不再使用 Render edge proxy。Render 保留七天，除非使用者再明確授權不得停用或刪除。
+- **SDK**：建立 MIT `@geocheck/sdk@0.1.0-beta.1` TypeScript client，具 typed measurement/job/result/usage、顯式 idempotency key、2 秒 polling 與 `Retry-After`；不含 server 邏輯或 provider secrets，且不自動重送 POST。公開 npm publish 只在帳號登入並確認持有 scope 後執行。
+- **驗證邊界**：先以 fixture、contract、Pages/Workers preview、D1 dry-run/import hash 與合成 Time Travel restore 驗證；付費 provider smoke 必須在執行當下另行確認。完成前不得把 dry-run、preview、fixture 或 Browser Run API 回應宣稱為正式客戶或供應商成功。

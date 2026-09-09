@@ -2151,6 +2151,27 @@ async function postJson(path,payload,options={}){
   return data;
 }
 
+async function getJson(path,options={}){
+  const timeoutMs=options.timeoutMs||30000;
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),timeoutMs);
+  try{
+    const res=await fetch(`${API_BASE}${path}`,{headers:{'Accept':'application/json'},signal:controller.signal});
+    const raw=await res.text();
+    let data={};
+    try{data=raw?JSON.parse(raw):{};}catch{throw new Error(`檢查服務回傳了無法解讀的內容（代碼 ${res.status}）`);}
+    if(!res.ok){
+      const error=new Error(data.error||'Request failed');
+      error.status=res.status; error.code=data.code; error.retryable=res.status>=500;
+      throw error;
+    }
+    return data;
+  }catch(err){
+    if(err.name==='AbortError'){const timeoutError=new Error('這次等待時間超過預期，請稍後再試');timeoutError.stage='timeout';timeoutError.retryable=true;throw timeoutError;}
+    throw err;
+  }finally{clearTimeout(timer);}
+}
+
 // Modal helpers
 function openModal(id){document.getElementById(id)?.classList.add('active')}
 function closeModal(id){document.getElementById(id)?.classList.remove('active')}
@@ -2305,42 +2326,25 @@ async function executeAudit(customQueries) {
   }
 
   async function runAuditUntilSuccess() {
-    let attempt = 0;
+    const accepted = await postJson('/api/audit-real-lite', {
+      url: targetUrl,
+      customQueries,
+      source: 'website_home'
+    }, { timeoutMs: 30000 });
+    const jobId = accepted.job_id || accepted.id;
+    const reportId = accepted.report_id || accepted.reportId;
+    if (!jobId || !reportId) throw new Error('檢查服務沒有回傳可追蹤的工作編號，請稍後再試');
     const startedAt = Date.now();
-    const maxAttempts = 3;
-    const maxTotalMs = 120000;
-    while (true) {
-      attempt += 1;
-      try {
-        const remainingMs = Math.max(15000, maxTotalMs - (Date.now() - startedAt));
-        return await postJson('/api/audit-real-lite', {
-          url: targetUrl,
-          customQueries,
-          source: 'website_home'
-        }, {
-          timeoutMs: Math.min(90000, remainingMs)
-        });
-      } catch (err) {
-        if (err.status === 429) {
-          throw err;
-        }
-        const shouldRetry = err.retryable || err.status >= 500 || err.stage === 'network';
-        const timedOut = Date.now() - startedAt >= maxTotalMs;
-        if (!shouldRetry || attempt >= maxAttempts || timedOut) {
-          if (timedOut || err.stage === 'timeout') {
-            throw new Error('這次等待時間超過預期，可能是 AI 回應比較慢，請稍後再試');
-          }
-          throw err;
-        }
-        const waitMs = Math.min(10000, 3000 + attempt * 1000);
-        if (status) {
-          status.textContent = attempt <= 2
-            ? '正在重新嘗試，請稍候...'
-            : 'AI 這次回應比較慢，還在重試，請先不要關閉頁面...';
-        }
-        await new Promise(resolve => setTimeout(resolve, waitMs));
+    while (Date.now() - startedAt < 180000) {
+      const job = await getJson(`/api/status/${encodeURIComponent(jobId)}`);
+      if (job.status === 'completed' || job.status === 'completed_with_limitations') {
+        return getJson(`/api/report/${encodeURIComponent(job.reportId || reportId)}`);
       }
+      if (job.status === 'failed') throw new Error('這次檢查沒有完成，請稍後再試。');
+      if (status) status.textContent = job.status === 'running' ? '正在分析網站與整理證據...' : '已排入檢查，正在準備執行...';
+      await new Promise(resolve => setTimeout(resolve, 2000));
     }
+    throw new Error('這次等待時間超過預期，工作仍會在背景完成；請稍後重新開啟同一份報告。');
   }
 
   try {

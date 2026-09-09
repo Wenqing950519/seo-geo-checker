@@ -16,6 +16,7 @@ function createDeveloperPlatformService(options = {}) {
   const store = requiredStore(options.store);
   const clock = options.now || (() => new Date());
   const schedule = options.schedule || ((task) => setImmediate(task));
+  const enqueue = typeof options.enqueue === "function" ? options.enqueue : null;
   const pepper = requirePepper(options.tokenPepper);
   const providers = normalizeProviders(options.providers || []);
   const providerMode = providers[0].adapter.mode;
@@ -214,13 +215,20 @@ function createDeveloperPlatformService(options = {}) {
       if (admission.job.request_hash !== requestHash) {
         throw new DeveloperApiError("idempotency_conflict", "Idempotency-Key was already used with different content", 409);
       }
+      await dispatchJob(admission.job);
       return { created: false, job: publicJob(admission.job) };
     }
     if (admission.rejected) throw admissionError(admission.rejected);
-    schedule(() => runJob(admission.job.job_id).catch((error) => {
+    await dispatchJob(admission.job);
+    return { created: true, job: publicJob(admission.job) };
+  }
+
+  async function dispatchJob(job) {
+    if (enqueue) return enqueue({ jobId: job.job_id, tenantId: job.tenant_id });
+    schedule(() => runJob(job.job_id).catch((error) => {
       console.error(JSON.stringify({ event: "developer_job_worker_failed", code: error?.code || "internal_error" }));
     }));
-    return { created: true, job: publicJob(admission.job) };
+    return undefined;
   }
 
   async function runJob(jobId) {
@@ -278,11 +286,7 @@ function createDeveloperPlatformService(options = {}) {
   async function recoverPendingJobs() {
     const stale = await store.expireStaleJobs({ now: clock().toISOString() });
     const queued = await store.listQueuedJobs({ limit: config.recoveryBatchSize });
-    for (const job of queued) {
-      schedule(() => runJob(job.job_id).catch((error) => {
-        console.error(JSON.stringify({ event: "developer_job_recovery_failed", code: error?.code || "internal_error" }));
-      }));
-    }
+    for (const job of queued) await dispatchJob(job);
     return { queued: queued.length, ambiguous_failed: stale.length };
   }
 

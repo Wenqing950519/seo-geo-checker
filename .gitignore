@@ -25,3 +25,5 @@ tmp/
 .workbuddy/
 *.db
 services/developer-d1-gateway/worker-configuration.d.ts
+packages/sdk/dist/
+packages/sdk/*.tgz

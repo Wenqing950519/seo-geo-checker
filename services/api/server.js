@@ -1287,15 +1287,18 @@ async function handleRequest(req, res) {
   return sendJson(res, 404, { error: "Not found" });
 }
 
-const server = http.createServer((req, res) => {
-  handleRequest(req, res).catch((error) => {
-    console.error(error);
-    sendJson(res, 500, { error: "Internal server error" });
+if (process.env.GEOCHECK_SERVER_NO_LISTEN !== "true") {
+  const server = http.createServer((req, res) => {
+    handleRequest(req, res).catch((error) => {
+      console.error(error);
+      sendJson(res, 500, { error: "Internal server error" });
+    });
   });
-});
 
-server.listen(PORT, () => {
-  console.log(`SEO/GEO mock API running at http://localhost:${PORT}`);
-});
+  server.listen(PORT, () => {
+    console.log(`SEO/GEO mock API running at http://localhost:${PORT}`);
+  });
+}
+module.exports = { normalizeReportForClient, reportHtml, reportMarkdown };
 // SEO/GEO audit fixes applied 2026-07-18: canonical unified to "/", llms.txt route,
 // static og-image/favicon routes, fixed sitemap lastmod, explicit AI-crawler allows, HTML 404.

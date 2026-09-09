@@ -8,7 +8,8 @@ const { createOfficialProvidersFromEnv, getOfficialProviderReadiness } = require
 
 function createDeveloperApiHttpHandler(options = {}) {
   const source = options.config || process.env;
-  const config = normalizeConfig(source);
+  const schedule = options.schedule || ((task) => setImmediate(task));
+  const config = normalizeConfig(source, options);
   const providerSource = options.providerConfig || process.env;
   const providers = config.mode === "official"
     ? createOfficialProvidersFromEnv({ config: providerSource })
@@ -30,15 +31,17 @@ function createDeveloperApiHttpHandler(options = {}) {
         dailyBudgetTwd: config.dailyBudgetTwd,
         monthlyBudgetTwd: config.monthlyBudgetTwd,
         maxJobCostTwd: config.maxJobCostTwd,
-        twdPerUsd: config.twdPerUsd
+        twdPerUsd: config.twdPerUsd,
+        schedule,
+        enqueue: options.enqueue
       })
     : createDeveloperApiPrototype({
         providers: config.mode === "official" ? providers : undefined,
         resultStore: options.resultStore || createPrototypeMeasurementResultStore({ config: options.storageConfig || process.env })
       }));
   const rateLimiter = createRequestRateLimiter();
-  if (config.platformEnabled) {
-    setImmediate(() => api.recoverPendingJobs().catch((error) => {
+  if (config.platformEnabled && options.recoverOnStartup !== false) {
+    schedule(() => api.recoverPendingJobs().catch((error) => {
       console.error(JSON.stringify({ event: "developer_api_recovery_failed", code: error?.code || "internal_error" }));
     }));
   }
@@ -234,6 +237,7 @@ function createDeveloperApiHttpHandler(options = {}) {
 
   return {
     handle,
+    workerApi: api,
     state: () => ({
       enabled: config.enabled,
       platform_enabled: config.platformEnabled,
@@ -244,7 +248,7 @@ function createDeveloperApiHttpHandler(options = {}) {
   };
 }
 
-function normalizeConfig(source) {
+function normalizeConfig(source, options = {}) {
   const platformEnabled = String(source.DEVELOPER_API_PLATFORM_ENABLED || "").toLowerCase() === "true";
   const prototypeEnabled = String(source.DEVELOPER_API_PROTOTYPE_ENABLED || "").toLowerCase() === "true";
   const apiKey = String(source.DEVELOPER_API_PROTOTYPE_KEY || "").trim();
@@ -283,7 +287,7 @@ function normalizeConfig(source) {
     source.GEOCHECK_DEVELOPER_D1_GATEWAY_TOKEN
   ].map((value) => String(value || "").trim());
   const configuredGatewayValues = gatewayValues.filter(Boolean).length;
-  config.developerD1Enabled = configuredD1Values === 3 || configuredGatewayValues === 2;
+  config.developerD1Enabled = configuredD1Values === 3 || configuredGatewayValues === 2 || options.directD1Binding === true;
   if (platformEnabled) {
     if (configuredD1Values > 0 && configuredD1Values < 3) {
       throw new Error("All three GEOCHECK_DEVELOPER_D1_* values are required together");
