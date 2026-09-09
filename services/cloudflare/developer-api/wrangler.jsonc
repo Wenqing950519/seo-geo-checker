@@ -6,7 +6,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "routes": [
-    { "pattern": "api.geocheck.lisheng.cv/*", "zone_name": "lisheng.cv" }
+    { "pattern": "api.geocheck.lisheng.cv", "custom_domain": true }
   ],
   "vars": {
     "DEVELOPER_API_QUOTA_WINDOW_STRATEGY": "rolling_24h",

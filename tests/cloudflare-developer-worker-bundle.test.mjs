@@ -20,7 +20,7 @@ try {
   assert.equal(developerConfig.vars.DEVELOPER_API_QUOTA_WINDOW_STRATEGY, "rolling_24h");
   assert.equal(developerConfig.vars.DEVELOPER_API_RESULT_RETENTION_DAYS, "30");
   assert.deepEqual(developerConfig.routes, [
-    { pattern: "api.geocheck.lisheng.cv/*", zone_name: "lisheng.cv" }
+    { pattern: "api.geocheck.lisheng.cv", custom_domain: true }
   ]);
   assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "false");
   assert.equal(auditConfig.containers[0].image_build_context, "../../..");
