@@ -10,6 +10,7 @@ try {
   await runWrangler(outputDir);
   const bundle = await readFile(path.join(outputDir, "worker.js"), "utf8");
   const auditWorker = await readFile("services/cloudflare/audit/src/worker.js", "utf8");
+  const developerWorker = await readFile("services/cloudflare/developer-api/src/worker.js", "utf8");
   const pagesHeaders = await readFile("apps/web/public/_headers", "utf8");
   const auditConfig = JSON.parse(await readFile("services/cloudflare/audit/wrangler.jsonc", "utf8"));
   const developerConfig = JSON.parse(await readFile("services/cloudflare/developer-api/wrangler.jsonc", "utf8"));
@@ -18,6 +19,9 @@ try {
   assert.match(bundle, /configuration_incomplete/, "Developer Worker must fail closed when runtime secrets are absent");
   assert.equal(developerConfig.vars.DEVELOPER_API_QUOTA_WINDOW_STRATEGY, "rolling_24h");
   assert.equal(developerConfig.vars.DEVELOPER_API_RESULT_RETENTION_DAYS, "30");
+  assert.deepEqual(developerConfig.routes, [
+    { pattern: "api.geocheck.lisheng.cv/*", zone_name: "lisheng.cv" }
+  ]);
   assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "false");
   assert.equal(auditConfig.containers[0].image_build_context, "../../..");
   assert.deepEqual(auditConfig.routes, [
@@ -26,6 +30,7 @@ try {
   ]);
   assert.match(auditWorker, /AUDIT_ADMISSION_ENABLED/, "Audit Worker must guard new paid jobs with an admission switch");
   assert.match(auditWorker, /Strict-Transport-Security/, "Audit Worker responses must enable HSTS");
+  assert.match(developerWorker, /Strict-Transport-Security/, "Developer Worker responses must enable HSTS");
   assert.match(pagesHeaders, /Strict-Transport-Security:\s*max-age=31536000/i, "Pages responses must enable HSTS");
   console.log("cloudflare developer worker bundle tests passed");
 } finally {
