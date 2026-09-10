@@ -1,8 +1,11 @@
 import developerApiModule from "../../../api/developer-api-http.js";
 import d1StoreModule from "../../../api/storage/developer-platform-d1-store.js";
+import oauthModule from "../../../api/google-oauth-http.js";
 
 const { createDeveloperApiHttpHandler } = developerApiModule;
 const { createBoundD1DeveloperPlatformStore } = d1StoreModule;
+const { createGoogleOAuthHttpHandler } = oauthModule;
+let cachedGoogleOAuth;
 
 const JSON_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -121,9 +124,50 @@ function createRuntime(env) {
   return runtime;
 }
 
+function createD1OAuthStateStore(db) {
+  return {
+    async put(record) {
+      await db.batch([
+        db.prepare("DELETE FROM developer_google_oauth_states WHERE expires_at <= ?").bind(Date.now()),
+        db.prepare(`INSERT INTO developer_google_oauth_states (
+          state_id, audience, verifier, nonce, expires_at, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?)`)
+          .bind(record.id, record.audience, record.verifier, record.nonce, record.expiresAt, Date.now())
+      ]);
+    },
+    async consume({ id, audience, nonce, now }) {
+      return db.prepare(`DELETE FROM developer_google_oauth_states
+        WHERE state_id = ? AND audience = ? AND nonce = ? AND expires_at > ?
+        RETURNING state_id AS id, audience, verifier, nonce, expires_at AS expiresAt`)
+        .bind(id, audience, nonce, now).first();
+    }
+  };
+}
+
+function createOAuthRuntime(env) {
+  if (!cachedGoogleOAuth) {
+    const runtime = createRuntime(env);
+    cachedGoogleOAuth = createGoogleOAuthHttpHandler({
+      config: workerConfig(env), developerApi: runtime,
+      stateStore: createD1OAuthStateStore(env.DEVELOPER_DB)
+    });
+  }
+  return cachedGoogleOAuth;
+}
+
 async function handleRequest(request, env) {
   const pathname = new URL(request.url).pathname;
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
+  if (pathname === "/v1/auth/google/start" || pathname === "/v1/auth/google/callback") {
+    if (missingRuntimeSecrets(env).length) {
+      return new Response(JSON.stringify({ error: { code: "configuration_incomplete", message: "Developer API is not ready" } }), { status: 503, headers: JSON_HEADERS });
+    }
+    const captured = createResponseCapture();
+    const handled = await createOAuthRuntime(env).handle({
+      req: nodeRequest(request), res: captured.response, url: new URL(request.url), sendJson
+    });
+    return handled ? await captured.completed : new Response(null, { status: 404, headers: JSON_HEADERS });
+  }
   if (!pathname.startsWith("/v1/")) {
     return new Response(JSON.stringify({ error: { code: "not_found", message: "Not found" } }), { status: 404, headers: JSON_HEADERS });
   }

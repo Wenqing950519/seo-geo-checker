@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-09-09
+last_updated: 2026-09-10
 tags:
   - geocheck
   - current-state
@@ -14,7 +14,13 @@ tags:
 
 ## 最新產品方向（決策不等於實作）
 
-依 D-040／D-041，產品方向已確認為「短測引流 → SaaS Dashboard → 診斷型 Agent」，Developer API 作共用四引擎量測基礎並可作外部技術產品；未來台灣付款優先採藍新金流。這只同步產品與供應商決策：目前沒有可據此新增的部署證據，視覺 Dashboard、Agent、藍新串接、正式寄信與公開 customer API 仍不得標為已完成。餐飲 beachhead、第一 buyer、Dashboard／Agent 定價、留存及 citation→營收仍是待驗證項目。
+依 D-040／D-041／D-046，產品方向已確認為「短測引流 → SaaS Dashboard → 診斷型 Agent」，Developer API 作共用四引擎量測基礎並可作外部技術產品；未來台灣付款優先採藍新金流。Dashboard Paid Beta 契約為 TWD 330／訂閱週年月、6 個 active Projects、每期共享 24 次手動更新與固定 Asia/Taipei 每日最多 6 次；Free 為 2 個 active Projects、每週自動追蹤、無手動更新。這是待驗證的 Beta 商業契約，不是實收、毛利或留存證據。付款、排程與 provider runner 均必須預設 admission closed；目前沒有可據此新增的遠端 D1、Worker、藍新商店、正式扣款或公開流量證據。
+
+`[本機後端 foundation 2026-09-10]` Product A Dashboard 已新增 feature-gated 的 `/app-api/v1` 契約、Project membership、週追蹤 Run／evidence schema、SQLite 測試 store 與隔離測試；它使用獨立 `gds_` session、Dashboard admin credential 與 `dashboard_*` tables，不能存取 Developer API key、tenant、quota、cost 或 `/v1/console`。Tracking Run 寫入仍只允許可信的 Product A orchestration，而非 browser client。
+
+`[Google Cloud 設定進度 2026-09-10]` 已建立獨立 GeoCheck Google Cloud project（Themap project 未變更）、啟用 Search Console API、建立 external consent screen 與單一 Web OAuth client，並登錄 A normal／A GSC／B 三個固定 callback URI 及 `webmasters.readonly` scope。Google branding 已保存正式首頁、隱私政策與服務條款 URL；授權網域為 parent domain `lisheng.cv`，可涵蓋 `geocheck.lisheng.cv`。GSC callback 只呈現可匹配 Project 網域的 property，待使用者明確選擇才建立 connection。B 的跨 Worker PKCE state migration 已套用到獨立 B D1；runtime secrets、Worker deploy、網域驗證／scope verification、A 的 runtime persistence 與受控 live smoke 尚未完成。現有 OAuth client secret 曾出現在自動化觀察中，必須先人工旋轉後才可存入 secret store；故 A GSC 仍 feature-gated，沒有 Google 核准或公開可用的證據。
+
+`[本機前端 client 2026-09-10]` Product A Marketing Dashboard 前端已於 `apps/web/app/` 完成建置（參照 Themap 專案之分頁獨立子資料夾架構：`overview/`、`performance/`、`questions/`、`citations/`、`quality/`、`evidence/`、`auth/`，共用模組於 `shared/`）；透過原生零構建 ES Module 提供高效能 SPA，對標 Ahrefs / GA4 / Brandlight / Weimob GEO，完全符合 `DASHBOARD_UI_SPEC` 與 `FRONTEND_ACCEPTANCE`（4 項明確分子分母率值、跨期題組版本斷點隔離、不可變題組版本升級、五大驗收情境沙盒、事證抽屜 30 秒查閱、全無 Developer 概念洩漏）。這不是遠端部署、排程 worker 或金流完成的證據。
 
 ## 本機目錄整理（2026-09-08，尚未部署）
 
@@ -34,7 +40,7 @@ tags:
 
 D-036 benchmark 的固定題組、append-only 事件、獨立 summary 與重算工具均已保存；只記錄問題 hash、公開 reference URL、模型、usage、成本、延遲與數量，不保存回答或引用正文。完整報告見 `developer-api/BENCHMARK_2026-09-09.md`。技術前置門檻已通過，可進入前端／技術文件／API 管理 dashboard 的規劃，但尚未授權部署或公開營運。
 
-更新日期：2026-09-09
+更新日期：2026-09-10
 
 附屬 API 的設計交接已整理至 `developer-api/HANDOFF.md`、`BLUEPRINT.md`、`SECURITY.md`，含候選客群、使用者流程、輸入／輸出、成功與扣量、配額／成本帳本、防濫用、資安與驗收案例。D-036 已授權並完成 20 輪付費前置驗證；除此之外，客群、配額窗、保存期限與付費週期仍依交接表待人工確認，沒有新增帳戶、金流、前端、部署或公開流量。舊單引擎 B／客戶選引擎草案由 D-029 固定四家決策取代。
 

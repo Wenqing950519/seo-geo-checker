@@ -117,6 +117,18 @@ function createDeveloperPlatformService(options = {}) {
     return store.authenticateSession({ tokenHash: hashToken(sessionToken, pepper), now: clock().toISOString() });
   }
 
+  async function loginGoogleAccount({ email }) {
+    const account = await store.findVerifiedAccountByEmail(normalizeEmail(email));
+    if (!account) throw new DeveloperApiError("account_not_authorized", "This Google account is not enabled for the Developer Console", 403);
+    const createdAt = clock().toISOString();
+    const sessionToken = createOpaqueToken("gcs_");
+    const sessionExpiresAt = addMilliseconds(createdAt, config.sessionTtlMs);
+    await store.createSession({ sessionId: `ses_${randomUUID()}`, tenantId: account.tenant_id || account.tenantId,
+      tokenHash: hashToken(sessionToken, pepper), now: createdAt, sessionExpiresAt });
+    return { account_id: account.account_id || account.accountId, tenant_id: account.tenant_id || account.tenantId,
+      session_token: sessionToken, session_expires_at: sessionExpiresAt };
+  }
+
   async function requireSession(token) {
     const session = await authenticateSession(token);
     if (!session) throw new DeveloperApiError("auth_required", "A valid management session is required", 401);
@@ -348,7 +360,7 @@ function createDeveloperPlatformService(options = {}) {
   }
 
   return {
-    activateConsole, authenticateApiKey, authenticateSession, consumeLoginLink,
+    activateConsole, authenticateApiKey, authenticateSession, loginGoogleAccount, consumeLoginLink,
     createApiKey, createInvitation, createMeasurement, deleteMeasurement,
     getAdminOverview: () => store.getAdminOverview(), getJob, getJobByMeasurement,
     getMeasurement, getUsage, listApiKeys, listAuthOutbox, listJobs,

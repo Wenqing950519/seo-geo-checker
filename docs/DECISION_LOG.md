@@ -494,3 +494,60 @@ tags:
 - **決策內容**：GeoCheck 未來需要台灣新台幣收款、信用卡定期定額及發票流程時，優先採用藍新金流（NewebPay）作為 payment rail；商業與技術設計以其 MPG、信用卡定期定額及相關加值服務的官方文件與正式商務條件為準。
 - **決策邊界**：本決策只選定供應商，不授權現在建立商店、保存付款憑證、串接 production API、啟用扣款或對外宣稱可付款。實際費率、申請資格、退款／取消、失敗重試、電子發票方案、稅務與上線驗收尚未確認；D-030／D-032 的試用與訂閱語義維持，D-039 的「付款不在本期」維持。
 - **可追溯來源**：`docs/research/business-plan-2026-09-09/multi-agent-business-plan-workflow.md` Stage One `Part 6 P1-4`；使用者 2026-09-09 確認其中明示決策為最新決策；藍新官方 MPG／定期定額文件只用於能力核對，不構成已串接證據。
+
+### D-042 Dashboard 與 Developer Console 的產品、授權與資料邊界
+
+- **日期**：2026-09-10 ｜ **狀態**：Confirmed（後端 foundation；未部署）
+- **決策內容**：Product A Dashboard 服務行銷實作者的 Project 歷史追蹤、題組、Tracking Run、來源證據與跨期變化；Developer Console 服務 API key、usage、request job、成本、SDK 與技術帳戶設定。兩者可共用四引擎量測基礎，但不得共用 UI、browser API、session、API key、tenant／Project 授權、計費語義或資料查詢入口。
+- **落地方式**：Dashboard browser API 使用 feature-gated `/app-api/v1` 與獨立 `gds_` session；Developer API 保持 `/v1`、`/v1/console`、`gcs_` management session、`gck_` API key 與 `developer_*` tables。Dashboard 使用 Project membership 與 `dashboard_*` schema，並只從可信的 Product A orchestration 接受 Tracking Run，不開放 browser client 寫入原始 observation。
+- **決策邊界**：本決策不啟用 Dashboard 前端、排程、D1 remote migration、Dashboard 定價、付款、Agent 或公開流量；不改 D-029 固定四引擎、全成才扣量、`partial_results` 及 30 天 Developer API 結果保存。
+- **驗證**：Dashboard service／HTTP tests 驗證 `gcs_` 與 `gck_` 無法存取 `/app-api/v1`、Dashboard handler 不接管 `/v1/console`、browser response 無 API key／quota／cost／tenant／Developer job 資料，且 raw evidence 僅由 Project-scoped evidence route 回傳。
+- **可追溯來源**：使用者 2026-09-10 確認的 Dashboard implementation plan；`docs/product/dashboard/` 交接文件與 `tests/dashboard-*.test.js`。
+
+### D-043 商業指標數字字體選定 Inter 與全站數字 Token 規範
+
+- **日期**：2026-09-10 ｜ **狀態**：Confirmed
+- **決策者**：Wenqing950519
+- **決策內容**：
+  1. 商業與度量數字（KPI 分數、比率百分比、觀測分子分母、表格計數、日期）全面改用 **`Inter`**，開啟 OpenType `font-variant-numeric: tabular-nums`（`"tnum" 1`）。
+  2. 廢除商業數據直接套用寫程式碼專用的 `JetBrains Mono`，徹底告別斜線零（`Ø`）與等寬字型在數字 `1` 產生的破碎間距。
+  3. 確立全站字體 Token 分離架構：
+     - `--gc-font-sans`：`'Noto Sans TC'`（介面導覽、標題、一般正文）
+     - `--gc-font-number`：`'Inter'` 搭配 `tabular-nums`（全站所有商業指標、評分卡、走勢圖軸線、百分比）
+     - `--gc-font-mono`：`'JetBrains Mono'`（僅保留給 API 金鑰、JSON Payload 與底層除錯代碼）
+  4. 從 `brand.html` 品牌規範出發，一次性覆蓋推廣至全站（行銷 Dashboard、官方首頁、Demo、研究白皮書、開發者平台）。
+- **影響範圍**：`brand.html`、`app.css`、`chart-utils.js`、`home.html`、`demo.html`、`whitepaper.html`、`developers.html`、`developers-console.html`、`developers-docs.html`。
+- **可追溯來源**：使用者 2026-09-10 數字字體檢討與 Inter 選定指示。
+
+### D-044 開發者平台字體系統與視覺設計全面同步產品 A Dashboard
+
+- **日期**：2026-09-10 ｜ **狀態**：Confirmed
+- **決策者**：Wenqing950519
+- **決策內容**：
+  1. 開發者平台的三大核心頁面（`developers-console.html`、`developers.html`、`developers-docs.html`）字體系統全面同步產品 A 行銷儀表板：
+     - 正文、標題與導覽目錄統一套用 `'Noto Sans TC'`。
+     - 商業指標、配額數字、走勢刻度與方案價格統一套用 `'Noto Sans TC'` 搭配 OpenType `font-variant-numeric: tabular-nums`，徹底消滅代碼斜線零（`Ø`）並確保數據縱向精密對齊。
+     - 純程式碼、Token、API 金鑰與 JSON Payload 嚴格收斂至 `'JetBrains Mono'`。
+  2. 視覺設計與排版全面去 AI 化：
+     - 表格表頭統一採用產品 A 極簡微邊框淺灰風格（`#F8FAFC` 底色、`#475569` 文字、字重 600、微邊框）。
+     - 全面清理所有頁面中多餘的中英對照括弧雜訊，回歸純粹的繁體中文介面。
+     - 修復方案卡片標題括弧字串，回歸簡練乾淨的「免費試用」。
+- **影響範圍**：`developers-console.html`、`developers.html`、`developers-docs.html`。
+- **可追溯來源**：使用者 2026-09-10 Developer 相關部分全面改寫與產品 A 同步指示。
+
+### D-045 共用 Google OAuth 與 Product A GSC 資料邊界
+
+- **日期**：2026-09-10 ｜ **狀態**：Confirmed（實作；Google 審核與發布另驗）
+- **決策內容**：A SaaS Dashboard 與 B Developer Console 共用同一 GeoCheck Google OAuth Web Client，但維持 `gds_`／`gcs_` session、帳號准入、資料表與授權判定完全隔離。兩者僅允許既有 verified account 使用相同 email 登入。B 僅請求 OIDC 基本身分 scope；A 的 GSC 連線才請求 `webmasters.readonly`。
+- **GSC 邊界**：A 以 Project 為範圍加密保存 refresh token，首次回填 90 天、其後同步每日 clicks、impressions、CTR、average position，最多保存 13 個月。資料獨立呈現，不能併入 AI 可見度分數或分母；缺列不等於 0。解除連線必須刪除 token 與該 Project 的 GSC 匯入資料。
+- **發布邊界**：Google OAuth app 對外 Production 前須有公開隱私政策、網域驗證與 scope verification；B 可先啟用基本登入，A GSC 功能在核准前 feature-gated。不得將本機 fixture、OAuth consent screen 或送審行為稱作 Google 已核准或公開可用。
+- **可追溯來源**：使用者 2026-09-10 明確選擇同一 OAuth client、既有帳號准入、每日彙總、90 天回填、13 個月保存與先補隱私政策再送 Google 驗證。
+
+### D-046 Product A Dashboard Paid Beta 方案與 Sandbox 付款邊界
+
+- **日期**：2026-09-10 ｜ **狀態**：Confirmed（實作與 Sandbox 驗證；非公開收款／部署授權）
+- **決策內容**：Free 帳戶最多 2 個 active Projects，每個每週自動 Tracking Run，無手動更新。Paid Beta 為 TWD 330／訂閱週年月，最多 6 個 active Projects；每個每週自動 Run，帳戶共享每期 24 次手動立即更新、固定 Asia/Taipei 每日最多 6 次。手動額度不遞延；四引擎全成才扣量，`partial`／`failed` 保留觀測狀態但釋放 reservation。
+- **訂閱生命週期**：採信用卡自動續訂；續扣失敗給 3 天完整寬限期。取消不按比例退款、權益保留至期末；到期仍未付款時全部 Project 保留唯讀，停止自動與手動量測，直到再次付款。
+- **付款與隔離邊界**：藍新只做 Sandbox integration；Merchant ID、Hash Key、Hash IV 只可作 Worker secret，禁止保存卡號、secret 或未驗證 callback。Product A 使用獨立 `dashboard_*` entitlement、job、reservation、payment-event 資料，絕不共用 Developer API tenant、session、key、quota、cost 或資料庫。
+- **發布邊界**：本決策不授權建立藍新商店、正式扣款、遠端 D1 migration、Worker deploy、公開流量或付費 provider calls。排程與 runner 必須受 admission kill switch 控制，預設關閉。
+- **可追溯來源**：使用者 2026-09-10 明確確認本條方案、付款、時區、到期與 Sandbox 邊界。

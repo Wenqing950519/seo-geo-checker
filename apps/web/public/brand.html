@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -45,9 +45,24 @@
   --gc-shadow-md: 0 10px 30px rgba(11, 59, 111, 0.08);
   --gc-shadow-lg: 0 20px 50px rgba(11, 59, 111, 0.12);
 
-  /* Fonts */
+  /* Fonts - Enterprise Typography System */
   --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-number: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --gc-font-mono: 'JetBrains Mono', monospace;
+}
+
+.font-number {
+  font-family: var(--gc-font-number);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.font-mono {
+  font-family: var(--gc-font-number);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.font-code {
+  font-family: var(--gc-font-mono);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -548,7 +563,78 @@ header.ds-nav {
     </div>
   </section>
 
-  <!-- S3: Machine-Readable Context for AI Agents (The Key Reference for AI!) -->
+  <!-- S3: Typography & Numbers -->
+  <section class="section-block" id="typography">
+    <div class="sec-title-wrap">
+      <h2 class="sec-title">✍️ 字體排印與數據規範 (Typography & Numeric System)</h2>
+      <span class="sec-tag">數字分離 · 專業 SaaS 等寬對齊</span>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:24px;">
+      <!-- Sans Card -->
+      <div class="ds-card">
+        <span class="ds-badge" style="margin-bottom:8px;">介面與正文</span>
+        <h3 style="color:var(--gc-navy); font-size:1.2rem; margin-bottom:4px;">Noto Sans TC</h3>
+        <p style="font-family:var(--gc-font-mono); font-size:0.75rem; color:var(--gc-muted); margin-bottom:12px;">--gc-font-sans</p>
+        <p style="font-size:0.92rem; color:var(--gc-text); line-height:1.6;">
+          優美工整的思源黑體，專注於中英混排的高辨識度與親和力。
+        </p>
+      </div>
+
+      <!-- Number Card (Inter) -->
+      <div class="ds-card" style="border-top:3px solid var(--gc-mint);">
+        <span class="ds-badge" style="margin-bottom:8px; background:var(--gc-mint-soft); color:var(--gc-mint-dark);">★ 商業指標與數字</span>
+        <h3 style="color:var(--gc-navy); font-size:1.2rem; margin-bottom:4px;">Inter (Tabular Nums)</h3>
+        <p style="font-family:var(--gc-font-mono); font-size:0.75rem; color:var(--gc-muted); margin-bottom:12px;">--gc-font-number</p>
+        <div style="font-family:var(--gc-font-number); font-variant-numeric:tabular-nums; font-size:1.8rem; font-weight:900; color:var(--gc-navy); line-height:1.1; margin-bottom:8px;">
+          87.5% <span style="font-size:0.9rem; color:#64748B; font-weight:600;">(24/40)</span>
+        </div>
+        <p style="font-size:0.84rem; color:var(--gc-muted); line-height:1.5;">
+          對標 GA4 / Stripe / Vercel 頂級 SaaS，自然圓潤實心 0，徹底告別代碼斜線零；開啟 <code>tabular-nums</code> 保證表格數字垂直精密對齊。
+        </p>
+      </div>
+
+      <!-- Mono Card -->
+      <div class="ds-card">
+        <span class="ds-badge" style="margin-bottom:8px; background:#F1F5F9; color:#475569;">純程式碼與金鑰</span>
+        <h3 style="color:var(--gc-navy); font-size:1.2rem; margin-bottom:4px;">JetBrains Mono</h3>
+        <p style="font-family:var(--gc-font-mono); font-size:0.75rem; color:var(--gc-muted); margin-bottom:12px;">--gc-font-mono</p>
+        <p style="font-size:0.84rem; color:var(--gc-muted); line-height:1.5;">
+          專為開發者代碼編輯器、JSON Payload、API 憑證與底層 Run ID 所保留之專業等寬字體。
+        </p>
+      </div>
+    </div>
+
+    <!-- Dashboard Scoped Typography Annotation -->
+    <div class="ds-card" style="border-left:4px solid var(--gc-mint); background:linear-gradient(135deg, #FFFFFF 0%, #F8FCFB 100%);">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="ds-badge" style="background:var(--gc-mint-soft); color:var(--gc-mint-dark); font-weight:700;">★ 應用範圍實裝標註 (Dashboard Scope)</span>
+          <strong style="color:var(--gc-navy); font-size:1.05rem;">工具 A 行銷儀表板字體配置：Noto Sans TC 一體化架構</strong>
+        </div>
+        <span style="font-size:0.75rem; color:#64748B; font-family:var(--gc-font-mono); background:#F1F5F9; padding:3px 8px; border-radius:4px;">作用域: apps/web/app/</span>
+      </div>
+      <p style="font-size:0.9rem; color:var(--gc-text); line-height:1.65; margin-bottom:14px;">
+        為提供行銷工作者極致流暢且和諧的長文閱讀與多維指標觀察體驗，<strong>工具 A 行銷儀表板（Dashboard）已全面啟用 Noto Sans TC（思源黑體）一體化排版</strong>。UI 介面、數據指標（KPI Scorecards）、搜尋引擎矩陣與 SVG 趨勢圖表均統一套用 Noto Sans TC。
+      </p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; font-size:0.84rem;">
+        <div style="background:#FFFFFF; border:1px solid rgba(11, 59, 111, 0.08); border-radius:8px; padding:12px 14px;">
+          <div style="font-weight:700; color:var(--gc-navy); margin-bottom:4px;">✨ 零筆觸衝突 · CJK 中英高度融洽</div>
+          <div style="color:var(--gc-muted); line-height:1.5;">繁中文字與數值指標使用同一字型家族，徹底消除中文字與西文字體（如 Inter）混排時的 x-height 基線微落差與字重粗細不均問題。</div>
+        </div>
+        <div style="background:#FFFFFF; border:1px solid rgba(11, 59, 111, 0.08); border-radius:8px; padding:12px 14px;">
+          <div style="font-weight:700; color:var(--gc-navy); margin-bottom:4px;">📊 保留 Tabular Nums 等寬特性</div>
+          <div style="color:var(--gc-muted); line-height:1.5;">指標全域配置 <code>font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;</code>，即便在思源黑體下亦能確保各週百分比與分數垂直平直對齊。</div>
+        </div>
+        <div style="background:#FFFFFF; border:1px solid rgba(11, 59, 111, 0.08); border-radius:8px; padding:12px 14px;">
+          <div style="font-weight:700; color:var(--gc-navy); margin-bottom:4px;">🛡️ 獨立作用域 · 不影響品牌主站</div>
+          <div style="color:var(--gc-muted); line-height:1.5;">變更嚴格封裝於 <code>apps/web/app/</code>（<code>app.css</code> 與 <code>index.html</code>），主網站、品牌設計頁與公開白皮書仍維持既定之通用設計系統。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4: Machine-Readable Context for AI Agents -->
   <section class="section-block" id="ai-spec">
     <div class="sec-title-wrap">
       <h2 class="sec-title">🤖 AI 代理人設計上下文 (Machine-Readable Context for AI)</h2>
@@ -589,7 +675,13 @@ header.ds-nav {
     "typography": {
       "display": { "fontFamily": "'Noto Sans TC', sans-serif", "fontWeight": 900, "letterSpacing": "-0.02em" },
       "body": { "fontFamily": "'Noto Sans TC', system-ui, sans-serif", "fontWeight": 400, "lineHeight": 1.7 },
-      "code_and_data": { "fontFamily": "'JetBrains Mono', monospace", "fontWeight": 600 }
+      "numbers_and_metrics": { "fontFamily": "'Inter', -apple-system, sans-serif", "features": "tabular-nums", "fontWeight": 800 },
+      "code_and_data": { "fontFamily": "'JetBrains Mono', monospace", "fontWeight": 600 },
+      "dashboard_scope": {
+        "primary": "'Noto Sans TC', system-ui, sans-serif",
+        "numbers": "'Noto Sans TC', system-ui, sans-serif (tabular-nums)",
+        "note": "Dashboard A adopts unified Noto Sans TC for both UI and metrics to eliminate CJK-Latin baseline disparity."
+      }
     },
     "radii": { "sm": "8px", "md": "14px", "lg": "20px", "pill": "999px" },
     "shadows": {
@@ -602,7 +694,8 @@ header.ds-nav {
     "Rule 2: Any score display MUST honor the 65/35 breakdown: 65% Answer Adoption, 35% Official Citation.",
     "Rule 3: Unknown states must NEVER be rendered as 0. They must use the amber warning tag (#B97700) with label '未知'.",
     "Rule 4: Buttons must use border-radius: 999px (pill style) with --gc-mint background and white bold text.",
-    "Rule 5: For comparisons, use .compare-card and .search-compare__grid structure with subtle borders, never heavy solid colors."
+    "Rule 5: For comparisons, use .compare-card and .search-compare__grid structure with subtle borders, never heavy solid colors.",
+    "Rule 6: Numbers and metrics use tabular-nums. In Dashboard A (apps/web/app/), --gc-font-number is unified to 'Noto Sans TC' for seamless CJK harmony; for public marketing pages and whitepaper reports, Inter is retained for Latin figures."
   ]
 }</pre>
     </div>

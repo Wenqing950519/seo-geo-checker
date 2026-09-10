@@ -11,6 +11,7 @@ try {
   const bundle = await readFile(path.join(outputDir, "worker.js"), "utf8");
   const auditWorker = await readFile("services/cloudflare/audit/src/worker.js", "utf8");
   const developerWorker = await readFile("services/cloudflare/developer-api/src/worker.js", "utf8");
+  const developerOAuthMigration = await readFile("services/api/developer-api-migrations/0004_google_oauth_state.sql", "utf8");
   const pagesHeaders = await readFile("apps/web/public/_headers", "utf8");
   const auditConfig = JSON.parse(await readFile("services/cloudflare/audit/wrangler.jsonc", "utf8"));
   const developerConfig = JSON.parse(await readFile("services/cloudflare/developer-api/wrangler.jsonc", "utf8"));
@@ -31,6 +32,8 @@ try {
   assert.match(auditWorker, /AUDIT_ADMISSION_ENABLED/, "Audit Worker must guard new paid jobs with an admission switch");
   assert.match(auditWorker, /Strict-Transport-Security/, "Audit Worker responses must enable HSTS");
   assert.match(developerWorker, /Strict-Transport-Security/, "Developer Worker responses must enable HSTS");
+  assert.match(developerWorker, /createD1OAuthStateStore/, "Google OAuth state must persist outside one Worker isolate");
+  assert.match(developerOAuthMigration, /developer_google_oauth_states/, "Developer OAuth state requires its own Product B D1 table");
   assert.match(pagesHeaders, /Strict-Transport-Security:\s*max-age=31536000/i, "Pages responses must enable HSTS");
   console.log("cloudflare developer worker bundle tests passed");
 } finally {
@@ -39,11 +42,13 @@ try {
 
 function runWrangler(outdir) {
   const wranglerArgs = [
-    "wrangler", "deploy", "--dry-run", "--outdir", outdir,
+    "deploy", "--dry-run", "--outdir", outdir,
     "--config", "services/cloudflare/developer-api/wrangler.jsonc"
   ];
   const executable = process.platform === "win32" ? process.env.ComSpec || "cmd.exe" : "npx";
-  const args = process.platform === "win32" ? ["/d", "/s", "/c", "npx.cmd", ...wranglerArgs] : wranglerArgs;
+  const args = process.platform === "win32"
+    ? ["/d", "/s", "/c", "wrangler.cmd", ...wranglerArgs]
+    : ["wrangler", ...wranglerArgs];
   return new Promise((resolve, reject) => {
     const child = spawn(executable, args, {
       cwd: process.cwd(),

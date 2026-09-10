@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -47,7 +47,14 @@
 
   /* Fonts */
   --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-number: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
   --gc-font-mono: 'JetBrains Mono', monospace;
+}
+
+.font-number {
+  font-family: var(--gc-font-number);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -113,7 +120,7 @@ header.dev-nav {
   letter-spacing: -0.02em;
 }
 .brand-badge {
-  font-family: var(--gc-font-mono);
+  font-family: var(--gc-font-sans);
   font-size: 0.72rem;
   font-weight: 700;
   color: var(--gc-mint-dark);
@@ -198,7 +205,7 @@ header.dev-nav {
   gap: 8px;
   background: var(--gc-mint-soft);
   color: var(--gc-mint-dark);
-  font-family: var(--gc-font-mono);
+  font-family: var(--gc-font-sans);
   font-size: 0.8rem;
   font-weight: 700;
   padding: 4px 12px;
@@ -268,12 +275,14 @@ header.dev-nav {
 .header-dot.yellow { background: #FFBD2E; }
 .header-dot.green { background: #27C93F; }
 .header-badge {
-  font-family: var(--gc-font-mono);
+  font-family: var(--gc-font-sans);
   font-size: 0.74rem;
+  font-weight: 700;
   color: var(--gc-mint-light);
   background: rgba(0, 184, 169, 0.15);
   padding: 3px 8px;
   border-radius: 4px;
+  letter-spacing: 0.03em;
 }
 .engine-stream-list {
   display: flex;
@@ -580,7 +589,9 @@ header.dev-nav {
   color: var(--gc-navy);
 }
 .plan-price {
-  font-family: var(--gc-font-mono);
+  font-family: var(--gc-font-number);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
   font-size: 2.5rem;
   font-weight: 900;
   color: var(--gc-navy);
@@ -677,10 +688,9 @@ footer.dev-footer {
     </a>
 
     <ul class="nav-links">
-      <li><a href="/" target="_blank">產品首頁</a></li>
-      <li><a href="/developers/docs">技術文件 (Docs)</a></li>
-      <li><a href="#pricing">方案價格 (Pricing)</a></li>
-      <li><a href="/brand" target="_blank">品牌規範</a></li>
+      <li><a href="/">回到首頁</a></li>
+      <li><a href="/developers/docs">技術文件</a></li>
+      <li><a href="#pricing">方案價格</a></li>
     </ul>
 
     <div class="nav-actions">

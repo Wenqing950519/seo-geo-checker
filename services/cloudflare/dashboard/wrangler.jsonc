@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/wrangler/config-schema.json",
+  "name": "geocheck-dashboard",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-10",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {
+    "DASHBOARD_ADMISSION_ENABLED": "false",
+    "DASHBOARD_PAYMENT_MODE": "sandbox"
+  },
+  "d1_databases": [{
+    "binding": "DASHBOARD_DB",
+    "database_name": "geocheck-dashboard",
+    "database_id": "00000000-0000-0000-0000-000000000000",
+    "migrations_dir": "migrations"
+  }],
+  "triggers": { "crons": ["*/5 * * * *"] },
+  "observability": { "enabled": true, "head_sampling_rate": 1 }
+}

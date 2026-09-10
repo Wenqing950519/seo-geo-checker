@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -46,7 +46,14 @@
 
   /* Fonts */
   --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-number: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
   --gc-font-mono: 'JetBrains Mono', monospace;
+}
+
+.font-number {
+  font-family: var(--gc-font-number);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -110,7 +117,7 @@ header.docs-nav {
   color: var(--gc-navy);
 }
 .docs-badge {
-  font-family: var(--gc-font-mono);
+  font-family: var(--gc-font-sans);
   font-size: 0.72rem;
   color: var(--gc-mint-dark);
   background: var(--gc-mint-soft);
@@ -349,9 +356,11 @@ main.docs-content {
   border-bottom: 1px solid var(--gc-border);
 }
 .docs-table th {
-  background: var(--gc-bg-alt);
-  font-weight: 700;
-  color: var(--gc-navy);
+  background: #F8FAFC;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: #475569;
+  border-bottom: 1px solid var(--gc-border);
 }
 .docs-table code {
   font-family: var(--gc-font-mono);
@@ -425,7 +434,7 @@ aside.docs-toc {
     </a>
 
     <div class="nav-actions">
-      <a href="/developers">首頁 (Showcase)</a>
+      <a href="/">回到首頁</a>
       <a href="/developers/console" class="btn-console">API 控制台</a>
     </div>
   </div>
@@ -438,7 +447,7 @@ aside.docs-toc {
       <div class="sidebar-heading">快速開始</div>
       <ul class="sidebar-links">
         <li><a href="#quickstart" class="active">簡介與安裝</a></li>
-        <li><a href="#auth">身分認證 (API Key)</a></li>
+        <li><a href="#auth">身分驗證</a></li>
       </ul>
     </div>
 
@@ -508,7 +517,7 @@ aside.docs-toc {
 
     <!-- Quickstart -->
     <section class="docs-section" id="quickstart">
-      <h2>快速開始 (Quickstart)</h2>
+      <h2>快速開始</h2>
       <p>
         GeoCheck 提供兩種整合方式：官方 TypeScript SDK (<code>@geocheck/sdk</code>) 或標準 REST HTTP API。
         SDK 內建型別推導、顯式冪等鍵與 <code>Retry-After</code> 智慧輪詢，推薦於 Node.js / Bun 專案中優先使用。
@@ -525,7 +534,7 @@ aside.docs-toc {
         </div>
       </div>
 
-      <h3 id="auth">身分認證 (Authentication)</h3>
+      <h3 id="auth">身分驗證</h3>
       <p>
         所有對 Developer API 的請求皆必須在 HTTP 標頭中帶入 Bearer API 金鑰：
       </p>
@@ -544,15 +553,15 @@ aside.docs-toc {
 
     <!-- Core Concepts -->
     <section class="docs-section" id="architecture">
-      <h2>核心概念 (Core Concepts)</h2>
+      <h2>核心概念</h2>
 
-      <h3>四引擎並行架構 (4-Engine Parallel Architecture)</h3>
+      <h3>四引擎並行架構</h3>
       <p>
         不同於單純包裝單一模型的轉售 API，GeoCheck 每次觀測固定直接呼叫 4 大官方搜尋 API：
       </p>
       <table class="docs-table">
         <thead>
-          <tr><th>引擎 (Provider)</th><th>模型識別碼 (Model ID)</th><th>搜尋機制</th></tr>
+          <tr><th>搜尋引擎</th><th>模型識別碼</th><th>搜尋機制</th></tr>
         </thead>
         <tbody>
           <tr><td>OpenAI</td><td><code>gpt-5.6-luna</code></td><td>原生 Web Search Tool</td></tr>
@@ -562,7 +571,7 @@ aside.docs-toc {
         </tbody>
       </table>
 
-      <h3 id="settlement">全成才扣量原則 (Strict All-Succeed Settlement)</h3>
+      <h3 id="settlement">全成才扣量原則</h3>
       <div class="callout info">
         <div>
           <strong>保證零扣冤枉額度：</strong>
@@ -571,7 +580,7 @@ aside.docs-toc {
         </div>
       </div>
 
-      <h3 id="idempotency">顯式冪等鍵 (Idempotency Key)</h3>
+      <h3 id="idempotency">顯式冪等鍵機制</h3>
       <p>
         建立觀測時必須傳入 <code>Idempotency-Key</code> 標頭（例如 UUID v4）。若因網路瞬斷重試發送相同請求，系統會安全重放原有任務，絕不會產生重複排程或重複扣量。
       </p>
@@ -582,7 +591,7 @@ aside.docs-toc {
       <h2>TypeScript SDK 使用手冊</h2>
       <p>官方客戶端 <code>@geocheck/sdk</code> 提供純淨、無副作用的封裝，不含多餘依賴。</p>
 
-      <h3 id="sdk-methods">完整範例 (End-to-End Example)</h3>
+      <h3 id="sdk-methods">完整程式碼範例</h3>
       <div class="code-container">
         <div class="code-header">
           <span class="code-lang">TYPESCRIPT</span>
@@ -633,15 +642,15 @@ aside.docs-toc {
 
     <!-- REST API Reference -->
     <section class="docs-section" id="endpoint-create">
-      <h2>REST API 參考 (API Reference)</h2>
+      <h2>REST API 參考</h2>
 
-      <h3>建立觀測任務 (Create Measurement)</h3>
+      <h3>建立觀測任務</h3>
       <p><code>POST /v1/measurements</code></p>
       <p>接受網址或自訂問題，非同步發起四引擎平行搜尋觀測。</p>
 
       <table class="docs-table">
         <thead>
-          <tr><th>標頭 (Header)</th><th>必填</th><th>說明</th></tr>
+          <tr><th>標頭名稱</th><th>必填</th><th>說明</th></tr>
         </thead>
         <tbody>
           <tr><td><code>Authorization</code></td><td>是</td><td><code>Bearer &lt;API_KEY&gt;</code></td></tr>
@@ -675,7 +684,7 @@ aside.docs-toc {
         </div>
       </div>
 
-      <h3 id="endpoint-poll">取得觀測結果 (Get Measurement Result)</h3>
+      <h3 id="endpoint-poll">取得觀測結果</h3>
       <p><code>GET /v1/measurements/:measurement_id</code></p>
       <p>若任務仍在執行中，回傳 <code>409 Conflict</code> (附帶 <code>Retry-After</code> 標頭)；若已完成則回傳 <code>200 OK</code> 完整結構。</p>
 
@@ -723,11 +732,11 @@ aside.docs-toc {
         </div>
       </div>
 
-      <h3 id="endpoint-job">查詢任務狀態 (Get Job Status)</h3>
+      <h3 id="endpoint-job">查詢任務狀態</h3>
       <p><code>GET /v1/jobs/:job_id</code></p>
       <p>查詢任務輕量狀態 (<code>queued</code>, <code>running</code>, <code>succeeded</code>, <code>failed</code>)，不包含龐大的四引擎結果內容。</p>
 
-      <h3 id="endpoint-usage">用量與配額 (Get Usage)</h3>
+      <h3 id="endpoint-usage">用量與配額查詢</h3>
       <p><code>GET /v1/usage</code></p>
       <div class="code-container">
         <div class="code-header"><span class="code-lang">RESPONSE 200 OK</span></div>
@@ -744,7 +753,7 @@ aside.docs-toc {
         </div>
       </div>
 
-      <h3 id="endpoint-delete">刪除觀測結果 (Delete Measurement Content)</h3>
+      <h3 id="endpoint-delete">刪除觀測結果</h3>
       <p><code>DELETE /v1/measurements/:measurement_id</code></p>
       <p>依個資與合規要求主動刪除結果內容，成功回傳 <code>204 No Content</code>。後續再查詢該 ID 將回傳 <code>410 Gone</code>。</p>
     </section>
@@ -754,7 +763,7 @@ aside.docs-toc {
       <h2>HTTP 錯誤代碼表</h2>
       <table class="docs-table">
         <thead>
-          <tr><th>狀態碼</th><th>錯誤代碼 (Code)</th><th>含義與建議處置</th></tr>
+          <tr><th>狀態碼</th><th>錯誤代碼</th><th>說明與處置建議</th></tr>
         </thead>
         <tbody>
           <tr><td>400</td><td><code>invalid_request</code></td><td>請求參數不合法，請核對 JSON 結構與 URL 格式</td></tr>

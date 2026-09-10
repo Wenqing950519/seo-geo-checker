@@ -21,6 +21,9 @@ const { searchPerplexity, testPerplexityProvider } = require("../../packages/ai-
 const { getUsageSummary } = require("../../packages/ai-providers/usage-meter.js");
 const { createDeveloperApiHttpHandler } = require("./developer-api-http.js");
 const { createSqliteDeveloperPlatformStore } = require("./storage/developer-platform-store.js");
+const { createDashboardApiHttpHandler } = require("./dashboard-api-http.js");
+const { createGoogleOAuthHttpHandler } = require("./google-oauth-http.js");
+const { createGoogleSearchConsoleClient } = require("./google-search-console-client.js");
 
 loadEnvFiles();
 
@@ -33,6 +36,9 @@ const reports = new Map();
 const auditCache = createAuditCache();
 const d1ReportStore = createD1ReportStore();
 const developerApi = createDeveloperApiHttpHandler({ createSqlitePlatformStore: createSqliteDeveloperPlatformStore });
+const gscClient = createGoogleSearchConsoleClient({ clientId: process.env.GOOGLE_OAUTH_CLIENT_ID, clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET });
+const dashboardApi = createDashboardApiHttpHandler({ gscClient });
+const googleOAuth = createGoogleOAuthHttpHandler({ dashboardApi, developerApi, gscClient });
 const funnel = createFunnelRecorder();
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
 const SECURITY_HEADERS = Object.freeze({
@@ -914,6 +920,10 @@ async function handleRequest(req, res) {
 
   if (maybeRedirectLegacyHost(req, res, url)) return;
 
+  if (await googleOAuth.handle({ req, res, url, readJson, sendJson })) return;
+
+  if (await dashboardApi.handle({ req, res, url, readJson, sendJson })) return;
+
   if (await developerApi.handle({ req, res, url, readJson, sendJson })) return;
 
   if (req.method === "OPTIONS" && PRIVATE_OPERATION_PATHS.has(url.pathname)) {
@@ -935,6 +945,16 @@ async function handleRequest(req, res) {
 
   if (req.method === "GET" && url.pathname === "/sitemap.xml") {
     return sendText(res, 200, sitemapXml(), "application/xml; charset=utf-8");
+  }
+
+  if (req.method === "GET" && url.pathname === "/privacy") {
+    return sendHtml(res, 200, fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/privacy.html"), "utf8"));
+  }
+  if (req.method === "GET" && url.pathname === "/terms") {
+    return sendHtml(res, 200, fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/terms.html"), "utf8"));
+  }
+  if (req.method === "GET" && url.pathname === "/refund") {
+    return sendHtml(res, 200, fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/refund.html"), "utf8"));
   }
 
   if (req.method === "GET" && url.pathname === "/llms.txt") {
@@ -1008,6 +1028,42 @@ async function handleRequest(req, res) {
       return sendHtml(res, 404, "<h1>Developer Console HTML not found</h1>");
     }
     return sendHtml(res, 200, fs.readFileSync(consolePath, "utf8"));
+  }
+
+  // Product A Marketing Dashboard (SPA Client)
+  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/app" || url.pathname === "/app/" || url.pathname.startsWith("/app/"))) {
+    const appDir = path.resolve(__dirname, "../../apps/web/app");
+    let relativePath = url.pathname.replace(/^\/app\/?/, "");
+    if (!relativePath || relativePath === "" || relativePath.indexOf(".") === -1) {
+      relativePath = "index.html";
+    }
+    const safeFilePath = path.resolve(appDir, relativePath);
+    if (!safeFilePath.toLowerCase().startsWith(appDir.toLowerCase()) || !fs.existsSync(safeFilePath)) {
+      const indexPath = path.resolve(appDir, "index.html");
+      if (fs.existsSync(indexPath)) {
+        return sendHtml(res, 200, fs.readFileSync(indexPath, "utf8"));
+      }
+      return sendHtml(res, 404, "<h1>Dashboard not found</h1>");
+    }
+
+    const ext = path.extname(safeFilePath).toLowerCase();
+    const mimeMap = {
+      ".html": "text/html; charset=utf-8",
+      ".js": "application/javascript; charset=utf-8",
+      ".mjs": "application/javascript; charset=utf-8",
+      ".css": "text/css; charset=utf-8",
+      ".svg": "image/svg+xml",
+      ".png": "image/png",
+      ".json": "application/json; charset=utf-8"
+    };
+    const contentType = mimeMap[ext] || "text/plain; charset=utf-8";
+    res.writeHead(200, {
+      ...SECURITY_HEADERS,
+      "Content-Type": contentType,
+      "Cache-Control": "no-cache",
+      "Access-Control-Allow-Origin": "*"
+    });
+    return res.end(fs.readFileSync(safeFilePath));
   }
 
   // 靜態資產:og-image 與 favicon(缺檔時回 404,不再讓 meta 指向不存在的資源)

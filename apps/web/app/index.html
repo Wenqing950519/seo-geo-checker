@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoCheck Dashboard — 企業級 AI GEO 品牌可見度與成長監控平台</title>
+  <meta name="description" content="GeoCheck 工具 A 行銷儀表板：為行銷工作者監測品牌在四大 AI 搜尋引擎（OpenAI、Google Gemini、Anthropic、Perplexity）之每週回答提及採用率、第一方官網引用來源拓撲與不可變題組意圖。">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
+  <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
+
+  <!-- Google Fonts: Noto Sans TC, JetBrains Mono, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="/app/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Persistent Left Navigation Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- Main Content Pane -->
+    <div class="main-pane">
+      <!-- Persistent Top Controls Header -->
+      <div id="header-container"></div>
+
+      <!-- Scrollable Main View Container -->
+      <main class="main-content" id="main-content" tabindex="-1">
+        <div id="view-container" class="view-container"></div>
+      </main>
+    </div>
+
+    <!-- Universal Evidence Drawer Container -->
+    <div id="drawer-container"></div>
+
+    <!-- Management Modals Container -->
+    <div id="modal-container"></div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+  </div>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="/app/app.js"></script>
+</body>
+</html>

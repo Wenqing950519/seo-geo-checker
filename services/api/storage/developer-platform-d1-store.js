@@ -128,6 +128,13 @@ function createD1DeveloperPlatformStore(options = {}) {
     return { sessionId: row.session_id, tenantId: row.tenant_id, expiresAt: row.expires_at };
   }
 
+  async function createSession({ sessionId, tenantId, tokenHash, now, sessionExpiresAt }) {
+    await query(`INSERT INTO developer_management_sessions (
+      session_id, tenant_id, token_hash, created_at, expires_at
+    ) VALUES (?, ?, ?, ?, ?)`, [sessionId, tenantId, tokenHash, now, sessionExpiresAt]);
+    return { sessionId, tenantId, expiresAt: sessionExpiresAt };
+  }
+
   async function listAuthOutbox({ now, limit = 100 }) {
     const result = await query(`SELECT token_id, email_normalized, encrypted_token, expires_at
       FROM developer_auth_tokens WHERE purpose = 'login' AND consumed_at IS NULL
@@ -569,7 +576,7 @@ function createD1DeveloperPlatformStore(options = {}) {
   }
 
   return {
-    activateEntitlement, admitJob, authenticateApiKey, authenticateSession, claimJob,
+    activateEntitlement, admitJob, authenticateApiKey, authenticateSession, claimJob, createSession,
     completeJob, consumeAuthToken, deleteMeasurement, expireStaleJobs,
     findVerifiedAccountByEmail, getAdminOverview, getAdmission, getEntitlement,
     getJob, getJobByMeasurement, getMeasurement, getUsage, insertApiKey, insertAuthToken,

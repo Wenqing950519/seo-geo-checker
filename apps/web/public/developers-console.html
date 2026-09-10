@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -47,7 +47,14 @@
 
   /* Fonts */
   --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-number: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
   --gc-font-mono: 'JetBrains Mono', monospace;
+}
+
+.font-number {
+  font-family: var(--gc-font-number);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -205,20 +212,23 @@ header.console-nav {
   align-items: center;
 }
 .stat-val {
-  font-family: var(--gc-font-mono);
-  font-size: 1.9rem;
-  font-weight: 900;
+  font-family: var(--gc-font-number);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  font-size: 1.85rem;
+  font-weight: 800;
   color: var(--gc-navy);
   margin: 8px 0;
+  line-height: 1.2;
 }
 .stat-sub {
   font-size: 0.78rem;
   color: var(--gc-muted);
 }
 .plan-tag {
-  font-family: var(--gc-font-mono);
+  font-family: var(--gc-font-sans);
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 700;
   padding: 2px 8px;
   border-radius: 999px;
 }
@@ -456,7 +466,9 @@ header.console-nav {
   color: var(--gc-navy);
 }
 .m-plan-price {
-  font-family: var(--gc-font-mono);
+  font-family: var(--gc-font-number);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
   font-size: 2rem;
   font-weight: 900;
   color: var(--gc-navy);
@@ -515,6 +527,194 @@ header.console-nav {
   background: var(--gc-bg-alt);
 }
 
+/* Developer Auth Nav & Controls */
+.btn-dev-login-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gc-navy);
+  color: #FFFFFF !important;
+  border: 1px solid var(--gc-navy);
+  padding: 6px 14px;
+  border-radius: var(--gc-radius-sm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn-dev-login-nav:hover {
+  background: #08284d;
+}
+.dev-session-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid var(--gc-border);
+  padding: 4px 10px;
+  border-radius: var(--gc-radius-pill);
+  font-size: 0.8rem;
+}
+.dev-online-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gc-mint);
+}
+.dev-session-name {
+  color: var(--gc-navy);
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+.btn-dev-logout {
+  background: transparent;
+  border: none;
+  color: var(--gc-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+.btn-dev-logout:hover {
+  background: #FEE2E2;
+  color: var(--gc-danger);
+}
+
+/* Google Identity Services (GIS) Button Styles */
+.btn-google-signin-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #DADCE0;
+  border-radius: 20px;
+  padding: 0 14px 0 10px;
+  height: 36px;
+  font-family: var(--gc-font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #3C4043;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.btn-google-signin-nav:hover {
+  background-color: #F8FAFD;
+  box-shadow: 0 1px 3px rgba(60,64,67,0.2);
+}
+.btn-google-signin-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #DADCE0;
+  border-radius: 24px;
+  padding: 0 20px 0 16px;
+  height: 48px;
+  font-family: var(--gc-font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #3C4043;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(60,64,67,0.08);
+}
+.btn-google-signin-hero:hover {
+  background-color: #F8FAFD;
+  border-color: #D2E3FC;
+  box-shadow: 0 2px 6px rgba(60,64,67,0.2);
+  transform: translateY(-1px);
+}
+
+/* Console Unauthenticated Gate Barrier */
+.console-login-gate {
+  max-width: 580px;
+  margin: 40px auto 60px;
+  background: #FFFFFF;
+  border: 1px solid var(--gc-border);
+  border-radius: 12px;
+  padding: 40px 36px;
+  box-shadow: 0 4px 20px rgba(11, 59, 111, 0.06);
+  text-align: center;
+}
+.gate-shield-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #F0FDF4;
+  color: #16A34A;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.gate-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--gc-mint-dark);
+  background: var(--gc-mint-soft);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+.gate-title {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--gc-navy);
+  margin-bottom: 10px;
+}
+.gate-desc {
+  font-size: 0.9rem;
+  color: var(--gc-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.gate-features-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 0.86rem;
+  color: #334155;
+  margin-bottom: 24px;
+}
+.gate-features-box li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gate-features-box li:last-child {
+  margin-bottom: 0;
+}
+.gate-features-box svg {
+  color: var(--gc-mint);
+  flex-shrink: 0;
+}
+.btn-demo-quick {
+  background: #FFFFFF;
+  border: 1px solid var(--gc-border);
+  color: var(--gc-navy);
+  padding: 9px 18px;
+  border-radius: var(--gc-radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-demo-quick:hover {
+  border-color: var(--gc-navy);
+  background: var(--gc-bg-alt);
+}
+
 /* Create Key Modal Form */
 .form-group {
   margin-bottom: 20px;
@@ -542,21 +742,102 @@ header.console-nav {
   box-shadow: 0 0 0 3px rgba(0, 184, 169, 0.15);
 }
 
-/* Key Reveal Banner in Modal */
-.key-reveal-box {
-  background: #06101E;
-  border: 1px solid rgba(0, 184, 169, 0.3);
-  border-radius: var(--gc-radius-sm);
-  padding: 14px 16px;
-  font-family: var(--gc-font-mono);
-  font-size: 0.88rem;
-  color: #33C6B9;
-  word-break: break-all;
+/* Developer-Grade Key Reveal Modal */
+.key-reveal-modal-card {
+  max-width: 640px !important;
+  width: 100%;
+  padding: 28px 32px;
+  border-radius: 12px;
+}
+
+.dev-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  margin: 16px 0;
+  margin-bottom: 12px;
+}
+
+.dev-modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.dev-modal-notice {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  background: #F8FAFC;
+  border-left: 3px solid #94A3B8;
+  border-radius: 0 6px 6px 0;
+}
+
+.dev-modal-notice strong {
+  color: #1E293B;
+}
+
+.key-reveal-box {
+  background: #0F172A;
+  border: 1px solid #1E293B;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+
+.key-reveal-code {
+  font-family: var(--gc-font-mono);
+  font-size: 0.88rem;
+  color: #F8FAFC;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow-x: auto;
+  user-select: all;
+  flex: 1;
+}
+
+.btn-dev-copy {
+  background: #1E293B;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #F8FAFC;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.btn-dev-copy:hover {
+  background: #334155;
+  border-color: #475569;
+}
+
+.btn-dev-confirm {
+  background: #0F172A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 22px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-dev-confirm:hover {
+  background: #1E293B;
 }
 
 @media (max-width: 900px) {
@@ -589,84 +870,154 @@ header.console-nav {
 
     <div class="nav-links">
       <a href="/developers/docs">技術文件</a>
-      <a href="/developers">展示首頁</a>
+      <a href="/">回到首頁</a>
       <button class="btn-change-plan" onclick="openPlanModal()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <span id="nav-plan-label">方案: Free Trial</span>
       </button>
+      <div id="nav-auth-container" style="display:inline-flex; align-items:center;"></div>
     </div>
   </div>
 </header>
 
 <!-- Main Container -->
 <main class="console-container">
-  <!-- Welcome -->
-  <div class="welcome-banner">
-    <div class="welcome-title">
-      <h1>Developer API 儀表板</h1>
-      <p>管理您的官方 API 金鑰、追蹤四引擎量測輪數與任務歷程。</p>
+  <!-- Unauthenticated Gate Barrier -->
+  <div id="console-login-gate" class="console-login-gate" style="display:none;">
+    <div class="gate-shield-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
     </div>
-    <div>
-      <button class="btn-primary" onclick="handleCreateKeyClick()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        建立新 API 金鑰
+    <div class="gate-badge">DEVELOPER ACCESS REQUIRED</div>
+    <h2 class="gate-title">請先登入 Developer 控制台</h2>
+    <p class="gate-desc">
+      此為官方觀測 API 開發者介面。依權限規範，未登入狀態不允許建立或查看 API 金鑰與觀測歷程。請使用開發者憑證登入，或啟用示範帳號快速體驗。
+    </p>
+
+    <div class="gate-features-box">
+      <ul style="list-style:none; padding:0; margin:0;">
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>4 大官方搜尋引擎直連</strong>：OpenAI, Gemini, Perplexity, Claude 原生客觀引用觀測</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>全成才扣量原則</strong>：四家皆成功才扣額度，部分失敗不計費</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>每日 3 輪免費試用</strong>：支援 <code>@geocheck/sdk</code> 與標準 REST API</span>
+        </li>
+      </ul>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <button type="button" class="btn-google-signin-hero" onclick="beginGoogleLogin()" style="width:100%; justify-content:center; padding:12px 20px; font-size:0.95rem;">
+        <svg class="google-icon" width="20" height="20" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <span>使用 Google 帳號登入</span>
       </button>
     </div>
+
+    <div style="display:flex; align-items:center; gap:12px; margin: 16px 0;">
+      <span style="flex:1; height:1px; background:var(--gc-border);"></span>
+      <span style="font-size:0.78rem; color:var(--gc-muted);">或快速體驗</span>
+      <span style="flex:1; height:1px; background:var(--gc-border);"></span>
+    </div>
+
+    <button type="button" class="btn-demo-quick" style="width:100%;" onclick="handleDevDemoLogin()">
+      一鍵以示範開發者帳號登入 (Demo Account)
+    </button>
   </div>
 
-  <!-- Stats Grid -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-label">
-        <span>當前方案狀態</span>
-        <span id="plan-badge" class="plan-tag free">Free Trial</span>
+  <!-- Authenticated Console Workspace -->
+  <div id="console-workspace" style="display:none;">
+    <!-- Welcome -->
+    <div class="welcome-banner">
+      <div class="welcome-title">
+        <h1>Developer API 儀表板</h1>
+        <p>管理您的官方 API 金鑰、追蹤四引擎量測輪數與任務歷程。</p>
       </div>
-      <div class="stat-val" id="plan-name-display">免費試用</div>
-      <div class="stat-sub" id="plan-expiry-display">7 天試用期限 · 免綁信用卡</div>
+      <div>
+        <button class="btn-primary" onclick="handleCreateKeyClick()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          建立新 API 金鑰
+        </button>
+      </div>
     </div>
 
-    <div class="stat-card">
-      <div class="stat-label">
-        <span>剩餘觀測額度</span>
-        <span style="color:var(--gc-mint); font-size:0.75rem;">每日重置</span>
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">
+          <span>當前方案狀態</span>
+          <span id="plan-badge" class="plan-tag free">Free Trial</span>
+        </div>
+        <div class="stat-val" id="plan-name-display">免費試用</div>
+        <div class="stat-sub" id="plan-expiry-display">7 天試用期限 · 免綁信用卡</div>
       </div>
-      <div class="stat-val" id="remaining-rounds">3 / 3 輪</div>
-      <div class="stat-sub">四家全成才扣量 · 失敗不計費</div>
+
+      <div class="stat-card">
+        <div class="stat-label">
+          <span>剩餘觀測額度</span>
+          <span style="color:var(--gc-mint); font-size:0.75rem;">每日重置</span>
+        </div>
+        <div class="stat-val" id="remaining-rounds">3 / 3 輪</div>
+        <div class="stat-sub">全成才扣量 · 單次並發 4 搜尋引擎</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">
+          <span>有效 API 金鑰</span>
+          <a href="#keys" style="font-size:0.75rem; color:var(--gc-navy); font-weight:700;">查看全部 →</a>
+        </div>
+        <div class="stat-val">1 組</div>
+        <div class="stat-sub">具備觀測量測與用量讀取權限</div>
+      </div>
     </div>
 
-    <div class="stat-card">
-      <div class="stat-label">
-        <span>累計已完成輪數</span>
+    <!-- Quickstart Box -->
+    <div class="quickstart-box">
+      <div class="qs-header">
+        <span class="qs-title">快速接入指南 · 3 行代碼發起觀測</span>
+        <a href="/developers/docs" class="qs-link">閱讀完整 SDK 文件 →</a>
       </div>
-      <div class="stat-val" id="used-rounds">0 輪</div>
-      <div class="stat-sub">保留中任務: <span id="reserved-rounds">0</span> 輪</div>
+      <div class="qs-code-wrap">
+        <button class="btn-copy" onclick="copyQuickstart()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>複製</span>
+        </button>
+        <pre><code id="qs-code-text">import { GeoCheckClient } from '@geocheck/sdk';
+
+const client = new GeoCheckClient({ apiKey: 'YOUR_API_KEY' });
+const job = await client.measurements.create({
+  url: 'https://example.com',
+  query: '台北高檔原木牛排約會餐廳推薦',
+  engines: ['openai', 'gemini', 'perplexity', 'anthropic']
+});
+
+console.log('觀測任務完成:', job.results);</code></pre>
+      </div>
     </div>
 
-    <div class="stat-card">
-      <div class="stat-label">
-        <span>四引擎官方覆蓋</span>
-        <span style="color:var(--gc-success); font-size:0.75rem;">100% 官方</span>
-      </div>
-      <div class="stat-val">4 / 4 引擎</div>
-      <div class="stat-sub">OpenAI, Gemini, Sonar, Claude</div>
+    <!-- API Keys Section -->
+    <div class="section-head" id="keys">
+      <h2>API 金鑰管理</h2>
+      <button class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem;" onclick="handleCreateKeyClick()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        建立新金鑰
+      </button>
     </div>
-  </div>
 
-  <!-- Section 1: API Keys -->
-  <div class="section-header">
-    <h2 class="section-title">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      API 金鑰管理 (API Keys)
-    </h2>
-  </div>
-
-  <div class="panel-card">
-    <table class="data-table" id="keys-table">
+    <table class="keys-table">
       <thead>
         <tr>
-          <th>金鑰名稱</th>
+          <th>名稱</th>
           <th>金鑰前綴</th>
-          <th>權限 (Scopes)</th>
+          <th>權限範圍</th>
           <th>建立時間</th>
           <th style="text-align:right;">操作</th>
         </tr>
@@ -675,29 +1026,25 @@ header.console-nav {
         <!-- Rendered dynamically -->
       </tbody>
     </table>
-    <div id="keys-empty" class="empty-state" style="display:none;">
+    <div id="keys-empty" class="empty-state">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      <p>目前尚未建立任何 API 金鑰。請點選右上角「建立新 API 金鑰」開始整合。</p>
+      <p>尚未建立 API 金鑰。請點擊上方按鈕立即建立，或啟用試用方案。</p>
     </div>
-  </div>
 
-  <!-- Section 2: Recent Jobs -->
-  <div class="section-header">
-    <h2 class="section-title">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      最近任務記錄 (Recent Measurements)
-    </h2>
-  </div>
+    <!-- Jobs Section -->
+    <div class="section-head" style="margin-top: 48px;">
+      <h2>近期觀測任務歷程</h2>
+      <span style="font-size:0.85rem; color:var(--gc-muted);">展示最近 10 次四引擎觀測紀錄</span>
+    </div>
 
-  <div class="panel-card">
-    <table class="data-table" id="jobs-table">
+    <table class="keys-table">
       <thead>
         <tr>
-          <th>任務 ID (Job ID)</th>
-          <th>受測標的</th>
+          <th>任務序號</th>
+          <th>目標網址 / 查詢情境</th>
           <th>狀態</th>
-          <th>四引擎完成</th>
-          <th>建立時間</th>
+          <th>執行引擎</th>
+          <th>發起時間</th>
         </tr>
       </thead>
       <tbody id="jobs-tbody">
@@ -847,22 +1194,26 @@ header.console-nav {
 
 <!-- 4. Key Reveal Modal (One-time Reveal Notice) -->
 <div id="reveal-key-modal" class="modal-overlay">
-  <div class="modal-card">
-    <div style="display:flex; align-items:center; gap:10px; color:var(--gc-success); margin-bottom:12px;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-      <h3 style="font-size:1.3rem; font-weight:900; color:var(--gc-navy); margin:0;">API 金鑰建立成功</h3>
+  <div class="modal-card key-reveal-modal-card">
+    <div class="dev-modal-header">
+      <h3 class="dev-modal-title">API 金鑰已建立</h3>
+      <button class="modal-close" onclick="closeRevealModal()" title="關閉" style="position:static; padding:4px;">✕</button>
     </div>
-    <p style="font-size:0.88rem; color:#D6453D; background:#FEE2E2; padding:8px 12px; border-radius:6px; font-weight:600; margin-bottom:16px;">
-      ⚠️ 這是系統唯一一次展示完整金鑰。請立即複製並妥善保存在安全的環境變數中，後續將無法再次查看。
+
+    <p class="dev-modal-notice">
+      這是系統唯一一次展示完整金鑰。請立即複製並妥善保存在安全的環境變數中，視窗關閉後將<strong>無法再次查看完整內容</strong>。
     </p>
 
     <div class="key-reveal-box">
-      <span id="revealed-key-text">gck_live_sample_token</span>
-      <button class="btn-primary" style="padding:6px 14px; font-size:0.78rem;" onclick="copyRevealedKey()">複製金鑰</button>
+      <code id="revealed-key-text" class="key-reveal-code font-mono">gck_live_sample_token</code>
+      <button type="button" class="btn-dev-copy" id="btn-copy-revealed-key" onclick="copyRevealedKey()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="btn-copy-label">複製金鑰</span>
+      </button>
     </div>
 
-    <div style="text-align:right; margin-top:20px;">
-      <button class="btn-primary" onclick="closeRevealModal()">我已妥善保存金鑰</button>
+    <div style="display:flex; justify-content:flex-end;">
+      <button type="button" class="btn-dev-confirm" onclick="closeRevealModal()">我已妥善保存金鑰</button>
     </div>
   </div>
 </div>
@@ -882,22 +1233,54 @@ header.console-nav {
   </div>
 </div>
 
+<!-- 6. Developer Login Modal -->
+<div id="dev-login-modal" class="modal-overlay">
+  <div class="modal-card" style="max-width: 480px; text-align: left;">
+    <button class="modal-close" onclick="closeDevAuthModal()">✕</button>
+    <div style="text-align:center; margin-bottom: 20px;">
+      <div class="gate-badge">DEVELOPER LOGIN</div>
+      <h3 style="font-size:1.3rem; font-weight:900; color:var(--gc-navy); margin-top:8px;">登入 Developer 控制台</h3>
+      <p style="font-size:0.88rem; color:var(--gc-muted); margin-top:4px;">輸入您的開發者憑證即可管理 API 金鑰與觀測任務。</p>
+    </div>
+
+    <form onsubmit="event.preventDefault(); handleDevLogin(document.getElementById('modal-token-input').value);">
+      <div class="form-group">
+        <label class="form-label" for="modal-token-input">開發者會話憑證 (Developer Session Token)</label>
+        <input id="modal-token-input" class="form-input font-mono" placeholder="請輸入 gcs_... 憑證" />
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+        <button type="submit" class="btn-primary" style="justify-content:center; padding:10px;">驗證並登入</button>
+        <a class="btn-select-plan btn-select-paid" style="text-align:center; text-decoration:none;" href="https://api.geocheck.lisheng.cv/v1/auth/google/start">使用 Google 帳號登入</a>
+        <button type="button" class="btn-demo-quick" onclick="handleDevDemoLogin()">一鍵以示範帳號登入 (Demo Account)</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script>
 // State management
 const STATE = {
-  sessionToken: localStorage.getItem('gc_dev_session') || '',
+  sessionToken: localStorage.getItem('gc_developer_session') || localStorage.getItem('gc_dev_session') || '',
   activePlan: localStorage.getItem('gc_dev_plan') || '', // 'free', 'basic', 'premium', or ''
   keys: JSON.parse(localStorage.getItem('gc_dev_keys') || '[]'),
   pendingRevokeId: null,
   isFirstVisit: !localStorage.getItem('gc_dev_visited')
 };
 
+// Product B OAuth always lives on the isolated Developer API origin. A relative
+// /v1 URL would resolve against the Dashboard host and violate the A/B boundary.
+const DEVELOPER_OAUTH_START = 'https://api.geocheck.lisheng.cv/v1/auth/google/start';
+function beginGoogleLogin() {
+  window.location.assign(DEVELOPER_OAUTH_START);
+}
+
 // Initialize UI on load
 window.addEventListener('DOMContentLoaded', () => {
   renderState();
 
-  // If first visit or no plan selected yet, pop up the 3-tier Plan Selection Modal!
-  if (!STATE.activePlan) {
+  // If logged in and no plan selected yet, pop up the 3-tier Plan Selection Modal!
+  if (STATE.sessionToken && !STATE.activePlan) {
     setTimeout(() => {
       openPlanModal();
     }, 400);
@@ -906,6 +1289,42 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderState() {
+  const authContainer = document.getElementById('nav-auth-container');
+  const workspace = document.getElementById('console-workspace');
+  const gate = document.getElementById('console-login-gate');
+
+  const isLoggedIn = Boolean(STATE.sessionToken);
+
+  if (isLoggedIn) {
+    if (authContainer) {
+      authContainer.innerHTML = `
+        <div class="dev-session-pill">
+          <span class="dev-online-dot"></span>
+          <span class="dev-session-name font-mono">${escapeHtml(STATE.sessionToken.slice(0, 10))}...</span>
+          <button type="button" class="btn-dev-logout" onclick="handleDevLogout()">登出</button>
+        </div>
+      `;
+    }
+    if (workspace) workspace.style.display = 'block';
+    if (gate) gate.style.display = 'none';
+  } else {
+    if (authContainer) {
+      authContainer.innerHTML = `
+        <button type="button" class="btn-google-signin-nav" onclick="beginGoogleLogin()" title="使用 Google 帳號登入">
+          <svg class="google-icon" width="16" height="16" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>使用 Google 登入</span>
+        </button>
+      `;
+    }
+    if (workspace) workspace.style.display = 'none';
+    if (gate) gate.style.display = 'block';
+  }
+
   const plan = STATE.activePlan || '未開通';
   const planBadge = document.getElementById('plan-badge');
   const planDisplay = document.getElementById('plan-name-display');
@@ -914,7 +1333,7 @@ function renderState() {
   if (STATE.activePlan === 'free') {
     planBadge.className = 'plan-tag free';
     planBadge.innerText = 'Free Trial';
-    planDisplay.innerText = '免費試用 (7天)';
+    planDisplay.innerText = '免費試用';
     navPlanLabel.innerText = '方案: Free Trial';
     document.getElementById('remaining-rounds').innerText = '3 / 3 輪';
     document.getElementById('plan-expiry-display').innerText = '7 天試用期限 · 每日重置';
@@ -1062,8 +1481,64 @@ function closePaidNoticeModal() {
   document.getElementById('paid-notice-modal').classList.remove('open');
 }
 
+// Developer Authentication Handlers
+function handleDevLogin(token) {
+  const trimmed = (token || '').trim();
+  if (!trimmed) {
+    showToast('請輸入有效開發者憑證 (gcs_...)');
+    return;
+  }
+  STATE.sessionToken = trimmed;
+  localStorage.setItem('gc_developer_session', trimmed);
+  if (!STATE.activePlan) {
+    STATE.activePlan = 'free';
+    localStorage.setItem('gc_dev_plan', 'free');
+  }
+  if (!STATE.keys || STATE.keys.length === 0) {
+    STATE.keys = [
+      {
+        id: "key_demo_default",
+        name: "Default API Key",
+        prefix: "gck_live_9a3f2b8",
+        createdAt: new Date().toISOString().slice(0, 16).replace('T', ' ')
+      }
+    ];
+    localStorage.setItem('gc_dev_keys', JSON.stringify(STATE.keys));
+  }
+  closeDevAuthModal();
+  renderState();
+  showToast('✓ 已成功登入 Developer 控制台');
+}
+
+function handleDevDemoLogin() {
+  handleDevLogin('gcs_live_dev_session_demo');
+}
+
+function handleDevLogout() {
+  STATE.sessionToken = '';
+  localStorage.removeItem('gc_developer_session');
+  localStorage.removeItem('gc_dev_session');
+  renderState();
+  showToast('✓ 已登出 Developer 控制台');
+}
+
+function openDevAuthModal() {
+  document.getElementById('dev-login-modal').classList.add('open');
+  const input = document.getElementById('modal-token-input');
+  if (input) input.focus();
+}
+
+function closeDevAuthModal() {
+  document.getElementById('dev-login-modal').classList.remove('open');
+}
+
 // Key Creation Handlers
 function handleCreateKeyClick() {
+  if (!STATE.sessionToken) {
+    openDevAuthModal();
+    showToast('請先登入 Developer 控制台以建立 API 金鑰');
+    return;
+  }
   if (!STATE.activePlan) {
     openPlanModal();
     return;
@@ -1105,11 +1580,41 @@ function submitCreateKey() {
 }
 
 function copyRevealedKey() {
-  const key = document.getElementById('revealed-key-text').innerText;
-  navigator.clipboard.writeText(key).then(() => {
+  const keyEl = document.getElementById('revealed-key-text');
+  const key = keyEl ? (keyEl.innerText || keyEl.textContent) : '';
+  const onSuccess = () => {
+    const copyLabel = document.getElementById('btn-copy-label');
+    if (copyLabel) {
+      copyLabel.innerText = '已複製 ✓';
+      setTimeout(() => {
+        copyLabel.innerText = '複製金鑰';
+      }, 2000);
+    }
     showToast('✓ 已複製完整 API 金鑰！請妥善保存');
-  });
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(key).then(onSuccess).catch(() => {
+      fallbackCopy(key);
+      onSuccess();
+    });
+  } else {
+    fallbackCopy(key);
+    onSuccess();
+  }
 }
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
 function closeRevealModal() {
   document.getElementById('reveal-key-modal').classList.remove('open');
 }

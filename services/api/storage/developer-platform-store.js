@@ -75,6 +75,12 @@ function createSqliteDeveloperPlatformStore(options = {}) {
     return { sessionId: session.session_id, tenantId: session.tenant_id, expiresAt: session.expires_at };
   }
 
+  function createSession({ sessionId, tenantId, tokenHash, now, sessionExpiresAt }) {
+    db.prepare(`INSERT INTO developer_management_sessions (session_id, tenant_id, token_hash, created_at, expires_at)
+      VALUES (?, ?, ?, ?, ?)`).run(sessionId, tenantId, tokenHash, now, sessionExpiresAt);
+    return true;
+  }
+
   function listAuthOutbox({ now, limit = 100 }) {
     return db.prepare(`SELECT token_id, email_normalized, encrypted_token, expires_at
       FROM developer_auth_tokens
@@ -467,6 +473,7 @@ function createSqliteDeveloperPlatformStore(options = {}) {
     admitJob,
     authenticateApiKey,
     authenticateSession,
+    createSession,
     claimJob,
     close: () => db.close(),
     completeJob,

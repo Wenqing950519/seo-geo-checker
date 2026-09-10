@@ -1,0 +1,247 @@
+/* Auth & Modals Styling */
+
+.modal-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  pointer-events: none;
+  transition: visibility 0.25s ease;
+}
+
+.modal-root.closed {
+  visibility: hidden;
+}
+
+.modal-root.open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 42, 82, 0.45);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.modal-root.open .modal-backdrop {
+  opacity: 1;
+}
+
+.modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: var(--gc-shadow-lg);
+  border: 1px solid var(--gc-border);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+  z-index: 2;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+.modal-root.open .modal-dialog {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gc-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FAFCFF;
+}
+
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--gc-navy);
+  margin: 0;
+}
+
+.btn-modal-close {
+  background: none;
+  border: none;
+  color: var(--gc-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+.btn-modal-close:hover {
+  color: var(--gc-navy);
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-intro {
+  font-size: 0.86rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.modal-notice-box {
+  background: #FEF7EC;
+  border: 1px solid #FDE68A;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #92400E;
+}
+.modal-notice-box p {
+  margin: 2px 0 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gc-navy);
+}
+
+.form-label-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;
+  padding: 9px 14px;
+  border: 1px solid var(--gc-border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  background: #FFFFFF;
+  color: var(--gc-text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus {
+  border-color: var(--gc-mint);
+  box-shadow: 0 0 0 2px rgba(0, 184, 169, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.form-hint {
+  font-size: 0.74rem;
+  color: var(--gc-muted);
+}
+
+.current-session-info {
+  background: #F8FAFD;
+  border: 1px solid var(--gc-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+}
+
+.btn-text-danger {
+  background: none;
+  border: none;
+  color: #DC2626;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dynamic-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.q-row-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
+  background: #F8FAFD;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--gc-border);
+}
+
+.btn-text-action {
+  background: none;
+  border: none;
+  color: var(--gc-mint-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  border: 1px solid var(--gc-border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gc-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:hover {
+  background: #F1F5F9;
+  color: var(--gc-navy);
+}
+
+.btn-primary {
+  background: var(--gc-mint);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 184, 169, 0.25);
+  transition: all 0.2s;
+}
+.btn-primary:hover {
+  background: var(--gc-mint-dark);
+}
