@@ -1,9 +1,8 @@
 / /home.html 200
 
-# Canonical developer URLs use a slash: /developers/console and /developers/docs.
-# The Console must share an origin with the B API, so it is redirected there;
-# the docs are static and stay on Pages.
-/developers/console https://api.geocheck.lisheng.cv/developers/console 308
-/developers-console https://api.geocheck.lisheng.cv/developers/console 308
+# NOTE: this file is shared. It configures Cloudflare Pages *and* the B API
+# Worker, whose assets directory is this same folder. A rule written for one
+# origin therefore also applies to the other, so keep every rule path-only and
+# origin-agnostic. Cross-origin links belong in the HTML, not here.
 /developers/docs /developers-docs.html 200
 /developers-docs /developers/docs 308

@@ -37,12 +37,16 @@ try {
   assert.match(developerWorker, /createD1OAuthStateStore/, "Google OAuth state must persist outside one Worker isolate");
   assert.match(developerWorker, /missingOAuthSecrets/, "Google login readiness must be separate from provider measurement readiness");
   assert.match(
-    developerWorker, /pathname === "\/developers\/console"/,
+    developerWorker, /isConsolePath/,
     "Developer Console must be served from the B API origin at its canonical slash path"
   );
-  assert.match(
+  assert.doesNotMatch(
     developerWorker, /Response\.redirect\(new URL\("\/developers\/console"/,
-    "The legacy hyphenated Console path must redirect to the canonical one"
+    "Redirecting between the Console's two paths loops against the asset layer"
+  );
+  assert.match(
+    developerWorker, /assetUrl\.pathname = "\/developers-console"/,
+    "The Console asset must be fetched extensionless; the .html form 308s back into the Worker"
   );
   assert.match(developerOAuthMigration, /developer_google_oauth_states/, "Developer OAuth state requires its own Product B D1 table");
   assert.match(pagesHeaders, /Strict-Transport-Security:\s*max-age=31536000/i, "Pages responses must enable HSTS");

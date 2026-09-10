@@ -23,32 +23,42 @@ for (const file of [
 const redirects = fs.readFileSync(output("_redirects"), "utf8");
 assert.doesNotMatch(redirects, /^\/(privacy|terms|refund)\s/m, "Pages automatically maps extensionless HTML paths; duplicate redirects loop");
 
-// The public developer pages link to /developers/console and /developers/docs.
-// Pages must resolve both, or a signed-in user lands on 404 after Google login.
-assert.match(
-  redirects, /^\/developers\/console\s+https:\/\/api\.geocheck\.lisheng\.cv\/developers\/console\s+308$/m,
-  "The Console must redirect to the B API origin, which it shares with /v1/console"
-);
+// _redirects is shared by Cloudflare Pages and the B API Worker, whose assets
+// directory is this same folder. A rule naming an absolute origin therefore also
+// runs on that origin and redirects it to itself, so every rule stays path-only.
+const rules = redirects.split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#"));
+for (const rule of rules) {
+  assert.doesNotMatch(
+    rule, /\shttps?:\/\//,
+    "_redirects is shared with the B API Worker; a cross-origin rule loops on that origin"
+  );
+}
 assert.match(
   redirects, /^\/developers\/docs\s+\/developers-docs\.html\s+200$/m,
   "The canonical docs path must serve the docs page"
-);
-assert.match(
-  redirects, /^\/developers-console\s+https:\/\/api\.geocheck\.lisheng\.cv\/developers\/console\s+308$/m,
-  "The legacy hyphenated Console path must keep working"
 );
 assert.match(
   redirects, /^\/developers-docs\s+\/developers\/docs\s+308$/m,
   "The legacy hyphenated docs path must keep working"
 );
 
-// Every in-page developer link must use the canonical slash form.
+// The Console must be same-origin with the B API it calls, so its links are
+// absolute. Every other developer link stays on the canonical slash form.
+const CONSOLE_URL = "https://api.geocheck.lisheng.cv/developers/console";
 for (const page of ["developers.html", "developers-docs.html", "developers-console.html"]) {
   const html = fs.readFileSync(output(page), "utf8");
   assert.doesNotMatch(
     html, /href="[^"]*\/developers-(console|docs)"/,
-    `${page} must link to the canonical /developers/console and /developers/docs`
+    `${page} must not link to a hyphenated developer path`
+  );
+  assert.doesNotMatch(
+    html, /href="\/developers\/console"/,
+    `${page} must link the Console at ${CONSOLE_URL}, which shares an origin with /v1/console`
   );
 }
+assert.ok(
+  fs.readFileSync(output("developers.html"), "utf8").includes(CONSOLE_URL),
+  "The developers page must link to the Console"
+);
 
 console.log("Cloudflare Pages artifact tests passed");

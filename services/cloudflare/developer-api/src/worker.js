@@ -163,20 +163,27 @@ function createOAuthRuntime(env) {
   return cachedGoogleOAuth;
 }
 
+// Both the canonical path and the older hyphenated alias serve the same page.
+// Neither redirects to the other: the asset layer already rewrites between the
+// extensionless and .html forms, and adding a second redirect creates a loop.
+function isConsolePath(pathname) {
+  return pathname === "/developers/console" || pathname === "/developers/console/"
+    || pathname === "/developers-console" || pathname === "/developers-console/";
+}
+
 async function handleRequest(request, env) {
   const pathname = new URL(request.url).pathname;
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
   // The Console is canonically /developers/console and must stay same-origin with
-  // the B API, which is why it is served here rather than from Pages. The older
-  // hyphenated path is kept as a redirect so existing links do not break.
-  if (request.method === "GET" && (pathname === "/developers-console" || pathname === "/developers-console/")) {
-    return Response.redirect(new URL("/developers/console", request.url).toString(), 308);
-  }
-  if (request.method === "GET" && (pathname === "/developers/console" || pathname === "/developers/console/")) {
+  // the B API, which the page calls at /v1/console/*. Fetch the extensionless
+  // asset path: requesting the .html form makes the asset layer 308 to it, which
+  // would bounce back here and loop.
+  if (request.method === "GET" && isConsolePath(pathname)) {
     const assetUrl = new URL(request.url);
-    assetUrl.pathname = "/developers-console.html";
+    assetUrl.pathname = "/developers-console";
     return env.ASSETS.fetch(new Request(assetUrl, request));
   }
+
   if (pathname === "/v1/auth/google/start" || pathname === "/v1/auth/google/callback") {
     if (missingOAuthSecrets(env).length) {
       return new Response(JSON.stringify({ error: { code: "configuration_incomplete", message: "Google sign-in is not ready" } }), { status: 503, headers: JSON_HEADERS });
