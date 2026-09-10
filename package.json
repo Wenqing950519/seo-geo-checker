@@ -26,7 +26,9 @@
     "audit-leads:dry-run": "node scripts/cloudflare/prepare-audit-lead-import.cjs",
     "start": "node services/api/server.js",
     "test:layout": "node tests/repository-layout.test.js && node tests/http-layout.test.js",
-    "verify:layout": "node scripts/maintenance/verify-layout.cjs"
+    "verify:layout": "node scripts/maintenance/verify-layout.cjs",
+    "build:pages": "node scripts/cloudflare/build-pages-static.cjs",
+    "test:pages": "node tests/cloudflare-pages-build.test.js"
   },
   "dependencies": {
     "playwright": "^1.60.0"
