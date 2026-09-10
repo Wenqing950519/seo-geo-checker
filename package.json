@@ -11,6 +11,7 @@
     "test:providers": "node tests/official-provider-architecture.test.js && node tests/official-provider-adapters.test.js",
     "test:developer-api": "node tests/developer-api-prototype.test.js && node tests/developer-api-http.test.js && node tests/developer-platform.test.js && node tests/developer-platform-http.test.js && node tests/developer-platform-d1-store.test.js && node tests/developer-d1-gateway.test.mjs && node tests/developer-platform-security.test.js && node tests/official-provider-adapters.test.js && node tests/developer-api-benchmark.test.js",
     "test:dashboard": "node tests/dashboard-service.test.js && node tests/dashboard-http.test.js && node tests/dashboard-billing.test.js && node tests/newebpay-periodic.test.js && node tests/dashboard-gsc.test.js && node tests/google-oauth.test.js && node tests/dashboard-frontend.test.js",
+    "test:dashboard-cloudflare": "node tests/dashboard-cloudflare-foundation.test.js",
     "smoke:official-providers": "node scripts/developer-api/smoke-official-providers.cjs",
     "benchmark:official-providers": "node scripts/developer-api/run-controlled-benchmark.cjs",
     "verify:official-benchmark": "node scripts/developer-api/verify-controlled-benchmark.cjs",
