@@ -1022,7 +1022,7 @@ async function handleRequest(req, res) {
   }
 
   // Developer Platform 管理控制台 (Console Dashboard)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/console" || url.pathname === "/developers/console/")) {
+  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/console" || url.pathname === "/developers/console/" || url.pathname === "/developers-console" || url.pathname === "/developers-console/")) {
     const consolePath = path.resolve(__dirname, "../../apps/web/public/developers-console.html");
     if (!fs.existsSync(consolePath)) {
       return sendHtml(res, 404, "<h1>Developer Console HTML not found</h1>");

@@ -8,7 +8,7 @@ function createGoogleOAuthHttpHandler({ config = process.env, dashboardApi, deve
   const developerOrigin = String(config.DEVELOPER_API_ORIGIN || "https://api.geocheck.lisheng.cv").replace(/\/+$/, "");
   const routes = {
     dashboard: { start: "/app-api/v1/auth/google/start", callback: "/app-api/v1/auth/google/callback", origin: dashboardOrigin, redirect: "/app/", api: dashboardApi?.workerApi, storage: "gc_dashboard_session", scopes: ["openid", "email", "profile"] },
-    developer: { start: "/v1/auth/google/start", callback: "/v1/auth/google/callback", origin: developerOrigin, redirect: "/developers-console", api: developerApi?.workerApi, storage: "gc_developer_session", scopes: ["openid", "email", "profile"] }
+    developer: { start: "/v1/auth/google/start", callback: "/v1/auth/google/callback", origin: developerOrigin, redirect: "/developers/console", api: developerApi?.workerApi, storage: "gc_developer_session", scopes: ["openid", "email", "profile"] }
   };
   const pendingGscConnections = new Map();
   function enabled(audience) {

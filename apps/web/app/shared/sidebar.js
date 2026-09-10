@@ -66,6 +66,25 @@ export function renderSidebar() {
             ${item.dot ? `<span class="nav-status-dot ${AppState.currentOverview?.latest_run?.state === 'complete' ? 'green' : 'amber'}"></span>` : ''}
           </button>
         `).join('')}
+
+        <div class="nav-section-title" style="margin-top: 18px;">開發者生態</div>
+        <a href="/developers"
+           class="nav-item"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="text-decoration:none;"
+           title="開啟 GeoCheck 開發者平台與官方量測 API (另開新視窗)">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </span>
+          <span class="nav-label-wrap">
+            <span class="nav-label">開發者模式 (API & Docs)</span>
+          </span>
+          <span class="nav-badge" style="background: rgba(0, 184, 169, 0.12); color: var(--gc-mint-dark); font-size: 0.68rem; font-weight: 800;">PRO ↗</span>
+        </a>
       </nav>
 
       <!-- Sidebar Footer (Production Status & Connected Google Account) -->
