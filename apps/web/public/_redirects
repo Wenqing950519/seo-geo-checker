@@ -1,1 +1,9 @@
 / /home.html 200
+
+# Canonical developer URLs use a slash: /developers/console and /developers/docs.
+# The Console must share an origin with the B API, so it is redirected there;
+# the docs are static and stay on Pages.
+/developers/console https://api.geocheck.lisheng.cv/developers/console 308
+/developers-console https://api.geocheck.lisheng.cv/developers/console 308
+/developers/docs /developers-docs.html 200
+/developers-docs /developers/docs 308

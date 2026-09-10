@@ -36,7 +36,14 @@ try {
   assert.match(developerWorker, /Strict-Transport-Security/, "Developer Worker responses must enable HSTS");
   assert.match(developerWorker, /createD1OAuthStateStore/, "Google OAuth state must persist outside one Worker isolate");
   assert.match(developerWorker, /missingOAuthSecrets/, "Google login readiness must be separate from provider measurement readiness");
-  assert.match(developerWorker, /pathname === "\/developers-console"/, "Developer Console must be served from the B API origin");
+  assert.match(
+    developerWorker, /pathname === "\/developers\/console"/,
+    "Developer Console must be served from the B API origin at its canonical slash path"
+  );
+  assert.match(
+    developerWorker, /Response\.redirect\(new URL\("\/developers\/console"/,
+    "The legacy hyphenated Console path must redirect to the canonical one"
+  );
   assert.match(developerOAuthMigration, /developer_google_oauth_states/, "Developer OAuth state requires its own Product B D1 table");
   assert.match(pagesHeaders, /Strict-Transport-Security:\s*max-age=31536000/i, "Pages responses must enable HSTS");
   console.log("cloudflare developer worker bundle tests passed");

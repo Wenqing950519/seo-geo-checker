@@ -166,7 +166,13 @@ function createOAuthRuntime(env) {
 async function handleRequest(request, env) {
   const pathname = new URL(request.url).pathname;
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
-  if (request.method === "GET" && pathname === "/developers-console") {
+  // The Console is canonically /developers/console and must stay same-origin with
+  // the B API, which is why it is served here rather than from Pages. The older
+  // hyphenated path is kept as a redirect so existing links do not break.
+  if (request.method === "GET" && (pathname === "/developers-console" || pathname === "/developers-console/")) {
+    return Response.redirect(new URL("/developers/console", request.url).toString(), 308);
+  }
+  if (request.method === "GET" && (pathname === "/developers/console" || pathname === "/developers/console/")) {
     const assetUrl = new URL(request.url);
     assetUrl.pathname = "/developers-console.html";
     return env.ASSETS.fetch(new Request(assetUrl, request));
