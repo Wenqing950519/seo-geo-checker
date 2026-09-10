@@ -3,13 +3,16 @@ type: runbook
 project: GeoCheck
 product: A — SaaS Dashboard
 last_updated: 2026-09-10
-status: prepared — not executed
+status: deployed 2026-09-10 — admission still closed
 ---
 
 # Product A Dashboard：Cloudflare 部署待辦手冊
 
-> ⚠️ **本文件中的所有指令皆尚未執行。** 每一段都需要使用者明確授權後才可執行。
+> ✅ **第 1–6 節已於 2026-09-10 由使用者執行完成**（見 §8 實測紀錄）。
 > 涉及 secret 的步驟由使用者本人執行；Agent 不得經手任何 key 或 token 明文。
+>
+> ⚠️ **此機器的 `npx` 已損壞**（npm 安裝缺少 `postcss-selector-parser` 相依）。
+> 本文件所有 wrangler 指令一律直接呼叫全域 `wrangler`，不可加 `npx`。
 
 ## 0. 現況（2026-09-10 實測）
 
@@ -19,7 +22,7 @@ status: prepared — not executed
 | 三個 migration | 已套用至 remote | `wrangler d1 migrations list … --remote` 回 `No migrations to apply!` |
 | `/app-api/v1` Worker 路由 | **本次新增**，尚未部署 | `services/cloudflare/dashboard/src/worker.js` |
 | D1 store | **本次新增**，本機測試通過 | `services/api/storage/dashboard-d1-store.js` |
-| Runtime secrets | **未設定** | 未設定時所有 `/app-api/v1` 回 503 `configuration_incomplete` |
+| Runtime secrets | 已設定（2026-09-10） | `wrangler secret list` 回 `DASHBOARD_TOKEN_PEPPER`、`DASHBOARD_ADMIN_TOKEN` |
 | Admission | `false`（關閉） | `wrangler.jsonc` `vars.DASHBOARD_ADMISSION_ENABLED` |
 | Provider runner／排程 | 未實作 | `scheduled()` 仍是空的 admission-gated stub |
 
@@ -155,3 +158,24 @@ wrangler d1 execute geocheck-dashboard --remote --command "SELECT COUNT(*) AS ac
 
 **admission 開關（`DASHBOARD_ADMISSION_ENABLED`）維持 `false`。**
 改為 `true` 屬 Human Ownership，且需先記入 `docs/DECISION_LOG.md`。
+
+## 8. 實測紀錄（2026-09-10）
+
+部署 version `a2a65e6b-42c8-4f02-8df1-6e0657388df7`（13:41:22Z，使用者執行）；
+其後兩次 secret 變更產生新版本，最新為 `e8a34993-02da-4926-992b-9fd973f5d0ee`。
+
+以下皆為 `https://geocheck.lisheng.cv` 的直接觀察：
+
+| 檢查 | 觀察 |
+|---|---|
+| `GET /app-api/v1/healthz` | HTTP 200，`{"ok":true,"d1":true,"configuration_ready":true,"admission_enabled":false,"missing":[]}`，`Cache-Control: no-store`、HSTS、`nosniff` |
+| `GET /app-api/v1/projects`（無憑證） | HTTP 401 `auth_required`，無 `Access-Control-Allow-Origin` |
+| `POST /app-api/v1/admin/invitations`（錯誤 admin token） | HTTP 401 |
+| `GET /app-api/v1/projects`（帶 `gck_` Developer API key） | HTTP 401 — 產品隔離成立 |
+| `GET /app-api/v1/nope` | HTTP 401 — session 檢查先於路由比對，不洩漏路由是否存在 |
+| `GET /app/` | HTTP 200 — Pages 前端未受影響 |
+| `GET /healthz`（根路徑） | HTTP 404 — **既有狀態**，非本次變更造成；本 Worker 的 route 僅涵蓋 `/app-api/*`。待清理 |
+
+**這證明了什麼**：遠端持久層與正式 `/app-api/v1` route 已接通，且預設失敗關閉、產品隔離成立。
+**這沒有證明什麼**：沒有任何真實使用者登入、沒有任何量測資料寫入、沒有驗證排程或 provider runner，
+admission 仍為 `false`。不得據此宣稱 Dashboard 可用。
