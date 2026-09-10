@@ -7,7 +7,16 @@ const { spawn } = require("node:child_process");
 const root = path.resolve(__dirname, "..");
 const appDir = path.join(root, "apps/web/app");
 const developerConsole = fs.readFileSync(path.join(root, "apps/web/public/developers-console.html"), "utf8");
+const dashboardState = fs.readFileSync(path.join(appDir, "shared/state.js"), "utf8");
+const dashboardApi = fs.readFileSync(path.join(appDir, "shared/api.js"), "utf8");
 assert.match(developerConsole, /https:\/\/api\.geocheck\.lisheng\.cv\/v1\/auth\/google\/start/, "Developer Console Google login must target the isolated B API origin");
+assert.doesNotMatch(developerConsole, /href="\/developers(?:\/docs)?"/, "Developer Console links must not resolve to the B API origin after same-origin deployment");
+assert.doesNotMatch(developerConsole, /gcs_live_dev_session_demo|key_demo_default|Mock initial jobs/, "Developer Console must not authenticate, create keys, or show jobs from browser-only demo data");
+assert.match(developerConsole, /consoleRequest\('\/v1\/console\/api-keys'/, "Developer Console must list API keys through the B Console API");
+assert.match(developerConsole, /consoleRequest\('\/v1\/console\/jobs'/, "Developer Console must list jobs through the B Console API");
+assert.match(developerConsole, /consoleRequest\('\/v1\/console\/usage'/, "Developer Console must load its quota through the B Console API");
+assert.match(dashboardState, /this\.fixtureMode = false/, "Dashboard must not default to fixture data");
+assert.doesNotMatch(dashboardApi, /falling back to acceptance fixtures/i, "Dashboard must not silently replace failed live data with fixtures");
 
 // 1. Verify Directory Architecture (Folder per tab matching Themap)
 const REQUIRED_FILES = [

@@ -3,7 +3,7 @@
 
 import { AppState } from './shared/state.js';
 import { api } from './shared/api.js';
-import { getFixtureData, EVIDENCE_STORE } from './shared/fixtures.js';
+import { getFixtureData } from './shared/fixtures.js';
 import { renderSidebar } from './shared/sidebar.js';
 import { renderHeader } from './shared/header.js';
 import { renderOverview } from './overview/overview-view.js';
@@ -49,17 +49,38 @@ class DashboardApp {
     }
     AppState.loading = true;
     try {
-      const fixture = getFixtureData(AppState.currentFixtureKey);
-      AppState.currentProject = fixture.project;
-      AppState.currentOverview = await api.getOverview(fixture.project.projectId, AppState.timeRangeWeeks);
-      AppState.currentPerformance = await api.getPerformance(fixture.project.projectId, AppState.timeRangeWeeks);
-      AppState.currentQuestionSets = (await api.listTrackedQuestions(fixture.project.projectId))?.data || fixture.questionSets;
-      AppState.currentCitations = await api.getCitations(fixture.project.projectId, AppState.timeRangeWeeks);
-      AppState.currentDataQuality = await api.getDataQuality(fixture.project.projectId, AppState.timeRangeWeeks);
-      AppState.currentEntitlement = await api.getEntitlement();
+      if (AppState.fixtureMode) {
+        const fixture = getFixtureData(AppState.currentFixtureKey);
+        AppState.currentProject = fixture.project;
+        AppState.currentOverview = await api.getOverview(fixture.project.projectId, AppState.timeRangeWeeks);
+        AppState.currentPerformance = await api.getPerformance(fixture.project.projectId, AppState.timeRangeWeeks);
+        AppState.currentQuestionSets = (await api.listTrackedQuestions(fixture.project.projectId))?.data || fixture.questionSets;
+        AppState.currentCitations = await api.getCitations(fixture.project.projectId, AppState.timeRangeWeeks);
+        AppState.currentDataQuality = await api.getDataQuality(fixture.project.projectId, AppState.timeRangeWeeks);
+        AppState.currentEntitlement = await api.getEntitlement();
+      } else {
+        const projects = (await api.listProjects())?.data || [];
+        AppState.projectsList = projects;
+        AppState.currentProject = projects[0] || null;
+        AppState.currentEntitlement = await api.getEntitlement();
+        if (!AppState.currentProject?.projectId) {
+          AppState.currentOverview = null;
+          AppState.currentPerformance = null;
+          AppState.currentQuestionSets = [];
+          AppState.currentCitations = null;
+          AppState.currentDataQuality = null;
+          return;
+        }
+        const projectId = AppState.currentProject.projectId;
+        AppState.currentOverview = await api.getOverview(projectId, AppState.timeRangeWeeks);
+        AppState.currentPerformance = await api.getPerformance(projectId, AppState.timeRangeWeeks);
+        AppState.currentQuestionSets = (await api.listTrackedQuestions(projectId))?.data || [];
+        AppState.currentCitations = await api.getCitations(projectId, AppState.timeRangeWeeks);
+        AppState.currentDataQuality = await api.getDataQuality(projectId, AppState.timeRangeWeeks);
+      }
     } catch (err) {
       console.error('[DashboardApp] Data fetch error:', err);
-      AppState.showToast(`資料載入警示：${err.message}，已啟用安全沙盒模式`, 'warning');
+      AppState.showToast(`資料載入失敗：${err.message}`, 'warning');
     } finally {
       AppState.loading = false;
       this.render();
@@ -517,39 +538,22 @@ class DashboardApp {
         const name = document.getElementById('input-quick-name')?.value;
         const siteUrl = document.getElementById('input-quick-url')?.value;
         if (name && siteUrl) {
-          AppState.addBrandProject({ name, siteUrl });
-          AppState.showToast(`成功建立並切換至品牌專案：${name}`, 'success');
-          await this.loadCurrentData();
+          try {
+            const project = await api.createProject({ name, site_url: siteUrl, timezone: 'Asia/Taipei' });
+            AppState.currentProject = project;
+            AppState.showToast(`成功建立並切換至品牌專案：${name}`, 'success');
+            await this.loadCurrentData();
+          } catch (err) {
+            AppState.showToast(`建立專案失敗：${err.message}`, 'danger');
+          }
         }
         return;
       }
 
-      // New Single Tracked Prompt
+      // Single-prompt insertion would create an unversioned local-only question.
+      // All production writes must create a versioned question set via the server.
       if (e.target.id === 'form-new-single-question') {
-        const text = document.getElementById('input-prompt-text')?.value;
-        const intent = document.getElementById('select-prompt-intent')?.value || 'discovery';
-        const tags = (document.getElementById('input-prompt-tags')?.value || '').split(',').map(t => t.trim()).filter(Boolean);
-        if (text) {
-          const activeSet = AppState.currentQuestionSets[0];
-          if (activeSet) {
-            const newQ = {
-              questionId: `dqu_${Date.now().toString(36)}`,
-              text,
-              intent,
-              tags,
-              latest_observations: [
-                { engine: 'openai', brandMentioned: true, officialCitation: false, status: 'complete', observationId: 'dobs_measured_wildwood_openai' },
-                { engine: 'gemini', brandMentioned: true, officialCitation: true, status: 'complete', observationId: 'dobs_measured_wildwood_gemini' },
-                { engine: 'anthropic', brandMentioned: false, officialCitation: false, status: 'complete', observationId: 'dobs_zero_wildwood_anthropic' },
-                { engine: 'perplexity', brandMentioned: true, officialCitation: true, status: 'complete', observationId: 'dobs_measured_wildwood_perplexity' }
-              ]
-            };
-            activeSet.questions.unshift(newQ);
-            AppState.showToast(`已成功新增監測提問：「${text.slice(0, 16)}...」`, 'success');
-            AppState.closeModal();
-            this.render();
-          }
-        }
+        AppState.showToast('請使用「新增題組版本」提交至伺服器；單題本機草稿不會被視為正式監測資料。', 'info');
         return;
       }
 
@@ -639,25 +643,7 @@ class DashboardApp {
       const data = await api.getEvidence(AppState.currentProject?.projectId || 'dprj_wildwood_tw', obsId);
       AppState.setDrawerData(data);
     } catch (err) {
-      // Look up in seeded store
-      const local = EVIDENCE_STORE.get(obsId);
-      if (local) {
-        AppState.setDrawerData({
-          observation_id: local.observationId,
-          question: { text: local.questionText, intent: local.intent },
-          engine: local.engine,
-          model: local.model,
-          observed_at: local.observedAt,
-          status: local.status,
-          brand_mentioned: local.brandMentioned,
-          official_citation: local.officialCitation,
-          raw_answer: local.rawAnswer,
-          failure_reason: local.failureReason,
-          citations: local.citations
-        });
-      } else {
-        AppState.setDrawerError(err.message);
-      }
+      AppState.setDrawerError(err.message);
     }
   }
 }

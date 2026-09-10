@@ -16,9 +16,11 @@ const JSON_HEADERS = {
   "Strict-Transport-Security": "max-age=31536000"
 };
 
-const REQUIRED_RUNTIME_SECRETS = [
+const REQUIRED_PLATFORM_SECRETS = [
   "ADMIN_TOKEN",
-  "DEVELOPER_API_TOKEN_PEPPER",
+  "DEVELOPER_API_TOKEN_PEPPER"
+];
+const REQUIRED_PROVIDER_SECRETS = [
   "OPENAI_API_KEY",
   "GEMINI_API_KEY",
   "PERPLEXITY_API_KEY",
@@ -26,7 +28,13 @@ const REQUIRED_RUNTIME_SECRETS = [
 ];
 
 function missingRuntimeSecrets(env) {
-  return REQUIRED_RUNTIME_SECRETS.filter((name) => !String(env[name] || "").trim());
+  return [...REQUIRED_PLATFORM_SECRETS, ...REQUIRED_PROVIDER_SECRETS]
+    .filter((name) => !String(env[name] || "").trim());
+}
+
+function missingOAuthSecrets(env) {
+  return [...REQUIRED_PLATFORM_SECRETS, "GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "DEVELOPER_GOOGLE_OAUTH_STATE_KEY"]
+    .filter((name) => !String(env[name] || "").trim());
 }
 
 async function healthResponse(env) {
@@ -158,9 +166,14 @@ function createOAuthRuntime(env) {
 async function handleRequest(request, env) {
   const pathname = new URL(request.url).pathname;
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
+  if (request.method === "GET" && pathname === "/developers-console") {
+    const assetUrl = new URL(request.url);
+    assetUrl.pathname = "/developers-console.html";
+    return env.ASSETS.fetch(new Request(assetUrl, request));
+  }
   if (pathname === "/v1/auth/google/start" || pathname === "/v1/auth/google/callback") {
-    if (missingRuntimeSecrets(env).length) {
-      return new Response(JSON.stringify({ error: { code: "configuration_incomplete", message: "Developer API is not ready" } }), { status: 503, headers: JSON_HEADERS });
+    if (missingOAuthSecrets(env).length) {
+      return new Response(JSON.stringify({ error: { code: "configuration_incomplete", message: "Google sign-in is not ready" } }), { status: 503, headers: JSON_HEADERS });
     }
     const captured = createResponseCapture();
     const handled = await createOAuthRuntime(env).handle({

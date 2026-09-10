@@ -541,6 +541,7 @@ tags:
 - **決策內容**：A SaaS Dashboard 與 B Developer Console 共用同一 GeoCheck Google OAuth Web Client，但維持 `gds_`／`gcs_` session、帳號准入、資料表與授權判定完全隔離。兩者僅允許既有 verified account 使用相同 email 登入。B 僅請求 OIDC 基本身分 scope；A 的 GSC 連線才請求 `webmasters.readonly`。
 - **GSC 邊界**：A 以 Project 為範圍加密保存 refresh token，首次回填 90 天、其後同步每日 clicks、impressions、CTR、average position，最多保存 13 個月。資料獨立呈現，不能併入 AI 可見度分數或分母；缺列不等於 0。解除連線必須刪除 token 與該 Project 的 GSC 匯入資料。
 - **發布邊界**：Google OAuth app 對外 Production 前須有公開隱私政策、網域驗證與 scope verification；B 可先啟用基本登入，A GSC 功能在核准前 feature-gated。不得將本機 fixture、OAuth consent screen 或送審行為稱作 Google 已核准或公開可用。
+- **同源部署補充**：使用者 2026-09-10 確認 B Developer Console 由 `api.geocheck.lisheng.cv/developers-console` 提供，與 B callback 同 origin，避免以 URL token 或跨產品 cookie 傳遞 `gcs_` session。Product A Dashboard 維持 `geocheck.lisheng.cv` 與 `gds_` session。
 - **可追溯來源**：使用者 2026-09-10 明確選擇同一 OAuth client、既有帳號准入、每日彙總、90 天回填、13 個月保存與先補隱私政策再送 Google 驗證。
 
 ### D-046 Product A Dashboard Paid Beta 方案與 Sandbox 付款邊界

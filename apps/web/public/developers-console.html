@@ -857,7 +857,7 @@ header.console-nav {
 <!-- Header -->
 <header class="console-nav">
   <div class="nav-wrap">
-    <a href="/developers" class="brand-group">
+    <a href="https://geocheck.lisheng.cv/developers" class="brand-group">
       <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
         <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
         <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
@@ -869,9 +869,9 @@ header.console-nav {
     </a>
 
     <div class="nav-links">
-      <a href="/app" title="前往行銷監測儀表板">行銷儀表板 ↗</a>
-      <a href="/developers/docs">技術文件</a>
-      <a href="/">回到首頁</a>
+      <a href="https://geocheck.lisheng.cv/app" title="前往行銷監測儀表板">行銷儀表板 ↗</a>
+      <a href="https://geocheck.lisheng.cv/developers/docs">技術文件</a>
+      <a href="https://geocheck.lisheng.cv/">回到首頁</a>
       <button class="btn-change-plan" onclick="openPlanModal()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <span id="nav-plan-label">方案: Free Trial</span>
@@ -923,15 +923,6 @@ header.console-nav {
       </button>
     </div>
 
-    <div style="display:flex; align-items:center; gap:12px; margin: 16px 0;">
-      <span style="flex:1; height:1px; background:var(--gc-border);"></span>
-      <span style="font-size:0.78rem; color:var(--gc-muted);">或快速體驗</span>
-      <span style="flex:1; height:1px; background:var(--gc-border);"></span>
-    </div>
-
-    <button type="button" class="btn-demo-quick" style="width:100%;" onclick="handleDevDemoLogin()">
-      一鍵以示範開發者帳號登入 (Demo Account)
-    </button>
   </div>
 
   <!-- Authenticated Console Workspace -->
@@ -975,7 +966,7 @@ header.console-nav {
           <span>有效 API 金鑰</span>
           <a href="#keys" style="font-size:0.75rem; color:var(--gc-navy); font-weight:700;">查看全部 →</a>
         </div>
-        <div class="stat-val">1 組</div>
+        <div class="stat-val" id="active-key-count">—</div>
         <div class="stat-sub">具備觀測量測與用量讀取權限</div>
       </div>
     </div>
@@ -984,7 +975,7 @@ header.console-nav {
     <div class="quickstart-box">
       <div class="qs-header">
         <span class="qs-title">快速接入指南 · 3 行代碼發起觀測</span>
-        <a href="/developers/docs" class="qs-link">閱讀完整 SDK 文件 →</a>
+        <a href="https://geocheck.lisheng.cv/developers/docs" class="qs-link">閱讀完整 SDK 文件 →</a>
       </div>
       <div class="qs-code-wrap">
         <button class="btn-copy" onclick="copyQuickstart()">
@@ -1035,16 +1026,15 @@ console.log('觀測任務完成:', job.results);</code></pre>
     <!-- Jobs Section -->
     <div class="section-head" style="margin-top: 48px;">
       <h2>近期觀測任務歷程</h2>
-      <span style="font-size:0.85rem; color:var(--gc-muted);">展示最近 10 次四引擎觀測紀錄</span>
+      <span style="font-size:0.85rem; color:var(--gc-muted);">最近 10 次已授權帳戶的觀測紀錄</span>
     </div>
 
     <table class="keys-table">
       <thead>
         <tr>
           <th>任務序號</th>
-          <th>目標網址 / 查詢情境</th>
+          <th>量測序號</th>
           <th>狀態</th>
-          <th>執行引擎</th>
           <th>發起時間</th>
         </tr>
       </thead>
@@ -1054,7 +1044,7 @@ console.log('觀測任務完成:', job.results);</code></pre>
     </table>
     <div id="jobs-empty" class="empty-state">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      <p>尚未發起觀測任務。可使用 <code>@geocheck/sdk</code> 發送 <code>POST /v1/measurements</code> 進行量測。</p>
+    <p>尚未發起觀測任務。可使用 <code>@geocheck/sdk</code> 發送 <code>POST /v1/measurements</code> 進行量測。</p>
     </div>
   </div>
 </main>
@@ -1241,21 +1231,12 @@ console.log('觀測任務完成:', job.results);</code></pre>
     <div style="text-align:center; margin-bottom: 20px;">
       <div class="gate-badge">DEVELOPER LOGIN</div>
       <h3 style="font-size:1.3rem; font-weight:900; color:var(--gc-navy); margin-top:8px;">登入 Developer 控制台</h3>
-      <p style="font-size:0.88rem; color:var(--gc-muted); margin-top:4px;">輸入您的開發者憑證即可管理 API 金鑰與觀測任務。</p>
+      <p style="font-size:0.88rem; color:var(--gc-muted); margin-top:4px;">僅限已啟用的 GeoCheck Developer 帳號。</p>
     </div>
 
-    <form onsubmit="event.preventDefault(); handleDevLogin(document.getElementById('modal-token-input').value);">
-      <div class="form-group">
-        <label class="form-label" for="modal-token-input">開發者會話憑證 (Developer Session Token)</label>
-        <input id="modal-token-input" class="form-input font-mono" placeholder="請輸入 gcs_... 憑證" />
-      </div>
-
-      <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
-        <button type="submit" class="btn-primary" style="justify-content:center; padding:10px;">驗證並登入</button>
-        <a class="btn-select-plan btn-select-paid" style="text-align:center; text-decoration:none;" href="https://api.geocheck.lisheng.cv/v1/auth/google/start">使用 Google 帳號登入</a>
-        <button type="button" class="btn-demo-quick" onclick="handleDevDemoLogin()">一鍵以示範帳號登入 (Demo Account)</button>
-      </div>
-    </form>
+    <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+      <button type="button" class="btn-primary" style="justify-content:center; padding:10px;" onclick="beginGoogleLogin()">使用 Google 帳號登入</button>
+    </div>
   </div>
 </div>
 
@@ -1263,8 +1244,10 @@ console.log('觀測任務完成:', job.results);</code></pre>
 // State management
 const STATE = {
   sessionToken: localStorage.getItem('gc_developer_session') || localStorage.getItem('gc_dev_session') || '',
-  activePlan: localStorage.getItem('gc_dev_plan') || '', // 'free', 'basic', 'premium', or ''
-  keys: JSON.parse(localStorage.getItem('gc_dev_keys') || '[]'),
+  entitlement: null,
+  usage: null,
+  keys: [],
+  jobs: [],
   pendingRevokeId: null,
   isFirstVisit: !localStorage.getItem('gc_dev_visited')
 };
@@ -1276,16 +1259,53 @@ function beginGoogleLogin() {
   window.location.assign(DEVELOPER_OAUTH_START);
 }
 
+async function consoleRequest(path, options = {}) {
+  const response = await fetch(path, {
+    ...options,
+    headers: {
+      Authorization: `Bearer ${STATE.sessionToken}`,
+      ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+      ...(options.headers || {})
+    }
+  });
+  const body = response.status === 204 ? null : await response.json().catch(() => null);
+  if (!response.ok) {
+    const error = new Error(body?.error?.message || 'Console request failed');
+    error.code = body?.error?.code || 'console_request_failed';
+    error.status = response.status;
+    throw error;
+  }
+  return body;
+}
+
+async function loadConsoleData() {
+  if (!STATE.sessionToken) return;
+  try {
+    const [usage, keys, jobs] = await Promise.all([
+      consoleRequest('/v1/console/usage').catch((error) => error.status === 403 && error.code === 'trial_not_started' ? null : Promise.reject(error)),
+      consoleRequest('/v1/console/api-keys').catch((error) => error.status === 403 && error.code === 'trial_not_started' ? { data: [] } : Promise.reject(error)),
+      consoleRequest('/v1/console/jobs').catch((error) => error.status === 403 && error.code === 'trial_not_started' ? { data: [] } : Promise.reject(error))
+    ]);
+    STATE.usage = usage;
+    STATE.entitlement = usage ? { plan: usage.plan, expires_at: usage.entitlement_expires_at } : null;
+    STATE.keys = keys.data || [];
+    STATE.jobs = jobs.data || [];
+    renderState();
+    if (!STATE.entitlement) openPlanModal();
+  } catch (error) {
+    if (error.status === 401) {
+      handleDevLogout({ silent: true });
+      showToast('登入已過期，請重新使用 Google 登入');
+      return;
+    }
+    showToast('控制台資料暫時無法載入');
+  }
+}
+
 // Initialize UI on load
 window.addEventListener('DOMContentLoaded', () => {
   renderState();
-
-  // If logged in and no plan selected yet, pop up the 3-tier Plan Selection Modal!
-  if (STATE.sessionToken && !STATE.activePlan) {
-    setTimeout(() => {
-      openPlanModal();
-    }, 400);
-  }
+  loadConsoleData();
   localStorage.setItem('gc_dev_visited', 'true');
 });
 
@@ -1326,120 +1346,66 @@ function renderState() {
     if (gate) gate.style.display = 'block';
   }
 
-  const plan = STATE.activePlan || '未開通';
+  const plan = STATE.entitlement?.plan || '未開通';
   const planBadge = document.getElementById('plan-badge');
   const planDisplay = document.getElementById('plan-name-display');
   const navPlanLabel = document.getElementById('nav-plan-label');
 
-  if (STATE.activePlan === 'free') {
+  if (plan === 'free') {
     planBadge.className = 'plan-tag free';
     planBadge.innerText = 'Free Trial';
     planDisplay.innerText = '免費試用';
     navPlanLabel.innerText = '方案: Free Trial';
-    document.getElementById('remaining-rounds').innerText = '3 / 3 輪';
-    document.getElementById('plan-expiry-display').innerText = '7 天試用期限 · 每日重置';
-  } else if (STATE.activePlan === 'basic') {
+  } else if (plan === 'basic') {
     planBadge.className = 'plan-tag basic';
     planBadge.innerText = 'Basic';
     planDisplay.innerText = 'Basic 方案';
     navPlanLabel.innerText = '方案: Basic (月繳)';
-    document.getElementById('remaining-rounds').innerText = '80 / 80 輪';
-    document.getElementById('plan-expiry-display').innerText = '每月配額 · 四成才扣量';
-  } else if (STATE.activePlan === 'premium') {
+  } else if (plan === 'premium') {
     planBadge.className = 'plan-tag premium';
     planBadge.innerText = 'Premium';
     planDisplay.innerText = 'Premium 旗艦';
     navPlanLabel.innerText = '方案: Premium';
-    document.getElementById('remaining-rounds').innerText = '170 / 170 輪';
-    document.getElementById('plan-expiry-display').innerText = '優先佇列 · 30天長效保存';
   } else {
     planBadge.className = 'plan-tag';
     planBadge.innerText = '尚未選擇';
     planDisplay.innerText = '尚未開通';
     navPlanLabel.innerText = '選擇方案';
-    document.getElementById('remaining-rounds').innerText = '0 輪';
-    document.getElementById('plan-expiry-display').innerText = '請先選擇方案以開通額度';
   }
+  const remaining = STATE.usage ? `${STATE.usage.remaining_rounds} / ${STATE.usage.quota_limit} 輪` : '—';
+  document.getElementById('remaining-rounds').innerText = remaining;
+  document.getElementById('plan-expiry-display').innerText = STATE.entitlement?.expires_at
+    ? `有效至 ${new Date(STATE.entitlement.expires_at).toLocaleDateString('zh-TW')}`
+    : '請先啟用免費試用';
+  document.getElementById('active-key-count').innerText = `${STATE.keys.length} 組`;
 
   renderKeysTable();
   renderJobsTable();
 }
 
-// Render Keys Table
+// Render server-authoritative key metadata. Full API keys are never persisted in the browser.
 function renderKeysTable() {
   const tbody = document.getElementById('keys-tbody');
   const empty = document.getElementById('keys-empty');
   tbody.innerHTML = '';
-
-  if (!STATE.keys || STATE.keys.length === 0) {
-    empty.style.display = 'block';
-    return;
-  }
+  if (!STATE.keys.length) { empty.style.display = 'block'; return; }
   empty.style.display = 'none';
-
-  STATE.keys.forEach(k => {
+  STATE.keys.forEach((key) => {
     const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><strong>${escapeHtml(k.name)}</strong></td>
-      <td>
-        <span class="key-badge">
-          ${escapeHtml(k.prefix)}...
-          <button class="btn-copy-sm" onclick="copyText('${k.prefix}')" title="複製前綴">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-        </span>
-      </td>
-      <td>
-        <span class="scope-tag">measure:read</span>
-        <span class="scope-tag">measure:write</span>
-      </td>
-      <td style="color:var(--gc-muted); font-size:0.82rem;">${escapeHtml(k.createdAt)}</td>
-      <td style="text-align:right;">
-        <button class="btn-revoke" onclick="openRevokeModal('${k.id}', '${escapeHtml(k.name)}')">撤銷</button>
-      </td>
-    `;
+    tr.innerHTML = `<td><strong>${escapeHtml(key.name)}</strong></td><td><span class="key-badge">${escapeHtml(key.key_prefix)}...</span></td><td>${(key.scopes || []).map((scope) => `<span class="scope-tag">${escapeHtml(scope)}</span>`).join(' ')}</td><td style="color:var(--gc-muted); font-size:0.82rem;">${formatDate(key.created_at)}</td><td style="text-align:right;"><button class="btn-revoke" onclick="openRevokeModal('${escapeHtml(key.key_id)}', '${escapeHtml(key.name)}')">撤銷</button></td>`;
     tbody.appendChild(tr);
   });
 }
 
-// Mock initial jobs for demonstration
 function renderJobsTable() {
   const tbody = document.getElementById('jobs-tbody');
   const empty = document.getElementById('jobs-empty');
   tbody.innerHTML = '';
-
-  const mockJobs = [
-    {
-      id: "job_live_39ab71e",
-      input: "https://example.com",
-      status: "succeeded",
-      engines: "4/4 (OpenAI, Gemini, Perplexity, Claude)",
-      time: "2026-09-09 21:40"
-    },
-    {
-      id: "job_live_12c98af",
-      input: "台北信義區推薦餐廳排名與評價",
-      status: "succeeded",
-      engines: "4/4 (全數完成)",
-      time: "2026-09-09 20:15"
-    }
-  ];
-
-  if (mockJobs.length === 0) {
-    empty.style.display = 'block';
-    return;
-  }
+  if (!STATE.jobs.length) { empty.style.display = 'block'; return; }
   empty.style.display = 'none';
-
-  mockJobs.forEach(j => {
+  STATE.jobs.forEach((job) => {
     const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><code style="font-family:var(--gc-font-mono); font-size:0.8rem; color:var(--gc-navy);">${j.id}</code></td>
-      <td><strong>${escapeHtml(j.input)}</strong></td>
-      <td><span style="display:inline-flex; align-items:center; gap:4px; font-weight:700; color:var(--gc-success);"><span style="width:6px; height:6px; border-radius:50%; background:var(--gc-success);"></span>succeeded</span></td>
-      <td><span style="font-family:var(--gc-font-mono); font-size:0.78rem; color:#475569;">${j.engines}</span></td>
-      <td style="color:var(--gc-muted); font-size:0.82rem;">${j.time}</td>
-    `;
+    tr.innerHTML = `<td><code style="font-family:var(--gc-font-mono); font-size:0.8rem; color:var(--gc-navy);">${escapeHtml(job.job_id)}</code></td><td><code style="font-family:var(--gc-font-mono); font-size:0.78rem; color:#475569;">${escapeHtml(job.measurement_id)}</code></td><td><span style="display:inline-flex; align-items:center; gap:4px; font-weight:700;"><span style="width:6px; height:6px; border-radius:50%; background:var(--gc-mint);"></span>${escapeHtml(job.status || 'unknown')}</span></td><td style="color:var(--gc-muted); font-size:0.82rem;">${formatDate(job.created_at)}</td>`;
     tbody.appendChild(tr);
   });
 }
@@ -1452,7 +1418,7 @@ function closePlanModal() {
   document.getElementById('plan-modal').classList.remove('open');
 }
 
-function selectPlan(plan) {
+async function selectPlan(plan) {
   closePlanModal();
 
   if (plan === 'basic' || plan === 'premium') {
@@ -1463,18 +1429,15 @@ function selectPlan(plan) {
     return;
   }
 
-  // Activating Free Trial
-  STATE.activePlan = 'free';
-  localStorage.setItem('gc_dev_plan', 'free');
-  closePaidNoticeModal();
-  renderState();
-  showToast('✓ 已成功啟用 Free Trial 7 天免費試用！');
-
-  // If no keys yet, open create key modal automatically
-  if (STATE.keys.length === 0) {
-    setTimeout(() => {
-      openCreateKeyModal();
-    }, 400);
+  try {
+    const entitlement = await consoleRequest('/v1/console/activation', { method: 'POST', body: JSON.stringify({ plan: 'free' }) });
+    STATE.entitlement = { plan: entitlement.plan, expires_at: entitlement.expires_at };
+    STATE.usage = entitlement;
+    closePaidNoticeModal();
+    renderState();
+    showToast('已啟用 Free Trial 7 天免費試用');
+  } catch (error) {
+    showToast(error.code === 'payment_required' ? '付費方案尚未開放' : '試用啟用失敗，請稍後再試');
   }
 }
 
@@ -1483,44 +1446,20 @@ function closePaidNoticeModal() {
 }
 
 // Developer Authentication Handlers
-function handleDevLogin(token) {
-  const trimmed = (token || '').trim();
-  if (!trimmed) {
-    showToast('請輸入有效開發者憑證 (gcs_...)');
-    return;
-  }
-  STATE.sessionToken = trimmed;
-  localStorage.setItem('gc_developer_session', trimmed);
-  if (!STATE.activePlan) {
-    STATE.activePlan = 'free';
-    localStorage.setItem('gc_dev_plan', 'free');
-  }
-  if (!STATE.keys || STATE.keys.length === 0) {
-    STATE.keys = [
-      {
-        id: "key_demo_default",
-        name: "Default API Key",
-        prefix: "gck_live_9a3f2b8",
-        createdAt: new Date().toISOString().slice(0, 16).replace('T', ' ')
-      }
-    ];
-    localStorage.setItem('gc_dev_keys', JSON.stringify(STATE.keys));
-  }
-  closeDevAuthModal();
-  renderState();
-  showToast('✓ 已成功登入 Developer 控制台');
+function handleDevLogin() {
+  beginGoogleLogin();
 }
 
-function handleDevDemoLogin() {
-  handleDevLogin('gcs_live_dev_session_demo');
-}
-
-function handleDevLogout() {
+function handleDevLogout({ silent = false } = {}) {
   STATE.sessionToken = '';
+  STATE.entitlement = null;
+  STATE.usage = null;
+  STATE.keys = [];
+  STATE.jobs = [];
   localStorage.removeItem('gc_developer_session');
   localStorage.removeItem('gc_dev_session');
   renderState();
-  showToast('✓ 已登出 Developer 控制台');
+  if (!silent) showToast('已登出 Developer 控制台');
 }
 
 function openDevAuthModal() {
@@ -1540,7 +1479,7 @@ function handleCreateKeyClick() {
     showToast('請先登入 Developer 控制台以建立 API 金鑰');
     return;
   }
-  if (!STATE.activePlan) {
+  if (!STATE.entitlement) {
     openPlanModal();
     return;
   }
@@ -1557,27 +1496,13 @@ function closeCreateKeyModal() {
 
 function submitCreateKey() {
   const name = document.getElementById('key-name-input').value.trim() || 'Default Key';
-  const randomSuffix = Array.from(crypto.getRandomValues(new Uint8Array(20)))
-    .map(b => b.toString(16).padStart(2, '0')).join('');
-  const fullApiKey = `gck_live_${randomSuffix}`;
-  const prefix = fullApiKey.slice(0, 16);
-
-  const newKey = {
-    id: `key_${Date.now()}`,
-    name,
-    prefix,
-    createdAt: new Date().toISOString().slice(0, 16).replace('T', ' ')
-  };
-
-  STATE.keys.unshift(newKey);
-  localStorage.setItem('gc_dev_keys', JSON.stringify(STATE.keys));
-  closeCreateKeyModal();
-
-  // Show Reveal Modal
-  document.getElementById('revealed-key-text').innerText = fullApiKey;
-  document.getElementById('reveal-key-modal').classList.add('open');
-  renderKeysTable();
-  showToast('✓ API 金鑰建立成功');
+  consoleRequest('/v1/console/api-keys', { method: 'POST', body: JSON.stringify({ name }) }).then((created) => {
+    closeCreateKeyModal();
+    document.getElementById('revealed-key-text').innerText = created.api_key;
+    document.getElementById('reveal-key-modal').classList.add('open');
+    loadConsoleData();
+    showToast('API 金鑰建立成功');
+  }).catch(() => showToast('API 金鑰建立失敗'));
 }
 
 function copyRevealedKey() {
@@ -1632,11 +1557,12 @@ function closeRevokeModal() {
 }
 function confirmRevokeKey() {
   if (!STATE.pendingRevokeId) return;
-  STATE.keys = STATE.keys.filter(k => k.id !== STATE.pendingRevokeId);
-  localStorage.setItem('gc_dev_keys', JSON.stringify(STATE.keys));
-  closeRevokeModal();
-  renderKeysTable();
-  showToast('✓ 金鑰已撤銷');
+  const keyId = STATE.pendingRevokeId;
+  consoleRequest(`/v1/console/api-keys/${encodeURIComponent(keyId)}`, { method: 'DELETE' }).then(() => {
+    closeRevokeModal();
+    loadConsoleData();
+    showToast('API 金鑰已撤銷');
+  }).catch(() => showToast('撤銷失敗，請稍後再試'));
 }
 
 // Helpers
@@ -1645,6 +1571,8 @@ function copyText(val) {
     showToast('✓ 已複製金鑰前綴');
   });
 }
+function formatDate(value) { return value ? new Date(value).toLocaleString('zh-TW', { hour12: false }) : '—'; }
+function copyQuickstart() { copyText(document.getElementById('qs-code-text').innerText); }
 function showToast(msg) {
   const toast = document.getElementById('toast');
   toast.innerText = msg;

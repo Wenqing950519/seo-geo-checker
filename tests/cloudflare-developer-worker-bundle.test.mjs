@@ -23,6 +23,8 @@ try {
   assert.deepEqual(developerConfig.routes, [
     { pattern: "api.geocheck.lisheng.cv", custom_domain: true }
   ]);
+  assert.equal(developerConfig.assets.directory, "../../../apps/web/public");
+  assert.equal(developerConfig.assets.binding, "ASSETS");
   assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "false");
   assert.equal(auditConfig.containers[0].image_build_context, "../../..");
   assert.deepEqual(auditConfig.routes, [
@@ -33,6 +35,8 @@ try {
   assert.match(auditWorker, /Strict-Transport-Security/, "Audit Worker responses must enable HSTS");
   assert.match(developerWorker, /Strict-Transport-Security/, "Developer Worker responses must enable HSTS");
   assert.match(developerWorker, /createD1OAuthStateStore/, "Google OAuth state must persist outside one Worker isolate");
+  assert.match(developerWorker, /missingOAuthSecrets/, "Google login readiness must be separate from provider measurement readiness");
+  assert.match(developerWorker, /pathname === "\/developers-console"/, "Developer Console must be served from the B API origin");
   assert.match(developerOAuthMigration, /developer_google_oauth_states/, "Developer OAuth state requires its own Product B D1 table");
   assert.match(pagesHeaders, /Strict-Transport-Security:\s*max-age=31536000/i, "Pages responses must enable HSTS");
   console.log("cloudflare developer worker bundle tests passed");

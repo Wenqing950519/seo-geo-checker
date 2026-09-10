@@ -60,10 +60,7 @@ class DashboardApiClient {
       if (res.status === 204) return null;
       return await res.json();
     } catch (networkError) {
-      // If backend is unreachable or offline, transparently fall back to fixture data with notification
-      console.warn(`[Dashboard API] Network error on ${path}, falling back to acceptance fixtures:`, networkError.message);
-      AppState.fixtureMode = true;
-      return this.handleFixtureRequest(path, options);
+      throw networkError;
     }
   }
 

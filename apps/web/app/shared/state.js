@@ -58,8 +58,8 @@ class DashboardState {
     this.currentDataQuality = null;
     this.currentEntitlement = null;
 
-    // Fixture / Demo Engine
-    this.fixtureMode = true; // Defaults to true so instant rich demo data is immediately interactive
+    // Fixtures are opt-in acceptance evidence, never a production data fallback.
+    this.fixtureMode = false;
     this.currentFixtureKey = 'twelve_weeks'; // 'baseline' | 'twelve_weeks' | 'partial_run' | 'failed_run' | 'version_change'
 
     // Universal Evidence Drawer
