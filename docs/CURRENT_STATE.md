@@ -22,6 +22,8 @@ tags:
 
 `[本機前端 client 2026-09-10]` Product A Marketing Dashboard 前端已於 `apps/web/app/` 完成建置（參照 Themap 專案之分頁獨立子資料夾架構：`overview/`、`performance/`、`questions/`、`citations/`、`quality/`、`evidence/`、`auth/`，共用模組於 `shared/`）；透過原生零構建 ES Module 提供高效能 SPA，對標 Ahrefs / GA4 / Brandlight / Weimob GEO，完全符合 `DASHBOARD_UI_SPEC` 與 `FRONTEND_ACCEPTANCE`（4 項明確分子分母率值、跨期題組版本斷點隔離、不可變題組版本升級、五大驗收情境沙盒、事證抽屜 30 秒查閱、全無 Developer 概念洩漏）。這不是遠端部署、排程 worker 或金流完成的證據。
 
+`[主分支合併與接口串聯 2026-09-10]` `codex/cloudflare-full-migration` 已全數快進合併（ff-only）至 `main`（commit `cf613e9`）。已完成產品 A（行銷儀表板 `/app`）與產品 B（開發者平台 `/developers`、`/developers/docs`、`/developers/console`）的前後端接口路由掛載、跨產品導航串聯、`/developers-console` 路由別名掛載，以及 Google OAuth redirect 統一指向 `/developers/console`；全域 46 項測試套件全數通過（100%）。
+
 ## 本機目錄整理（2026-09-08，尚未部署）
 
 依 D-026，主程式改為 `services/api/server.js`，A 資源／報告組裝在 `apps/web`，核心與 adapters 在 `packages`，測試在 `tests/regression`，研究資料集中 `research/inputs`、`outputs`、`sources`、`work`。`mock-api` 保留啟動與 import 相容 wrapper，以及既有 env／ledger 路徑。根目錄 README 與搬移表是新位置索引。

@@ -244,3 +244,25 @@ tags:
   - 檢視登入後的左側側邊欄底部，確認所有「驗收沙盒模式」、「5 大場景」等測試文字已全數消失，改為極簡 Google 帳戶連線狀態卡。
 - **下次遇到類似問題我會怎麼做**：在設計產品登入/守門頁面時，將「未認證狀態」視為獨立的 Layout 情境處理，而非僅僅在既有的後台骨架裡更換局部文字；內部驗收工具（如 Fixture 切換）應透過 DevTools、隱藏快捷鍵或獨立測試入口調用，切勿直接放置於正式使用者的側邊欄中。
 
+---
+
+### 2026-09-10 主分支快進合併與雙產品線（行銷儀表板 vs 開發者模式）接口串聯架構
+
+- **情境**：使用者要求將當前所有已完成的工作（`codex/cloudflare-full-migration` 分支）合併至主分支（`main`），並推送到遠端倉庫；同時思考與處理產品 A（行銷儀表板 `/app`）與產品 B（開發者模式 `/developers`）在後端 API 路由掛載與前端介面接口上的串聯與顯示方式。
+- **核心概念**（Agent 版本，**請用自己的話改寫後才算數**）：
+  1. **D-042 權限隔離架構下的跨產品導航串聯（Cross-Product Discovery without Security Leak）**：
+     - 行銷人員使用 `/app` 關注品牌在 AI 搜尋中的能見度、引用率與官網連結；技術人員或工程團隊使用 `/developers` 關注 REST API、TypeScript/Python SDK、多模型並行探測與 Webhook 自動化。
+     - 兩者在資安邊界上絕對隔離：`/app` 僅持有行銷會話憑證（`gds_`），絕不碰觸開發者金鑰（`gck_`）或租戶管理；`/developers/console` 僅持有開發者憑證（`gcs_`）或 API Key。
+     - 在使用者介面層面，透過在產品 A 側邊欄優雅提供「開發者生態：開發者模式 (API & Docs) ↗」外部連結，並在產品 B（Showcase、Docs、Console）頂部導航列提供「行銷儀表板 ↗」，實現無縫導流與產品雙輪驅動，互不侵蝕權限邊界。
+  2. **路由掛載強健性與別名相容（Route Aliasing & OAuth Redirect Integrity）**：
+     - 在後端 HTTP 路由器（`services/api/server.js`）中，除了支援標準路徑 `/developers/console` 外，補齊 `/developers-console` 別名掛載，防止舊鏈接或外部回調產生 404。
+     - 同時將 Google OAuth HTTP 處理器（`google-oauth-http.js`）的開發者認證重定向標準化為 `/developers/console`，保證 OAuth 登入成功後精準引導至控制台首頁。
+  3. **非互動環境下的 Git 認證守則（Non-Interactive Git & Credential Lifecycle）**：
+     - Windows 上的 Git Credential Manager (GCM) 在終端非互動模式（或 Background Task）下，若 Token 過期（如 GitHub PAT / `gh auth status` 顯示無效），會因嘗試彈出視窗或等待終端輸入而導致背景任務永久掛起（Hang）。
+     - 透過設定 `$env:GIT_TERMINAL_PROMPT=0` 與 `$env:GCM_INTERACTIVE="never"` 可精確識別憑證錯誤並防止背景卡死；對於主分支合併，在本地以 `--ff-only` 完成無損快進合併，並明確告知使用者執行 `gh auth login` 刷新權限後完成推送。
+- **我能解釋到什麼程度**：〔待自評〕
+- **仍需人工驗證**：
+  - 於本機或測試環境點擊 `/app` 側邊欄「開發者模式 ↗」，驗證是否順暢在新分頁開啟 `/developers`。
+  - 於 `/developers/console` 與 `/developers/docs` 點擊「行銷儀表板 ↗」，驗證是否正確切換回 `/app`。
+  - 執行 `gh auth login -h github.com` 刷新 GitHub 憑證後，執行 `git push origin main`。
+- **下次遇到類似問題我會怎麼做**：在處理背景執行之 `git push` 時，先以快速的唯讀或狀態檢查確認遠端認證狀態，避免因圖形驗證提示導致任務阻塞。
