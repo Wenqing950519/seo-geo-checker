@@ -1,5 +1,6 @@
 const assert = require("node:assert/strict");
 const { createDashboardApiHttpHandler } = require("../services/api/dashboard-api-http.js");
+const { createSqliteDashboardStore } = require("../services/api/storage/dashboard-store.js");
 
 const config = {
   DASHBOARD_API_ENABLED: "true",
@@ -23,7 +24,7 @@ async function invoke(handler, { method, pathname, body, headers = {} }) {
 }
 
 async function main() {
-  const handler = createDashboardApiHttpHandler({ config });
+  const handler = createDashboardApiHttpHandler({ config, createSqliteDashboardStore });
   const invitation = await invoke(handler, {
     method: "POST", pathname: "/app-api/v1/admin/invitations",
     headers: { "X-Dashboard-Admin-Token": config.DASHBOARD_ADMIN_TOKEN }, body: { email: "dashboard@example.com" }
