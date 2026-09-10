@@ -22,13 +22,13 @@ function createDashboardService(options = {}) {
 
   async function createInvitation({ email }) {
     const normalizedEmail = normalizeEmail(email);
-    if (store.findVerifiedAccountByEmail(normalizedEmail)) {
+    if (await store.findVerifiedAccountByEmail(normalizedEmail)) {
       throw new DashboardError("account_exists", "A Dashboard account already exists", 409);
     }
     const createdAt = iso(now());
     const token = opaqueToken("gdi_");
     const expiresAt = addMilliseconds(createdAt, invitationTtlMs);
-    store.insertInvitation({
+    await store.insertInvitation({
       tokenId: `daut_${randomUUID()}`, email: normalizedEmail, tokenHash: hashToken(token, pepper),
       createdAt, expiresAt
     });
@@ -39,7 +39,7 @@ function createDashboardService(options = {}) {
     const createdAt = iso(now());
     const sessionToken = opaqueToken("gds_");
     const sessionExpiresAt = addMilliseconds(createdAt, sessionTtlMs);
-    const account = store.consumeInvitation({
+    const account = await store.consumeInvitation({
       tokenHash: hashToken(requiredToken(token), pepper), accountId: `dacc_${randomUUID()}`,
       sessionId: `dses_${randomUUID()}`, sessionHash: hashToken(sessionToken, pepper),
       now: createdAt, sessionExpiresAt
@@ -51,30 +51,30 @@ function createDashboardService(options = {}) {
   async function authenticateSession(sessionToken) {
     const token = String(sessionToken || "");
     if (!token.startsWith("gds_")) return null;
-    return store.authenticateSession({ tokenHash: hashToken(token, pepper), now: iso(now()) });
+    return await store.authenticateSession({ tokenHash: hashToken(token, pepper), now: iso(now()) });
   }
 
   async function loginGoogleAccount({ email }) {
-    const account = store.findVerifiedAccountByEmail(normalizeEmail(email));
+    const account = await store.findVerifiedAccountByEmail(normalizeEmail(email));
     if (!account) throw new DashboardError("account_not_authorized", "This Google account is not enabled for the Dashboard", 403);
     const createdAt = iso(now());
     const sessionToken = opaqueToken("gds_");
     const sessionExpiresAt = addMilliseconds(createdAt, sessionTtlMs);
-    store.createSession({ sessionId: `dses_${randomUUID()}`, accountId: account.accountId,
+    await store.createSession({ sessionId: `dses_${randomUUID()}`, accountId: account.accountId,
       sessionHash: hashToken(sessionToken, pepper), now: createdAt, sessionExpiresAt });
     return { account_id: account.accountId, session_token: sessionToken, session_expires_at: sessionExpiresAt };
   }
 
   async function createProject({ sessionToken, name, siteUrl, timezone = "Asia/Taipei" }) {
     const session = await requiredSession(sessionToken);
-    const entitlement = entitlementFor(session.accountId);
+    const entitlement = await entitlementFor(session.accountId);
     if (!canUseDashboard(entitlement, now())) throw new DashboardError("dashboard_read_only", "Monitoring is unavailable until the subscription is restored", 403);
-    if (store.countProjects(session.accountId) >= entitlement.activeProjectLimit) {
+    if (await store.countProjects(session.accountId) >= entitlement.activeProjectLimit) {
       throw new DashboardError("project_limit_reached", `This plan allows ${entitlement.activeProjectLimit} active Projects`, 409);
     }
     const normalized = normalizeProject({ name, siteUrl, timezone });
     const timestamp = iso(now());
-    return store.createProject({
+    return await store.createProject({
       projectId: `dprj_${randomUUID()}`, accountId: session.accountId, ...normalized,
       now: timestamp, nextRunAt: nextWeeklyRun(timestamp)
     });
@@ -82,23 +82,23 @@ function createDashboardService(options = {}) {
 
   async function listProjects({ sessionToken }) {
     const session = await requiredSession(sessionToken);
-    return store.listProjects(session.accountId);
+    return await store.listProjects(session.accountId);
   }
 
   async function getEntitlement({ sessionToken }) {
     const session = await requiredSession(sessionToken);
-    return publicEntitlement(entitlementFor(session.accountId));
+    return publicEntitlement(await entitlementFor(session.accountId));
   }
 
   async function requestManualTrackingRun({ sessionToken, projectId }) {
     const session = await requiredProjectRole(sessionToken, projectId, ["owner", "editor"]);
-    const entitlement = entitlementFor(session.accountId);
+    const entitlement = await entitlementFor(session.accountId);
     if (!canUseDashboard(entitlement, now()) || entitlement.plan !== "paid_beta") {
       throw new DashboardError("manual_run_unavailable", "Manual updates require an active Paid Beta subscription", 403);
     }
     const timestamp = iso(now());
     const dayTaipei = taipeiDay(timestamp);
-    const reservation = store.reserveManualTrackingJob({
+    const reservation = await store.reserveManualTrackingJob({
       jobId: `dtj_${randomUUID()}`, reservationId: `dmr_${randomUUID()}`,
       accountId: session.accountId, projectId, periodId: entitlement.periodId,
       dayTaipei, dailyLimit: 6, dedupeKey: `manual:${projectId}:${randomUUID()}`, now: timestamp
@@ -107,37 +107,37 @@ function createDashboardService(options = {}) {
       const error = reservation.rejected === "daily_manual_limit" ? "daily_manual_limit" : "manual_quota_exhausted";
       throw new DashboardError(error, error === "daily_manual_limit" ? "Six manual updates are allowed per Taiwan day" : "No manual updates remain in this subscription period", 429);
     }
-    return { job_id: reservation.job.jobId, status: reservation.job.status, manual_updates_remaining: manualRemaining(entitlement, store) };
+    return { job_id: reservation.job.jobId, status: reservation.job.status, manual_updates_remaining: await manualRemaining(entitlement, store) };
   }
 
   // Trusted orchestration settles the reservation after a terminal four-engine result.
   async function settleTrackingJob({ jobId, state }) {
     if (!new Set(["complete", "partial", "failed"]).has(state)) throw new DashboardError("invalid_job_state", "Invalid Tracking Job state", 400);
-    return store.settleTrackingJob({ jobId: requiredId(jobId, "jobId"), state, now: iso(now()) });
+    return await store.settleTrackingJob({ jobId: requiredId(jobId, "jobId"), state, now: iso(now()) });
   }
 
   async function applySandboxPayment({ accountId, providerTransactionId, providerPeriodId, status = "succeeded", occurredAt = iso(now()) }) {
     const account = requiredId(accountId, "accountId");
     const transaction = requiredId(providerTransactionId, "providerTransactionId");
-    const inserted = store.insertPaymentEvent({ paymentEventId: `dpe_${randomUUID()}`, accountId: account,
+    const inserted = await store.insertPaymentEvent({ paymentEventId: `dpe_${randomUUID()}`, accountId: account,
       providerTransactionId: transaction, providerPeriodId: providerPeriodId || null, eventType: "periodic_payment", status,
       occurredAt: requiredIso(occurredAt, "occurredAt"), now: iso(now()) });
-    if (!inserted) return publicEntitlement(entitlementFor(account));
-    if (status !== "succeeded") return publicEntitlement(entitlementFor(account));
+    if (!inserted) return publicEntitlement(await entitlementFor(account));
+    if (status !== "succeeded") return publicEntitlement(await entitlementFor(account));
     const startsAt = iso(now());
     const endsAt = addMonths(startsAt, 1);
     const periodId = `dsp_${randomUUID()}`;
-    store.createSubscriptionPeriod({ periodId, accountId: account, startsAt, endsAt, manualRunLimit: 24, now: startsAt });
-    return publicEntitlement(store.upsertEntitlement({ accountId: account, plan: "paid_beta", status: "active",
+    await store.createSubscriptionPeriod({ periodId, accountId: account, startsAt, endsAt, manualRunLimit: 24, now: startsAt });
+    return publicEntitlement(await store.upsertEntitlement({ accountId: account, plan: "paid_beta", status: "active",
       activeProjectLimit: 6, manualRunLimit: 24, periodStart: startsAt, periodEnd: endsAt, graceEndsAt: null, cancelAt: null, now: startsAt }), periodId);
   }
 
   async function createQuestionSet({ sessionToken, projectId, locale = "zh-TW", questions }) {
     const session = await requiredProjectRole(sessionToken, projectId, ["owner", "editor"]);
     const normalizedQuestions = normalizeQuestions(questions);
-    const questionSets = store.listQuestionSets(projectId);
+    const questionSets = await store.listQuestionSets(projectId);
     const timestamp = iso(now());
-    return store.createQuestionSet({
+    return await store.createQuestionSet({
       questionSetId: `dqs_${randomUUID()}`, projectId, version: (questionSets[0]?.version || 0) + 1,
       locale: normalizeLocale(locale), status: "active", now: timestamp,
       questions: normalizedQuestions.map((question) => ({ ...question, questionId: `dqu_${randomUUID()}` })),
@@ -147,9 +147,10 @@ function createDashboardService(options = {}) {
 
   async function listTrackedQuestions({ sessionToken, projectId }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor", "viewer"]);
-    const sets = store.listQuestionSets(projectId).map((set) => store.getQuestionSet(set.questionSetId));
-    const latestRuns = store.listRecentRuns(projectId, 1);
-    const latestObservations = latestRuns.length ? store.listObservationsForRuns([latestRuns[0].runId]) : [];
+    const listedSets = await store.listQuestionSets(projectId);
+    const sets = await Promise.all(listedSets.map((set) => store.getQuestionSet(set.questionSetId)));
+    const latestRuns = await store.listRecentRuns(projectId, 1);
+    const latestObservations = latestRuns.length ? await store.listObservationsForRuns([latestRuns[0].runId]) : [];
     const byQuestion = new Map();
     for (const observation of latestObservations) {
       if (!byQuestion.has(observation.questionId)) byQuestion.set(observation.questionId, []);
@@ -164,7 +165,7 @@ function createDashboardService(options = {}) {
   // Trusted orchestration only. Dashboard browser routes deliberately do not expose it.
   async function recordTrackingRun(input) {
     const projectId = requiredId(input.projectId, "projectId");
-    const questionSet = store.getQuestionSet(requiredId(input.questionSetId, "questionSetId"));
+    const questionSet = await store.getQuestionSet(requiredId(input.questionSetId, "questionSetId"));
     if (!questionSet || questionSet.projectId !== projectId) {
       throw new DashboardError("question_set_not_found", "Question set does not belong to this Project", 404);
     }
@@ -173,7 +174,7 @@ function createDashboardService(options = {}) {
     const observedAt = requiredIso(input.observedAt, "observedAt");
     const counts = countStatuses(observations);
     const timestamp = iso(now());
-    return store.insertTrackingRun({
+    return await store.insertTrackingRun({
       runId: `drun_${randomUUID()}`, projectId, questionSetId: questionSet.questionSetId,
       scheduledAt, observedAt, state: deriveRunState(counts), expectedObservations: observations.length,
       measuredObservations: counts.measured, unknownObservations: counts.unknown,
@@ -187,9 +188,9 @@ function createDashboardService(options = {}) {
   async function getOverview({ sessionToken, projectId, weeks = 12 }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor", "viewer"]);
     const range = normalizeRange(weeks, now());
-    const project = requireProject(projectId);
-    const runs = store.listRuns(projectId, range.from, range.to);
-    const observations = store.listObservationsForRuns(runs.map((run) => run.runId));
+    const project = await requireProject(projectId);
+    const runs = await store.listRuns(projectId, range.from, range.to);
+    const observations = await store.listObservationsForRuns(runs.map((run) => run.runId));
     const series = buildSeries(runs, observations);
     const current = series.at(-1) || null;
     const previous = comparablePrevious(series);
@@ -197,7 +198,7 @@ function createDashboardService(options = {}) {
       project: publicProject(project), range, data_freshness_at: current?.observed_at || null,
       tracking: { cadence: project.cadence, enabled: project.enabled, next_run_at: project.nextRunAt },
       summary: buildSummary(current, previous), series,
-      annotations: store.listAnnotations(projectId, range.from, range.to),
+      annotations: await store.listAnnotations(projectId, range.from, range.to),
       latest_run: current ? latestRunSummary(runs, current.run_id) : null
     };
   }
@@ -205,8 +206,8 @@ function createDashboardService(options = {}) {
   async function getPerformance({ sessionToken, projectId, weeks = 12 }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor", "viewer"]);
     const range = normalizeRange(weeks, now());
-    const runs = store.listRuns(projectId, range.from, range.to);
-    const observations = store.listObservationsForRuns(runs.map((run) => run.runId));
+    const runs = await store.listRuns(projectId, range.from, range.to);
+    const observations = await store.listObservationsForRuns(runs.map((run) => run.runId));
     return {
       range,
       series: buildSeries(runs, observations),
@@ -218,15 +219,15 @@ function createDashboardService(options = {}) {
   async function getCitations({ sessionToken, projectId, weeks = 12 }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor", "viewer"]);
     const range = normalizeRange(weeks, now());
-    const runs = store.listRuns(projectId, range.from, range.to);
-    const observations = store.listObservationsForRuns(runs.map((run) => run.runId));
+    const runs = await store.listRuns(projectId, range.from, range.to);
+    const observations = await store.listObservationsForRuns(runs.map((run) => run.runId));
     return { range, sources: aggregateCitations(observations) };
   }
 
   async function getDataQuality({ sessionToken, projectId, weeks = 12 }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor", "viewer"]);
     const range = normalizeRange(weeks, now());
-    const runs = store.listRecentRuns(projectId, 100)
+    const runs = (await store.listRecentRuns(projectId, 100))
       .filter((run) => run.scheduledAt >= range.from && run.scheduledAt <= range.to);
     return {
       range,
@@ -239,7 +240,7 @@ function createDashboardService(options = {}) {
 
   async function getEvidence({ sessionToken, projectId, observationId }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor", "viewer"]);
-    const observation = store.getObservationForProject(projectId, observationId);
+    const observation = await store.getObservationForProject(projectId, observationId);
     if (!observation) throw new DashboardError("evidence_not_found", "Evidence was not found", 404);
     return evidenceObservation(observation);
   }
@@ -248,7 +249,7 @@ function createDashboardService(options = {}) {
     const session = await requiredProjectRole(sessionToken, projectId, ["owner", "editor"]);
     const trimmed = String(note || "").trim();
     if (!trimmed || trimmed.length > 500) throw new DashboardError("invalid_annotation", "Annotation must be 1 to 500 characters", 400);
-    return store.createAnnotation({
+    return await store.createAnnotation({
       annotationId: `dann_${randomUUID()}`, projectId, accountId: session.accountId,
       occurredAt: requiredIso(occurredAt, "occurredAt"), note: trimmed, now: iso(now())
     });
@@ -257,11 +258,11 @@ function createDashboardService(options = {}) {
   async function connectGoogleSearchConsole({ sessionToken, projectId, googleEmail, propertyUri, refreshToken, scopes }) {
     const session = await requiredProjectRole(sessionToken, projectId, ["owner", "editor"]);
     if (!googleTokenKey) throw new DashboardError("gsc_not_configured", "GSC token encryption is not configured", 503);
-    if (!propertyMatchesProject(propertyUri, requireProject(projectId).siteUrl)) {
+    if (!propertyMatchesProject(propertyUri, (await requireProject(projectId)).siteUrl)) {
       throw new DashboardError("gsc_property_mismatch", "Selected Search Console property does not match this Project site", 400);
     }
     const encrypted = encryptSecret(requiredToken(refreshToken), googleTokenKey);
-    const connection = store.upsertGoogleConnection({ connectionId: `dgsc_${randomUUID()}`, projectId, accountId: session.accountId,
+    const connection = await store.upsertGoogleConnection({ connectionId: `dgsc_${randomUUID()}`, projectId, accountId: session.accountId,
       googleEmail: normalizeEmail(googleEmail), propertyUri, ciphertext: encrypted.ciphertext, iv: encrypted.iv, tag: encrypted.tag,
       scopes: Array.isArray(scopes) ? scopes : [], now: iso(now()) });
     return publicGoogleConnection(connection);
@@ -269,37 +270,37 @@ function createDashboardService(options = {}) {
 
   async function getGscSummary({ sessionToken, projectId, from, to }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor", "viewer"]);
-    const connection = store.getGoogleConnection(projectId);
+    const connection = await store.getGoogleConnection(projectId);
     const range = gscDateRange(from, to, now());
     return { connection: connection ? publicGoogleConnection(connection) : null, range,
-      data: store.listGscDailyMetrics(projectId, range.from, range.to) };
+      data: await store.listGscDailyMetrics(projectId, range.from, range.to) };
   }
 
   async function syncGoogleSearchConsole({ sessionToken, projectId, from, to }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor"]);
     if (!gscClient || !googleTokenKey) throw new DashboardError("gsc_not_configured", "GSC import is not configured", 503);
-    const connection = store.getGoogleConnection(projectId);
+    const connection = await store.getGoogleConnection(projectId);
     if (!connection) throw new DashboardError("gsc_not_connected", "Connect a Search Console property first", 409);
     const range = gscDateRange(from, to, now());
     const syncRunId = `dgsr_${randomUUID()}`;
-    store.startGscSync({ syncRunId, projectId, connectionId: connection.connectionId, now: iso(now()), from: range.from, to: range.to });
+    await store.startGscSync({ syncRunId, projectId, connectionId: connection.connectionId, now: iso(now()), from: range.from, to: range.to });
     try {
       const rows = await gscClient.fetchDailyMetrics({ propertyUri: connection.propertyUri,
         refreshToken: decryptSecret(connection, googleTokenKey), from: range.from, to: range.to });
       const normalized = normalizeGscRows(rows);
-      store.upsertGscDailyMetrics(projectId, connection.propertyUri, normalized, iso(now()));
-      store.purgeGscMetrics(dateMonthsAgo(now(), 13));
-      store.finishGscSync({ syncRunId, now: iso(now()), status: "succeeded", importedRows: normalized.length });
+      await store.upsertGscDailyMetrics(projectId, connection.propertyUri, normalized, iso(now()));
+      await store.purgeGscMetrics(dateMonthsAgo(now(), 13));
+      await store.finishGscSync({ syncRunId, now: iso(now()), status: "succeeded", importedRows: normalized.length });
       return { sync_run_id: syncRunId, imported_rows: normalized.length, range };
     } catch (error) {
-      store.finishGscSync({ syncRunId, now: iso(now()), status: "failed", errorCode: safeGscErrorCode(error) });
+      await store.finishGscSync({ syncRunId, now: iso(now()), status: "failed", errorCode: safeGscErrorCode(error) });
       throw new DashboardError(safeGscErrorCode(error), "Search Console import failed", 502);
     }
   }
 
   async function disconnectGoogleSearchConsole({ sessionToken, projectId }) {
     await requiredProjectRole(sessionToken, projectId, ["owner", "editor"]);
-    if (!store.revokeGoogleConnection(projectId, iso(now()))) throw new DashboardError("gsc_not_connected", "No active Search Console connection", 404);
+    if (!await store.revokeGoogleConnection(projectId, iso(now()))) throw new DashboardError("gsc_not_connected", "No active Search Console connection", 404);
     return { disconnected: true };
   }
 
@@ -307,7 +308,7 @@ function createDashboardService(options = {}) {
     // Scheduling transport belongs to the Product A worker/queue. The domain
     // service intentionally returns only due project plan metadata.
     if (typeof store.listDueTrackingPlans !== "function") return [];
-    return store.listDueTrackingPlans(at);
+    return await store.listDueTrackingPlans(at);
   }
 
   async function requiredSession(sessionToken) {
@@ -318,15 +319,15 @@ function createDashboardService(options = {}) {
 
   async function requiredProjectRole(sessionToken, projectId, roles) {
     const session = await requiredSession(sessionToken);
-    const membership = store.getMembership(requiredId(projectId, "projectId"), session.accountId);
+    const membership = await store.getMembership(requiredId(projectId, "projectId"), session.accountId);
     if (!membership || !roles.includes(membership.role)) {
       throw new DashboardError("project_access_denied", "Project access is not granted", 404);
     }
     return { ...session, role: membership.role };
   }
 
-  function requireProject(projectId) {
-    const project = store.getProject(projectId);
+  async function requireProject(projectId) {
+    const project = await store.getProject(projectId);
     if (!project) throw new DashboardError("project_not_found", "Project was not found", 404);
     return project;
   }
@@ -339,10 +340,11 @@ function createDashboardService(options = {}) {
     connectGoogleSearchConsole, getGscSummary, syncGoogleSearchConsole, disconnectGoogleSearchConsole
   };
 
-  function entitlementFor(accountId) {
-    const saved = store.getEntitlement(accountId);
+  async function entitlementFor(accountId) {
+    const saved = await store.getEntitlement(accountId);
     if (!saved) return { accountId, plan: "free", status: "active", activeProjectLimit: 2, manualRunLimit: 0, periodId: null, periodStart: null, periodEnd: null, graceEndsAt: null };
-    const period = saved.periodStart ? { periodId: store.getCurrentSubscriptionPeriod?.(accountId, saved.periodStart)?.periodId || null } : {};
+    const currentPeriod = saved.periodStart ? await store.getCurrentSubscriptionPeriod?.(accountId, saved.periodStart) : null;
+    const period = saved.periodStart ? { periodId: currentPeriod?.periodId || null } : {};
     return { ...saved, ...period };
   }
 }
@@ -683,9 +685,9 @@ function canUseDashboard(entitlement, date) {
   return entitlement.status === "grace" && entitlement.graceEndsAt && new Date(entitlement.graceEndsAt) > new Date(date);
 }
 
-function manualRemaining(entitlement, store) {
+async function manualRemaining(entitlement, store) {
   return entitlement.plan === "paid_beta" && entitlement.periodId
-    ? Math.max(0, entitlement.manualRunLimit - store.manualUsage(entitlement.periodId))
+    ? Math.max(0, entitlement.manualRunLimit - await store.manualUsage(entitlement.periodId))
     : 0;
 }
 
