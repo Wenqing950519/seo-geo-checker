@@ -1,7 +1,7 @@
 ---
 type: decision-log
 project: GeoCheck
-last_updated: 2026-09-02
+last_updated: 2026-09-11
 tags:
   - geocheck
   - decisions
@@ -569,3 +569,23 @@ tags:
 - **決策邊界**：本決策確定通道契約，**不代表**通道已實作或已部署。實作仍須經 `npm.cmd test` 全綠與人工驗收；上述預算數值可由使用者調整，調整後須更新本條。內部通道不得讓 A 或 C 讀取 Developer tenant、API key、客戶 quota 或 cost 明細。
 - **現況**：截至 2026-09-11，A 的程式碼中不存在任何對 B 的呼叫；`recordTrackingRun` 僅由測試呼叫，A Worker 的 `scheduled()` 為空 stub。此決策記錄的是方向，不是已完成的實作。
 - **可追溯來源**：使用者 2026-09-11 於選項 (a) 共用程式層／(b) A 作為一般客戶／(c) 內部通道中明確選擇 (c)，說明未來產品 C 採同一模式，並於同日逐項確認上列五項通道契約與「每日總花費上限加可立即關閉的開關」。
+
+### D-048 LS Labs 網域與產品入口重組
+
+- **日期**：2026-09-11 ｜ **狀態**：Confirmed（程式與部署設定準備；DNS、Cloudflare、Google OAuth 與公開驗收待執行時確認）
+- **決策內容**：`lslabs.tw` 是 LS Labs 的品牌與產品敘事入口；`geocheck.lslabs.tw` 是 GeoCheck 的免費快速檢測；`app.lslabs.tw` 是 Product A 的 LS Labs Dashboard；`platform.lslabs.tw` 是 Product B 的開發者 landing、文件、Console 與 `/v1` API 同源入口。GeoCheck 是 LS Labs 旗下的量測／研究模組，不再承擔母品牌首頁角色。
+- **相容與隔離邊界**：`geocheck.lisheng.cv`、`api.geocheck.lisheng.cv` 先保留為相容入口；既有 API／SDK 的非 GET 請求不得以頁面 redirect 取代。A 的 `gds_` session、`/app-api/v1` 與 B 的 `gcs_`／`gck_`、`/v1` 仍完全分離；僅調整各自正典 origin 與前端導覽。
+- **發布邊界**：部署前須在 Cloudflare 將新 host 指到正確的 Pages／Worker，並在 Google OAuth Web Client 新增精確 callback：`https://app.lslabs.tw/app-api/v1/auth/google/callback`、`https://app.lslabs.tw/app-api/v1/auth/google/gsc/callback`、`https://platform.lslabs.tw/v1/auth/google/callback`。本決策不啟用 admission、不代表 OAuth 網域／scope 已驗證，也不代表公開 beta 或付費 provider 已可用。
+- **可追溯來源**：使用者 2026-09-11 明確指定 `geocheck.lslabs.tw` 作為快速檢測工具，並確認 LS Labs／Dashboard／Developer Platform 的四入口架構。
+
+### D-049 LS Labs 三層架構、OpenAI 對標與內容資產集中
+
+- **日期**：2026-09-11 ｜ **狀態**：Confirmed（文件與敘事層；內容搬遷之 Cloudflare 路由與實作待另行排程）
+- **決策內容**：LS Labs 產品架構採**三層模型**取代原本的三實體並列分類。品牌層 = LS Labs（`lslabs.tw`），承載組織敘事、研究白皮書、方法論與內容行銷，並作為全站 SEO 主力與對外（含創新創業競賽）代表實體。能力層 = GeoCheck，**無獨立網域**，是固定四引擎量測與 AI 信任指數 v1 方法論的能力本體。交付層 = 三個面：免費快檢（`geocheck.lslabs.tw`）、Dashboard／Product A（`app.lslabs.tw`）、Platform／Product B（`platform.lslabs.tw`）。
+- **對標對象**：結構對標 **OpenAI**（`openai.com` 品牌研究 → `chatgpt.com` 旗艦產品 → `platform.openai.com` 開發者平台）。SEO 內容策略對標 **Ahrefs／Semrush**（排名資產掛主域路徑，工具置於 CTA 之後）。**不採 DeepSeek 對標**：該結構中品牌即模型，`deepseek.com` 位於能力層；套用後會使 GeoCheck 降為交付面，品牌層只剩導航，且未來第二個能力無位置可放。
+- **內容資產集中**：子網域在搜尋引擎中大致視為獨立站點，權重不會自動匯流至主域。因此 `lslabs.tw/geocheck`（說明與排名頁）與 `geocheck.lslabs.tw`（工具本體）**兩者並存且分工不同**；工具頁不得重複行銷文案，說明頁為 GeoCheck 查詢的 canonical 目標。研究、白皮書、blog 一律掛 `lslabs.tw` 路徑。
+- **維持不變**：D-048 的四個 host 歸屬完全不變，本決策不更動任何網域。D-042 的 A／B 隔離不變；`geocheck.` 與 `app.` 在對外分類表中必須是**兩列**，不得併為單一實體。D-029 固定四引擎與 D-047 內部通道不變。
+- **考慮過的替代方案**：(a) 維持三實體並列分類 —— 混用組織／產品／通路三種軸，且把 `geocheck.` 與 `app.` 併入同一格，與 D-042 的邊界要求矛盾；(b) 內容全部掛子網域 —— 與「`lslabs.tw` 為 SEO 主力」的前提直接衝突。
+- **決策邊界**：本決策為文件與敘事層。**不代表**內容已搬遷、Cloudflare Pages 路由已調整、或 `home.html`／`brand.html` 的落點已決定；該實作須另行排程並經 `npm.cmd test` 與人工驗收。
+- **影響範圍**：`docs/product/GEOCHECK_PRODUCT_AND_URL_ARCHITECTURE.md`（已改寫）；後續 Labs 前端路由、對外簡報與競賽材料的實體分類表。
+- **可追溯來源**：使用者 2026-09-11 說明「LS-Labs 要當 SEO 主力、競賽以 LS-Labs 提案」，並明確指示採用分層模型與 OpenAI 對標。

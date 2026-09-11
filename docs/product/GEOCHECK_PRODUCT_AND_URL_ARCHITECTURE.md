@@ -1,92 +1,125 @@
-# GeoCheck Product and URL Architecture
+# LS Labs and GeoCheck Product Architecture
 
-Status: Proposed product and migration architecture  
-Scope: GeoCheck public product, Product A monitoring application, Product B Developer Platform, public URLs, application hostnames, and Labs integration  
+Status: Current product and URL architecture
+Authority: `docs/DECISION_LOG.md` D-048 (hostnames) and D-049 (layer model and content placement)
+Scope: LS Labs brand layer, GeoCheck measurement capability, the three delivery surfaces, public URLs, application hostnames, and SEO content placement
 Implementation status: Documentation only; this file does not authorize code, DNS, Cloudflare, OAuth, data migration, or deployment changes.
 
 ## 1. Purpose
 
-GeoCheck currently exists as the primary product in the LS Labs direction. The next frontend task has two parallel goals:
+Two constraints drive this architecture, both confirmed by the user on 2026-09-11:
 
-1. establish `lslabs.tw` as the Labs and product-discovery front door;
-2. keep GeoCheck's product architecture clear while Product A and Product B are developed and later exposed through their own application surfaces.
+1. `lslabs.tw` is the parent brand and the primary SEO surface. It is also the entity presented in innovation and startup competitions, so it must read as an organisation with a product family, not as a navigation page in front of one tool.
+2. GeoCheck's measurement capability is delivered through three distinct surfaces that must stay separate in session, authorization, and data access.
 
-The public Labs shell and the GeoCheck product shell must be related, but they must not become the same page or the same authenticated application.
+The earlier revision of this file modelled LS Labs, GeoCheck, and Platform as three sibling business entities. That model is superseded: it mixed an organisation, a product, and a delivery channel on a single axis; it placed two different surfaces (`geocheck.` and `app.`) inside one entity despite D-042 requiring their separation; and it left no slot for a future second capability.
 
-## 2. Correct product model
+## 2. Layer model
 
-The product model is:
+The correct model has three layers, not three siblings.
 
 ```text
-LS Labs
-└── GeoCheck
-    ├── Public GeoCheck
-    │   └── one-time short audit and evidence-based report
-    ├── Product A: GeoCheck Monitor (working name)
-    │   └── scheduled monitoring and evidence-centred SaaS Dashboard
-    └── Product B: GeoCheck Developer Platform (working name)
-        └── API, SDKs, jobs, usage, API keys, and Developer Console
+Brand layer        LS Labs                      lslabs.tw
+                   research house, product family, narrative, SEO
+
+Capability layer   GeoCheck                     (concept; no dedicated host)
+                   four-engine measurement core, AI Trust Index v1 methodology
+
+Delivery layer     free audit   geocheck.lslabs.tw
+                   monitoring   app.lslabs.tw
+                   developer    platform.lslabs.tw
 ```
 
-This is a product family, not three unrelated products named `ai-visibility`, `site-audit`, and `competitors`.
+The capability layer deliberately has no hostname. GeoCheck is what the three surfaces deliver, not a fourth place to visit. This is what keeps the organisation narrative coherent: one measurement engine, three ways to consume it, with room for a second capability under the same brand later.
 
-### 2.1 Public GeoCheck
+### 2.1 Benchmark
 
-The current live GeoCheck public product is the short-audit and report experience currently available at:
+The structural benchmark is OpenAI, which separates the same three layers:
 
-`https://geocheck.lisheng.cv/home`
+| Layer | OpenAI | LS Labs |
+|---|---|---|
+| Brand and research | `openai.com` | `lslabs.tw` |
+| Flagship product | `chatgpt.com` | `geocheck.lslabs.tw` + `app.lslabs.tw` |
+| Developer platform | `platform.openai.com` | `platform.lslabs.tw` |
 
-Its future Labs canonical entry is:
+The decisive property being copied is that research, methodology, and narrative live on the brand domain, while the product hosts carry product only.
 
-`https://lslabs.tw/geocheck`
+DeepSeek is not a valid benchmark here. In that structure the brand and the model are the same entity, so `deepseek.com` sits at the capability layer. LS Labs is a research house whose capability is GeoCheck; adopting the DeepSeek mapping would demote GeoCheck to a delivery surface and leave the brand layer holding nothing but links.
 
-The public product can explain:
+For SEO content strategy specifically, the benchmark is Ahrefs and Semrush: ranking assets sit on paths of the primary domain, and the tool sits behind a call to action.
 
-- observable AI-search visibility;
-- website technical and content readiness signals;
-- competitor mentions or comparison observed in the answer evidence;
-- the report method and limitations;
-- how a reader can inspect the evidence.
+### 2.2 Entity table (external and pitch use)
 
-It must not promise search ranking, guaranteed AI recommendations, acquisition outcomes, or changes to a customer's website.
+| 層 | 實體 | 網域與入口 | 角色與責任邊界 | 品牌標誌與署名 |
+|---|---|---|---|---|
+| 品牌層 | LS Labs | `https://lslabs.tw/` | 母品牌／研發總部：組織願景、品牌信念、研究白皮書、方法論、內容行銷與全域跨產品導航（Mega Menu）。承載全站 SEO 權重。不承接個別產品量測表單或 API Key 管理。 | LS-Labs（幾何光學 Monogram 徽章） |
+| 能力層 | GeoCheck | 無獨立網域 | 量測能力本體：固定四引擎量測（D-029）、AI 信任指數 v1 評分方法論、證據與資料品質語義。作為概念層存在，由下列三個交付面共用（D-047 內部通道）。 | GeoCheck（能力名稱，非站點） |
+| 交付層 | 免費快檢 | `https://geocheck.lslabs.tw/` | 匿名、無登入、一次性短檢測與報告。漏斗頂端轉換工具。 | GeoCheck<br>By LS-Labs |
+| 交付層 | Dashboard（Product A） | `https://app.lslabs.tw/` | 登入制 SaaS：Project、追蹤題組、Tracking Run、跨期比較、來源證據抽屜。`gds_` session 與 `/app-api/v1`。 | GeoCheck Monitor<br>By LS-Labs |
+| 交付層 | Platform（Product B） | `https://platform.lslabs.tw/` | 開發者平台：`/v1` API、SDK、技術文檔、API Key、用量與計費控台。`gcs_`／`gck_` 與 `developer_*` 資料表，與 A 完全隔離（D-042）。 | Platform<br>By LS-Labs |
 
-### 2.2 Product A — GeoCheck Monitor
+`geocheck.` and `app.` are separate rows because D-042 requires them to be separate in UI, browser API, session, API key, tenant/project authority, and data access. They must not be presented as one entity.
 
-`GeoCheck Monitor` is a working product name for the future monitoring product. The name can be changed later, but the product role is already clear: it extends the public short audit into repeated, project-scoped observation.
+## 3. Content placement and SEO
 
-Product A owns:
+Google treats subdomains largely as separate sites, so authority does not automatically consolidate from `geocheck.lslabs.tw` into `lslabs.tw`. Because `lslabs.tw` is the primary SEO surface, ranking assets belong on its paths.
 
-- projects;
-- tracked questions;
-- baseline and later Runs;
-- cross-period comparison;
-- citations and sources;
-- evidence drawer;
-- data quality and incomplete coverage states;
-- scheduled monitoring when the runtime is admitted.
+### 3.1 Content assets — primary domain paths
 
-`Dashboard` is the application surface, not the most useful product name. The product page should therefore be `GeoCheck Monitor`, while the authenticated hostname can remain `app.lslabs.tw`.
+```text
+https://lslabs.tw/
+    Labs homepage, product family index, organisation narrative
 
-### 2.3 Product B — GeoCheck Developer Platform
+https://lslabs.tw/geocheck
+    GeoCheck explanation, what is measured, what is not promised,
+    method summary, evidence preview; primary CTA into the free audit tool
 
-`GeoCheck Developer Platform` is a working product name for the technical product. It includes the API and its developer-facing account surface.
+https://lslabs.tw/product/geocheck-monitor
+    Product A introduction and release status
 
-Product B owns:
+https://lslabs.tw/product/platform
+    Product B introduction and developer entry
 
-- API documentation;
-- API keys;
-- SDKs;
-- request jobs;
-- usage and quota;
-- result retrieval;
-- developer account settings;
-- webhook or automation features only when actually released.
+https://lslabs.tw/research
+    Labs research index
 
-The human-facing management UI is the `Developer Console`. `Developments` is not used: it does not describe a developer product or console.
+https://lslabs.tw/research/geo-whitepaper
+    GEO methodology whitepaper
 
-## 3. Capability naming under GeoCheck
+https://lslabs.tw/blog/*
+    Content marketing
+```
 
-The existing terms are useful as feature/category labels, but they should not be presented as three product names.
+### 3.2 Tool and application hostnames
+
+```text
+https://geocheck.lslabs.tw/
+    The free audit tool itself, entered from the lslabs.tw/geocheck CTA
+
+https://app.lslabs.tw/
+    Product A authenticated Dashboard; same-origin browser API at /app-api/v1
+
+https://platform.lslabs.tw/
+    Product B developer landing, documentation, Console, and same-origin /v1 API
+```
+
+### 3.3 The `lslabs.tw/geocheck` and `geocheck.lslabs.tw` pair
+
+Both exist, and they are not duplicates:
+
+| | `lslabs.tw/geocheck` | `geocheck.lslabs.tw` |
+|---|---|---|
+| Purpose | Explain and rank | Run the audit |
+| Audience | Search traffic, evaluators, competition judges | Someone ready to test a site |
+| Content | Method, scope, limits, evidence examples | Input form, run state, report output |
+| SEO | Canonical, indexed, internally linked | Thin; must not compete with the content page |
+| Entry | Organic search, Labs navigation | CTA from the content page |
+
+To avoid keyword cannibalisation, `geocheck.lslabs.tw` must not carry a full duplicate of the marketing copy, and the content page is the canonical target for GeoCheck queries.
+
+## 4. Capability naming under GeoCheck
+
+The existing terms are useful as feature/category labels, but they should not be presented as product names.
 
 | Existing term | Product meaning | Recommended use |
 |---|---|---|
@@ -105,70 +138,28 @@ GeoCheck
 └── Competitor Comparison
 ```
 
-These capabilities can later receive public landing pages if they develop independent workflows. Until then, they should remain sections of GeoCheck and not be placed under `/product/` as separate products.
-
-## 4. Canonical URL structure
-
-### 4.1 Public and marketing URLs
-
-```text
-https://lslabs.tw/
-    Labs homepage and product index
-
-https://lslabs.tw/geocheck
-    GeoCheck public product entry and short-audit entry
-
-https://lslabs.tw/product/geocheck-monitor
-    Product A introduction and release status
-
-https://lslabs.tw/product/developer-platform
-    Product B introduction and developer entry
-
-https://lslabs.tw/research
-    Labs research index
-
-https://lslabs.tw/research/geo-whitepaper
-    GeoCheck methodology whitepaper entry
-```
-
-### 4.2 Application and service hostnames
-
-```text
-https://app.lslabs.tw/
-    Product A authenticated SaaS Dashboard
-
-https://developers.lslabs.tw/
-    Product B Developer Platform front door, documentation, and Console entry
-
-https://developers.lslabs.tw/console
-    Product B authenticated Developer Console
-
-https://api.lslabs.tw/
-    API origin and service endpoints; no general Labs navigation
-```
-
-The exact hostname choice for the Developer Console is still a proposal. The important invariant is that Product A and Product B remain separate in UI, browser API, session, API key, tenant/project authority, and data access.
+These capabilities can later receive public landing pages if they develop independent workflows. Until then, they remain sections of the GeoCheck content page and are not placed under `/product/` as separate products.
 
 ## 5. Migration map from the current GeoCheck host
 
 The current host should not be cut over by changing every link at once. Establish the new canonical pages, verify them, and then redirect compatible public paths.
 
-| Current surface | Proposed destination | Migration rule |
+| Current surface | Destination | Migration rule |
 |---|---|---|
-| `geocheck.lisheng.cv/home` | `lslabs.tw/geocheck` | Public canonical migration after parity verification |
-| `geocheck.lisheng.cv/` | `lslabs.tw/geocheck` | Preserve old entry as redirect or compatibility page |
+| `geocheck.lisheng.cv/home` | `lslabs.tw/geocheck` | Public canonical migration after parity verification; this is the content page, not the tool |
+| `geocheck.lisheng.cv/` (audit form) | `geocheck.lslabs.tw/` | The tool surface, reached from the content page CTA |
 | `geocheck.lisheng.cv/whitepaper` | `lslabs.tw/research/geo-whitepaper` | Preserve the research document identity and links |
 | `geocheck.lisheng.cv/app/` | `app.lslabs.tw/` | Product A application host; do not merge with Labs homepage |
-| `geocheck.lisheng.cv/developers` | `lslabs.tw/product/developer-platform` | Public Developer Platform introduction |
-| `geocheck.lisheng.cv/developers/docs` | `developers.lslabs.tw/docs` | Developer documentation surface |
-| `api.geocheck.lisheng.cv/developers/console` | `developers.lslabs.tw/console` | Authenticated Developer Console; preserve B session/data boundary |
-| `api.geocheck.lisheng.cv` | `api.lslabs.tw` | API origin migration only after TLS, auth, WAF/rate-limit, and live smoke verification |
+| `geocheck.lisheng.cv/developers` | `lslabs.tw/product/platform` | Public Developer Platform introduction |
+| `geocheck.lisheng.cv/developers/docs` | `platform.lslabs.tw/docs` | Developer documentation surface |
+| `api.geocheck.lisheng.cv/developers/console` | `platform.lslabs.tw/console` | Authenticated Developer Console; preserve B session/data boundary |
+| `api.geocheck.lisheng.cv` | `platform.lslabs.tw/v1` | API origin migration only after TLS, auth, WAF/rate-limit, and live smoke verification |
 
-The old `geocheck.lisheng.cv` and `api.geocheck.lisheng.cv` hosts should not be removed merely because the new URL tree has been documented.
+Per D-048, `geocheck.lisheng.cv` and `api.geocheck.lisheng.cv` are retained as compatibility entries and must not be removed merely because the new URL tree has been documented. Existing API/SDK non-GET requests must not be answered with a page redirect.
 
-## 6. Where the Ahrefs-like screen belongs
+## 6. Where the cross-product screen belongs
 
-The multi-column mega menu belongs primarily to the LS Labs shell:
+The multi-column mega menu belongs to the LS Labs shell:
 
 ```text
 lslabs.tw/
@@ -176,7 +167,7 @@ lslabs.tw/product/*
 lslabs.tw/research/*
 ```
 
-It should not be the main navigation of the current GeoCheck public audit page because it would make a single product page carry the entire Labs catalogue.
+It should not be the main navigation of a product surface, because that would make a single product page carry the entire Labs catalogue.
 
 ### 6.1 Labs mega menu
 
@@ -184,7 +175,7 @@ It should not be the main navigation of the current GeoCheck public audit page b
 Products
 ├── GeoCheck
 ├── GeoCheck Monitor
-└── Developer Platform
+└── Platform
 
 GeoCheck capabilities
 ├── AI Visibility
@@ -204,13 +195,13 @@ Platform
 
 ### 6.2 GeoCheck product navigation
 
-The GeoCheck page can inherit a small Labs bar, but its product navigation should remain focused:
+The `lslabs.tw/geocheck` content page can inherit a small Labs bar, but its product navigation should remain focused:
 
 ```text
 [GeoCheck]   Overview   AI Visibility   Site Audit   Evidence   Research   [Start audit]
 ```
 
-It may link to GeoCheck Monitor and Developer Platform in a product-family switcher, but it should not display all Labs research and personal-site navigation in the primary product bar.
+It may link to GeoCheck Monitor and Platform in a product-family switcher, but it should not display all Labs research and personal-site navigation in the primary product bar.
 
 ### 6.3 Application shells
 
@@ -221,28 +212,29 @@ The authenticated Dashboard and Developer Console use task-focused shells:
 
 Neither authenticated shell should use the four-column Labs mega menu as its primary navigation.
 
-## 7. Labs homepage versus GeoCheck homepage
+## 7. Labs homepage versus the GeoCheck content page
 
 ### Put the cross-product screen on `lslabs.tw`
 
-The screenshot-style screen should be implemented on the LS Labs homepage and product pages because its purpose is discovery across:
+The multi-column discovery screen belongs on the LS Labs homepage and product pages because its purpose is discovery across:
 
 - GeoCheck;
 - GeoCheck Monitor;
-- Developer Platform;
+- Platform;
 - research;
 - methods;
 - the Lab itself.
 
-### Keep GeoCheck's existing product experience on `lslabs.tw/geocheck`
+### Keep the GeoCheck funnel on `lslabs.tw/geocheck`
 
-The GeoCheck page should continue to prioritise:
+The GeoCheck content page should continue to prioritise:
 
-- the short audit;
+- what the short audit does;
 - the report outcome;
 - the observation method;
 - evidence and limitations;
-- the next step into Product A when monitoring is available.
+- the next step into Product A when monitoring is available;
+- a single clear CTA into `geocheck.lslabs.tw`.
 
 This prevents the Labs homepage from becoming a second copy of the GeoCheck audit funnel and prevents GeoCheck from looking like a general corporate product catalogue.
 
@@ -250,9 +242,9 @@ This prevents the Labs homepage from becoming a second copy of the GeoCheck audi
 
 ### 8.1 `lslabs.tw/geocheck`
 
-Purpose: public product entry.
+Purpose: public product entry and primary ranking page.
 
-Primary CTA: start a short audit.
+Primary CTA: start a short audit on `geocheck.lslabs.tw`.
 
 Secondary CTAs:
 
@@ -284,7 +276,7 @@ Suggested sections:
 
 Do not show this page as a publicly available automated monitoring service until the runtime, admission, provider runner, and user-path smoke are ready.
 
-### 8.3 `lslabs.tw/product/developer-platform`
+### 8.3 `lslabs.tw/product/platform`
 
 Purpose: explain the technical product without confusing it with Product A.
 
@@ -316,7 +308,7 @@ Must not expose:
 - Developer job IDs;
 - raw provider secrets.
 
-### Product B — Developer Platform
+### Product B — Platform
 
 Audience: developers and technical teams.
 
@@ -330,7 +322,7 @@ Must not become:
 
 ### Shared measurement foundation
 
-Product A and Product B may share a trusted measurement foundation, but public copy and browser routes must keep their product semantics separate.
+Product A and Product B share a trusted measurement foundation through the internal channel confirmed in D-047, but public copy and browser routes must keep their product semantics separate.
 
 ## 10. Release labels
 
@@ -353,25 +345,25 @@ Do not use `Live`, `Available`, or `Automated monitoring` as generic marketing l
 
 Create the `lslabs.tw` homepage and global navigation first. It may link to the current GeoCheck host while migration is pending.
 
-### Step 2 — Add GeoCheck as the active project
+### Step 2 — Add the GeoCheck content page
 
-Create the `/geocheck` product entry and keep the current short-audit/report meaning intact.
+Create `/geocheck` as the ranking and explanation page, with its CTA pointing at the audit tool host.
 
 ### Step 3 — Add product landing pages
 
-Create `/product/geocheck-monitor` and `/product/developer-platform` as status-aware marketing pages. These pages can exist before their authenticated applications are publicly released.
+Create `/product/geocheck-monitor` and `/product/platform` as status-aware marketing pages. These pages can exist before their authenticated applications are publicly released.
 
 ### Step 4 — Add research index
 
-Move the research discovery layer to `/research` while preserving the GeoCheck whitepaper's method and disclosure context.
+Move the research discovery layer to `/research` while preserving the GEO whitepaper's method and disclosure context.
 
 ### Step 5 — Migrate application hostnames
 
-Only after frontend parity and auth boundary verification:
+Only after frontend parity and auth boundary verification, and per the D-048 release boundary (Cloudflare host routing plus exact Google OAuth callbacks):
 
+- free audit tool → `geocheck.lslabs.tw`;
 - Product A → `app.lslabs.tw`;
-- Product B → `developers.lslabs.tw`;
-- API origin → `api.lslabs.tw`.
+- Product B landing, docs, Console, and `/v1` → `platform.lslabs.tw`.
 
 ### Step 6 — Redirect old public routes
 
@@ -379,13 +371,12 @@ After route, SEO, auth, and report-link verification, redirect old public GeoChe
 
 ## 12. Decisions still requiring confirmation
 
-The following are proposals, not yet formal product naming decisions:
+The following are proposals, not yet formal decisions:
 
 1. final public name for Product A: `GeoCheck Monitor`, `GeoCheck Insights`, or another name;
-2. final public name for Product B: `GeoCheck Developer Platform` or `GeoCheck API`;
-3. whether the Developer Console should be `developers.lslabs.tw/console` or remain under the API host;
-4. whether the Labs research index is public at launch or initially links only to the existing whitepaper;
-5. resolution of the existing metric-font rule conflict between the global and Developer-specific decisions before implementing dense metric UI.
+2. whether the Labs research index is public at launch or initially links only to the existing whitepaper;
+3. resolution of the existing metric-font rule conflict between the global and Developer-specific decisions before implementing dense metric UI;
+4. the concrete Cloudflare Pages routing and file layout for moving `home.html` / `brand.html` into the `lslabs.tw` path structure described in §3.1.
 
 Until these are confirmed, frontend code should use route constants and status labels rather than hard-coding a permanent product naming system into multiple pages.
 
@@ -394,4 +385,3 @@ Until these are confirmed, frontend code should use route constants and status l
 The Labs shell, mega menu, homepage, responsive behaviour, and acceptance criteria are specified in:
 
 `C:/Users/eason/Documents/LS-Labs/docs/LABS_FRONTEND_ARCHITECTURE.md`
-
