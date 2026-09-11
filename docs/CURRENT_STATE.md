@@ -26,6 +26,14 @@ tags:
 
 `[A Dashboard 同步 2026-09-10]` A browser app 的 fixture mode 已改為預設關閉；網路或 API 失敗會顯示失敗，不再靜默改以 fixture 偽裝為真實 Dashboard。已登入時，Project、entitlement、overview、performance、questions、citations 與 data-quality 皆從 `/app-api/v1` 讀取；新增 Project 走 server API，單題本機模擬與 evidence fixture fallback 已移除。此介面已隨 Cloudflare Pages 主站發佈；A dashboard Worker 也已部署為 version `e69b38d0-71d7-48f8-9e88-ffcc68665254` 至 workers.dev，health endpoint 回 200、`admission_enabled:false` 與 `no-store`。但它仍是 feature-gated skeleton，尚未有等價 D1 store、正式 `/app-api/v1` route、runtime persistence 或 OAuth secrets。因此公開 `/app/` 是真實前端而非可用 Dashboard，不得宣稱 A login、Project API 或 GSC 已可公開使用。
 
+`[A 追蹤排程接通內部通道 2026-09-11]` D-047 階段 2 已實作並部署。A Worker 的 `scheduled()` 不再是空 stub：每次 tick 認領到期的 `dashboard_tracking_plans`、依題組拆成每題一筆 dispatch、送入 B `/internal/v1/measurements`、輪詢取回結果，待該 job 的所有 dispatch 皆終局後組成一次 Tracking Run。採輪詢而非 B 回呼 A，以免多開一個需要保護與維運的反向通道。新增 `dashboard_tracking_dispatches` 表與 `dashboard_tracking_jobs.run_id／question_set_id／scheduled_at`。
+
+線上狀態：A Worker version `62b9d865-be2f-4e4b-a20d-ccd712d1f6a5`、B Worker version `db7785d9-4381-4704-80f0-aaf88217da43`；A remote D1 已套用 `0005_dashboard_dispatches.sql`。線上唯讀驗收：A `/app-api/v1/healthz` 回 `ok:true`、`d1:true`、`tracking_ready:false`；B `/healthz` 回 `ok:true`、`queue:true`；`/internal/v1/*` 無憑證與錯誤憑證皆回 401；兩個 admission 開關皆為 `false`；`/app/` 200、A 無憑證 401、A Google 登入 302 均未受影響；dispatch 表存在且為 0 筆。
+
+`tracking_ready:false` 是預期狀態且為刻意設計：`DASHBOARD_INTERNAL_CALLER_SECRET` 尚未設定，`scheduled()` 因此直接返回，不可能意外送出付費呼叫。設定該 secret 需要 B 的 `ADMIN_TOKEN` 輪替一把 caller secret，屬使用者操作。
+
+測試以模擬 D1 與 stub 過的 B client 覆蓋：開關關閉時零呼叫、認領到期計畫與 dispatch 皆為原子且不重送、idempotency key 依 job 與 question 固定、送出重試有上限且放棄不計為一次嘗試、失敗或未送達的題目仍補滿四筆 `failed` 觀測以免分母縮小、失敗觀測維持 `null` 不寫 0、mention 與 first-party citation 直接採用 B 的 analysis 不另行重算。**尚未驗證**的是真實資料的端到端跑通：需要使用者設定 caller secret、建立 Project 與題組，並開啟兩個 admission 開關；這會產生真實付費呼叫。
+
 `[內部量測通道付費驗證通過 2026-09-11]` 依 D-047 實作的 B 內部通道已部署並完成一次真實付費驗證。remote D1 已套用 `0005_internal_channel.sql`。單次內部量測 `job_1784de66-d5ff-43e0-8894-a928302843c5`／`msr_6cdf92d2-7b67-40fc-bd6c-2fcfc46a9169` 結果：
 
 | 觀察 | 值 |
