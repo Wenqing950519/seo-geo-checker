@@ -25,32 +25,9 @@ class DashboardState {
 
     // Projects & Data
     this.currentProject = null;
-    this.projectsList = [
-      {
-        projectId: 'dprj_wildwood_tw',
-        name: 'WILDWOOD 原木燒烤牛排',
-        siteUrl: 'https://wildwood.com.tw',
-        questionsCount: 12,
-        sov: '75.0%',
-        status: 'active'
-      },
-      {
-        projectId: 'dprj_eatogether_tw',
-        name: '饗食天堂 (EATOGETHER)',
-        siteUrl: 'https://eatogether.com.tw',
-        questionsCount: 16,
-        sov: '68.8%',
-        status: 'active'
-      },
-      {
-        projectId: 'dprj_lepalais_tw',
-        name: '君品酒店 頤宮中餐廳 Le Palais',
-        siteUrl: 'https://palaisdechinehotel.com',
-        questionsCount: 10,
-        sov: '80.0%',
-        status: 'active'
-      }
-    ];
+    // Never seed this with example brands. A failed request would leave them on
+    // screen, presenting fabricated names and share-of-voice figures as real data.
+    this.projectsList = [];
     this.currentOverview = null;
     this.currentPerformance = null;
     this.currentQuestionSets = [];

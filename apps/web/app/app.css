@@ -614,6 +614,46 @@ body {
   color: var(--gc-muted);
 }
 
+/* Empty and unavailable states. Deliberately styled like a destination rather
+   than an error: a new account lands here on its first visit. */
+.view-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 96px 24px;
+  gap: 12px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.view-empty-state .empty-state-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(11, 59, 111, 0.06);
+  color: var(--gc-mint);
+  margin-bottom: 4px;
+}
+
+.view-empty-state .empty-state-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gc-ink, #0b3b6f);
+}
+
+.view-empty-state .empty-state-body {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gc-muted);
+}
+
 .spinner {
   width: 32px;
   height: 32px;

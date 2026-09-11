@@ -2,6 +2,7 @@
 // Native Modern ES Module bootstrap and state-driven DOM rendering
 
 import { AppState } from './shared/state.js';
+import { renderNoProjectState, renderDataUnavailableState } from './shared/empty-state.js';
 import { api } from './shared/api.js';
 import { getFixtureData } from './shared/fixtures.js';
 import { renderSidebar } from './shared/sidebar.js';
@@ -48,6 +49,7 @@ class DashboardApp {
       return;
     }
     AppState.loading = true;
+    this.render();
     try {
       if (AppState.fixtureMode) {
         const fixture = getFixtureData(AppState.currentFixtureKey);
@@ -127,6 +129,26 @@ class DashboardApp {
         this.viewEl.innerHTML = this.renderAuthGate();
         return;
       }
+      // A data tab with no Project, or with data that never arrived, must say so.
+      // Falling through to the views would render their loading spinner forever.
+      const dataForTab = {
+        overview: AppState.currentOverview,
+        performance: AppState.currentPerformance,
+        questions: AppState.currentQuestionSets,
+        citations: AppState.currentCitations,
+        quality: AppState.currentDataQuality
+      };
+      if (!AppState.loading && Object.hasOwn(dataForTab, AppState.activeTab)) {
+        if (!AppState.currentProject?.projectId) {
+          this.viewEl.innerHTML = renderNoProjectState();
+          return;
+        }
+        if (dataForTab[AppState.activeTab] == null) {
+          this.viewEl.innerHTML = renderDataUnavailableState();
+          return;
+        }
+      }
+
       switch (AppState.activeTab) {
         case 'overview':
           this.viewEl.innerHTML = renderOverview(AppState.currentOverview);
@@ -255,6 +277,16 @@ class DashboardApp {
         const projId = brandItem.getAttribute('data-project-id');
         AppState.switchProject(projId);
         AppState.showToast(`已切換至品牌專案：${AppState.currentProject.name}`, 'success');
+        await this.loadCurrentData();
+        return;
+      }
+
+      if (e.target.closest('#btn-create-first-project')) {
+        AppState.openModal('create_project');
+        return;
+      }
+
+      if (e.target.closest('#btn-retry-load')) {
         await this.loadCurrentData();
         return;
       }
