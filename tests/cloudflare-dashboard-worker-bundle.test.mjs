@@ -32,6 +32,19 @@ try {
     "Health must be reachable through the production route, which only covers /app-api/*"
   );
 
+  assert.match(
+    worker, /createD1OAuthStateStore/,
+    "Google OAuth PKCE state must persist outside one Worker isolate"
+  );
+  assert.match(
+    worker, /missingOAuthSecrets/,
+    "Google sign-in readiness must be separate from Dashboard API readiness"
+  );
+  assert.match(
+    bundle, /accounts\.google\.com/,
+    "The Dashboard Worker must mount Google sign-in"
+  );
+
   // Fails closed.
   assert.match(bundle, /configuration_incomplete/, "The Dashboard Worker must fail closed without runtime secrets");
   assert.match(worker, /REQUIRED_RUNTIME_SECRETS/, "Dashboard readiness must be an explicit secret list");

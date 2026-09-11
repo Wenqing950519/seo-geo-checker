@@ -10,9 +10,11 @@
 
 import dashboardApiModule from "../../../api/dashboard-api-http.js";
 import d1StoreModule from "../../../api/storage/dashboard-d1-store.js";
+import oauthModule from "../../../api/google-oauth-http.js";
 
 const { createDashboardApiHttpHandler } = dashboardApiModule;
 const { createBoundD1DashboardStore } = d1StoreModule;
+const { createGoogleOAuthHttpHandler } = oauthModule;
 
 const SECURITY_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -25,9 +27,21 @@ const SECURITY_HEADERS = {
 };
 
 const REQUIRED_RUNTIME_SECRETS = ["DASHBOARD_TOKEN_PEPPER", "DASHBOARD_ADMIN_TOKEN"];
+// Google sign-in readiness is tracked separately from the API's: the Dashboard
+// API must keep serving invitation-based sessions when OAuth is not configured.
+const REQUIRED_OAUTH_SECRETS = [
+  ...REQUIRED_RUNTIME_SECRETS,
+  "GOOGLE_OAUTH_CLIENT_ID",
+  "GOOGLE_OAUTH_CLIENT_SECRET",
+  "DASHBOARD_GOOGLE_OAUTH_STATE_KEY"
+];
 
 function missingRuntimeSecrets(env) {
   return REQUIRED_RUNTIME_SECRETS.filter((name) => !String(env[name] || "").trim());
+}
+
+function missingOAuthSecrets(env) {
+  return REQUIRED_OAUTH_SECRETS.filter((name) => !String(env[name] || "").trim());
 }
 
 function admissionEnabled(env) {
@@ -52,6 +66,7 @@ async function healthResponse(env) {
     ok,
     d1,
     configuration_ready: missing.length === 0,
+    google_sign_in_ready: missingOAuthSecrets(env).length === 0,
     admission_enabled: admissionEnabled(env),
     missing
   }, ok ? 200 : 503);
@@ -116,6 +131,42 @@ function sendJson(res, status, body, extraHeaders = {}) {
   res.end(status === 204 ? "" : JSON.stringify(body));
 }
 
+// PKCE state must survive across Worker isolates, so it lives in Dashboard D1
+// rather than in memory. Consuming a state deletes it, so it is single-use.
+function createD1OAuthStateStore(db) {
+  return {
+    async put(record) {
+      await db.batch([
+        db.prepare("DELETE FROM dashboard_google_oauth_states WHERE expires_at <= ?").bind(Date.now()),
+        db.prepare(`INSERT INTO dashboard_google_oauth_states (
+          state_id, audience, verifier, nonce, session_token, project_id, expires_at, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
+          .bind(
+            record.id, record.audience, record.verifier, record.nonce,
+            record.sessionToken || null, record.projectId || null,
+            record.expiresAt, Date.now()
+          )
+      ]);
+    },
+    async consume({ id, audience, nonce, now }) {
+      return db.prepare(`DELETE FROM dashboard_google_oauth_states
+        WHERE state_id = ? AND audience = ? AND nonce = ? AND expires_at > ?
+        RETURNING state_id AS id, audience, verifier, nonce,
+                  session_token AS sessionToken, project_id AS projectId,
+                  expires_at AS expiresAt`)
+        .bind(id, audience, nonce, now).first();
+    }
+  };
+}
+
+function createOAuthRuntime(env) {
+  return createGoogleOAuthHttpHandler({
+    config: { ...env, DASHBOARD_ORIGIN: env.DASHBOARD_ORIGIN || "https://geocheck.lisheng.cv" },
+    dashboardApi: createRuntime(env),
+    stateStore: createD1OAuthStateStore(env.DASHBOARD_DB)
+  });
+}
+
 function createRuntime(env) {
   return createDashboardApiHttpHandler({
     config: {
@@ -148,6 +199,18 @@ async function handleRequest(request, env) {
 
   if (!url.pathname.startsWith("/app-api/v1/")) {
     return json({ error: { code: "not_found", message: "Not found" } }, 404);
+  }
+
+  if (url.pathname.startsWith("/app-api/v1/auth/google/")) {
+    if (missingOAuthSecrets(env).length) {
+      return json({ error: { code: "configuration_incomplete", message: "Google sign-in is not ready" } }, 503);
+    }
+    const captured = createResponseCapture();
+    const handled = await createOAuthRuntime(env).handle({
+      req: nodeRequest(request), res: captured.response, url, sendJson,
+      readJson: (_req, maxBytes) => readJsonRequest(request.clone(), maxBytes)
+    });
+    return handled ? await captured.completed : json({ error: { code: "not_found", message: "Not found" } }, 404);
   }
 
   const missing = missingRuntimeSecrets(env);
