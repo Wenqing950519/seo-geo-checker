@@ -31,6 +31,8 @@ function createDeveloperApiHttpHandler(options = {}) {
         monthlyBudgetTwd: config.monthlyBudgetTwd,
         maxJobCostTwd: config.maxJobCostTwd,
         twdPerUsd: config.twdPerUsd,
+        internalDailyBudgetTwd: config.internalDailyBudgetTwd,
+        internalMonthlyBudgetTwd: config.internalMonthlyBudgetTwd,
         schedule,
         enqueue: options.enqueue
       })
@@ -280,7 +282,10 @@ function normalizeConfig(source, options = {}) {
     dailyBudgetTwd: Number(source.DEVELOPER_API_DAILY_BUDGET_TWD || 0),
     monthlyBudgetTwd: Number(source.DEVELOPER_API_MONTHLY_BUDGET_TWD || 0),
     maxJobCostTwd: Number(source.DEVELOPER_API_MAX_JOB_COST_TWD || 0),
-    twdPerUsd: Number(source.DEVELOPER_API_TWD_PER_USD || 0)
+    twdPerUsd: Number(source.DEVELOPER_API_TWD_PER_USD || 0),
+    // The internal channel (D-047) is capped apart from customer spend.
+    internalDailyBudgetTwd: Number(source.DEVELOPER_API_INTERNAL_DAILY_BUDGET_TWD || 0),
+    internalMonthlyBudgetTwd: Number(source.DEVELOPER_API_INTERNAL_MONTHLY_BUDGET_TWD || 0)
   };
   const d1Values = [
     source.GEOCHECK_DEVELOPER_D1_ACCOUNT_ID,

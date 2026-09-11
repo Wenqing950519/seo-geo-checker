@@ -26,6 +26,52 @@ tags:
 
 `[A Dashboard 同步 2026-09-10]` A browser app 的 fixture mode 已改為預設關閉；網路或 API 失敗會顯示失敗，不再靜默改以 fixture 偽裝為真實 Dashboard。已登入時，Project、entitlement、overview、performance、questions、citations 與 data-quality 皆從 `/app-api/v1` 讀取；新增 Project 走 server API，單題本機模擬與 evidence fixture fallback 已移除。此介面已隨 Cloudflare Pages 主站發佈；A dashboard Worker 也已部署為 version `e69b38d0-71d7-48f8-9e88-ffcc68665254` 至 workers.dev，health endpoint 回 200、`admission_enabled:false` 與 `no-store`。但它仍是 feature-gated skeleton，尚未有等價 D1 store、正式 `/app-api/v1` route、runtime persistence 或 OAuth secrets。因此公開 `/app/` 是真實前端而非可用 Dashboard，不得宣稱 A login、Project API 或 GSC 已可公開使用。
 
+`[A Search Console 連線修復並上線 2026-09-11]` 掛載 GSC 連線至 A Worker 時發現兩個缺陷，皆已修復。(1) 連線流程分兩步（Google 回呼取得 refresh token 與可選 property → 使用者選擇），中間狀態原本存在記憶體 Map，於 Cloudflare 會跨 isolate 遺失；改為持久化於 `dashboard_gsc_pending_connections`，整包以保護既有連線的同一把 `GSC_TOKEN_ENCRYPTION_KEY` 與 AES-256-GCM 加密，選擇完成即刪除。(2) 回呼以 `getOverview({weeks:1})` 取得專案網址，但 `normalizeRange` 僅接受 4／12／26，**因此 GSC 連線在任何環境從未成功過**；改為直接查專案。此缺陷在 Node server 同樣存在，一併修正。
+
+新增 `tests/dashboard-gsc-connect.test.js` 以模擬 D1 與 stub 過的 Google 走完擁有者路徑：授權要求 offline access、PKCE 與 `webmasters.readonly` scope 且 callback 與 Google Cloud 登錄值一致；只提供與專案網域相符的 property；pending 記錄跨 isolate 存活、資料庫中讀不到 refresh token 明文、具到期時間；他人 session 無法冒領；選擇為一次性；匯入指標可經 Dashboard API 讀回。
+
+線上狀態：A Worker version `044aa6cf-d23c-479f-856b-a51222a641a1`，remote D1 已套用 `0006_dashboard_gsc_pending.sql`。`/app-api/v1/healthz` 回 `tracking_ready:false`、`search_console_ready:false`——兩者皆為預期，分別缺 `DASHBOARD_INTERNAL_CALLER_SECRET` 與 `GSC_TOKEN_ENCRYPTION_KEY`，屬使用者操作。在其設定前，排程 tick 直接返回、GSC 路由回 503 `configuration_incomplete`，不可能產生付費呼叫或儲存未加密憑證。
+
+`[A 追蹤排程接通內部通道 2026-09-11]` D-047 階段 2 已實作並部署。A Worker 的 `scheduled()` 不再是空 stub：每次 tick 認領到期的 `dashboard_tracking_plans`、依題組拆成每題一筆 dispatch、送入 B `/internal/v1/measurements`、輪詢取回結果，待該 job 的所有 dispatch 皆終局後組成一次 Tracking Run。採輪詢而非 B 回呼 A，以免多開一個需要保護與維運的反向通道。新增 `dashboard_tracking_dispatches` 表與 `dashboard_tracking_jobs.run_id／question_set_id／scheduled_at`。
+
+線上狀態：A Worker version `62b9d865-be2f-4e4b-a20d-ccd712d1f6a5`、B Worker version `db7785d9-4381-4704-80f0-aaf88217da43`；A remote D1 已套用 `0005_dashboard_dispatches.sql`。線上唯讀驗收：A `/app-api/v1/healthz` 回 `ok:true`、`d1:true`、`tracking_ready:false`；B `/healthz` 回 `ok:true`、`queue:true`；`/internal/v1/*` 無憑證與錯誤憑證皆回 401；兩個 admission 開關皆為 `false`；`/app/` 200、A 無憑證 401、A Google 登入 302 均未受影響；dispatch 表存在且為 0 筆。
+
+`tracking_ready:false` 是預期狀態且為刻意設計：`DASHBOARD_INTERNAL_CALLER_SECRET` 尚未設定，`scheduled()` 因此直接返回，不可能意外送出付費呼叫。設定該 secret 需要 B 的 `ADMIN_TOKEN` 輪替一把 caller secret，屬使用者操作。
+
+測試以模擬 D1 與 stub 過的 B client 覆蓋：開關關閉時零呼叫、認領到期計畫與 dispatch 皆為原子且不重送、idempotency key 依 job 與 question 固定、送出重試有上限且放棄不計為一次嘗試、失敗或未送達的題目仍補滿四筆 `failed` 觀測以免分母縮小、失敗觀測維持 `null` 不寫 0、mention 與 first-party citation 直接採用 B 的 analysis 不另行重算。**尚未驗證**的是真實資料的端到端跑通：需要使用者設定 caller secret、建立 Project 與題組，並開啟兩個 admission 開關；這會產生真實付費呼叫。
+
+`[內部量測通道付費驗證通過 2026-09-11]` 依 D-047 實作的 B 內部通道已部署並完成一次真實付費驗證。remote D1 已套用 `0005_internal_channel.sql`。單次內部量測 `job_1784de66-d5ff-43e0-8894-a928302843c5`／`msr_6cdf92d2-7b67-40fc-bd6c-2fcfc46a9169` 結果：
+
+| 觀察 | 值 |
+|---|---|
+| 工作狀態 | `succeeded` |
+| provider attempt | 4 次、4 個 engine、4 成功（符合 D-029 全成才成功） |
+| 來源歸屬 | `caller='dashboard'`、`tenant_id='tnt_internal_dashboard'` |
+| 成本預留 | `scope='internal'`、`status='charged'` |
+| 預扣 → 實際 | TWD 12 → **TWD 2.769745**，差額已釋放（`reserved` 歸零） |
+| 內部帳本 | daily 2.769745／500、monthly 2.769745／3000 |
+| **客戶預算列** | **0 筆** |
+| **客戶配額視窗／預留** | **0 筆／0 筆** |
+| 結果保存 | 1 筆，可供 A 讀取 |
+
+實際成本 TWD 2.77 低於 D-036 的 P95 TWD 3.490287，屬合理範圍；這是單次觀測，不足以取代新的 P95 統計。**這證明**內部通道的身分、歸屬、獨立預算與客戶隔離在正式環境成立。**這不證明**排程、A 的送單與寫回可用——A 仍未呼叫此通道。驗證後通道已改回 `internal_admission_enabled='false'`。
+
+`[憑證盤點與輪替 2026-09-11]` 使用者盤點密碼管理器後補齊三把先前以管線寫入、從未留存的 secret：`DASHBOARD_TOKEN_PEPPER`、`DASHBOARD_GOOGLE_OAUTH_STATE_KEY`、`DEVELOPER_GOOGLE_OAUTH_STATE_KEY`，全部重新產生並存檔。選在此時輪替是因為系統僅有 1 個 Dashboard 帳號，pepper 變更的代價最低。輪替後線上驗收：A `google_sign_in_ready:true`、A 與 B 的 `/auth/google/start` 均回 302、Dashboard 帳號仍為 1 筆未受影響。`DEVELOPER_API_PROTOTYPE_KEY` 經確認只用於本機雛型模式，兩個 Worker 皆未設定，屬已淘汰憑證。內部通道 caller secret 前綴已由 `gci_int_`（與 B 邀請碼 `gci_` 混淆）改為獨立的 `gcint_`。
+
+`[A Dashboard Google 登入上線 2026-09-11]` A Dashboard Worker 已掛載 Google 登入並部署。remote D1 已套用 `0004_dashboard_oauth_state.sql`（`dashboard_google_oauth_states` 已存在），A Worker secrets 為 `DASHBOARD_TOKEN_PEPPER`、`DASHBOARD_ADMIN_TOKEN`、`DASHBOARD_GOOGLE_OAUTH_STATE_KEY`、`GOOGLE_OAUTH_CLIENT_ID`、`GOOGLE_OAUTH_CLIENT_SECRET`。線上唯讀驗收：`GET /app-api/v1/healthz` 回 `ok:true`、`d1:true`、`configuration_ready:true`、`google_sign_in_ready:true`、`admission_enabled:false`、`missing:[]`；`GET /app-api/v1/auth/google/start` 回 302 導向 Google，帶正確 client ID、`redirect_uri=https://geocheck.lisheng.cv/app-api/v1/auth/google/callback`、`scope=openid email profile`（未要求 GSC scope）、PKCE `S256` challenge 與 `HttpOnly; SameSite=Lax; Secure` nonce cookie；該次 start 在 remote D1 留下一列 `audience='dashboard'`、`session_token` 與 `project_id` 皆為 NULL、具未來 expiry 的 PKCE state，證明跨 isolate 的狀態保存在雲端實際運作。產品隔離仍成立：以 `gck_`、`gcs_` 或無憑證存取 `/app-api/v1/projects` 皆回 401；B `/healthz` 不受影響回 200。
+
+**限制**：Google 登入不會自動建立帳號，`loginGoogleAccount` 僅接受既有 verified 帳號，未受邀 email 回 403（已由 `tests/dashboard-google-login.test.js` 覆蓋）。GSC 連接路由未掛載於 A Worker，仍不可用。**尚無任何真人完成登入**，且 `scheduled()` 仍為空 stub、量測閉環未接、admission 維持 `false`，不得宣稱 Dashboard 已可交付使用者。
+
+`[開發者入口路由修正 2026-09-11]` `/developers/console` 與 `/developers/docs` 之前在 Cloudflare 上都不存在（Node server 有、雲端沒有），使用者完成 Google 登入後會落在 404。已修正並部署：Console 由 B API 同源提供（`api.geocheck.lisheng.cv/developers/console`，連字號版同頁 200），文件頁改為實體檔案 `apps/web/public/developers/docs.html`，公開站 `/developers/docs` 直接回 200、`/developers-docs` 一跳轉入。修正過程中曾兩度造成正式站轉址迴圈，根因有二：(1) `apps/web/public/_redirects` 同時是 Pages 設定與 B Worker 的 assets 設定，指向絕對 origin 的規則會在該 origin 上轉向自己；(2) Pages 會把 extensionless 路徑對應到 `.html`，因此以 `.html` 為目標的規則會退化成轉址並與反向規則互踢。兩者都已加測試阻擋。最終線上驗收：公開站 `/`、`/developers`、`/developers/docs`、`/developers-docs`、`/app/`、`/privacy`、`/terms`、`/refund` 全部最終 200 且最多一跳；B `/developers/console`、`/developers-console`、`/healthz` 皆 200 零跳。
+
+`[B Google 登入就緒 2026-09-11]` 使用者已人工旋轉曾外露的 Google OAuth client secret，並設定 `GOOGLE_OAUTH_CLIENT_ID`、`GOOGLE_OAUTH_CLIENT_SECRET` 與 `DEVELOPER_GOOGLE_OAUTH_STATE_KEY`。`GET /v1/auth/google/start` 已從 503 `Google sign-in is not ready` 變為 302 導向 Google，帶正確 client ID、callback 與 PKCE challenge。另確認 B 的四家 provider secret（OpenAI、Gemini、Perplexity、Anthropic）與 `ADMIN_TOKEN`、`DEVELOPER_API_TOKEN_PEPPER` 皆已設定，`/healthz` 回 `ok:true`、`d1:true`、`queue:true`、`missing:[]`。這代表 B 的登入路徑技術上可用，**但尚無任何真人登入 smoke**，admission 仍為 `private beta not released`。A Dashboard 的 Google 登入仍未接入 Cloudflare Worker，A 端無法登入。
+
+`[A Dashboard 遠端 runtime 2026-09-10]` Product A Dashboard Worker 已由 30 行 skeleton 改為實際掛載 `/app-api/v1`：新增 `services/api/storage/dashboard-d1-store.js`（綁定 `DASHBOARD_DB` D1，與 `dashboard-store.js` 同一組 38 個方法），Worker 改用共用的 `dashboard-api-http.js` handler 而非第二份路由表。`dashboard-api-http.js` 的本機 SQLite store 改為注入（`createSqliteDashboardStore`），使 Workers bundle 不再含 `node:sqlite` 或 `__dirname` migration 讀檔；wrangler dry-run bundle 98.81 KiB 已驗證。D1 沒有互動式交易，原本 `BEGIN IMMEDIATE` 保護的邀請碼消耗與手動更新配額改以單一 `batch()` 內的條件式寫入表達，並以真實 SQLite 模擬 D1 binding 的契約測試覆蓋：邀請碼只能消耗一次、過期邀請不可用、期間配額與 Asia/Taipei 每日 6 次上限由寫入本身把關、job 結算冪等且 reservation 只計費一次、NewebPay 事件重放被忽略、撤銷 GSC 連接會刪除已匯入指標；另以四個讀模型比對 D1 與 SQLite store 輸出一致。`wrangler.jsonc` 新增 route `geocheck.lisheng.cv/app-api/*`（Pages 仍持有 `/app/*`，audit Worker 仍持有 `/api/*` 與 `/report/*`），並新增 `/app-api/v1/healthz`。`npm.cmd test` 全綠（含新增的 `dashboard-d1-store` 與 `cloudflare-dashboard-worker-bundle`）。
+
+`[A Dashboard 上線驗收 2026-09-10]` 使用者已部署 version `a2a65e6b-42c8-4f02-8df1-6e0657388df7` 並設定 `DASHBOARD_TOKEN_PEPPER` 與 `DASHBOARD_ADMIN_TOKEN`。線上唯讀驗收：`GET /app-api/v1/healthz` 回 200 且 `d1:true`、`configuration_ready:true`、`admission_enabled:false`、`missing:[]`；無憑證存取 `/app-api/v1/projects` 回 401；錯誤 admin token 回 401；以 `gck_` Developer API key 存取 A 路由回 401（產品隔離成立）；`/app/` 仍回 200。`geocheck.lisheng.cv/healthz` 回 404 屬既有狀態，非本次變更造成。完整證據見 `docs/product/dashboard/CLOUDFLARE_RELEASE.md` §8。
+
+**這仍不是可用的 Dashboard。** `scheduled()` 仍是空的 admission-gated stub、provider runner 未接、A 的 Google OAuth 未設定、admission 維持 `false`。部署與人工驗收步驟見 `docs/product/dashboard/CLOUDFLARE_RELEASE.md`（所有指令皆尚未執行）。
+
 `[本機前端 client 2026-09-10]` Product A Marketing Dashboard 前端已於 `apps/web/app/` 完成建置（參照 Themap 專案之分頁獨立子資料夾架構：`overview/`、`performance/`、`questions/`、`citations/`、`quality/`、`evidence/`、`auth/`，共用模組於 `shared/`）；透過原生零構建 ES Module 提供高效能 SPA，對標 Ahrefs / GA4 / Brandlight / Weimob GEO，完全符合 `DASHBOARD_UI_SPEC` 與 `FRONTEND_ACCEPTANCE`（4 項明確分子分母率值、跨期題組版本斷點隔離、不可變題組版本升級、五大驗收情境沙盒、事證抽屜 30 秒查閱、全無 Developer 概念洩漏）。這不是遠端部署、排程 worker 或金流完成的證據。
 
 `[主分支合併與接口串聯 2026-09-10]` `codex/cloudflare-full-migration` 已全數快進合併（ff-only）至 `main`（commit `cf613e9`）。已完成產品 A（行銷儀表板 `/app`）與產品 B（開發者平台 `/developers`、`/developers/docs`、`/developers/console`）的前後端接口路由掛載、跨產品導航串聯、`/developers-console` 路由別名掛載，以及 Google OAuth redirect 統一指向 `/developers/console`；全域 46 項測試套件全數通過（100%）。

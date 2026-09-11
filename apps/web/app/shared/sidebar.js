@@ -7,7 +7,10 @@ import { AppState } from './state.js';
 
 export function renderSidebar() {
   const currentTab = AppState.activeTab;
-  const project = AppState.currentProject || { name: '載入中...', siteUrl: '' };
+  // Distinguish "still loading" from "nothing to load": a new account has no
+  // Project, and showing it a loading label forever reads as a hung page.
+  const project = AppState.currentProject
+    || { name: AppState.loading ? '載入中…' : '尚未建立專案', siteUrl: '' };
 
   const navItems = [
     { id: 'overview', label: '總覽指標', icon: ICONS.overview },

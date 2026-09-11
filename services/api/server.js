@@ -22,6 +22,7 @@ const { getUsageSummary } = require("../../packages/ai-providers/usage-meter.js"
 const { createDeveloperApiHttpHandler } = require("./developer-api-http.js");
 const { createSqliteDeveloperPlatformStore } = require("./storage/developer-platform-store.js");
 const { createDashboardApiHttpHandler } = require("./dashboard-api-http.js");
+const { createSqliteDashboardStore } = require("./storage/dashboard-store.js");
 const { createGoogleOAuthHttpHandler } = require("./google-oauth-http.js");
 const { createGoogleSearchConsoleClient } = require("./google-search-console-client.js");
 
@@ -37,7 +38,7 @@ const auditCache = createAuditCache();
 const d1ReportStore = createD1ReportStore();
 const developerApi = createDeveloperApiHttpHandler({ createSqlitePlatformStore: createSqliteDeveloperPlatformStore });
 const gscClient = createGoogleSearchConsoleClient({ clientId: process.env.GOOGLE_OAUTH_CLIENT_ID, clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET });
-const dashboardApi = createDashboardApiHttpHandler({ gscClient });
+const dashboardApi = createDashboardApiHttpHandler({ gscClient, createSqliteDashboardStore });
 const googleOAuth = createGoogleOAuthHttpHandler({ dashboardApi, developerApi, gscClient });
 const funnel = createFunnelRecorder();
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
@@ -1014,7 +1015,7 @@ async function handleRequest(req, res) {
 
   // Developer Platform 技術文件 (SDK & API Docs)
   if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/docs" || url.pathname === "/developers/docs/")) {
-    const docsPath = path.resolve(__dirname, "../../apps/web/public/developers-docs.html");
+    const docsPath = path.resolve(__dirname, "../../apps/web/public/developers/docs.html");
     if (!fs.existsSync(docsPath)) {
       return sendHtml(res, 404, "<h1>Developer Docs HTML not found</h1>");
     }

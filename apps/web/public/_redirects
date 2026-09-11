@@ -1,1 +1,10 @@
 / /home.html 200
+
+# NOTE: this file is shared. It configures Cloudflare Pages *and* the B API
+# Worker, whose assets directory is this same folder, so every rule must be
+# path-only; a rule naming an absolute origin loops on that origin.
+#
+# Pages already maps extensionless paths to their .html file, so a rule whose
+# target is a .html file becomes a redirect to the extensionless form. Only add
+# a rule whose target is a real, distinct path.
+/developers-docs /developers/docs 308

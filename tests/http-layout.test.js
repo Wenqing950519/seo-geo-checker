@@ -40,7 +40,7 @@ async function check(entry) {
       ['/og-image.png','og-image.png'],
       ['/assets/real-site-apoint.png','assets/real-site-apoint.png'],
       ['/developers','developers.html'],
-      ['/developers/docs','developers-docs.html'],
+      ['/developers/docs','developers/docs.html'],
       ['/developers/console','developers-console.html']
     ]) {
       const response=await fetch(base+route);

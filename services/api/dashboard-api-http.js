@@ -1,11 +1,10 @@
 const { createHash, timingSafeEqual } = require("node:crypto");
 const { createDashboardService, DashboardError } = require("./application/dashboard-service.js");
-const { createSqliteDashboardStore } = require("./storage/dashboard-store.js");
 
 function createDashboardApiHttpHandler(options = {}) {
   const config = normalizeConfig(options.config || process.env, options);
   if (!config.enabled) return { handle: async () => false, state: () => ({ enabled: false }) };
-  const store = options.store || createSqliteDashboardStore({ filename: config.databasePath });
+  const store = options.store || createLocalStore(options, config);
   const api = options.api || createDashboardService({ store, tokenPepper: config.tokenPepper, googleTokenKey: config.gscTokenEncryptionKey, gscClient: options.gscClient, now: options.now });
 
   async function handle({ req, res, url, readJson, sendJson }) {
@@ -147,7 +146,9 @@ function normalizeConfig(source, options) {
   const adminToken = String(source.DASHBOARD_ADMIN_TOKEN || options.adminToken || "");
   const databasePath = String(source.DASHBOARD_DATABASE_PATH || options.databasePath || "").trim();
   const gscTokenEncryptionKey = String(source.GSC_TOKEN_ENCRYPTION_KEY || options.gscTokenEncryptionKey || "").trim();
-  if (!databasePath) throw new Error("DASHBOARD_DATABASE_PATH is required when Dashboard API is enabled");
+  // A caller that injects its own store (the Cloudflare Worker passes a D1-backed
+  // one) never opens a local SQLite file, so it needs no database path.
+  if (!databasePath && !options.store) throw new Error("DASHBOARD_DATABASE_PATH is required when Dashboard API is enabled");
   if (Buffer.byteLength(tokenPepper, "utf8") < 32) throw new Error("DASHBOARD_TOKEN_PEPPER must be at least 32 bytes");
   if (Buffer.byteLength(adminToken, "utf8") < 20) throw new Error("DASHBOARD_ADMIN_TOKEN must be at least 20 bytes");
   return { enabled, tokenPepper, adminToken, databasePath, gscTokenEncryptionKey };
@@ -173,6 +174,15 @@ function normalizeError(error) {
   if (error?.code === "request_too_large") return new DashboardError("request_too_large", "Request body is too large", 413);
   if (error instanceof SyntaxError || error?.code === "invalid_json") return new DashboardError("invalid_json", "Request body must be valid JSON", 400);
   return new DashboardError("internal_error", "Dashboard request failed", 500);
+}
+
+// The local SQLite store is injected rather than required here: this module is
+// bundled into the Cloudflare Worker, which has no `node:sqlite` runtime.
+function createLocalStore(options, config) {
+  if (typeof options.createSqliteDashboardStore !== "function") {
+    throw new Error("Local Dashboard storage requires createSqliteDashboardStore");
+  }
+  return options.createSqliteDashboardStore({ filename: config.databasePath });
 }
 
 module.exports = { createDashboardApiHttpHandler };

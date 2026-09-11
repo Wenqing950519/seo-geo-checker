@@ -714,4 +714,9 @@ function round(value) {
   return Math.round(value * 100) / 100;
 }
 
-module.exports = { createDashboardService, DashboardError, ENGINE_IDS };
+// Exported so the Worker can protect short-lived GSC state with the same key
+// and the same algorithm as a stored connection, rather than a second scheme.
+module.exports = {
+  createDashboardService, DashboardError, ENGINE_IDS,
+  encryptSecret, decryptSecret, normalizedEncryptionKey
+};

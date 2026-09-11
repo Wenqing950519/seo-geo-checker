@@ -18,6 +18,34 @@ assert.match(developerConsole, /consoleRequest\('\/v1\/console\/usage'/, "Develo
 assert.match(dashboardState, /this\.fixtureMode = false/, "Dashboard must not default to fixture data");
 assert.doesNotMatch(dashboardApi, /falling back to acceptance fixtures/i, "Dashboard must not silently replace failed live data with fixtures");
 
+// A spinner promises data is coming. A new account has no Project, so nothing is
+// coming, and the five data views would spin forever without an explicit state.
+const dashboardApp = fs.readFileSync(path.join(appDir, "app.js"), "utf8");
+const dashboardSidebar = fs.readFileSync(path.join(appDir, "shared/sidebar.js"), "utf8");
+const dashboardEmptyState = fs.readFileSync(path.join(appDir, "shared/empty-state.js"), "utf8");
+assert.match(dashboardApp, /renderNoProjectState\(\)/, "A Dashboard with no Project must say so instead of spinning");
+assert.match(dashboardApp, /renderDataUnavailableState\(\)/, "A view whose data never arrived must say so instead of spinning");
+assert.match(dashboardApp, /btn-create-first-project/, "The empty state must lead to creating a Project");
+assert.match(dashboardEmptyState, /尚未|還沒有/, "The empty state must state what is missing in the product's language");
+assert.match(
+  dashboardApp, /renderNoQuestionsState\(\)/,
+  "A Project with no question set must be told its next step, not shown a wall of unknowns"
+);
+assert.match(
+  dashboardEmptyState, /data-tab="questions"/,
+  "The next step must lead to the tracked questions tab"
+);
+assert.doesNotMatch(dashboardSidebar, /\{ name: '載入中\.\.\.', siteUrl: '' \}/, "The sidebar must not label an empty account as perpetually loading");
+
+// Seeded example brands become fabricated data the moment a request fails.
+for (const fabricated of ["WILDWOOD", "饗食天堂", "頤宮", "dprj_wildwood_tw"]) {
+  assert.ok(
+    !dashboardState.includes(fabricated),
+    `Dashboard state must not seed the Project list with ${fabricated}`
+  );
+}
+assert.match(dashboardState, /this\.projectsList = \[\]/, "The Project list must start empty and come from the server");
+
 // 1. Verify Directory Architecture (Folder per tab matching Themap)
 const REQUIRED_FILES = [
   "index.html",

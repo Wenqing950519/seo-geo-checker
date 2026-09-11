@@ -209,54 +209,75 @@ function createD1DeveloperPlatformStore(options = {}) {
     const existing = await findJobByOperation(input.tenantId, input.idempotencyKey);
     if (existing) return { created: false, job: existing };
     try {
+      // An internal caller (D-047) draws from the internal budget windows and is
+      // gated by the internal switch. It consumes no customer quota, so it also
+      // creates no quota window or reservation.
+      const internal = Boolean(input.caller);
+      const budgetScope = internal ? "internal" : "customer";
       const budget = input.costBudget;
       const budgetStatements = budget ? [
         {
           sql: `INSERT OR IGNORE INTO developer_cost_budget_windows
-            (window_kind, window_start, window_end, limit_twd_micros, reserved_twd_micros, used_twd_micros)
-            VALUES ('daily', ?, ?, ?, 0, 0)`,
-          params: [budget.dailyStart, budget.dailyEnd, budget.dailyLimitMicros]
+            (scope, window_kind, window_start, window_end, limit_twd_micros, reserved_twd_micros, used_twd_micros)
+            VALUES (?, 'daily', ?, ?, ?, 0, 0)`,
+          params: [budgetScope, budget.dailyStart, budget.dailyEnd, budget.dailyLimitMicros]
         },
         {
           sql: `INSERT OR IGNORE INTO developer_cost_budget_windows
-            (window_kind, window_start, window_end, limit_twd_micros, reserved_twd_micros, used_twd_micros)
-            VALUES ('monthly', ?, ?, ?, 0, 0)`,
-          params: [budget.monthlyStart, budget.monthlyEnd, budget.monthlyLimitMicros]
+            (scope, window_kind, window_start, window_end, limit_twd_micros, reserved_twd_micros, used_twd_micros)
+            VALUES (?, 'monthly', ?, ?, ?, 0, 0)`,
+          params: [budgetScope, budget.monthlyStart, budget.monthlyEnd, budget.monthlyLimitMicros]
         }
       ] : [];
       const budgetCondition = budget ? ` AND EXISTS (
-        SELECT 1 FROM developer_cost_budget_windows WHERE window_kind = 'daily' AND window_start = ?
+        SELECT 1 FROM developer_cost_budget_windows WHERE scope = ? AND window_kind = 'daily' AND window_start = ?
         AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros
       ) AND EXISTS (
-        SELECT 1 FROM developer_cost_budget_windows WHERE window_kind = 'monthly' AND window_start = ?
+        SELECT 1 FROM developer_cost_budget_windows WHERE scope = ? AND window_kind = 'monthly' AND window_start = ?
         AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros
       )` : "";
       const budgetConditionParams = budget
-        ? [budget.dailyStart, budget.jobReserveMicros, budget.monthlyStart, budget.jobReserveMicros] : [];
+        ? [budgetScope, budget.dailyStart, budget.jobReserveMicros,
+          budgetScope, budget.monthlyStart, budget.jobReserveMicros] : [];
       const costReservationStatements = budget ? [
         {
           sql: `INSERT INTO developer_cost_reservations
-            (job_id, daily_window_start, monthly_window_start, reserved_twd_micros, status, created_at)
-            SELECT ?, ?, ?, ?, 'reserved', ? WHERE EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ?)`,
-          params: [input.jobId, budget.dailyStart, budget.monthlyStart, budget.jobReserveMicros, input.now, input.jobId]
+            (job_id, daily_window_start, monthly_window_start, reserved_twd_micros, status, created_at, scope)
+            SELECT ?, ?, ?, ?, 'reserved', ?, ? WHERE EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ?)`,
+          params: [input.jobId, budget.dailyStart, budget.monthlyStart, budget.jobReserveMicros,
+            input.now, budgetScope, input.jobId]
         },
         {
           sql: `UPDATE developer_cost_budget_windows SET reserved_twd_micros = reserved_twd_micros + ?
-            WHERE ((window_kind = 'daily' AND window_start = ?) OR (window_kind = 'monthly' AND window_start = ?))
+            WHERE scope = ?
+            AND ((window_kind = 'daily' AND window_start = ?) OR (window_kind = 'monthly' AND window_start = ?))
             AND EXISTS (SELECT 1 FROM developer_cost_reservations WHERE job_id = ? AND status = 'reserved')`,
-          params: [budget.jobReserveMicros, budget.dailyStart, budget.monthlyStart, input.jobId]
+          params: [budget.jobReserveMicros, budgetScope, budget.dailyStart, budget.monthlyStart, input.jobId]
         }
       ] : [];
       await batch([
         ...budgetStatements,
-        {
+        ...(internal ? [] : [{
           sql: `INSERT OR IGNORE INTO developer_quota_windows (
             tenant_id, window_start, window_end, round_limit, used_rounds, reserved_rounds
           ) SELECT ?, ?, ?, rounds_per_window, 0, 0 FROM developer_entitlements
           WHERE tenant_id = ? AND status IN ('trialing', 'active') AND (expires_at IS NULL OR expires_at > ?)`,
           params: [input.tenantId, input.windowStart, input.windowEnd, input.tenantId, input.now]
-        },
-        {
+        }]),
+        internal ? {
+          sql: `INSERT INTO developer_jobs (
+            job_id, measurement_id, tenant_id, idempotency_key, request_hash, request_json,
+            status, created_at, updated_at, caller
+          ) SELECT ?, ?, ?, ?, ?, ?, 'queued', ?, ?, ? WHERE EXISTS (
+            SELECT 1 FROM developer_runtime_controls
+            WHERE control_key = 'internal_admission_enabled' AND control_value = 'true'
+          ) AND EXISTS (
+            SELECT 1 FROM developer_internal_callers WHERE caller_id = ? AND status = 'active'
+          )${budgetCondition}`,
+          params: [input.jobId, input.measurementId, input.tenantId, input.idempotencyKey,
+            input.requestHash, JSON.stringify(input.request), input.now, input.now, input.caller,
+            input.caller, ...budgetConditionParams]
+        } : {
           sql: `INSERT INTO developer_jobs (
             job_id, measurement_id, tenant_id, idempotency_key, request_hash, request_json,
             status, created_at, updated_at
@@ -270,21 +291,23 @@ function createD1DeveloperPlatformStore(options = {}) {
             input.requestHash, JSON.stringify(input.request), input.now, input.now,
             input.tenantId, input.windowStart, ...budgetConditionParams]
         },
-        {
-          sql: `INSERT INTO developer_quota_reservations (
-            reservation_id, job_id, tenant_id, window_start, status, created_at
-          ) SELECT ?, ?, ?, ?, 'reserved', ? WHERE EXISTS (
-            SELECT 1 FROM developer_jobs WHERE job_id = ?
-          )`,
-          params: [input.reservationId, input.jobId, input.tenantId, input.windowStart, input.now, input.jobId]
-        },
-        {
-          sql: `UPDATE developer_quota_windows SET reserved_rounds = reserved_rounds + 1
-            WHERE tenant_id = ? AND window_start = ? AND EXISTS (
-              SELECT 1 FROM developer_quota_reservations WHERE reservation_id = ?
+        ...(internal ? [] : [
+          {
+            sql: `INSERT INTO developer_quota_reservations (
+              reservation_id, job_id, tenant_id, window_start, status, created_at
+            ) SELECT ?, ?, ?, ?, 'reserved', ? WHERE EXISTS (
+              SELECT 1 FROM developer_jobs WHERE job_id = ?
             )`,
-          params: [input.tenantId, input.windowStart, input.reservationId]
-        },
+            params: [input.reservationId, input.jobId, input.tenantId, input.windowStart, input.now, input.jobId]
+          },
+          {
+            sql: `UPDATE developer_quota_windows SET reserved_rounds = reserved_rounds + 1
+              WHERE tenant_id = ? AND window_start = ? AND EXISTS (
+                SELECT 1 FROM developer_quota_reservations WHERE reservation_id = ?
+              )`,
+            params: [input.tenantId, input.windowStart, input.reservationId]
+          }
+        ]),
         ...costReservationStatements
       ]);
     } catch (error) {
@@ -294,16 +317,31 @@ function createD1DeveloperPlatformStore(options = {}) {
     }
     const job = await getJob({ tenantId: input.tenantId, jobId: input.jobId });
     if (job) return { created: true, job };
+    if (input.caller) {
+      const caller = await query(`SELECT status FROM developer_internal_callers WHERE caller_id = ? LIMIT 1`, [input.caller]);
+      if (caller.results?.[0]?.status !== "active") return { rejected: "internal_caller_revoked" };
+      if (input.costBudget) {
+        const internalBudget = await query(`SELECT COUNT(*) AS available FROM developer_cost_budget_windows
+          WHERE scope = 'internal' AND (
+          (window_kind = 'daily' AND window_start = ? AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros)
+          OR (window_kind = 'monthly' AND window_start = ? AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros))`,
+        [input.costBudget.dailyStart, input.costBudget.jobReserveMicros,
+          input.costBudget.monthlyStart, input.costBudget.jobReserveMicros]);
+        if (Number(internalBudget.results?.[0]?.available || 0) < 2) return { rejected: "internal_budget_exhausted" };
+      }
+      return { rejected: "internal_admission_closed" };
+    }
     const admission = await getAdmission();
     if (!admission.enabled) return { rejected: "service_unavailable" };
     const entitlement = await getEntitlement(input.tenantId);
     if (!entitlement) return { rejected: "trial_not_started" };
     if (entitlement.expiresAt && entitlement.expiresAt <= input.now) return { rejected: "trial_expired" };
     if (input.costBudget) {
-      const budget = await query(`SELECT COUNT(*) AS available FROM developer_cost_budget_windows WHERE
+      const scope = input.caller ? "internal" : "customer";
+      const budget = await query(`SELECT COUNT(*) AS available FROM developer_cost_budget_windows WHERE scope = ? AND (
         (window_kind = 'daily' AND window_start = ? AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros)
-        OR (window_kind = 'monthly' AND window_start = ? AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros)`,
-      [input.costBudget.dailyStart, input.costBudget.jobReserveMicros,
+        OR (window_kind = 'monthly' AND window_start = ? AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros))`,
+      [scope, input.costBudget.dailyStart, input.costBudget.jobReserveMicros,
         input.costBudget.monthlyStart, input.costBudget.jobReserveMicros]);
       if (Number(budget.results?.[0]?.available || 0) < 2) return { rejected: "cost_budget_exhausted" };
     }
@@ -375,8 +413,10 @@ function createD1DeveloperPlatformStore(options = {}) {
         sql: `UPDATE developer_cost_budget_windows SET
           reserved_twd_micros = CASE WHEN reserved_twd_micros >= ? THEN reserved_twd_micros - ? ELSE 0 END,
           used_twd_micros = used_twd_micros + ?
-          WHERE (window_kind = 'daily' AND window_start = ?) OR (window_kind = 'monthly' AND window_start = ?)`,
+          WHERE scope = ?
+          AND ((window_kind = 'daily' AND window_start = ?) OR (window_kind = 'monthly' AND window_start = ?))`,
         params: [costReservation.reserved_twd_micros, costReservation.reserved_twd_micros, actualTwdMicros,
+          costReservation.scope || "customer",
           costReservation.daily_window_start, costReservation.monthly_window_start]
       },
       {
@@ -445,10 +485,12 @@ function createD1DeveloperPlatformStore(options = {}) {
         sql: `UPDATE developer_cost_budget_windows SET
           reserved_twd_micros = CASE WHEN reserved_twd_micros >= ? THEN reserved_twd_micros - ? ELSE 0 END,
           used_twd_micros = used_twd_micros + ?
-          WHERE ((window_kind = 'daily' AND window_start = ?) OR (window_kind = 'monthly' AND window_start = ?))
+          WHERE scope = ?
+          AND ((window_kind = 'daily' AND window_start = ?) OR (window_kind = 'monthly' AND window_start = ?))
           AND EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ?${leaseClause})`,
         params: [costReservation.reserved_twd_micros, costReservation.reserved_twd_micros,
-          ambiguous ? costReservation.reserved_twd_micros : 0, costReservation.daily_window_start,
+          ambiguous ? costReservation.reserved_twd_micros : 0, costReservation.scope || "customer",
+          costReservation.daily_window_start,
           costReservation.monthly_window_start, input.jobId, ...leaseParams]
       },
       {
@@ -543,6 +585,47 @@ function createD1DeveloperPlatformStore(options = {}) {
     }));
   }
 
+  async function authenticateInternalCaller({ secretHash, now }) {
+    const result = await query(`SELECT caller_id, tenant_id, status FROM developer_internal_callers
+      WHERE secret_hash = ? AND status = 'active' LIMIT 1`, [secretHash]);
+    const row = result.results?.[0];
+    if (!row) return null;
+    await query("UPDATE developer_internal_callers SET last_used_at = ? WHERE caller_id = ?", [now, row.caller_id]);
+    return { callerId: row.caller_id, tenantId: row.tenant_id };
+  }
+
+  async function upsertInternalCaller(input) {
+    await query(`INSERT INTO developer_internal_callers
+      (caller_id, tenant_id, secret_hash, status, created_at)
+      VALUES (?, ?, ?, 'active', ?)
+      ON CONFLICT(caller_id) DO UPDATE SET secret_hash = excluded.secret_hash,
+        status = 'active', revoked_at = NULL`, [
+      input.callerId, input.tenantId, input.secretHash, input.now
+    ]);
+    return { callerId: input.callerId, tenantId: input.tenantId };
+  }
+
+  async function revokeInternalCaller({ callerId, now }) {
+    const result = await query(`UPDATE developer_internal_callers SET status = 'revoked', revoked_at = ?
+      WHERE caller_id = ? AND status = 'active' RETURNING caller_id`, [now, callerId]);
+    return (result.results || []).length === 1;
+  }
+
+  // Internal spend is reported apart from customer spend so neither figure is
+  // ever read as the other (D-047).
+  async function getInternalSpend({ dailyStart, monthlyStart }) {
+    const result = await query(`SELECT window_kind, window_start, limit_twd_micros,
+      reserved_twd_micros, used_twd_micros FROM developer_cost_budget_windows
+      WHERE scope = 'internal' AND window_start IN (?, ?)`, [dailyStart, monthlyStart]);
+    return (result.results || []).map((row) => ({
+      window_kind: row.window_kind,
+      window_start: row.window_start,
+      limit_twd: Number(row.limit_twd_micros) / 1_000_000,
+      reserved_twd: Number(row.reserved_twd_micros) / 1_000_000,
+      used_twd: Number(row.used_twd_micros) / 1_000_000
+    }));
+  }
+
   async function getAdminOverview() {
     const results = await batch([
       { sql: "SELECT control_value, reason, updated_at FROM developer_runtime_controls WHERE control_key = 'admission_enabled'" },
@@ -576,7 +659,8 @@ function createD1DeveloperPlatformStore(options = {}) {
   }
 
   return {
-    activateEntitlement, admitJob, authenticateApiKey, authenticateSession, claimJob, createSession,
+    activateEntitlement, admitJob, authenticateApiKey, authenticateInternalCaller, authenticateSession,
+    claimJob, createSession, upsertInternalCaller, revokeInternalCaller, getInternalSpend,
     completeJob, consumeAuthToken, deleteMeasurement, expireStaleJobs,
     findVerifiedAccountByEmail, getAdminOverview, getAdmission, getEntitlement,
     getJob, getJobByMeasurement, getMeasurement, getUsage, insertApiKey, insertAuthToken,

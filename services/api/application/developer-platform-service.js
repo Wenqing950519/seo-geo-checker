@@ -235,6 +235,118 @@ function createDeveloperPlatformService(options = {}) {
     return { created: true, job: publicJob(admission.job) };
   }
 
+  const INTERNAL_TENANTS = Object.freeze({
+    dashboard: "tnt_internal_dashboard",
+    agent: "tnt_internal_agent"
+  });
+
+  async function authenticateInternalCaller(secret) {
+    if (typeof store.authenticateInternalCaller !== "function") return null;
+    const value = String(secret || "");
+    if (value.length < 32) return null;
+    return store.authenticateInternalCaller({
+      secretHash: hashToken(value, pepper), now: clock().toISOString()
+    });
+  }
+
+  // Products A and C submit here. They are not customers: no tenant quota is
+  // drawn, no customer billing event is produced, and the customer admission
+  // switch neither blocks nor permits this path.
+  async function createInternalMeasurement({ caller, idempotencyKey, body }) {
+    const callerId = String(caller || "");
+    if (!Object.hasOwn(INTERNAL_TENANTS, callerId)) {
+      throw new DeveloperApiError("internal_caller_unknown", "Unknown internal caller", 403);
+    }
+    const key = requiredIdempotencyKey(idempotencyKey);
+    const request = {
+      ...normalizeMeasurementRequest(body),
+      profile_set_version: providerMode === "official" ? "official-four-v1" : "official-four-fixture-v1"
+    };
+    const requestHash = hashRequest(request);
+    const admission = await store.admitJob({
+      jobId: `job_${randomUUID()}`, measurementId: `msr_${randomUUID()}`,
+      reservationId: `qrs_${randomUUID()}`, tenantId: INTERNAL_TENANTS[callerId],
+      caller: callerId, idempotencyKey: key, requestHash, request,
+      windowStart: null, windowEnd: null,
+      costBudget: providerMode === "official" ? costBudgetWindow(config, clock(), "internal") : null,
+      now: clock().toISOString()
+    });
+    if (admission.created === false) {
+      if (admission.job.request_hash !== requestHash) {
+        throw new DeveloperApiError("idempotency_conflict", "Idempotency-Key was already used with different content", 409);
+      }
+      await dispatchJob(admission.job);
+      return { created: false, job: publicJob(admission.job) };
+    }
+    if (admission.rejected) throw internalAdmissionError(admission.rejected);
+    await dispatchJob(admission.job);
+    return { created: true, job: publicJob(admission.job) };
+  }
+
+  async function getInternalMeasurement({ caller, measurementId }) {
+    const callerId = String(caller || "");
+    if (!Object.hasOwn(INTERNAL_TENANTS, callerId)) {
+      throw new DeveloperApiError("internal_caller_unknown", "Unknown internal caller", 403);
+    }
+    const tenantId = INTERNAL_TENANTS[callerId];
+    const measurement = await getMeasurement({ tenantId, measurementId });
+    if (measurement) return measurement;
+    // A failed job stores no result, so the result table alone cannot tell a
+    // caller apart from one that is still running. Without this the caller would
+    // poll a failed measurement forever. Report the job's terminal status.
+    const job = await store.getJobByMeasurement({ tenantId, measurementId: String(measurementId || "") });
+    if (!job || !["succeeded", "failed"].includes(job.status)) return null;
+    return {
+      measurement_id: String(measurementId || ""),
+      status: job.status,
+      completed_at: job.completed_at || null,
+      error: job.error_code ? { code: job.error_code } : null,
+      engines: [],
+      analysis: null
+    };
+  }
+
+  // The plaintext secret is returned exactly once, like an API key. Only its
+  // hash is stored, so a leaked database cannot be used to call the channel.
+  async function rotateInternalCallerSecret({ callerId }) {
+    const id = String(callerId || "");
+    if (!Object.hasOwn(INTERNAL_TENANTS, id)) {
+      throw new DeveloperApiError("internal_caller_unknown", "Unknown internal caller", 404);
+    }
+    if (typeof store.upsertInternalCaller !== "function") {
+      throw new DeveloperApiError("not_supported", "This store cannot hold internal callers", 501);
+    }
+    // A distinct prefix, not a variant of gci_ (invitations): whoever finds one
+    // of these in a log or a paste must be able to tell what it opens.
+    const secret = createOpaqueToken("gcint_");
+    await store.upsertInternalCaller({
+      callerId: id, tenantId: INTERNAL_TENANTS[id],
+      secretHash: hashToken(secret, pepper), now: clock().toISOString()
+    });
+    await securityEvent(INTERNAL_TENANTS[id], "internal_caller_rotated", "info", { caller: id });
+    return { caller_id: id, secret, rotated_at: clock().toISOString() };
+  }
+
+  async function revokeInternalCallerSecret({ callerId }) {
+    const id = String(callerId || "");
+    if (!Object.hasOwn(INTERNAL_TENANTS, id)) {
+      throw new DeveloperApiError("internal_caller_unknown", "Unknown internal caller", 404);
+    }
+    const revoked = await store.revokeInternalCaller({ callerId: id, now: clock().toISOString() });
+    if (revoked) await securityEvent(INTERNAL_TENANTS[id], "internal_caller_revoked", "warning", { caller: id });
+    return { caller_id: id, revoked };
+  }
+
+  async function getInternalSpend() {
+    if (typeof store.getInternalSpend !== "function") return { windows: [] };
+    const window = costBudgetWindow(config, clock(), "internal");
+    return {
+      windows: await store.getInternalSpend({
+        dailyStart: window.dailyStart, monthlyStart: window.monthlyStart
+      })
+    };
+  }
+
   async function dispatchJob(job) {
     if (enqueue) return enqueue({ jobId: job.job_id, tenantId: job.tenant_id });
     schedule(() => runJob(job.job_id).catch((error) => {
@@ -361,7 +473,9 @@ function createDeveloperPlatformService(options = {}) {
 
   return {
     activateConsole, authenticateApiKey, authenticateSession, loginGoogleAccount, consumeLoginLink,
-    createApiKey, createInvitation, createMeasurement, deleteMeasurement,
+    authenticateInternalCaller, createApiKey, createInvitation, createInternalMeasurement,
+    createMeasurement, deleteMeasurement, getInternalMeasurement, getInternalSpend,
+    rotateInternalCallerSecret, revokeInternalCallerSecret,
     getAdminOverview: () => store.getAdminOverview(), getJob, getJobByMeasurement,
     getMeasurement, getUsage, listApiKeys, listAuthOutbox, listJobs,
     listSecurityEvents: ({ limit } = {}) => store.listSecurityEvents({ limit }),
@@ -403,7 +517,9 @@ function normalizeConfig(options) {
     dailyBudgetTwd: positiveNumber(options.dailyBudgetTwd),
     monthlyBudgetTwd: positiveNumber(options.monthlyBudgetTwd),
     maxJobCostTwd: positiveNumber(options.maxJobCostTwd),
-    twdPerUsd: positiveNumber(options.twdPerUsd)
+    twdPerUsd: positiveNumber(options.twdPerUsd),
+    internalDailyBudgetTwd: positiveNumber(options.internalDailyBudgetTwd || options.dailyBudgetTwd),
+    internalMonthlyBudgetTwd: positiveNumber(options.internalMonthlyBudgetTwd || options.monthlyBudgetTwd)
   };
   if (official && Object.values(costLimits).some((value) => !value)) {
     throw new Error("Official platform mode requires explicit daily, monthly, per-job TWD budgets and TWD/USD rate");
@@ -421,7 +537,7 @@ function normalizeConfig(options) {
   };
 }
 
-function costBudgetWindow(config, date) {
+function costBudgetWindow(config, date, scope = "customer") {
   const dailyStart = new Date(date);
   dailyStart.setUTCHours(0, 0, 0, 0);
   const monthlyStart = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1));
@@ -430,8 +546,12 @@ function costBudgetWindow(config, date) {
     dailyEnd: new Date(dailyStart.getTime() + 86_400_000).toISOString(),
     monthlyStart: monthlyStart.toISOString(),
     monthlyEnd: new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 1)).toISOString(),
-    dailyLimitMicros: Math.floor(config.dailyBudgetTwd * 1_000_000),
-    monthlyLimitMicros: Math.floor(config.monthlyBudgetTwd * 1_000_000),
+    dailyLimitMicros: Math.floor(
+      (scope === "internal" ? config.internalDailyBudgetTwd : config.dailyBudgetTwd) * 1_000_000
+    ),
+    monthlyLimitMicros: Math.floor(
+      (scope === "internal" ? config.internalMonthlyBudgetTwd : config.monthlyBudgetTwd) * 1_000_000
+    ),
     jobReserveMicros: Math.floor(config.maxJobCostTwd * 1_000_000)
   };
 }
@@ -454,6 +574,17 @@ function publicEntitlement(entitlement, usage) {
     tenant_id: entitlement.tenantId, plan: entitlement.plan, status: entitlement.status,
     activated_at: entitlement.activatedAt, expires_at: entitlement.expiresAt, ...usage
   };
+}
+
+// Internal rejections must read differently from customer ones: an operator
+// looking at these needs to know which switch or which budget stopped the call.
+function internalAdmissionError(code) {
+  const errors = {
+    internal_admission_closed: ["internal_admission_closed", "The internal measurement channel is closed", 503],
+    internal_caller_revoked: ["internal_caller_revoked", "This internal caller is revoked", 403],
+    internal_budget_exhausted: ["internal_budget_exhausted", "The internal spending budget is exhausted", 503]
+  };
+  return new DeveloperApiError(...(errors[code] || ["internal_error", "Unable to admit internal measurement", 500]));
 }
 
 function admissionError(code) {
