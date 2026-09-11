@@ -552,3 +552,19 @@ tags:
 - **付款與隔離邊界**：藍新只做 Sandbox integration；Merchant ID、Hash Key、Hash IV 只可作 Worker secret，禁止保存卡號、secret 或未驗證 callback。Product A 使用獨立 `dashboard_*` entitlement、job、reservation、payment-event 資料，絕不共用 Developer API tenant、session、key、quota、cost 或資料庫。
 - **發布邊界**：本決策不授權建立藍新商店、正式扣款、遠端 D1 migration、Worker deploy、公開流量或付費 provider calls。排程與 runner 必須受 admission kill switch 控制，預設關閉。
 - **可追溯來源**：使用者 2026-09-10 明確確認本條方案、付款、時區、到期與 Sandbox 邊界。
+
+### D-047 A／C 透過 Developer API 內部通道取得量測能力
+
+- **日期**：2026-09-11 ｜ **狀態**：Confirmed（整合方向；介面契約與限額待補充）
+- **決策者**：Wenqing950519
+- **決策內容**：依 D-040 的共用量測基礎，產品 A Dashboard 的 Tracking Run 不自行實作四引擎量測，而是呼叫 Developer API（產品 B）已封裝好的量測能力。呼叫走 B 開放給內部產品的**內部通道**，不是對外 customer API：不佔用客戶 tenant、不消耗客戶配額、不產生客戶帳單。未來的產品 C（診斷型 Agent）採同一模式接入。
+- **選擇理由**：四家 provider 金鑰、成本帳本、attempt 追蹤、lease/fencing 與重試邏輯只保留一份於 B。A 自行直連（共用程式層）會使這些最易出錯的機制重複實作並需在 A 再保管一份 provider 金鑰；A 當一般客戶（走公開 customer API）則會把內部用量混入 B 的客戶配額與計費帳本，使 B 的營收與用量數字失真。
+- **維持不變的既有契約**：D-029 固定四引擎、全成才才算 `succeeded`、任一最終失敗則整體 `failed` 並回傳 `partial_results` 的量測語義不變。D-040 的「不得反向改寫產品 A 已確認的計分、`unknown` 或報告語義」不變。D-042／D-046 的資料隔離不變：A 仍使用獨立 `dashboard_*` 資料與 `gds_` session，內部通道不得讓 A 讀取 Developer tenant、API key、客戶 quota 或 cost 明細。
+- **決策邊界**：本決策只確定「A／C 透過 B 的內部通道取得量測能力」這個方向，**不代表**內部通道已設計、已實作或已部署。下列項目仍待使用者確認，未確認前不得實作：
+  - 內部通道的認證方式與 caller 身分模型（A、C 如何各自識別）
+  - 內部用量是否記入 B 的 cost ledger（建議記入，與客戶計費分開列示）
+  - 內部呼叫的預算上限與 kill switch（使用者表述為「不受限」，但 Agent 已提出未設上限時程式錯誤可直接產生四家付費 API 費用的風險，尚未取得使用者對此風險的處置決定）
+  - 同步或非同步（A 的排程是否透過 B 既有 queue）
+  - 失敗與重試責任歸屬（B 重試到終局，或 A 自行重排）
+- **現況**：截至 2026-09-11，A 的程式碼中不存在任何對 B 的呼叫；`recordTrackingRun` 僅由測試呼叫，A Worker 的 `scheduled()` 為空 stub。此決策記錄的是方向，不是已完成的實作。
+- **可追溯來源**：使用者 2026-09-11 於選項 (a) 共用程式層／(b) A 作為一般客戶／(c) 內部通道中明確選擇 (c)，並說明未來產品 C 採同一模式。
