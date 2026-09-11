@@ -26,6 +26,12 @@ tags:
 
 `[A Dashboard 同步 2026-09-10]` A browser app 的 fixture mode 已改為預設關閉；網路或 API 失敗會顯示失敗，不再靜默改以 fixture 偽裝為真實 Dashboard。已登入時，Project、entitlement、overview、performance、questions、citations 與 data-quality 皆從 `/app-api/v1` 讀取；新增 Project 走 server API，單題本機模擬與 evidence fixture fallback 已移除。此介面已隨 Cloudflare Pages 主站發佈；A dashboard Worker 也已部署為 version `e69b38d0-71d7-48f8-9e88-ffcc68665254` 至 workers.dev，health endpoint 回 200、`admission_enabled:false` 與 `no-store`。但它仍是 feature-gated skeleton，尚未有等價 D1 store、正式 `/app-api/v1` route、runtime persistence 或 OAuth secrets。因此公開 `/app/` 是真實前端而非可用 Dashboard，不得宣稱 A login、Project API 或 GSC 已可公開使用。
 
+`[A Search Console 連線修復並上線 2026-09-11]` 掛載 GSC 連線至 A Worker 時發現兩個缺陷，皆已修復。(1) 連線流程分兩步（Google 回呼取得 refresh token 與可選 property → 使用者選擇），中間狀態原本存在記憶體 Map，於 Cloudflare 會跨 isolate 遺失；改為持久化於 `dashboard_gsc_pending_connections`，整包以保護既有連線的同一把 `GSC_TOKEN_ENCRYPTION_KEY` 與 AES-256-GCM 加密，選擇完成即刪除。(2) 回呼以 `getOverview({weeks:1})` 取得專案網址，但 `normalizeRange` 僅接受 4／12／26，**因此 GSC 連線在任何環境從未成功過**；改為直接查專案。此缺陷在 Node server 同樣存在，一併修正。
+
+新增 `tests/dashboard-gsc-connect.test.js` 以模擬 D1 與 stub 過的 Google 走完擁有者路徑：授權要求 offline access、PKCE 與 `webmasters.readonly` scope 且 callback 與 Google Cloud 登錄值一致；只提供與專案網域相符的 property；pending 記錄跨 isolate 存活、資料庫中讀不到 refresh token 明文、具到期時間；他人 session 無法冒領；選擇為一次性；匯入指標可經 Dashboard API 讀回。
+
+線上狀態：A Worker version `044aa6cf-d23c-479f-856b-a51222a641a1`，remote D1 已套用 `0006_dashboard_gsc_pending.sql`。`/app-api/v1/healthz` 回 `tracking_ready:false`、`search_console_ready:false`——兩者皆為預期，分別缺 `DASHBOARD_INTERNAL_CALLER_SECRET` 與 `GSC_TOKEN_ENCRYPTION_KEY`，屬使用者操作。在其設定前，排程 tick 直接返回、GSC 路由回 503 `configuration_incomplete`，不可能產生付費呼叫或儲存未加密憑證。
+
 `[A 追蹤排程接通內部通道 2026-09-11]` D-047 階段 2 已實作並部署。A Worker 的 `scheduled()` 不再是空 stub：每次 tick 認領到期的 `dashboard_tracking_plans`、依題組拆成每題一筆 dispatch、送入 B `/internal/v1/measurements`、輪詢取回結果，待該 job 的所有 dispatch 皆終局後組成一次 Tracking Run。採輪詢而非 B 回呼 A，以免多開一個需要保護與維運的反向通道。新增 `dashboard_tracking_dispatches` 表與 `dashboard_tracking_jobs.run_id／question_set_id／scheduled_at`。
 
 線上狀態：A Worker version `62b9d865-be2f-4e4b-a20d-ccd712d1f6a5`、B Worker version `db7785d9-4381-4704-80f0-aaf88217da43`；A remote D1 已套用 `0005_dashboard_dispatches.sql`。線上唯讀驗收：A `/app-api/v1/healthz` 回 `ok:true`、`d1:true`、`tracking_ready:false`；B `/healthz` 回 `ok:true`、`queue:true`；`/internal/v1/*` 無憑證與錯誤憑證皆回 401；兩個 admission 開關皆為 `false`；`/app/` 200、A 無憑證 401、A Google 登入 302 均未受影響；dispatch 表存在且為 0 筆。
