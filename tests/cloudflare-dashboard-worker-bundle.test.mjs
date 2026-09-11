@@ -63,6 +63,21 @@ try {
     "The tracking runner must not drag the local SQLite store into the bundle"
   );
 
+  // Search Console connection (the Project's own verification path).
+  assert.match(
+    worker, /createD1PendingGscStore/,
+    "The two-step Search Console connect spans isolates, so its pending record must persist"
+  );
+  assert.match(
+    worker, /encryptSecret/,
+    "A pending Google refresh token must be stored encrypted, never in clear text"
+  );
+  assert.match(
+    worker, /missingGscSecrets/,
+    "Search Console must stay unavailable without its encryption key"
+  );
+  assert.match(worker, /search_console_ready/, "Health must report Search Console readiness");
+
   // Fails closed.
   assert.match(bundle, /configuration_incomplete/, "The Dashboard Worker must fail closed without runtime secrets");
   assert.match(worker, /REQUIRED_RUNTIME_SECRETS/, "Dashboard readiness must be an explicit secret list");

@@ -1,7 +1,11 @@
 const { createHash, createHmac, randomBytes } = require("node:crypto");
 
 // One Google client, but each audience issues only its own GeoCheck session.
-function createGoogleOAuthHttpHandler({ config = process.env, dashboardApi, developerApi, gscClient, stateStore = createMemoryStateStore(), fetchImpl = fetch, now = () => Date.now() } = {}) {
+function createGoogleOAuthHttpHandler(options = {}) {
+  const {
+    config = process.env, dashboardApi, developerApi, gscClient,
+    stateStore = createMemoryStateStore(), fetchImpl = fetch, now = () => Date.now()
+  } = options;
   const clientId = String(config.GOOGLE_OAUTH_CLIENT_ID || "").trim();
   const clientSecret = String(config.GOOGLE_OAUTH_CLIENT_SECRET || "").trim();
   const dashboardOrigin = String(config.DASHBOARD_ORIGIN || config.SITE_ORIGIN || "https://geocheck.lisheng.cv").replace(/\/+$/, "");
@@ -10,7 +14,10 @@ function createGoogleOAuthHttpHandler({ config = process.env, dashboardApi, deve
     dashboard: { start: "/app-api/v1/auth/google/start", callback: "/app-api/v1/auth/google/callback", origin: dashboardOrigin, redirect: "/app/", api: dashboardApi?.workerApi, storage: "gc_dashboard_session", scopes: ["openid", "email", "profile"] },
     developer: { start: "/v1/auth/google/start", callback: "/v1/auth/google/callback", origin: developerOrigin, redirect: "/developers/console", api: developerApi?.workerApi, storage: "gc_developer_session", scopes: ["openid", "email", "profile"] }
   };
-  const pendingGscConnections = new Map();
+  // A Worker serves the callback and the property choice in different isolates,
+  // so this cannot be a Map in production. It is injected, and the in-memory
+  // implementation is only the local-server default.
+  const pendingGscConnections = options.pendingStore || createMemoryPendingStore();
   function enabled(audience) {
     if (!clientId || !clientSecret) return false;
     if (audience === "gsc") {
@@ -29,9 +36,9 @@ function createGoogleOAuthHttpHandler({ config = process.env, dashboardApi, deve
       if (!enabled("gsc") || typeof readJson !== "function") return sendError(res, sendJson, 503, "google_oauth_not_configured", "Google OAuth is not configured");
       try {
         const body = await readJson(req, 8 * 1024); const pendingId = String(body.pending_id || ""); const propertyUri = String(body.property_uri || "");
-        const pending = pendingGscConnections.get(pendingId); const sessionToken = bearer(req);
+        const pending = await pendingGscConnections.get(pendingId); const sessionToken = bearer(req);
         if (!pending || pending.expiresAt < now() || !timingSafe(sessionToken, pending.sessionToken) || !pending.properties.includes(propertyUri)) throw coded("gsc_selection_invalid");
-        pendingGscConnections.delete(pendingId);
+        await pendingGscConnections.delete(pendingId);
         const connection = await routes.dashboard.api.connectGoogleSearchConsole({ sessionToken, projectId: pending.projectId, googleEmail: pending.googleEmail,
           propertyUri, refreshToken: pending.refreshToken, scopes: ["https://www.googleapis.com/auth/webmasters.readonly"] });
         sendJson(res, 201, { connection }, { "Access-Control-Allow-Origin": null, "Cache-Control": "no-store" }); return true;
@@ -58,7 +65,7 @@ function createGoogleOAuthHttpHandler({ config = process.env, dashboardApi, deve
         if (!session || profile.email !== session.email) throw coded("google_account_mismatch"); const properties = await gscClient.listProperties({ accessToken: token.access_token }); const siteUrl = (await routes.dashboard.api.getOverview({ sessionToken: record.sessionToken, projectId: record.projectId, weeks: 1 })).project.siteUrl;
         const matches = properties.filter((property) => propertyMatchesSite(property.siteUrl, siteUrl)).map((property) => property.siteUrl);
         if (!matches.length) throw coded("gsc_matching_property_not_found"); const pendingId = randomBytes(24).toString("base64url");
-        pendingGscConnections.set(pendingId, { sessionToken: record.sessionToken, projectId: record.projectId, googleEmail: profile.email, refreshToken: token.refresh_token, properties: matches, expiresAt: now() + 600000 });
+        await pendingGscConnections.set(pendingId, { sessionToken: record.sessionToken, projectId: record.projectId, googleEmail: profile.email, refreshToken: token.refresh_token, properties: matches, expiresAt: now() + 600000 });
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "Set-Cookie": clearCookie("gc_oauth_gsc") });
         res.end(gscPropertySelectionPage({ pendingId, properties: matches })); return true;
       } catch (error) { return sendError(res, sendJson, 400, error.code || "gsc_connect_failed", "Search Console connection could not be completed"); }
@@ -95,6 +102,15 @@ function createGoogleOAuthHttpHandler({ config = process.env, dashboardApi, deve
   async function userInfo(accessToken) { const response = await fetchImpl("https://openidconnect.googleapis.com/v1/userinfo", { headers: { Authorization: `Bearer ${accessToken}` } }); if (!response.ok) throw coded("google_userinfo_failed"); return response.json(); }
   return { handle, state: () => ({ enabled: enabled(), audiences: Object.keys(routes) }) };
 }
+function createMemoryPendingStore() {
+  const pending = new Map();
+  return {
+    async set(id, record) { pending.set(id, record); },
+    async get(id) { return pending.get(id) || null; },
+    async delete(id) { pending.delete(id); }
+  };
+}
+
 function createMemoryStateStore() {
   const states = new Map();
   return {

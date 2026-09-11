@@ -13,12 +13,16 @@ import d1StoreModule from "../../../api/storage/dashboard-d1-store.js";
 import oauthModule from "../../../api/google-oauth-http.js";
 import runnerModule from "../../../api/application/dashboard-tracking-runner.js";
 import internalClientModule from "../../../api/application/internal-measurement-client.js";
+import gscClientModule from "../../../api/google-search-console-client.js";
+import dashboardServiceModule from "../../../api/application/dashboard-service.js";
 
 const { createDashboardApiHttpHandler } = dashboardApiModule;
 const { createBoundD1DashboardStore } = d1StoreModule;
 const { createGoogleOAuthHttpHandler } = oauthModule;
 const { createDashboardTrackingRunner } = runnerModule;
 const { createInternalMeasurementClient } = internalClientModule;
+const { createGoogleSearchConsoleClient } = gscClientModule;
+const { encryptSecret, decryptSecret, normalizedEncryptionKey } = dashboardServiceModule;
 
 const SECURITY_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -52,6 +56,13 @@ function missingOAuthSecrets(env) {
 // secret the runner could never submit, and a tick that half-runs would strand
 // paid work. Reported separately so /healthz explains which piece is missing.
 const REQUIRED_TRACKING_SECRETS = ["DASHBOARD_INTERNAL_CALLER_SECRET"];
+// Connecting Search Console stores a Google refresh token, so it stays
+// unavailable until there is a key to encrypt it with.
+const REQUIRED_GSC_SECRETS = [...REQUIRED_OAUTH_SECRETS, "GSC_TOKEN_ENCRYPTION_KEY"];
+
+function missingGscSecrets(env) {
+  return REQUIRED_GSC_SECRETS.filter((name) => !String(env[name] || "").trim());
+}
 
 function missingTrackingSecrets(env) {
   return [...REQUIRED_RUNTIME_SECRETS, ...REQUIRED_TRACKING_SECRETS]
@@ -82,6 +93,7 @@ async function healthResponse(env) {
     configuration_ready: missing.length === 0,
     google_sign_in_ready: missingOAuthSecrets(env).length === 0,
     tracking_ready: missingTrackingSecrets(env).length === 0,
+    search_console_ready: missingGscSecrets(env).length === 0,
     admission_enabled: admissionEnabled(env),
     missing
   }, ok ? 200 : 503);
@@ -174,11 +186,50 @@ function createD1OAuthStateStore(db) {
   };
 }
 
+// The callback and the property choice run in different isolates, so the
+// intermediate record — which carries a Google refresh token — is persisted.
+// It is encrypted under the same key that protects a stored connection.
+function createD1PendingGscStore(db, env) {
+  const key = normalizedEncryptionKey(env.GSC_TOKEN_ENCRYPTION_KEY);
+  return {
+    async set(id, record) {
+      const sealed = encryptSecret(JSON.stringify(record), key);
+      await db.batch([
+        db.prepare("DELETE FROM dashboard_gsc_pending_connections WHERE expires_at <= ?").bind(Date.now()),
+        db.prepare(`INSERT INTO dashboard_gsc_pending_connections (
+          pending_id, payload_ciphertext, payload_iv, payload_tag, expires_at, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?)`)
+          .bind(id, sealed.ciphertext, sealed.iv, sealed.tag, Number(record.expiresAt) || Date.now(), Date.now())
+      ]);
+    },
+    async get(id) {
+      const row = await db.prepare(`SELECT payload_ciphertext AS ciphertext, payload_iv AS iv,
+        payload_tag AS tag FROM dashboard_gsc_pending_connections
+        WHERE pending_id = ? AND expires_at > ?`).bind(id, Date.now()).first();
+      if (!row) return null;
+      try { return JSON.parse(decryptSecret(row, key)); } catch { return null; }
+    },
+    async delete(id) {
+      await db.prepare("DELETE FROM dashboard_gsc_pending_connections WHERE pending_id = ?").bind(id).run();
+    }
+  };
+}
+
+function createGscClient(env) {
+  if (missingGscSecrets(env).length) return null;
+  return createGoogleSearchConsoleClient({
+    clientId: env.GOOGLE_OAUTH_CLIENT_ID, clientSecret: env.GOOGLE_OAUTH_CLIENT_SECRET
+  });
+}
+
 function createOAuthRuntime(env) {
+  const gscClient = createGscClient(env);
   return createGoogleOAuthHttpHandler({
     config: { ...env, DASHBOARD_ORIGIN: env.DASHBOARD_ORIGIN || "https://geocheck.lisheng.cv" },
     dashboardApi: createRuntime(env),
-    stateStore: createD1OAuthStateStore(env.DASHBOARD_DB)
+    gscClient,
+    stateStore: createD1OAuthStateStore(env.DASHBOARD_DB),
+    pendingStore: gscClient ? createD1PendingGscStore(env.DASHBOARD_DB, env) : undefined
   });
 }
 
@@ -190,7 +241,8 @@ function createRuntime(env) {
       // The D1 binding replaces the local SQLite file entirely.
       DASHBOARD_DATABASE_PATH: ""
     },
-    store: createBoundD1DashboardStore({ db: env.DASHBOARD_DB })
+    store: createBoundD1DashboardStore({ db: env.DASHBOARD_DB }),
+    gscClient: createGscClient(env)
   });
 }
 
@@ -242,9 +294,20 @@ async function handleRequest(request, env) {
     return json({ error: { code: "not_found", message: "Not found" } }, 404);
   }
 
-  if (url.pathname.startsWith("/app-api/v1/auth/google/")) {
-    if (missingOAuthSecrets(env).length) {
-      return json({ error: { code: "configuration_incomplete", message: "Google sign-in is not ready" } }, 503);
+  const isGscPath = url.pathname.startsWith("/app-api/v1/projects/google/gsc/")
+    || url.pathname.startsWith("/app-api/v1/auth/google/gsc/");
+  if (url.pathname.startsWith("/app-api/v1/auth/google/")
+    || url.pathname.startsWith("/app-api/v1/projects/google/gsc/")) {
+    // Search Console needs the encryption key on top of sign-in, so each path
+    // reports the readiness that actually applies to it.
+    const missing = isGscPath ? missingGscSecrets(env) : missingOAuthSecrets(env);
+    if (missing.length) {
+      return json({
+        error: {
+          code: "configuration_incomplete",
+          message: isGscPath ? "Search Console connection is not ready" : "Google sign-in is not ready"
+        }
+      }, 503);
     }
     const captured = createResponseCapture();
     const handled = await createOAuthRuntime(env).handle({
