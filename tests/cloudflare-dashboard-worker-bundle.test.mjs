@@ -45,6 +45,24 @@ try {
     "The Dashboard Worker must mount Google sign-in"
   );
 
+  // The tracking loop (D-047 phase 2) must be mounted and fail closed.
+  assert.match(
+    worker, /createDashboardTrackingRunner/,
+    "The scheduled tick must run the tracking loop, not a stub"
+  );
+  assert.match(
+    worker, /missingTrackingSecrets/,
+    "Tracking must not run without the internal caller secret"
+  );
+  assert.match(
+    worker, /tracking_ready/,
+    "Health must report whether tracking can run"
+  );
+  assert.doesNotMatch(
+    bundle, /node:sqlite/,
+    "The tracking runner must not drag the local SQLite store into the bundle"
+  );
+
   // Fails closed.
   assert.match(bundle, /configuration_incomplete/, "The Dashboard Worker must fail closed without runtime secrets");
   assert.match(worker, /REQUIRED_RUNTIME_SECRETS/, "Dashboard readiness must be an explicit secret list");

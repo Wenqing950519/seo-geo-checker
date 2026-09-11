@@ -288,7 +288,22 @@ function createDeveloperPlatformService(options = {}) {
     if (!Object.hasOwn(INTERNAL_TENANTS, callerId)) {
       throw new DeveloperApiError("internal_caller_unknown", "Unknown internal caller", 403);
     }
-    return getMeasurement({ tenantId: INTERNAL_TENANTS[callerId], measurementId });
+    const tenantId = INTERNAL_TENANTS[callerId];
+    const measurement = await getMeasurement({ tenantId, measurementId });
+    if (measurement) return measurement;
+    // A failed job stores no result, so the result table alone cannot tell a
+    // caller apart from one that is still running. Without this the caller would
+    // poll a failed measurement forever. Report the job's terminal status.
+    const job = await store.getJobByMeasurement({ tenantId, measurementId: String(measurementId || "") });
+    if (!job || !["succeeded", "failed"].includes(job.status)) return null;
+    return {
+      measurement_id: String(measurementId || ""),
+      status: job.status,
+      completed_at: job.completed_at || null,
+      error: job.error_code ? { code: job.error_code } : null,
+      engines: [],
+      analysis: null
+    };
   }
 
   // The plaintext secret is returned exactly once, like an API key. Only its

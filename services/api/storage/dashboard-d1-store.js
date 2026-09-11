@@ -475,6 +475,133 @@ function createD1DashboardStore(options = {}) {
     return rows(result).map(mapAnnotation);
   }
 
+  // ---- tracking dispatches (D-047 phase 2) ----
+
+  // A plan is due when its next run time has passed. Claiming it pushes the next
+  // run forward in the same statement, so two Worker ticks cannot both claim it.
+  async function claimDueTrackingPlans({ now, nextRunAt, limit }) {
+    const result = await query(`SELECT plan.project_id, plan.next_run_at, member.account_id,
+      project.name, project.site_url, question_set.question_set_id
+      FROM dashboard_tracking_plans plan
+      JOIN dashboard_projects project ON project.project_id = plan.project_id
+      JOIN dashboard_project_members member
+        ON member.project_id = plan.project_id AND member.role = 'owner'
+      JOIN dashboard_question_sets question_set
+        ON question_set.project_id = plan.project_id AND question_set.status = 'active'
+      WHERE plan.enabled = 1 AND plan.next_run_at IS NOT NULL AND plan.next_run_at <= ?
+      ORDER BY plan.next_run_at ASC LIMIT ?`, [now, clampLimit(limit)]);
+    const due = rows(result);
+    if (!due.length) return [];
+    const claimed = await batch(due.map((row) => ({
+      sql: `UPDATE dashboard_tracking_plans SET next_run_at = ?, updated_at = ?
+        WHERE project_id = ? AND next_run_at = ?
+        RETURNING project_id`,
+      params: [nextRunAt, now, row.project_id, row.next_run_at]
+    })));
+    const won = new Set(claimed.flatMap((entry) => rows(entry).map((row) => row.project_id)));
+    return due.filter((row) => won.has(row.project_id)).map((row) => ({
+      projectId: row.project_id, accountId: row.account_id,
+      name: row.name, siteUrl: row.site_url, questionSetId: row.question_set_id
+    }));
+  }
+
+  async function createDispatchedTrackingJob(input) {
+    await batch([
+      {
+        sql: `INSERT INTO dashboard_tracking_jobs (
+          job_id, account_id, project_id, kind, status, dedupe_key,
+          created_at, updated_at, question_set_id, scheduled_at
+        ) VALUES (?, ?, ?, ?, 'queued', ?, ?, ?, ?, ?)`,
+        params: [input.jobId, input.accountId, input.projectId, input.kind, input.dedupeKey,
+          input.now, input.now, input.questionSetId, input.scheduledAt]
+      },
+      ...input.dispatches.map((dispatch) => ({
+        sql: `INSERT INTO dashboard_tracking_dispatches (
+          dispatch_id, job_id, project_id, question_set_id, question_id,
+          idempotency_key, status, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, 'pending', ?, ?)`,
+        params: [dispatch.dispatchId, input.jobId, input.projectId, input.questionSetId,
+          dispatch.questionId, dispatch.idempotencyKey, input.now, input.now]
+      }))
+    ]);
+    return getTrackingJob(input.jobId);
+  }
+
+  async function listDispatches({ status, limit }) {
+    const result = await query(`SELECT dispatch.*, question.text AS question_text,
+      project.name AS project_name, project.site_url AS project_site_url,
+      question_set.locale AS locale
+      FROM dashboard_tracking_dispatches dispatch
+      JOIN dashboard_questions question ON question.question_id = dispatch.question_id
+      JOIN dashboard_projects project ON project.project_id = dispatch.project_id
+      JOIN dashboard_question_sets question_set ON question_set.question_set_id = dispatch.question_set_id
+      WHERE dispatch.status = ? ORDER BY dispatch.created_at ASC LIMIT ?`,
+    [status, clampLimit(limit)]);
+    return rows(result).map(mapDispatch);
+  }
+
+  // Claiming before submission keeps a retried tick from paying twice for the
+  // same question: only the tick that moves the row out of 'pending' submits it.
+  async function claimDispatchForSubmission({ dispatchId, now }) {
+    const result = await query(`UPDATE dashboard_tracking_dispatches
+      SET status = 'submitted', attempts = attempts + 1, updated_at = ?
+      WHERE dispatch_id = ? AND status = 'pending'
+      RETURNING dispatch_id`, [now, dispatchId]);
+    return rows(result).length === 1;
+  }
+
+  async function attachDispatchMeasurement({ dispatchId, measurementId, now }) {
+    await query(`UPDATE dashboard_tracking_dispatches SET measurement_id = ?, updated_at = ?
+      WHERE dispatch_id = ?`, [measurementId, now, dispatchId]);
+  }
+
+  async function releaseDispatch({ dispatchId, now }) {
+    await query(`UPDATE dashboard_tracking_dispatches SET status = 'pending', updated_at = ?
+      WHERE dispatch_id = ? AND status = 'submitted' AND measurement_id IS NULL`, [now, dispatchId]);
+  }
+
+  async function settleDispatch({ dispatchId, status, observations, errorCode, now }) {
+    const result = await query(`UPDATE dashboard_tracking_dispatches
+      SET status = ?, observations_json = ?, error_code = ?, updated_at = ?, completed_at = ?
+      WHERE dispatch_id = ? AND status IN ('pending', 'submitted')
+      RETURNING dispatch_id`, [
+      status, observations ? JSON.stringify(observations) : null,
+      errorCode || null, now, now, dispatchId
+    ]);
+    return rows(result).length === 1;
+  }
+
+  // A job is assemblable once no dispatch is still outstanding and no Run has
+  // been written for it yet.
+  async function listAssemblableJobs({ limit }) {
+    const result = await query(`SELECT job.* FROM dashboard_tracking_jobs job
+      WHERE job.status IN ('queued', 'running') AND job.run_id IS NULL
+        AND EXISTS (SELECT 1 FROM dashboard_tracking_dispatches WHERE job_id = job.job_id)
+        AND NOT EXISTS (
+          SELECT 1 FROM dashboard_tracking_dispatches
+          WHERE job_id = job.job_id AND status IN ('pending', 'submitted')
+        )
+      ORDER BY job.created_at ASC LIMIT ?`, [clampLimit(limit)]);
+    return rows(result).map((row) => ({
+      ...mapTrackingJob(row),
+      questionSetId: row.question_set_id,
+      scheduledAt: row.scheduled_at
+    }));
+  }
+
+  async function listDispatchesForJob(jobId) {
+    const result = await query(`SELECT * FROM dashboard_tracking_dispatches
+      WHERE job_id = ? ORDER BY created_at ASC`, [jobId]);
+    return rows(result).map(mapDispatch);
+  }
+
+  async function attachRunToJob({ jobId, runId, now }) {
+    const result = await query(`UPDATE dashboard_tracking_jobs SET run_id = ?, updated_at = ?
+      WHERE job_id = ? AND run_id IS NULL
+      RETURNING job_id`, [runId, now, jobId]);
+    return rows(result).length === 1;
+  }
+
   // ---- Google Search Console ----
 
   async function upsertGoogleConnection(input) {
@@ -574,6 +701,9 @@ function createD1DashboardStore(options = {}) {
     getObservationForProject, createAnnotation, listAnnotations,
     upsertGoogleConnection, getGoogleConnection, revokeGoogleConnection, startGscSync, finishGscSync,
     upsertGscDailyMetrics, listGscDailyMetrics, purgeGscMetrics,
+    claimDueTrackingPlans, createDispatchedTrackingJob, listDispatches, claimDispatchForSubmission,
+    attachDispatchMeasurement, releaseDispatch, settleDispatch, listAssemblableJobs,
+    listDispatchesForJob, attachRunToJob,
     close: async () => {},
     state: () => ({ kind: "d1-binding" })
   };
@@ -593,6 +723,19 @@ function createBoundD1DashboardStore(options = {}) {
       return [await db.prepare(payload.sql).bind(...payload.params).all()];
     }
   });
+}
+
+function mapDispatch(row) {
+  return {
+    dispatchId: row.dispatch_id, jobId: row.job_id, projectId: row.project_id,
+    questionSetId: row.question_set_id, questionId: row.question_id,
+    idempotencyKey: row.idempotency_key, measurementId: row.measurement_id || null,
+    status: row.status, attempts: Number(row.attempts || 0), errorCode: row.error_code || null,
+    observations: row.observations_json ? parseJson(row.observations_json, []) : null,
+    questionText: row.question_text, projectName: row.project_name,
+    projectSiteUrl: row.project_site_url, locale: row.locale,
+    createdAt: row.created_at, completedAt: row.completed_at || null
+  };
 }
 
 function rows(result) {
