@@ -156,8 +156,8 @@ wrangler d1 execute geocheck-dashboard --remote --command "SELECT COUNT(*) AS ac
 | NewebPay callback 仍 admission-gated | 無正式扣款 |
 | 無 WAF／rate limit／告警／備份還原演練 | 不具備公開營運保護 |
 
-**admission 開關（`DASHBOARD_ADMISSION_ENABLED`）維持 `false`。**
-改為 `true` 屬 Human Ownership，且需先記入 `docs/DECISION_LOG.md`。
+**admission 開關（`DASHBOARD_ADMISSION_ENABLED`）於本文撰寫時維持 `false`。**
+改為 `true` 屬 Human Ownership。**已於 2026-09-12 由使用者拍板改為 `true`，見 §9。**
 
 ## 8. 實測紀錄（2026-09-10）
 
@@ -179,3 +179,41 @@ wrangler d1 execute geocheck-dashboard --remote --command "SELECT COUNT(*) AS ac
 **這證明了什麼**：遠端持久層與正式 `/app-api/v1` route 已接通，且預設失敗關閉、產品隔離成立。
 **這沒有證明什麼**：沒有任何真實使用者登入、沒有任何量測資料寫入、沒有驗證排程或 provider runner，
 admission 仍為 `false`。不得據此宣稱 Dashboard 可用。
+
+
+## 9. 追蹤排程 admission 開啟（2026-09-12）
+
+使用者拍板開啟 Product A 的週期追蹤排程。範圍**只有排程**：客戶端付款與 B 的對外
+admission 都維持關閉。
+
+| 閘門 | 變更前 | 變更後 | 位置 |
+|---|---|---|---|
+| A 排程 | `false` | **`true`** | `wrangler.jsonc` `vars.DASHBOARD_ADMISSION_ENABLED` |
+| B 內部量測通道 | `false` | **`true`** | B remote D1 `developer_runtime_controls.internal_admission_enabled` |
+| B 對外 admission | `false` | `false`（未動） | B remote D1 `developer_runtime_controls.admission_enabled` |
+| A 藍新扣款 | 硬性關閉 | 硬性關閉（未動） | `worker.js` 的 notify handler 無條件回 503 `admission_closed` |
+
+A Worker 部署 version `b68d261e-b97e-4ca7-a3d1-90f27e1f4af1`。
+
+**開啟當下的花費是零。** 開啟前先讀了 remote D1：僅 1 個 Project、1 筆 `dashboard_tracking_plans`，
+且該計畫的 `next_run_at` 為 `2026-09-18T05:38:05.804Z`；`dashboard_question_sets` 為 **0 筆**。
+`startDueRuns()` 對沒有題目的 Project 直接 `continue`，因此在建立並核准題組之前，
+即使排程到期也不會產生任何 provider 呼叫。
+
+線上驗收（唯讀）：
+
+| 檢查 | 觀察 |
+|---|---|
+| `GET https://geocheck.lisheng.cv/app-api/v1/healthz` | `ok:true`、`d1:true`、`tracking_ready:true`、`search_console_ready:true`、**`admission_enabled:true`**、`missing:[]` |
+| `GET https://app.lslabs.tw/app-api/v1/healthz` | 同上 |
+| `GET https://platform.lslabs.tw/healthz` | `ok:true`、`d1:true`、`queue:true`、`missing:[]` |
+| B `developer_runtime_controls` | `admission_enabled='false'`、`internal_admission_enabled='true'` |
+| B `developer_internal_callers` | `caller_id='dashboard'`、`status='active'` |
+
+**這證明了什麼**：排程閘門確實打開，A 的 `scheduled()` 不再提早返回，B 會接受 `caller='dashboard'` 的內部送單。
+**這沒有證明什麼**：仍沒有任何真實資料的端到端跑通——需要先建立題組。
+第一次真實付費最快發生在 2026-09-18，屆時成本約為「題數 × 四引擎」，
+單次觀測值 TWD 2.769745、D-036 P95 TWD 3.490287，內部帳本上限 daily 500／monthly 3000 TWD。
+
+**回滾**：把 `wrangler.jsonc` 的 `DASHBOARD_ADMISSION_ENABLED` 改回 `"false"` 重新部署，
+或直接把 B 的 `internal_admission_enabled` 改回 `'false'`（任一道關上即停止送單）。
