@@ -28,7 +28,9 @@
     "start": "node services/api/server.js",
     "test:layout": "node tests/repository-layout.test.js && node tests/http-layout.test.js",
     "verify:layout": "node scripts/maintenance/verify-layout.cjs",
+    "build": "node scripts/cloudflare/build-pages-static.cjs && node scripts/cloudflare/build-dashboard-static.cjs",
     "build:pages": "node scripts/cloudflare/build-pages-static.cjs",
+    "build:dashboard-pages": "node scripts/cloudflare/build-dashboard-static.cjs",
     "test:pages": "node tests/cloudflare-pages-build.test.js"
   },
   "dependencies": {

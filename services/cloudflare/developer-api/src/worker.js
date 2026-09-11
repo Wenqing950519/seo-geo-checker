@@ -163,21 +163,44 @@ function createOAuthRuntime(env) {
   return cachedGoogleOAuth;
 }
 
-// Both the canonical path and the older hyphenated alias serve the same page.
-// Neither redirects to the other: the asset layer already rewrites between the
+// Both the canonical path and the older aliases serve the same page. Neither
+// redirects to the other: the asset layer already rewrites between the
 // extensionless and .html forms, and adding a second redirect creates a loop.
 function isConsolePath(pathname) {
-  return pathname === "/developers/console" || pathname === "/developers/console/"
+  return pathname === "/console" || pathname === "/console/"
+    || pathname === "/developers/console" || pathname === "/developers/console/"
     || pathname === "/developers-console" || pathname === "/developers-console/";
 }
 
+function platformAssetPath(pathname) {
+  if (pathname === "/" || pathname === "/developers" || pathname === "/developers/") return "/developers";
+  if (pathname === "/docs" || pathname === "/docs/" || pathname === "/developers/docs" || pathname === "/developers/docs/") return "/developers/docs";
+  if (isConsolePath(pathname)) return "/developers-console";
+  return null;
+}
+
 async function handleRequest(request, env) {
-  const pathname = new URL(request.url).pathname;
+  const url = new URL(request.url);
+  const pathname = url.pathname;
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
-  // The Console is canonically /developers/console and must stay same-origin with
-  // the B API, which the page calls at /v1/console/*. Fetch the extensionless
-  // asset path: requesting the .html form makes the asset layer 308 to it, which
-  // would bounce back here and loop.
+  // platform.lslabs.tw is the entire developer surface: landing, documentation,
+  // Console and /v1 share one origin so browser sessions never cross products.
+  if (request.method === "GET" && url.hostname === "platform.lslabs.tw") {
+    const assetPath = platformAssetPath(pathname);
+    if (assetPath) {
+      const assetUrl = new URL(request.url);
+      assetUrl.pathname = assetPath;
+      return env.ASSETS.fetch(new Request(assetUrl, request));
+    }
+    // Everything else that isn't an API or auth path is a plain static asset
+    // (favicons, /brand, /whitepaper) served from the same apps/web/public
+    // bundle this Worker already binds as ASSETS.
+    if (!pathname.startsWith("/v1/") && !pathname.startsWith("/internal/v1/") && !isConsolePath(pathname)) {
+      return env.ASSETS.fetch(request);
+    }
+  }
+  // api.geocheck.lisheng.cv remains a compatibility hostname while clients move.
+  // Its Console stays at the historical path and the API does not redirect POSTs.
   if (request.method === "GET" && isConsolePath(pathname)) {
     const assetUrl = new URL(request.url);
     assetUrl.pathname = "/developers-console";

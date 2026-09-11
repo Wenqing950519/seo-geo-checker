@@ -14,11 +14,11 @@ export function renderHeader() {
     return `
       <header class="dashboard-topbar unauthenticated-topbar">
         <div class="topbar-brand-wrap">
-          <a href="/" class="brand-link" title="返回 GeoCheck 首頁">
+          <a href="https://lslabs.tw/" class="brand-link" title="返回 LS Labs 首頁">
             <div class="brand-logo-icon">${ICONS.logo}</div>
             <div class="brand-text">
-              <div class="brand-name">GeoCheck<span style="color:var(--gc-mint)">.</span></div>
-              <div class="brand-sub">AI GEO Marketer Suite</div>
+              <div class="brand-name">GeoCheck Monitor<span style="color:var(--gc-mint)">.</span></div>
+              <div class="brand-sub">By LS-Labs</div>
             </div>
           </a>
         </div>

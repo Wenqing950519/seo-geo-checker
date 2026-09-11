@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GeoCheck for Developers — 跨生成式搜尋引擎的客觀 GEO 觀測 API & SDK</title>
-<meta name="description" content="GeoCheck Developer API 與官方 TypeScript SDK：一次呼叫，同步取得 OpenAI、Google Gemini、Perplexity 與 Anthropic 四大主流搜尋引擎之原生回答與官方引用證據。">
+<title>LS Labs Platform — 可驗證的 AI 能見度量測 API</title>
+<meta name="description" content="LS Labs Platform 提供 GeoCheck API 與 TypeScript SDK：一次呼叫，同步取得四個官方 AI 搜尋引擎的原生回答與引用證據。">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,40 +14,41 @@
 <style>
 :root {
   /* Brand Primitive Colors */
-  --gc-navy: #0B3B6F;
-  --gc-navy-dark: #072A52;
-  --gc-navy-light: #164E8C;
-  --gc-mint: #00B8A9;
-  --gc-mint-dark: #007F75;
-  --gc-mint-light: #33C6B9;
-  --gc-mint-soft: #E9F9F7;
+  --gc-navy: #0B1F3B;
+  --gc-navy-dark: #060E1C;
+  --gc-navy-light: #17355F;
+  --gc-navy-surface: #0E1A2F;
+  --gc-mint: #3B82F6;
+  --gc-mint-dark: #1D4ED8;
+  --gc-mint-light: #60A5FA;
+  --gc-mint-soft: #EFF6FF;
 
   /* Neutrals & Surfaces */
   --gc-bg: #FFFFFF;
-  --gc-bg-alt: #F7F9FC;
+  --gc-bg-alt: #F8FAFC;
   --gc-card: #FFFFFF;
-  --gc-text: #1E2A38;
-  --gc-muted: #5A6B7E;
-  --gc-border: rgba(11, 59, 111, 0.1);
-  --gc-border-focus: rgba(0, 184, 169, 0.4);
+  --gc-text: #1E293B;
+  --gc-muted: #475569;
+  --gc-border: rgba(11, 31, 59, 0.1);
+  --gc-border-focus: rgba(59, 130, 246, 0.4);
 
   /* Semantic Status Colors */
-  --gc-success: #27C93F;
-  --gc-warning: #B97700;
-  --gc-danger: #D6453D;
+  --gc-success: #10B981;
+  --gc-warning: #F59E0B;
+  --gc-danger: #EF4444;
 
   /* Layout & Metrics */
   --gc-radius-sm: 8px;
   --gc-radius-md: 14px;
   --gc-radius-lg: 20px;
   --gc-radius-pill: 999px;
-  --gc-shadow-sm: 0 4px 14px rgba(11, 59, 111, 0.05);
-  --gc-shadow-md: 0 10px 30px rgba(11, 59, 111, 0.08);
-  --gc-shadow-lg: 0 20px 50px rgba(11, 59, 111, 0.12);
+  --gc-shadow-sm: 0 4px 14px rgba(11, 31, 59, 0.05);
+  --gc-shadow-md: 0 10px 30px rgba(11, 31, 59, 0.08);
+  --gc-shadow-lg: 0 20px 50px rgba(11, 31, 59, 0.12);
 
   /* Fonts */
-  --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  --gc-font-number: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-sans: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-number: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --gc-font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -273,7 +274,7 @@ header.dev-nav {
 }
 .header-dot.red { background: #FF5F56; }
 .header-dot.yellow { background: #FFBD2E; }
-.header-dot.green { background: #27C93F; }
+.header-dot.green { background: #10B981; }
 .header-badge {
   font-family: var(--gc-font-sans);
   font-size: 0.74rem;
@@ -341,7 +342,7 @@ header.dev-nav {
 }
 .engine-status-tag.ok {
   background: rgba(39, 201, 63, 0.15);
-  color: #27C93F;
+  color: #10B981;
 }
 
 /* Feature Grid */
@@ -676,27 +677,55 @@ footer.dev-footer {
 <!-- Header -->
 <header class="dev-nav">
   <div class="nav-container">
-    <a href="/developers" class="brand-group">
-      <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
-        <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
-        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
-        <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-        <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+    <a href="/" class="brand-group">
+      <svg width="28" height="28" viewBox="210 190 620 660" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="nav-gradL" x1="250" y1="180" x2="420" y2="760" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#3B82F6"/>
+            <stop offset="0.28" stop-color="#2459A9"/>
+            <stop offset="0.62" stop-color="#17355F"/>
+            <stop offset="1" stop-color="#0B1F3B"/>
+          </linearGradient>
+          <linearGradient id="nav-gradBottom" x1="290" y1="710" x2="700" y2="790" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0B1F3B"/>
+            <stop offset="0.48" stop-color="#24466F"/>
+            <stop offset="1" stop-color="#3B82F6"/>
+          </linearGradient>
+          <linearGradient id="nav-gradS" x1="430" y1="270" x2="770" y2="700" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0B1F3B"/>
+            <stop offset="0.34" stop-color="#213E67"/>
+            <stop offset="0.58" stop-color="#3B82F6"/>
+            <stop offset="0.78" stop-color="#1F4E98"/>
+            <stop offset="1" stop-color="#0B1F3B"/>
+          </linearGradient>
+          <linearGradient id="nav-gradAccent" x1="650" y1="250" x2="815" y2="330" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#3B82F6"/>
+            <stop offset="0.52" stop-color="#5A78F8"/>
+            <stop offset="1" stop-color="#8B7CF6"/>
+          </linearGradient>
+        </defs>
+        <path d="M235 300 L345 210 L345 650 C345 680 356 699 372 714 L255 810 L235 830 Z" fill="url(#nav-gradL)"/>
+        <path d="M267 829 L385 730 H695 C700 774 682 807 654 829 H267 Z" fill="url(#nav-gradBottom)"/>
+        <path d="M455 255 H637 L582 330 H507 C467 330 443 350 443 379 C443 409 465 425 500 438 L650 495 C726 524 772 569 776 630 C780 690 752 742 692 782 C670 797 646 806 619 812 C667 775 686 739 684 701 C682 660 654 635 607 617 L480 569 C393 536 356 482 356 416 C356 328 394 274 455 255 Z" fill="url(#nav-gradS)"/>
+        <path d="M662 255 H813 L760 330 H610 Z" fill="url(#nav-gradAccent)"/>
       </svg>
-      <span class="brand-title">GeoCheck<span style="color:var(--gc-mint)">.</span></span>
-      <span class="brand-badge">DEVELOPERS</span>
+      <div>
+        <div style="font-family:var(--gc-font-sans);font-size:1.15rem;font-weight:900;color:var(--gc-navy);line-height:1.1">Platform<span style="color:var(--gc-mint)">.</span></div>
+        <div style="font-size:0.7rem;font-weight:700;color:var(--gc-muted);letter-spacing:0.04em">By LS-Labs</div>
+      </div>
+      <span class="brand-badge" style="margin-left:6px">PLATFORM</span>
     </a>
 
     <ul class="nav-links">
-      <li><a href="/app">行銷儀表板 ↗</a></li>
-      <li><a href="/">回到首頁</a></li>
-      <li><a href="/developers/docs">技術文件</a></li>
+      <li><a href="https://app.lslabs.tw/">Dashboard ↗</a></li>
+      <li><a href="https://lslabs.tw/">LS Labs 首頁</a></li>
+      <li><a href="/docs">技術文件</a></li>
       <li><a href="#pricing">方案價格</a></li>
     </ul>
 
     <div class="nav-actions">
-      <a href="/developers/docs" class="btn btn-outline">閱讀文件</a>
-      <a href="https://api.geocheck.lisheng.cv/developers/console" class="btn btn-primary">進入控制台</a>
+      <a href="/docs" class="btn btn-outline">閱讀文件</a>
+      <a href="/console" class="btn btn-primary">進入控制台</a>
     </div>
   </div>
 </header>
@@ -711,8 +740,8 @@ footer.dev-footer {
       取得原生客觀回答與官方來源引用證據，四家全成才扣量、部分失敗不計費，徹底消除黑箱猜測。
     </p>
     <div class="hero-ctas">
-      <a href="https://api.geocheck.lisheng.cv/developers/console" class="btn btn-primary">立即免費試用 API</a>
-      <a href="/developers/docs" class="btn btn-outline">
+      <a href="/console" class="btn btn-primary">立即免費試用 API</a>
+      <a href="/docs" class="btn btn-outline">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         閱讀技術文件
       </a>
@@ -880,7 +909,7 @@ footer.dev-footer {
 
 console.<span class="c-func">log</span>(result.engines); <span class="c-comment">// [OpenAI, Gemini, Perplexity, Anthropic]</span></code></pre>
 
-        <pre id="code-curl" style="display:none;"><code>curl -X POST https://api.geocheck.lisheng.cv/v1/measurements \
+        <pre id="code-curl" style="display:none;"><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
   -H "Authorization: Bearer gck_live_xxxxxxxxxxxx" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: $(uuidgen)" \
@@ -903,7 +932,7 @@ headers = {
 
 # 建立觀測任務
 response = requests.post(
-    "https://api.geocheck.lisheng.cv/v1/measurements",
+    "https://platform.lslabs.tw/v1/measurements",
     headers=headers,
     json={"input": {"type": "url", "url": "https://example.com"}, "locale": "zh-TW"}
 )
@@ -949,7 +978,7 @@ print("Job created:", job["measurement_id"])</code></pre>
           <span>固定 OpenAI、Gemini、Perplexity、Anthropic 四引擎</span>
         </li>
       </ul>
-      <a href="https://api.geocheck.lisheng.cv/developers/console" class="btn btn-outline">開始 7 天試用</a>
+      <a href="/console" class="btn btn-outline">開始 7 天試用</a>
     </div>
 
     <!-- Plan 2: Basic (Featured) -->
@@ -980,7 +1009,7 @@ print("Job created:", job["measurement_id"])</code></pre>
           <span>包含第一方官方網域與權威外部網域比對報告</span>
         </li>
       </ul>
-      <a href="https://api.geocheck.lisheng.cv/developers/console" class="btn btn-primary">選擇 Basic 方案</a>
+      <a href="/console" class="btn btn-primary">選擇 Basic 方案</a>
     </div>
 
     <!-- Plan 3: Premium -->
@@ -1010,7 +1039,7 @@ print("Job created:", job["measurement_id"])</code></pre>
           <span>專屬技術支援與高併發連線能力</span>
         </li>
       </ul>
-      <a href="https://api.geocheck.lisheng.cv/developers/console" class="btn btn-outline">選擇 Premium 方案</a>
+      <a href="/console" class="btn btn-outline">選擇 Premium 方案</a>
     </div>
   </div>
 </section>
@@ -1019,15 +1048,15 @@ print("Job created:", job["measurement_id"])</code></pre>
 <footer class="dev-footer">
   <div class="footer-wrap">
     <div>
-      <span style="font-weight:900; color:#FFFFFF;">GeoCheck for Developers</span>
-      <p style="margin-top:4px; font-size:0.8rem; color:#64748B;">© 2026 GeoCheck. 基於可觀測證據的 GEO 診斷與量測平台。</p>
+      <span style="font-weight:900; color:#FFFFFF;">LS Labs Platform</span>
+      <p style="margin-top:4px; font-size:0.8rem; color:#64748B;">© 2026 LS Labs. GeoCheck 是平台上的 AI 能見度量測模組。</p>
     </div>
     <ul class="footer-links">
-      <li><a href="/developers/docs">技術文件</a></li>
-      <li><a href="https://api.geocheck.lisheng.cv/developers/console">控制台</a></li>
+      <li><a href="/docs">技術文件</a></li>
+      <li><a href="/console">控制台</a></li>
       <li><a href="/brand">品牌規範</a></li>
       <li><a href="/whitepaper">研究白皮書</a></li>
-      <li><a href="/">回到首頁</a></li>
+      <li><a href="https://lslabs.tw/">LS Labs 首頁</a></li>
     </ul>
   </div>
 </footer>

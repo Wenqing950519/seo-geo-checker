@@ -6,10 +6,11 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "routes": [
+    { "pattern": "app.lslabs.tw/app-api/*", "zone_name": "lslabs.tw" },
     { "pattern": "geocheck.lisheng.cv/app-api/*", "zone_name": "lisheng.cv" }
   ],
   "vars": {
-    "DASHBOARD_ADMISSION_ENABLED": "false",
+    "DASHBOARD_ADMISSION_ENABLED": "true",
     "DASHBOARD_PAYMENT_MODE": "sandbox"
   },
   "d1_databases": [{

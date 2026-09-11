@@ -9,7 +9,7 @@ const appDir = path.join(root, "apps/web/app");
 const developerConsole = fs.readFileSync(path.join(root, "apps/web/public/developers-console.html"), "utf8");
 const dashboardState = fs.readFileSync(path.join(appDir, "shared/state.js"), "utf8");
 const dashboardApi = fs.readFileSync(path.join(appDir, "shared/api.js"), "utf8");
-assert.match(developerConsole, /https:\/\/api\.geocheck\.lisheng\.cv\/v1\/auth\/google\/start/, "Developer Console Google login must target the isolated B API origin");
+assert.match(developerConsole, /https:\/\/platform\.lslabs\.tw\/v1\/auth\/google\/start/, "Developer Console Google login must target the isolated B API origin");
 assert.doesNotMatch(developerConsole, /href="\/developers(?:\/docs)?"/, "Developer Console links must not resolve to the B API origin after same-origin deployment");
 assert.doesNotMatch(developerConsole, /gcs_live_dev_session_demo|key_demo_default|Mock initial jobs/, "Developer Console must not authenticate, create keys, or show jobs from browser-only demo data");
 assert.match(developerConsole, /consoleRequest\('\/v1\/console\/api-keys'/, "Developer Console must list API keys through the B Console API");
@@ -163,7 +163,7 @@ async function testHttpRoutes() {
       assert.equal(res.status, 200, `GET ${route} status`);
       assert.match(res.headers.get("content-type") || "", /text\/html/);
       const text = await res.text();
-      assert.match(text, /GeoCheck Dashboard/);
+      assert.match(text, /LS Labs Dashboard/);
       assert.match(text, /id="sidebar-container"/);
       assert.match(text, /id="drawer-container"/);
     }

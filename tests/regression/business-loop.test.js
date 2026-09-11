@@ -45,7 +45,7 @@ async function main() {
   const analyticsSessionStorage = createMemoryStorage();
   const analytics = createAnalytics({
     location: {
-      href: "https://geocheck.lisheng.cv/?utm_source=meta&utm_medium=paid_social&utm_campaign=launch&utm_content=video_a",
+      href: "https://geocheck.lslabs.tw/?utm_source=meta&utm_medium=paid_social&utm_campaign=launch&utm_content=video_a",
       pathname: "/"
     },
     document: { referrer: "https://www.facebook.com/path?private=value" },

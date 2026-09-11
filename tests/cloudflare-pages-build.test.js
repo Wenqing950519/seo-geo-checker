@@ -5,10 +5,12 @@ const { execFileSync } = require("node:child_process");
 
 const root = path.resolve(__dirname, "..");
 execFileSync(process.execPath, ["scripts/cloudflare/build-pages-static.cjs"], { cwd: root, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/cloudflare/build-dashboard-static.cjs"], { cwd: root, stdio: "inherit" });
 
 const output = (...parts) => path.join(root, "dist", "pages", ...parts);
 for (const file of [
   "home.html",
+  "index.html",
   "privacy.html",
   "terms.html",
   "refund.html",
@@ -19,6 +21,20 @@ for (const file of [
 ]) {
   assert.ok(fs.existsSync(output(file)), `Pages artifact must include ${file}`);
 }
+assert.equal(
+  fs.readFileSync(output("index.html"), "utf8"),
+  fs.readFileSync(output("home.html"), "utf8"),
+  "The Pages root must be a concrete home document, not a shared redirect rule"
+);
+
+const dashboardOutput = (...parts) => path.join(root, "dist", "dashboard", ...parts);
+for (const file of ["index.html", "app.js", "app.css", "shared/api.js", "overview/overview-view.js"]) {
+  assert.ok(fs.existsSync(dashboardOutput(file)), `Dashboard Pages artifact must include ${file}`);
+}
+const dashboardIndex = fs.readFileSync(dashboardOutput("index.html"), "utf8");
+assert.match(dashboardIndex, /href="\/app\.css"/, "Dashboard deployment must serve assets from its root");
+assert.match(dashboardIndex, /src="\/app\.js"/, "Dashboard deployment must serve its module from its root");
+assert.match(dashboardIndex, /https:\/\/app\.lslabs\.tw\//, "Dashboard must declare its new canonical origin");
 
 const redirects = fs.readFileSync(output("_redirects"), "utf8");
 assert.doesNotMatch(redirects, /^\/(privacy|terms|refund)\s/m, "Pages automatically maps extensionless HTML paths; duplicate redirects loop");
@@ -57,22 +73,19 @@ assert.match(
   "The legacy hyphenated docs path must keep working"
 );
 
-// The Console must be same-origin with the B API it calls, so its links are
-// absolute. Every other developer link stays on the canonical slash form.
-const CONSOLE_URL = "https://api.geocheck.lisheng.cv/developers/console";
+// The Console must be same-origin with the B API it calls. On platform.lslabs.tw
+// the canonical link is therefore root-relative and cannot drift to the legacy host.
+const CONSOLE_PATH = "/console";
 for (const page of ["developers.html", "developers/docs.html", "developers-console.html"]) {
   const html = fs.readFileSync(output(page), "utf8");
   assert.doesNotMatch(
     html, /href="[^"]*\/developers-(console|docs)"/,
     `${page} must not link to a hyphenated developer path`
   );
-  assert.doesNotMatch(
-    html, /href="\/developers\/console"/,
-    `${page} must link the Console at ${CONSOLE_URL}, which shares an origin with /v1/console`
-  );
+  assert.doesNotMatch(html, /href="\/developers\/console"/, `${page} must use the Platform Console path`);
 }
 assert.ok(
-  fs.readFileSync(output("developers.html"), "utf8").includes(CONSOLE_URL),
+  fs.readFileSync(output("developers.html"), "utf8").includes(`href="${CONSOLE_PATH}"`),
   "The developers page must link to the Console"
 );
 

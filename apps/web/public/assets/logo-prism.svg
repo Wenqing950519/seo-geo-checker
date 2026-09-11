@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" width="100%" height="100%">
+  <defs>
+    <!-- Gradients matching LS Labs Brand Palette -->
+    <!-- Rear / Right Wing Gradient -->
+    <linearGradient id="prism-rear" x1="50" y1="12" x2="100" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.9" />
+      <stop offset="60%" stop-color="#3B82F6" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0.6" />
+    </linearGradient>
+
+    <!-- Mid Plane Gradient (Depth & Refraction) -->
+    <linearGradient id="prism-mid" x1="38" y1="28" x2="72" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B7CF6" stop-opacity="0.85" />
+      <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0B1F3B" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Front Left Plane Gradient -->
+    <linearGradient id="prism-front" x1="16" y1="36" x2="52" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#60A5FA" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Deep Shadow / Base fold -->
+    <linearGradient id="prism-shadow" x1="28" y1="56" x2="64" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B1F3B" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#070D19" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Subtle rim specular light -->
+    <linearGradient id="prism-rim" x1="16" y1="36" x2="48" y2="16" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rear Tall Slab (Light Blue to Indigo) -->
+  <polygon points="46,14 88,32 88,88 46,70" fill="url(#prism-rear)" />
+
+  <!-- Inner Angle Shadow Fold -->
+  <polygon points="34,44 64,28 64,86 34,102" fill="url(#prism-shadow)" mix-blend-mode="multiply" />
+
+  <!-- Mid Translucent Refractive Blade -->
+  <polygon points="32,38 72,20 72,82 32,98" fill="url(#prism-mid)" style="mix-blend-mode: screen; opacity: 0.65;" />
+
+  <!-- Front Left Facet (Light cerulean translucent) -->
+  <polygon points="16,38 48,18 48,82 16,102" fill="url(#prism-front)" />
+
+  <!-- Overlap highlight edge -->
+  <polygon points="48,18 48,82 34,102 34,38" fill="url(#prism-mid)" style="mix-blend-mode: overlay; opacity: 0.7;" />
+
+  <!-- Top Sharp Rim Light Specular Highlights -->
+  <line x1="16" y1="38" x2="48" y2="18" stroke="url(#prism-rim)" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="48" y1="18" x2="88" y2="32" stroke="#FFFFFF" stroke-width="1.2" stroke-opacity="0.75" stroke-linecap="round" />
+  <line x1="48" y1="18" x2="48" y2="82" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.4" />
+</svg>

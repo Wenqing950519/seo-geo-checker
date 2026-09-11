@@ -21,6 +21,7 @@ try {
   assert.equal(developerConfig.vars.DEVELOPER_API_QUOTA_WINDOW_STRATEGY, "rolling_24h");
   assert.equal(developerConfig.vars.DEVELOPER_API_RESULT_RETENTION_DAYS, "30");
   assert.deepEqual(developerConfig.routes, [
+    { pattern: "platform.lslabs.tw", custom_domain: true },
     { pattern: "api.geocheck.lisheng.cv", custom_domain: true }
   ]);
   assert.equal(developerConfig.assets.directory, "../../../apps/web/public");
@@ -28,6 +29,8 @@ try {
   assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "false");
   assert.equal(auditConfig.containers[0].image_build_context, "../../..");
   assert.deepEqual(auditConfig.routes, [
+    { pattern: "geocheck.lslabs.tw/api/*", zone_name: "lslabs.tw" },
+    { pattern: "geocheck.lslabs.tw/report/*", zone_name: "lslabs.tw" },
     { pattern: "geocheck.lisheng.cv/api/*", zone_name: "lisheng.cv" },
     { pattern: "geocheck.lisheng.cv/report/*", zone_name: "lisheng.cv" }
   ]);
@@ -48,6 +51,7 @@ try {
     developerWorker, /assetUrl\.pathname = "\/developers-console"/,
     "The Console asset must be fetched extensionless; the .html form 308s back into the Worker"
   );
+  assert.match(developerWorker, /url\.hostname === "platform\.lslabs\.tw"/, "Platform host must own its landing, docs, and Console");
   // Internal channel (D-047): separate switch, separate budget, own auth.
   assert.match(
     developerWorker, /pathname\.startsWith\("\/internal\/v1\/"\)/,

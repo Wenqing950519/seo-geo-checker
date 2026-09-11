@@ -13,7 +13,7 @@ export function renderNoProjectState() {
       <div class="empty-state-icon">${ICONS.overview}</div>
       <h2 class="empty-state-title">還沒有追蹤中的品牌</h2>
       <p class="empty-state-body">
-        建立第一個專案後，GeoCheck 會每週固定觀測四大 AI 搜尋模型，
+        建立第一個專案後，LS Labs 會每週固定觀測四大 AI 搜尋模型，
         記錄你的品牌是否被提及、官方網站是否被引用。
       </p>
       <button type="button" class="btn-primary" id="btn-create-first-project">
@@ -30,7 +30,7 @@ export function renderNoQuestionsState() {
       <h2 class="empty-state-title">專案建好了，還差追蹤題目</h2>
       <p class="empty-state-body">
         題目就是你想知道「AI 被問到這件事時，會不會提到我」的問題。
-        設定後，GeoCheck 每週固定用同一組題目觀測四大 AI 搜尋模型，
+        設定後，LS Labs 每週固定用同一組題目觀測四大 AI 搜尋模型，
         跨期比較才有意義。
       </p>
       <button type="button" class="btn-primary" data-tab="questions">前往設定追蹤題目</button>
