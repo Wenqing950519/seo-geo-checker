@@ -6,8 +6,8 @@ const config = {
   GOOGLE_OAUTH_CLIENT_SECRET: "client-secret",
   DASHBOARD_GOOGLE_OAUTH_STATE_KEY: "d".repeat(32),
   DEVELOPER_GOOGLE_OAUTH_STATE_KEY: "v".repeat(32),
-  DASHBOARD_ORIGIN: "https://geocheck.lisheng.cv",
-  DEVELOPER_API_ORIGIN: "https://api.geocheck.lisheng.cv"
+  DASHBOARD_ORIGIN: "https://app.lslabs.tw",
+  DEVELOPER_API_ORIGIN: "https://platform.lslabs.tw"
 };
 const dashboardApi = { workerApi: { loginGoogleAccount: async () => ({ session_token: "gds_dashboard" }) } };
 const developerApi = { workerApi: { loginGoogleAccount: async () => ({ session_token: "gcs_developer" }) } };
@@ -41,14 +41,14 @@ async function invoke(path, cookie = "") {
 }
 function callbackPath(start, code = "ok") {
   const redirect = new URL(start.headers.Location);
-  return `${redirect.searchParams.get("redirect_uri").replace("https://geocheck.lisheng.cv", "").replace("https://api.geocheck.lisheng.cv", "")}?code=${code}&state=${encodeURIComponent(redirect.searchParams.get("state"))}`;
+  return `${redirect.searchParams.get("redirect_uri").replace("https://app.lslabs.tw", "").replace("https://platform.lslabs.tw", "")}?code=${code}&state=${encodeURIComponent(redirect.searchParams.get("state"))}`;
 }
 function cookieFrom(start) { return start.headers["Set-Cookie"].split(";", 1)[0]; }
 
 (async () => {
   const dashboardStart = await invoke("/app-api/v1/auth/google/start");
   const dashboardAuth = new URL(dashboardStart.headers.Location);
-  assert.equal(dashboardAuth.searchParams.get("redirect_uri"), "https://geocheck.lisheng.cv/app-api/v1/auth/google/callback");
+  assert.equal(dashboardAuth.searchParams.get("redirect_uri"), "https://app.lslabs.tw/app-api/v1/auth/google/callback");
   assert.equal(dashboardAuth.searchParams.get("code_challenge_method"), "S256");
   const dashboardCallback = await invoke(callbackPath(dashboardStart), cookieFrom(dashboardStart));
   assert.equal(dashboardCallback.status, 200);
@@ -59,7 +59,7 @@ function cookieFrom(start) { return start.headers["Set-Cookie"].split(";", 1)[0]
 
   const developerStart = await invoke("/v1/auth/google/start");
   const developerAuth = new URL(developerStart.headers.Location);
-  assert.equal(developerAuth.searchParams.get("redirect_uri"), "https://api.geocheck.lisheng.cv/v1/auth/google/callback");
+  assert.equal(developerAuth.searchParams.get("redirect_uri"), "https://platform.lslabs.tw/v1/auth/google/callback");
   const crossedCallback = await invoke(`/v1/auth/google/callback?code=ok&state=${encodeURIComponent(dashboardAuth.searchParams.get("state"))}`, cookieFrom(developerStart));
   assert.equal(crossedCallback.status, 400);
   const developerCallback = await invoke(callbackPath(developerStart), cookieFrom(developerStart));

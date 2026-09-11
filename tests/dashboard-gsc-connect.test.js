@@ -19,7 +19,7 @@ const { createDashboardApiHttpHandler } = require("../services/api/dashboard-api
 
 const ROOT = path.resolve(__dirname, "..");
 const MIGRATIONS = path.join(ROOT, "services/cloudflare/dashboard/migrations");
-const ORIGIN = "https://geocheck.lisheng.cv";
+const ORIGIN = "https://app.lslabs.tw";
 const KEY = crypto.randomBytes(32).toString("base64");
 const CONFIG = {
   DASHBOARD_API_ENABLED: "true",

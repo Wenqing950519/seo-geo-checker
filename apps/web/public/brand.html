@@ -1,729 +1,1846 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GeoCheck — 品牌規範與設計系統</title>
-<meta name="description" content="GeoCheck 官方設計系統與品牌規範：包含色彩 Token、幾何標誌、排版層級、UI 組件規範與 AI 代理人機器可讀設計上下文。">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
-<link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
-<link rel="apple-touch-icon" href="/favicon.png?v=radar-20260904">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LS-Labs 設計系統與品牌規範手冊 (Design System & Guidelines)</title>
+  <meta name="description" content="LS-Labs 官方設計系統與品牌規範：包含 LS-Labs 母品牌手冊、GeoCheck 旗艦產品規範與品牌／能力／交付三層架構矩陣。">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
+  <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 
-<style>
-:root {
-  /* Brand Primitive Colors */
-  --gc-navy: #0B3B6F;
-  --gc-navy-dark: #072A52;
-  --gc-navy-light: #164E8C;
-  --gc-mint: #00B8A9;
-  --gc-mint-dark: #007F75;
-  --gc-mint-light: #33C6B9;
-  --gc-mint-soft: #E9F9F7;
+  <!-- Google Fonts: Inter, Plus Jakarta Sans, Noto Sans TC, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  /* Neutrals & Surfaces */
-  --gc-bg: #FFFFFF;
-  --gc-bg-alt: #F7F9FC;
-  --gc-bg-card: #FFFFFF;
-  --gc-text: #1E2A38;
-  --gc-muted: #5A6B7E;
-  --gc-border: rgba(11, 59, 111, 0.1);
-  --gc-border-focus: rgba(0, 184, 169, 0.4);
+  <style>
+    /* ===================================================================
+       LS-LABS UNIFIED DESIGN SYSTEM TOKENS
+       =================================================================== */
+    :root {
+      /* 1. Core Primitives (LS-Labs) */
+      --color-navy: #0B1F3B;           /* Primary Base: Trust & Depth */
+      --color-navy-dark: #060E1C;      /* Deep Cosmic Void */
+      --color-navy-surface: #0E1A2F;   /* Elevated Dark Container */
+      --color-slate: #475569;          /* Balance & Clarity: Text Primary Muted */
+      --color-slate-light: #64748B;    /* Secondary Text & Captions */
+      --color-slate-muted: #94A3B8;    /* Subtitles, Borders, Eyebrows */
+      --color-mist: #E5EAF2;           /* Neutral Border & Dividers */
+      --color-mist-light: #F8FAFC;     /* Canvas Background */
 
-  /* Semantic Status Colors */
-  --gc-success: #27C93F;
-  --gc-warning: #B97700;
-  --gc-danger: #D6453D;
+      /* 2. Brand Accents */
+      --color-blue: #3B82F6;           /* Action Blue: Intelligence & Progress */
+      --color-blue-bright: #60A5FA;    /* Sky Glow & Links */
+      --color-blue-deep: #1D4ED8;      /* Active / Pressed State */
+      --color-indigo: #8B7CF6;         /* Indigo Accent: Insight & AI */
+      --color-indigo-soft: #A78BFA;    /* Soft Lavender Gradient Stop */
 
-  /* Layout & Metrics */
-  --gc-radius-sm: 8px;
-  --gc-radius-md: 14px;
-  --gc-radius-lg: 20px;
-  --gc-shadow-sm: 0 4px 14px rgba(11, 59, 111, 0.05);
-  --gc-shadow-md: 0 10px 30px rgba(11, 59, 111, 0.08);
-  --gc-shadow-lg: 0 20px 50px rgba(11, 59, 111, 0.12);
+      /* 3. SaaS Functional & Semantic Status Tokens */
+      --color-success: #10B981;        /* Emerald: Verified, Citation Pass, High Trust */
+      --color-success-dark: #059669;
+      --color-success-light: #ECFDF5;
+      --color-success-border: #A7F3D0;
 
-  /* Fonts - Enterprise Typography System */
-  --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  --gc-font-number: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --gc-font-mono: 'JetBrains Mono', monospace;
-}
+      --color-warning: #F59E0B;        /* Amber: Caution, Partial Citation, Cap 69 Alert */
+      --color-warning-dark: #D97706;
+      --color-warning-light: #FFFBEB;
+      --color-warning-border: #FDE68A;
 
-.font-number {
-  font-family: var(--gc-font-number);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-}
-.font-mono {
-  font-family: var(--gc-font-number);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-}
-.font-code {
-  font-family: var(--gc-font-mono);
-}
+      --color-danger: #EF4444;         /* Coral: Critical, 0 Citations, Blocked Crawlers */
+      --color-danger-dark: #DC2626;
+      --color-danger-light: #FEF2F2;
+      --color-danger-border: #FECACA;
 
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-body {
-  font-family: var(--gc-font-sans);
-  color: var(--gc-text);
-  background: var(--gc-bg-alt);
-  line-height: 1.7;
-}
+      --color-unknown: #64748B;        /* Muted Slate: D-020 Unknown Neutral (Not 0) */
+      --color-unknown-dark: #475569;
+      --color-unknown-light: #F1F5F9;
+      --color-unknown-border: #CBD5E1;
 
-/* Toast notification */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1000;
-  background: var(--gc-navy-dark);
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.25s, transform 0.25s;
-  pointer-events: none;
-}
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+      /* 4. 4-Engines Data Visualization Palette */
+      --color-engine-openai: #10A37F;
+      --color-engine-gemini: #4285F4;
+      --color-engine-perplexity: #22B8CD;
+      --color-engine-claude: #CC785C;
 
-/* Header & Tab Nav */
-header.ds-nav {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--gc-border);
-}
-.ds-nav-wrap {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 24px;
-}
-.ds-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  font-weight: 900;
-  font-size: 1.25rem;
-  color: var(--gc-navy);
-}
-.ds-tabs {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-}
-.ds-tabs a {
-  text-decoration: none;
-  color: var(--gc-muted);
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: all 0.2s;
-}
-.ds-tabs a:hover {
-  color: var(--gc-navy);
-  background: rgba(11, 59, 111, 0.05);
-}
-.ds-nav-actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-.btn-nav-link {
-  font-size: 0.84rem;
-  font-weight: 700;
-  color: var(--gc-muted);
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--gc-border);
-  background: #fff;
-  transition: 0.2s;
-}
-.btn-nav-link:hover {
-  color: var(--gc-navy);
-  border-color: var(--gc-navy);
-}
-@media (max-width: 860px) {
-  .ds-tabs { display: none; }
-}
+      /* 5. Typography */
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-body: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+      --font-number: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, monospace;
 
-/* Page Container */
-.ds-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 40px 24px 120px;
-}
+      /* 6. Shapes & Elevation */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
 
-/* Hero Section */
-.ds-hero {
-  background: #fff;
-  border: 1px solid var(--gc-border);
-  border-radius: var(--gc-radius-lg);
-  padding: 48px 44px;
-  margin-bottom: 48px;
-  box-shadow: var(--gc-shadow-sm);
-  position: relative;
-  overflow: hidden;
-}
-.ds-hero::after {
-  content: "";
-  position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 184, 169, 0.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-.ds-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--gc-mint-soft);
-  color: var(--gc-mint-dark);
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 999px;
-  margin-bottom: 16px;
-}
-.ds-hero h1 {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 900;
-  color: var(--gc-navy);
-  line-height: 1.25;
-  margin-bottom: 14px;
-}
-.ds-hero p {
-  font-size: 1.05rem;
-  color: var(--gc-muted);
-  max-width: 720px;
-  line-height: 1.7;
-}
+      --shadow-sm: 0 4px 12px rgba(11, 31, 59, 0.05);
+      --shadow-md: 0 10px 30px rgba(11, 31, 59, 0.08);
+      --shadow-lg: 0 20px 48px rgba(11, 31, 59, 0.12);
+      --shadow-dark: 0 16px 40px rgba(0, 0, 0, 0.55);
 
-/* Section Header */
-.section-block {
-  margin-bottom: 64px;
-}
-.sec-title-wrap {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  border-bottom: 2px solid var(--gc-navy);
-  padding-bottom: 12px;
-  margin-bottom: 28px;
-}
-.sec-title {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.sec-tag {
-  font-family: var(--gc-font-mono);
-  font-size: 0.8rem;
-  color: var(--gc-mint-dark);
-  font-weight: 700;
-}
+      --container-max: 1200px;
+    }
 
-/* Grids */
-.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-@media (max-width: 860px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-}
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-mist-light);
+      color: #1E293B;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
 
-/* Cards */
-.ds-card {
-  background: #fff;
-  border: 1px solid var(--gc-border);
-  border-radius: var(--gc-radius-md);
-  padding: 24px;
-  box-shadow: var(--gc-shadow-sm);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.ds-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--gc-shadow-md);
-}
+    .tabular-nums {
+      font-family: var(--font-number);
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+    }
 
-/* Token Box (Click to copy) */
-.token-card {
-  background: #fff;
-  border: 1px solid var(--gc-border);
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.token-card:hover {
-  border-color: var(--gc-mint);
-  box-shadow: 0 4px 16px rgba(0, 184, 169, 0.12);
-}
-.token-preview {
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.85rem;
-  position: relative;
-}
-.token-meta {
-  padding: 14px 16px;
-  background: #fff;
-}
-.token-name {
-  font-family: var(--gc-font-mono);
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--gc-navy);
-}
-.token-val {
-  font-family: var(--gc-font-mono);
-  font-size: 0.78rem;
-  color: var(--gc-muted);
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4px;
-}
-.token-copy-hint {
-  font-size: 0.7rem;
-  color: var(--gc-mint-dark);
-  font-weight: 600;
-}
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-/* Logo Box */
-.logo-box {
-  background: #fff;
-  border: 1px solid var(--gc-border);
-  border-radius: var(--gc-radius-md);
-  padding: 36px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  position: relative;
-}
-.logo-box.dark {
-  background: var(--gc-navy-dark);
-}
-.logo-box-tag {
-  position: absolute;
-  top: 12px;
-  left: 14px;
-  font-family: var(--gc-font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--gc-muted);
-}
-.logo-box.dark .logo-box-tag {
-  color: rgba(255,255,255,0.6);
-}
+    /* Top Sticky Header */
+    header.ds-nav {
+      position: sticky;
+      top: 0;
+      z-index: 110;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+    }
+    .ds-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .ds-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .ds-brand-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: var(--color-navy);
+      letter-spacing: -0.02em;
+    }
+    .ds-brand-sub {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--color-blue);
+      background: rgba(59, 130, 246, 0.1);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .ds-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-nav-outline {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-mist);
+      background: #fff;
+      transition: 0.2s;
+    }
+    .btn-nav-outline:hover {
+      border-color: var(--color-blue);
+      color: var(--color-blue);
+    }
 
-/* Machine-Readable AI Spec Card */
-.ai-agent-card {
-  background: #0B192C;
-  border: 1px solid rgba(0, 184, 169, 0.3);
-  border-radius: var(--gc-radius-md);
-  padding: 28px;
-  color: #E2E8F0;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
-}
-.ai-agent-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.ai-agent-title {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #33C6B9;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.code-viewer {
-  background: #06101E;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 18px 20px;
-  font-family: var(--gc-font-mono);
-  font-size: 0.83rem;
-  line-height: 1.65;
-  color: #A5B4FC;
-  overflow-x: auto;
-  max-height: 480px;
-}
+    /* Primary Global Tab Switcher Bar */
+    .tab-switcher-bar {
+      position: sticky;
+      top: 68px;
+      z-index: 100;
+      background: #FFFFFF;
+      border-bottom: 2px solid #E2E8F0;
+      box-shadow: 0 4px 16px rgba(11, 31, 59, 0.03);
+    }
+    .tab-switcher-inner {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      height: 52px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-slate);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover {
+      color: var(--color-navy);
+    }
+    .tab-btn.active {
+      color: var(--color-blue);
+      font-weight: 800;
+    }
+    .tab-btn.active::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--color-blue);
+      border-radius: 3px 3px 0 0;
+    }
+    .tab-pill-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #F1F5F9;
+      color: #475569;
+    }
+    .tab-btn.active .tab-pill-badge {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--color-blue);
+    }
 
-/* Copy Button */
-.btn-copy-code {
-  background: rgba(0, 184, 169, 0.2);
-  border: 1px solid rgba(0, 184, 169, 0.4);
-  color: #33C6B9;
-  font-family: var(--gc-font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.btn-copy-code:hover {
-  background: var(--gc-mint);
-  color: #fff;
-}
-</style>
+    /* Tab Content Views */
+    .tab-view {
+      display: none;
+    }
+    .tab-view.active {
+      display: block;
+    }
+
+    /* Hero */
+    .ds-hero {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 48px 0 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ds-hero::after {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -60px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(139, 124, 246, 0.04) 50%, transparent 70%);
+      pointer-events: none;
+    }
+    .ds-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--color-blue);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      margin-bottom: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .ds-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: var(--color-navy);
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .ds-hero p {
+      font-size: 1.05rem;
+      color: var(--color-slate);
+      max-width: 800px;
+      line-height: 1.65;
+    }
+
+    /* Section Structure */
+    .section-block {
+      padding: 56px 0;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .sec-title-wrap {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--color-navy);
+      padding-bottom: 12px;
+      margin-bottom: 28px;
+    }
+    .sec-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--color-navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sec-tag {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--color-blue);
+      font-weight: 700;
+    }
+
+    /* Grids */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+      .tab-switcher-inner { overflow-x: auto; gap: 20px; }
+    }
+
+    /* Cards */
+    .ds-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-md);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Safe Zone Master Card */
+    .logo-safe-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 240px;
+    }
+    .logo-safe-card.dark {
+      background: var(--color-navy-dark);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow-dark);
+    }
+    .safe-zone-box {
+      border: 1px dashed rgba(59, 130, 246, 0.4);
+      background: rgba(59, 130, 246, 0.04);
+      padding: 24px 36px;
+      border-radius: 8px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .safe-zone-tag {
+      position: absolute;
+      top: -10px;
+      left: 14px;
+      background: var(--color-blue);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Collateral / Business Cards */
+    .card-mockup {
+      border-radius: 16px;
+      padding: 32px 28px;
+      aspect-ratio: 1.75 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-shadow: var(--shadow-md);
+    }
+    .card-dark-mockup {
+      background: #070B14;
+      border: 1px solid #1E293B;
+      color: #FFFFFF;
+    }
+    .card-light-mockup {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: var(--color-navy);
+    }
+    .card-quote-big {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    /* Download Asset Box */
+    .asset-box {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      min-height: 200px;
+      transition: all 0.2s;
+    }
+    .asset-box:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-blue);
+    }
+    .asset-preview-wrap {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .asset-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--color-navy);
+      margin: 12px 0 16px;
+    }
+    .asset-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      background: #F8FAFC;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .asset-btn:hover {
+      background: var(--color-blue);
+      color: #FFFFFF;
+      border-color: var(--color-blue);
+    }
+
+    /* Swatches */
+    .swatch-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-blue);
+    }
+    .swatch-preview {
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 10px;
+    }
+    .swatch-copy-hint {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+    .swatch-meta {
+      padding: 12px 14px;
+      background: #FFFFFF;
+    }
+    .swatch-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--color-navy);
+      margin-bottom: 4px;
+    }
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-slate);
+    }
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--color-slate-light);
+      margin-top: 4px;
+      display: block;
+      word-break: break-all;
+    }
+    .swatch-note {
+      font-size: 0.72rem;
+      color: #64748B;
+      margin-top: 6px;
+      line-height: 1.4;
+      padding-top: 6px;
+      border-top: 1px dashed #F1F5F9;
+    }
+
+    /* Radar Box */
+    .radar-container {
+      background: radial-gradient(circle at center, #0B1F3B 0%, #060E1C 100%);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      box-shadow: var(--shadow-dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .radar-container { grid-template-columns: 1fr; }
+    }
+    .radar-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .radar-info p {
+      font-size: 0.95rem;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .radar-stage {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .radar-ring-3 {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      border: 1px dashed rgba(59, 130, 246, 0.25);
+    }
+    .radar-ring-2 {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+    }
+    .radar-ring-1 {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      background: rgba(14, 26, 47, 0.4);
+    }
+    .radar-axis-x {
+      position: absolute;
+      width: 340px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.4) 50%, transparent 100%);
+    }
+    .radar-axis-y {
+      position: absolute;
+      width: 1px;
+      height: 340px;
+      background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.4) 50%, transparent 100%);
+    }
+    .radar-scanner {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(59, 130, 246, 0.35) 45deg, rgba(16, 185, 129, 0.4) 75deg, transparent 76deg);
+      animation: radar-spin 5s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes radar-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .radar-center {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-blue);
+      box-shadow: 0 0 16px var(--color-blue-bright);
+      z-index: 5;
+    }
+    .radar-pill {
+      position: absolute;
+      background: rgba(14, 26, 47, 0.88);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      color: #E2E8F0;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      z-index: 6;
+      animation: pill-float 4s ease-in-out infinite alternate;
+    }
+    .radar-pill span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-success);
+    }
+    .p-1 { top: 25px; left: 15px; animation-delay: 0s; }
+    .p-2 { top: 50px; right: 15px; animation-delay: 1.2s; }
+    .p-3 { bottom: 35px; left: 20px; animation-delay: 2.1s; }
+    .p-4 { bottom: 55px; right: 25px; animation-delay: 0.8s; }
+    @keyframes pill-float {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-7px); }
+    }
+
+    /* Badges & Status */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+    }
+    .status-pill.success {
+      background: var(--color-success-light);
+      color: var(--color-success-dark);
+      border: 1px solid var(--color-success-border);
+    }
+    .status-pill.warning {
+      background: var(--color-warning-light);
+      color: var(--color-warning-dark);
+      border: 1px solid var(--color-warning-border);
+    }
+    .status-pill.danger {
+      background: var(--color-danger-light);
+      color: var(--color-danger-dark);
+      border: 1px solid var(--color-danger-border);
+    }
+    .status-pill.unknown {
+      background: var(--color-unknown-light);
+      color: var(--color-unknown-dark);
+      border: 1px solid var(--color-unknown-border);
+    }
+
+    /* Code Block */
+    .code-viewer {
+      background: var(--color-navy-dark);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+    }
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+    }
+    .code-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #60A5FA;
+    }
+    pre.code-content {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: #CBD5E1;
+      overflow-x: auto;
+      max-height: 460px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--color-navy);
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.25s ease;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer.ds-footer {
+      background: #FFFFFF;
+      border-top: 1px solid #E2E8F0;
+      padding: 44px 0;
+      margin-top: 64px;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      color: var(--color-slate);
+    }
+  </style>
 </head>
 <body>
 
-<!-- Toast -->
-<div id="toast" class="toast">✓ Token 已複製到剪貼簿</div>
-
-<!-- Navigation -->
-<header class="ds-nav">
-  <div class="ds-nav-wrap">
-    <a class="ds-brand" href="/">
-      <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
-        <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
-        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
-        <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-        <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
-      </svg>
-      <span>GeoCheck<span style="color:var(--gc-mint)">.</span></span>
-    </a>
-
-    <ul class="ds-tabs">
-      <li><a href="#tokens">設計變數 (Tokens)</a></li>
-      <li><a href="#logo">標誌規格 (Logo)</a></li>
-      <li><a href="#typography">字體排印 (Type)</a></li>
-      <li><a href="#components">組件樣式 (UI)</a></li>
-      <li><a href="#ai-spec">AI 代理人上下文 (Agent Context)</a></li>
-    </ul>
-
-    <div class="ds-nav-actions">
-      <a class="btn-nav-link" href="/developers">開發者平台</a>
-      <a class="btn-nav-link" href="/whitepaper">研究白皮書</a>
-      <a class="btn-nav-link" href="/">← 回到產品</a>
-    </div>
-  </div>
-</header>
-
-<main class="ds-container">
-
-  <!-- Hero -->
-  <div class="ds-hero">
-    <span class="ds-badge">設計規範系統</span>
-    <h1>GeoCheck 品牌設計系統與規範手冊</h1>
-    <p>
-      這是一份兼具<strong>絲滑互動體驗</strong>與<strong>機器可讀性（Machine-Readable）</strong>的設計系統。
-      不僅提供人類設計師可直接點擊複製的 Token，更內建結構化 JSON 規範，讓未來的 AI 在擴充與維護網站時能「一眼讀懂」視覺邏輯。
-    </p>
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <span style="color:var(--color-success);">✓</span>
+    <span id="toast-text">已複製到剪貼簿</span>
   </div>
 
-  <!-- S1: Design Tokens -->
-  <section class="section-block" id="tokens">
-    <div class="sec-title-wrap">
-      <h2 class="sec-title">🎨 色彩設計變數系統</h2>
-      <span class="sec-tag">點擊任意卡片可直接複製代碼</span>
-    </div>
+  <!-- Top Sticky Navigation -->
+  <header class="ds-nav">
+    <div class="container ds-nav-inner">
+      <a href="#overview" class="ds-brand">
+        <img src="/assets/logo-mark-tight.svg" alt="LS-Labs" style="width: 28px; height: 28px;">
+        <span class="ds-brand-title">LS-Labs</span>
+        <span class="ds-brand-sub">Design System</span>
+      </a>
 
-    <div class="grid-4" style="margin-bottom:20px;">
-      <div class="token-card" onclick="copyText('#0B3B6F', 'var(--gc-navy)')">
-        <div class="token-preview" style="background:#0B3B6F;">Primary Navy</div>
-        <div class="token-meta">
-          <div class="token-name">--gc-navy</div>
-          <div class="token-val"><span>#0B3B6F</span><span class="token-copy-hint">點擊複製</span></div>
-        </div>
-      </div>
-
-      <div class="token-card" onclick="copyText('#00B8A9', 'var(--gc-mint)')">
-        <div class="token-preview" style="background:#00B8A9;">Accent Mint</div>
-        <div class="token-meta">
-          <div class="token-name">--gc-mint</div>
-          <div class="token-val"><span>#00B8A9</span><span class="token-copy-hint">點擊複製</span></div>
-        </div>
-      </div>
-
-      <div class="token-card" onclick="copyText('#072A52', 'var(--gc-navy-dark)')">
-        <div class="token-preview" style="background:#072A52;">Dark Base</div>
-        <div class="token-meta">
-          <div class="token-name">--gc-navy-dark</div>
-          <div class="token-val"><span>#072A52</span><span class="token-copy-hint">點擊複製</span></div>
-        </div>
-      </div>
-
-      <div class="token-card" onclick="copyText('#F7F9FC', 'var(--gc-bg-alt)')">
-        <div class="token-preview" style="background:#F7F9FC; color:#1E2A38; border-bottom:1px solid #E4EAF1;">Surface Light</div>
-        <div class="token-meta">
-          <div class="token-name">--gc-bg-alt</div>
-          <div class="token-val"><span>#F7F9FC</span><span class="token-copy-hint">點擊複製</span></div>
-        </div>
+      <div class="ds-nav-actions">
+        <a href="https://lslabs.tw" class="btn-nav-outline">lslabs.tw ↗</a>
       </div>
     </div>
+  </header>
 
-    <!-- Status Semantics -->
-    <div class="grid-3">
-      <div class="token-card" onclick="copyText('#27C93F', 'var(--gc-success)')">
-        <div class="token-preview" style="background:#27C93F; height:50px;">完全採信 (Verified)</div>
-        <div class="token-meta">
-          <div class="token-name">--gc-success</div>
-          <div class="token-val"><span>#27C93F</span><span>官方引用驗證命中</span></div>
-        </div>
-      </div>
+  <!-- Global Tab Switcher (Masterbrand vs Product vs Matrix) -->
+  <nav class="tab-switcher-bar">
+    <div class="container tab-switcher-inner">
+      <button class="tab-btn active" onclick="switchTab('lslabs')" id="tab-btn-lslabs">
+        <span>🏢 01 LS-Labs 母品牌手冊</span>
+        <span class="tab-pill-badge">Masterbrand Hub</span>
+      </button>
 
-      <div class="token-card" onclick="copyText('#B97700', 'var(--gc-warning)')">
-        <div class="token-preview" style="background:#B97700; height:50px;">未知/防呆 (Unknown/Cap)</div>
-        <div class="token-meta">
-          <div class="token-name">--gc-warning</div>
-          <div class="token-val"><span>#B97700</span><span>未成熟數據 / 封頂 69</span></div>
-        </div>
-      </div>
+      <button class="tab-btn" onclick="switchTab('geocheck')" id="tab-btn-geocheck">
+        <span>🎯 02 GeoCheck 旗艦產品手冊</span>
+        <span class="tab-pill-badge">Product By LS-Labs</span>
+      </button>
 
-      <div class="token-card" onclick="copyText('#D6453D', 'var(--gc-danger)')">
-        <div class="token-preview" style="background:#D6453D; height:50px;">未可觀測/P1 (Alert)</div>
-        <div class="token-meta">
-          <div class="token-name">--gc-danger</div>
-          <div class="token-val"><span>#D6453D</span><span>0 分或最優先修復</span></div>
-        </div>
-      </div>
+      <button class="tab-btn" onclick="switchTab('matrix')" id="tab-btn-matrix">
+        <span>🏛️ 03 產品體系矩陣</span>
+        <span class="tab-pill-badge">Layer Model</span>
+      </button>
     </div>
-  </section>
+  </nav>
 
-  <!-- S2: Logo Specifications -->
-  <section class="section-block" id="logo">
-    <div class="sec-title-wrap">
-      <h2 class="sec-title">📐 標誌與幾何結構</h2>
-      <span class="sec-tag">向量幾何 · 支援暗黑模式</span>
-    </div>
-
-    <div class="grid-2" style="margin-bottom:24px;">
-      <div class="logo-box">
-        <span class="logo-box-tag">亮色模式標誌</span>
-        <div style="display:flex; align-items:center; gap:14px;">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
-            <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
-            <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
-            <circle cx="38" cy="15" r="1.5" fill="#FFFFFF" />
-          </svg>
-          <span style="font-size:2rem; font-weight:900; color:var(--gc-navy); letter-spacing:-0.03em;">GeoCheck<span style="color:var(--gc-mint)">.</span></span>
-        </div>
-      </div>
-
-      <div class="logo-box dark">
-        <span class="logo-box-tag">暗色模式反白標誌</span>
-        <div style="display:flex; align-items:center; gap:14px;">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="22" fill="rgba(255,255,255,0.06)" />
-            <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" />
-            <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
-            <circle cx="38" cy="15" r="1.5" fill="#FFFFFF" />
-          </svg>
-          <span style="font-size:2rem; font-weight:900; color:#FFFFFF; letter-spacing:-0.03em;">GeoCheck<span style="color:var(--gc-mint)">.</span></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="ds-card">
-      <h3 style="color:var(--gc-navy); font-size:1.1rem; margin-bottom:8px;">幾何構型意義 (Geometry Concept)</h3>
-      <p style="color:var(--gc-muted); font-size:0.92rem;">
-        標誌融合「探索雷達環」與「驗證勾」。雷達環象徵深入 LLM 搜尋模型探測非品牌搜尋意圖；驗證勾象徵可審計的第一方官方引用背書；右上方交點為數據信賴錨點（Signal Anchor Dot）。
-      </p>
-    </div>
-  </section>
-
-  <!-- S3: Typography & Numbers -->
-  <section class="section-block" id="typography">
-    <div class="sec-title-wrap">
-      <h2 class="sec-title">✍️ 字體排印與數據規範 (Typography & Numeric System)</h2>
-      <span class="sec-tag">數字分離 · 專業 SaaS 等寬對齊</span>
-    </div>
-
-    <div class="grid-3" style="margin-bottom:24px;">
-      <!-- Sans Card -->
-      <div class="ds-card">
-        <span class="ds-badge" style="margin-bottom:8px;">介面與正文</span>
-        <h3 style="color:var(--gc-navy); font-size:1.2rem; margin-bottom:4px;">Noto Sans TC</h3>
-        <p style="font-family:var(--gc-font-mono); font-size:0.75rem; color:var(--gc-muted); margin-bottom:12px;">--gc-font-sans</p>
-        <p style="font-size:0.92rem; color:var(--gc-text); line-height:1.6;">
-          優美工整的思源黑體，專注於中英混排的高辨識度與親和力。
+  <!-- ===================================================================
+       TAB 1: LS-LABS 母品牌手冊 (Masterbrand Hub)
+       =================================================================== -->
+  <div class="tab-view active" id="view-lslabs">
+    <!-- Hero -->
+    <section class="ds-hero" id="overview">
+      <div class="container">
+        <span class="ds-badge">MASTERBRAND GUIDELINES</span>
+        <h1>LS-Labs 官方品牌識別規範手冊</h1>
+        <p>
+          清晰視野，璀璨未來。LS-Labs 透過嚴謹的研究、量測與強大工具，協助品牌在生成式 AI 時代被清晰看見。
+          本手冊定義母品牌之幾何 Monogram 標誌、標準字、官方色彩 Token、排版體系、品牌信念與名片周邊規範。
         </p>
       </div>
+    </section>
 
-      <!-- Number Card (Inter) -->
-      <div class="ds-card" style="border-top:3px solid var(--gc-mint);">
-        <span class="ds-badge" style="margin-bottom:8px; background:var(--gc-mint-soft); color:var(--gc-mint-dark);">★ 商業指標與數字</span>
-        <h3 style="color:var(--gc-navy); font-size:1.2rem; margin-bottom:4px;">Inter (Tabular Nums)</h3>
-        <p style="font-family:var(--gc-font-mono); font-size:0.75rem; color:var(--gc-muted); margin-bottom:12px;">--gc-font-number</p>
-        <div style="font-family:var(--gc-font-number); font-variant-numeric:tabular-nums; font-size:1.8rem; font-weight:900; color:var(--gc-navy); line-height:1.1; margin-bottom:8px;">
-          87.5% <span style="font-size:0.9rem; color:#64748B; font-weight:600;">(24/40)</span>
+    <main class="container">
+      <!-- 01 主標誌系統 -->
+      <section class="section-block" id="lslabs-primary-logo">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">01 主標誌系統 (Primary Logo)</h2>
+          <span class="sec-tag">幾何光學透鏡 · 1X 安全空間</span>
         </div>
-        <p style="font-size:0.84rem; color:var(--gc-muted); line-height:1.5;">
-          對標 GA4 / Stripe / Vercel 頂級 SaaS，自然圓潤實心 0，徹底告別代碼斜線零；開啟 <code>tabular-nums</code> 保證表格數字垂直精密對齊。
+
+        <p style="color:var(--color-slate); margin-bottom:24px; max-width:800px;">
+          主標誌由象徵光學透鏡折射的幾何「LS」Monogram 徽章，結合現代無襯線標準字 <strong>LS-Labs</strong> 與寬間距標語 <strong>INSIGHT IN FOCUS</strong> 組成，代表實驗室的核心簽名。
+        </p>
+
+        <div class="grid-2" style="margin-bottom:24px;">
+          <!-- 淺底組合 -->
+          <div class="logo-safe-card">
+            <span style="position:absolute; top:14px; left:18px; font-family:var(--font-mono); font-size:0.75rem; color:#64748B;">標準淺底組合 (白底文件與印刷)</span>
+            <div class="safe-zone-box">
+              <span class="safe-zone-tag">安全空間 (1X)</span>
+              <img src="/assets/logo-full-dark.svg" alt="LS-Labs 主標誌" style="height:62px; max-width:100%;">
+            </div>
+          </div>
+
+          <!-- 深底組合 -->
+          <div class="logo-safe-card dark">
+            <span style="position:absolute; top:14px; left:18px; font-family:var(--font-mono); font-size:0.75rem; color:#94A3B8;">夜幕深底組合 (數位介面與暗色模式)</span>
+            <div class="safe-zone-box" style="border-color:rgba(96,165,250,0.4); background:rgba(96,165,250,0.04);">
+              <span class="safe-zone-tag" style="background:#2563EB;">安全空間 (1X)</span>
+              <img src="/assets/logo-full.svg" alt="LS-Labs 主標誌 深色" style="height:62px; max-width:100%;">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 次標誌與 APP ICON -->
+      <section class="section-block" id="lslabs-secondary-logo">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">02 次標誌與應用圖示 (Secondary Logo & App Icon)</h2>
+          <span class="sec-tag">副標題研發定位 · 512px Squircle Master</span>
+        </div>
+
+        <div class="grid-3">
+          <!-- 次標誌 -->
+          <div class="ds-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="ds-badge" style="margin-bottom:12px;">次標誌 (SECONDARY)</span>
+              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:24px 16px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+                <img src="/assets/logo-secondary-dark.svg" alt="LS-Labs 次標誌" style="max-height:48px; max-width:100%;">
+              </div>
+            </div>
+            <p style="font-size:0.85rem; color:var(--color-slate); line-height:1.5;">
+              用於緊湊型版面、論文白皮書標頭或系統頁尾，副標題 <strong>RESEARCH • TOOLS • REAL IMPACT</strong> 提供立即可辨識的研發定位。
+            </p>
+          </div>
+
+          <!-- App Icon -->
+          <div class="ds-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="ds-badge" style="margin-bottom:12px;">應用程式圖示 (APP ICON)</span>
+              <div style="display:flex; align-items:center; justify-content:center; padding:12px 0; margin-bottom:16px;">
+                <img src="/assets/app-icon-512.png" alt="App Icon" style="width:96px; height:96px; border-radius:20px; box-shadow:0 8px 24px rgba(11,31,59,0.15);">
+              </div>
+            </div>
+            <p style="font-size:0.85rem; color:var(--color-slate); text-align:center;">
+              <strong>Squircle Master (512px)</strong><br>
+              適用於 macOS / iOS / 網頁書籤與客戶端軟體。
+            </p>
+          </div>
+
+          <!-- 使命宣言卡 -->
+          <div class="ds-card" style="background:linear-gradient(180deg, #FFFFFF 0%, #F8FAFD 100%); display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="font-size:0.75rem; font-weight:800; color:var(--color-blue); text-transform:uppercase; letter-spacing:0.14em; margin-bottom:8px;">
+                MISSION STATEMENT
+              </div>
+              <h3 style="font-size:1.3rem; font-weight:900; color:var(--color-navy); line-height:1.3; margin-bottom:10px;">
+                清晰視野<br>璀璨未來
+              </h3>
+              <p style="font-size:0.88rem; color:var(--color-slate); line-height:1.6;">
+                我們透過嚴謹的研究、量測與強大工具，協助企業理解並優化其品牌在生成式 AI 中的能見度。
+              </p>
+            </div>
+            <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--color-slate-light); letter-spacing:0.1em; text-transform:uppercase; margin-top:16px;">
+              LS-LABS • INSIGHT IN FOCUS
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 官方色彩體系 -->
+      <section class="section-block" id="lslabs-colors">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">03 母品牌色彩體系 (Core Primitives)</h2>
+          <span class="sec-tag">點擊卡片直接複製代碼</span>
+        </div>
+
+        <div class="grid-5">
+          <div class="swatch-card" onclick="copyToken('#0B1F3B', '--color-navy')">
+            <div class="swatch-preview" style="background:#0B1F3B; color:#fff;">
+              <span class="swatch-copy-hint">點擊複製</span>
+            </div>
+            <div class="swatch-meta">
+              <div class="swatch-title">海軍藍 (Navy)</div>
+              <div class="swatch-hex"><span>#0B1F3B</span></div>
+              <span class="swatch-var">--color-navy</span>
+              <p class="swatch-note">信任 (TRUST) · 深度 (DEPTH)</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyToken('#060E1C', '--color-navy-dark')">
+            <div class="swatch-preview" style="background:#060E1C; color:#fff;">
+              <span class="swatch-copy-hint">點擊複製</span>
+            </div>
+            <div class="swatch-meta">
+              <div class="swatch-title">深夜夜幕 (Void)</div>
+              <div class="swatch-hex"><span>#060E1C</span></div>
+              <span class="swatch-var">--color-navy-dark</span>
+              <p class="swatch-note">極深底色 · 宇宙科技夜景</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyToken('#3B82F6', '--color-blue')">
+            <div class="swatch-preview" style="background:#3B82F6; color:#fff;">
+              <span class="swatch-copy-hint">點擊複製</span>
+            </div>
+            <div class="swatch-meta">
+              <div class="swatch-title">晴空藍 (Blue)</div>
+              <div class="swatch-hex"><span>#3B82F6</span></div>
+              <span class="swatch-var">--color-blue</span>
+              <p class="swatch-note">智慧 (INTELLIGENCE) · 進展</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyToken('#8B7CF6', '--color-indigo')">
+            <div class="swatch-preview" style="background:#8B7CF6; color:#fff;">
+              <span class="swatch-copy-hint">點擊複製</span>
+            </div>
+            <div class="swatch-meta">
+              <div class="swatch-title">曜紫電光 (Indigo)</div>
+              <div class="swatch-hex"><span>#8B7CF6</span></div>
+              <span class="swatch-var">--color-indigo</span>
+              <p class="swatch-note">洞察 (INSIGHT) · AI 動能</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyToken('#475569', '--color-slate')">
+            <div class="swatch-preview" style="background:#475569; color:#fff;">
+              <span class="swatch-copy-hint">點擊複製</span>
+            </div>
+            <div class="swatch-meta">
+              <div class="swatch-title">板岩灰 (Slate)</div>
+              <div class="swatch-hex"><span>#475569</span></div>
+              <span class="swatch-var">--color-slate</span>
+              <p class="swatch-note">平衡 (BALANCE) · 清晰閱讀</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 品牌信念 -->
+      <section class="section-block" id="lslabs-statements">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">04 品牌信念與座右銘 (Brand Statements)</h2>
+          <span class="sec-tag">PEOPLE + DATA + A MORE VISIBLE TOMORROW</span>
+        </div>
+
+        <div class="ds-card" style="padding:36px; background:#FFFFFF; margin-bottom:24px;">
+          <h3 style="font-size:1.8rem; font-weight:900; color:var(--color-navy); margin-bottom:14px;">
+            打造讓品牌被 AI 看見的<span style="color:var(--color-blue);">核心工具。</span>
+          </h3>
+          <div style="display:flex; gap:16px; font-weight:800; font-size:0.85rem; color:var(--color-slate); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:28px;">
+            <span>理解 (UNDERSTAND)</span>
+            <span>•</span>
+            <span>量測 (MEASURE)</span>
+            <span>•</span>
+            <span>優化 (IMPROVE)</span>
+          </div>
+
+          <div class="grid-3">
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:18px;">
+              <div style="font-size:0.75rem; font-weight:800; color:var(--color-blue); margin-bottom:6px;">品牌傳播信念</div>
+              <p style="font-weight:700; color:#334155; font-size:0.95rem;">「能被看見的想法，才能傳播得更遠。」</p>
+            </div>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:18px;">
+              <div style="font-size:0.75rem; font-weight:800; color:var(--color-blue); margin-bottom:6px;">實驗室核心座右銘</div>
+              <p style="font-weight:700; color:#334155; font-size:0.95rem;">PEOPLE + DATA + A MORE VISIBLE TOMORROW</p>
+            </div>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:18px;">
+              <div style="font-size:0.75rem; font-weight:800; color:var(--color-blue); margin-bottom:6px;">邁向未來的承諾</div>
+              <p style="font-weight:700; color:#334155; font-size:0.95rem;">為即將到來的新時代而建 (BUILT FOR WHAT COMES NEXT)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 實體周邊與名片 -->
+      <section class="section-block" id="lslabs-collateral">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">05 實體周邊與名片 (Collateral)</h2>
+          <span class="sec-tag">頂級商務名片 · 觸感表現</span>
+        </div>
+
+        <div class="grid-2">
+          <!-- 黑曜石名片 (正面) -->
+          <div class="card-mockup card-dark-mockup">
+            <div style="display:flex; justify-content:flex-end;">
+              <span style="font-family:var(--font-mono); font-size:0.6875rem; color:#64748B;">材質規格 // 350GSM 特種黑曜石紙</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px;">
+              <img src="/assets/logo-mark-tight.svg" alt="LS-Labs" style="width:48px; height:48px;">
+              <div>
+                <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:900; line-height:1;">LS-Labs</div>
+                <div style="font-family:var(--font-display); font-size:0.625rem; font-weight:700; letter-spacing:0.28em; color:#94A3B8; margin-top:4px;">INSIGHT IN FOCUS</div>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#64748B;">
+              <span>lslabs.tw</span>
+              <span>research • tools • impact</span>
+            </div>
+          </div>
+
+          <!-- 純棉名片 (背面) -->
+          <div class="card-mockup card-light-mockup">
+            <div style="display:flex; justify-content:flex-end;">
+              <span style="font-family:var(--font-mono); font-size:0.6875rem; color:#94A3B8;">材質規格 // 頂級純棉啞光紙</span>
+            </div>
+            <div class="card-quote-big">
+              能被看見的想法，<br>才能傳播得<br>更遠。
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-weight:800; font-size:0.95rem; color:var(--color-navy);">LS-Labs</span>
+              <span style="font-size:0.75rem; color:var(--color-slate-light); letter-spacing:0.1em; text-transform:uppercase;">研究 • 工具 • 實質影響</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 下載中心 -->
+      <section class="section-block" id="lslabs-downloads">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">06 向量圖檔與設計資產 (Asset Kit)</h2>
+          <span class="sec-tag">向量 SVG 與高解析度 PNG</span>
+        </div>
+
+        <div class="grid-4">
+          <!-- 徽章 SVG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/logo-mark-tight.svg" alt="LS-Labs 徽章" style="max-height:48px;">
+            </div>
+            <div class="asset-name">LS 徽章 (向量 SVG)</div>
+            <a href="/assets/logo-mark-tight.svg" download="ls-labs-emblem.svg" class="asset-btn">下載 SVG ↓</a>
+          </div>
+
+          <!-- 徽章 1024px PNG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/logo-mark-512.png" alt="LS-Labs 徽章 PNG" style="max-height:48px;">
+            </div>
+            <div class="asset-name">LS 徽章 (1024px PNG)</div>
+            <a href="/assets/logo-mark-1024.png" download="ls-labs-emblem-1024.png" class="asset-btn">下載 PNG ↓</a>
+          </div>
+
+          <!-- 徽章 512px PNG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/logo-mark-512.png" alt="LS-Labs 徽章 512px" style="max-height:48px;">
+            </div>
+            <div class="asset-name">LS 徽章 (512px PNG)</div>
+            <a href="/assets/logo-mark-512.png" download="ls-labs-emblem-512.png" class="asset-btn">下載 PNG ↓</a>
+          </div>
+
+          <!-- App Icon Master 512px -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/app-icon-512.png" alt="App Icon Master" style="max-height:48px; border-radius:10px;">
+            </div>
+            <div class="asset-name">App 圖標 (512px Master)</div>
+            <a href="/assets/app-icon-512.png" download="ls-labs-app-icon-512.png" class="asset-btn">下載 PNG ↓</a>
+          </div>
+
+          <!-- 主標誌 淺底 SVG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/logo-full-dark.svg" alt="主標誌 淺底" style="max-height:36px;">
+            </div>
+            <div class="asset-name">主標誌 (海軍藍淺底 SVG)</div>
+            <a href="/assets/logo-full-dark.svg" download="ls-labs-logo-navy.svg" class="asset-btn">下載 SVG ↓</a>
+          </div>
+
+          <!-- 主標誌 深底 SVG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap" style="background:#060E1C; border-radius:6px; padding:4px 12px;">
+              <img src="/assets/logo-full.svg" alt="主標誌 深底" style="max-height:32px;">
+            </div>
+            <div class="asset-name">主標誌 (白字深底 SVG)</div>
+            <a href="/assets/logo-full.svg" download="ls-labs-logo-white.svg" class="asset-btn">下載 SVG ↓</a>
+          </div>
+
+          <!-- 二級標誌 SVG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/logo-secondary-dark.svg" alt="二級標誌" style="max-height:36px;">
+            </div>
+            <div class="asset-name">二級標誌 (三主軸 SVG)</div>
+            <a href="/assets/logo-secondary-dark.svg" download="ls-labs-secondary-dark.svg" class="asset-btn">下載 SVG ↓</a>
+          </div>
+
+          <!-- Favicon PNG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/favicon.png" alt="Favicon" style="max-height:36px;">
+            </div>
+            <div class="asset-name">Favicon 圖標 (PNG)</div>
+            <a href="/assets/favicon.png" download="ls-labs-favicon.png" class="asset-btn">下載 PNG ↓</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+  <!-- ===================================================================
+       TAB 2: GEOCHECK 旗艦產品手冊 (Flagship Product)
+       =================================================================== -->
+  <div class="tab-view" id="view-geocheck">
+    <!-- Hero -->
+    <section class="ds-hero">
+      <div class="container">
+        <span class="ds-badge">PRODUCT BRAND SPECIFICATION</span>
+        <h1>GeoCheck 旗艦產品設計規範手冊</h1>
+        <p>
+          專注於生成式 AI 搜尋可見度（GEO）量測、AI 信任值與網站健康診斷。
+          本手冊定義 <code>GeoCheck By LS-Labs</code> 標誌幾何結構、經典雷達 Hero 門面、SaaS 診斷語義色彩與四引擎圖表對比體系。
         </p>
       </div>
+    </section>
 
-      <!-- Mono Card -->
-      <div class="ds-card">
-        <span class="ds-badge" style="margin-bottom:8px; background:#F1F5F9; color:#475569;">純程式碼與金鑰</span>
-        <h3 style="color:var(--gc-navy); font-size:1.2rem; margin-bottom:4px;">JetBrains Mono</h3>
-        <p style="font-family:var(--gc-font-mono); font-size:0.75rem; color:var(--gc-muted); margin-bottom:12px;">--gc-font-mono</p>
-        <p style="font-size:0.84rem; color:var(--gc-muted); line-height:1.5;">
-          專為開發者代碼編輯器、JSON Payload、API 憑證與底層 Run ID 所保留之專業等寬字體。
+    <main class="container">
+      <!-- 01 產品標誌與 By LS-Labs 鎖定 -->
+      <section class="section-block" id="geocheck-logos">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">01 產品標誌與署名規範 (Product Logo)</h2>
+          <span class="sec-tag">By LS-Labs 官方背書</span>
+        </div>
+
+        <div class="grid-2" style="margin-bottom:24px;">
+          <!-- 淺底 -->
+          <div class="ds-card" style="padding:36px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;">
+            <span style="font-family:var(--font-mono); font-size:0.75rem; color:#64748B;">亮色模式標誌 (Light Surface)</span>
+            <div style="display:flex; align-items:center; gap:16px;">
+              <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="22" fill="#EFF6FF" />
+                <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B1F3B" stroke-width="4.2" stroke-linecap="round" />
+                <path d="M 16 25 L 22 31 L 38 15" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
+                <circle cx="38" cy="15" r="1.5" fill="#FFFFFF" />
+              </svg>
+              <div>
+                <div style="font-family:var(--font-display); font-size:1.55rem; font-weight:900; color:var(--color-navy); line-height:1.1;">GeoCheck<span style="color:var(--color-blue)">.</span></div>
+                <div style="font-size:0.75rem; font-weight:700; color:var(--color-slate-light); letter-spacing:0.04em;">By LS-Labs</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 深底 -->
+          <div class="ds-card" style="background:var(--color-navy-dark); border-color:rgba(255,255,255,0.12); padding:36px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;">
+            <span style="font-family:var(--font-mono); font-size:0.75rem; color:#94A3B8;">暗色模式反白 (Dark Surface)</span>
+            <div style="display:flex; align-items:center; gap:16px;">
+              <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="22" fill="rgba(59, 130, 246, 0.12)" />
+                <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round" />
+                <path d="M 16 25 L 22 31 L 38 15" stroke="#60A5FA" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="38" cy="15" r="3.5" fill="#60A5FA" />
+                <circle cx="38" cy="15" r="1.5" fill="#FFFFFF" />
+              </svg>
+              <div>
+                <div style="font-family:var(--font-display); font-size:1.55rem; font-weight:900; color:#FFFFFF; line-height:1.1;">GeoCheck<span style="color:var(--color-blue-bright)">.</span></div>
+                <div style="font-size:0.75rem; font-weight:700; color:#94A3B8; letter-spacing:0.04em;">By LS-Labs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-card">
+          <h3 style="color:var(--color-navy); font-size:1.05rem; font-weight:800; margin-bottom:8px;">幾何構型概念 (Geometry Concept)</h3>
+          <p style="font-size:0.92rem; color:var(--color-slate); line-height:1.6;">
+            標誌融合「探索雷達環」與「驗證勾」。雷達環象徵深入 AI 搜尋引擎探測意圖；驗證勾象徵可審計的第一方官方引用背書；右上方交點為數據信賴錨點（Signal Anchor Dot）。
+            <strong>色彩全面同步 LS-Labs 主品牌調性</strong>：外環採海軍藍（#0B1F3B，反白為 #FFFFFF），核心驗證勾與信賴錨點採用 LS-Labs 焦點藍（#3B82F6，深底微光 #60A5FA）。副標署名統一為 <strong>By LS-Labs</strong>。
+          </p>
+        </div>
+      </section>
+
+      <!-- 02 SaaS 語義色與圖表色 -->
+      <section class="section-block" id="geocheck-semantics">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">02 SaaS 診斷與圖表專用色 (Functional Tokens)</h2>
+          <span class="sec-tag">點擊卡片直接複製代碼</span>
+        </div>
+
+        <div style="margin-bottom:28px;">
+          <h3 style="font-size:1.05rem; font-weight:800; color:var(--color-navy); margin-bottom:14px;">診斷語義狀態色 (Semantic Status)</h3>
+          <div class="grid-4">
+            <div class="swatch-card" onclick="copyToken('#10B981', '--color-success')">
+              <div class="swatch-preview" style="background:#10B981; color:#fff;"><span class="swatch-copy-hint">點擊複製</span></div>
+              <div class="swatch-meta">
+                <div class="swatch-title">翡翠綠 (Success)</div>
+                <div class="swatch-hex"><span>#10B981</span></div>
+                <span class="swatch-var">--color-success</span>
+                <p class="swatch-note">官方引用命中、完全採信、高信任</p>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copyToken('#F59E0B', '--color-warning')">
+              <div class="swatch-preview" style="background:#F59E0B; color:#fff;"><span class="swatch-copy-hint">點擊複製</span></div>
+              <div class="swatch-meta">
+                <div class="swatch-title">琥珀金 (Caution)</div>
+                <div class="swatch-hex"><span>#F59E0B</span></div>
+                <span class="swatch-var">--color-warning</span>
+                <p class="swatch-note">少於兩題封頂 69、部分命中、警示</p>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copyToken('#EF4444', '--color-danger')">
+              <div class="swatch-preview" style="background:#EF4444; color:#fff;"><span class="swatch-copy-hint">點擊複製</span></div>
+              <div class="swatch-meta">
+                <div class="swatch-title">珊瑚紅 (Critical)</div>
+                <div class="swatch-hex"><span>#EF4444</span></div>
+                <span class="swatch-var">--color-danger</span>
+                <p class="swatch-note">0 引用、網站阻擋 AI 爬蟲、嚴重缺失</p>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copyToken('#64748B', '--color-unknown')">
+              <div class="swatch-preview" style="background:#64748B; color:#fff;"><span class="swatch-copy-hint">點擊複製</span></div>
+              <div class="swatch-meta">
+                <div class="swatch-title">暮靄灰 (Unknown)</div>
+                <div class="swatch-hex"><span>#64748B</span></div>
+                <span class="swatch-var">--color-unknown</span>
+                <p class="swatch-note">D-020 規範：無可用證據、不補 0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-size:1.05rem; font-weight:800; color:var(--color-navy); margin-bottom:14px;">四引擎圖表專用色 (4-Engines Data Viz)</h3>
+          <div class="grid-4">
+            <div class="swatch-card" onclick="copyToken('#10A37F', '--color-engine-openai')">
+              <div class="swatch-preview" style="background:#10A37F; color:#fff;"><span class="swatch-copy-hint">點擊複製</span></div>
+              <div class="swatch-meta">
+                <div class="swatch-title">OpenAI</div>
+                <div class="swatch-hex"><span>#10A37F</span></div>
+                <span class="swatch-var">--color-engine-openai</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copyToken('#4285F4', '--color-engine-gemini')">
+              <div class="swatch-preview" style="background:#4285F4; color:#fff;"><span class="swatch-copy-hint">點擊複製</span></div>
+              <div class="swatch-meta">
+                <div class="swatch-title">Google Gemini</div>
+                <div class="swatch-hex"><span>#4285F4</span></div>
+                <span class="swatch-var">--color-engine-gemini</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copyToken('#22B8CD', '--color-engine-perplexity')">
+              <div class="swatch-preview" style="background:#22B8CD; color:#fff;"><span class="swatch-copy-hint">點擊複製</span></div>
+              <div class="swatch-meta">
+                <div class="swatch-title">Perplexity</div>
+                <div class="swatch-hex"><span>#22B8CD</span></div>
+                <span class="swatch-var">--color-engine-perplexity</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copyToken('#CC785C', '--color-engine-claude')">
+              <div class="swatch-preview" style="background:#CC785C; color:#fff;"><span class="swatch-copy-hint">點擊複製</span></div>
+              <div class="swatch-meta">
+                <div class="swatch-title">Anthropic Claude</div>
+                <div class="swatch-hex"><span>#CC785C</span></div>
+                <span class="swatch-var">--color-engine-claude</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 經典雷達門面視覺 -->
+      <section class="section-block" id="geocheck-radar">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">03 經典 Hero 雷達視覺門面</h2>
+          <span class="sec-tag">D-024 鎖定資產 · 結構完全保留</span>
+        </div>
+
+        <div class="radar-container">
+          <div class="radar-info">
+            <span class="ds-badge" style="background:rgba(56,189,248,0.15); color:#38BDF8; margin-bottom:12px;">D-024 LOCKED CORE ASSET</span>
+            <h3>經典雷達幾何結構 × LS-Labs 質感</h3>
+            <p>
+              傳承 D-024 規範：三層同心圓、旋轉雷達掃描光影、圍繞的 5 顆浮動品牌知識膠囊列為核心資產。
+              底色升級為 LS-Labs 深夜夜幕（#060E1C），掃描光軌由晴空藍（#3B82F6）與翡翠綠（#10B981）微光交織。
+            </p>
+            <ul style="list-style:none;">
+              <li style="color:#E2E8F0; font-size:0.88rem; margin-bottom:8px;">● <strong>同心圓與刻度</strong>：340px / 220px / 130px 幾何圓心。</li>
+              <li style="color:#E2E8F0; font-size:0.88rem; margin-bottom:8px;">● <strong>旋轉掃描光束</strong>：360 度錐形漸層光影（Conic Gradient）。</li>
+              <li style="color:#E2E8F0; font-size:0.88rem;">● <strong>浮動知識膠囊</strong>：玻璃擬態標記官方引用、知識實體與第三方事證。</li>
+            </ul>
+          </div>
+
+          <div class="radar-stage">
+            <div class="radar-ring-3"></div>
+            <div class="radar-ring-2"></div>
+            <div class="radar-ring-1"></div>
+            <div class="radar-axis-x"></div>
+            <div class="radar-axis-y"></div>
+            <div class="radar-scanner"></div>
+            <div class="radar-center"></div>
+            <div class="radar-pill p-1"><span class="dot"></span> 官方網域引用 100%</div>
+            <div class="radar-pill p-2"><span class="dot"></span> 實體知識庫對齊</div>
+            <div class="radar-pill p-3"><span class="dot"></span> 第三方媒體佐證</div>
+            <div class="radar-pill p-4"><span class="dot"></span> Schema 結構化資料</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 SaaS 組件展示 -->
+      <section class="section-block" id="geocheck-components">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">04 SaaS 診斷與量測組件 (UI Components)</h2>
+          <span class="sec-tag">真實資料渲染示範</span>
+        </div>
+
+        <div class="grid-2">
+          <!-- Badges -->
+          <div class="ds-card">
+            <h3 style="font-size:1rem; font-weight:800; color:var(--color-navy); margin-bottom:16px;">狀態膠囊體系 (Status Badges)</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+              <span class="status-pill success">● 官方引用採信 (Verified)</span>
+              <span class="status-pill warning">▲ 覆蓋不足封頂 (Cap 69)</span>
+              <span class="status-pill danger">✕ 0 引用 / 阻擋爬蟲</span>
+              <span class="status-pill unknown">? 未判定證據 (Unknown)</span>
+            </div>
+            <p style="font-size:0.85rem; color:#64748B;">落實 D-020：無可用證據時呈現暮靄灰（Unknown），不誤判為 0 分。</p>
+          </div>
+
+          <!-- 4-Engine Mentions -->
+          <div class="ds-card">
+            <h3 style="font-size:1rem; font-weight:800; color:var(--color-navy); margin-bottom:16px;">四引擎跨平台提及率 (4-Engine Mentions)</h3>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; gap:10px; font-size:0.85rem;">
+                <span style="width:80px; font-weight:700;">OpenAI</span>
+                <div style="flex:1; height:8px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+                  <div style="width:85%; height:100%; background:var(--color-engine-openai);"></div>
+                </div>
+                <span class="tabular-nums" style="width:36px; text-align:right; font-weight:700; color:var(--color-engine-openai);">85%</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:0.85rem;">
+                <span style="width:80px; font-weight:700;">Gemini</span>
+                <div style="flex:1; height:8px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+                  <div style="width:68%; height:100%; background:var(--color-engine-gemini);"></div>
+                </div>
+                <span class="tabular-nums" style="width:36px; text-align:right; font-weight:700; color:var(--color-engine-gemini);">68%</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:0.85rem;">
+                <span style="width:80px; font-weight:700;">Perplexity</span>
+                <div style="flex:1; height:8px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+                  <div style="width:92%; height:100%; background:var(--color-engine-perplexity);"></div>
+                </div>
+                <span class="tabular-nums" style="width:36px; text-align:right; font-weight:700; color:var(--color-engine-perplexity);">92%</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:0.85rem;">
+                <span style="width:80px; font-weight:700;">Claude</span>
+                <div style="flex:1; height:8px; background:#F1F5F9; border-radius:999px; overflow:hidden;">
+                  <div style="width:54%; height:100%; background:var(--color-engine-claude);"></div>
+                </div>
+                <span class="tabular-nums" style="width:36px; text-align:right; font-weight:700; color:var(--color-engine-claude);">54%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 官方資源下載 (GeoCheck Asset Kit) -->
+      <section class="section-block" id="geocheck-downloads">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">05 官方資源下載 (GeoCheck Asset Kit)</h2>
+          <span class="sec-tag">同步 LS-Labs 焦點藍 · 向量 SVG 與高解析 PNG</span>
+        </div>
+
+        <div class="grid-4">
+          <!-- 標誌 SVG 淺底 -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/geocheck-mark.svg" alt="GeoCheck 向量標誌" style="max-height:48px;">
+            </div>
+            <div class="asset-name">雷達標誌 (淺底向量 SVG)</div>
+            <a href="/assets/geocheck-mark.svg" download="geocheck-mark.svg" class="asset-btn">下載 SVG ↓</a>
+          </div>
+
+          <!-- 標誌 SVG 深底反白 -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap" style="background:#060E1C; border-radius:6px; padding:4px 12px;">
+              <img src="/assets/geocheck-mark-white.svg" alt="GeoCheck 反白標誌" style="max-height:48px;">
+            </div>
+            <div class="asset-name">雷達標誌 (深底反白 SVG)</div>
+            <a href="/assets/geocheck-mark-white.svg" download="geocheck-mark-white.svg" class="asset-btn">下載 SVG ↓</a>
+          </div>
+
+          <!-- 1024px PNG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/geocheck-mark-512.png" alt="GeoCheck 標誌 PNG" style="max-height:48px;">
+            </div>
+            <div class="asset-name">雷達標誌 (1024px PNG)</div>
+            <a href="/assets/geocheck-mark-1024.png" download="geocheck-mark-1024.png" class="asset-btn">下載 PNG ↓</a>
+          </div>
+
+          <!-- App Icon Master 512px -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/geocheck-app-icon-512.png" alt="GeoCheck App Icon" style="max-height:48px; border-radius:10px;">
+            </div>
+            <div class="asset-name">App 圖標 (512px Master)</div>
+            <a href="/assets/geocheck-app-icon-512.png" download="geocheck-app-icon-512.png" class="asset-btn">下載 PNG ↓</a>
+          </div>
+
+          <!-- 主標誌 淺底 SVG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/geocheck-logo-dark.svg" alt="主標誌 淺底" style="max-height:36px;">
+            </div>
+            <div class="asset-name">橫式 Logo (淺底海軍藍 SVG)</div>
+            <a href="/assets/geocheck-logo-dark.svg" download="geocheck-logo-dark.svg" class="asset-btn">下載 SVG ↓</a>
+          </div>
+
+          <!-- 主標誌 深底 SVG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap" style="background:#060E1C; border-radius:6px; padding:4px 12px;">
+              <img src="/assets/geocheck-logo-white.svg" alt="主標誌 深底" style="max-height:36px;">
+            </div>
+            <div class="asset-name">橫式 Logo (深底反白 SVG)</div>
+            <a href="/assets/geocheck-logo-white.svg" download="geocheck-logo-white.svg" class="asset-btn">下載 SVG ↓</a>
+          </div>
+
+          <!-- Favicon PNG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap">
+              <img src="/assets/geocheck-favicon.png" alt="Favicon" style="max-height:36px;">
+            </div>
+            <div class="asset-name">Favicon 圖標 (PNG)</div>
+            <a href="/assets/geocheck-favicon.png" download="geocheck-favicon.png" class="asset-btn">下載 PNG ↓</a>
+          </div>
+
+          <!-- OpenGraph Banner PNG -->
+          <div class="asset-box">
+            <div class="asset-preview-wrap" style="background:#060E1C; border-radius:6px; padding:2px 8px;">
+              <img src="/assets/geocheck-og-image.png" alt="OG Banner" style="max-height:36px;">
+            </div>
+            <div class="asset-name">社群分享橫幅 (1200x630 OG)</div>
+            <a href="/assets/geocheck-og-image.png" download="geocheck-og-image.png" class="asset-btn">下載 PNG ↓</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+  <!-- ===================================================================
+       TAB 3: 產品體系矩陣 (Layer Model)
+       =================================================================== -->
+  <div class="tab-view" id="view-matrix">
+    <section class="ds-hero">
+      <div class="container">
+        <span class="ds-badge">PRODUCT MATRIX & BOUNDARIES</span>
+        <h1>品牌 · 能力 · 交付：LS-Labs 三層架構</h1>
+        <p>
+          分類軸只有一條：<strong>層級</strong>。<strong>LS-Labs 是組織</strong>、<strong>GeoCheck 是能力</strong>、
+          <strong>三個網域是交付面</strong>。能力層刻意不配網域，確保未來新增第二項能力時系統仍然純潔。
+          結構對標 <code>openai.com → chatgpt.com → platform.openai.com</code>。
         </p>
       </div>
-    </div>
+    </section>
 
-    <!-- Dashboard Scoped Typography Annotation -->
-    <div class="ds-card" style="border-left:4px solid var(--gc-mint); background:linear-gradient(135deg, #FFFFFF 0%, #F8FCFB 100%);">
-      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span class="ds-badge" style="background:var(--gc-mint-soft); color:var(--gc-mint-dark); font-weight:700;">★ 應用範圍實裝標註 (Dashboard Scope)</span>
-          <strong style="color:var(--gc-navy); font-size:1.05rem;">工具 A 行銷儀表板字體配置：Noto Sans TC 一體化架構</strong>
+    <main class="container">
+      <section class="section-block" style="border-bottom:none;">
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">🏛️ 三層責任邊界</h2>
+          <span class="sec-tag">Layer Boundary Rules</span>
         </div>
-        <span style="font-size:0.75rem; color:#64748B; font-family:var(--gc-font-mono); background:#F1F5F9; padding:3px 8px; border-radius:4px;">作用域: apps/web/app/</span>
-      </div>
-      <p style="font-size:0.9rem; color:var(--gc-text); line-height:1.65; margin-bottom:14px;">
-        為提供行銷工作者極致流暢且和諧的長文閱讀與多維指標觀察體驗，<strong>工具 A 行銷儀表板（Dashboard）已全面啟用 Noto Sans TC（思源黑體）一體化排版</strong>。UI 介面、數據指標（KPI Scorecards）、搜尋引擎矩陣與 SVG 趨勢圖表均統一套用 Noto Sans TC。
-      </p>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; font-size:0.84rem;">
-        <div style="background:#FFFFFF; border:1px solid rgba(11, 59, 111, 0.08); border-radius:8px; padding:12px 14px;">
-          <div style="font-weight:700; color:var(--gc-navy); margin-bottom:4px;">✨ 零筆觸衝突 · CJK 中英高度融洽</div>
-          <div style="color:var(--gc-muted); line-height:1.5;">繁中文字與數值指標使用同一字型家族，徹底消除中文字與西文字體（如 Inter）混排時的 x-height 基線微落差與字重粗細不均問題。</div>
-        </div>
-        <div style="background:#FFFFFF; border:1px solid rgba(11, 59, 111, 0.08); border-radius:8px; padding:12px 14px;">
-          <div style="font-weight:700; color:var(--gc-navy); margin-bottom:4px;">📊 保留 Tabular Nums 等寬特性</div>
-          <div style="color:var(--gc-muted); line-height:1.5;">指標全域配置 <code>font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;</code>，即便在思源黑體下亦能確保各週百分比與分數垂直平直對齊。</div>
-        </div>
-        <div style="background:#FFFFFF; border:1px solid rgba(11, 59, 111, 0.08); border-radius:8px; padding:12px 14px;">
-          <div style="font-weight:700; color:var(--gc-navy); margin-bottom:4px;">🛡️ 獨立作用域 · 不影響品牌主站</div>
-          <div style="color:var(--gc-muted); line-height:1.5;">變更嚴格封裝於 <code>apps/web/app/</code>（<code>app.css</code> 與 <code>index.html</code>），主網站、品牌設計頁與公開白皮書仍維持既定之通用設計系統。</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- S4: Machine-Readable Context for AI Agents -->
-  <section class="section-block" id="ai-spec">
-    <div class="sec-title-wrap">
-      <h2 class="sec-title">🤖 AI 代理人設計上下文 (Machine-Readable Context for AI)</h2>
-      <span class="sec-tag">為未來維護本站的 AI 量身定制</span>
-    </div>
+        <div class="grid-3" style="margin-bottom:32px;">
+          <!-- 品牌層 -->
+          <div class="ds-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="ds-badge" style="margin-bottom:12px;">品牌層 / Brand</span>
+              <h3 style="font-size:1.4rem; font-weight:900; color:var(--color-navy); margin-bottom:6px;">LS-Labs</h3>
+              <div style="font-family:var(--font-mono); font-size:0.85rem; color:var(--color-blue); margin-bottom:14px;">https://lslabs.tw/</div>
+              <p style="font-size:0.9rem; color:var(--color-slate); line-height:1.6; margin-bottom:16px;">
+                實驗室官方首頁。承載組織願景、品牌信念、前沿研究白皮書、方法論與全域跨產品導覽（Mega Menu）。
+                所有排名內容資產掛於本網域路徑，是全站 SEO 主力與對外代表實體。
+              </p>
+            </div>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; font-size:0.82rem; color:#475569;">
+              <strong>標誌</strong>：LS-Labs 幾何透鏡 Monogram<br>
+              <strong>結構對標</strong>：<code>openai.com</code><br>
+              <strong>不承載</strong>：量測表單、API Key 管理
+            </div>
+          </div>
 
-    <div class="ai-agent-card">
-      <div class="ai-agent-header">
-        <div class="ai-agent-title">
-          <span>⚡ GeoCheck System Tokens JSON</span>
+          <!-- 能力層 -->
+          <div class="ds-card" style="border-color:rgba(59,130,246,0.4); display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="ds-badge" style="margin-bottom:12px; background:rgba(59,130,246,0.12); color:var(--color-blue);">能力層 / Capability</span>
+              <h3 style="font-size:1.4rem; font-weight:900; color:var(--color-navy); margin-bottom:6px;">GeoCheck</h3>
+              <div style="font-family:var(--font-mono); font-size:0.85rem; color:var(--color-slate-light); margin-bottom:14px;">無獨立網域（概念層）</div>
+              <p style="font-size:0.9rem; color:var(--color-slate); line-height:1.6; margin-bottom:16px;">
+                量測能力本體：固定四引擎量測、AI 信任值評分方法論、證據與資料品質語義。
+                由下列三個交付面共用，本身不是一個可造訪的站點。
+              </p>
+            </div>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; font-size:0.82rem; color:#475569;">
+              <strong>標誌</strong>：GeoCheck 雙環勾選雷達<br>
+              <strong>結構對標</strong>：<code>ChatGPT</code>（能力具名並擁有獨立標誌）<br>
+              <strong>不擁有</strong>：網域、session、資料表
+            </div>
+          </div>
+
+          <!-- 交付層 -->
+          <div class="ds-card" style="border-color:rgba(139,124,246,0.4); display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="ds-badge" style="margin-bottom:12px; background:rgba(139,124,246,0.12); color:#6D28D9;">交付層 / Delivery</span>
+              <h3 style="font-size:1.4rem; font-weight:900; color:var(--color-navy); margin-bottom:6px;">三個交付面</h3>
+              <div style="font-family:var(--font-mono); font-size:0.85rem; color:var(--color-blue); margin-bottom:14px;">geocheck · app · platform</div>
+              <p style="font-size:0.9rem; color:var(--color-slate); line-height:1.6; margin-bottom:16px;">
+                同一套量測能力的三種消費方式：免費快檢、訂閱制監控、開發者 API。
+                三者在 session、授權、資料存取上完全隔離，不得在任何對外材料中併為單一實體。
+              </p>
+            </div>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; font-size:0.82rem; color:#475569;">
+              <strong>標誌</strong>：不另做標誌，沿用上層<br>
+              <strong>結構對標</strong>：<code>platform.openai.com</code><br>
+              <strong>隔離要求</strong>：見下方交付面規範
+            </div>
+          </div>
         </div>
-        <button class="btn-copy-code" onclick="copyCode('json-spec')">複製 JSON 規範</button>
-      </div>
-      <p style="font-size:0.86rem; color:#94A3B8; margin-bottom:14px;">
-        當未來任何 AI（Claude / Gemini / GPT / DeepSeek）需要修改首頁、新增報告組件或擴充白皮書時，可直接讀取此 JSON，保證 100% 風格相容，杜絕色彩漂移或排版錯亂。
-      </p>
-      <pre class="code-viewer" id="json-spec">{
-  "$schema": "https://geocheck.lisheng.cv/schemas/design-tokens-v1.json",
-  "name": "GeoCheck Design System",
-  "version": "1.0.0",
-  "design_principles": {
-    "essence": "From Black-box Speculation to Observable Evidence",
-    "tone": "Authoritative, Precise, Transparent, Accessible",
-    "aesthetic": "Tactile Modern Tech, Swiss Modernism, Monochromatic with Mint Highlight"
+
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">🧭 結構對標：OpenAI</h2>
+          <span class="sec-tag">Structural Benchmark</span>
+        </div>
+
+        <div class="ds-card" style="margin-bottom:32px; padding:0; overflow:hidden;">
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:0.92rem; min-width:560px;">
+              <thead>
+                <tr style="background:var(--color-navy);">
+                  <th style="text-align:left; padding:14px 18px; color:#FFFFFF; font-weight:800; letter-spacing:0.03em; font-size:0.85rem;">層</th>
+                  <th style="text-align:left; padding:14px 18px; color:#94A3B8; font-weight:800; letter-spacing:0.03em; font-size:0.85rem;">OpenAI</th>
+                  <th style="text-align:left; padding:14px 18px; color:#60A5FA; font-weight:800; letter-spacing:0.03em; font-size:0.85rem;">LS-Labs</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid #E2E8F0;">
+                  <td style="padding:14px 18px; font-weight:800; color:var(--color-navy);">品牌與研究</td>
+                  <td style="padding:14px 18px; font-family:var(--font-mono); font-size:0.85rem; color:var(--color-slate);">openai.com</td>
+                  <td style="padding:14px 18px; font-family:var(--font-mono); font-size:0.85rem; color:var(--color-blue); font-weight:700;">lslabs.tw</td>
+                </tr>
+                <tr style="border-bottom:1px solid #E2E8F0;">
+                  <td style="padding:14px 18px; font-weight:800; color:var(--color-navy);">旗艦產品</td>
+                  <td style="padding:14px 18px; font-family:var(--font-mono); font-size:0.85rem; color:var(--color-slate);">chatgpt.com</td>
+                  <td style="padding:14px 18px; font-family:var(--font-mono); font-size:0.85rem; color:var(--color-blue); font-weight:700;">geocheck.lslabs.tw<br>app.lslabs.tw</td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 18px; font-weight:800; color:var(--color-navy);">開發者平台</td>
+                  <td style="padding:14px 18px; font-family:var(--font-mono); font-size:0.85rem; color:var(--color-slate);">platform.openai.com</td>
+                  <td style="padding:14px 18px; font-family:var(--font-mono); font-size:0.85rem; color:var(--color-blue); font-weight:700;">platform.lslabs.tw</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:16px 18px; background:#F8FAFC; border-top:1px solid #E2E8F0; font-size:0.86rem; color:#475569; line-height:1.7;">
+            所 copy 的不是網域命名，是這條分界：<strong>研究、方法論與敘事留在品牌域，產品域只承載產品</strong>。
+            同時注意標誌的分層：<code>chatgpt.com</code> 有自己的標誌（能力層），
+            而 <code>platform.openai.com</code> 用的是 OpenAI 標誌（交付層不另做標誌）。
+          </div>
+        </div>
+
+        <div class="ds-card" style="margin-bottom:32px; border-color:rgba(239,68,68,0.35); background:rgba(239,68,68,0.04);">
+          <h3 style="font-size:1rem; font-weight:900; color:var(--color-navy); margin-bottom:8px;">❌ 不採 DeepSeek 對標</h3>
+          <p style="font-size:0.88rem; color:var(--color-slate); line-height:1.7; margin:0;">
+            DeepSeek 結構中品牌即模型，<code>deepseek.com</code> 位於<strong>能力層</strong>。
+            LS-Labs 是研究型組織，其能力是 GeoCheck；套用 DeepSeek 映射會使 GeoCheck 降為交付面、
+            品牌層只剩導航，且未來第二個能力出現時無位置可放。
+          </p>
+        </div>
+
+        <div class="sec-title-wrap">
+          <h2 class="sec-title">🎯 交付面與標誌使用規範</h2>
+          <span class="sec-tag">Surface &amp; Lockup Rules</span>
+        </div>
+
+        <div class="grid-3" style="margin-bottom:32px;">
+          <!-- 免費快檢 -->
+          <div class="ds-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="ds-badge" style="margin-bottom:12px; background:rgba(59,130,246,0.12); color:var(--color-blue);">免費快檢 / Free Audit</span>
+              <h3 style="font-size:1.15rem; font-weight:900; color:var(--color-navy); margin-bottom:6px;">GeoCheck</h3>
+              <div style="font-family:var(--font-mono); font-size:0.82rem; color:var(--color-blue); margin-bottom:14px;">geocheck.lslabs.tw</div>
+              <p style="font-size:0.88rem; color:var(--color-slate); line-height:1.6; margin-bottom:16px;">
+                匿名、無登入、一次性短檢測與報告。漏斗頂端轉換工具，由
+                <code>lslabs.tw/geocheck</code> 說明頁的 CTA 進入。本頁不重複行銷文案，避免與說明頁互食關鍵字。
+              </p>
+            </div>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; font-size:0.82rem; color:#475569;">
+              <strong>標誌</strong>：GeoCheck 雷達標誌<br>
+              <strong>鎖定字</strong>：<code>GeoCheck · By LS-Labs</code>
+            </div>
+          </div>
+
+          <!-- Dashboard -->
+          <div class="ds-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="ds-badge" style="margin-bottom:12px; background:rgba(59,130,246,0.12); color:var(--color-blue);">訂閱監控 / Product A</span>
+              <h3 style="font-size:1.15rem; font-weight:900; color:var(--color-navy); margin-bottom:6px;">GeoCheck Monitor</h3>
+              <div style="font-family:var(--font-mono); font-size:0.82rem; color:var(--color-blue); margin-bottom:14px;">app.lslabs.tw</div>
+              <p style="font-size:0.88rem; color:var(--color-slate); line-height:1.6; margin-bottom:16px;">
+                登入制 SaaS：Project、追蹤題組、Tracking Run、跨期比較、來源證據抽屜。
+                獨立 <code>gds_</code> session 與 <code>/app-api/v1</code>。
+              </p>
+            </div>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; font-size:0.82rem; color:#475569;">
+              <strong>標誌</strong>：與免費快檢<strong>同一枚</strong> GeoCheck 雷達標誌<br>
+              <strong>鎖定字</strong>：<code>GeoCheck Monitor · By LS-Labs</code><br>
+              <strong>禁止</strong>：為 Dashboard 另做專屬標誌
+            </div>
+          </div>
+
+          <!-- Platform -->
+          <div class="ds-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <span class="ds-badge" style="margin-bottom:12px; background:rgba(139,124,246,0.12); color:#6D28D9;">開發者平台 / Product B</span>
+              <h3 style="font-size:1.15rem; font-weight:900; color:var(--color-navy); margin-bottom:6px;">Platform</h3>
+              <div style="font-family:var(--font-mono); font-size:0.82rem; color:var(--color-blue); margin-bottom:14px;">platform.lslabs.tw</div>
+              <p style="font-size:0.88rem; color:var(--color-slate); line-height:1.6; margin-bottom:16px;">
+                四引擎直連量測 API、SDK、技術文檔、金鑰管理與用量控制台。
+                獨立 <code>gcs_</code> / <code>gck_</code> 與 <code>developer_*</code> 資料表。
+              </p>
+            </div>
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px; font-size:0.82rem; color:#475569;">
+              <strong>標誌</strong>：<strong>LS-Labs Monogram</strong>，非 GeoCheck 標誌<br>
+              <strong>鎖定字</strong>：<code>Platform · By LS-Labs</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-card" style="margin-bottom:32px; border-color:rgba(245,158,11,0.4); background:rgba(245,158,11,0.04);">
+          <h3 style="font-size:1.05rem; font-weight:900; color:var(--color-navy); margin-bottom:10px;">⚠️ 內容資產放置原則</h3>
+          <p style="font-size:0.9rem; color:var(--color-slate); line-height:1.7; margin:0;">
+            子網域在搜尋引擎中大致視為獨立站點，權重不會自動匯流至主域。因此所有會排名的內容資產
+            —— 產品說明、方法論、研究白皮書、blog —— 一律掛在 <code>lslabs.tw</code> 路徑；子網域只放工具與應用本體。
+            <code>lslabs.tw/geocheck</code>（說明與排名頁）與 <code>geocheck.lslabs.tw</code>（工具本體）
+            <strong>兩者並存且分工不同</strong>，前者為 GeoCheck 查詢的 canonical 目標。
+          </p>
+        </div>
+
+<!-- 機器代碼規格 -->
+        <div class="code-viewer">
+          <div class="code-header">
+            <span class="code-title">lslabs-brand-spec-v2.json</span>
+            <button class="btn-copy-code" onclick="copyCodeBlock()">複製 JSON 規格</button>
+          </div>
+          <pre class="code-content" id="token-json-block">{
+  "$schema": "https://lslabs.tw/schemas/brand-tokens-v2.json",
+  "layer_model": {
+    "benchmark": "openai.com -> chatgpt.com -> platform.openai.com",
+    "brand": {
+      "name": "LS-Labs",
+      "domain": "https://lslabs.tw",
+      "mark": "ls-labs-monogram",
+      "role": "Mother brand, R&D hub, research publishing, primary SEO surface",
+      "content_assets": [
+        "https://lslabs.tw/geocheck",
+        "https://lslabs.tw/product/geocheck-monitor",
+        "https://lslabs.tw/product/platform",
+        "https://lslabs.tw/research",
+        "https://lslabs.tw/research/geo-whitepaper",
+        "https://lslabs.tw/blog/*"
+      ]
+    },
+    "capability": {
+      "name": "GeoCheck",
+      "domain": null,
+      "mark": "geocheck-radar",
+      "role": "Four-engine measurement core and AI Trust Index v1 methodology",
+      "note": "Concept layer. Owns no hostname, session, or data store."
+    },
+    "delivery": {
+      "free_audit": {
+        "name": "GeoCheck",
+        "endorsed_lockup": "GeoCheck By LS-Labs",
+        "domain": "https://geocheck.lslabs.tw",
+        "mark": "geocheck-radar",
+        "lockup_asset": "logos/geocheck/geocheck-logo-dark.svg",
+        "role": "Anonymous one-off short audit; funnel entry from lslabs.tw/geocheck"
+      },
+      "monitoring": {
+        "name": "GeoCheck Monitor",
+        "endorsed_lockup": "GeoCheck Monitor By LS-Labs",
+        "domain": "https://app.lslabs.tw",
+        "mark": "geocheck-radar",
+        "lockup_asset": "logos/geocheck/geocheck-monitor-logo-dark.svg",
+        "role": "Authenticated SaaS dashboard; gds_ session and /app-api/v1",
+        "note": "Shares the capability mark with free_audit. Must not receive a dedicated mark."
+      },
+      "developer_platform": {
+        "name": "Platform",
+        "endorsed_lockup": "Platform By LS-Labs",
+        "domain": "https://platform.lslabs.tw",
+        "mark": "ls-labs-monogram",
+        "lockup_asset": "logos/ls-labs/ls-labs-logo-dark.svg",
+        "role": "4-Engine API, Console, SDKs; gcs_/gck_ and developer_* tables"
+      }
+    },
+    "isolation": "free_audit, monitoring and developer_platform are separate in UI, browser API, session, API key, tenant/project authority and data access. They must never be presented as one entity."
   },
   "tokens": {
-    "color": {
-      "primary": { "navy": "#0B3B6F", "navy_dark": "#072A52", "navy_light": "#164E8C" },
-      "accent": { "mint": "#00B8A9", "mint_dark": "#007F75", "mint_light": "#33C6B9", "mint_soft": "#E9F9F7" },
-      "surface": { "page_bg": "#F7F9FC", "card_bg": "#FFFFFF", "border": "rgba(11, 59, 111, 0.1)" },
-      "semantic": {
-        "success": "#27C93F",
-        "unknown_warning": "#B97700",
-        "alert_danger": "#D6453D",
-        "link_blue": "#175CD3"
+    "palette": {
+      "primitives": {
+        "navy": "#0B1F3B",
+        "navy_dark": "#060E1C",
+        "navy_surface": "#0E1A2F",
+        "slate": "#475569",
+        "slate_light": "#64748B",
+        "blue": "#3B82F6",
+        "blue_bright": "#60A5FA",
+        "indigo": "#8B7CF6",
+        "mist": "#E5EAF2"
+      },
+      "semantic_status": {
+        "success": "#10B981",
+        "warning": "#F59E0B",
+        "danger": "#EF4444",
+        "unknown": "#64748B"
+      },
+      "engines_data_viz": {
+        "openai": "#10A37F",
+        "gemini": "#4285F4",
+        "perplexity": "#22B8CD",
+        "claude": "#CC785C"
       }
     },
     "typography": {
-      "display": { "fontFamily": "'Noto Sans TC', sans-serif", "fontWeight": 900, "letterSpacing": "-0.02em" },
-      "body": { "fontFamily": "'Noto Sans TC', system-ui, sans-serif", "fontWeight": 400, "lineHeight": 1.7 },
-      "numbers_and_metrics": { "fontFamily": "'Inter', -apple-system, sans-serif", "features": "tabular-nums", "fontWeight": 800 },
-      "code_and_data": { "fontFamily": "'JetBrains Mono', monospace", "fontWeight": 600 },
-      "dashboard_scope": {
-        "primary": "'Noto Sans TC', system-ui, sans-serif",
-        "numbers": "'Noto Sans TC', system-ui, sans-serif (tabular-nums)",
-        "note": "Dashboard A adopts unified Noto Sans TC for both UI and metrics to eliminate CJK-Latin baseline disparity."
-      }
-    },
-    "radii": { "sm": "8px", "md": "14px", "lg": "20px", "pill": "999px" },
-    "shadows": {
-      "card": "0 8px 30px rgba(11, 59, 111, 0.08)",
-      "window": "0 20px 50px rgba(11, 59, 111, 0.12)"
+      "display": "Inter, sans-serif",
+      "body": "Plus Jakarta Sans, Noto Sans TC, sans-serif",
+      "number": "Inter (font-variant-numeric: tabular-nums)",
+      "mono": "JetBrains Mono, monospace"
     }
-  },
-  "ai_rules_for_code_generation": [
-    "Rule 1: Always use semantic colors. Do not introduce random purple, neon pink, or yellow outside of --gc-warning.",
-    "Rule 2: Any score display MUST honor the 65/35 breakdown: 65% Answer Adoption, 35% Official Citation.",
-    "Rule 3: Unknown states must NEVER be rendered as 0. They must use the amber warning tag (#B97700) with label '未知'.",
-    "Rule 4: Buttons must use border-radius: 999px (pill style) with --gc-mint background and white bold text.",
-    "Rule 5: For comparisons, use .compare-card and .search-compare__grid structure with subtle borders, never heavy solid colors.",
-    "Rule 6: Numbers and metrics use tabular-nums. In Dashboard A (apps/web/app/), --gc-font-number is unified to 'Noto Sans TC' for seamless CJK harmony; for public marketing pages and whitepaper reports, Inter is retained for Latin figures."
-  ]
+  }
 }</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="ds-footer">
+    <div class="container footer-content">
+      <div>
+        <strong>LS-Labs</strong> • 官方設計系統與品牌規範手冊
+        <div style="font-size:0.78rem; color:#94A3B8; margin-top:4px;">
+          © 2026 LS-Labs. All rights reserved. GeoCheck By LS-Labs.
+        </div>
+      </div>
+      <div>
+        <a href="#overview" style="color:var(--color-blue); text-decoration:none; font-weight:700;">回到頂部 ↑</a>
+      </div>
     </div>
-  </section>
+  </footer>
 
-</main>
+  <script>
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
+    }
 
-<script>
-function copyText(val, name) {
-  navigator.clipboard.writeText(val).then(() => {
-    showToast(`已複製 ${name}: ${val}`);
-  });
-}
+    function copyToken(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`✓ 已複製色碼 ${hex} (${varName})`);
+      });
+    }
 
-function copyCode(id) {
-  const code = document.getElementById(id).innerText;
-  navigator.clipboard.writeText(code).then(() => {
-    showToast(`已完整複製 AI 代理人設計規範 JSON！`);
-  });
-}
+    function copyCodeBlock() {
+      const code = document.getElementById('token-json-block').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        showToast(`✓ 已複製完整 JSON 規格`);
+      });
+    }
 
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  toast.innerText = `✓ ${msg}`;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2400);
-}
-</script>
+    function switchTab(tabKey) {
+      // Buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
+      if (activeBtn) activeBtn.classList.add('active');
 
+      // Views
+      document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
+      const activeView = document.getElementById(`view-${tabKey}`);
+      if (activeView) activeView.classList.add('active');
+
+      // Update URL hash without scrolling
+      history.replaceState(null, null, `#${tabKey}`);
+    }
+
+    // Auto-detect URL Hash on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace(/^#/, '');
+      if (['lslabs', 'geocheck', 'matrix'].includes(hash)) {
+        switchTab(hash);
+      }
+    });
+  </script>
 </body>
 </html>

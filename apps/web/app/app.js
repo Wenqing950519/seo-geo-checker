@@ -190,14 +190,14 @@ class DashboardApp {
           <div class="gate-brand-icon">
             <svg width="34" height="34" viewBox="0 0 48 48" fill="none">
               <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
-              <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
-              <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-              <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+              <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B1F3B" stroke-width="4.2" stroke-linecap="round" />
+              <path d="M 16 25 L 22 31 L 38 15" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
             </svg>
           </div>
-          <h2 class="gate-main-title">登入 GeoCheck 行銷儀表板</h2>
+          <h2 class="gate-main-title">登入 LS Labs Dashboard</h2>
           <p class="gate-main-desc">
-            企業級 AI GEO 聲量與可見度監控平台。<br>請使用 Google 帳戶登入以存取品牌專案、提問監測與引用分析。
+            品牌的 AI 可見度與證據監控平台。<br>請使用 Google 帳戶登入以存取品牌專案、提問監測與引用分析。
           </p>
 
           <div class="gate-login-action">

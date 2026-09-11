@@ -6,6 +6,8 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "routes": [
+    { "pattern": "geocheck.lslabs.tw/api/*", "zone_name": "lslabs.tw" },
+    { "pattern": "geocheck.lslabs.tw/report/*", "zone_name": "lslabs.tw" },
     { "pattern": "geocheck.lisheng.cv/api/*", "zone_name": "lisheng.cv" },
     { "pattern": "geocheck.lisheng.cv/report/*", "zone_name": "lisheng.cv" }
   ],

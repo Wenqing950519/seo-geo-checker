@@ -57,7 +57,7 @@ export function renderEvidenceDrawer() {
 
 function renderDrawerContent(obs) {
   const engineId = obs.engine;
-  const eng = ENGINES[engineId] || { name: engineId, color: '#0B3B6F', model: obs.model || '--' };
+  const eng = ENGINES[engineId] || { name: engineId, color: '#0B1F3B', model: obs.model || '--' };
   const questionText = obs.question?.text || obs.questionText || '--';
   const intent = obs.question?.intent || obs.intent || 'general';
   const status = obs.status || 'measured';

@@ -1,4 +1,5 @@
-/ /home.html 200
+/home / 308
+/home/ / 308
 
 # NOTE: this file is shared. It configures Cloudflare Pages *and* the B API
 # Worker, whose assets directory is this same folder, so every rule must be

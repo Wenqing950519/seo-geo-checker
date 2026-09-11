@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GeoCheck Developer API & SDK 技術文件</title>
-<meta name="description" content="GeoCheck Developer API 與官方 TypeScript SDK 完整技術文件：快速開始、4 引擎架構說明、REST API 參考與錯誤碼指南。">
+<title>LS Labs Platform — GeoCheck API 技術文件</title>
+<meta name="description" content="LS Labs Platform 上 GeoCheck API 與 TypeScript SDK 的技術文件。">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,39 +14,41 @@
 <style>
 :root {
   /* Brand Primitive Colors */
-  --gc-navy: #0B3B6F;
-  --gc-navy-dark: #072A52;
-  --gc-navy-light: #164E8C;
-  --gc-mint: #00B8A9;
-  --gc-mint-dark: #007F75;
-  --gc-mint-light: #33C6B9;
-  --gc-mint-soft: #E9F9F7;
+  --gc-navy: #0B1F3B;
+  --gc-navy-dark: #060E1C;
+  --gc-navy-light: #17355F;
+  --gc-navy-surface: #0E1A2F;
+  --gc-mint: #3B82F6;
+  --gc-mint-dark: #1D4ED8;
+  --gc-mint-light: #60A5FA;
+  --gc-mint-soft: #EFF6FF;
 
   /* Neutrals & Surfaces */
   --gc-bg: #FFFFFF;
-  --gc-bg-alt: #F7F9FC;
+  --gc-bg-alt: #F8FAFC;
   --gc-card: #FFFFFF;
-  --gc-text: #1E2A38;
-  --gc-muted: #5A6B7E;
-  --gc-border: rgba(11, 59, 111, 0.1);
-  --gc-border-focus: rgba(0, 184, 169, 0.4);
+  --gc-text: #1E293B;
+  --gc-muted: #475569;
+  --gc-border: rgba(11, 31, 59, 0.1);
+  --gc-border-focus: rgba(59, 130, 246, 0.4);
 
   /* Semantic Status Colors */
-  --gc-success: #27C93F;
-  --gc-warning: #B97700;
-  --gc-danger: #D6453D;
+  --gc-success: #10B981;
+  --gc-warning: #F59E0B;
+  --gc-danger: #EF4444;
 
   /* Layout & Metrics */
   --gc-radius-sm: 8px;
   --gc-radius-md: 14px;
   --gc-radius-lg: 20px;
   --gc-radius-pill: 999px;
-  --gc-shadow-sm: 0 4px 14px rgba(11, 59, 111, 0.05);
-  --gc-shadow-md: 0 10px 30px rgba(11, 59, 111, 0.08);
+  --gc-shadow-sm: 0 4px 14px rgba(11, 31, 59, 0.05);
+  --gc-shadow-md: 0 10px 30px rgba(11, 31, 59, 0.08);
+  --gc-shadow-lg: 0 20px 50px rgba(11, 31, 59, 0.12);
 
   /* Fonts */
-  --gc-font-sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  --gc-font-number: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-sans: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --gc-font-number: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --gc-font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -339,7 +341,7 @@ main.docs-content {
 }
 .callout.warn {
   background: #FEF3C7;
-  border-left: 4px solid #B97700;
+  border-left: 4px solid #F59E0B;
   color: #78350F;
 }
 
@@ -422,21 +424,21 @@ aside.docs-toc {
 <!-- Header -->
 <header class="docs-nav">
   <div class="nav-wrap">
-    <a href="/developers" class="brand-group">
+    <a href="/" class="brand-group">
       <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
         <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
-        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B3B6F" stroke-width="4.2" stroke-linecap="round" />
-        <path d="M 16 25 L 22 31 L 38 15" stroke="#00B8A9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-        <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B1F3B" stroke-width="4.2" stroke-linecap="round" />
+        <path d="M 16 25 L 22 31 L 38 15" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
       </svg>
-      <span class="brand-name">GeoCheck<span style="color:var(--gc-mint)">.</span></span>
+      <span class="brand-name">LS Labs<span style="color:var(--gc-mint)">.</span></span>
       <span class="docs-badge">DOCS v0.1</span>
     </a>
 
     <div class="nav-actions">
-      <a href="/app" style="color:var(--gc-muted); text-decoration:none; font-size:0.88rem; font-weight:600; margin-right:8px;">行銷儀表板 ↗</a>
-      <a href="/">回到首頁</a>
-      <a href="https://api.geocheck.lisheng.cv/developers/console" class="btn-console">API 控制台</a>
+      <a href="https://app.lslabs.tw/" style="color:var(--gc-muted); text-decoration:none; font-size:0.88rem; font-weight:600; margin-right:8px;">Dashboard ↗</a>
+      <a href="https://lslabs.tw/">LS Labs 首頁</a>
+      <a href="/console" class="btn-console">API 控制台</a>
     </div>
   </div>
 </header>
@@ -548,7 +550,7 @@ aside.docs-toc {
         </div>
       </div>
       <p>
-        您可以在 <a href="https://api.geocheck.lisheng.cv/developers/console" style="color:var(--gc-mint-dark); font-weight:700;">API 控制台</a> 建立您的第一把 API 金鑰。金鑰以 <code>gck_</code> 為前綴，建立時只展示一次。
+        您可以在 <a href="/console" style="color:var(--gc-mint-dark); font-weight:700;">API 控制台</a> 建立您的第一把 API 金鑰。金鑰以 <code>gck_</code> 為前綴，建立時只展示一次。
       </p>
     </section>
 
@@ -603,7 +605,7 @@ aside.docs-toc {
 
 <span class="k">const</span> client = <span class="k">new</span> <span class="f">GeoCheckClient</span>({
   apiKey: process.env.GEOCHECK_API_KEY!,
-  baseUrl: <span class="s">"https://api.geocheck.lisheng.cv"</span> <span class="c">// 預設</span>
+  baseUrl: <span class="s">"https://platform.lslabs.tw"</span> <span class="c">// 預設</span>
 });
 
 <span class="k">try</span> {

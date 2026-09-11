@@ -51,7 +51,7 @@ export function renderOverview(data) {
             <div class="scorecard-fraction font-number">${brandMention.fraction ? `${brandMention.fraction} 次提及` : '尚無觀測'}</div>
           </div>
           <div class="scorecard-sparkline">
-            ${renderSparkline(mentionSeries, { stroke: '#00B8A9' })}
+            ${renderSparkline(mentionSeries, { stroke: '#3B82F6' })}
           </div>
           <div class="scorecard-footer">
             <div class="footer-left">
@@ -77,7 +77,7 @@ export function renderOverview(data) {
             <div class="scorecard-fraction font-number">${officialCite.fraction ? `${officialCite.fraction} 次引用` : '尚無引用'}</div>
           </div>
           <div class="scorecard-sparkline">
-            ${renderSparkline(officialSeries, { stroke: '#0B3B6F' })}
+            ${renderSparkline(officialSeries, { stroke: '#0B1F3B' })}
           </div>
           <div class="scorecard-footer">
             <div class="footer-left">
@@ -127,7 +127,7 @@ export function renderOverview(data) {
             <div class="scorecard-fraction font-number">${coverage.fraction ? `${coverage.fraction} 成功執行` : '100% 完整'}</div>
           </div>
           <div class="scorecard-sparkline">
-            ${renderSparkline(coverageSeries, { stroke: '#27C93F' })}
+            ${renderSparkline(coverageSeries, { stroke: '#10B981' })}
           </div>
           <div class="scorecard-footer">
             <div class="footer-left">

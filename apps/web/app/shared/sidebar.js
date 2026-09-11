@@ -30,11 +30,11 @@ export function renderSidebar() {
   return `
     <aside class="dashboard-sidebar">
       <div class="sidebar-header">
-        <a href="/" class="brand-link" title="返回 GeoCheck 首頁">
+        <a href="https://lslabs.tw/" class="brand-link" title="返回 LS Labs 首頁">
           <div class="brand-logo-icon">${ICONS.logo}</div>
           <div class="brand-text">
-            <div class="brand-name">GeoCheck<span style="color:var(--gc-mint)">.</span></div>
-            <div class="brand-sub">AI GEO Marketer Suite</div>
+            <div class="brand-name">GeoCheck Monitor<span style="color:var(--gc-mint)">.</span></div>
+            <div class="brand-sub">By LS-Labs</div>
           </div>
         </a>
       </div>
@@ -71,12 +71,12 @@ export function renderSidebar() {
         `).join('')}
 
         <div class="nav-section-title" style="margin-top: 18px;">開發者生態</div>
-        <a href="/developers"
+        <a href="https://platform.lslabs.tw/"
            class="nav-item"
            target="_blank"
            rel="noopener noreferrer"
            style="text-decoration:none;"
-           title="開啟 GeoCheck 開發者平台與官方量測 API (另開新視窗)">
+           title="開啟 LS Labs Platform 與官方量測 API (另開新視窗)">
           <span class="nav-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="16 18 22 12 16 6"/>
@@ -107,7 +107,7 @@ export function renderSidebar() {
           </div>
         </div>
         <div class="sidebar-version-tag">
-          <span>GeoCheck Marketer Suite</span>
+          <span>LS Labs Dashboard</span>
           <span>v1.0</span>
         </div>
       </div>

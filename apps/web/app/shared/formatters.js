@@ -16,30 +16,30 @@ export const ENGINES = {
     id: 'gemini',
     name: 'Google Gemini',
     model: 'gemini-3.5-flash',
-    color: '#1A73E8',
-    bg: '#EBF3FE',
-    border: 'rgba(26, 115, 232, 0.25)',
-    pillBg: 'rgba(26, 115, 232, 0.12)',
+    color: '#4285F4',
+    bg: '#EFF6FF',
+    border: 'rgba(66, 133, 244, 0.25)',
+    pillBg: 'rgba(66, 133, 244, 0.12)',
     tag: 'AI Overviews'
   },
   anthropic: {
     id: 'anthropic',
     name: 'Claude',
     model: 'claude-haiku-4.5',
-    color: '#D97706',
-    bg: '#FEF7EC',
-    border: 'rgba(217, 119, 6, 0.25)',
-    pillBg: 'rgba(217, 119, 6, 0.12)',
+    color: '#CC785C',
+    bg: '#FAF3F0',
+    border: 'rgba(204, 120, 92, 0.25)',
+    pillBg: 'rgba(204, 120, 92, 0.12)',
     tag: 'Claude Search'
   },
   perplexity: {
     id: 'perplexity',
     name: 'Perplexity',
     model: 'sonar-pro',
-    color: '#00B8A9',
-    bg: '#E6FAF8',
-    border: 'rgba(0, 184, 169, 0.25)',
-    pillBg: 'rgba(0, 184, 169, 0.12)',
+    color: '#22B8CD',
+    bg: '#EBF9FA',
+    border: 'rgba(34, 184, 205, 0.25)',
+    pillBg: 'rgba(34, 184, 205, 0.12)',
     tag: 'Perplexity'
   }
 };

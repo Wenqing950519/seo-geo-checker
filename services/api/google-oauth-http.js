@@ -8,11 +8,11 @@ function createGoogleOAuthHttpHandler(options = {}) {
   } = options;
   const clientId = String(config.GOOGLE_OAUTH_CLIENT_ID || "").trim();
   const clientSecret = String(config.GOOGLE_OAUTH_CLIENT_SECRET || "").trim();
-  const dashboardOrigin = String(config.DASHBOARD_ORIGIN || config.SITE_ORIGIN || "https://geocheck.lisheng.cv").replace(/\/+$/, "");
-  const developerOrigin = String(config.DEVELOPER_API_ORIGIN || "https://api.geocheck.lisheng.cv").replace(/\/+$/, "");
+  const dashboardOrigin = String(config.DASHBOARD_ORIGIN || "https://app.lslabs.tw").replace(/\/+$/, "");
+  const developerOrigin = String(config.DEVELOPER_API_ORIGIN || "https://platform.lslabs.tw").replace(/\/+$/, "");
   const routes = {
-    dashboard: { start: "/app-api/v1/auth/google/start", callback: "/app-api/v1/auth/google/callback", origin: dashboardOrigin, redirect: "/app/", api: dashboardApi?.workerApi, storage: "gc_dashboard_session", scopes: ["openid", "email", "profile"] },
-    developer: { start: "/v1/auth/google/start", callback: "/v1/auth/google/callback", origin: developerOrigin, redirect: "/developers/console", api: developerApi?.workerApi, storage: "gc_developer_session", scopes: ["openid", "email", "profile"] }
+    dashboard: { start: "/app-api/v1/auth/google/start", callback: "/app-api/v1/auth/google/callback", origin: dashboardOrigin, redirect: "/", api: dashboardApi?.workerApi, storage: "gc_dashboard_session", scopes: ["openid", "email", "profile"] },
+    developer: { start: "/v1/auth/google/start", callback: "/v1/auth/google/callback", origin: developerOrigin, redirect: "/console", api: developerApi?.workerApi, storage: "gc_developer_session", scopes: ["openid", "email", "profile"] }
   };
   // A Worker serves the callback and the property choice in different isolates,
   // so this cannot be a Map in production. It is injected, and the in-memory
@@ -149,7 +149,7 @@ function clearCookie(name) { return `${name}=; Path=/; HttpOnly; SameSite=Lax; M
 function readCookie(req, name) { return String(req.headers.cookie || "").split(/;\s*/).find((part) => part.startsWith(`${name}=`))?.slice(name.length + 1) || ""; }
 function bearer(req) { const value = String(req.headers.authorization || ""); return /^Bearer\s+(.+)$/i.test(value) ? value.replace(/^Bearer\s+/i, "").trim() : ""; }
 function propertyMatchesSite(propertyUri, siteUrl) { try { const host = new URL(siteUrl).hostname.replace(/^www\./, "").toLowerCase(); const property = String(propertyUri || "").toLowerCase(); return property.startsWith("sc-domain:") ? host === property.slice(10) || host.endsWith(`.${property.slice(10)}`) : new URL(property).hostname.replace(/^www\./, "") === host; } catch { return false; } }
-function gscPropertySelectionPage({ pendingId, properties }) { const options = properties.map((property) => `<label><input type="radio" name="property" value="${escapeHtml(property)}" required> ${escapeHtml(property)}</label>`).join(""); return `<!doctype html><meta charset="utf-8"><title>選擇 Search Console property</title><style>body{max-width:620px;margin:8vh auto;padding:24px;font:16px/1.5 system-ui;color:#172033}fieldset{border:1px solid #d7e0ea;border-radius:10px;padding:16px}label{display:block;padding:10px 0}button{margin-top:18px;background:#007f75;color:#fff;border:0;border-radius:6px;padding:10px 16px;font-weight:700}</style><h1>選擇此 Project 的 Search Console property</h1><p>只列出與目前 Project 網域相符的 property。</p><form id="gsc-select"><fieldset>${options}</fieldset><button>連接並開始匯入</button></form><script>document.querySelector('#gsc-select').addEventListener('submit',async(e)=>{e.preventDefault();const property=new FormData(e.currentTarget).get('property');const token=localStorage.getItem('gc_dashboard_session');const r=await fetch('/app-api/v1/projects/google/gsc/select',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({pending_id:${JSON.stringify(pendingId)},property_uri:property})});location.replace('/app/#gsc='+(r.ok?'connected':'failed'));});</script>`; }
+function gscPropertySelectionPage({ pendingId, properties }) { const options = properties.map((property) => `<label><input type="radio" name="property" value="${escapeHtml(property)}" required> ${escapeHtml(property)}</label>`).join(""); return `<!doctype html><meta charset="utf-8"><title>選擇 Search Console property</title><style>body{max-width:620px;margin:8vh auto;padding:24px;font:16px/1.5 system-ui;color:#172033}fieldset{border:1px solid #d7e0ea;border-radius:10px;padding:16px}label{display:block;padding:10px 0}button{margin-top:18px;background:#007f75;color:#fff;border:0;border-radius:6px;padding:10px 16px;font-weight:700}</style><h1>選擇此 Project 的 Search Console property</h1><p>只列出與目前 Project 網域相符的 property。</p><form id="gsc-select"><fieldset>${options}</fieldset><button>連接並開始匯入</button></form><script>document.querySelector('#gsc-select').addEventListener('submit',async(e)=>{e.preventDefault();const property=new FormData(e.currentTarget).get('property');const token=localStorage.getItem('gc_dashboard_session');const r=await fetch('/app-api/v1/projects/google/gsc/select',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({pending_id:${JSON.stringify(pendingId)},property_uri:property})});location.replace('/#gsc='+(r.ok?'connected':'failed'));});</script>`; }
 function escapeHtml(value) { return String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character])); }
 function coded(code) { const error = new Error(code); error.code = code; return error; }
 // Written in the product's own voice: whoever lands here followed a link and is
@@ -167,7 +167,7 @@ const ERROR_MESSAGES = Object.freeze({
 
 function sendErrorPage(res, status, code, origin) {
   const detail = ERROR_MESSAGES[code] || "授權沒有完成，沒有任何資料被儲存。";
-  const back = `${origin}/app/`;
+  const back = `${origin}/`;
   res.writeHead(status, {
     "Content-Type": "text/html; charset=utf-8",
     "Cache-Control": "no-store",

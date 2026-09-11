@@ -113,9 +113,9 @@
   margin-top: 4px;
 }
 
-.dist-seg.complete { background: #27C93F; }
+.dist-seg.complete { background: #10B981; }
 .dist-seg.partial { background: #D97706; }
-.dist-seg.failed { background: #D6453D; }
+.dist-seg.failed { background: #EF4444; }
 
 .runs-dist-legend {
   display: flex;
@@ -201,9 +201,9 @@
   overflow: hidden;
 }
 
-.cov-seg.measured { background: #27C93F; }
+.cov-seg.measured { background: #10B981; }
 .cov-seg.unknown { background: #D97706; }
-.cov-seg.failed { background: #D6453D; }
+.cov-seg.failed { background: #EF4444; }
 
 .text-success { color: #15803D; }
 .text-warning { color: #B45309; }

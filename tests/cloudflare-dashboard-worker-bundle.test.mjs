@@ -89,13 +89,17 @@ try {
   // Product isolation: the Dashboard Worker must not reach Developer API state.
   assert.doesNotMatch(worker, /DEVELOPER_DB|developer_|\/v1\/console/, "The Dashboard Worker must not touch Developer API state");
 
-  assert.equal(config.vars.DASHBOARD_ADMISSION_ENABLED, "false", "Dashboard admission must ship closed");
+  // Admission is open by the user's 2026-09-12 decision so the weekly tracking cron
+  // actually runs; the value is pinned here so a later edit is a deliberate one.
+  // This opens `scheduled()` only -- the NewebPay callback below stays hard-closed.
+  assert.equal(config.vars.DASHBOARD_ADMISSION_ENABLED, "true", "Dashboard tracking admission is open");
   assert.equal(config.vars.DASHBOARD_PAYMENT_MODE, "sandbox", "Dashboard payments must ship in sandbox mode");
   assert.equal(config.d1_databases[0].binding, "DASHBOARD_DB");
   assert.equal(config.d1_databases[0].database_name, "geocheck-dashboard");
   assert.deepEqual(config.routes, [
+    { pattern: "app.lslabs.tw/app-api/*", zone_name: "lslabs.tw" },
     { pattern: "geocheck.lisheng.cv/app-api/*", zone_name: "lisheng.cv" }
-  ], "The Dashboard Worker owns /app-api/* only; Pages keeps /app/* and the audit Worker keeps /api/* and /report/*");
+  ], "The Dashboard Worker owns /app-api/* only on its new and compatibility hosts");
 
   console.log("cloudflare dashboard worker bundle tests passed");
 } finally {

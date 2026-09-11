@@ -23,7 +23,7 @@ export class GeoCheckClient {
   private readonly apiKey: string; private readonly baseUrl: string; private readonly fetchImpl: typeof fetch;
   constructor(options: GeoCheckClientOptions) {
     if (!options?.apiKey?.trim()) throw new TypeError("apiKey is required");
-    this.apiKey = options.apiKey.trim(); this.baseUrl = (options.baseUrl || "https://api.geocheck.lisheng.cv").replace(/\/+$/, "");
+    this.apiKey = options.apiKey.trim(); this.baseUrl = (options.baseUrl || "https://platform.lslabs.tw").replace(/\/+$/, "");
     this.fetchImpl = options.fetch || globalThis.fetch; if (!this.fetchImpl) throw new TypeError("A fetch implementation is required");
   }
   async createMeasurement(request: MeasurementRequest, idempotencyKey: string): Promise<MeasurementAccepted> {

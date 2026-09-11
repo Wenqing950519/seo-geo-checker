@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 76" fill="none" width="100%" height="100%">
+  <defs>
+    <linearGradient id="lf2-gradL" x1="250" y1="180" x2="420" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="0.28" stop-color="#2459A9"/>
+      <stop offset="0.62" stop-color="#17355F"/>
+      <stop offset="1" stop-color="#0B1F3B"/>
+    </linearGradient>
+    <linearGradient id="lf2-gradBottom" x1="290" y1="710" x2="700" y2="790" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1F3B"/>
+      <stop offset="0.48" stop-color="#24466F"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="lf2-gradS" x1="430" y1="270" x2="770" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1F3B"/>
+      <stop offset="0.34" stop-color="#213E67"/>
+      <stop offset="0.58" stop-color="#3B82F6"/>
+      <stop offset="0.78" stop-color="#1F4E98"/>
+      <stop offset="1" stop-color="#0B1F3B"/>
+    </linearGradient>
+    <linearGradient id="lf2-gradAccent" x1="650" y1="250" x2="815" y2="330" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="0.52" stop-color="#5A78F8"/>
+      <stop offset="1" stop-color="#8B7CF6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- LS Emblem Scaled to height 60 on left -->
+  <g transform="translate(6, 6) scale(0.096)">
+    <!-- Shifted by -210, -190 to center tightly -->
+    <g transform="translate(-190, -180)">
+      <path d="M235 300 L345 210 L345 650 C345 680 356 699 372 714 L255 810 L235 830 Z" fill="url(#lf2-gradL)"/>
+      <path d="M267 829 L385 730 H695 C700 774 682 807 654 829 H267 Z" fill="url(#lf2-gradBottom)"/>
+      <path d="M455 255 H637 L582 330 H507 C467 330 443 350 443 379 C443 409 465 425 500 438 L650 495 C726 524 772 569 776 630 C780 690 752 742 692 782 C670 797 646 806 619 812 C667 775 686 739 684 701 C682 660 654 635 607 617 L480 569 C393 536 356 482 356 416 C356 328 394 274 455 255 Z" fill="url(#lf2-gradS)"/>
+      <path d="M662 255 H813 L760 330 H610 Z" fill="url(#lf2-gradAccent)"/>
+    </g>
+  </g>
+
+  <!-- Wordmark "LS-Labs" -->
+  <text x="82" y="45" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" letter-spacing="-0.03em" fill="#FFFFFF">LS-Labs</text>
+  
+  <!-- Subtitle "INSIGHT IN FOCUS" -->
+  <text x="83" y="64" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" letter-spacing="0.32em" fill="#94A3B8">INSIGHT IN FOCUS</text>
+</svg>

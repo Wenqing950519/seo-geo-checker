@@ -1,5 +1,5 @@
 /* GeoCheck Product A Marketing Dashboard Master Stylesheet */
-/* Strictly built upon GeoCheck Brand Identity System (https://geocheck.lisheng.cv/brand) */
+/* LS Labs Dashboard, using the GeoCheck design system (https://geocheck.lslabs.tw/brand). */
 /* Professional enterprise analytics aesthetic: high legibility, calm contrast, zero clutter */
 
 @import './overview/overview.css';
@@ -11,41 +11,43 @@
 @import './auth/auth.css';
 
 :root {
-  /* GeoCheck Brand Primitive Colors (brand.html) */
-  --gc-navy: #0B3B6F;
-  --gc-navy-dark: #072A52;
-  --gc-navy-light: #164E8C;
-  --gc-mint: #00B8A9;
-  --gc-mint-dark: #007F75;
-  --gc-mint-light: #33C6B9;
-  --gc-mint-soft: #E9F9F7;
+  /* GeoCheck Brand Primitive Colors */
+  --gc-navy: #0B1F3B;
+  --gc-navy-dark: #060E1C;
+  --gc-navy-light: #17355F;
+  --gc-navy-surface: #0E1A2F;
+  --gc-mint: #3B82F6;          /* Action Blue */
+  --gc-mint-dark: #1D4ED8;     /* Pressed */
+  --gc-mint-light: #60A5FA;    /* Sky Glow */
+  --gc-mint-soft: #EFF6FF;     /* Soft Blue */
 
   /* Neutrals & Surfaces */
-  --gc-bg: #F7F9FC;
+  --gc-bg: #F8FAFC;
   --gc-bg-card: #FFFFFF;
-  --gc-text: #1E2A38;
-  --gc-muted: #5A6B7E;
-  --gc-border: rgba(11, 59, 111, 0.1);
-  --gc-border-focus: rgba(0, 184, 169, 0.4);
+  --gc-text: #1E293B;
+  --gc-muted: #475569;
+  --gc-border: rgba(11, 31, 59, 0.1);
+  --gc-border-focus: rgba(59, 130, 246, 0.4);
 
   /* AI Engines Canonical Palette */
   --gc-engine-openai: #10A37F;
-  --gc-engine-gemini: #1A73E8;
-  --gc-engine-anthropic: #D97706;
-  --gc-engine-perplexity: #00B8A9;
+  --gc-engine-gemini: #4285F4;
+  --gc-engine-anthropic: #CC785C;
+  --gc-engine-perplexity: #22B8CD;
 
   /* Semantic Statuses */
-  --gc-success: #27C93F;
-  --gc-warning: #B97700;
-  --gc-danger: #D6453D;
+  --gc-success: #10B981;
+  --gc-warning: #F59E0B;
+  --gc-danger: #EF4444;
+  --gc-unknown: #64748B;
 
   /* Layout & Metrics */
   --gc-radius-sm: 8px;
   --gc-radius-md: 14px;
   --gc-radius-lg: 20px;
-  --gc-shadow-sm: 0 4px 14px rgba(11, 59, 111, 0.05);
-  --gc-shadow-md: 0 10px 30px rgba(11, 59, 111, 0.08);
-  --gc-shadow-lg: 0 20px 50px rgba(11, 59, 111, 0.12);
+  --gc-shadow-sm: 0 4px 14px rgba(11, 31, 59, 0.05);
+  --gc-shadow-md: 0 10px 30px rgba(11, 31, 59, 0.08);
+  --gc-shadow-lg: 0 20px 50px rgba(11, 31, 59, 0.12);
 
   /* Fonts - Enterprise Typography System (Dashboard Scoped: Unified Noto Sans TC) */
   --gc-font-sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -152,7 +154,7 @@ body {
   transition: all 0.15s;
 }
 .btn-ghost:hover {
-  background: rgba(11, 59, 111, 0.05);
+  background: rgba(11, 31, 59, 0.05);
   color: var(--gc-navy);
 }
 
@@ -635,7 +637,7 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 14px;
-  background: rgba(11, 59, 111, 0.06);
+  background: rgba(11, 31, 59, 0.06);
   color: var(--gc-mint);
   margin-bottom: 4px;
 }
@@ -657,7 +659,7 @@ body {
 .spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(11, 59, 111, 0.1);
+  border: 3px solid rgba(11, 31, 59, 0.1);
   border-top-color: var(--gc-mint);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -857,7 +859,7 @@ body {
   max-width: 90vw;
   background: #FFFFFF;
   z-index: 1200;
-  box-shadow: 4px 0 24px rgba(11, 59, 111, 0.18);
+  box-shadow: 4px 0 24px rgba(11, 31, 59, 0.18);
   display: flex;
   flex-direction: column;
   transform: translateX(-100%);
@@ -870,7 +872,7 @@ body {
 .brand-drawer-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(11, 59, 111, 0.3);
+  background: rgba(11, 31, 59, 0.3);
   backdrop-filter: blur(2px);
   z-index: 1190;
   animation: fadeIn 0.2s ease-out;
@@ -1271,7 +1273,7 @@ body {
   border: 1px solid var(--gc-border);
   border-radius: 16px;
   padding: 44px 36px 36px;
-  box-shadow: 0 8px 32px rgba(11, 59, 111, 0.06);
+  box-shadow: 0 8px 32px rgba(11, 31, 59, 0.06);
   text-align: center;
   display: flex;
   flex-direction: column;

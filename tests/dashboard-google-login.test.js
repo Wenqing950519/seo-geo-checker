@@ -15,7 +15,7 @@ const { createBoundD1DashboardStore } = require("../services/api/storage/dashboa
 
 const ROOT = path.resolve(__dirname, "..");
 const MIGRATIONS = path.join(ROOT, "services/cloudflare/dashboard/migrations");
-const ORIGIN = "https://geocheck.lisheng.cv";
+const ORIGIN = "https://app.lslabs.tw";
 const CONFIG = {
   DASHBOARD_API_ENABLED: "true",
   DASHBOARD_DATABASE_PATH: "",
@@ -160,7 +160,7 @@ async function main() {
   assert.match(callback.body, /gc_dashboard_session/, "The browser must receive a Dashboard session");
   assert.match(callback.body, /gds_/, "The session must be a Dashboard session, never a Developer one");
   assert.doesNotMatch(callback.body, /gcs_|gck_/, "Developer credentials must never reach the Dashboard");
-  assert.match(callback.body, /location\.replace\("\/app\/"\)/, "Sign-in must land on the Dashboard");
+  assert.match(callback.body, /location\.replace\("\/"\)/, "Sign-in must land on the Dashboard");
   assert.equal(
     googleCalls[0].options.body.get("code_verifier").length > 0, true,
     "The token exchange must send the PKCE verifier"
@@ -184,7 +184,7 @@ async function main() {
   // readable and offer a way back — not a JSON blob in the address bar.
   assert.match(replay.headers["Content-Type"], /text\/html/);
   assert.match(replay.body, /oauth_state_invalid/);
-  assert.match(replay.body, /href="https:\/\/geocheck\.lisheng\.cv\/app\/"/);
+  assert.match(replay.body, /href="https:\/\/app\.lslabs\.tw\/"/);
 
   // ---- a callback without the browser's nonce cookie is refused ----
   const noCookie = await invoke(oauth, {

@@ -266,3 +266,29 @@ tags:
   - 於 `/developers/console` 與 `/developers/docs` 點擊「行銷儀表板 ↗」，驗證是否正確切換回 `/app`。
   - 執行 `gh auth login -h github.com` 刷新 GitHub 憑證後，執行 `git push origin main`。
 - **下次遇到類似問題我會怎麼做**：在處理背景執行之 `git push` 時，先以快速的唯讀或狀態檢查確認遠端認證狀態，避免因圖形驗證提示導致任務阻塞。
+
+---
+
+### 2026-09-12 全站新版品牌設計系統重構（LS-Labs & GeoCheck 三層架構實踐）
+
+- **情境**：依據最新發布的 LS-Labs 設計系統與品牌手冊（以及 D-048、D-049、D-024、D-043），全面將全站相關網頁（規範頁、免費快檢、SaaS 儀表板、Platform 開發者平台、技術文件與診斷報告）改版為新版三層架構與全新色彩規範。
+- **核心概念**（Agent 版本，**請用自己的話改寫後才算數**）：
+  1. **多產品矩陣下的「品牌 / 能力 / 交付」三層架構（Three-Layer Model）**：
+     - 品牌層（`LS-Labs`，`lslabs.tw`）：母品牌承載全站 SEO、組織願景與研究白皮書。
+     - 能力層（`GeoCheck`，無獨立網域）：固定四引擎量測與 AI 信任值 v1 評分方法論本體。不配專屬網域，確保未來擴充第二個能力時系統架構依然純潔。
+     - 交付層（三個交付面）：免費快檢（`geocheck.lslabs.tw`）、SaaS Dashboard（`app.lslabs.tw`）、Platform 開發者平台（`platform.lslabs.tw`）。
+  2. **標誌鎖定與署名原則（Lockup & Endorsement Boundary）**：
+     - 免費快檢與 SaaS 儀表板使用**同一枚** GeoCheck 雷達標誌，差異僅在鎖定字（`GeoCheck.` vs `GeoCheck Monitor.`），傳遞「同一個能力、不同購買/使用形式」心智，禁止為 Dashboard 另做專屬標誌。
+     - 開發者平台使用 **LS-Labs 透鏡 Monogram 標誌**（對標 `platform.openai.com` 使用 OpenAI 母標誌），鎖定字為 `Platform.`，署名為 `By LS-Labs`。
+  3. **經典核心資產的守護與升級（D-024 Locked Core Asset）**：
+     - 重大改版不等於任意廢棄既有核心資產。首頁經典 Hero 雷達視覺（三層同心圓、360 度旋轉雷達掃描束、5 顆浮動知識膠囊）結構 100% 完整保留；底色升級為深邃夜幕（`#060E1C`），掃描錐形漸層融合晴空藍（`#3B82F6`）與翡翠綠（`#10B981`），浮動膠囊改為深色微透玻璃擬態（`#0E1A2F`）。
+  4. **嚴格的度量排印與 SaaS 語義色（D-043 & D-020）**：
+     - 所有商業度量、率值百分比與計數全面套用 `Inter` 搭配 `font-variant-numeric: tabular-nums`，徹底告別代碼斜線零（`Ø`）並確保縱向數字平直對齊。
+     - 未知狀態（unknown）嚴格遵照 D-020 採用暮靄灰或琥珀金標記，絕不當成 0 分誤導商家。
+- **我能解釋到什麼程度**：〔待自評〕
+- **仍需人工驗證**：
+  - 於瀏覽器中檢視首頁深色雷達 Hero 旋轉動畫與 5 顆浮動膠囊位置。
+  - 檢視 `brand.html` 規範頁三大 Tab 切換與色塊點擊複製。
+  - 驗證 Dashboard 與 Platform 頂欄標誌是否明確分立（GeoCheck 雷達 vs LS-Labs 透鏡 Monogram）。
+- **下次遇到類似問題我會怎麼做**：在執行全站跨頁面的設計系統重構時，先釐清「品牌層級、標誌鎖定、語義色彩、核心鎖定資產」四條硬邊界，再透過腳本精確替換並執行自動化回歸測試，確保品牌現代化與演算法契約相容並存。
+

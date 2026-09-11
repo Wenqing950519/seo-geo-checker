@@ -79,7 +79,7 @@ export function renderPerformance(data) {
 
         <div class="engine-matrix-grid">
           ${by_engine.map(engRow => {
-            const engCfg = ENGINES[engRow.key] || { name: engRow.key, color: '#0B3B6F', model: '--', tag: '搜尋' };
+            const engCfg = ENGINES[engRow.key] || { name: engRow.key, color: '#0B1F3B', model: '--', tag: '搜尋' };
             const mention = formatRatio(engRow.brand_mention_rate);
             const cite = formatRatio(engRow.official_citation_rate);
             const cov = formatRatio(engRow.coverage);

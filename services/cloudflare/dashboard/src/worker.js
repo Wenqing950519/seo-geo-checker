@@ -196,7 +196,7 @@ function createGscClient(env) {
 function createOAuthRuntime(env) {
   const gscClient = createGscClient(env);
   return createGoogleOAuthHttpHandler({
-    config: { ...env, DASHBOARD_ORIGIN: env.DASHBOARD_ORIGIN || "https://geocheck.lisheng.cv" },
+    config: { ...env, DASHBOARD_ORIGIN: env.DASHBOARD_ORIGIN || "https://app.lslabs.tw" },
     dashboardApi: createRuntime(env),
     gscClient,
     stateStore: createD1OAuthStateStore(env.DASHBOARD_DB),
@@ -224,7 +224,7 @@ function createTrackingRunner(env) {
   return createDashboardTrackingRunner({
     store: createBoundD1DashboardStore({ db: env.DASHBOARD_DB }),
     client: createInternalMeasurementClient({
-      baseUrl: env.DEVELOPER_API_ORIGIN || "https://api.geocheck.lisheng.cv",
+      baseUrl: env.DEVELOPER_API_ORIGIN || "https://platform.lslabs.tw",
       secret: env.DASHBOARD_INTERNAL_CALLER_SECRET
     }),
     // Writing the Run goes through the Dashboard service so the observation

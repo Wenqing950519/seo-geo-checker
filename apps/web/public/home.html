@@ -12,19 +12,19 @@
   gtag('config', 'G-CBTTKVLT82');
 </script>
 <script src="/analytics.js"></script>
-<title>GeoCheck — AI 搜尋能見度與信任值檢測</title>
-<meta name="description" content="輸入你的網站網址，約 90 秒看出顧客問 AI 的時候，AI 有沒有提到你、有沒有引用你的官網。免費、不用註冊。">
+<title>GeoCheck by LS Labs — 免費 AI 能見度快速檢測</title>
+<meta name="description" content="GeoCheck by LS Labs：輸入網站網址，快速確認品牌是否在 AI 回答中被提及或引用；免費、不用註冊。">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://geocheck.lisheng.cv/">
+<link rel="canonical" href="https://geocheck.lslabs.tw/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="apple-touch-icon" href="/favicon.png?v=radar-20260904">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://geocheck.lisheng.cv/">
-<meta property="og:title" content="GeoCheck — AI 搜尋能見度與信任值檢測">
+<meta property="og:url" content="https://geocheck.lslabs.tw/">
+<meta property="og:title" content="GeoCheck by LS Labs — 免費 AI 能見度快速檢測">
 <meta property="og:description" content="免費檢查：顧客問 AI 的時候，AI 有沒有提到你的店、有沒有引用你的官網。">
-<meta property="og:image" content="https://geocheck.lisheng.cv/og-image.png">
+<meta property="og:image" content="https://geocheck.lslabs.tw/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI 信任值 — 顧客問 AI 的時候，AI 有沒有提到你？">
 <meta name="twitter:description" content="免費檢查：顧客問 AI 的時候，AI 有沒有提到你的店、有沒有引用你的官網。">
-<meta name="twitter:image" content="https://geocheck.lisheng.cv/og-image.png">
+<meta name="twitter:image" content="https://geocheck.lslabs.tw/og-image.png">
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
@@ -40,10 +40,10 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://geocheck.lisheng.cv/#organization",
-      "name": "GEOCheck",
-      "url": "https://geocheck.lisheng.cv/",
-      "description": "提供免費的網站檢查工具，讓商家知道顧客問 AI 的時候，AI 會不會提到自己的店。",
+      "@id": "https://geocheck.lslabs.tw/#organization",
+      "name": "LS Labs",
+      "url": "https://lslabs.tw/",
+      "description": "LS Labs 建立可驗證的 AI 品牌可見度量測工具與研究。",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "project inquiries",
@@ -52,10 +52,10 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://geocheck.lisheng.cv/#website",
-      "url": "https://geocheck.lisheng.cv/",
-      "name": "GEOCheck — AI 信任值檢查",
-      "publisher": { "@id": "https://geocheck.lisheng.cv/#organization" },
+      "@id": "https://geocheck.lslabs.tw/#website",
+      "url": "https://geocheck.lslabs.tw/",
+      "name": "GeoCheck by LS Labs — AI 能見度快速檢測",
+      "publisher": { "@id": "https://geocheck.lslabs.tw/#organization" },
       "inLanguage": "zh-TW"
     },
     {
@@ -103,11 +103,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0B3B6F; --navy-d:#072A52; --teal:#00B8A9; --teal-d:#009688;
-  --bg:#FFFFFF; --bg-alt:#F7F9FC; --text:#1E2A38; --muted:#5A6B7E;
-  --card-shadow:0 6px 24px rgba(11,59,111,.08);
-  --radius:16px;
-  --font-sans:'Noto Sans TC',system-ui,sans-serif;
+  --navy:#0B1F3B; --navy-d:#060E1C; --navy-surface:#0E1A2F;
+  --blue:#3B82F6; --blue-bright:#60A5FA; --blue-deep:#1D4ED8;
+  --teal:#3B82F6; --teal-d:#1D4ED8; --teal-subtle:#EFF6FF;
+  --bg:#FFFFFF; --bg-alt:#F8FAFC; --text:#1E293B; --muted:#475569;
+  --card-shadow:0 4px 16px rgba(11,31,59,.06);
+  --card-shadow-hover:0 12px 32px rgba(11,31,59,.12);
+  --radius:14px;
+  --font-sans:'Plus Jakarta Sans','Noto Sans TC',system-ui,-apple-system,sans-serif;
   --font-number:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   --font-mono:'JetBrains Mono',monospace;
 }
@@ -144,14 +147,17 @@ nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-sha
 }
 
 /* ===== hero ===== */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:120px 24px 80px;background:linear-gradient(180deg,#EAF3FB 0%,#F7FBFD 55%,#fff 100%);overflow:hidden}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:120px 24px 80px;background:radial-gradient(circle at 50% 38%, #0E1A2F 0%, #060E1C 100%);color:#FFFFFF;overflow:hidden}
+.hero h1{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:900;color:#FFFFFF;line-height:1.25;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:#60A5FA;position:relative}
+.hero p.lead{margin:24px auto 40px;font-size:clamp(1rem,1.8vw,1.2rem);color:#94A3B8;max-width:600px}
 .hero-visual{position:absolute;inset:0;pointer-events:none}
-.ring{position:absolute;left:50%;top:46%;border:1.5px solid rgba(11,59,111,.10);border-radius:50%;transform:translate(-50%,-50%)}
-.ring.r1{width:420px;height:420px}.ring.r2{width:640px;height:640px;border-color:rgba(11,59,111,.07)}.ring.r3{width:880px;height:880px;border-color:rgba(11,59,111,.05)}
-.sweep{position:absolute;left:50%;top:46%;width:880px;height:880px;transform:translate(-50%,-50%);border-radius:50%;background:conic-gradient(from 0deg,rgba(0,184,169,.14),transparent 70deg);animation:spin 9s linear infinite}
+.ring{position:absolute;left:50%;top:46%;border:1.5px solid rgba(59,130,246,.25);border-radius:50%;transform:translate(-50%,-50%)}
+.ring.r1{width:420px;height:420px}.ring.r2{width:640px;height:640px;border-color:rgba(59,130,246,.18)}.ring.r3{width:880px;height:880px;border-color:rgba(59,130,246,.12)}
+.sweep{position:absolute;left:50%;top:46%;width:880px;height:880px;transform:translate(-50%,-50%);border-radius:50%;background:conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(59,130,246,.35) 45deg, rgba(16,185,129,.4) 75deg, transparent 76deg);animation:spin 9s linear infinite}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.node{position:absolute;background:#fff;border:1px solid rgba(11,59,111,.12);box-shadow:var(--card-shadow);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:700;color:var(--navy);animation:float 6s ease-in-out infinite}
-.node b{color:var(--teal-d)}
+.node{position:absolute;background:rgba(14,26,47,.88);backdrop-filter:blur(8px);border:1px solid rgba(96,165,250,.35);box-shadow:0 8px 24px rgba(0,0,0,.45);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:700;color:#E2E8F0;animation:float 6s ease-in-out infinite}
+.node b{color:#60A5FA}
 .n1{top:22%;left:12%}.n2{top:18%;right:14%;animation-delay:1.2s}.n3{bottom:30%;left:8%;animation-delay:2.4s}.n4{bottom:26%;right:10%;animation-delay:3.1s}.n5{top:45%;right:5%;animation-delay:1.8s}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @media(max-width:820px){.n3,.n4,.n5{display:none}.node{font-size:.75rem;padding:6px 12px}}
@@ -159,17 +165,17 @@ nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-sha
 .hero h1{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:.01em}.title-lock{display:inline-block;text-align:left}
 .hero h1 em{font-style:normal;color:var(--teal);position:relative}
 .hero p.lead{margin:24px auto 40px;font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted);max-width:600px}
-.url-box{display:flex;gap:10px;max-width:560px;margin:0 auto;background:#fff;padding:8px;border-radius:999px;box-shadow:0 10px 36px rgba(11,59,111,.14)}
+.url-box{display:flex;gap:10px;max-width:560px;margin:0 auto;background:#FFFFFF;padding:8px;border-radius:999px;box-shadow:0 12px 40px rgba(0,0,0,.45);border:1px solid rgba(255,255,255,0.2)}
 .url-box input{flex:1;border:none;outline:none;font-size:1rem;padding:10px 18px;border-radius:999px;font-family:inherit;min-width:0}
 .trust{margin-top:14px;font-size:.85rem;color:var(--muted)}
-.audit-progress{max-width:560px;margin:16px auto 0;text-align:left;color:var(--navy)}
+.audit-progress{max-width:560px;margin:16px auto 0;text-align:left;color:#E2E8F0}
 .audit-progress[hidden]{display:none}
 .audit-progress-head{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:7px;font-size:.82rem;font-weight:700}
-.audit-progress-head strong{color:var(--teal-d);font-variant-numeric:tabular-nums}
-.audit-progress-track{height:10px;background:rgba(11,59,111,.10);border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(11,59,111,.08)}
-.audit-progress-fill{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),#35D4C5);transition:width .65s ease;position:relative}
+.audit-progress-head strong{color:#60A5FA;font-variant-numeric:tabular-nums}
+.audit-progress-track{height:10px;background:rgba(255,255,255,.15);border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.25)}
+.audit-progress-fill{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#3B82F6,#10B981);transition:width .65s ease;position:relative}
 .audit-progress-fill::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:progressShimmer 1.4s linear infinite}
-.audit-progress.error .audit-progress-fill{background:#D6453D}
+.audit-progress.error .audit-progress-fill{background:#EF4444}
 .audit-progress.error .audit-progress-fill::after{display:none}
 .audit-progress-steps{display:flex;justify-content:space-between;margin-top:7px;color:var(--muted);font-size:.68rem}
 @keyframes progressShimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
@@ -178,7 +184,7 @@ nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-sha
 .d1{animation-delay:.1s}.d2{animation-delay:.3s}.d3{animation-delay:.5s}.d4{animation-delay:.7s}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 /* scroll cue */
-.scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;text-align:center;text-decoration:none;color:var(--navy);font-size:.9rem;font-weight:700;animation:bounce 2s ease-in-out infinite}
+.scroll-cue{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;text-align:center;text-decoration:none;color:#94A3B8;font-size:.9rem;font-weight:700;animation:bounce 2s ease-in-out infinite}
 .scroll-cue svg{display:block;margin:6px auto 0}
 @keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
@@ -214,7 +220,7 @@ nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-sha
 .mockup-dot{width:11px;height:11px;border-radius:50%}
 .mockup-dot.d1{background:#FF5F56}
 .mockup-dot.d2{background:#FFBD2E}
-.mockup-dot.d3{background:#27C93F}
+.mockup-dot.d3{background:#10B981}
 .mockup-address{background:#fff;border:1px solid rgba(11,59,111,.1);border-radius:999px;padding:4px 18px;font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:8px;font-family:monospace}
 .mockup-badge{font-size:.75rem;font-weight:700;background:rgba(0,184,169,.12);color:var(--teal-d);padding:2px 10px;border-radius:999px}
 .mockup-body{padding:32px 28px}
@@ -229,7 +235,7 @@ nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-sha
 .gauge svg{width:100%;height:auto}
 .gauge .val{position:absolute;bottom:0;left:0;right:0;font-size:2.3rem;font-weight:900;color:var(--navy)}
 .gauge .val small{font-size:1.1rem;font-weight:500;color:var(--muted);margin-left:2px}
-.badge{display:inline-block;background:#FFF4E0;color:#B97700;font-weight:700;padding:4px 14px;border-radius:999px;font-size:.82rem;margin-top:6px}
+.badge{display:inline-block;background:#FFF4E0;color:#F59E0B;font-weight:700;padding:4px 14px;border-radius:999px;font-size:.82rem;margin-top:6px}
 
 .score-breakdown{margin-top:18px;text-align:left;display:flex;flex-direction:column;gap:10px;background:#fff;border:1px solid rgba(11,59,111,.06);padding:14px;border-radius:12px}
 .sb-item{font-size:.8rem}
@@ -245,8 +251,8 @@ nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-sha
 .action-card{background:var(--bg-alt);border:1px solid rgba(11,59,111,.06);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;transition:border-color .2s,background .2s}
 .action-card:hover{background:#fff;border-color:var(--teal)}
 .action-rank{font-size:.75rem;font-weight:900;padding:4px 10px;border-radius:8px;text-align:center;letter-spacing:.04em}
-.rank-1{background:#FEECEB;color:#D6453D}
-.rank-2{background:#FFF4E0;color:#B97700}
+.rank-1{background:#FEECEB;color:#EF4444}
+.rank-2{background:#FFF4E0;color:#F59E0B}
 .rank-3{background:#E6F7F5;color:var(--teal-d)}
 .action-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px}
 .action-tag{font-size:.76rem;background:#fff;border:1px solid rgba(11,59,111,.1);padding:1px 8px;border-radius:4px;color:var(--navy);font-weight:700}
@@ -265,7 +271,7 @@ nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);box-sha
 .method-limits h3{color:var(--navy);font-size:1rem;margin-bottom:10px}
 .method-limits ul{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 28px;list-style:none}
 .method-limits li{position:relative;padding-left:20px;color:var(--muted);font-size:.86rem}
-.method-limits li::before{content:"!";position:absolute;left:0;color:#B97700;font-weight:900}
+.method-limits li::before{content:"!";position:absolute;left:0;color:#F59E0B;font-weight:900}
 @media(max-width:900px){.method-flow{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.method-panel{padding:18px}.method-flow{grid-template-columns:1fr}.method-card{padding:20px 18px}.method-limits{padding:20px 18px}.method-limits ul{grid-template-columns:1fr}}
 
@@ -813,7 +819,7 @@ footer a:hover{color:var(--teal)}
   gap: 8px;
 }
 .chat-user-bubble {
-  background: #0B3B6F;
+  background: #0B1F3B;
   color: #FFFFFF;
   padding: 8px 14px;
   border-radius: 14px 14px 2px 14px;
@@ -861,7 +867,7 @@ footer a:hover{color:var(--teal)}
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #00B8A9, #0B3B6F);
+  background: linear-gradient(135deg, #3B82F6, #0B1F3B);
   color: #FFFFFF;
   display: flex;
   align-items: center;
@@ -1417,28 +1423,29 @@ footer a:hover{color:var(--teal)}
       <svg width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="header-radar-grad" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#0B3B6F" />
-            <stop offset="100%" stop-color="#00B8A9" />
+            <stop offset="0%" stop-color="#0B1F3B" />
+            <stop offset="100%" stop-color="#3B82F6" />
           </linearGradient>
           <linearGradient id="header-check-grad" x1="16" y1="28" x2="38" y2="12" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#00B8A9" />
+            <stop offset="0%" stop-color="#3B82F6" />
             <stop offset="100%" stop-color="#2CE0CF" />
           </linearGradient>
         </defs>
         <circle cx="24" cy="24" r="22" fill="#F0F8FA" />
         <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="url(#header-radar-grad)" stroke-width="4.2" stroke-linecap="round" />
         <path d="M 16 25 L 22 31 L 38 15" stroke="url(#header-check-grad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-        <circle cx="38" cy="15" r="3.5" fill="#00B8A9" />
+        <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
         <circle cx="38" cy="15" r="1.5" fill="#FFFFFF" />
       </svg>
-      <span>GeoCheck<span style="color:var(--teal)">.</span></span>
+      <span>GeoCheck <small style="font-size:.62em;color:var(--muted);font-weight:700">by LS Labs</small></span>
     </a>
     <ul class="nav-links">
       <li><a href="#modules" data-spy>量測指標</a></li>
       <li><a href="#report" data-spy>報告摘要</a></li>
       <li><a href="#method" data-spy>計算方法</a></li>
       <li><a href="#resources" data-spy>常見問題</a></li>
-      <li><a href="/whitepaper" class="nav-whitepaper-badge"><svg class="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>研究白皮書</a></li>
+      <li><a href="https://lslabs.tw/research/" class="nav-whitepaper-badge"><svg class="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>LS Labs 研究</a></li>
+      <li><a href="https://app.lslabs.tw/">Dashboard</a></li>
       <li><a class="btn btn-nav" href="#top" id="nav-cta" data-track-cta="nav_start_audit">免費檢查</a></li>
       <li class="nav-mobile-only"><a class="btn btn-nav" href="/whitepaper" data-track-cta="nav_mobile_whitepaper">查看白皮書</a></li>
     </ul>
@@ -1458,7 +1465,7 @@ footer a:hover{color:var(--teal)}
   </div>
   <div class="hero-content">
     <h1 class="fade-item d1"><span class="title-lock">你現在的網站<br><em>AI 看得見</em>嗎？</span></h1>
-    <p class="lead fade-item d2">免費 SEO/GEO 健檢 — 約 90 秒檢查你的網站在 AI 引擎中的搜尋能見度，一鍵教會你如何提升你的網站被 AI 看見的機率。</p>
+    <p class="lead fade-item d2">LS Labs 的免費快速檢測：確認你的網站是否在 AI 回答中被提及或引用，並取得下一步可檢查的證據。</p>
     <form id="audit-form" class="url-box fade-item d3">
       <input type="url" placeholder="https://your-website.com" required aria-label="網站網址">
       <button class="btn" type="submit" data-track-cta="hero_start_audit">開始檢查</button>
@@ -1471,7 +1478,7 @@ footer a:hover{color:var(--teal)}
     <p id="audit-status" class="trust fade-item d4" aria-live="polite"></p>
   </div>
   <a class="scroll-cue" href="#pain">往下看更多
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0B3B6F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#0B1F3B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </header>
 
@@ -1495,10 +1502,10 @@ footer a:hover{color:var(--teal)}
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B3B6F">AI 能見度</text>
+            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">AI 能見度</text>
             <path d="M 38 95 A 62 62 0 0 1 162 95" stroke="#F1F5F9" stroke-width="14" stroke-linecap="round" />
-            <path d="M 38 95 A 62 62 0 0 1 140 50" stroke="#00B8A9" stroke-width="14" stroke-linecap="round" />
-            <text x="100" y="90" font-family="'Noto Sans TC', sans-serif" font-size="26" font-weight="900" fill="#0B3B6F" text-anchor="middle">62</text>
+            <path d="M 38 95 A 62 62 0 0 1 140 50" stroke="#3B82F6" stroke-width="14" stroke-linecap="round" />
+            <text x="100" y="90" font-family="'Noto Sans TC', sans-serif" font-size="26" font-weight="900" fill="#0B1F3B" text-anchor="middle">62</text>
           </svg>
         </div>
         <h3 class="measured-card-title">AI 信任值</h3>
@@ -1509,7 +1516,7 @@ footer a:hover{color:var(--teal)}
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B3B6F">AI 提及頻率</text>
+            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">AI 提及頻率</text>
             <line x1="16" y1="42" x2="184" y2="42" stroke="#F1F5F9" stroke-width="1"/>
             <line x1="16" y1="65" x2="184" y2="65" stroke="#F1F5F9" stroke-width="1"/>
             <line x1="16" y1="88" x2="184" y2="88" stroke="#F1F5F9" stroke-width="1"/>
@@ -1537,19 +1544,19 @@ footer a:hover{color:var(--teal)}
             <line x1="14" y1="26" x2="186" y2="26" stroke="#E2E8F0" stroke-width="1"/>
             <!-- Row 1 -->
             <rect x="14" y="32" width="76" height="5" rx="1" fill="#CBD5E1"/>
-            <circle cx="112" cy="35" r="3.5" fill="#00B8A9"/>
+            <circle cx="112" cy="35" r="3.5" fill="#3B82F6"/>
             <text x="138" y="37" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/menu</text>
             <!-- Row 2 -->
             <rect x="14" y="50" width="68" height="5" rx="1" fill="#CBD5E1"/>
-            <circle cx="112" cy="53" r="3.5" fill="#00B8A9"/>
+            <circle cx="112" cy="53" r="3.5" fill="#3B82F6"/>
             <text x="138" y="55" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/book</text>
             <!-- Row 3 -->
             <rect x="14" y="68" width="82" height="5" rx="1" fill="#CBD5E1"/>
-            <circle cx="112" cy="71" r="3.5" fill="#00B8A9"/>
+            <circle cx="112" cy="71" r="3.5" fill="#3B82F6"/>
             <text x="138" y="73" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/about</text>
             <!-- Row 4 -->
             <rect x="14" y="86" width="58" height="5" rx="1" fill="#CBD5E1"/>
-            <circle cx="112" cy="89" r="3.5" fill="#00B8A9"/>
+            <circle cx="112" cy="89" r="3.5" fill="#3B82F6"/>
             <text x="138" y="91" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/faq</text>
           </svg>
         </div>
@@ -1561,13 +1568,13 @@ footer a:hover{color:var(--teal)}
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="100" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B3B6F" text-anchor="middle">Top Position Trend</text>
+            <text x="100" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B" text-anchor="middle">Top Position Trend</text>
             <text x="65" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#64748B" text-anchor="middle">Won</text>
-            <text x="65" y="72" font-family="'Noto Sans TC', sans-serif" font-size="20" font-weight="800" fill="#0B3B6F" text-anchor="middle">32</text>
+            <text x="65" y="72" font-family="'Noto Sans TC', sans-serif" font-size="20" font-weight="800" fill="#0B1F3B" text-anchor="middle">32</text>
             <text x="65" y="90" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="middle">▲ +36%</text>
             <line x1="100" y1="44" x2="100" y2="94" stroke="#E2E8F0" stroke-width="1"/>
             <text x="135" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#64748B" text-anchor="middle">Lost</text>
-            <text x="135" y="72" font-family="'Noto Sans TC', sans-serif" font-size="20" font-weight="800" fill="#0B3B6F" text-anchor="middle">43</text>
+            <text x="135" y="72" font-family="'Noto Sans TC', sans-serif" font-size="20" font-weight="800" fill="#0B1F3B" text-anchor="middle">43</text>
             <text x="135" y="90" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#EF4444" text-anchor="middle">▼ -45%</text>
           </svg>
         </div>
@@ -1757,7 +1764,7 @@ footer a:hover{color:var(--teal)}
                 <div class="compact-gauge">
                   <svg viewBox="0 0 200 110" aria-hidden="true">
                     <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#EAF0F6" stroke-width="16" stroke-linecap="round"/>
-                    <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#00B8A9" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="141" class="arc" id="arc"/>
+                    <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#3B82F6" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="141" class="arc" id="arc"/>
                   </svg>
                   <div class="val"><span id="scoreVal">44</span><small>/100</small></div>
                 </div>
@@ -1919,9 +1926,9 @@ footer a:hover{color:var(--teal)}
     <form id="lead-form" class="lead-form">
       <label for="f-name">你的稱呼</label>
       <input id="f-name" type="text" placeholder="王小明" autocomplete="name" maxlength="100">
-      <label for="f-email">Email <span style="color:#D6453D">*</span></label>
+      <label for="f-email">Email <span style="color:#EF4444">*</span></label>
       <input id="f-email" type="email" placeholder="you@company.com" required autocomplete="email" maxlength="254">
-      <label for="f-site">網站網址 <span style="color:#D6453D">*</span></label>
+      <label for="f-site">網站網址 <span style="color:#EF4444">*</span></label>
       <input id="f-site" type="url" placeholder="https://your-website.com" required maxlength="500">
       <label for="f-interest">你想聊什麼</label>
       <select id="f-interest">
@@ -1933,11 +1940,11 @@ footer a:hover{color:var(--teal)}
       <textarea id="f-need" rows="3" placeholder="例如：想知道為什麼 ChatGPT 都推薦別家，沒有推薦我們" maxlength="1000"></textarea>
       <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;color:#5A6B7E;margin:4px 0 16px">
         <input id="f-consent" type="checkbox" required style="width:auto;margin:5px 0 0">
-        <span>我同意 GEOCheck 為回覆本次交流，蒐集並使用上述聯絡資料；我可要求查詢、更正或刪除。</span>
+        <span>我同意 LS Labs 為回覆本次交流，蒐集並使用上述聯絡資料；我可要求查詢、更正或刪除。</span>
       </label>
       <button class="btn" type="submit">送出資料</button>
-      <p id="lead-status" style="margin-top:12px;color:#0B3B6F;font-size:.9rem" aria-live="polite"></p>
-      <p style="margin-top:14px;font-size:.78rem;color:#5A6B7E;text-align:center">蒐集者：GEOCheck 獨立產品實驗室。目的：回覆交流與了解真實使用情境。資料不作廣告名單轉售；保存期間與刪除方式請見隱私權政策。</p>
+      <p id="lead-status" style="margin-top:12px;color:#0B1F3B;font-size:.9rem" aria-live="polite"></p>
+      <p style="margin-top:14px;font-size:.78rem;color:#5A6B7E;text-align:center">蒐集者：LS Labs。目的：回覆交流與了解真實使用情境。資料不作廣告名單轉售；保存期間與刪除方式請見隱私權政策。</p>
     </form>
   </div>
 </section>
@@ -1945,8 +1952,8 @@ footer a:hover{color:var(--teal)}
 <!-- S9 footer -->
 <footer>
   <div class="foot">
-    <div>© 2026 GEOCheck — 看看 AI 有沒有提到你</div>
-    <div><a href="#cta">聯絡交流</a><a href="/whitepaper">研究白皮書</a><a href="/brand">品牌規範 (BIS)</a><a href="/privacy">隱私權政策</a><a href="/terms">服務條款</a><a href="/refund">退款政策</a></div>
+    <div>© 2026 LS Labs · GeoCheck 快速檢測</div>
+    <div><a href="#cta">聯絡交流</a><a href="https://lslabs.tw/research/">LS Labs 研究</a><a href="https://lslabs.tw/brand.html">品牌規範</a><a href="/privacy">隱私權政策</a><a href="/terms">服務條款</a><a href="/refund">退款政策</a></div>
   </div>
 </footer>
 
