@@ -48,6 +48,29 @@ try {
     developerWorker, /assetUrl\.pathname = "\/developers-console"/,
     "The Console asset must be fetched extensionless; the .html form 308s back into the Worker"
   );
+  // Internal channel (D-047): separate switch, separate budget, own auth.
+  assert.match(
+    developerWorker, /pathname\.startsWith\("\/internal\/v1\/"\)/,
+    "Products A and C must reach measurement through /internal/v1, never /v1"
+  );
+  assert.match(
+    developerWorker, /authenticateInternalCaller/,
+    "The internal channel must authenticate its caller"
+  );
+  assert.match(
+    developerWorker, /adminAuthorized/,
+    "Rotating an internal caller secret must require the admin token"
+  );
+  assert.equal(
+    developerConfig.vars.DEVELOPER_API_INTERNAL_DAILY_BUDGET_TWD, "500",
+    "The internal daily spend cap must be configured apart from the customer one"
+  );
+  assert.equal(developerConfig.vars.DEVELOPER_API_INTERNAL_MONTHLY_BUDGET_TWD, "3000");
+  assert.notEqual(
+    developerConfig.vars.DEVELOPER_API_INTERNAL_DAILY_BUDGET_TWD,
+    developerConfig.vars.DEVELOPER_API_DAILY_BUDGET_TWD,
+    "Internal and customer budgets must not silently share one number"
+  );
   assert.match(developerOAuthMigration, /developer_google_oauth_states/, "Developer OAuth state requires its own Product B D1 table");
   assert.match(pagesHeaders, /Strict-Transport-Security:\s*max-age=31536000/i, "Pages responses must enable HSTS");
   console.log("cloudflare developer worker bundle tests passed");

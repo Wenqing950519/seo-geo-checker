@@ -194,6 +194,11 @@ async function handleRequest(request, env) {
     });
     return handled ? await captured.completed : new Response(null, { status: 404, headers: JSON_HEADERS });
   }
+  // Internal measurement channel (D-047). Products A and C reach measurement
+  // here, never through /v1/*: no customer quota, no customer billing, and a
+  // kill switch independent of customer admission.
+  if (pathname.startsWith("/internal/v1/")) return handleInternalRequest(request, env, pathname);
+
   if (!pathname.startsWith("/v1/")) {
     return new Response(JSON.stringify({ error: { code: "not_found", message: "Not found" } }), { status: 404, headers: JSON_HEADERS });
   }
@@ -220,6 +225,89 @@ async function handleRequest(request, env) {
       status: 503,
       headers: JSON_HEADERS
     });
+  }
+}
+
+function internalSecret(request) {
+  const value = String(request.headers.get("authorization") || "");
+  return /^Bearer\s+(.+)$/i.test(value) ? value.replace(/^Bearer\s+/i, "").trim() : "";
+}
+
+async function handleInternalRequest(request, env, pathname) {
+  if (missingRuntimeSecrets(env).length) {
+    return new Response(JSON.stringify({ error: { code: "configuration_incomplete", message: "Developer API is not ready" } }), { status: 503, headers: JSON_HEADERS });
+  }
+  const runtime = createRuntime(env);
+  const api = runtime.workerApi;
+
+  // Rotating a caller's secret is an operator action, guarded by the same admin
+  // token as the other operational endpoints. The secret is shown once.
+  const rotateMatch = pathname.match(/^\/internal\/v1\/callers\/([a-z]+)\/rotate$/);
+  if (rotateMatch && request.method === "POST") {
+    if (!adminAuthorized(request, env)) {
+      return new Response(JSON.stringify({ error: { code: "auth_required", message: "Administrator authentication is required" } }), { status: 401, headers: JSON_HEADERS });
+    }
+    return internalJson(() => api.rotateInternalCallerSecret({ callerId: rotateMatch[1] }), 201);
+  }
+  const revokeMatch = pathname.match(/^\/internal\/v1\/callers\/([a-z]+)\/revoke$/);
+  if (revokeMatch && request.method === "POST") {
+    if (!adminAuthorized(request, env)) {
+      return new Response(JSON.stringify({ error: { code: "auth_required", message: "Administrator authentication is required" } }), { status: 401, headers: JSON_HEADERS });
+    }
+    return internalJson(() => api.revokeInternalCallerSecret({ callerId: revokeMatch[1] }), 200);
+  }
+
+  const caller = await api.authenticateInternalCaller(internalSecret(request));
+  if (!caller) {
+    return new Response(JSON.stringify({ error: { code: "auth_required", message: "A valid internal caller secret is required" } }), { status: 401, headers: JSON_HEADERS });
+  }
+
+  if (pathname === "/internal/v1/measurements" && request.method === "POST") {
+    const body = await readJsonRequest(request.clone(), 64 * 1024).catch(() => null);
+    if (body === null) {
+      return new Response(JSON.stringify({ error: { code: "invalid_json", message: "Request body must be valid JSON" } }), { status: 400, headers: JSON_HEADERS });
+    }
+    return internalJson(() => api.createInternalMeasurement({
+      caller: caller.callerId,
+      idempotencyKey: request.headers.get("idempotency-key"),
+      body
+    }), 202);
+  }
+
+  const measurementMatch = pathname.match(/^\/internal\/v1\/measurements\/([^/]+)$/);
+  if (measurementMatch && request.method === "GET") {
+    return internalJson(() => api.getInternalMeasurement({
+      caller: caller.callerId, measurementId: decodeURIComponent(measurementMatch[1])
+    }), 200);
+  }
+
+  if (pathname === "/internal/v1/spend" && request.method === "GET") {
+    return internalJson(() => api.getInternalSpend(), 200);
+  }
+
+  return new Response(JSON.stringify({ error: { code: "not_found", message: "Not found" } }), { status: 404, headers: JSON_HEADERS });
+}
+
+function adminAuthorized(request, env) {
+  const supplied = String(request.headers.get("x-admin-token") || "");
+  const expected = String(env.ADMIN_TOKEN || "");
+  if (!expected || supplied.length !== expected.length) return false;
+  let mismatch = 0;
+  for (let index = 0; index < expected.length; index += 1) {
+    mismatch |= supplied.charCodeAt(index) ^ expected.charCodeAt(index);
+  }
+  return mismatch === 0;
+}
+
+async function internalJson(work, successStatus) {
+  try {
+    const body = await work();
+    return new Response(JSON.stringify(body), { status: successStatus, headers: JSON_HEADERS });
+  } catch (error) {
+    const status = Number(error?.statusCode) || 500;
+    const code = error?.code || "internal_error";
+    if (status >= 500) console.error(JSON.stringify({ event: "internal_channel_error", code }));
+    return new Response(JSON.stringify({ error: { code, message: error?.message || "Internal measurement failed" } }), { status, headers: JSON_HEADERS });
   }
 }
 
