@@ -94,6 +94,10 @@ async function main() {
     assert.equal(closed.control_value, "false", "The internal channel must ship closed");
 
     const { secret } = await service.rotateInternalCallerSecret({ callerId: "dashboard" });
+    assert.match(
+      secret, /^gcint_/,
+      "An internal caller secret must be identifiable on sight, and distinct from gci_ invitations"
+    );
     const caller = await service.authenticateInternalCaller(secret);
     assert.equal(caller.callerId, "dashboard");
     assert.equal(caller.tenantId, "tnt_internal_dashboard");

@@ -301,7 +301,9 @@ function createDeveloperPlatformService(options = {}) {
     if (typeof store.upsertInternalCaller !== "function") {
       throw new DeveloperApiError("not_supported", "This store cannot hold internal callers", 501);
     }
-    const secret = createOpaqueToken("gci_int_");
+    // A distinct prefix, not a variant of gci_ (invitations): whoever finds one
+    // of these in a log or a paste must be able to tell what it opens.
+    const secret = createOpaqueToken("gcint_");
     await store.upsertInternalCaller({
       callerId: id, tenantId: INTERNAL_TENANTS[id],
       secretHash: hashToken(secret, pepper), now: clock().toISOString()
