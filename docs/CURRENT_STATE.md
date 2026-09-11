@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-09-10
+last_updated: 2026-09-12
 tags:
   - geocheck
   - current-state
@@ -15,6 +15,17 @@ tags:
 ## 最新產品方向（決策不等於實作）
 
 依 D-040／D-041／D-046，產品方向已確認為「短測引流 → SaaS Dashboard → 診斷型 Agent」，Developer API 作共用四引擎量測基礎並可作外部技術產品；未來台灣付款優先採藍新金流。Dashboard Paid Beta 契約為 TWD 330／訂閱週年月、6 個 active Projects、每期共享 24 次手動更新與固定 Asia/Taipei 每日最多 6 次；Free 為 2 個 active Projects、每週自動追蹤、無手動更新。這是待驗證的 Beta 商業契約，不是實收、毛利或留存證據。付款、排程與 provider runner 均必須預設 admission closed；目前沒有可據此新增的遠端 D1、Worker、藍新商店、正式扣款或公開流量證據。
+
+`[全站三層品牌系統改版與正式發佈 2026-09-12]` 依 D-048、D-049 與品牌手冊規範，全站完成品牌層（LS-Labs）、能力層（GeoCheck）、交付層（Audit、Monitor、Platform）重構。
+- 程式碼已合併至 `main`（commit `e3935c4`）並推送至 GitHub origin。
+- 靜態 Pages 成品已部署至 Cloudflare Pages：
+  - `geocheck-web`（`geocheck.lslabs.tw`、`geocheck.lisheng.cv`）更新為含全新規範頁（`brand.html`，三 Tab、色碼複製）、新版深色雷達 Hero 之免費速測頁與全站法務頁面。
+  - `ls-labs-app`（`app.lslabs.tw`）更新為獨立構建之 Dashboard 成品（`dist/dashboard`）。
+  - `ls-labs-developers`（`developers.lslabs.tw`）更新為新版 Platform 品牌靜態資源。
+- Cloudflare Workers 已部署更新：
+  - `geocheck-developer-api`（version `50489e7b`）綁定新靜態資源並啟用 `platform.lslabs.tw` 路由；`https://platform.lslabs.tw/healthz`、`/`、`/docs`、`/console` 實測均回 HTTP 200。
+  - `geocheck-dashboard`（version `ebd8a85e`）掛載 `app.lslabs.tw/app-api/*` 路由。
+- 本機 51 項回歸測試與 SDK 建置 100% 通過。
 
 `[本機後端 foundation 2026-09-10]` Product A Dashboard 已新增 feature-gated 的 `/app-api/v1` 契約、Project membership、週追蹤 Run／evidence schema、SQLite 測試 store 與隔離測試；它使用獨立 `gds_` session、Dashboard admin credential 與 `dashboard_*` tables，不能存取 Developer API key、tenant、quota、cost 或 `/v1/console`。Tracking Run 寫入仍只允許可信的 Product A orchestration，而非 browser client。
 
@@ -75,6 +86,14 @@ tags:
 `[本機前端 client 2026-09-10]` Product A Marketing Dashboard 前端已於 `apps/web/app/` 完成建置（參照 Themap 專案之分頁獨立子資料夾架構：`overview/`、`performance/`、`questions/`、`citations/`、`quality/`、`evidence/`、`auth/`，共用模組於 `shared/`）；透過原生零構建 ES Module 提供高效能 SPA，對標 Ahrefs / GA4 / Brandlight / Weimob GEO，完全符合 `DASHBOARD_UI_SPEC` 與 `FRONTEND_ACCEPTANCE`（4 項明確分子分母率值、跨期題組版本斷點隔離、不可變題組版本升級、五大驗收情境沙盒、事證抽屜 30 秒查閱、全無 Developer 概念洩漏）。這不是遠端部署、排程 worker 或金流完成的證據。
 
 `[主分支合併與接口串聯 2026-09-10]` `codex/cloudflare-full-migration` 已全數快進合併（ff-only）至 `main`（commit `cf613e9`）。已完成產品 A（行銷儀表板 `/app`）與產品 B（開發者平台 `/developers`、`/developers/docs`、`/developers/console`）的前後端接口路由掛載、跨產品導航串聯、`/developers-console` 路由別名掛載，以及 Google OAuth redirect 統一指向 `/developers/console`；全域 46 項測試套件全數通過（100%）。
+
+`[A 追蹤排程 admission 開啟 2026-09-12]` 使用者拍板把 Product A 從「暫停」改為排程運轉。先前 A 停著的原因不是缺陷，而是兩道各自獨立的 fail-closed 閘門：A Worker 的 `DASHBOARD_ADMISSION_ENABLED="false"` 讓 `scheduled()` 直接返回，B remote D1 的 `developer_runtime_controls.internal_admission_enabled='false'` 讓任何內部送單被回 503。兩道都已開啟；A Worker 部署 version `b68d261e-b97e-4ca7-a3d1-90f27e1f4af1`。
+
+範圍只有排程。B 的對外 `admission_enabled` 維持 `false`，A 的藍新 notify 仍是無條件 503 `admission_closed`（該路徑硬性關閉，不受此開關影響），因此沒有開放公開註冊或正式扣款。
+
+另更正本檔先前記載：`tracking_ready` 與 `search_console_ready` 已非 `false`。線上實測 A `/app-api/v1/healthz`（`geocheck.lisheng.cv` 與 `app.lslabs.tw` 皆同）回 `ok:true`、`d1:true`、`configuration_ready:true`、`google_sign_in_ready:true`、`tracking_ready:true`、`search_console_ready:true`、`admission_enabled:true`、`missing:[]`；使用者已補上 `DASHBOARD_INTERNAL_CALLER_SECRET` 與 `GSC_TOKEN_ENCRYPTION_KEY`。B `platform.lslabs.tw/healthz` 與 `api.geocheck.lisheng.cv/healthz` 回 `ok:true`、`d1:true`、`queue:true`、`missing:[]`；`/internal/v1/measurements` 無憑證仍回 401。
+
+**開啟當下花費為零，且短期內也不會花錢。** remote D1 現況：1 個 Project、1 筆 `dashboard_tracking_plans`（`next_run_at=2026-09-18T05:38:05.804Z`）、**0 筆** `dashboard_question_sets`。`startDueRuns()` 對沒有題目的 Project 直接跳過，所以在建立並核准題組前不可能產生 provider 呼叫。**尚未驗證**的仍是真實資料的端到端跑通；最快的真實付費發生在 2026-09-18，成本約「題數 × 四引擎」，單次觀測 TWD 2.769745、D-036 P95 TWD 3.490287，內部帳本上限 daily 500／monthly 3000 TWD。證據與回滾方式見 `docs/product/dashboard/CLOUDFLARE_RELEASE.md` §9。
 
 ## 本機目錄整理（2026-09-08，尚未部署）
 
