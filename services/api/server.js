@@ -1015,7 +1015,7 @@ async function handleRequest(req, res) {
 
   // Developer Platform 技術文件 (SDK & API Docs)
   if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/docs" || url.pathname === "/developers/docs/")) {
-    const docsPath = path.resolve(__dirname, "../../apps/web/public/developers-docs.html");
+    const docsPath = path.resolve(__dirname, "../../apps/web/public/developers/docs.html");
     if (!fs.existsSync(docsPath)) {
       return sendHtml(res, 404, "<h1>Developer Docs HTML not found</h1>");
     }

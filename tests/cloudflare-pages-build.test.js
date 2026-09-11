@@ -33,9 +33,24 @@ for (const rule of rules) {
     "_redirects is shared with the B API Worker; a cross-origin rule loops on that origin"
   );
 }
-assert.match(
-  redirects, /^\/developers\/docs\s+\/developers-docs\.html\s+200$/m,
-  "The canonical docs path must serve the docs page"
+// Pages maps an extensionless path to its .html file, so a rule whose target is
+// a .html file degrades into a redirect to the extensionless form — which the
+// reverse rule then sends back. The docs therefore live at their canonical path
+// as a real file, and only the legacy path needs a rule.
+// The root is the exception: "/" has no extensionless form to bounce to.
+for (const rule of rules.filter((entry) => !entry.startsWith("/ "))) {
+  assert.doesNotMatch(
+    rule, /\.html(\s|$)/,
+    "A rule targeting a .html file becomes a redirect to its extensionless form and can loop"
+  );
+}
+assert.ok(
+  fs.existsSync(output("developers", "docs.html")),
+  "The docs page must be a real file at its canonical /developers/docs path"
+);
+assert.ok(
+  !fs.existsSync(output("developers-docs.html")),
+  "The hyphenated docs file must not also exist; two copies drift"
 );
 assert.match(
   redirects, /^\/developers-docs\s+\/developers\/docs\s+308$/m,
@@ -45,7 +60,7 @@ assert.match(
 // The Console must be same-origin with the B API it calls, so its links are
 // absolute. Every other developer link stays on the canonical slash form.
 const CONSOLE_URL = "https://api.geocheck.lisheng.cv/developers/console";
-for (const page of ["developers.html", "developers-docs.html", "developers-console.html"]) {
+for (const page of ["developers.html", "developers/docs.html", "developers-console.html"]) {
   const html = fs.readFileSync(output(page), "utf8");
   assert.doesNotMatch(
     html, /href="[^"]*\/developers-(console|docs)"/,
