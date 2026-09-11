@@ -180,7 +180,11 @@ async function main() {
     headers: { cookie: `gc_oauth_dashboard=${nonce}` }
   });
   assert.equal(replay.status, 400);
-  assert.equal(replay.data.error.code, "oauth_state_invalid");
+  // A person lands on this URL in their browser, so the refusal has to be
+  // readable and offer a way back — not a JSON blob in the address bar.
+  assert.match(replay.headers["Content-Type"], /text\/html/);
+  assert.match(replay.body, /oauth_state_invalid/);
+  assert.match(replay.body, /href="https:\/\/geocheck\.lisheng\.cv\/app\/"/);
 
   // ---- a callback without the browser's nonce cookie is refused ----
   const noCookie = await invoke(oauth, {
@@ -206,6 +210,8 @@ async function main() {
     headers: { cookie: `gc_oauth_dashboard=${strangerNonce}` }
   });
   assert.equal(denied.status, 403, "Dashboard access stays invitation-only");
+  assert.match(denied.body, /account_not_authorized/);
+  assert.doesNotMatch(denied.body, /<script/i, "The refusal page must not carry script");
   assert.equal(
     Number(db.prepare("SELECT COUNT(*) AS c FROM dashboard_accounts").get().c), 1,
     "Google sign-in must not create an account"

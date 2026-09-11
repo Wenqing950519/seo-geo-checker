@@ -2,7 +2,7 @@
 // Native Modern ES Module bootstrap and state-driven DOM rendering
 
 import { AppState } from './shared/state.js';
-import { renderNoProjectState, renderDataUnavailableState } from './shared/empty-state.js';
+import { renderNoProjectState, renderNoQuestionsState, renderDataUnavailableState } from './shared/empty-state.js';
 import { api } from './shared/api.js';
 import { getFixtureData } from './shared/fixtures.js';
 import { renderSidebar } from './shared/sidebar.js';
@@ -141,6 +141,15 @@ class DashboardApp {
       if (!AppState.loading && Object.hasOwn(dataForTab, AppState.activeTab)) {
         if (!AppState.currentProject?.projectId) {
           this.viewEl.innerHTML = renderNoProjectState();
+          return;
+        }
+        // A Project with no question set has nothing to measure yet. Its metrics
+        // are all "unknown", which is correct but reads as a broken dashboard on
+        // day one, so say what the next step actually is.
+        const awaitingQuestions = AppState.currentQuestionSets.length === 0
+          && AppState.currentOverview?.summary?.status === 'no_data';
+        if (awaitingQuestions && AppState.activeTab !== 'questions') {
+          this.viewEl.innerHTML = renderNoQuestionsState();
           return;
         }
         if (dataForTab[AppState.activeTab] == null) {

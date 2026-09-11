@@ -60,7 +60,9 @@ function createGoogleOAuthHttpHandler(options = {}) {
       try {
         const payload = verifyState(url.searchParams.get("state"), stateKey(config, "dashboard")); const nonce = readCookie(req, "gc_oauth_gsc");
         const record = nonce ? await stateStore.consume({ id: payload.id, audience: "gsc", nonce, now: now() }) : null;
-        if (!record) throw coded("oauth_state_invalid"); const token = await exchange({ code: String(url.searchParams.get("code") || ""), verifier: record.verifier, redirectUri: `${dashboardOrigin}/app-api/v1/auth/google/gsc/callback` });
+        if (!record) throw coded("oauth_state_invalid");
+        const gscDenial = String(url.searchParams.get("error") || ""); if (gscDenial) throw coded(`google_${gscDenial}`);
+        const token = await exchange({ code: String(url.searchParams.get("code") || ""), verifier: record.verifier, redirectUri: `${dashboardOrigin}/app-api/v1/auth/google/gsc/callback` });
         if (!token.refresh_token) throw coded("google_refresh_token_missing"); const profile = await userInfo(token.access_token); const session = await routes.dashboard.api.authenticateSession(record.sessionToken);
         if (!session || profile.email !== session.email) throw coded("google_account_mismatch"); const properties = await gscClient.listProperties({ accessToken: token.access_token }); const siteUrl = await projectSiteUrl(record.sessionToken, record.projectId);
         const matches = properties.filter((property) => propertyMatchesSite(property.siteUrl, siteUrl)).map((property) => property.siteUrl);
@@ -68,7 +70,7 @@ function createGoogleOAuthHttpHandler(options = {}) {
         await pendingGscConnections.set(pendingId, { sessionToken: record.sessionToken, projectId: record.projectId, googleEmail: profile.email, refreshToken: token.refresh_token, properties: matches, expiresAt: now() + 600000 });
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "Set-Cookie": clearCookie("gc_oauth_gsc") });
         res.end(gscPropertySelectionPage({ pendingId, properties: matches })); return true;
-      } catch (error) { return sendError(res, sendJson, 400, error.code || "gsc_connect_failed", "Search Console connection could not be completed"); }
+      } catch (error) { return sendErrorPage(res, 400, error.code || "gsc_connect_failed", dashboardOrigin); }
     }
     const entry = Object.entries(routes).find(([, route]) => url.pathname === route.start || url.pathname === route.callback);
     if (!entry) return false;
@@ -87,13 +89,17 @@ function createGoogleOAuthHttpHandler(options = {}) {
         const nonce = readCookie(req, `gc_oauth_${audience}`);
         const record = nonce ? await stateStore.consume({ id: payload.id, audience, nonce, now: now() }) : null;
         if (!record) throw coded("oauth_state_invalid");
+        const denial = String(url.searchParams.get("error") || ""); if (denial) throw coded(`google_${denial}`);
         const code = String(url.searchParams.get("code") || ""); if (!code) throw coded("oauth_denied");
         const token = await exchange({ code, verifier: record.verifier, redirectUri: `${route.origin}${route.callback}` });
         const profile = await userInfo(token.access_token); if (!profile.email_verified) throw coded("google_email_unverified");
         const session = await route.api.loginGoogleAccount({ email: profile.email });
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "Set-Cookie": clearCookie(`gc_oauth_${audience}`) });
         res.end(`<!doctype html><meta charset="utf-8"><script>localStorage.setItem(${JSON.stringify(route.storage)},${JSON.stringify(session.session_token)});location.replace(${JSON.stringify(route.redirect)});</script>`);
-      } catch (error) { return sendError(res, sendJson, error.code === "account_not_authorized" ? 403 : 400, error.code || "google_oauth_failed", "Google sign-in could not be completed"); }
+      } catch (error) {
+        return sendErrorPage(res, error.code === "account_not_authorized" ? 403 : 400,
+          error.code || "google_oauth_failed", route.origin);
+      }
       return true;
     }
     return false;
@@ -146,5 +152,46 @@ function propertyMatchesSite(propertyUri, siteUrl) { try { const host = new URL(
 function gscPropertySelectionPage({ pendingId, properties }) { const options = properties.map((property) => `<label><input type="radio" name="property" value="${escapeHtml(property)}" required> ${escapeHtml(property)}</label>`).join(""); return `<!doctype html><meta charset="utf-8"><title>選擇 Search Console property</title><style>body{max-width:620px;margin:8vh auto;padding:24px;font:16px/1.5 system-ui;color:#172033}fieldset{border:1px solid #d7e0ea;border-radius:10px;padding:16px}label{display:block;padding:10px 0}button{margin-top:18px;background:#007f75;color:#fff;border:0;border-radius:6px;padding:10px 16px;font-weight:700}</style><h1>選擇此 Project 的 Search Console property</h1><p>只列出與目前 Project 網域相符的 property。</p><form id="gsc-select"><fieldset>${options}</fieldset><button>連接並開始匯入</button></form><script>document.querySelector('#gsc-select').addEventListener('submit',async(e)=>{e.preventDefault();const property=new FormData(e.currentTarget).get('property');const token=localStorage.getItem('gc_dashboard_session');const r=await fetch('/app-api/v1/projects/google/gsc/select',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({pending_id:${JSON.stringify(pendingId)},property_uri:property})});location.replace('/app/#gsc='+(r.ok?'connected':'failed'));});</script>`; }
 function escapeHtml(value) { return String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[character])); }
 function coded(code) { const error = new Error(code); error.code = code; return error; }
+// Written in the product's own voice: whoever lands here followed a link and is
+// looking at it, so it says what happened and offers a way back.
+const ERROR_MESSAGES = Object.freeze({
+  google_access_denied: "你取消了授權，或 Google 不允許這個應用程式存取。沒有任何資料被儲存。",
+  google_admin_policy_enforced: "你的 Google 帳號所屬組織封鎖了這項授權，需要管理員同意。",
+  account_not_authorized: "這個 Google 帳號還沒有被邀請使用 GeoCheck。",
+  google_email_unverified: "這個 Google 帳號的 email 尚未通過驗證。",
+  google_refresh_token_missing: "Google 沒有回傳長期授權。請在授權畫面確認允許離線存取後再試一次。",
+  gsc_matching_property_not_found: "你的 Search Console 裡沒有與這個專案網址相符的資源。請確認專案填的是正式官網網址。",
+  oauth_state_invalid: "這個授權連結已過期或已被使用，請重新開始。",
+  gsc_project_not_found: "找不到這個專案，或你沒有存取權限。"
+});
+
+function sendErrorPage(res, status, code, origin) {
+  const detail = ERROR_MESSAGES[code] || "授權沒有完成，沒有任何資料被儲存。";
+  const back = `${origin}/app/`;
+  res.writeHead(status, {
+    "Content-Type": "text/html; charset=utf-8",
+    "Cache-Control": "no-store",
+    "X-Content-Type-Options": "nosniff",
+    "X-Robots-Tag": "noindex, nofollow"
+  });
+  res.end(`<!doctype html><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>授權未完成 | GeoCheck</title>
+<style>body{font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;max-width:34rem;margin:12vh auto;padding:0 1.5rem;color:#0b3b6f;line-height:1.7}
+h1{font-size:1.25rem;margin:0 0 .75rem}p{margin:0 0 1rem;color:#456}code{background:#f1f4f8;padding:.15rem .4rem;border-radius:.25rem;font-size:.85em}
+a{display:inline-block;margin-top:.5rem;background:#0b3b6f;color:#fff;text-decoration:none;padding:.6rem 1.1rem;border-radius:.5rem}</style>
+<h1>授權未完成</h1>
+<p>${escapeHtml(detail)}</p>
+<p>錯誤代碼：<code>${escapeHtml(code)}</code></p>
+<a href="${escapeHtml(back)}">返回 GeoCheck</a>`);
+  return true;
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[character]);
+}
+
 function sendError(res, sendJson, status, code, message) { sendJson(res, status, { error: { code, message } }, { "Access-Control-Allow-Origin": null, "Cache-Control": "no-store" }); return true; }
 module.exports = { createGoogleOAuthHttpHandler };

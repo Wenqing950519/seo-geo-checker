@@ -27,6 +27,14 @@ assert.match(dashboardApp, /renderNoProjectState\(\)/, "A Dashboard with no Proj
 assert.match(dashboardApp, /renderDataUnavailableState\(\)/, "A view whose data never arrived must say so instead of spinning");
 assert.match(dashboardApp, /btn-create-first-project/, "The empty state must lead to creating a Project");
 assert.match(dashboardEmptyState, /尚未|還沒有/, "The empty state must state what is missing in the product's language");
+assert.match(
+  dashboardApp, /renderNoQuestionsState\(\)/,
+  "A Project with no question set must be told its next step, not shown a wall of unknowns"
+);
+assert.match(
+  dashboardEmptyState, /data-tab="questions"/,
+  "The next step must lead to the tracked questions tab"
+);
 assert.doesNotMatch(dashboardSidebar, /\{ name: '載入中\.\.\.', siteUrl: '' \}/, "The sidebar must not label an empty account as perpetually loading");
 
 // Seeded example brands become fabricated data the moment a request fails.

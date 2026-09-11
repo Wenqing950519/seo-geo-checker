@@ -23,6 +23,21 @@ export function renderNoProjectState() {
   `;
 }
 
+export function renderNoQuestionsState() {
+  return `
+    <div class="view-empty-state animate-fade-in">
+      <div class="empty-state-icon">${ICONS.questions}</div>
+      <h2 class="empty-state-title">專案建好了，還差追蹤題目</h2>
+      <p class="empty-state-body">
+        題目就是你想知道「AI 被問到這件事時，會不會提到我」的問題。
+        設定後，GeoCheck 每週固定用同一組題目觀測四大 AI 搜尋模型，
+        跨期比較才有意義。
+      </p>
+      <button type="button" class="btn-primary" data-tab="questions">前往設定追蹤題目</button>
+    </div>
+  `;
+}
+
 export function renderDataUnavailableState() {
   return `
     <div class="view-empty-state animate-fade-in">
