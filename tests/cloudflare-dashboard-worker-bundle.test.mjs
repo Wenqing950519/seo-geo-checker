@@ -65,11 +65,11 @@ try {
 
   // Search Console connection (the Project's own verification path).
   assert.match(
-    worker, /createD1PendingGscStore/,
+    worker, /createD1GscPendingStore/,
     "The two-step Search Console connect spans isolates, so its pending record must persist"
   );
   assert.match(
-    worker, /encryptSecret/,
+    bundle, /payload_ciphertext/,
     "A pending Google refresh token must be stored encrypted, never in clear text"
   );
   assert.match(

@@ -62,7 +62,7 @@ function createGoogleOAuthHttpHandler(options = {}) {
         const record = nonce ? await stateStore.consume({ id: payload.id, audience: "gsc", nonce, now: now() }) : null;
         if (!record) throw coded("oauth_state_invalid"); const token = await exchange({ code: String(url.searchParams.get("code") || ""), verifier: record.verifier, redirectUri: `${dashboardOrigin}/app-api/v1/auth/google/gsc/callback` });
         if (!token.refresh_token) throw coded("google_refresh_token_missing"); const profile = await userInfo(token.access_token); const session = await routes.dashboard.api.authenticateSession(record.sessionToken);
-        if (!session || profile.email !== session.email) throw coded("google_account_mismatch"); const properties = await gscClient.listProperties({ accessToken: token.access_token }); const siteUrl = (await routes.dashboard.api.getOverview({ sessionToken: record.sessionToken, projectId: record.projectId, weeks: 1 })).project.siteUrl;
+        if (!session || profile.email !== session.email) throw coded("google_account_mismatch"); const properties = await gscClient.listProperties({ accessToken: token.access_token }); const siteUrl = await projectSiteUrl(record.sessionToken, record.projectId);
         const matches = properties.filter((property) => propertyMatchesSite(property.siteUrl, siteUrl)).map((property) => property.siteUrl);
         if (!matches.length) throw coded("gsc_matching_property_not_found"); const pendingId = randomBytes(24).toString("base64url");
         await pendingGscConnections.set(pendingId, { sessionToken: record.sessionToken, projectId: record.projectId, googleEmail: profile.email, refreshToken: token.refresh_token, properties: matches, expiresAt: now() + 600000 });
@@ -98,6 +98,16 @@ function createGoogleOAuthHttpHandler(options = {}) {
     }
     return false;
   }
+  // Only the Project's site URL is needed, to decide which Search Console
+  // properties may be offered. getOverview would load runs, observations and
+  // annotations for that, and its range argument only accepts 4, 12 or 26 weeks.
+  async function projectSiteUrl(sessionToken, projectId) {
+    const projects = await routes.dashboard.api.listProjects({ sessionToken });
+    const project = projects.find((entry) => entry.projectId === projectId);
+    if (!project) throw coded("gsc_project_not_found");
+    return project.siteUrl;
+  }
+
   async function exchange({ code, verifier, redirectUri }) { const body = new URLSearchParams({ code, client_id: clientId, client_secret: clientSecret, redirect_uri: redirectUri, grant_type: "authorization_code", code_verifier: verifier }); const response = await fetchImpl("https://oauth2.googleapis.com/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body }); if (!response.ok) throw coded("google_token_exchange_failed"); return response.json(); }
   async function userInfo(accessToken) { const response = await fetchImpl("https://openidconnect.googleapis.com/v1/userinfo", { headers: { Authorization: `Bearer ${accessToken}` } }); if (!response.ok) throw coded("google_userinfo_failed"); return response.json(); }
   return { handle, state: () => ({ enabled: enabled(), audiences: Object.keys(routes) }) };

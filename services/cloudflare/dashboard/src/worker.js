@@ -14,7 +14,7 @@ import oauthModule from "../../../api/google-oauth-http.js";
 import runnerModule from "../../../api/application/dashboard-tracking-runner.js";
 import internalClientModule from "../../../api/application/internal-measurement-client.js";
 import gscClientModule from "../../../api/google-search-console-client.js";
-import dashboardServiceModule from "../../../api/application/dashboard-service.js";
+import gscPendingStoreModule from "../../../api/storage/dashboard-gsc-pending-store.js";
 
 const { createDashboardApiHttpHandler } = dashboardApiModule;
 const { createBoundD1DashboardStore } = d1StoreModule;
@@ -22,7 +22,7 @@ const { createGoogleOAuthHttpHandler } = oauthModule;
 const { createDashboardTrackingRunner } = runnerModule;
 const { createInternalMeasurementClient } = internalClientModule;
 const { createGoogleSearchConsoleClient } = gscClientModule;
-const { encryptSecret, decryptSecret, normalizedEncryptionKey } = dashboardServiceModule;
+const { createD1GscPendingStore } = gscPendingStoreModule;
 
 const SECURITY_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -186,35 +186,6 @@ function createD1OAuthStateStore(db) {
   };
 }
 
-// The callback and the property choice run in different isolates, so the
-// intermediate record — which carries a Google refresh token — is persisted.
-// It is encrypted under the same key that protects a stored connection.
-function createD1PendingGscStore(db, env) {
-  const key = normalizedEncryptionKey(env.GSC_TOKEN_ENCRYPTION_KEY);
-  return {
-    async set(id, record) {
-      const sealed = encryptSecret(JSON.stringify(record), key);
-      await db.batch([
-        db.prepare("DELETE FROM dashboard_gsc_pending_connections WHERE expires_at <= ?").bind(Date.now()),
-        db.prepare(`INSERT INTO dashboard_gsc_pending_connections (
-          pending_id, payload_ciphertext, payload_iv, payload_tag, expires_at, created_at
-        ) VALUES (?, ?, ?, ?, ?, ?)`)
-          .bind(id, sealed.ciphertext, sealed.iv, sealed.tag, Number(record.expiresAt) || Date.now(), Date.now())
-      ]);
-    },
-    async get(id) {
-      const row = await db.prepare(`SELECT payload_ciphertext AS ciphertext, payload_iv AS iv,
-        payload_tag AS tag FROM dashboard_gsc_pending_connections
-        WHERE pending_id = ? AND expires_at > ?`).bind(id, Date.now()).first();
-      if (!row) return null;
-      try { return JSON.parse(decryptSecret(row, key)); } catch { return null; }
-    },
-    async delete(id) {
-      await db.prepare("DELETE FROM dashboard_gsc_pending_connections WHERE pending_id = ?").bind(id).run();
-    }
-  };
-}
-
 function createGscClient(env) {
   if (missingGscSecrets(env).length) return null;
   return createGoogleSearchConsoleClient({
@@ -229,7 +200,9 @@ function createOAuthRuntime(env) {
     dashboardApi: createRuntime(env),
     gscClient,
     stateStore: createD1OAuthStateStore(env.DASHBOARD_DB),
-    pendingStore: gscClient ? createD1PendingGscStore(env.DASHBOARD_DB, env) : undefined
+    pendingStore: gscClient
+      ? createD1GscPendingStore({ db: env.DASHBOARD_DB, encryptionKey: env.GSC_TOKEN_ENCRYPTION_KEY })
+      : undefined
   });
 }
 
