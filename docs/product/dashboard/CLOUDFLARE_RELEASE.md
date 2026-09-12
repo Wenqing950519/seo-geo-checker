@@ -209,6 +209,7 @@ A Worker 部署 version `b68d261e-b97e-4ca7-a3d1-90f27e1f4af1`。
 | `GET https://platform.lslabs.tw/healthz` | `ok:true`、`d1:true`、`queue:true`、`missing:[]` |
 | B `developer_runtime_controls` | `admission_enabled='false'`、`internal_admission_enabled='true'` |
 | B `developer_internal_callers` | `caller_id='dashboard'`、`status='active'` |
+| `wrangler tail geocheck-dashboard`（6 分鐘） | 實際 cron 觸發並輸出 `{"event":"dashboard_tracking_tick","skipped":null,"started":0,"submitted":0,"collected":0,"assembled":0}`。`skipped:null` 證明 `scheduled()` 不再提早返回；`started:0` 是預期值（無到期計畫、無題組），且證明未送出任何 provider 呼叫 |
 
 **這證明了什麼**：排程閘門確實打開，A 的 `scheduled()` 不再提早返回，B 會接受 `caller='dashboard'` 的內部送單。
 **這沒有證明什麼**：仍沒有任何真實資料的端到端跑通——需要先建立題組。

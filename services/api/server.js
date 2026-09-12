@@ -1014,7 +1014,7 @@ async function handleRequest(req, res) {
   }
 
   // Developer Platform 技術文件 (SDK & API Docs)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/docs" || url.pathname === "/developers/docs/")) {
+  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/docs" || url.pathname === "/developers/docs/" || url.pathname === "/docs" || url.pathname === "/docs/")) {
     const docsPath = path.resolve(__dirname, "../../apps/web/public/developers/docs.html");
     if (!fs.existsSync(docsPath)) {
       return sendHtml(res, 404, "<h1>Developer Docs HTML not found</h1>");
@@ -1023,7 +1023,7 @@ async function handleRequest(req, res) {
   }
 
   // Developer Platform 管理控制台 (Console Dashboard)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/console" || url.pathname === "/developers/console/" || url.pathname === "/developers-console" || url.pathname === "/developers-console/")) {
+  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/console" || url.pathname === "/developers/console/" || url.pathname === "/developers-console" || url.pathname === "/developers-console/" || url.pathname === "/console" || url.pathname === "/console/")) {
     const consolePath = path.resolve(__dirname, "../../apps/web/public/developers-console.html");
     if (!fs.existsSync(consolePath)) {
       return sendHtml(res, 404, "<h1>Developer Console HTML not found</h1>");
