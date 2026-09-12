@@ -149,7 +149,7 @@ header.docs-nav {
   max-width: 1440px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 270px minmax(0, 1fr) 230px;
+  grid-template-columns: 280px minmax(0, 1fr);
   min-height: calc(100vh - 64px);
 }
 
@@ -162,6 +162,7 @@ aside.docs-sidebar {
   padding: 24px 16px 60px 24px;
   border-right: 1px solid var(--gc-border);
   font-size: 0.88rem;
+  scrollbar-width: thin;
 }
 .sidebar-section {
   margin-bottom: 22px;
@@ -185,13 +186,14 @@ aside.docs-sidebar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 10px;
+  padding: 7px 12px;
   border-radius: 6px;
   color: #334155;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.86rem;
   transition: all 0.15s ease;
+  border-left: 3px solid transparent;
 }
 .sidebar-links a:hover {
   background: var(--gc-bg-alt);
@@ -201,6 +203,7 @@ aside.docs-sidebar {
   background: var(--gc-mint-soft);
   color: var(--gc-mint-dark);
   font-weight: 700;
+  border-left-color: var(--gc-mint);
 }
 .method-badge {
   font-family: var(--gc-font-mono);
@@ -228,8 +231,8 @@ aside.docs-sidebar {
 
 /* Main Content Area */
 main.docs-content {
-  padding: 32px 48px 120px;
-  max-width: 880px;
+  padding: 32px 56px 120px;
+  max-width: 980px;
 }
 .content-header {
   border-bottom: 1px solid var(--gc-border);
@@ -414,49 +417,7 @@ main.docs-content {
   color: var(--gc-navy-dark);
 }
 
-/* Right TOC */
-aside.docs-toc {
-  position: sticky;
-  top: 57px;
-  height: calc(100vh - 57px);
-  overflow-y: auto;
-  padding: 24px 20px 60px 14px;
-  font-size: 0.82rem;
-}
-.toc-title {
-  font-weight: 800;
-  color: var(--gc-navy);
-  margin-bottom: 12px;
-  font-size: 0.76rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.toc-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.toc-list a {
-  color: var(--gc-muted);
-  text-decoration: none;
-  transition: color 0.15s;
-  line-height: 1.4;
-  font-size: 0.82rem;
-}
-.toc-list a:hover {
-  color: var(--gc-mint-dark);
-}
-.toc-list a.active {
-  color: var(--gc-mint-dark);
-  font-weight: 700;
-}
-
-@media (max-width: 1100px) {
-  .docs-layout { grid-template-columns: 240px minmax(0, 1fr); }
-  aside.docs-toc { display: none; }
-}
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .docs-layout { grid-template-columns: 1fr; }
   aside.docs-sidebar { display: none; }
   main.docs-content { padding: 24px 20px 80px; }
@@ -490,7 +451,7 @@ aside.docs-toc {
     <div class="sidebar-section">
       <div class="sidebar-heading">快速開始</div>
       <ul class="sidebar-links">
-        <li><a href="#quickstart" class="active">首次呼叫 API</a></li>
+        <li><a href="#quickstart">首次呼叫 API</a></li>
         <li><a href="#auth">身分認證</a></li>
         <li><a href="#error-codes">錯誤代碼與處置</a></li>
         <li><a href="#rate-limits">速率與配額限制</a></li>
@@ -1080,25 +1041,6 @@ print(response.json())</code></pre>
     </section>
   </main>
 
-  <!-- Right TOC (Scrollspy) -->
-  <aside class="docs-toc">
-    <div class="toc-title">本頁目錄</div>
-    <ul class="toc-list" id="toc-list">
-      <li><a href="#quickstart">首次呼叫 API</a></li>
-      <li><a href="#auth">身分認證</a></li>
-      <li><a href="#error-codes">錯誤代碼與處置建議</a></li>
-      <li><a href="#rate-limits">速率與配額限制</a></li>
-      <li><a href="#pricing">定價與計量原則</a></li>
-      <li><a href="#architecture">四引擎直連架構</a></li>
-      <li><a href="#settlement">全成才扣量原則</a></li>
-      <li><a href="#idempotency">顯式冪等性機制</a></li>
-      <li><a href="#async-polling">非同步輪詢與生命週期</a></li>
-      <li><a href="#crawler-waf-guide">網頁存取與反爬蟲診斷</a></li>
-      <li><a href="#data-retention">資料保存與隱私刪除</a></li>
-      <li><a href="#agent-mcp">AI Agent 與 MCP 整合</a></li>
-      <li><a href="#endpoint-create">REST API 參考</a></li>
-    </ul>
-  </aside>
 </div>
 
 <script>
@@ -1143,22 +1085,95 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 2400);
 }
 
-// Scrollspy for TOC
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section.docs-section[id], h3[id]');
-  const scrollPos = window.scrollY + 100;
-  let currentId = '';
-  sections.forEach(sec => {
-    if (sec.offsetTop <= scrollPos) {
-      currentId = sec.id;
+// Dynamic Scrollspy for Left Sidebar Navigation
+(function() {
+  const sidebar = document.querySelector('aside.docs-sidebar');
+  const sidebarLinks = Array.from(document.querySelectorAll('.sidebar-links a[href^="#"]'));
+  if (!sidebar || !sidebarLinks.length) return;
+
+  const linkMap = new Map();
+  const targets = [];
+
+  sidebarLinks.forEach(link => {
+    const hash = link.getAttribute('href');
+    if (hash && hash.length > 1) {
+      try {
+        const target = document.querySelector(hash);
+        if (target) {
+          linkMap.set(target, link);
+          targets.push(target);
+        }
+      } catch (e) {}
     }
   });
-  if (currentId) {
-    document.querySelectorAll('#toc-list a').forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === `#${currentId}`);
-    });
+
+  let activeLink = null;
+  let isClickScrolling = false;
+  let clickTimer = null;
+
+  function setActiveLink(newActiveLink, autoScrollSidebar = true) {
+    if (!newActiveLink || newActiveLink === activeLink) return;
+    
+    sidebarLinks.forEach(l => l.classList.remove('active'));
+    newActiveLink.classList.add('active');
+    activeLink = newActiveLink;
+
+    if (autoScrollSidebar && sidebar) {
+      const linkRect = newActiveLink.getBoundingClientRect();
+      const sidebarRect = sidebar.getBoundingClientRect();
+      if (linkRect.top < sidebarRect.top + 60 || linkRect.bottom > sidebarRect.bottom - 60) {
+        newActiveLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }
   }
-});
+
+  function handleScroll() {
+    if (isClickScrolling) return;
+
+    const headerOffset = 90; // accounts for 57px sticky header + threshold
+
+    // If reached bottom of document, activate the last target
+    const isBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60);
+    if (isBottom && targets.length > 0) {
+      const lastTarget = targets[targets.length - 1];
+      setActiveLink(linkMap.get(lastTarget), true);
+      return;
+    }
+
+    let currentTarget = targets[0];
+    for (let i = 0; i < targets.length; i++) {
+      const sec = targets[i];
+      const top = sec.getBoundingClientRect().top;
+      if (top <= headerOffset) {
+        currentTarget = sec;
+      } else {
+        break;
+      }
+    }
+
+    if (currentTarget && linkMap.has(currentTarget)) {
+      setActiveLink(linkMap.get(currentTarget), true);
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  sidebarLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      isClickScrolling = true;
+      if (clickTimer) clearTimeout(clickTimer);
+      setActiveLink(link, false);
+      clickTimer = setTimeout(() => {
+        isClickScrolling = false;
+      }, 700);
+    });
+  });
+
+  // Initial call on page load or after anchor jump
+  setTimeout(() => {
+    handleScroll();
+  }, 100);
+})();
 </script>
 
 </body>
