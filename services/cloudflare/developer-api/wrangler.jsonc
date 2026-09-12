@@ -7,7 +7,8 @@
   "workers_dev": true,
   "assets": {
     "directory": "../../../apps/web/public",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "run_worker_first": ["/brand", "/brand/", "/whitepaper", "/whitepaper/"]
   },
   "routes": [
     { "pattern": "platform.lslabs.tw", "custom_domain": true },
