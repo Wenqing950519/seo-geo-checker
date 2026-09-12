@@ -31,18 +31,20 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 
+<link rel="stylesheet" href="/assets/tokens.css">
 <style>
 :root {
-  --navy: #0B1F3B;
-  --navy-dark: #060E1C;
+  /* Aliases into /assets/tokens.css. */
+  --navy: var(--ls-navy);
+  --navy-dark: var(--ls-navy-deep);
   --navy-light: #164E8C;
-  --teal: #3B82F6;
-  --teal-dark: #1D4ED8;
-  --bg-page: #F8FAFC;
-  --bg-card: #FFFFFF;
+  --accent: var(--ls-accent-surface);
+  --accent-on-light: var(--ls-accent-on-light);
+  --bg-page: var(--ls-surface-alt);
+  --bg-card: var(--ls-surface);
   --text-main: #0F172A;
-  --text-muted: #475569;
-  --border-line: #E2E8F0;
+  --text-muted: var(--ls-ink-muted);
+  --border-line: var(--ls-line);
   --border-dark: #CBD5E1;
   --number: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --mono: 'JetBrains Mono', monospace;
@@ -178,7 +180,7 @@ header.ahrefs-nav {
 }
 .toc-nav a:hover {
   color: var(--navy);
-  border-left-color: var(--teal);
+  border-left-color: var(--accent);
   background: #F8FAFC;
 }
 
@@ -212,8 +214,8 @@ article.document-body {
 }
 .meta-tag.accent {
   background: #E6F8F6;
-  border-color: rgba(0, 184, 169, 0.4);
-  color: var(--teal-dark);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: var(--accent-on-light);
 }
 
 /* Title & Subtitle */
@@ -390,7 +392,7 @@ li { margin-bottom: 6px; font-size: 0.96rem; }
   letter-spacing: 0.02em;
 }
 .flow-node-root svg {
-  color: var(--teal);
+  color: var(--accent);
 }
 .flow-connector-fork,
 .flow-connector-merge {
@@ -453,7 +455,7 @@ li { margin-bottom: 6px; font-size: 0.96rem; }
   letter-spacing: 0.04em;
 }
 .flow-card.pillar-2 .flow-card-badge {
-  color: var(--teal-dark);
+  color: var(--accent-on-light);
   background: #E6F8F6;
 }
 .flow-card-badge.aux {
@@ -491,7 +493,7 @@ li { margin-bottom: 6px; font-size: 0.96rem; }
   flex-shrink: 0;
 }
 .flow-card.pillar-2 .flow-card-body li::before {
-  background: var(--teal-dark);
+  background: var(--accent-on-light);
 }
 .flow-merge-container {
   display: flex;

@@ -146,8 +146,8 @@
   transition: border-color 0.2s;
 }
 .form-input:focus {
-  border-color: var(--gc-mint);
-  box-shadow: 0 0 0 2px rgba(0, 184, 169, 0.15);
+  border-color: var(--gc-accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
 }
 
 .form-textarea {
@@ -201,7 +201,7 @@
 .btn-text-action {
   background: none;
   border: none;
-  color: var(--gc-mint-dark);
+  color: var(--gc-accent-on-light);
   font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
@@ -231,7 +231,7 @@
 }
 
 .btn-primary {
-  background: var(--gc-mint);
+  background: var(--gc-accent-on-light);
   border: none;
   border-radius: 8px;
   padding: 8px 18px;
@@ -239,9 +239,9 @@
   font-weight: 700;
   color: #FFFFFF;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 184, 169, 0.25);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
   transition: all 0.2s;
 }
 .btn-primary:hover {
-  background: var(--gc-mint-dark);
+  background: var(--gc-accent-on-light-strong);
 }

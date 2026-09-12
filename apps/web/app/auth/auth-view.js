@@ -65,7 +65,7 @@ function renderModalBody(type, data) {
           
           <div class="current-session-info" style="margin-bottom:20px; padding:16px; background:#F8FAFD; border:1px solid var(--gc-border); border-radius:8px;">
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
-              <span style="width:8px; height:8px; border-radius:50%; background:var(--gc-mint);"></span>
+              <span style="width:8px; height:8px; border-radius:50%; background:var(--gc-accent);"></span>
               <strong style="color:var(--gc-navy); font-size:0.9rem;">Google 帳號已連線</strong>
             </div>
             <div style="font-size:0.82rem; color:var(--gc-muted); margin-bottom:12px;">

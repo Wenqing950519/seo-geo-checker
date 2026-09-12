@@ -16,10 +16,14 @@
   --gc-navy-dark: #060E1C;
   --gc-navy-light: #17355F;
   --gc-navy-surface: #0E1A2F;
-  --gc-mint: #3B82F6;          /* Action Blue */
-  --gc-mint-dark: #1D4ED8;     /* Pressed */
-  --gc-mint-light: #60A5FA;    /* Sky Glow */
-  --gc-mint-soft: #EFF6FF;     /* Soft Blue */
+  /* Accent, by role. These values must match /assets/tokens.css in
+     apps/web/public; tests/regression/design-tokens.test.js enforces it. The
+     dashboard ships from its own build output, so it cannot link that file. */
+  --gc-accent: #3B82F6;           /* fill, border, icon, text on dark */
+  --gc-accent-on-light: #1D4ED8;  /* text on light, and any fill under white text */
+  --gc-accent-on-dark: #60A5FA;   /* text on a dark ground */
+  --gc-accent-tint: #EFF6FF;      /* pale wash behind on-light text */
+  --gc-accent-on-light-strong: #1E40AF; /* hover / pressed for those fills */
 
   /* Neutrals & Surfaces */
   --gc-bg: #F8FAFC;
@@ -99,7 +103,8 @@ body {
 
 /* Button Hierarchy (Clear Focal Points per brand.html Rule 4) */
 .btn-primary {
-  background: var(--gc-mint);
+  /* white on --gc-accent is 3.68:1; the on-light role is 6.70:1 */
+  background: var(--gc-accent-on-light);
   color: #FFFFFF;
   border: none;
   border-radius: 999px;
@@ -110,13 +115,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 14px rgba(0, 184, 169, 0.25);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-primary:hover {
-  background: var(--gc-mint-dark);
+  background: var(--gc-accent-on-light-strong);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(0, 184, 169, 0.35);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.35);
 }
 
 .btn-secondary {
@@ -198,7 +203,7 @@ body {
 .sec-tag {
   font-family: var(--gc-font-mono);
   font-size: 0.8rem;
-  color: var(--gc-mint-dark);
+  color: var(--gc-accent-on-light);
   font-weight: 700;
 }
 
@@ -330,7 +335,7 @@ body {
 
 .project-site-link {
   font-size: 0.74rem;
-  color: var(--gc-mint-dark);
+  color: var(--gc-accent-on-light);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -379,12 +384,12 @@ body {
   color: var(--gc-navy);
 }
 .nav-item.active {
-  background: var(--gc-mint-soft);
-  color: var(--gc-mint-dark);
+  background: var(--gc-accent-tint);
+  color: var(--gc-accent-on-light);
   font-weight: 700;
 }
 .nav-item.active .nav-icon {
-  color: var(--gc-mint-dark);
+  color: var(--gc-accent-on-light);
 }
 
 .nav-icon {
@@ -638,7 +643,7 @@ body {
   justify-content: center;
   border-radius: 14px;
   background: rgba(11, 31, 59, 0.06);
-  color: var(--gc-mint);
+  color: var(--gc-accent);
   margin-bottom: 4px;
 }
 
@@ -696,7 +701,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--gc-mint);
+  outline: 2px solid var(--gc-accent);
   outline-offset: 2px;
 }
 
@@ -720,7 +725,7 @@ textarea:focus-visible,
   width: 32px;
   height: 32px;
   border: 3px solid rgba(11, 31, 59, 0.1);
-  border-top-color: var(--gc-mint);
+  border-top-color: var(--gc-accent);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -769,12 +774,12 @@ textarea:focus-visible,
 }
 .btn-date-picker-trigger:hover,
 .btn-date-picker-trigger.active {
-  border-color: var(--gc-mint);
-  box-shadow: 0 0 0 3px rgba(0, 184, 169, 0.15);
+  border-color: var(--gc-accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .picker-cal-icon {
-  color: var(--gc-mint-dark);
+  color: var(--gc-accent-on-light);
   display: flex;
 }
 
@@ -836,8 +841,8 @@ textarea:focus-visible,
   color: var(--gc-navy);
 }
 .date-preset-opt.active {
-  background: var(--gc-mint-soft);
-  color: var(--gc-mint-dark);
+  background: var(--gc-accent-tint);
+  color: var(--gc-accent-on-light);
   font-weight: 800;
 }
 
@@ -873,7 +878,7 @@ textarea:focus-visible,
   outline: none;
 }
 .date-input:focus {
-  border-color: var(--gc-mint);
+  border-color: var(--gc-accent);
 }
 
 .date-actions {
@@ -896,16 +901,16 @@ textarea:focus-visible,
   transition: all 0.2s ease;
 }
 .sidebar-project-card:hover {
-  border-color: var(--gc-mint);
+  border-color: var(--gc-accent);
   background: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(0, 184, 169, 0.12);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.12);
 }
 
 .project-drawer-trigger-badge {
   font-size: 0.68rem;
   font-weight: 800;
-  color: var(--gc-mint-dark);
-  background: var(--gc-mint-soft);
+  color: var(--gc-accent-on-light);
+  background: var(--gc-accent-tint);
   padding: 2px 8px;
   border-radius: 999px;
 }
@@ -992,8 +997,8 @@ textarea:focus-visible,
   outline: none;
 }
 .brand-drawer-search-input:focus {
-  border-color: var(--gc-mint);
-  box-shadow: 0 0 0 2px rgba(0, 184, 169, 0.15);
+  border-color: var(--gc-accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
 }
 
 .brand-drawer-scroll {
@@ -1036,8 +1041,8 @@ textarea:focus-visible,
   background: #F8FAFD;
 }
 .brand-project-item.active {
-  border-color: var(--gc-mint);
-  background: var(--gc-mint-soft);
+  border-color: var(--gc-accent);
+  background: var(--gc-accent-tint);
 }
 
 .brand-item-radio {
@@ -1054,14 +1059,14 @@ textarea:focus-visible,
   transition: all 0.2s;
 }
 .radio-dot.selected {
-  border-color: var(--gc-mint-dark);
+  border-color: var(--gc-accent-on-light);
 }
 .radio-dot.selected::after {
   content: '';
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--gc-mint-dark);
+  background: var(--gc-accent-on-light);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1090,9 +1095,9 @@ textarea:focus-visible,
 .badge-active-pill {
   font-size: 0.65rem;
   font-weight: 800;
-  color: var(--gc-mint-dark);
+  color: var(--gc-accent-on-light);
   background: #FFFFFF;
-  border: 1px solid rgba(0, 184, 169, 0.4);
+  border: 1px solid rgba(59, 130, 246, 0.4);
   padding: 1px 7px;
   border-radius: 999px;
 }
@@ -1148,7 +1153,7 @@ textarea:focus-visible,
   background: #FFFFFF;
 }
 .form-input-sm:focus {
-  border-color: var(--gc-mint);
+  border-color: var(--gc-accent);
 }
 
 .btn-block {
@@ -1159,7 +1164,7 @@ textarea:focus-visible,
 /* GA4 Connect Teaser Card */
 .ga4-connect-card {
   background: #FAFCFE;
-  border: 1px dashed var(--gc-mint);
+  border: 1px dashed var(--gc-accent);
   border-radius: 10px;
   padding: 14px;
   display: flex;
@@ -1230,7 +1235,7 @@ textarea:focus-visible,
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--gc-mint);
+  background: var(--gc-accent);
 }
 
 .btn-auth-logout {
@@ -1405,7 +1410,7 @@ textarea:focus-visible,
 }
 .ga4-property-item:hover {
   background: #F8FAFD;
-  border-color: var(--gc-mint);
+  border-color: var(--gc-accent);
 }
 .ga4-prop-info {
   flex: 1;

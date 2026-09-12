@@ -62,8 +62,8 @@
   line-height: 1.2;
 }
 .scorecard-tag.official {
-  background: var(--gc-mint-soft);
-  color: var(--gc-mint-dark);
+  background: var(--gc-accent-tint);
+  color: var(--gc-accent-on-light);
 }
 .scorecard-tag.health.complete { background: #E8FAF0; color: #15803D; }
 .scorecard-tag.health.partial { background: #FEF7EC; color: #B45309; }
@@ -251,7 +251,7 @@
 .legend-overall-indicator {
   width: 14px;
   height: 3px;
-  background: var(--gc-mint);
+  background: var(--gc-accent);
   border-radius: 2px;
 }
 
@@ -440,7 +440,7 @@
 }
 
 .text-navy { color: var(--gc-navy); }
-.text-mint { color: var(--gc-mint-dark); font-weight: 700; }
+.text-mint { color: var(--gc-accent-on-light); font-weight: 700; }
 
 .btn-table-inspect {
   background: #FFFFFF;

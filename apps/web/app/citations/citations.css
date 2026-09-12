@@ -42,7 +42,7 @@
 }
 
 .citation-metric-card.highlight {
-  border-color: var(--gc-mint);
+  border-color: var(--gc-accent);
   background: #FAFEFD;
 }
 
@@ -157,8 +157,8 @@
   border-radius: 999px;
 }
 .domain-badge.official {
-  background: var(--gc-mint-soft);
-  color: var(--gc-mint-dark);
+  background: var(--gc-accent-tint);
+  color: var(--gc-accent-on-light);
 }
 .domain-badge.third-party {
   background: #F1F5F9;
@@ -185,7 +185,7 @@
   border-radius: 999px;
 }
 .share-bar-fill.official {
-  background: var(--gc-mint);
+  background: var(--gc-accent);
 }
 
 .share-bar-pct {

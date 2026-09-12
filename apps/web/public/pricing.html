@@ -22,13 +22,17 @@
   gtag('js', new Date());
   gtag('config', 'G-CBTTKVLT82');
 </script>
+<link rel="stylesheet" href="/assets/tokens.css">
 <style>
 :root{
-  --navy:#0B1F3B; --navy-d:#060E1C;
-  --blue:#3B82F6; --blue-bright:#60A5FA; --blue-deep:#1D4ED8;
-  --teal:#3B82F6; --teal-subtle:#EFF6FF;
-  --bg:#FFFFFF; --bg-alt:#F8FAFC; --text:#1E293B; --muted:#475569;
-  --line:#E2E8F0;
+  /* Aliases into /assets/tokens.css. This page is why the shared file exists:
+     its accent sat on a real teal here long after the rest of the site had
+     moved to blue, because the variable was still named after the hue. */
+  --navy:var(--ls-navy); --navy-d:var(--ls-navy-deep);
+  --blue:var(--ls-accent-surface); --blue-bright:var(--ls-accent-on-dark); --blue-deep:var(--ls-accent-on-light);
+  --accent:var(--ls-accent-surface); --accent-on-light:var(--ls-accent-on-light); --accent-tint:var(--ls-accent-tint);
+  --bg:var(--ls-surface); --bg-alt:var(--ls-surface-alt); --text:var(--ls-ink); --muted:var(--ls-ink-muted);
+  --line:var(--ls-line);
   --card-shadow:0 4px 16px rgba(11,31,59,.06);
   --radius:14px;
   --font-sans:"Plus Jakarta Sans","Noto Sans TC",system-ui,-apple-system,sans-serif;
@@ -42,12 +46,12 @@ h1,h2,h3{color:var(--navy);line-height:1.35}
 .topbar{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:10}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);text-decoration:none;font-size:1.1rem}
-.logo .dot{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));display:inline-block}
+.logo .dot{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--blue));display:inline-block}
 .topbar nav a{margin-left:20px;font-size:.92rem;color:var(--muted);text-decoration:none}
 .topbar nav a:hover{color:var(--blue-deep)}
 
 .hero{background:linear-gradient(180deg,#F8FAFC 0%,#FFFFFF 100%);padding:56px 0 40px;border-bottom:1px solid var(--line)}
-.tag{display:inline-block;background:var(--teal-subtle);color:var(--blue-deep);font-size:.78rem;font-weight:700;letter-spacing:.06em;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+.tag{display:inline-block;background:var(--accent-tint);color:var(--blue-deep);font-size:.78rem;font-weight:700;letter-spacing:.06em;padding:5px 12px;border-radius:999px;margin-bottom:14px}
 .hero h1{font-size:2.3rem;margin:0 0 12px}
 .hero p{color:var(--muted);max-width:780px;margin:0}
 .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
@@ -60,15 +64,15 @@ section .sub{color:var(--muted);margin:0 0 28px;max-width:840px}
 
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .plan{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:var(--card-shadow);display:flex;flex-direction:column}
-.plan.featured{border:2px solid var(--teal);position:relative}
-.plan.featured::after{content:"線上訂閱方案";position:absolute;top:-12px;right:20px;background:var(--teal);color:#fff;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:999px}
+.plan.featured{border:2px solid var(--accent);position:relative}
+.plan.featured::after{content:"線上訂閱方案";position:absolute;top:-12px;right:20px;background:var(--accent-on-light);color:#fff;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:999px}
 .plan h3{font-size:1.15rem;margin:0 0 4px}
 .plan .price{font-size:2.1rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin:10px 0 2px}
 .plan .price small{font-size:.85rem;font-weight:600;color:var(--muted);letter-spacing:0}
 .plan .cycle{font-size:.85rem;color:var(--muted);margin:0 0 16px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
 .plan ul{list-style:none;padding:0;margin:0 0 18px;flex:1}
 .plan li{position:relative;padding-left:22px;margin-bottom:9px;font-size:.92rem;color:var(--text)}
-.plan li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:800}
+.plan li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:800}
 .plan .note{font-size:.8rem;color:var(--muted);margin:0}
 
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff}

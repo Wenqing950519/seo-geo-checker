@@ -40,7 +40,7 @@ export function renderSidebar() {
         <a href="https://lslabs.tw/" class="brand-link" title="返回 LS-Labs 首頁">
           <div class="brand-logo-icon">${ICONS.logo}</div>
           <div class="brand-text">
-            <div class="brand-name">GeoCheck Track<span style="color:var(--gc-mint)">.</span></div>
+            <div class="brand-name">GeoCheck Track<span style="color:var(--gc-accent)">.</span></div>
             <div class="brand-sub">By LS-Labs</div>
           </div>
         </a>

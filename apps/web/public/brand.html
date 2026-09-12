@@ -29,15 +29,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="/assets/tokens.css">
   <style>
     /* ===================================================================
        LS-LABS UNIFIED DESIGN SYSTEM TOKENS
        =================================================================== */
     :root {
+      /* Aliases into /assets/tokens.css, so the manual and the pages it
+         governs cannot disagree about a value. Only the swatch cards below
+         still spell hexes out, because there the hex is the content. */
+
       /* 1. Core Primitives (LS-Labs) */
-      --color-navy: #0B1F3B;           /* Primary Base: Trust & Depth */
-      --color-navy-dark: #060E1C;      /* Deep Cosmic Void */
-      --color-navy-surface: #0E1A2F;   /* Elevated Dark Container */
+      --color-navy: var(--ls-navy);           /* Primary Base: Trust & Depth */
+      --color-navy-dark: var(--ls-navy-deep); /* Deep Cosmic Void */
+      --color-navy-surface: var(--ls-navy-surface);
       --color-slate: #475569;          /* Balance & Clarity: Text Primary Muted */
       --color-slate-light: #64748B;    /* Secondary Text & Captions */
       --color-slate-muted: #94A3B8;    /* Subtitles, Borders, Eyebrows */
@@ -45,38 +50,39 @@
       --color-mist-light: #F8FAFC;     /* Canvas Background */
 
       /* 2. Brand Accents */
-      --color-blue: #3B82F6;           /* Action Blue: Intelligence & Progress */
-      --color-blue-bright: #60A5FA;    /* Sky Glow & Links */
-      --color-blue-deep: #1D4ED8;      /* Active / Pressed State */
+      --color-blue: var(--ls-accent-surface);      /* surface / icon / text on dark */
+      --accent-on-light: var(--ls-accent-on-light);/* text on light, fill under white text */
+      --color-blue-bright: var(--ls-accent-on-dark);
+      --color-blue-deep: var(--ls-accent-on-light);
       --color-indigo: #8B7CF6;         /* Indigo Accent: Insight & AI */
       --color-indigo-soft: #A78BFA;    /* Soft Lavender Gradient Stop */
 
       /* 3. SaaS Functional & Semantic Status Tokens */
-      --color-success: #10B981;        /* Emerald: Verified, Citation Pass, High Trust */
+      --color-success: var(--ls-success);
       --color-success-dark: #059669;
-      --color-success-light: #ECFDF5;
+      --color-success-light: var(--ls-success-tint);
       --color-success-border: #A7F3D0;
 
-      --color-warning: #F59E0B;        /* Amber: Caution, Partial Citation, Cap 69 Alert */
+      --color-warning: var(--ls-warning);
       --color-warning-dark: #D97706;
       --color-warning-light: #FFFBEB;
       --color-warning-border: #FDE68A;
 
-      --color-danger: #EF4444;         /* Coral: Critical, 0 Citations, Blocked Crawlers */
+      --color-danger: var(--ls-danger);
       --color-danger-dark: #DC2626;
-      --color-danger-light: #FEF2F2;
+      --color-danger-light: var(--ls-danger-tint);
       --color-danger-border: #FECACA;
 
-      --color-unknown: #64748B;        /* Muted Slate: D-020 Unknown Neutral (Not 0) */
+      --color-unknown: var(--ls-unknown);
       --color-unknown-dark: #475569;
-      --color-unknown-light: #F1F5F9;
+      --color-unknown-light: var(--ls-unknown-tint);
       --color-unknown-border: #CBD5E1;
 
       /* 4. 4-Engines Data Visualization Palette */
-      --color-engine-openai: #10A37F;
-      --color-engine-gemini: #4285F4;
-      --color-engine-perplexity: #22B8CD;
-      --color-engine-claude: #CC785C;
+      --color-engine-openai: var(--ls-engine-openai);
+      --color-engine-gemini: var(--ls-engine-gemini);
+      --color-engine-perplexity: var(--ls-engine-perplexity);
+      --color-engine-claude: var(--ls-engine-anthropic);
 
       /* 5. Typography */
       --font-display: 'Inter', system-ui, sans-serif;
@@ -153,7 +159,7 @@
     .ds-brand-sub {
       font-size: 0.82rem;
       font-weight: 700;
-      color: var(--color-blue);
+      color: var(--accent-on-light);
       background: rgba(59, 130, 246, 0.1);
       padding: 3px 8px;
       border-radius: 6px;
@@ -214,7 +220,7 @@
       color: var(--color-navy);
     }
     .tab-btn.active {
-      color: var(--color-blue);
+      color: var(--accent-on-light);
       font-weight: 800;
     }
     .tab-btn.active::after {
@@ -237,7 +243,7 @@
     }
     .tab-btn.active .tab-pill-badge {
       background: rgba(59, 130, 246, 0.12);
-      color: var(--color-blue);
+      color: var(--accent-on-light);
     }
 
     /* Tab Content Views */
@@ -272,7 +278,7 @@
       align-items: center;
       gap: 6px;
       background: rgba(59, 130, 246, 0.1);
-      color: var(--color-blue);
+      color: var(--accent-on-light);
       font-size: 0.78rem;
       font-weight: 800;
       padding: 4px 12px;
@@ -322,7 +328,7 @@
     .sec-tag {
       font-family: var(--font-mono);
       font-size: 0.78rem;
-      color: var(--color-blue);
+      color: var(--accent-on-light);
       font-weight: 700;
     }
 
@@ -377,7 +383,7 @@
       position: absolute;
       top: -10px;
       left: 14px;
-      background: var(--color-blue);
+      background: var(--accent-on-light);
       color: #fff;
       font-family: var(--font-mono);
       font-size: 0.65rem;
@@ -915,7 +921,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <!-- 使命宣言卡 -->
           <div class="ds-card" style="background:linear-gradient(180deg, #FFFFFF 0%, #F8FAFD 100%); display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div style="font-size:0.75rem; font-weight:800; color:var(--color-blue); text-transform:uppercase; letter-spacing:0.14em; margin-bottom:8px;">
+              <div style="font-size:0.75rem; font-weight:800; color:var(--accent-on-light); text-transform:uppercase; letter-spacing:0.14em; margin-bottom:8px;">
                 MISSION STATEMENT
               </div>
               <h3 style="font-size:1.3rem; font-weight:900; color:var(--color-navy); line-height:1.3; margin-bottom:10px;">
@@ -1023,15 +1029,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
           <div class="grid-3">
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:18px;">
-              <div style="font-size:0.75rem; font-weight:800; color:var(--color-blue); margin-bottom:6px;">品牌傳播信念</div>
+              <div style="font-size:0.75rem; font-weight:800; color:var(--accent-on-light); margin-bottom:6px;">品牌傳播信念</div>
               <p style="font-weight:700; color:#334155; font-size:0.95rem;">「能被看見的想法，才能傳播得更遠。」</p>
             </div>
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:18px;">
-              <div style="font-size:0.75rem; font-weight:800; color:var(--color-blue); margin-bottom:6px;">實驗室核心座右銘</div>
+              <div style="font-size:0.75rem; font-weight:800; color:var(--accent-on-light); margin-bottom:6px;">實驗室核心座右銘</div>
               <p style="font-weight:700; color:#334155; font-size:0.95rem;">PEOPLE + DATA + A MORE VISIBLE TOMORROW</p>
             </div>
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:18px;">
-              <div style="font-size:0.75rem; font-weight:800; color:var(--color-blue); margin-bottom:6px;">邁向未來的承諾</div>
+              <div style="font-size:0.75rem; font-weight:800; color:var(--accent-on-light); margin-bottom:6px;">邁向未來的承諾</div>
               <p style="font-weight:700; color:#334155; font-size:0.95rem;">為即將到來的新時代而建 (BUILT FOR WHAT COMES NEXT)</p>
             </div>
           </div>
@@ -1049,7 +1055,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <!-- 黑曜石名片 (正面) -->
           <div class="card-mockup card-dark-mockup">
             <div style="display:flex; justify-content:flex-end;">
-              <span style="font-family:var(--font-mono); font-size:0.6875rem; color:#64748B;">材質規格 // 350GSM 特種黑曜石紙</span>
+              <span style="font-family:var(--font-mono); font-size:0.6875rem; color:var(--ls-on-dark-muted);">材質規格 // 350GSM 特種黑曜石紙</span>
             </div>
             <div style="display:flex; align-items:center; gap:16px;">
               <img src="/assets/logo-mark-tight.svg" alt="LS-Labs" style="width:48px; height:48px;">
@@ -1058,7 +1064,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
                 <div style="font-family:var(--font-display); font-size:0.625rem; font-weight:700; letter-spacing:0.28em; color:#94A3B8; margin-top:4px;">INSIGHT IN FOCUS</div>
               </div>
             </div>
-            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#64748B;">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--ls-on-dark-muted);">
               <span>lslabs.tw</span>
               <span>research • tools • impact</span>
             </div>
@@ -1067,7 +1073,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <!-- 純棉名片 (背面) -->
           <div class="card-mockup card-light-mockup">
             <div style="display:flex; justify-content:flex-end;">
-              <span style="font-family:var(--font-mono); font-size:0.6875rem; color:#94A3B8;">材質規格 // 頂級純棉啞光紙</span>
+              <span style="font-family:var(--font-mono); font-size:0.6875rem; color:var(--ls-ink-muted);">材質規格 // 頂級純棉啞光紙</span>
             </div>
             <div class="card-quote-big">
               能被看見的想法，<br>才能傳播得<br>更遠。
@@ -1814,12 +1820,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="container footer-content">
       <div>
         <strong>LS-Labs</strong> • 官方設計系統與品牌規範手冊
-        <div style="font-size:0.78rem; color:#94A3B8; margin-top:4px;">
+        <div style="font-size:0.78rem; color:var(--ls-ink-muted); margin-top:4px;">
           © 2026 LS-Labs. All rights reserved. GeoCheck By LS-Labs.
         </div>
       </div>
       <div>
-        <a href="#overview" style="color:var(--color-blue); text-decoration:none; font-weight:700;">回到頂部 ↑</a>
+        <a href="#overview" style="color:var(--accent-on-light); text-decoration:none; font-weight:700;">回到頂部 ↑</a>
       </div>
     </div>
   </footer>

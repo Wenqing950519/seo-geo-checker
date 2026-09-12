@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="/assets/tokens.css">
 <style>
 :root {
   /* LS-Labs Brand Tokens (Dark Cosmic Developer Edition) */
@@ -26,20 +27,25 @@
   --gc-text-secondary: #94A3B8;
   --gc-text-muted: #64748B;
   
-  --gc-blue-primary: #3B82F6;
-  --gc-blue-glow: rgba(59, 130, 246, 0.18);
-  --gc-blue-hover: #2563EB;
-  
-  --gc-mint: #10B981;
-  --gc-mint-glow: rgba(16, 185, 129, 0.15);
-  --gc-warning: #F59E0B;
-  --gc-danger: #EF4444;
+  /* Aliases into /assets/tokens.css. The mint name used to hold the success
+     green here and the accent blue on the other pages: one name, two
+     meanings, which is how a palette stops being checkable. */
+  --gc-accent: var(--ls-accent-surface);
+  --gc-accent-glow: rgba(59, 130, 246, 0.18);
+  --gc-accent-hover: #2563EB;
 
-  /* 4-Engine Official Visual Identity */
-  --color-openai: #10A37F;
-  --color-gemini: #4285F4;
-  --color-perplexity: #22B8CD;
-  --color-claude: #D97706;
+  --gc-success: var(--ls-success);
+  --gc-success-glow: rgba(16, 185, 129, 0.15);
+  --gc-warning: var(--ls-warning);
+  --gc-danger: var(--ls-danger);
+
+  /* 4-Engine Official Visual Identity. Claude was #D97706, which is the
+     brand manual's --color-warning-dark: an engine identity must not double
+     as a status colour. */
+  --color-openai: var(--ls-engine-openai);
+  --color-gemini: var(--ls-engine-gemini);
+  --color-perplexity: var(--ls-engine-perplexity);
+  --color-claude: var(--ls-engine-anthropic);
 
   /* Typography */
   --font-sans: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
@@ -300,11 +306,11 @@ aside.console-sidebar {
   color: var(--gc-text-secondary);
 }
 .nav-item.active svg {
-  color: var(--gc-blue-primary);
-  stroke: var(--gc-blue-primary);
+  color: var(--gc-accent);
+  stroke: var(--gc-accent);
 }
 .nav-item.active svg[fill="currentColor"] {
-  fill: var(--gc-blue-primary);
+  fill: var(--gc-accent);
 }
 
 .sidebar-nav-bottom {
@@ -493,7 +499,7 @@ aside.console-sidebar {
   color: #FFFFFF;
 }
 .btn-banner-action {
-  background: var(--gc-blue-primary);
+  background: var(--gc-accent);
   color: #FFFFFF;
   border: none;
   font-size: 0.8rem;
@@ -505,7 +511,7 @@ aside.console-sidebar {
   transition: background 0.15s ease;
 }
 .btn-banner-action:hover {
-  background: var(--gc-blue-hover);
+  background: var(--gc-accent-hover);
 }
 
 /* Top Quota Meter Grid */
@@ -726,7 +732,8 @@ aside.console-sidebar {
 }
 
 .btn-primary-blue {
-  background: var(--gc-blue-primary);
+  /* white on --gc-accent is 3.68:1 */
+  background: var(--ls-accent-on-light);
   color: #FFFFFF;
   border: none;
   font-size: 0.84rem;
@@ -740,7 +747,7 @@ aside.console-sidebar {
   transition: background 0.15s ease;
 }
 .btn-primary-blue:hover {
-  background: var(--gc-blue-hover);
+  background: var(--ls-accent-on-light-strong);
 }
 
 .data-table {
@@ -866,7 +873,7 @@ aside.console-sidebar {
   flex-direction: column;
 }
 .plan-card.featured {
-  border: 1px solid var(--gc-blue-primary);
+  border: 1px solid var(--gc-accent);
   background: #14203A;
 }
 .plan-card-name {
@@ -895,7 +902,7 @@ aside.console-sidebar {
 }
 .plan-card-list li::before {
   content: "✓ ";
-  color: var(--gc-blue-primary);
+  color: var(--gc-accent);
   font-weight: 700;
 }
 .btn-plan-select {
@@ -910,11 +917,11 @@ aside.console-sidebar {
   transition: all 0.15s ease;
 }
 .btn-plan-blue {
-  background: var(--gc-blue-primary);
+  background: var(--ls-accent-on-light);
   color: #FFFFFF;
 }
 .btn-plan-blue:hover {
-  background: var(--gc-blue-hover);
+  background: var(--ls-accent-on-light-strong);
 }
 .btn-plan-outline {
   background: transparent;
@@ -1001,7 +1008,7 @@ aside.console-sidebar {
   font-family: inherit;
 }
 .form-input:focus {
-  border-color: var(--gc-blue-primary);
+  border-color: var(--gc-accent);
 }
 .key-reveal-box {
   background: #0B111F;
@@ -1589,7 +1596,7 @@ print("Measurement initiated:", job["measurement_id"])</code></pre>
 <div id="paid-notice-modal" class="modal-overlay">
   <div class="modal-card" style="text-align:center; max-width:420px;">
     <button class="modal-close" onclick="closePaidNoticeModal()">✕</button>
-    <div style="width:44px; height:44px; border-radius:var(--radius-md); background:rgba(59,130,246,0.15); color:var(--gc-blue-primary); display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+    <div style="width:44px; height:44px; border-radius:var(--radius-md); background:rgba(59,130,246,0.15); color:var(--gc-accent); display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
     </div>
     <h3 class="modal-title" style="margin-bottom:8px;">Developer API 存取狀態</h3>
@@ -1624,7 +1631,7 @@ print("Measurement initiated:", job["measurement_id"])</code></pre>
 <!-- 4. Key Revealed Modal -->
 <div id="reveal-key-modal" class="modal-overlay">
   <div class="modal-card">
-    <h3 class="modal-title" style="color:var(--gc-mint);">API 金鑰建立成功</h3>
+    <h3 class="modal-title" style="color:var(--gc-success);">API 金鑰建立成功</h3>
     <p class="modal-subtitle">
       請妥善保存以下 API 金鑰。出於安全考慮，該金鑰 <strong>僅會完整顯示一次</strong>，離開此頁後將無法再次查看。
     </p>
@@ -1924,7 +1931,7 @@ function renderJobsTable() {
     tr.innerHTML = `
       <td><code class="font-mono" style="font-size:0.78rem; color:#60A5FA;">${escapeHtml(job.job_id)}</code></td>
       <td><code class="font-mono" style="font-size:0.76rem; color:var(--gc-text-secondary);">${escapeHtml(job.measurement_id)}</code></td>
-      <td><span style="display:inline-flex; align-items:center; gap:5px; font-weight:600; font-size:0.8rem; color:var(--gc-mint);"><span style="width:6px; height:6px; border-radius:50%; background:var(--gc-mint);"></span>${escapeHtml(job.status || 'unknown')}</span></td>
+      <td><span style="display:inline-flex; align-items:center; gap:5px; font-weight:600; font-size:0.8rem; color:var(--gc-success);"><span style="width:6px; height:6px; border-radius:50%; background:var(--gc-success);"></span>${escapeHtml(job.status || 'unknown')}</span></td>
       <td style="color:var(--gc-text-secondary); font-size:0.8rem;">${formatDate(job.created_at)}</td>
     `;
     tbody.appendChild(tr);

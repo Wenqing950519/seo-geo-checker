@@ -108,8 +108,8 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .search-input:focus {
-  border-color: var(--gc-mint);
-  box-shadow: 0 0 0 3px rgba(0, 184, 169, 0.15);
+  border-color: var(--gc-accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .intent-filter-tabs {

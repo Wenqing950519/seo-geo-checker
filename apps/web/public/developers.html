@@ -15,28 +15,24 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-CBTTKVLT82');
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="/assets/tokens.css">
 <style>
 :root {
   /* Brand Primitive Colors */
-  --gc-navy: #0B1F3B;
-  --gc-navy-dark: #060E1C;
+  /* Aliases into /assets/tokens.css. These carried mint-flavoured names
+     while holding blue; the role is in the name now. */
+  --gc-navy: var(--ls-navy);
+  --gc-navy-dark: var(--ls-navy-deep);
   --gc-navy-light: #17355F;
-  --gc-navy-surface: #0E1A2F;
-  --gc-mint: #3B82F6;
-  --gc-mint-dark: #1D4ED8;
-  --gc-mint-light: #60A5FA;
-  --gc-mint-soft: #EFF6FF;
+  --gc-navy-surface: var(--ls-navy-surface);
+  --gc-accent: var(--ls-accent-surface);
+  --gc-accent-on-light: var(--ls-accent-on-light);
+  --gc-accent-on-dark: var(--ls-accent-on-dark);
+  --gc-accent-tint: var(--ls-accent-tint);
 
   /* Neutrals & Surfaces */
   --gc-bg: #FFFFFF;
@@ -139,8 +135,8 @@ header.dev-nav {
   font-family: var(--gc-font-sans);
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--gc-mint-dark);
-  background: var(--gc-mint-soft);
+  color: var(--gc-accent-on-light);
+  background: var(--gc-accent-tint);
   padding: 3px 8px;
   border-radius: 6px;
   letter-spacing: 0.04em;
@@ -181,12 +177,13 @@ header.dev-nav {
   border: 1px solid transparent;
 }
 .btn-primary {
-  background: var(--gc-mint);
+  /* white on --gc-accent is 3.68:1; the on-light role is 6.70:1 */
+  background: var(--gc-accent-on-light);
   color: #FFFFFF;
 }
 .btn-primary:hover {
-  background: var(--gc-mint-dark);
-  box-shadow: 0 4px 14px rgba(0, 184, 169, 0.3);
+  background: var(--ls-accent-on-light-strong);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.3);
 }
 .btn-outline {
   background: #FFFFFF;
@@ -219,22 +216,22 @@ header.dev-nav {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--gc-mint-soft);
-  color: var(--gc-mint-dark);
+  background: var(--gc-accent-tint);
+  color: var(--gc-accent-on-light);
   font-family: var(--gc-font-sans);
   font-size: 0.8rem;
   font-weight: 700;
   padding: 4px 12px;
   border-radius: var(--gc-radius-pill);
   margin-bottom: 20px;
-  border: 1px solid rgba(0, 184, 169, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 .hero-tag::before {
   content: "";
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--gc-mint);
+  background: var(--gc-accent);
 }
 .dev-hero h1 {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -264,7 +261,7 @@ header.dev-nav {
 /* Engine Architecture Widget */
 .hero-preview-card {
   background: #0B192C;
-  border: 1px solid rgba(0, 184, 169, 0.25);
+  border: 1px solid rgba(59, 130, 246, 0.25);
   border-radius: var(--gc-radius-lg);
   padding: 28px;
   box-shadow: var(--gc-shadow-lg);
@@ -294,8 +291,8 @@ header.dev-nav {
   font-family: var(--gc-font-sans);
   font-size: 0.74rem;
   font-weight: 700;
-  color: var(--gc-mint-light);
-  background: rgba(0, 184, 169, 0.15);
+  color: var(--gc-accent-on-dark);
+  background: rgba(59, 130, 246, 0.15);
   padding: 3px 8px;
   border-radius: 4px;
   letter-spacing: 0.03em;
@@ -318,7 +315,7 @@ header.dev-nav {
 }
 .engine-stream-item:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(0, 184, 169, 0.3);
+  border-color: rgba(59, 130, 246, 0.3);
 }
 .engine-meta {
   display: flex;
@@ -398,14 +395,14 @@ header.dev-nav {
 .feature-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--gc-shadow-md);
-  border-color: rgba(0, 184, 169, 0.4);
+  border-color: rgba(59, 130, 246, 0.4);
 }
 .feature-icon-wrap {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--gc-mint-soft);
-  color: var(--gc-mint-dark);
+  background: var(--gc-accent-tint);
+  color: var(--gc-accent-on-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -464,14 +461,14 @@ header.dev-nav {
   color: var(--gc-text);
 }
 .code-feature-bullets svg {
-  color: var(--gc-mint);
+  color: var(--gc-accent);
   flex-shrink: 0;
   margin-top: 3px;
 }
 
 .terminal-box {
   background: #06101E;
-  border: 1px solid rgba(0, 184, 169, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: var(--gc-radius-md);
   overflow: hidden;
   box-shadow: var(--gc-shadow-lg);
@@ -501,8 +498,8 @@ header.dev-nav {
   transition: all 0.2s ease;
 }
 .tab-btn.active {
-  background: rgba(0, 184, 169, 0.2);
-  color: var(--gc-mint-light);
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--gc-accent-on-dark);
 }
 .copy-btn {
   background: transparent;
@@ -519,8 +516,8 @@ header.dev-nav {
   transition: all 0.2s ease;
 }
 .copy-btn:hover {
-  background: var(--gc-mint);
-  border-color: var(--gc-mint);
+  background: var(--gc-accent-on-light);
+  border-color: var(--gc-accent-on-light);
   color: #FFFFFF;
 }
 .terminal-content {
@@ -536,7 +533,7 @@ header.dev-nav {
 .c-keyword { color: #F472B6; }
 .c-string { color: #34D399; }
 .c-func { color: #60A5FA; }
-.c-comment { color: #64748B; font-style: italic; }
+.c-comment { color: var(--ls-on-dark-muted); font-style: italic; }
 
 /* Pricing Section */
 .pricing-section {
@@ -566,14 +563,14 @@ header.dev-nav {
   box-shadow: var(--gc-shadow-md);
 }
 .pricing-card.featured {
-  border-color: var(--gc-mint);
-  box-shadow: 0 12px 36px rgba(0, 184, 169, 0.12);
+  border-color: var(--gc-accent);
+  box-shadow: 0 12px 36px rgba(59, 130, 246, 0.12);
 }
 .popular-badge {
   position: absolute;
   top: -12px;
   right: 28px;
-  background: var(--gc-mint);
+  background: var(--gc-accent-on-light);
   color: #FFFFFF;
   font-size: 0.75rem;
   font-weight: 800;
@@ -633,7 +630,7 @@ header.dev-nav {
   color: var(--gc-text);
 }
 .plan-features-list svg {
-  color: var(--gc-mint);
+  color: var(--gc-accent);
   flex-shrink: 0;
 }
 .pricing-card .btn {
@@ -670,7 +667,7 @@ footer.dev-footer {
   transition: color 0.2s;
 }
 .footer-links a:hover {
-  color: var(--gc-mint-light);
+  color: var(--gc-accent-on-dark);
 }
 
 @media (max-width: 990px) {
@@ -705,7 +702,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <a href="/" class="brand-group">
       <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='./assets/logo-mark.svg';}" width="28" height="28" alt="LS-Labs">
       <div>
-        <div style="font-family:var(--gc-font-sans);font-size:1.15rem;font-weight:900;color:var(--gc-navy);line-height:1.1">Platform<span style="color:var(--gc-mint)">.</span></div>
+        <div style="font-family:var(--gc-font-sans);font-size:1.15rem;font-weight:900;color:var(--gc-navy);line-height:1.1">Platform<span style="color:var(--gc-accent-on-light)">.</span></div>
         <div style="font-size:0.7rem;font-weight:700;color:var(--gc-muted);letter-spacing:0.04em">By LS-Labs</div>
       </div>
       <span class="brand-badge" style="margin-left:6px">PLATFORM</span>
@@ -759,7 +756,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="engine-stream-list">
       <div class="engine-stream-item">
         <div class="engine-meta">
-          <div class="engine-icon" style="background:#10A37F; color:#fff;">OA</div>
+          <div class="engine-icon" style="background:var(--ls-engine-openai); color:var(--gc-navy);">OA</div>
           <div>
             <div class="engine-name">OpenAI</div>
             <span class="engine-model">gpt-5.6-luna</span>
@@ -770,7 +767,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
       <div class="engine-stream-item">
         <div class="engine-meta">
-          <div class="engine-icon" style="background:#4285F4; color:#fff;">G</div>
+          <div class="engine-icon" style="background:var(--ls-engine-gemini); color:var(--gc-navy);">G</div>
           <div>
             <div class="engine-name">Google Gemini</div>
             <span class="engine-model">gemini-3.5-flash-lite</span>
@@ -781,7 +778,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
       <div class="engine-stream-item">
         <div class="engine-meta">
-          <div class="engine-icon" style="background:#20B2AA; color:#fff;">PX</div>
+          <div class="engine-icon" style="background:var(--ls-engine-perplexity); color:var(--gc-navy);">PX</div>
           <div>
             <div class="engine-name">Perplexity</div>
             <span class="engine-model">sonar</span>
@@ -792,7 +789,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
       <div class="engine-stream-item">
         <div class="engine-meta">
-          <div class="engine-icon" style="background:#D97706; color:#fff;">CL</div>
+          <div class="engine-icon" style="background:var(--ls-engine-anthropic); color:var(--gc-navy);">CL</div>
           <div>
             <div class="engine-name">Anthropic Claude</div>
             <span class="engine-model">claude-haiku-4.5</span>
@@ -804,7 +801,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
     <div style="margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:0.78rem; color:#94A3B8; font-family:var(--gc-font-mono);">
       <span>示例資料，不代表即時服務狀態</span>
-      <span style="color:var(--gc-mint-light);">實際額度以 Console 為準</span>
+      <span style="color:var(--gc-accent-on-dark);">實際額度以 Console 為準</span>
     </div>
   </div>
 </section>
@@ -1030,7 +1027,7 @@ print("Job created:", job["measurement_id"])</code></pre>
   <div class="footer-wrap">
     <div>
       <span style="font-weight:900; color:#FFFFFF;">Platform By LS-Labs</span>
-      <p style="margin-top:4px; font-size:0.8rem; color:#64748B;">© 2026 LS-Labs. GeoCheck 是平台上的 AI 能見度量測模組。</p>
+      <p style="margin-top:4px; font-size:0.8rem; color:var(--ls-on-dark-muted);">© 2026 LS-Labs. GeoCheck 是平台上的 AI 能見度量測模組。</p>
     </div>
     <ul class="footer-links">
       <li><a href="/docs">技術文件</a></li>

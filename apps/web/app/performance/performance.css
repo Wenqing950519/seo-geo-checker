@@ -356,7 +356,7 @@
   color: #0F766E;
 }
 .engine-status-pill.mentioned-cited .eng-mark {
-  color: var(--gc-mint-dark);
+  color: var(--gc-accent-on-light);
 }
 
 .engine-status-pill.unmentioned {
