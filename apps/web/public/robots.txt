@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /app-api/
+Disallow: /v1/
+Disallow: /internal/
+Disallow: /developers-console
+Disallow: /console
+
+Sitemap: https://geocheck.lslabs.tw/sitemap.xml

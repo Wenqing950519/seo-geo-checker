@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /developers
+Allow: /developers/docs
+Allow: /docs
+Disallow: /v1/
+Disallow: /internal/
+Disallow: /console
+Disallow: /developers-console
+
+Sitemap: https://platform.lslabs.tw/sitemap.xml

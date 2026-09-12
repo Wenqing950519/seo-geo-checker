@@ -176,6 +176,8 @@ function platformAssetPath(pathname) {
   if (pathname === "/" || pathname === "/developers" || pathname === "/developers/") return "/developers";
   if (pathname === "/docs" || pathname === "/docs/" || pathname === "/developers/docs" || pathname === "/developers/docs/") return "/developers/docs";
   if (isConsolePath(pathname)) return "/developers-console";
+  if (pathname === "/sitemap.xml") return "/platform-sitemap.xml";
+  if (pathname === "/robots.txt") return "/platform-robots.txt";
   return null;
 }
 
