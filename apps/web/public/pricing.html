@@ -1,11 +1,19 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>服務價格與收費模式｜GeoCheck AI</title>
 <meta name="description" content="GeoCheck AI 服務方案價格、計費週期、付款方式、自動續訂與取消、退款政策與客服聯絡方式。所有金額均為新台幣（TWD）且已含稅。">
 <link rel="canonical" href="https://geocheck.lslabs.tw/pricing">
+<!-- LS-Labs public-web GA4 tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CBTTKVLT82');
+</script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
 <script>
@@ -18,7 +26,7 @@
 :root{
   --navy:#0B1F3B; --navy-d:#060E1C;
   --blue:#3B82F6; --blue-bright:#60A5FA; --blue-deep:#1D4ED8;
-  --teal:#10B29A; --teal-subtle:#EFF6FF;
+  --teal:#3B82F6; --teal-subtle:#EFF6FF;
   --bg:#FFFFFF; --bg-alt:#F8FAFC; --text:#1E293B; --muted:#475569;
   --line:#E2E8F0;
   --card-shadow:0 4px 16px rgba(11,31,59,.06);
@@ -98,9 +106,19 @@ footer .meta{margin-top:14px;color:#94A3B8;line-height:1.9}
   .steps{grid-template-columns:1fr 1fr}
   .hero h1{font-size:1.8rem}
 }
+
+/* ===== Accessibility & motion safety ===== */
+.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">跳到主要內容</a>
 
 <div class="topbar">
   <div class="wrap">
@@ -114,6 +132,8 @@ footer .meta{margin-top:14px;color:#94A3B8;line-height:1.9}
     </nav>
   </div>
 </div>
+
+<main id="main">
 
 <div class="hero">
   <div class="wrap">
@@ -248,6 +268,8 @@ footer .meta{margin-top:14px;color:#94A3B8;line-height:1.9}
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">

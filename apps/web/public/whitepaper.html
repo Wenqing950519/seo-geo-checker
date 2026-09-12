@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,14 @@
 </script>
 <title>GeoCheck — GEO 研究與方法論白皮書</title>
 <meta name="description" content="從黑盒猜測走向可觀測證據：AI 信任值、量測架構與透明度指南。深入解析 AI 如何檢索品牌、65/35 指標定義與 L2 可複現性研究規範。">
+<!-- LS-Labs public-web GA4 tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CBTTKVLT82');
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="apple-touch-icon" href="/favicon.png?v=radar-20260904">
@@ -596,16 +604,26 @@ table.sharp-table td {
   border-right: 1px solid var(--border-line);
   vertical-align: top;
 }
+
+/* ===== Accessibility & motion safety ===== */
+.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">跳到主要內容</a>
 
 <!-- Sharp Header -->
 <header class="ahrefs-nav">
   <div class="nav-wrap">
     <a class="brand-link" href="/">
       <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
-        <rect width="48" height="48" rx="2" fill="#F0F8FA" />
+        <rect width="48" height="48" rx="2" fill="#EFF6FF" />
         <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B1F3B" stroke-width="4.2" stroke-linecap="round" />
         <path d="M 16 25 L 22 31 L 38 15" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
         <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
@@ -639,7 +657,7 @@ table.sharp-table td {
   </aside>
 
   <!-- Document Main Content -->
-  <article class="document-body">
+  <article class="document-body" id="main" role="main">
 
 
 

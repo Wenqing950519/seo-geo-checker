@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LS-Labs 設計系統與品牌規範手冊 (Design System & Guidelines)</title>
   <meta name="description" content="LS-Labs 官方設計系統與品牌規範：包含 LS-Labs 母品牌手冊、GeoCheck 旗艦產品規範與品牌／能力／交付三層架構矩陣。">
+  <!-- LS-Labs public-web GA4 tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CBTTKVLT82');
+  </script>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
   <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 
@@ -764,9 +772,19 @@
       font-size: 0.88rem;
       color: var(--color-slate);
     }
-  </style>
+  
+/* ===== Accessibility & motion safety ===== */
+.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
+}
+</style>
 </head>
 <body>
+<a class="skip-link" href="#main">跳到主要內容</a>
 
   <!-- Toast -->
   <div id="toast" class="toast">
@@ -812,6 +830,7 @@
   <!-- ===================================================================
        TAB 1: LS-LABS 母品牌手冊 (Masterbrand Hub)
        =================================================================== -->
+  <main id="main">
   <div class="tab-view active" id="view-lslabs">
     <!-- Hero -->
     <section class="ds-hero" id="overview">
@@ -825,7 +844,7 @@
       </div>
     </section>
 
-    <main class="container">
+    <div class="container">
       <!-- 01 主標誌系統 -->
       <section class="section-block" id="lslabs-primary-logo">
         <div class="sec-title-wrap">
@@ -1142,7 +1161,7 @@
           </div>
         </div>
       </section>
-    </main>
+    </div>
   </div>
 
 
@@ -1162,7 +1181,7 @@
       </div>
     </section>
 
-    <main class="container">
+    <div class="container">
       <!-- 01 產品標誌與 By LS-Labs 鎖定 -->
       <section class="section-block" id="geocheck-logos">
         <div class="sec-title-wrap">
@@ -1487,7 +1506,7 @@
           </div>
         </div>
       </section>
-    </main>
+    </div>
   </div>
 
 
@@ -1507,7 +1526,7 @@
       </div>
     </section>
 
-    <main class="container">
+    <div class="container">
       <section class="section-block" style="border-bottom:none;">
         <div class="sec-title-wrap">
           <h2 class="sec-title">🏛️ 三層責任邊界</h2>
@@ -1785,8 +1804,10 @@
 }</pre>
         </div>
       </section>
-    </main>
+    </div>
   </div>
+
+  </main>
 
   <!-- Footer -->
   <footer class="ds-footer">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1027,11 +1027,21 @@ aside.console-sidebar {
   .plans-grid { grid-template-columns: 1fr; }
   .console-container { padding: 20px 16px; }
 }
+
+/* ===== Accessibility & motion safety ===== */
+.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">跳到主要內容</a>
 
-<div id="toast" class="toast">✓ 已更新</div>
+<div id="toast" class="toast" role="status" aria-live="polite">✓ 已更新</div>
 
 <!-- 1. FULL-PAGE AUTH GATE (When not logged in) -->
 <div id="console-login-gate" class="fullpage-auth-gate" style="display:none;">
@@ -1169,7 +1179,7 @@ aside.console-sidebar {
   </aside>
 
   <!-- Main Viewport -->
-  <div class="console-main">
+  <div class="console-main" id="main" role="main">
     <div class="console-container">
 
       <!-- Signature Strip: 4-Engine Official Gateway Status -->

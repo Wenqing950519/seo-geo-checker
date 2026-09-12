@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Platform By LS-Labs — 可驗證的 AI 能見度量測 API</title>
 <meta name="description" content="Platform By LS-Labs 提供 GeoCheck API 與 TypeScript SDK：一次呼叫，同步取得四個官方 AI 搜尋引擎的原生回答與引用證據。">
+<!-- LS-Labs public-web GA4 tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CBTTKVLT82');
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
@@ -675,11 +683,21 @@ footer.dev-footer {
   .grid-4 { grid-template-columns: 1fr; }
   .nav-links { display: none; }
 }
+
+/* ===== Accessibility & motion safety ===== */
+.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">跳到主要內容</a>
 
-<div id="toast" class="toast">✓ 已複製代碼到剪貼簿</div>
+<div id="toast" class="toast" role="status" aria-live="polite">✓ 已複製代碼到剪貼簿</div>
 
 <!-- Header -->
 <header class="dev-nav">
@@ -706,6 +724,8 @@ footer.dev-footer {
     </div>
   </div>
 </header>
+
+<main id="main">
 
 <!-- Hero -->
 <section class="dev-hero">
@@ -1004,6 +1024,8 @@ print("Job created:", job["measurement_id"])</code></pre>
 </section>
 
 <!-- Footer -->
+</main>
+
 <footer class="dev-footer">
   <div class="footer-wrap">
     <div>
