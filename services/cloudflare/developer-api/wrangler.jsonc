@@ -8,7 +8,10 @@
   "assets": {
     "directory": "../../../apps/web/public",
     "binding": "ASSETS",
-    "run_worker_first": ["/brand", "/brand/", "/whitepaper", "/whitepaper/"]
+    "run_worker_first": [
+      "/brand", "/brand/", "/whitepaper", "/whitepaper/",
+      "/sitemap.xml", "/robots.txt"
+    ]
   },
   "routes": [
     { "pattern": "platform.lslabs.tw", "custom_domain": true },

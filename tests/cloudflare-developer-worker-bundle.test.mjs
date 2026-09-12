@@ -29,7 +29,10 @@ try {
   // brand.html and whitepaper.html sit in the shared public directory for
   // geocheck.lslabs.tw. Without this, static assets answer first on
   // platform.lslabs.tw and the redirect to the main domain never runs.
-  assert.deepEqual(developerConfig.assets.run_worker_first, ["/brand", "/brand/", "/whitepaper", "/whitepaper/"]);
+  assert.deepEqual(developerConfig.assets.run_worker_first, [
+    "/brand", "/brand/", "/whitepaper", "/whitepaper/",
+    "/sitemap.xml", "/robots.txt"
+  ]);
   assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "false");
   assert.equal(auditConfig.containers[0].image_build_context, "../../..");
   assert.deepEqual(auditConfig.routes, [
