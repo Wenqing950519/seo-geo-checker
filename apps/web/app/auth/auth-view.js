@@ -60,7 +60,7 @@ function renderModalBody(type, data) {
       return `
         <div class="modal-form">
           <p class="modal-intro">
-            LS Labs Dashboard 支援 Google 帳戶單一登入，保障品牌專案與觀測資料安全。
+            GeoCheck Track 支援 Google 帳戶單一登入，保障品牌專案與觀測資料安全。
           </p>
           
           <div class="current-session-info" style="margin-bottom:20px; padding:16px; background:#F8FAFD; border:1px solid var(--gc-border); border-radius:8px;">
@@ -86,7 +86,7 @@ function renderModalBody(type, data) {
     return `
       <div class="modal-form">
         <p class="modal-intro">
-          LS Labs Dashboard 支援 Google 帳戶單一登入，保障品牌專案與觀測資料安全。
+          GeoCheck Track 支援 Google 帳戶單一登入，保障品牌專案與觀測資料安全。
         </p>
 
         <div style="display:flex; flex-direction:column; align-items:center; padding:16px 0 8px;">

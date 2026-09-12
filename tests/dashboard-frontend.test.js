@@ -12,6 +12,11 @@ const dashboardApi = fs.readFileSync(path.join(appDir, "shared/api.js"), "utf8")
 assert.match(developerConsole, /https:\/\/platform\.lslabs\.tw\/v1\/auth\/google\/start/, "Developer Console Google login must target the isolated B API origin");
 assert.doesNotMatch(developerConsole, /href="\/developers(?:\/docs)?"/, "Developer Console links must not resolve to the B API origin after same-origin deployment");
 assert.doesNotMatch(developerConsole, /gcs_live_dev_session_demo|key_demo_default|Mock initial jobs/, "Developer Console must not authenticate, create keys, or show jobs from browser-only demo data");
+assert.doesNotMatch(developerConsole, /STATE\.usage \? STATE\.usage\.remaining_rounds : 2/, "Developer Console must not invent remaining quota before the API responds");
+assert.doesNotMatch(developerConsole, /STATE\.usage \? \(STATE\.usage\.used_rounds \|\| 0\) : 1/, "Developer Console must not invent used quota before the API responds");
+assert.match(developerConsole, /尚無可顯示的用量資料/, "Developer Console must explain when no quota data exists");
+assert.match(developerConsole, /預覽模式：此頁的帳號、金鑰、用量與工作紀錄皆為示意資料/, "Explicit preview mode must identify fixture data");
+assert.doesNotMatch(developerConsole, /NT\$ 660|NT\$ 1,390|開通免費試用/, "Private Beta Console must not advertise unavailable public pricing or self-service trials");
 assert.match(developerConsole, /consoleRequest\('\/v1\/console\/api-keys'/, "Developer Console must list API keys through the B Console API");
 assert.match(developerConsole, /consoleRequest\('\/v1\/console\/jobs'/, "Developer Console must list jobs through the B Console API");
 assert.match(developerConsole, /consoleRequest\('\/v1\/console\/usage'/, "Developer Console must load its quota through the B Console API");
@@ -24,6 +29,15 @@ const dashboardApp = fs.readFileSync(path.join(appDir, "app.js"), "utf8");
 const dashboardSidebar = fs.readFileSync(path.join(appDir, "shared/sidebar.js"), "utf8");
 const dashboardEmptyState = fs.readFileSync(path.join(appDir, "shared/empty-state.js"), "utf8");
 assert.match(dashboardApp, /renderNoProjectState\(\)/, "A Dashboard with no Project must say so instead of spinning");
+assert.doesNotMatch(dashboardApp, /Demo Account|btn-gate-demo-login/, "The production Dashboard login must not offer a fabricated demo account");
+// The gate card already carries the sign-in action and explains what it grants.
+// A second identical button in the top bar is one action in two places.
+const dashboardHeader = fs.readFileSync(path.join(appDir, "shared/header.js"), "utf8");
+assert.doesNotMatch(dashboardHeader, /btn-topbar-google-login/, "The signed-out top bar must not duplicate the gate's sign-in button");
+assert.equal(
+  (dashboardApp.match(/btn-gate-google-login/g) || []).length >= 1, true,
+  "The gate must keep exactly one sign-in action"
+);
 assert.match(dashboardApp, /renderDataUnavailableState\(\)/, "A view whose data never arrived must say so instead of spinning");
 assert.match(dashboardApp, /btn-create-first-project/, "The empty state must lead to creating a Project");
 assert.match(dashboardEmptyState, /尚未|還沒有/, "The empty state must state what is missing in the product's language");
@@ -36,6 +50,10 @@ assert.match(
   "The next step must lead to the tracked questions tab"
 );
 assert.doesNotMatch(dashboardSidebar, /\{ name: '載入中\.\.\.', siteUrl: '' \}/, "The sidebar must not label an empty account as perpetually loading");
+const dashboardQuestions = fs.readFileSync(path.join(appDir, "questions/questions-view.js"), "utf8");
+assert.doesNotMatch(dashboardQuestions, /: '75\.0'/, "A Dashboard with no questions must not invent a recommendation rate");
+assert.doesNotMatch(dashboardQuestions, /: '33\.3'/, "A Dashboard with no questions must not invent an official-citation rate");
+assert.doesNotMatch(dashboardSidebar, /questionsCount \|\| 12|p\.sov \|\| '75\.0%'/, "Project navigation must not fabricate question counts or visibility");
 
 // Seeded example brands become fabricated data the moment a request fails.
 for (const fabricated of ["WILDWOOD", "饗食天堂", "頤宮", "dprj_wildwood_tw"]) {
@@ -163,7 +181,7 @@ async function testHttpRoutes() {
       assert.equal(res.status, 200, `GET ${route} status`);
       assert.match(res.headers.get("content-type") || "", /text\/html/);
       const text = await res.text();
-      assert.match(text, /LS Labs Dashboard/);
+      assert.match(text, /GeoCheck Track/);
       assert.match(text, /id="sidebar-container"/);
       assert.match(text, /id="drawer-container"/);
     }

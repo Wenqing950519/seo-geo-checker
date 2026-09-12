@@ -1,6 +1,6 @@
 <svg width="1000" height="1000" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- LS Labs palette -->
+    <!-- LS-Labs palette -->
     <linearGradient id="gradL" x1="250" y1="180" x2="420" y2="760" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#3B82F6"/>
       <stop offset="0.28" stop-color="#2459A9"/>

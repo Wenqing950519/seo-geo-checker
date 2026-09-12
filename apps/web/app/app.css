@@ -1,5 +1,5 @@
 /* GeoCheck Product A Marketing Dashboard Master Stylesheet */
-/* LS Labs Dashboard, using the GeoCheck design system (https://geocheck.lslabs.tw/brand). */
+/* GeoCheck Track, using the GeoCheck design system (https://geocheck.lslabs.tw/brand). */
 /* Professional enterprise analytics aesthetic: high legibility, calm contrast, zero clutter */
 
 @import './overview/overview.css';
@@ -655,6 +655,40 @@ body {
   line-height: 1.7;
   color: var(--gc-muted);
 }
+/* The raw failure reason, kept readable but visibly secondary to the sentence
+   above it: a user should see that something broke before seeing the code. */
+.view-empty-state .empty-state-detail {
+  display: block;
+  max-width: 480px;
+  margin: 0 auto 14px;
+  padding: 8px 12px;
+  border-radius: var(--gc-radius-sm);
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--gc-unknown);
+  font-family: var(--gc-font-mono);
+  font-size: 12px;
+  word-break: break-word;
+}
+
+/* Focus must be visible on every interactive element, on every surface. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gc-mint);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 .spinner {
   width: 32px;
@@ -1190,34 +1224,6 @@ body {
 }
 
 /* Google Identity Services (GIS) Official Button Standard */
-.btn-google-signin-topbar {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: #FFFFFF;
-  border: 1px solid #DADCE0;
-  border-radius: 20px;
-  padding: 0 16px 0 12px;
-  height: 38px;
-  font-family: 'Roboto', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 0.86rem;
-  font-weight: 500;
-  color: #3C4043;
-  cursor: pointer;
-  transition: background-color 0.2s, box-shadow 0.2s, border-color 0.2s;
-  user-select: none;
-}
-.btn-google-signin-topbar:hover {
-  background-color: #F8FAFD;
-  border-color: #DADCE0;
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
-}
-.btn-google-signin-topbar:active {
-  background-color: #EEEEEE;
-}
-.btn-google-signin-topbar .google-icon {
-  flex-shrink: 0;
-}
 
 .btn-google-signin-hero {
   display: inline-flex;

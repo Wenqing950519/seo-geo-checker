@@ -7,6 +7,13 @@ import { AppState } from './state.js';
 
 export function renderSidebar() {
   const currentTab = AppState.activeTab;
+  const activeQuestionCount = Array.isArray(AppState.currentQuestionSets)
+    ? (AppState.currentQuestionSets[0]?.questions?.length || 0)
+    : 0;
+  const entitlement = AppState.currentEntitlement || {};
+  const planLabel = entitlement.plan === 'paid_beta'
+    ? 'Paid Beta · 定期監測'
+    : 'Free · 每週自動追蹤';
   // Distinguish "still loading" from "nothing to load": a new account has no
   // Project, and showing it a loading label forever reads as a hung page.
   const project = AppState.currentProject
@@ -15,7 +22,7 @@ export function renderSidebar() {
   const navItems = [
     { id: 'overview', label: '總覽指標', icon: ICONS.overview },
     { id: 'performance', label: '模型表現趨勢', icon: ICONS.performance },
-    { id: 'questions', label: 'AI 提問監測', icon: ICONS.questions, badge: AppState.currentQuestionSets[0]?.questions?.length || '4' },
+    { id: 'questions', label: 'AI 提問監測', icon: ICONS.questions, badge: activeQuestionCount || null },
     { id: 'citations', label: 'AI 引用來源', icon: ICONS.citations },
     { id: 'quality', label: '觀測紀錄與品質', icon: ICONS.quality, dot: true }
     ,{ id: 'billing', label: '方案與訂閱', icon: ICONS.overview }
@@ -30,10 +37,10 @@ export function renderSidebar() {
   return `
     <aside class="dashboard-sidebar">
       <div class="sidebar-header">
-        <a href="https://lslabs.tw/" class="brand-link" title="返回 LS Labs 首頁">
+        <a href="https://lslabs.tw/" class="brand-link" title="返回 LS-Labs 首頁">
           <div class="brand-logo-icon">${ICONS.logo}</div>
           <div class="brand-text">
-            <div class="brand-name">GeoCheck Monitor<span style="color:var(--gc-mint)">.</span></div>
+            <div class="brand-name">GeoCheck Track<span style="color:var(--gc-mint)">.</span></div>
             <div class="brand-sub">By LS-Labs</div>
           </div>
         </a>
@@ -76,7 +83,7 @@ export function renderSidebar() {
            target="_blank"
            rel="noopener noreferrer"
            style="text-decoration:none;"
-           title="開啟 LS Labs Platform 與官方量測 API (另開新視窗)">
+           title="開啟 Platform By LS-Labs 與官方量測 API (另開新視窗)">
           <span class="nav-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="16 18 22 12 16 6"/>
@@ -84,9 +91,9 @@ export function renderSidebar() {
             </svg>
           </span>
           <span class="nav-label-wrap">
-            <span class="nav-label">開發者模式 (API & Docs)</span>
+            <span class="nav-label">Developer Platform</span>
           </span>
-          <span class="nav-badge" style="background: rgba(0, 184, 169, 0.12); color: var(--gc-mint-dark); font-size: 0.68rem; font-weight: 800;">PRO ↗</span>
+          <span class="nav-badge">API ↗</span>
         </a>
       </nav>
 
@@ -103,11 +110,11 @@ export function renderSidebar() {
           </div>
           <div class="account-info">
             <div class="account-title">Google 帳戶已連線</div>
-            <div class="account-sub">行銷專業版 · 定時監測</div>
+            <div class="account-sub">${planLabel}</div>
           </div>
         </div>
         <div class="sidebar-version-tag">
-          <span>LS Labs Dashboard</span>
+          <span>GeoCheck Track</span>
           <span>v1.0</span>
         </div>
       </div>
@@ -153,9 +160,8 @@ export function renderSidebar() {
                   </div>
                   <div class="brand-item-url font-number">${p.siteUrl}</div>
                   <div class="brand-item-meta-row font-number">
-                    <span>${p.questionsCount || 12} 組提問</span>
-                    <span class="dot-sep">•</span>
-                    <span>AI 能見度 <strong>${p.sov || '75.0%'}</strong></span>
+                    <span>${Number.isFinite(p.questionsCount) ? `${p.questionsCount} 組提問` : '尚無追蹤題目'}</span>
+                    ${Number.isFinite(p.sov) ? `<span class="dot-sep">•</span><span>AI 能見度 <strong>${p.sov}%</strong></span>` : ''}
                   </div>
                 </div>
               </div>
@@ -181,21 +187,21 @@ export function renderSidebar() {
           </form>
         </div>
 
-        <!-- GA4 Integration Teaser -->
+        <!-- Search Console connection is optional and remains distinct from Project creation. -->
         <div class="ga4-connect-card">
           <div class="ga4-card-header">
-            <span class="ga4-badge">GA4 深度整合</span>
+            <span class="ga4-badge">Google Search Console</span>
           </div>
-          <div class="ga4-card-title">自動匯入 GA4 旗下所有網站</div>
+          <div class="ga4-card-title">匯入已驗證網站的搜尋資料</div>
           <p class="ga4-card-desc">
-            支援比照 Ahrefs 連接 Google 帳號，一鍵帶入您管理之所有 GA4 資源與網站，並交叉比對 AI 搜尋能見度與真實進站訪客！
+            連線後才會要求選擇與此專案網域相符的 Search Console property；連線本身不會建立觀測或改寫既有資料。
           </p>
           <button type="button" class="btn-google-auth-btn" id="btn-open-ga4-connect">
             <svg width="15" height="15" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
-            <span>連接 Google 帳號匯入網站</span>
+            <span>連接 Google 帳號</span>
           </button>
           <button type="button" class="btn-ghost btn-sm" id="btn-show-ga4-eval" style="width:100%; justify-content:center; margin-top:2px; font-size:0.75rem;">
-            查看 GA4 串接技術評估報告
+            查看串接狀態與資料範圍
           </button>
         </div>
       </div>

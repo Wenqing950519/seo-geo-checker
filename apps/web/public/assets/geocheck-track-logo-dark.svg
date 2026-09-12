@@ -6,8 +6,8 @@
     <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
     <circle cx="38" cy="15" r="1.5" fill="#FFFFFF" />
   </g>
-  <!-- Wordmark "GeoCheck Monitor" -->
-  <text x="70" y="41" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="900" letter-spacing="-0.03em" fill="#0B1F3B">GeoCheck<tspan font-weight="400" fill="#3B82F6" letter-spacing="-0.01em"> Monitor</tspan></text>
+  <!-- Wordmark "GeoCheck Track" -->
+  <text x="70" y="41" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="900" letter-spacing="-0.03em" fill="#0B1F3B">GeoCheck<tspan font-weight="400" fill="#3B82F6" letter-spacing="-0.01em"> Track</tspan></text>
   <!-- Subtitle "By LS-Labs" -->
   <text x="72" y="58" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" letter-spacing="0.06em" fill="#64748B">By LS-Labs</text>
 </svg>

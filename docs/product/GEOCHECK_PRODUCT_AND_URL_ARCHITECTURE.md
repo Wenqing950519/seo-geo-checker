@@ -55,7 +55,7 @@ For SEO content strategy specifically, the benchmark is Ahrefs and Semrush: rank
 | 品牌層 | LS Labs | `https://lslabs.tw/` | 母品牌／研發總部：組織願景、品牌信念、研究白皮書、方法論、內容行銷與全域跨產品導航（Mega Menu）。承載全站 SEO 權重。不承接個別產品量測表單或 API Key 管理。 | LS-Labs（幾何光學 Monogram 徽章） |
 | 能力層 | GeoCheck | 無獨立網域 | 量測能力本體：固定四引擎量測（D-029）、AI 信任指數 v1 評分方法論、證據與資料品質語義。作為概念層存在，由下列三個交付面共用（D-047 內部通道）。 | GeoCheck（能力名稱，非站點） |
 | 交付層 | 免費快檢 | `https://geocheck.lslabs.tw/` | 匿名、無登入、一次性短檢測與報告。漏斗頂端轉換工具。 | GeoCheck<br>By LS-Labs |
-| 交付層 | Dashboard（Product A） | `https://app.lslabs.tw/` | 登入制 SaaS：Project、追蹤題組、Tracking Run、跨期比較、來源證據抽屜。`gds_` session 與 `/app-api/v1`。 | GeoCheck Monitor<br>By LS-Labs |
+| 交付層 | Dashboard（Product A） | `https://app.lslabs.tw/` | 登入制 SaaS：Project、追蹤題組、Tracking Run、跨期比較、來源證據抽屜。`gds_` session 與 `/app-api/v1`。 | GeoCheck Track<br>By LS-Labs |
 | 交付層 | Platform（Product B） | `https://platform.lslabs.tw/` | 開發者平台：`/v1` API、SDK、技術文檔、API Key、用量與計費控台。`gcs_`／`gck_` 與 `developer_*` 資料表，與 A 完全隔離（D-042）。 | Platform<br>By LS-Labs |
 
 `geocheck.` and `app.` are separate rows because D-042 requires them to be separate in UI, browser API, session, API key, tenant/project authority, and data access. They must not be presented as one entity.
@@ -74,7 +74,7 @@ https://lslabs.tw/geocheck
     GeoCheck explanation, what is measured, what is not promised,
     method summary, evidence preview; primary CTA into the free audit tool
 
-https://lslabs.tw/product/geocheck-monitor
+https://lslabs.tw/product/geocheck-track
     Product A introduction and release status
 
 https://lslabs.tw/product/platform
@@ -174,7 +174,7 @@ It should not be the main navigation of a product surface, because that would ma
 ```text
 Products
 ├── GeoCheck
-├── GeoCheck Monitor
+├── GeoCheck Track
 └── Platform
 
 GeoCheck capabilities
@@ -201,7 +201,7 @@ The `lslabs.tw/geocheck` content page can inherit a small Labs bar, but its prod
 [GeoCheck]   Overview   AI Visibility   Site Audit   Evidence   Research   [Start audit]
 ```
 
-It may link to GeoCheck Monitor and Platform in a product-family switcher, but it should not display all Labs research and personal-site navigation in the primary product bar.
+It may link to GeoCheck Track and Platform in a product-family switcher, but it should not display all Labs research and personal-site navigation in the primary product bar.
 
 ### 6.3 Application shells
 
@@ -219,7 +219,7 @@ Neither authenticated shell should use the four-column Labs mega menu as its pri
 The multi-column discovery screen belongs on the LS Labs homepage and product pages because its purpose is discovery across:
 
 - GeoCheck;
-- GeoCheck Monitor;
+- GeoCheck Track;
 - Platform;
 - research;
 - methods;
@@ -250,7 +250,7 @@ Secondary CTAs:
 
 - read how the method works;
 - see the research/whitepaper;
-- learn about GeoCheck Monitor, marked by release status.
+- learn about GeoCheck Track, marked by release status.
 
 Required content:
 
@@ -261,7 +261,7 @@ Required content:
 - state semantics for unknown, partial, and failed observations;
 - feedback/research contact when approved.
 
-### 8.2 `lslabs.tw/product/geocheck-monitor`
+### 8.2 `lslabs.tw/product/geocheck-track`
 
 Purpose: explain why a one-time short audit becomes ongoing monitoring.
 
@@ -351,7 +351,7 @@ Create `/geocheck` as the ranking and explanation page, with its CTA pointing at
 
 ### Step 3 — Add product landing pages
 
-Create `/product/geocheck-monitor` and `/product/platform` as status-aware marketing pages. These pages can exist before their authenticated applications are publicly released.
+Create `/product/geocheck-track` and `/product/platform` as status-aware marketing pages. These pages can exist before their authenticated applications are publicly released.
 
 ### Step 4 — Add research index
 
@@ -373,7 +373,7 @@ After route, SEO, auth, and report-link verification, redirect old public GeoChe
 
 The following are proposals, not yet formal decisions:
 
-1. final public name for Product A: `GeoCheck Monitor`, `GeoCheck Insights`, or another name;
+1. final public name for Product A: `GeoCheck Track`, `GeoCheck Insights`, or another name;
 2. whether the Labs research index is public at launch or initially links only to the existing whitepaper;
 3. resolution of the existing metric-font rule conflict between the global and Developer-specific decisions before implementing dense metric UI;
 4. the concrete Cloudflare Pages routing and file layout for moving `home.html` / `brand.html` into the `lslabs.tw` path structure described in §3.1.

@@ -1,7 +1,7 @@
 ---
 type: decision-log
 project: GeoCheck
-last_updated: 2026-09-11
+last_updated: 2026-09-12
 tags:
   - geocheck
   - decisions
@@ -589,3 +589,14 @@ tags:
 - **決策邊界**：本決策為文件與敘事層。**不代表**內容已搬遷、Cloudflare Pages 路由已調整、或 `home.html`／`brand.html` 的落點已決定；該實作須另行排程並經 `npm.cmd test` 與人工驗收。
 - **影響範圍**：`docs/product/GEOCHECK_PRODUCT_AND_URL_ARCHITECTURE.md`（已改寫）；後續 Labs 前端路由、對外簡報與競賽材料的實體分類表。
 - **可追溯來源**：使用者 2026-09-11 說明「LS-Labs 要當 SEO 主力、競賽以 LS-Labs 提案」，並明確指示採用分層模型與 OpenAI 對標。
+
+### D-050 Product A 公開名稱定為 GeoCheck Track
+
+- **日期**：2026-09-12 ｜ **狀態**：Confirmed（前端、品牌資產與現況文件已同步；線上驗收待部署後執行）
+- **決策內容**：Product A 的公開名稱由 `GeoCheck Monitor` 改為 **`GeoCheck Track`**。`GEOCHECK_PRODUCT_AND_URL_ARCHITECTURE.md` 原列為未決問題（`GeoCheck Monitor`、`GeoCheck Insights` 或其他），本條結案。
+- **理由**：介面用字統計顯示 `觀測` 139 次、`監測` 27、`追蹤` 24、`監控` 8。`觀測` 是 GeoCheck 單次取樣的動作；`追蹤` 出現的位置（「每週自動追蹤」「下次追蹤」「追蹤題目」）全部是 Product A 獨有的行為。命名為 Track 使名稱與介面詞彙一致，不再引入第四個同義詞。
+- **考慮過的替代方案**：(a) `GeoCheck Pulse` —— 語感較佳，但中文無落點（`脈動` 未出現於產品），且 pulse 的「量生命徵象」意象暗示產品會給出健康與否的判斷，與「保留證據、不替使用者下結論」的產品立場相反；(b) `GeoCheck Radar` —— 呼應雷達標誌，但 Ahrefs 已有 Brand Radar，直接競合下不宜撞名。
+- **已知代價**：Track 辨識度低、商標區辨性弱，且與 Ahrefs `Rank Tracker` 落在同一字根鄰居。這是以可讀性換獨特性的有意識取捨。
+- **影響範圍**：`home/`（首頁、選單、內頁、路由）、`apps/web/`（app 標題、登入閘、側欄、brand.html、home.html）、品牌資產 `geocheck-track-logo-*.svg`（原 `geocheck-monitor-logo-*.svg`，內嵌文字已更新）、相關測試。主域路徑 `/product/geocheck-monitor/` 改為 `/product/geocheck-track/`，舊路徑以 301 承接。
+- **維持不變**：`app.lslabs.tw` 網域不變；D-042 的 A／B 隱私與授權邊界不變；`packages/monitor` 等內部模組名稱不在本次範圍。
+- **可追溯來源**：使用者 2026-09-12 表示 `Monitor` 名稱不適，並於 Pulse／Track 中採納 Track。

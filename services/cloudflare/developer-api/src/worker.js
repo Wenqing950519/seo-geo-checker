@@ -179,6 +179,16 @@ function platformAssetPath(pathname) {
   return null;
 }
 
+function platformContentRedirect(url) {
+  const destination = {
+    "/brand": "https://lslabs.tw/brand/",
+    "/brand/": "https://lslabs.tw/brand/",
+    "/whitepaper": "https://lslabs.tw/research/geo-whitepaper/",
+    "/whitepaper/": "https://lslabs.tw/research/geo-whitepaper/"
+  }[url.pathname];
+  return destination ? Response.redirect(destination, 302) : null;
+}
+
 async function handleRequest(request, env) {
   const url = new URL(request.url);
   const pathname = url.pathname;
@@ -186,6 +196,8 @@ async function handleRequest(request, env) {
   // platform.lslabs.tw is the entire developer surface: landing, documentation,
   // Console and /v1 share one origin so browser sessions never cross products.
   if (request.method === "GET" && url.hostname === "platform.lslabs.tw") {
+    const contentRedirect = platformContentRedirect(url);
+    if (contentRedirect) return contentRedirect;
     const assetPath = platformAssetPath(pathname);
     if (assetPath) {
       const assetUrl = new URL(request.url);

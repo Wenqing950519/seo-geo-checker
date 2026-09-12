@@ -2,7 +2,14 @@
 // Native Modern ES Module bootstrap and state-driven DOM rendering
 
 import { AppState } from './shared/state.js';
-import { renderNoProjectState, renderNoQuestionsState, renderDataUnavailableState } from './shared/empty-state.js';
+import {
+  renderNoProjectState,
+  renderNoQuestionsState,
+  renderDataUnavailableState,
+  renderAwaitingFirstRunState,
+  renderNoDataInRangeState,
+  renderLoadFailedState
+} from './shared/empty-state.js';
 import { api } from './shared/api.js';
 import { getFixtureData } from './shared/fixtures.js';
 import { renderSidebar } from './shared/sidebar.js';
@@ -49,6 +56,7 @@ class DashboardApp {
       return;
     }
     AppState.loading = true;
+    AppState.dataLoadError = null;
     this.render();
     try {
       if (AppState.fixtureMode) {
@@ -82,11 +90,24 @@ class DashboardApp {
       }
     } catch (err) {
       console.error('[DashboardApp] Data fetch error:', err);
+      // Record the failure so the views can say the request failed instead of
+      // reusing the copy for an account that genuinely has no observations.
+      AppState.dataLoadError = err.message || 'unknown error';
       AppState.showToast(`資料載入失敗：${err.message}`, 'warning');
     } finally {
       AppState.loading = false;
       this.render();
     }
+  }
+
+  // A view whose payload arrived but carries no rows for the selected window is
+  // not the same as a project with no observations at all.
+  isEmptyForRange(tab, data) {
+    if (!data) return false;
+    if (tab === 'performance') return Array.isArray(data.series) && data.series.length === 0;
+    if (tab === 'citations') return Array.isArray(data.sources) && data.sources.length === 0;
+    if (tab === 'quality') return Array.isArray(data.runs) && data.runs.length === 0;
+    return false;
   }
 
   render() {
@@ -152,8 +173,21 @@ class DashboardApp {
           this.viewEl.innerHTML = renderNoQuestionsState();
           return;
         }
+        // Five distinct answers, never one shared "no data" screen:
+        // request failed / no question set / awaiting first run / empty range /
+        // observed but nothing matched (handled inside each view).
+        if (AppState.dataLoadError) {
+          this.viewEl.innerHTML = renderLoadFailedState(AppState.dataLoadError);
+          return;
+        }
         if (dataForTab[AppState.activeTab] == null) {
-          this.viewEl.innerHTML = renderDataUnavailableState();
+          this.viewEl.innerHTML = AppState.currentQuestionSets.length > 0
+            ? renderAwaitingFirstRunState()
+            : renderDataUnavailableState();
+          return;
+        }
+        if (this.isEmptyForRange(AppState.activeTab, dataForTab[AppState.activeTab])) {
+          this.viewEl.innerHTML = renderNoDataInRangeState(AppState.timeRangeWeeks);
           return;
         }
       }
@@ -195,7 +229,7 @@ class DashboardApp {
               <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
             </svg>
           </div>
-          <h2 class="gate-main-title">登入 LS Labs Dashboard</h2>
+          <h2 class="gate-main-title">登入 GeoCheck Track</h2>
           <p class="gate-main-desc">
             品牌的 AI 可見度與證據監控平台。<br>請使用 Google 帳戶登入以存取品牌專案、提問監測與引用分析。
           </p>
@@ -212,11 +246,6 @@ class DashboardApp {
             </button>
           </div>
 
-          <div class="gate-demo-action">
-            <button type="button" class="btn-gate-demo-link" id="btn-gate-demo-login">
-              體驗示範帳號 (Demo Account)
-            </button>
-          </div>
         </div>
       </div>
     `;
@@ -458,7 +487,7 @@ class DashboardApp {
         AppState.openModal('auth_session');
         return;
       }
-      if (e.target.closest('#btn-topbar-google-login, #btn-gate-google-login, #btn-modal-google-login, #btn-gate-demo-login')) {
+      if (e.target.closest('#btn-gate-google-login, #btn-modal-google-login')) {
         window.location.assign('/app-api/v1/auth/google/start');
         return;
       }

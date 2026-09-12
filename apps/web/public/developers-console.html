@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LS Labs Platform Console — GeoCheck API 管理</title>
-<meta name="description" content="LS Labs Platform 上的 GeoCheck API 管理控制台：管理 API 金鑰、四引擎觀測配額與四大官方搜尋引擎觀測任務。">
+<title>Platform By LS-Labs Console — GeoCheck API 管理</title>
+<meta name="description" content="Platform By LS-Labs 上的 GeoCheck API 管理控制台：管理 API 金鑰、四引擎觀測配額與四大官方搜尋引擎觀測任務。">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 
 <style>
 :root {
-  /* LS Labs Brand Tokens (Dark Cosmic Developer Edition) */
+  /* LS-Labs Brand Tokens (Dark Cosmic Developer Edition) */
   --gc-bg-canvas: #090D1A;         /* Cosmic Base */
   --gc-sidebar-bg: #0D1424;        /* Dark Navy Sidebar */
   --gc-card-bg: #121B30;           /* Elevated Navy Card */
@@ -96,7 +96,7 @@ body {
 .toast.show { opacity: 1; transform: translateY(0); }
 
 /* ===================================================================
-   1. FULL-PAGE AUTH GATE (LS Labs Dark Style)
+   1. FULL-PAGE AUTH GATE (LS-Labs Dark Style)
    =================================================================== */
 .fullpage-auth-gate {
   min-height: 100vh;
@@ -1068,7 +1068,7 @@ aside.console-sidebar {
     <div class="sidebar-header">
       <a href="/" class="sidebar-logo">
         <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='./assets/logo-mark.svg';}" alt="LS-Labs">
-        <span class="sidebar-brand-name">LS Labs</span>
+        <span class="sidebar-brand-name">LS-Labs</span>
       </a>
       <span class="sidebar-brand-badge">CONSOLE</span>
     </div>
@@ -1096,7 +1096,7 @@ aside.console-sidebar {
           <circle cx="12" cy="12" r="2"/>
           <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
         </svg>
-        <span>四引擎直連狀態</span>
+        <span>四引擎與用途</span>
       </button>
 
       <button type="button" class="nav-item" data-tab="jobs" onclick="switchConsoleTab('jobs')">
@@ -1151,7 +1151,7 @@ aside.console-sidebar {
           <line x1="2" y1="12" x2="22" y2="12"/>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
-        <span>LS Labs 官網 ↗</span>
+        <span>LS-Labs 官網 ↗</span>
       </a>
     </div>
 
@@ -1176,7 +1176,7 @@ aside.console-sidebar {
       <div class="engine-gateway-bar">
         <div class="engine-gateway-title">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          <span>四大官方搜尋引擎並行直連狀態</span>
+          <span>每次觀測呼叫的四家官方引擎</span>
         </div>
         <div class="engine-status-list">
           <span class="engine-chip"><span class="engine-dot dot-openai"></span>OpenAI Search</span>
@@ -1200,7 +1200,7 @@ aside.console-sidebar {
           </div>
           <div style="display:flex; gap:10px;">
             <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()">+ 建立 API 金鑰</button>
-            <button type="button" class="btn-card-action" onclick="openPlanModal()" style="padding:6px 14px;">變更方案</button>
+            <button type="button" class="btn-card-action" onclick="openPlanModal()" style="padding:6px 14px;">查看方案狀態</button>
           </div>
         </div>
 
@@ -1219,9 +1219,9 @@ aside.console-sidebar {
             <div class="meter-card-header">
               <span class="meter-card-label">
                 剩餘觀測配額
-                <span id="overview-plan-badge" class="plan-pill-tag">Free Trial</span>
+                <span id="overview-plan-badge" class="plan-pill-tag">尚未開通</span>
               </span>
-              <button type="button" class="btn-card-action" onclick="openPlanModal()">升級方案</button>
+              <button type="button" class="btn-card-action" onclick="openPlanModal()">查看方案狀態</button>
             </div>
             <div class="meter-amount-row">
               <div class="meter-main-val font-number" id="meter-remaining-val">2 / 3 <span style="font-size:1.1rem; font-weight:600; color:var(--gc-text-secondary);">輪</span></div>
@@ -1240,11 +1240,11 @@ aside.console-sidebar {
           <div class="meter-card">
             <div class="meter-card-header">
               <span class="meter-card-label">當前方案權益與限制</span>
-              <span style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:#34D399; font-weight:700;">● 正常服務中</span>
+              
             </div>
             <div style="font-size:0.86rem; color:#CBD5E1; line-height:1.75; margin-top:4px;">
-              • 方案等級：<strong id="plan-name-text" style="color:#FFF;">Free Trial 免費試用</strong><br>
-              • 調用頻率限制：<strong>10 RPM</strong>（每分鐘 10 輪）<br>
+              • 方案等級：<strong id="plan-name-text" style="color:#FFF;">尚未開通</strong><br>
+              • 調用頻率限制：<strong id="plan-rate-limit">以 Console 開通資訊為準</strong><br>
               • 冪等性保障：支援 <code>Idempotency-Key</code> 標頭防重複扣量<br>
               • 引擎涵蓋：四大官方 AI 搜尋引擎完整交付
             </div>
@@ -1328,13 +1328,13 @@ aside.console-sidebar {
       </div>
 
       <!-- ==========================================
-           TAB 3: 四引擎直連狀態 (4 Engines Gateway)
+           TAB 3: 四引擎與用途 (4 Engines Gateway)
            ========================================== -->
       <div id="tab-engines" class="console-tab-view" style="display:none;">
         <div class="section-header">
           <div>
-            <h1 class="page-title">四大官方搜尋引擎直連狀態</h1>
-            <p class="section-desc">GeoCheck 透過官方 API 通道直連主流 AI 搜尋引擎，實時獲取品牌引用與能見度信號。</p>
+            <h1 class="page-title">四大官方搜尋引擎與用途</h1>
+            <p class="section-desc">這裡列出每次觀測會呼叫的引擎與用途。<strong>這不是健康狀態頁</strong>：目前沒有定期健康檢查，某次呼叫是否成功請看「量測任務記錄」的單筆結果。</p>
           </div>
         </div>
 
@@ -1343,12 +1343,11 @@ aside.console-sidebar {
           <div class="meter-card">
             <div class="meter-card-header">
               <span class="meter-card-label" style="color:var(--color-openai);">● OpenAI Search</span>
-              <span style="font-size:0.75rem; color:#34D399; font-weight:700;">直連正常</span>
+              <span style="font-size:0.75rem; color:var(--gc-unknown, #94A3B8); font-weight:700;">已配置</span>
             </div>
             <div style="font-size:0.85rem; color:#CBD5E1; line-height:1.7;">
-              • 引擎技術：GPT-4o Web Search / SearchGPT 實時聯網<br>
-              • 觀測指標：品牌提及、官網來源引用權重、結構化摘錄<br>
-              • 平均回應延遲：~1.8s
+              • 引擎技術：官方 Web Search 工具（模型 ID 以 API 回應為準）<br>
+              • 觀測指標：品牌提及、官網來源引用權重、結構化摘錄
             </div>
           </div>
 
@@ -1356,12 +1355,11 @@ aside.console-sidebar {
           <div class="meter-card">
             <div class="meter-card-header">
               <span class="meter-card-label" style="color:var(--color-gemini);">● Google Gemini</span>
-              <span style="font-size:0.75rem; color:#34D399; font-weight:700;">直連正常</span>
+              <span style="font-size:0.75rem; color:var(--gc-unknown, #94A3B8); font-weight:700;">已配置</span>
             </div>
             <div style="font-size:0.85rem; color:#CBD5E1; line-height:1.7;">
               • 引擎技術：Google Search Grounding 動態聯網技術<br>
-              • 觀測指標：搜尋關鍵字排名、Grounding Sources 引用<br>
-              • 平均回應延遲：~1.4s
+              • 觀測指標：搜尋關鍵字排名、Grounding Sources 引用
             </div>
           </div>
 
@@ -1369,12 +1367,11 @@ aside.console-sidebar {
           <div class="meter-card">
             <div class="meter-card-header">
               <span class="meter-card-label" style="color:var(--color-perplexity);">● Perplexity Sonar</span>
-              <span style="font-size:0.75rem; color:#34D399; font-weight:700;">直連正常</span>
+              <span style="font-size:0.75rem; color:var(--gc-unknown, #94A3B8); font-weight:700;">已配置</span>
             </div>
             <div style="font-size:0.85rem; color:#CBD5E1; line-height:1.7;">
               • 引擎技術：Sonar Online 搜尋引擎直連通道<br>
-              • 觀測指標：直接引用 URL、自然語言答案排序<br>
-              • 平均回應延遲：~1.2s
+              • 觀測指標：直接引用 URL、自然語言答案排序
             </div>
           </div>
 
@@ -1382,12 +1379,11 @@ aside.console-sidebar {
           <div class="meter-card">
             <div class="meter-card-header">
               <span class="meter-card-label" style="color:var(--color-claude);">● Anthropic Claude</span>
-              <span style="font-size:0.75rem; color:#34D399; font-weight:700;">直連正常</span>
+              <span style="font-size:0.75rem; color:var(--gc-unknown, #94A3B8); font-weight:700;">已配置</span>
             </div>
             <div style="font-size:0.85rem; color:#CBD5E1; line-height:1.7;">
-              • 引擎技術：Claude 3.5 Sonnet 聯網檢索管線<br>
-              • 觀測指標：深度語意推薦、長文本品牌上下文理解<br>
-              • 平均回應延遲：~2.1s
+              • 引擎技術：官方 Web Search 能力（模型 ID 以 API 回應為準）<br>
+              • 觀測指標：深度語意推薦、長文本品牌上下文理解
             </div>
           </div>
         </div>
@@ -1476,48 +1472,48 @@ print("Measurement initiated:", job["measurement_id"])</code></pre>
         <div class="section-header">
           <div>
             <h1 class="page-title">Developer API 方案與配額</h1>
-            <p class="section-desc">四大官方搜尋引擎直連觀測，全成才扣量，零浪費計費架構。</p>
+            <p class="section-desc">Developer API 目前採 Private Beta 管理；實際存取資格、額度與可用引擎以 Console 為準。</p>
           </div>
         </div>
 
         <div class="plans-grid">
           <!-- Free Trial -->
           <div class="plan-card featured">
-            <div class="plan-card-name">Free Trial</div>
-            <div class="plan-card-price">NT$ 0 <span>/ 7 天</span></div>
+            <div class="plan-card-name">Private Beta 存取</div>
+            <div class="plan-card-price">依帳戶開通狀態</div>
             <ul class="plan-card-list">
-              <li>每日 3 輪完整觀測</li>
-              <li>四大官方引擎直連</li>
-              <li>速率限制: 10 RPM</li>
-              <li>免綁信用卡直接開通</li>
+              <li>由帳戶權益決定可用範圍</li>
+              <li>可用引擎由 Console 顯示</li>
+              <li>速率限制在開通時顯示</li>
+              <li>目前不提供公開自助開通</li>
             </ul>
-            <button type="button" class="btn-plan-select btn-plan-blue" onclick="selectPlan('free')">開通免費試用</button>
+            <button type="button" class="btn-plan-select btn-plan-blue" onclick="requestAccess()">查看存取狀態</button>
           </div>
 
           <!-- Basic -->
           <div class="plan-card">
             <div class="plan-card-name">Basic</div>
-            <div class="plan-card-price">NT$ 660 <span>/ 月</span></div>
+            <div class="plan-card-price">尚未公開選購</div>
             <ul class="plan-card-list">
-              <li>每月 80 輪完整觀測</li>
-              <li>四大官方引擎直連</li>
-              <li>速率限制: 30 RPM</li>
-              <li>單輪折算僅 NT$ 8.25</li>
+              <li>不預設任何商業額度</li>
+              <li>結果語意以 API 契約為準</li>
+              <li>權益在正式開放時顯示</li>
+              <li>目前沒有公開價格</li>
             </ul>
-            <button type="button" class="btn-plan-select btn-plan-outline" onclick="selectPlan('basic')">選擇 Basic 方案</button>
+            <button type="button" class="btn-plan-select btn-plan-outline" onclick="requestAccess()">查看存取狀態</button>
           </div>
 
           <!-- Premium -->
           <div class="plan-card">
             <div class="plan-card-name">Premium</div>
-            <div class="plan-card-price">NT$ 1,390 <span>/ 月</span></div>
+            <div class="plan-card-price">尚未公開選購</div>
             <ul class="plan-card-list">
-              <li>每月 170 輪完整觀測</li>
-              <li>優先排程通道</li>
-              <li>速率限制: 60 RPM</li>
-              <li>單輪折算僅 NT$ 8.18</li>
+              <li>不預設任何商業額度</li>
+              <li>partial 結果不等同完整觀測</li>
+              <li>權益在正式開放時顯示</li>
+              <li>目前沒有公開價格</li>
             </ul>
-            <button type="button" class="btn-plan-select btn-plan-outline" onclick="selectPlan('premium')">選擇 Premium 方案</button>
+            <button type="button" class="btn-plan-select btn-plan-outline" onclick="requestAccess()">查看存取狀態</button>
           </div>
         </div>
       </div>
@@ -1535,45 +1531,45 @@ print("Measurement initiated:", job["measurement_id"])</code></pre>
   <div class="modal-card" style="max-width: 800px;">
     <button class="modal-close" onclick="closePlanModal()">✕</button>
     <div style="text-align:center; margin-bottom: 20px;">
-      <h2 class="modal-title">選擇 Developer API 方案</h2>
-      <p class="modal-subtitle">四大官方搜尋引擎直連觀測，全成才扣量，零浪費計費架構。</p>
+      <h2 class="modal-title">Developer API 開放狀態</h2>
+      <p class="modal-subtitle">目前採 Private Beta 管理；方案、額度與任何付費安排會在正式開通時顯示。</p>
     </div>
 
     <div class="plans-grid" style="margin-top:0;">
       <div class="plan-card featured">
-        <div class="plan-card-name">Free Trial</div>
-        <div class="plan-card-price">NT$ 0 <span>/ 7 天</span></div>
+        <div class="plan-card-name">Private Beta 存取</div>
+        <div class="plan-card-price">依帳戶開通狀態</div>
         <ul class="plan-card-list">
-          <li>每日 3 輪完整觀測</li>
-          <li>四大官方引擎直連</li>
-          <li>速率限制: 10 RPM</li>
-          <li>免綁信用卡直接開通</li>
+          <li>由帳戶權益決定可用範圍</li>
+          <li>可用引擎由 Console 顯示</li>
+          <li>速率限制在開通時顯示</li>
+          <li>目前不提供公開自助開通</li>
         </ul>
-        <button type="button" class="btn-plan-select btn-plan-blue" onclick="selectPlan('free')">開通免費試用</button>
+        <button type="button" class="btn-plan-select btn-plan-blue" onclick="requestAccess()">查看存取狀態</button>
       </div>
 
       <div class="plan-card">
         <div class="plan-card-name">Basic</div>
-        <div class="plan-card-price">NT$ 660 <span>/ 月</span></div>
+        <div class="plan-card-price">尚未公開選購</div>
         <ul class="plan-card-list">
-          <li>每月 80 輪完整觀測</li>
-          <li>四大官方引擎直連</li>
-          <li>速率限制: 30 RPM</li>
-          <li>單輪折算僅 NT$ 8.25</li>
+          <li>不預設任何商業額度</li>
+          <li>結果語意以 API 契約為準</li>
+          <li>權益在正式開放時顯示</li>
+          <li>目前沒有公開價格</li>
         </ul>
-        <button type="button" class="btn-plan-select btn-plan-outline" onclick="selectPlan('basic')">選擇 Basic 方案</button>
+        <button type="button" class="btn-plan-select btn-plan-outline" onclick="requestAccess()">查看存取狀態</button>
       </div>
 
       <div class="plan-card">
         <div class="plan-card-name">Premium</div>
-        <div class="plan-card-price">NT$ 1,390 <span>/ 月</span></div>
+        <div class="plan-card-price">尚未公開選購</div>
         <ul class="plan-card-list">
-          <li>每月 170 輪完整觀測</li>
-          <li>優先排程通道</li>
-          <li>速率限制: 60 RPM</li>
-          <li>單輪折算僅 NT$ 8.18</li>
+          <li>不預設任何商業額度</li>
+          <li>partial 結果不等同完整觀測</li>
+          <li>權益在正式開放時顯示</li>
+          <li>目前沒有公開價格</li>
         </ul>
-        <button type="button" class="btn-plan-select btn-plan-outline" onclick="selectPlan('premium')">選擇 Premium 方案</button>
+        <button type="button" class="btn-plan-select btn-plan-outline" onclick="requestAccess()">查看存取狀態</button>
       </div>
     </div>
   </div>
@@ -1586,11 +1582,11 @@ print("Measurement initiated:", job["measurement_id"])</code></pre>
     <div style="width:44px; height:44px; border-radius:var(--radius-md); background:rgba(59,130,246,0.15); color:var(--gc-blue-primary); display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
     </div>
-    <h3 class="modal-title" style="margin-bottom:8px;">付費通道準備中</h3>
+    <h3 class="modal-title" style="margin-bottom:8px;">Developer API 存取狀態</h3>
     <p class="modal-subtitle" style="margin-bottom:20px;">
-      目前 Developer API 處於 Private Beta 階段。建議直接開通 <strong>Free Trial 7 天免費試用</strong>（每日 3 輪完整觀測）體驗 API。
+      目前 Developer API 處於 Private Beta 階段。帳戶資格、可用引擎、額度與任何後續付費安排，都必須以正式開通時的 Console 資訊為準。
     </p>
-    <button type="button" class="btn-primary-blue" style="width:100%; justify-content:center; padding:9px;" onclick="selectPlan('free')">立即啟用 7 天免費試用</button>
+    <button type="button" class="btn-primary-blue" style="width:100%; justify-content:center; padding:9px;" onclick="closePaidNoticeModal()">了解</button>
   </div>
 </div>
 
@@ -1656,7 +1652,7 @@ print("Measurement initiated:", job["measurement_id"])</code></pre>
     <button class="modal-close" onclick="closeFeedbackModal()">✕</button>
     <h3 class="modal-title">聯繫支援與反饋</h3>
     <p class="modal-subtitle">
-      如果您在對接 API、量測結果判讀或架構集成上有任何問題，歡迎直接聯絡 LS Labs 核心團隊：
+      如果您在對接 API、量測結果判讀或架構集成上有任何問題，歡迎直接聯絡 LS-Labs 核心團隊：
     </p>
     <div style="background:#0B111F; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--gc-card-border); font-size:0.85rem; color:#CBD5E1; line-height:1.8;">
       • 技術支援信箱：<a href="mailto:dev@lslabs.tw" style="color:#60A5FA;">dev@lslabs.tw</a><br>
@@ -1681,6 +1677,16 @@ const STATE = {
 };
 
 const isPreviewMode = new URLSearchParams(window.location.search).get('preview') === '1';
+
+if (isPreviewMode) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const notice = document.createElement('div');
+    notice.setAttribute('role', 'status');
+    notice.textContent = '預覽模式：此頁的帳號、金鑰、用量與工作紀錄皆為示意資料，不能代表服務狀態。';
+    notice.style.cssText = 'position:fixed;z-index:9999;top:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);padding:10px 14px;border:1px solid #F59E0B;border-radius:10px;background:#FFFBEB;color:#78350F;font:700 13px/1.45 system-ui,sans-serif;box-shadow:0 8px 22px rgba(0,0,0,.18)';
+    document.body.appendChild(notice);
+  });
+}
 
 // Unified Console API Client (Targeting Isolated B Origin)
 async function consoleRequest(endpoint, options = {}) {
@@ -1826,20 +1832,21 @@ function renderState() {
   }
 
   // Update Quota Displays based on real backend data
-  const remaining = STATE.usage ? STATE.usage.remaining_rounds : 2;
-  const limit = STATE.usage ? STATE.usage.quota_limit : 3;
-  const used = STATE.usage ? (STATE.usage.used_rounds || 0) : 1;
-  const plan = STATE.entitlement?.plan || (STATE.usage?.plan || 'free');
+  const hasUsage = Boolean(STATE.usage);
+  const remaining = hasUsage ? STATE.usage.remaining_rounds : null;
+  const limit = hasUsage ? STATE.usage.quota_limit : null;
+  const used = hasUsage ? (STATE.usage.used_rounds || 0) : null;
+  const plan = STATE.entitlement?.plan || STATE.usage?.plan || null;
 
   const meterRemainingVal = document.getElementById('meter-remaining-val');
-  if (meterRemainingVal) meterRemainingVal.innerHTML = remaining + ' / ' + limit + ' <span style="font-size:1.1rem; font-weight:600; color:var(--gc-text-secondary);">輪</span>';
+  if (meterRemainingVal) meterRemainingVal.innerHTML = hasUsage ? remaining + ' / ' + limit + ' <span style="font-size:1.1rem; font-weight:600; color:var(--gc-text-secondary);">輪</span>' : '— <span style="font-size:1.1rem; font-weight:600; color:var(--gc-text-secondary);">尚未開通</span>';
 
   const meterUsedSub = document.getElementById('meter-used-sub');
-  if (meterUsedSub) meterUsedSub.innerText = '今日已消耗 ' + used + ' 輪';
+  if (meterUsedSub) meterUsedSub.innerText = hasUsage ? '今日已消耗 ' + used + ' 輪' : '尚無可顯示的用量資料';
 
   const meterProgressBar = document.getElementById('meter-progress-bar');
   if (meterProgressBar) {
-    const pct = limit > 0 ? Math.round((remaining / limit) * 100) : 0;
+    const pct = hasUsage && limit > 0 ? Math.round((remaining / limit) * 100) : 0;
     meterProgressBar.style.width = pct + '%';
   }
 
@@ -1850,12 +1857,12 @@ function renderState() {
 
   const planNameText = document.getElementById('plan-name-text');
   const overviewPlanBadge = document.getElementById('overview-plan-badge');
-  const planLabel = plan === 'basic' ? 'Basic 方案 (80 輪/月)' : plan === 'premium' ? 'Premium 旗艦 (170 輪/月)' : 'Free Trial (每日 3 輪)';
+  const planLabel = plan === 'basic' ? 'Basic 方案' : plan === 'premium' ? 'Premium 方案' : plan === 'free' ? 'Free 存取' : '尚未開通';
   if (planNameText) planNameText.innerText = planLabel;
-  if (overviewPlanBadge) overviewPlanBadge.innerText = plan === 'basic' ? 'Basic' : plan === 'premium' ? 'Premium' : 'Free Trial';
+  if (overviewPlanBadge) overviewPlanBadge.innerText = plan === 'basic' ? 'Basic' : plan === 'premium' ? 'Premium' : plan === 'free' ? 'Free' : '尚未開通';
 
   const metricUsedRounds = document.getElementById('metric-used-rounds');
-  if (metricUsedRounds) metricUsedRounds.innerHTML = used + ' <span style="font-size:0.95rem; color:var(--gc-text-muted);">輪</span>';
+  if (metricUsedRounds) metricUsedRounds.innerHTML = hasUsage ? used + ' <span style="font-size:0.95rem; color:var(--gc-text-muted);">輪</span>' : '— <span style="font-size:0.95rem; color:var(--gc-text-muted);">輪</span>';
 
   const metricActiveKeys = document.getElementById('metric-active-keys');
   if (metricActiveKeys) metricActiveKeys.innerHTML = STATE.keys.length + ' <span style="font-size:0.95rem; color:var(--gc-text-muted);">組</span>';
@@ -1919,11 +1926,15 @@ function handleTimeFilter(val) {
 }
 
 function exportUsageCsv() {
-  const remaining = STATE.usage ? STATE.usage.remaining_rounds : 2;
-  const used = STATE.usage ? (STATE.usage.used_rounds || 0) : 1;
-  const limit = STATE.usage ? STATE.usage.quota_limit : 3;
+  if (!STATE.usage) {
+    showToast('尚無用量資料可匯出');
+    return;
+  }
+  const remaining = STATE.usage.remaining_rounds;
+  const used = STATE.usage.used_rounds || 0;
+  const limit = STATE.usage.quota_limit;
   const csvContent = "data:text/csv;charset=utf-8,日期,方案,已消耗輪數,剩餘配額,總配額,重置週期\n"
-    + new Date().toISOString().slice(0, 10) + ",Free Trial," + used + "," + remaining + "," + limit + ",Asia/Taipei 00:00\n";
+    + new Date().toISOString().slice(0, 10) + "," + (STATE.usage.plan || 'unknown') + "," + used + "," + remaining + "," + limit + ",Asia/Taipei 00:00\n";
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement("a");
   link.setAttribute("href", encodedUri);
@@ -1942,36 +1953,18 @@ function closePlanModal() {
   document.getElementById('plan-modal').classList.remove('open');
 }
 
-async function selectPlan(plan) {
+function requestAccess() {
   closePlanModal();
-
-  if (plan === 'basic' || plan === 'premium') {
-    setTimeout(() => {
-      document.getElementById('paid-notice-modal').classList.add('open');
-    }, 150);
-    return;
-  }
-
-  if (isPreviewMode) {
-    STATE.entitlement = { plan: 'free', expires_at: new Date(Date.now() + 7 * 86400000).toISOString() };
-    STATE.usage = { plan: 'free', used_rounds: 0, remaining_rounds: 3, quota_limit: 3, expires_at: STATE.entitlement.expires_at };
-    closePaidNoticeModal();
-    renderState();
-    showToast('已啟用 Free Trial 7 天免費試用 (預覽)');
-    return;
-  }
-
-  try {
-    const entitlement = await consoleRequest('/v1/console/activation', { method: 'POST', body: JSON.stringify({ plan: 'free' }) });
-    STATE.entitlement = { plan: entitlement.plan, expires_at: entitlement.expires_at };
-    STATE.usage = entitlement;
-    closePaidNoticeModal();
-    renderState();
-    showToast('已啟用 Free Trial 7 天免費試用');
-  } catch (error) {
-    showToast(error.code === 'payment_required' ? '付費方案尚未開放' : '試用啟用失敗，請稍後再試');
-  }
+  // Reuse the Private Beta notice: a modal states the access rule and keeps the
+  // dialog reachable by keyboard, which a transient toast cannot do.
+  setTimeout(() => {
+    document.getElementById('paid-notice-modal').classList.add('open');
+  }, 150);
 }
+
+// selectPlan() was removed with the public self-service tiers. Activation is
+// granted per account during Private Beta, so the Console reports the state the
+// server returns instead of announcing a trial the client cannot grant.
 
 function closePaidNoticeModal() {
   document.getElementById('paid-notice-modal').classList.remove('open');

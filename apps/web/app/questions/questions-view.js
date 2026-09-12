@@ -27,8 +27,10 @@ export function renderQuestions(data) {
   const officialCitationCount = allQuestions.filter(q => 
     (q.latest_observations || []).some(o => o.officialCitation === true)
   ).length;
-  const sovRate = totalQuestions > 0 ? ((mentionedCount / totalQuestions) * 100).toFixed(1) : '75.0';
-  const citRate = totalQuestions > 0 ? ((officialCitationCount / totalQuestions) * 100).toFixed(1) : '33.3';
+  // A missing question set has no denominator. Never turn that absence into a
+  // plausible-looking percentage: unknown is a product state, not a low score.
+  const sovRate = totalQuestions > 0 ? ((mentionedCount / totalQuestions) * 100).toFixed(1) : null;
+  const citRate = totalQuestions > 0 ? ((officialCitationCount / totalQuestions) * 100).toFixed(1) : null;
 
   // Apply filters
   const filterIntent = AppState.questionIntentFilter || 'all';
@@ -62,14 +64,14 @@ export function renderQuestions(data) {
 
         <div class="ds-card q-kpi-card">
           <div class="q-kpi-label">AI 品牌推薦率</div>
-          <div class="q-kpi-val font-number">${sovRate}%</div>
-          <div class="q-kpi-sub font-number">${mentionedCount}/${totalQuestions} 題獲 AI 主動推薦提及</div>
+          <div class="q-kpi-val font-number">${sovRate === null ? '—' : `${sovRate}%`}</div>
+          <div class="q-kpi-sub font-number">${sovRate === null ? '尚無可計算的提問資料' : `${mentionedCount}/${totalQuestions} 題獲 AI 主動推薦提及`}</div>
         </div>
 
         <div class="ds-card q-kpi-card">
           <div class="q-kpi-label">官網第一方引用率</div>
-          <div class="q-kpi-val font-number">${citRate}%</div>
-          <div class="q-kpi-sub font-number">${officialCitationCount}/${totalQuestions} 題引用品牌官方網站</div>
+          <div class="q-kpi-val font-number">${citRate === null ? '—' : `${citRate}%`}</div>
+          <div class="q-kpi-sub font-number">${citRate === null ? '尚無可計算的提問資料' : `${officialCitationCount}/${totalQuestions} 題引用品牌官方網站`}</div>
         </div>
 
         <div class="ds-card q-kpi-card">

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LS Labs Platform — GeoCheck API 技術文件</title>
-<meta name="description" content="LS Labs Platform GeoCheck API 官方技術文件：四引擎官方直連量測、TypeScript SDK、WAF 與反爬蟲診斷、REST API 參考規格。">
+<title>GeoCheck Developer API 文件｜Platform By LS-Labs</title>
+<meta name="description" content="GeoCheck Developer API 技術文件：請求、回應、狀態語意與存取條件。實際開放範圍以 Console 為準。">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -433,13 +433,13 @@ main.docs-content {
   <div class="nav-wrap">
     <a href="/" class="brand-group">
       <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='../assets/logo-mark.svg';}" width="28" height="28" alt="LS-Labs">
-      <span class="brand-name">LS Labs</span>
+      <span class="brand-name">GeoCheck Developer API</span>
       <span class="docs-badge">API DOCS v1.0</span>
     </a>
 
     <div class="nav-actions">
       <a href="https://app.lslabs.tw/">Dashboard ↗</a>
-      <a href="https://lslabs.tw/">LS Labs 首頁</a>
+      <a href="https://lslabs.tw/">LS-Labs 首頁</a>
       <a href="/console" class="btn-console">API 控制台</a>
     </div>
   </div>
@@ -536,7 +536,7 @@ main.docs-content {
 
       <h3>3 步驟快速驗證</h3>
       <ol>
-        <li>於 <a href="/console" style="color:var(--gc-mint-dark); font-weight:700;">API 控制台</a> 免費開通 7 天試用方案並建立 API 金鑰（以 <code>gck_live_</code> 開頭）。</li>
+        <li>先登入 <a href="/console" style="color:var(--gc-mint-dark); font-weight:700;">API 控制台</a> 確認帳戶已開通存取資格；只有已開通的帳戶能建立 API 金鑰。</li>
         <li>傳送 <code>POST /v1/measurements</code> 攜帶 <code>Idempotency-Key</code> 與受測品牌官方網址。</li>
         <li>取得 <code>202 Accepted</code> 後，依 <code>Retry-After</code> 建議輪詢 <code>GET /v1/measurements/{id}</code> 獲得四大引擎結果。</li>
       </ol>
@@ -554,7 +554,7 @@ main.docs-content {
           <!-- cURL -->
           <div class="tab-pane" data-lang="curl">
             <pre><code><span class="c"># 1. 建立觀測任務 (POST /v1/measurements)</span>
-curl -X POST https://platform.lslabs.tw/v1/measurements \
+curl --fail-with-body --max-time 30 -X POST https://platform.lslabs.tw/v1/measurements \
   -H <span class="s">"Authorization: Bearer $GEOCHECK_API_KEY"</span> \
   -H <span class="s">"Idempotency-Key: $(uuidgen)"</span> \
   -H <span class="s">"Content-Type: application/json"</span> \
@@ -564,12 +564,13 @@ curl -X POST https://platform.lslabs.tw/v1/measurements \
   }'</span>
 
 <span class="c"># 2. 輪詢結果 (GET /v1/measurements/{measurement_id})</span>
-curl -X GET https://platform.lslabs.tw/v1/measurements/msmt_81a2b3c4 \
+curl --fail-with-body --max-time 30 -X GET https://platform.lslabs.tw/v1/measurements/msmt_81a2b3c4 \
   -H <span class="s">"Authorization: Bearer $GEOCHECK_API_KEY"</span></code></pre>
           </div>
           <!-- TypeScript -->
           <div class="tab-pane" data-lang="ts" style="display:none;">
-            <pre><code><span class="k">import</span> { GeoCheckClient } <span class="k">from</span> <span class="s">"@geocheck/sdk"</span>;
+            <pre><code><span class="c">// @geocheck/sdk is not published to npm yet - see the SDK section below.</span>
+<span class="k">import</span> { GeoCheckClient } <span class="k">from</span> <span class="s">"@geocheck/sdk"</span>;
 
 <span class="k">const</span> client = <span class="k">new</span> <span class="f">GeoCheckClient</span>({
   apiKey: process.env.GEOCHECK_API_KEY!
@@ -588,28 +589,36 @@ console.<span class="f">log</span>(result.engines);</code></pre>
           <div class="tab-pane" data-lang="python" style="display:none;">
             <pre><code><span class="k">import</span> os, time, uuid, requests
 
-API_KEY = os.getenv(<span class="s">"GEOCHECK_API_KEY"</span>)
+BASE = <span class="s">"https://platform.lslabs.tw"</span>
 HEADERS = {
-    <span class="s">"Authorization"</span>: <span class="s">f"Bearer {API_KEY}"</span>,
+    <span class="s">"Authorization"</span>: <span class="s">f"Bearer {os.environ['GEOCHECK_API_KEY']}"</span>,
     <span class="s">"Idempotency-Key"</span>: str(uuid.uuid4()),
     <span class="s">"Content-Type"</span>: <span class="s">"application/json"</span>
 }
 
-<span class="c"># 建立量測任務</span>
-resp = requests.post(
-    <span class="s">"https://platform.lslabs.tw/v1/measurements"</span>,
+created = requests.post(
+    <span class="s">f"{BASE}/v1/measurements"</span>,
     headers=HEADERS,
-    json={<span class="s">"input"</span>: {<span class="s">"type"</span>: <span class="s">"url"</span>, <span class="s">"url"</span>: <span class="s">"https://example.com"</span>}, <span class="s">"locale"</span>: <span class="s">"zh-TW"</span>}
+    json={<span class="s">"input"</span>: {<span class="s">"type"</span>: <span class="s">"url"</span>, <span class="s">"url"</span>: <span class="s">"https://example.com"</span>}, <span class="s">"locale"</span>: <span class="s">"zh-TW"</span>},
+    timeout=30
 )
-measurement_id = resp.json()[<span class="s">"measurement_id"</span>]
+<span class="k">if</span> created.status_code != 202:
+    <span class="k">raise</span> SystemExit(<span class="s">f"create failed: {created.status_code} {created.text}"</span>)
 
-<span class="c"># 輪詢直至終局</span>
-<span class="k">while</span> <span class="k">True</span>:
-    res = requests.get(<span class="s">f"https://platform.lslabs.tw/v1/measurements/{measurement_id}"</span>, headers=HEADERS)
-    <span class="k">if</span> res.status_code == <span class="s">200</span>:
-        print(<span class="s">"觀測成功:"</span>, res.json())
+measurement_id = created.json()[<span class="s">"measurement_id"</span>]
+deadline = time.monotonic() + 600
+
+<span class="k">while</span> time.monotonic() &lt; deadline:
+    res = requests.get(<span class="s">f"{BASE}/v1/measurements/{measurement_id}"</span>, headers=HEADERS, timeout=30)
+    <span class="k">if</span> res.status_code == 200:
+        print(res.json())
         <span class="k">break</span>
-    time.sleep(float(res.headers.get(<span class="s">"Retry-After"</span>, 2)))</code></pre>
+    <span class="k">if</span> res.status_code <span class="k">in</span> (409, 429):
+        time.sleep(float(res.headers.get(<span class="s">"Retry-After"</span>, 5)))
+        <span class="k">continue</span>
+    <span class="k">raise</span> SystemExit(<span class="s">f"poll failed: {res.status_code} {res.text}"</span>)
+<span class="k">else</span>:
+    <span class="k">raise</span> SystemExit(<span class="s">"timed out before the measurement reached a terminal state"</span>)</code></pre>
           </div>
         </div>
       </div>
@@ -673,7 +682,7 @@ measurement_id = resp.json()[<span class="s">"measurement_id"</span>]
             <td><code>403 Forbidden</code></td>
             <td><code>trial_not_started</code></td>
             <td>帳戶尚未開通方案權益。</td>
-            <td>初次使用請前往 <a href="/console">控制台</a> 點選開通免費試用方案。</td>
+            <td>前往 <a href="/console">控制台</a> 確認目前帳戶的開通狀態。</td>
           </tr>
           <tr>
             <td><code>404 Not Found</code></td>
@@ -713,12 +722,14 @@ measurement_id = resp.json()[<span class="s">"measurement_id"</span>]
     <section class="docs-section" id="rate-limits">
       <h2>速率與配額限制</h2>
       <p>
-        為確保四大官方搜尋引擎的穩定度與資源公平分配，平台實施嚴格的分層限制：
+        為確保四大官方搜尋引擎的穩定度與資源公平分配，平台對每個帳戶施加輪次配額與速率限制。
+        Developer API 目前為 Private Beta，<strong>實際數值由帳戶權益決定</strong>，本文件不列固定分層。
       </p>
       <ul>
-        <li><strong>Free Trial</strong>：每日 3 輪完整觀測（每輪包含 4 家官方引擎並行查詢），速率限制 10 RPM。</li>
-        <li><strong>Basic Plan</strong>：每月 80 輪完整觀測，速率限制 30 RPM。</li>
-        <li><strong>Premium Plan</strong>：每月 170 輪完整觀測，速率限制 60 RPM，支援專屬優先排程通道。</li>
+        <li><strong>目前配額</strong>：登入 Console 的「用量」頁可看到已用、預留、可用輪次與重置時間。</li>
+        <li><strong>目前速率限制</strong>：每個回應都會帶 <code>X-RateLimit-Limit</code>、<code>X-RateLimit-Remaining</code> 與 <code>X-RateLimit-Reset</code>；請以這三個標頭為準，不要在程式中寫死 RPM。</li>
+        <li><strong>超出限制</strong>：回傳 <code>429 Too Many Requests</code> 並附 <code>Retry-After</code>（秒）。請依該值退避重試，不要固定間隔重送。</li>
+        <li><strong>不扣量情境</strong>：四家引擎未全數成功的觀測判定失敗，不佔用配額，但仍計入速率限制。</li>
       </ul>
     </section>
 
@@ -732,12 +743,12 @@ measurement_id = resp.json()[<span class="s">"measurement_id"</span>]
       </div>
       <table class="docs-table">
         <thead>
-          <tr><th>方案級別</th><th>月費 (TWD)</th><th>可用輪數 (Rounds)</th><th>單輪成本折算</th><th>適用對象</th></tr>
+          <tr><th>項目</th><th>公開狀態</th><th>在哪裡確認</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Free 試用</strong></td><td>NT$ 0</td><td>每日 3 輪 (7 天)</td><td>免費</td><td>技術評估與 API 原型開發</td></tr>
-          <tr><td><strong>Basic</strong></td><td>NT$ 660</td><td>80 輪 / 月</td><td>NT$ 8.25 / 輪</td><td>中小型品牌、自營商定期抽測</td></tr>
-          <tr><td><strong>Premium</strong></td><td>NT$ 1,390</td><td>170 輪 / 月</td><td>NT$ 8.18 / 輪</td><td>數位行銷代理商、企業多品牌矩陣</td></tr>
+          <tr><td><strong>Developer API</strong></td><td>Private Beta</td><td>登入 Console 後確認</td></tr>
+          <tr><td><strong>用量與速率限制</strong></td><td>依帳戶權益</td><td>Console 與 API 回應</td></tr>
+          <tr><td><strong>付費通道</strong></td><td>尚未公開選購</td><td>正式開放時另行公告</td></tr>
         </tbody>
       </table>
     </section>
@@ -801,7 +812,7 @@ measurement_id = resp.json()[<span class="s">"measurement_id"</span>]
       <div class="callout warn">
         <div>
           <strong>GEO 量測的隱形瓶頸：目標站點的爬蟲防護</strong><br>
-          在 AI 能見度（GEO）實測中，高達 20%~30% 的企業站點因設定了過於激進的 WAF、Cloudflare Turnstile 或客戶端 SPA 渲染，導致 AI 官方搜尋引擎（ChatGPT Search / Perplexity / Gemini）造訪時被攔截，進而產生「0 次官方引用」或「無法解析實體」之嚴重後果。
+          過於激進的 WAF、Cloudflare Turnstile 或完全依賴客戶端渲染的 SPA，可能讓 AI 官方搜尋引擎（ChatGPT Search / Perplexity / Gemini）在造訪時被攔下，進而出現「0 次官方引用」或無法解析實體。這裡不列比例數字：我們尚未公開可引用的樣本與取樣方法，請以你自己網站的實際回應為準。
         </div>
       </div>
 
@@ -862,44 +873,68 @@ measurement_id = resp.json()[<span class="s">"measurement_id"</span>]
         依據歐盟 GDPR 及企業隱私合規規範，GeoCheck 實施嚴謹的資料生命週期管理：
       </p>
       <ul>
-        <li><strong>預設過期清理</strong>：觀測結果於終局完成後預設保存 7 天，逾期將自動從快取層物理抹除。</li>
+        <li><strong>保存與清理</strong>：結果保存與清理範圍會在帳戶開通時由 Console 與服務條款顯示；公開文件不在此承諾固定天數。</li>
         <li><strong>主動抹除端點</strong>：客戶端可隨時呼叫 <code>DELETE /v1/measurements/{id}</code>。執行後伺服器回傳 <code>204 No Content</code>，所有搜尋快照與文字回答即刻永久刪除，後續再度查詢將回傳 <code>410 Gone</code> 墓碑標記。</li>
       </ul>
     </section>
 
     <!-- SDK Guides -->
     <section class="docs-section" id="sdk-guide">
-      <h2>官方 TypeScript SDK 指南</h2>
+      <h2>TypeScript SDK</h2>
       <p>
-        官方客戶端 <code>@geocheck/sdk</code> 提供完整的 TypeScript 靜態型別、自動重試與智慧輪詢：
+        TypeScript 客戶端 <code>@geocheck/sdk</code> 封裝了型別、重試與輪詢邏輯。
+        <strong>目前尚未發佈到 npm registry</strong>；Private Beta 期間以原始碼提供，
+        請先在 Console 確認帳戶存取資格。套件公開前，請使用下方 REST 與 Python 範例。
       </p>
-      <div class="code-container">
-        <div class="code-header"><span class="code-lang">BASH</span></div>
-        <div class="code-body">
-          <pre><code>npm install @geocheck/sdk</code></pre>
+      <div class="callout info">
+        <div>
+          <strong>安裝狀態：</strong>
+          <code>npm install @geocheck/sdk</code> 現在會回傳 404。發佈後會在本章節更新。
         </div>
       </div>
     </section>
 
     <section class="docs-section" id="python-guide">
       <h2>Python 呼叫範例</h2>
+      <p>這段程式可以直接複製使用：金鑰取自環境變數，每個請求都有 timeout，非 2xx 會停下來而不是繼續輪詢。</p>
       <div class="code-container">
         <div class="code-header"><span class="code-lang">PYTHON</span></div>
         <div class="code-body">
-          <pre><code><span class="k">import</span> os, requests, uuid
+          <pre><code><span class="k">import</span> os, time, uuid, requests
 
-headers = {
-    <span class="s">"Authorization"</span>: <span class="s">f"Bearer {os.environ['GEOCHECK_API_KEY']}"</span>,
+BASE = <span class="s">"https://platform.lslabs.tw"</span>
+API_KEY = os.environ[<span class="s">"GEOCHECK_API_KEY"</span>]  <span class="c"># fail fast if unset</span>
+HEADERS = {
+    <span class="s">"Authorization"</span>: <span class="s">f"Bearer {API_KEY}"</span>,
     <span class="s">"Idempotency-Key"</span>: str(uuid.uuid4()),
     <span class="s">"Content-Type"</span>: <span class="s">"application/json"</span>
 }
 
-response = requests.post(
-    <span class="s">"https://platform.lslabs.tw/v1/measurements"</span>,
-    headers=headers,
-    json={<span class="s">"input"</span>: {<span class="s">"type"</span>: <span class="s">"url"</span>, <span class="s">"url"</span>: <span class="s">"https://example.com"</span>}}
+<span class="c"># 1. Create. Always pass a timeout: a stalled socket otherwise hangs forever.</span>
+created = requests.post(
+    <span class="s">f"{BASE}/v1/measurements"</span>,
+    headers=HEADERS,
+    json={<span class="s">"input"</span>: {<span class="s">"type"</span>: <span class="s">"url"</span>, <span class="s">"url"</span>: <span class="s">"https://example.com"</span>}, <span class="s">"locale"</span>: <span class="s">"zh-TW"</span>},
+    timeout=30
 )
-print(response.json())</code></pre>
+<span class="k">if</span> created.status_code != 202:
+    <span class="k">raise</span> SystemExit(<span class="s">f"create failed: {created.status_code} {created.text}"</span>)
+
+measurement_id = created.json()[<span class="s">"measurement_id"</span>]
+
+<span class="c"># 2. Poll with a deadline. 409 means still running; 429 must honour Retry-After.</span>
+deadline = time.monotonic() + 600
+<span class="k">while</span> time.monotonic() &lt; deadline:
+    res = requests.get(<span class="s">f"{BASE}/v1/measurements/{measurement_id}"</span>, headers=HEADERS, timeout=30)
+    <span class="k">if</span> res.status_code == 200:
+        print(res.json()[<span class="s">"engines"</span>])
+        <span class="k">break</span>
+    <span class="k">if</span> res.status_code <span class="k">in</span> (409, 429):
+        time.sleep(float(res.headers.get(<span class="s">"Retry-After"</span>, 5)))
+        <span class="k">continue</span>
+    <span class="k">raise</span> SystemExit(<span class="s">f"poll failed: {res.status_code} {res.text}"</span>)
+<span class="k">else</span>:
+    <span class="k">raise</span> SystemExit(<span class="s">"timed out before the measurement reached a terminal state"</span>)</code></pre>
         </div>
       </div>
     </section>
@@ -908,7 +943,9 @@ print(response.json())</code></pre>
     <section class="docs-section" id="agent-mcp">
       <h2>AI Coding Agent 與 MCP 整合指南</h2>
       <p>
-        GeoCheck Developer API 原生相容於現代 AI 程式助理工具鏈（包含 Claude Code、Cursor、OpenCode 與 Codex）。您可以輕鬆將其包裝為 MCP 工具（Model Context Protocol）或代理呼叫技能：
+        Developer API 是一般 REST 介面，可以包裝成 MCP（Model Context Protocol）工具供 Claude Code、Cursor、OpenCode 與 Codex 使用。
+        <strong>官方 MCP server 尚未發佈</strong>，下方設定是套件公開後的目標形式；
+        現在請直接呼叫 REST 端點，或自行包裝。
       </p>
       <div class="code-container">
         <div class="code-header"><span class="code-lang">JSON - MCP SERVER CONFIG</span></div>
@@ -983,29 +1020,29 @@ print(response.json())</code></pre>
       <span class="s">"id"</span>: <span class="s">"openai"</span>,
       <span class="s">"model"</span>: <span class="s">"gpt-5.6-luna"</span>,
       <span class="s">"status"</span>: <span class="s">"succeeded"</span>,
-      <span class="s">"answer"</span>: <span class="s">"該品牌為..."</span>,
+      <span class="s">"answer"</span>: <span class="s">"該品牌為台北的法式酒館，依據官網提供區域與訂位資訊。"</span>,
       <span class="s">"citations"</span>: [{ <span class="s">"url"</span>: <span class="s">"https://example.com/about"</span>, <span class="s">"title"</span>: <span class="s">"關於我們"</span> }]
     },
     {
       <span class="s">"id"</span>: <span class="s">"gemini"</span>,
       <span class="s">"model"</span>: <span class="s">"gemini-3.5-flash-lite"</span>,
       <span class="s">"status"</span>: <span class="s">"succeeded"</span>,
-      <span class="s">"answer"</span>: <span class="s">"..."</span>,
-      <span class="s">"citations"</span>: [...]
+      <span class="s">"answer"</span>: <span class="s">"（完整回答文字）"</span>,
+      <span class="s">"citations"</span>: [{ <span class="s">"url"</span>: <span class="s">"https://example.com/"</span>, <span class="s">"title"</span>: <span class="s">"Example"</span> }]
     },
     {
       <span class="s">"id"</span>: <span class="s">"perplexity"</span>,
       <span class="s">"model"</span>: <span class="s">"sonar"</span>,
       <span class="s">"status"</span>: <span class="s">"succeeded"</span>,
-      <span class="s">"answer"</span>: <span class="s">"..."</span>,
-      <span class="s">"citations"</span>: [...]
+      <span class="s">"answer"</span>: <span class="s">"（完整回答文字）"</span>,
+      <span class="s">"citations"</span>: [{ <span class="s">"url"</span>: <span class="s">"https://example.com/"</span>, <span class="s">"title"</span>: <span class="s">"Example"</span> }]
     },
     {
       <span class="s">"id"</span>: <span class="s">"anthropic"</span>,
       <span class="s">"model"</span>: <span class="s">"claude-haiku-4.5"</span>,
       <span class="s">"status"</span>: <span class="s">"succeeded"</span>,
-      <span class="s">"answer"</span>: <span class="s">"..."</span>,
-      <span class="s">"citations"</span>: [...]
+      <span class="s">"answer"</span>: <span class="s">"（完整回答文字）"</span>,
+      <span class="s">"citations"</span>: [{ <span class="s">"url"</span>: <span class="s">"https://example.com/"</span>, <span class="s">"title"</span>: <span class="s">"Example"</span> }]
     }
   ],
   <span class="s">"created_at"</span>: <span class="s">"2026-09-12T08:00:00.000Z"</span>,
@@ -1158,21 +1195,54 @@ function showToast(msg) {
 
   window.addEventListener('scroll', handleScroll, { passive: true });
 
+  // The document is long enough that the browser's own anchor jump lands before
+  // layout settles, so a deep link such as /docs#data-retention used to open at
+  // the top with the wrong sidebar entry highlighted. Scroll explicitly, and
+  // subtract the sticky header so the heading is not hidden underneath it.
+  const HEADER_OFFSET = 72;
+
+  function scrollToHash(hash, behavior) {
+    if (!hash || hash.length < 2) return false;
+    let target = null;
+    try { target = document.querySelector(hash); } catch (e) { return false; }
+    if (!target) return false;
+
+    isClickScrolling = true;
+    if (clickTimer) clearTimeout(clickTimer);
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET,
+      behavior: behavior
+    });
+    if (linkMap.has(target)) setActiveLink(linkMap.get(target), true);
+    clickTimer = setTimeout(() => { isClickScrolling = false; }, 700);
+    return true;
+  }
+
   sidebarLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      isClickScrolling = true;
-      if (clickTimer) clearTimeout(clickTimer);
-      setActiveLink(link, false);
-      clickTimer = setTimeout(() => {
-        isClickScrolling = false;
-      }, 700);
+    link.addEventListener('click', (event) => {
+      const hash = link.getAttribute('href');
+      if (!scrollToHash(hash, 'smooth')) return;
+      event.preventDefault();
+      if (location.hash !== hash) history.pushState(null, '', hash);
     });
   });
 
-  // Initial call on page load or after anchor jump
-  setTimeout(() => {
-    handleScroll();
-  }, 100);
+  // Back/forward and any link elsewhere on the page that points at a section.
+  window.addEventListener('hashchange', () => {
+    scrollToHash(location.hash, 'smooth');
+  });
+
+  // On load: honour the incoming hash, otherwise fall back to scroll position.
+  // Re-apply once after images and fonts settle - the section offsets shift as
+  // late layout lands, which is what made the original anchor jump miss.
+  function syncOnLoad() {
+    if (!scrollToHash(location.hash, 'auto')) handleScroll();
+  }
+  window.addEventListener('load', () => {
+    syncOnLoad();
+    setTimeout(syncOnLoad, 400);
+  });
+  setTimeout(syncOnLoad, 150);
 })();
 </script>
 

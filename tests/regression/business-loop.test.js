@@ -89,7 +89,12 @@ async function main() {
 
   const homePage = fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/home.html"), "utf8");
   assert.equal(/顧問|付費|報價|NT\$|pilot_fix_pack|服務方案/.test(homePage), false);
-  assert.equal(homePage.includes("報告結果與使用心得"), true);
+  // The home page no longer captures leads; its closing section hands the
+  // reader to continuous tracking, and must say why one check is not a trend.
+  assert.equal(homePage.includes('id="monitor"'), true);
+  assert.equal(homePage.includes("一次檢測是快照"), true);
+  assert.equal(homePage.includes("https://app.lslabs.tw/"), true);
+  assert.equal(/id="lead-form"|\/api\/leads/.test(homePage), false);
   assert.equal(homePage.includes("這套分數是怎麼算的"), true);
   assert.equal(homePage.includes('id="method"'), true);
   assert.equal(homePage.includes("不會當成 0 分"), true);

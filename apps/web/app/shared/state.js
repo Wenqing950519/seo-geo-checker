@@ -34,6 +34,9 @@ class DashboardState {
     this.currentCitations = null;
     this.currentDataQuality = null;
     this.currentEntitlement = null;
+    // "The request failed" and "there is nothing in this range" are different
+    // answers. Collapsing them into one empty state hides outages from the user.
+    this.dataLoadError = null;
 
     // Fixtures are opt-in acceptance evidence, never a production data fallback.
     this.fixtureMode = false;
