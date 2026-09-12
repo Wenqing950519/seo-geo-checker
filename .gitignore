@@ -28,3 +28,7 @@ services/developer-d1-gateway/worker-configuration.d.ts
 packages/sdk/dist/
 packages/sdk/*.tgz
 dist/
+
+# Local scratch scripts (screenshot capture, one-off probes)
+_shot.mjs
+_*.mjs
