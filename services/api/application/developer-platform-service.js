@@ -258,9 +258,13 @@ function createDeveloperPlatformService(options = {}) {
       throw new DeveloperApiError("internal_caller_unknown", "Unknown internal caller", 403);
     }
     const key = requiredIdempotencyKey(idempotencyKey);
+    const engineIds = normalizeInternalEngineIds(body?.engine_ids, providers);
     const request = {
       ...normalizeMeasurementRequest(body),
-      profile_set_version: providerMode === "official" ? "official-four-v1" : "official-four-fixture-v1"
+      engine_ids: engineIds,
+      profile_set_version: engineIds.length === providers.length
+        ? (providerMode === "official" ? "official-four-v1" : "official-four-fixture-v1")
+        : (providerMode === "official" ? "official-selected-v1" : "official-selected-fixture-v1")
     };
     const requestHash = hashRequest(request);
     const admission = await store.admitJob({
@@ -364,7 +368,11 @@ function createDeveloperPlatformService(options = {}) {
     });
     if (!job) return false;
     try {
-      const attempts = await Promise.all(providers.map(async ({ profile, adapter }) => {
+      const selectedEngineIds = Array.isArray(job.request.engine_ids) ? new Set(job.request.engine_ids) : null;
+      const runnableProviders = selectedEngineIds
+        ? providers.filter(({ profile }) => selectedEngineIds.has(profile.id))
+        : providers;
+      const attempts = await Promise.all(runnableProviders.map(async ({ profile, adapter }) => {
       const attemptId = `att_${randomUUID()}`;
       await store.recordAttemptStarted({
         attemptId, jobId: job.job_id, tenantId: job.tenant_id,
@@ -600,6 +608,26 @@ function admissionError(code) {
 
 function firstFailureCode(engines) {
   return engines.find((engine) => engine.status === "failed")?.error?.code || "provider_error";
+}
+
+function normalizeInternalEngineIds(value, providers) {
+  const available = providers.map(({ profile }) => profile.id);
+  const aliases = new Map([
+    ["openai", "openai-web"], ["gemini", "google-web"],
+    ["perplexity", "perplexity-sonar"], ["anthropic", "anthropic-web"]
+  ]);
+  if (value == null) return available;
+  if (!Array.isArray(value) || value.length < 1 || value.length > 4) {
+    throw new DeveloperApiError("invalid_engine_selection", "engine_ids must contain 1 to 4 engines", 400);
+  }
+  const selected = value.map((entry) => {
+    const id = String(entry || "").trim().toLowerCase();
+    return aliases.get(id) || id;
+  });
+  if (new Set(selected).size !== selected.length || selected.some((id) => !available.includes(id))) {
+    throw new DeveloperApiError("invalid_engine_selection", `engine_ids must use ${available.join(", ")}`, 400);
+  }
+  return selected;
 }
 
 function boundedToken(value, label) {

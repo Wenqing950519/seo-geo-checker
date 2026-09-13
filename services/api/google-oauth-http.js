@@ -108,10 +108,17 @@ function createGoogleOAuthHttpHandler(options = {}) {
   // properties may be offered. getOverview would load runs, observations and
   // annotations for that, and its range argument only accepts 4, 12 or 26 weeks.
   async function projectSiteUrl(sessionToken, projectId) {
-    const projects = await routes.dashboard.api.listProjects({ sessionToken });
-    const project = projects.find((entry) => entry.projectId === projectId);
-    if (!project) throw coded("gsc_project_not_found");
-    return project.siteUrl;
+    if (typeof routes.dashboard.api.listProjects === "function") {
+      const projects = await routes.dashboard.api.listProjects({ sessionToken });
+      const project = projects.find((entry) => entry.projectId === projectId);
+      if (!project) throw coded("gsc_project_not_found");
+      return project.siteUrl;
+    }
+    if (typeof routes.dashboard.api.getOverview === "function") {
+      const overview = await routes.dashboard.api.getOverview({ sessionToken, projectId, weeks: 4 });
+      if (overview?.project?.siteUrl) return overview.project.siteUrl;
+    }
+    throw coded("gsc_project_not_found");
   }
 
   async function exchange({ code, verifier, redirectUri }) { const body = new URLSearchParams({ code, client_id: clientId, client_secret: clientSecret, redirect_uri: redirectUri, grant_type: "authorization_code", code_verifier: verifier }); const response = await fetchImpl("https://oauth2.googleapis.com/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body }); if (!response.ok) throw coded("google_token_exchange_failed"); return response.json(); }

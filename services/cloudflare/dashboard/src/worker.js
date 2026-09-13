@@ -13,6 +13,7 @@ import d1StoreModule from "../../../api/storage/dashboard-d1-store.js";
 import oauthModule from "../../../api/google-oauth-http.js";
 import runnerModule from "../../../api/application/dashboard-tracking-runner.js";
 import internalClientModule from "../../../api/application/internal-measurement-client.js";
+import truthRunnerModule from "../../../api/application/dashboard-truth-runner.js";
 import gscClientModule from "../../../api/google-search-console-client.js";
 import gscPendingStoreModule from "../../../api/storage/dashboard-gsc-pending-store.js";
 
@@ -21,6 +22,7 @@ const { createBoundD1DashboardStore } = d1StoreModule;
 const { createGoogleOAuthHttpHandler } = oauthModule;
 const { createDashboardTrackingRunner } = runnerModule;
 const { createInternalMeasurementClient } = internalClientModule;
+const { createDashboardTruthRunner } = truthRunnerModule;
 const { createGoogleSearchConsoleClient } = gscClientModule;
 const { createD1GscPendingStore } = gscPendingStoreModule;
 
@@ -73,6 +75,11 @@ function admissionEnabled(env) {
   return String(env.DASHBOARD_ADMISSION_ENABLED || "") === "true";
 }
 
+function truthEnabled(env) {
+  return String(env.DASHBOARD_TRUTH_ENABLED || "") === "true"
+    && String(env.DASHBOARD_TRUTH_ALLOWLIST || "").split(",").some((value) => String(value || "").trim());
+}
+
 function json(body, status = 200, extraHeaders = {}) {
   const headers = { ...SECURITY_HEADERS, ...extraHeaders };
   for (const [key, value] of Object.entries(headers)) if (value == null) delete headers[key];
@@ -94,6 +101,7 @@ async function healthResponse(env) {
     google_sign_in_ready: missingOAuthSecrets(env).length === 0,
     tracking_ready: missingTrackingSecrets(env).length === 0,
     search_console_ready: missingGscSecrets(env).length === 0,
+    truth_enabled: truthEnabled(env),
     admission_enabled: admissionEnabled(env),
     missing
   }, ok ? 200 : 503);
@@ -234,6 +242,19 @@ function createTrackingRunner(env) {
   });
 }
 
+function createTruthRunner(env) {
+  const runtime = createRuntime(env);
+  return createDashboardTruthRunner({
+    store: createBoundD1DashboardStore({ db: env.DASHBOARD_DB }),
+    truthApi: runtime.truthApi,
+    client: createInternalMeasurementClient({
+      baseUrl: env.DEVELOPER_API_ORIGIN || "https://platform.lslabs.tw",
+      secret: env.DASHBOARD_INTERNAL_CALLER_SECRET
+    }),
+    maxChecks: 5
+  });
+}
+
 async function runTrackingTick(env) {
   try {
     const outcome = await createTrackingRunner(env).tick({ admissionEnabled: admissionEnabled(env) });
@@ -242,6 +263,15 @@ async function runTrackingTick(env) {
     console.error(JSON.stringify({
       event: "dashboard_tracking_tick_failed", code: error?.code || "tick_failed"
     }));
+  }
+}
+
+async function runTruthTick(env) {
+  try {
+    const outcome = await createTruthRunner(env).tick({ enabled: admissionEnabled(env) && truthEnabled(env) });
+    console.log(JSON.stringify({ event: "dashboard_truth_tick", ...outcome }));
+  } catch (error) {
+    console.error(JSON.stringify({ event: "dashboard_truth_tick_failed", code: error?.code || "tick_failed" }));
   }
 }
 
@@ -317,6 +347,6 @@ export default {
     // Fail closed on every path: no secret, no switch, no spending.
     if (missingTrackingSecrets(env).length) return;
     if (!admissionEnabled(env)) return;
-    ctx.waitUntil(runTrackingTick(env));
+    ctx.waitUntil(Promise.all([runTrackingTick(env), runTruthTick(env)]));
   }
 };

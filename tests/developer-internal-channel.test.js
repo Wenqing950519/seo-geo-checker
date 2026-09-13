@@ -238,6 +238,44 @@ async function main() {
     assert.equal(await service.authenticateInternalCaller(""), null);
   }
 
+  // ---- Brand Truth may select a strict subset of the four engines ----
+  {
+    const { db, store } = createStore();
+    const service = createService(store);
+    await service.rotateInternalCallerSecret({ callerId: "dashboard" });
+    openInternalChannel(db);
+    const submitted = await service.createInternalMeasurement({
+      caller: "dashboard", idempotencyKey: "internal-selected-0001",
+      body: { ...REQUEST, engine_ids: ["openai", "perplexity"] }
+    });
+    const job = db.prepare("SELECT job_id, measurement_id FROM developer_jobs LIMIT 1").get();
+    await service.runJob(job.job_id);
+    const measurement = await service.getInternalMeasurement({ caller: "dashboard", measurementId: job.measurement_id });
+    assert.equal(measurement.status, "succeeded");
+    assert.deepEqual(measurement.engines.map((engine) => engine.profile_id), ["openai-web", "perplexity-sonar"]);
+    assert.deepEqual(measurement.comparison.compared_profile_ids, ["openai-web", "perplexity-sonar"]);
+    assert.equal(submitted.job.measurement_id, job.measurement_id);
+  }
+
+  for (const count of [1, 2, 3, 4]) {
+    const { db, store } = createStore();
+    const service = createService(store);
+    await service.rotateInternalCallerSecret({ callerId: "dashboard" });
+    openInternalChannel(db);
+    const selected = ["openai", "gemini", "anthropic", "perplexity"].slice(0, count);
+    const submitted = await service.createInternalMeasurement({
+      caller: "dashboard", idempotencyKey: `internal-selected-${count}`,
+      body: { ...REQUEST, engine_ids: selected }
+    });
+    const job = db.prepare("SELECT job_id, measurement_id FROM developer_jobs LIMIT 1").get();
+    await service.runJob(job.job_id);
+    const attemptCount = Number(db.prepare("SELECT COUNT(*) AS c FROM developer_provider_attempts WHERE job_id = ?").get(job.job_id).c);
+    const measurement = await service.getInternalMeasurement({ caller: "dashboard", measurementId: job.measurement_id });
+    assert.equal(attemptCount, count, `selection of ${count} engines must call exactly ${count} providers`);
+    assert.equal(measurement.engines.length, count, `selection of ${count} engines must return exactly ${count} results`);
+    assert.equal(submitted.job.measurement_id, job.measurement_id);
+  }
+
   // ---- internal work stays out of every customer-facing read ----
   {
     const { db, store } = createStore();

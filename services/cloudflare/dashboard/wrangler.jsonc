@@ -11,6 +11,7 @@
   ],
   "vars": {
     "DASHBOARD_ADMISSION_ENABLED": "true",
+    "DASHBOARD_TRUTH_ENABLED": "false",
     "DASHBOARD_PAYMENT_MODE": "sandbox"
   },
   "d1_databases": [{

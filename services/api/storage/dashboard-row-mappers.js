@@ -20,6 +20,7 @@ function mapProject(row) {
   return {
     projectId: row.project_id, name: row.name, siteUrl: row.site_url, timezone: row.timezone,
     cadence: row.cadence, enabled: Boolean(row.enabled), nextRunAt: row.next_run_at,
+    truthReadiness: row.truth_readiness || "sources_pending",
     role: row.role || null, createdAt: row.created_at, updatedAt: row.updated_at
   };
 }
@@ -85,6 +86,65 @@ function mapAnnotation(row) {
   };
 }
 
+function mapTruthSource(row) {
+  return {
+    sourceId: row.source_id, projectId: row.project_id, kind: row.source_kind,
+    url: row.source_url, canonicalUrl: row.canonical_url, status: row.status,
+    fetchedAt: row.fetched_at || null, contentHash: row.content_hash || null,
+    metadata: parseJson(row.metadata_json, {}), snippets: parseJson(row.snippets_json, []),
+    candidateFields: parseJson(row.candidate_fields_json, {}), failureCode: row.failure_code || null,
+    createdAt: row.created_at, updatedAt: row.updated_at
+  };
+}
+
+function mapTruthBaseline(row) {
+  return {
+    baselineId: row.baseline_id, projectId: row.project_id, branchId: row.branch_id,
+    branchName: row.branch_name || null, version: Number(row.version),
+    fields: parseJson(row.fields_json, {}), sourceIds: parseJson(row.source_ids_json, []),
+    sourceSnapshots: parseJson(row.source_snapshots_json, []),
+    status: row.status, confirmedBy: row.confirmed_by, confirmedAt: row.confirmed_at,
+    createdAt: row.created_at
+  };
+}
+
+function mapTruthCheck(row) {
+  return {
+    checkId: row.check_id, projectId: row.project_id, baselineId: row.baseline_id,
+    baselineVersion: Number(row.baseline_version || 0), engineIds: parseJson(row.engine_ids_json, []),
+    status: row.status, parserVersion: row.parser_version, createdBy: row.created_by,
+    createdAt: row.created_at, updatedAt: row.updated_at, completedAt: row.completed_at || null,
+    errorCode: row.error_code || null
+  };
+}
+
+function mapTruthClaim(row) {
+  return {
+    claimId: row.claim_id, checkId: row.check_id, observationId: row.observation_id || null,
+    engine: row.engine, model: row.model || null, field: row.field_name,
+    value: row.claim_value || null, text: row.claim_text, entityMatch: row.entity_match,
+    condition: parseJson(row.condition_json, {}), parserVersion: row.parser_version,
+    createdAt: row.created_at
+  };
+}
+
+function mapTruthFinding(row) {
+  return {
+    findingId: row.finding_id, checkId: row.check_id, claimId: row.claim_id || null,
+    baselineId: row.baseline_id, field: row.field_name, status: row.status,
+    severity: row.severity, confidence: row.confidence,
+    evidence: parseJson(row.evidence_json, {}), reviewStatus: row.review_status,
+    createdAt: row.created_at, updatedAt: row.updated_at
+  };
+}
+
+function mapTruthReview(row) {
+  return {
+    reviewId: row.review_id, findingId: row.finding_id, projectId: row.project_id,
+    accountId: row.account_id, decision: row.decision, reason: row.reason, createdAt: row.created_at
+  };
+}
+
 function sqlToBool(value) {
   return value === null || value === undefined ? null : Boolean(value);
 }
@@ -99,5 +159,7 @@ function clampLimit(value) {
 
 module.exports = {
   mapGoogleConnection, boolToSql, mapAccount, mapProject, mapEntitlement, mapTrackingJob,
-  mapQuestionSet, mapQuestion, mapRun, mapObservation, mapAnnotation, sqlToBool, parseJson, clampLimit
+  mapQuestionSet, mapQuestion, mapRun, mapObservation, mapAnnotation,
+  mapTruthSource, mapTruthBaseline, mapTruthCheck, mapTruthClaim, mapTruthFinding, mapTruthReview,
+  sqlToBool, parseJson, clampLimit
 };

@@ -14,7 +14,9 @@
 
 const {
   mapGoogleConnection, boolToSql, mapAccount, mapProject, mapEntitlement, mapTrackingJob,
-  mapQuestionSet, mapQuestion, mapRun, mapObservation, mapAnnotation, parseJson, clampLimit
+  mapQuestionSet, mapQuestion, mapRun, mapObservation, mapAnnotation,
+  mapTruthSource, mapTruthBaseline, mapTruthCheck, mapTruthClaim, mapTruthFinding, mapTruthReview,
+  parseJson, clampLimit
 } = require("./dashboard-row-mappers.js");
 
 // D1 binds at most 100 parameters per statement; keep IN (...) fan-out well below it.
@@ -158,18 +160,20 @@ function createD1DashboardStore(options = {}) {
   }
 
   async function getProject(projectId) {
-    const row = await first(`SELECT project.*, plan.cadence, plan.enabled, plan.next_run_at
+    const row = await first(`SELECT project.*, plan.cadence, plan.enabled, plan.next_run_at, truth_state.readiness AS truth_readiness
       FROM dashboard_projects project
       JOIN dashboard_tracking_plans plan ON plan.project_id = project.project_id
+      LEFT JOIN dashboard_truth_project_state truth_state ON truth_state.project_id = project.project_id
       WHERE project.project_id = ? LIMIT 1`, [projectId]);
     return row ? mapProject(row) : null;
   }
 
   async function listProjects(accountId) {
-    const result = await query(`SELECT project.*, plan.cadence, plan.enabled, plan.next_run_at, member.role
+    const result = await query(`SELECT project.*, plan.cadence, plan.enabled, plan.next_run_at, member.role, truth_state.readiness AS truth_readiness
       FROM dashboard_projects project
       JOIN dashboard_project_members member ON member.project_id = project.project_id
       JOIN dashboard_tracking_plans plan ON plan.project_id = project.project_id
+      LEFT JOIN dashboard_truth_project_state truth_state ON truth_state.project_id = project.project_id
       WHERE member.account_id = ? ORDER BY project.updated_at DESC`, [accountId]);
     return rows(result).map(mapProject);
   }
@@ -602,6 +606,193 @@ function createD1DashboardStore(options = {}) {
     return rows(result).length === 1;
   }
 
+  // ---- Brand Truth sources, baselines, checks and reviews -----------------
+
+  async function getTruthReadiness(projectId) {
+    const row = await first("SELECT readiness FROM dashboard_truth_project_state WHERE project_id = ? LIMIT 1", [projectId]);
+    return row?.readiness || "sources_pending";
+  }
+
+  async function setTruthReadiness(input) {
+    await query(`INSERT INTO dashboard_truth_project_state (project_id, readiness, updated_at)
+      VALUES (?, ?, ?)
+      ON CONFLICT(project_id) DO UPDATE SET readiness=excluded.readiness, updated_at=excluded.updated_at`,
+    [input.projectId, input.readiness, input.now]);
+    return getTruthReadiness(input.projectId);
+  }
+
+  async function getTruthSourceByKey(projectId, canonicalUrl) {
+    const row = await first("SELECT * FROM dashboard_truth_sources WHERE project_id = ? AND canonical_url = ? LIMIT 1", [projectId, canonicalUrl]);
+    return row ? mapTruthSource(row) : null;
+  }
+
+  async function insertTruthSource(input) {
+    await query(`INSERT INTO dashboard_truth_sources (
+      source_id, project_id, source_kind, source_url, canonical_url, status,
+      fetched_at, content_hash, metadata_json, snippets_json, candidate_fields_json,
+      failure_code, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, 'pending', NULL, NULL, ?, ?, ?, NULL, ?, ?)
+    ON CONFLICT(project_id, canonical_url) DO UPDATE SET source_url=excluded.source_url,
+      source_kind=excluded.source_kind, status='pending', fetched_at=NULL, content_hash=NULL,
+      metadata_json='{}', snippets_json='[]', candidate_fields_json='{}', failure_code=NULL,
+      updated_at=excluded.updated_at`, [
+      input.sourceId, input.projectId, input.kind, input.url, input.canonicalUrl || input.url,
+      JSON.stringify(input.metadata || {}), JSON.stringify(input.snippets || []), JSON.stringify(input.candidateFields || {}), input.now, input.now
+    ]);
+    return getTruthSourceByKey(input.projectId, input.canonicalUrl || input.url);
+  }
+
+  async function updateTruthSource(input) {
+    const result = await query(`UPDATE dashboard_truth_sources SET status=?, fetched_at=?, content_hash=?,
+      metadata_json=?, snippets_json=?, candidate_fields_json=?, failure_code=?, updated_at=?
+      WHERE source_id=? AND project_id=?`, [
+      input.status, input.fetchedAt || null, input.contentHash || null,
+      JSON.stringify(input.metadata || {}), JSON.stringify(input.snippets || []), JSON.stringify(input.candidateFields || {}),
+      input.failureCode || null, input.now, input.sourceId, input.projectId
+    ]);
+    return changes(result) ? getTruthSource(input.sourceId) : null;
+  }
+
+  async function getTruthSource(sourceId) {
+    const row = await first("SELECT * FROM dashboard_truth_sources WHERE source_id = ? LIMIT 1", [sourceId]);
+    return row ? mapTruthSource(row) : null;
+  }
+
+  async function listTruthSources(projectId) {
+    const result = await query("SELECT * FROM dashboard_truth_sources WHERE project_id = ? ORDER BY created_at ASC", [projectId]);
+    return rows(result).map(mapTruthSource);
+  }
+
+  async function getTruthBaseline(projectId, branchId = "primary") {
+    const row = await first(`SELECT * FROM dashboard_truth_baselines
+      WHERE project_id = ? AND branch_id = ? ORDER BY version DESC LIMIT 1`, [projectId, branchId]);
+    return row ? attachTruthBaselineSources(mapTruthBaseline(row)) : null;
+  }
+
+  async function createTruthBaseline(input) {
+    const statements = [{ sql: `INSERT INTO dashboard_truth_baselines (
+      baseline_id, project_id, branch_id, branch_name, version, fields_json, source_ids_json,
+      status, confirmed_by, confirmed_at, created_at
+    ) SELECT ?, ?, ?, ?, COALESCE(MAX(version), 0) + 1, ?, ?, 'confirmed', ?, ?, ?
+      FROM dashboard_truth_baselines WHERE project_id = ? AND branch_id = ?`, params: [
+      input.baselineId, input.projectId, input.branchId || "primary", input.branchName || null,
+      JSON.stringify(input.fields || {}), JSON.stringify(input.sourceIds || []), input.accountId,
+      input.confirmedAt, input.now, input.projectId, input.branchId || "primary"
+    ] }];
+    for (const source of input.sourceSnapshots || []) statements.push({
+      sql: `INSERT INTO dashboard_truth_baseline_sources (
+        baseline_id, source_id, canonical_url, content_hash, snippets_json, metadata_json, captured_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      params: [input.baselineId, source.sourceId, source.canonicalUrl, source.contentHash || null,
+        JSON.stringify(source.snippets || []), JSON.stringify(source.metadata || {}), input.confirmedAt]
+    });
+    await batch(statements);
+    return getTruthBaselineById(input.baselineId);
+  }
+
+  async function getTruthBaselineById(baselineId) {
+    const row = await first("SELECT * FROM dashboard_truth_baselines WHERE baseline_id = ? LIMIT 1", [baselineId]);
+    return row ? attachTruthBaselineSources(mapTruthBaseline(row)) : null;
+  }
+
+  async function attachTruthBaselineSources(baseline) {
+    const result = await query(`SELECT source_id, canonical_url, content_hash, snippets_json, metadata_json, captured_at
+      FROM dashboard_truth_baseline_sources WHERE baseline_id = ? ORDER BY source_id ASC`, [baseline.baselineId]);
+    baseline.sourceSnapshots = rows(result).map((row) => ({
+      sourceId: row.source_id, canonicalUrl: row.canonical_url, contentHash: row.content_hash || null,
+      snippets: parseJson(row.snippets_json, []), metadata: parseJson(row.metadata_json, {}), capturedAt: row.captured_at
+    }));
+    return baseline;
+  }
+
+  async function createTruthCheck(input) {
+    await query(`INSERT INTO dashboard_truth_check_runs (
+      check_id, project_id, baseline_id, engine_ids_json, status, parser_version,
+      created_by, created_at, updated_at, completed_at, error_code
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL)`, [
+      input.checkId, input.projectId, input.baselineId, JSON.stringify(input.engineIds), input.status || "queued",
+      input.parserVersion, input.accountId, input.now, input.now
+    ]);
+    return getTruthCheck(input.checkId);
+  }
+
+  async function claimTruthCheck(input) {
+    const result = await query("UPDATE dashboard_truth_check_runs SET status='running', updated_at=? WHERE check_id=? AND status='queued' RETURNING check_id", [input.now, input.checkId]);
+    return rows(result).length ? getTruthCheck(input.checkId) : null;
+  }
+
+  async function listQueuedTruthChecks(limit = 10) {
+    const result = await query(`SELECT truth_check.*, baseline.version AS baseline_version
+      FROM dashboard_truth_check_runs truth_check
+      JOIN dashboard_truth_baselines baseline ON baseline.baseline_id = truth_check.baseline_id
+      WHERE truth_check.status = 'queued' ORDER BY truth_check.created_at ASC LIMIT ?`, [Math.max(1, Math.min(50, Number(limit) || 10))]);
+    return rows(result).map(mapTruthCheck);
+  }
+
+  async function getTruthCheck(checkId) {
+    const row = await first(`SELECT truth_check.*, baseline.version AS baseline_version
+      FROM dashboard_truth_check_runs truth_check
+      JOIN dashboard_truth_baselines baseline ON baseline.baseline_id = truth_check.baseline_id
+      WHERE truth_check.check_id = ? LIMIT 1`, [checkId]);
+    if (!row) return null;
+    const check = mapTruthCheck(row);
+    check.claims = rows(await query("SELECT * FROM dashboard_truth_claims WHERE check_id = ? ORDER BY created_at ASC", [checkId])).map(mapTruthClaim);
+    check.findings = rows(await query("SELECT * FROM dashboard_truth_findings WHERE check_id = ? ORDER BY created_at ASC", [checkId])).map(mapTruthFinding);
+    return check;
+  }
+
+  async function insertTruthClaim(input) {
+    await query(`INSERT INTO dashboard_truth_claims (
+      claim_id, check_id, observation_id, engine, model, field_name, claim_value,
+      claim_text, entity_match, condition_json, parser_version, created_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [
+      input.claimId, input.checkId, input.observationId || null, input.engine, input.model || null,
+      input.field, input.value || null, input.text, input.entityMatch || "unknown", JSON.stringify(input.condition || {}), input.parserVersion, input.now
+    ]);
+    const row = await first("SELECT * FROM dashboard_truth_claims WHERE claim_id = ?", [input.claimId]);
+    return mapTruthClaim(row);
+  }
+
+  async function insertTruthFinding(input) {
+    await query(`INSERT INTO dashboard_truth_findings (
+      finding_id, check_id, claim_id, baseline_id, field_name, status, severity,
+      confidence, evidence_json, review_status, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?)`, [
+      input.findingId, input.checkId, input.claimId || null, input.baselineId, input.field,
+      input.status, input.severity, input.confidence || "unknown", JSON.stringify(input.evidence || {}), input.now, input.now
+    ]);
+    const row = await first("SELECT * FROM dashboard_truth_findings WHERE finding_id = ?", [input.findingId]);
+    return mapTruthFinding(row);
+  }
+
+  async function finishTruthCheck(input) {
+    await query("UPDATE dashboard_truth_check_runs SET status=?, updated_at=?, completed_at=?, error_code=? WHERE check_id=?", [
+      input.status, input.now, input.completedAt || input.now, input.errorCode || null, input.checkId
+    ]);
+    return getTruthCheck(input.checkId);
+  }
+
+  async function getTruthFindingForProject(projectId, findingId) {
+    const row = await first(`SELECT finding.* FROM dashboard_truth_findings finding
+      JOIN dashboard_truth_check_runs truth_check ON truth_check.check_id = finding.check_id
+      WHERE truth_check.project_id = ? AND finding.finding_id = ? LIMIT 1`, [projectId, findingId]);
+    return row ? mapTruthFinding(row) : null;
+  }
+
+  async function reviewTruthFinding(input) {
+    const results = await batch([
+      { sql: `UPDATE dashboard_truth_findings SET review_status=?, updated_at=?
+        WHERE finding_id=? AND review_status='pending'`, params: [input.decision, input.now, input.findingId] },
+      { sql: `INSERT INTO dashboard_truth_reviews (
+        review_id, finding_id, project_id, account_id, decision, reason, created_at
+      ) SELECT ?, ?, ?, ?, ?, ?, ? WHERE EXISTS (
+        SELECT 1 FROM dashboard_truth_findings WHERE finding_id=? AND review_status=?
+      )`, params: [input.reviewId, input.findingId, input.projectId, input.accountId, input.decision, input.reason, input.now, input.findingId, input.decision] }
+    ]);
+    if (changes(results[0]) !== 1) return null;
+    return getTruthFindingForProject(input.projectId, input.findingId);
+  }
+
   // ---- Google Search Console ----
 
   async function upsertGoogleConnection(input) {
@@ -704,6 +895,9 @@ function createD1DashboardStore(options = {}) {
     claimDueTrackingPlans, createDispatchedTrackingJob, listDispatches, claimDispatchForSubmission,
     attachDispatchMeasurement, releaseDispatch, settleDispatch, listAssemblableJobs,
     listDispatchesForJob, attachRunToJob,
+    getTruthReadiness, setTruthReadiness, insertTruthSource, updateTruthSource, getTruthSource, listTruthSources,
+    getTruthBaseline, getTruthBaselineById, createTruthBaseline, createTruthCheck, claimTruthCheck, listQueuedTruthChecks, getTruthCheck,
+    insertTruthClaim, insertTruthFinding, finishTruthCheck, getTruthFindingForProject, reviewTruthFinding,
     close: async () => {},
     state: () => ({ kind: "d1-binding" })
   };

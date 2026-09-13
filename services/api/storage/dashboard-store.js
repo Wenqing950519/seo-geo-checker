@@ -3,18 +3,22 @@ const path = require("node:path");
 const { DatabaseSync } = require("node:sqlite");
 const {
   mapGoogleConnection, boolToSql, mapAccount, mapProject, mapEntitlement, mapTrackingJob,
-  mapQuestionSet, mapQuestion, mapRun, mapObservation, mapAnnotation, sqlToBool, parseJson, clampLimit
+  mapQuestionSet, mapQuestion, mapRun, mapObservation, mapAnnotation,
+  mapTruthSource, mapTruthBaseline, mapTruthCheck, mapTruthClaim, mapTruthFinding, mapTruthReview,
+  sqlToBool, parseJson, clampLimit
 } = require("./dashboard-row-mappers.js");
 
 const MIGRATION = path.join(__dirname, "..", "migrations", "0003_dashboard_tracking.sql");
 const GOOGLE_MIGRATION = path.join(__dirname, "..", "migrations", "0004_dashboard_google_gsc.sql");
 const BILLING_MIGRATION = path.join(__dirname, "..", "migrations", "0005_dashboard_billing.sql");
+const TRUTH_MIGRATION = path.join(__dirname, "..", "migrations", "0006_dashboard_truth.sql");
 
 function createSqliteDashboardStore(options = {}) {
   const db = new DatabaseSync(options.filename || ":memory:");
   db.exec(fs.readFileSync(MIGRATION, "utf8"));
   db.exec(fs.readFileSync(GOOGLE_MIGRATION, "utf8"));
   db.exec(fs.readFileSync(BILLING_MIGRATION, "utf8"));
+  db.exec(fs.readFileSync(TRUTH_MIGRATION, "utf8"));
   db.exec("PRAGMA foreign_keys = ON;");
 
   function transaction(work) {
@@ -110,17 +114,19 @@ function createSqliteDashboardStore(options = {}) {
   }
 
   function getProject(projectId) {
-    const row = db.prepare(`SELECT p.*, plan.cadence, plan.enabled, plan.next_run_at
+    const row = db.prepare(`SELECT p.*, plan.cadence, plan.enabled, plan.next_run_at, truth_state.readiness AS truth_readiness
       FROM dashboard_projects p JOIN dashboard_tracking_plans plan ON plan.project_id = p.project_id
+      LEFT JOIN dashboard_truth_project_state truth_state ON truth_state.project_id = p.project_id
       WHERE p.project_id = ? LIMIT 1`).get(projectId);
     return row ? mapProject(row) : null;
   }
 
   function listProjects(accountId) {
-    return db.prepare(`SELECT p.*, plan.cadence, plan.enabled, plan.next_run_at, member.role
+    return db.prepare(`SELECT p.*, plan.cadence, plan.enabled, plan.next_run_at, member.role, truth_state.readiness AS truth_readiness
       FROM dashboard_projects p
       JOIN dashboard_project_members member ON member.project_id = p.project_id
       JOIN dashboard_tracking_plans plan ON plan.project_id = p.project_id
+      LEFT JOIN dashboard_truth_project_state truth_state ON truth_state.project_id = p.project_id
       WHERE member.account_id = ? ORDER BY p.updated_at DESC`).all(accountId).map(mapProject);
   }
 
@@ -392,6 +398,197 @@ function createSqliteDashboardStore(options = {}) {
     return db.prepare("DELETE FROM dashboard_gsc_daily_metrics WHERE metric_date_pt < ?").run(beforeDate).changes;
   }
 
+  // ---- Brand Truth sources, baselines, checks and reviews -----------------
+
+  function getTruthReadiness(projectId) {
+    const row = db.prepare("SELECT readiness FROM dashboard_truth_project_state WHERE project_id = ? LIMIT 1").get(projectId);
+    return row?.readiness || "sources_pending";
+  }
+
+  function setTruthReadiness(input) {
+    db.prepare(`INSERT INTO dashboard_truth_project_state (project_id, readiness, updated_at)
+      VALUES (?, ?, ?)
+      ON CONFLICT(project_id) DO UPDATE SET readiness=excluded.readiness, updated_at=excluded.updated_at`)
+      .run(input.projectId, input.readiness, input.now);
+    return getTruthReadiness(input.projectId);
+  }
+
+  function getTruthSourceByKey(projectId, canonicalUrl) {
+    const row = db.prepare("SELECT * FROM dashboard_truth_sources WHERE project_id = ? AND canonical_url = ? LIMIT 1")
+      .get(projectId, canonicalUrl);
+    return row ? mapTruthSource(row) : null;
+  }
+
+  function insertTruthSource(input) {
+    db.prepare(`INSERT INTO dashboard_truth_sources (
+      source_id, project_id, source_kind, source_url, canonical_url, status,
+      fetched_at, content_hash, metadata_json, snippets_json, candidate_fields_json,
+      failure_code, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, 'pending', NULL, NULL, ?, ?, ?, NULL, ?, ?)
+    ON CONFLICT(project_id, canonical_url) DO UPDATE SET source_url=excluded.source_url,
+      source_kind=excluded.source_kind, status='pending', fetched_at=NULL, content_hash=NULL,
+      metadata_json='{}', snippets_json='[]', candidate_fields_json='{}', failure_code=NULL,
+      updated_at=excluded.updated_at`).run(
+      input.sourceId, input.projectId, input.kind, input.url, input.canonicalUrl || input.url,
+      JSON.stringify(input.metadata || {}), JSON.stringify(input.snippets || []), JSON.stringify(input.candidateFields || {}),
+      input.now, input.now
+    );
+    return getTruthSourceByKey(input.projectId, input.canonicalUrl || input.url);
+  }
+
+  function updateTruthSource(input) {
+    const result = db.prepare(`UPDATE dashboard_truth_sources SET status=?, fetched_at=?, content_hash=?,
+      metadata_json=?, snippets_json=?, candidate_fields_json=?, failure_code=?, updated_at=?
+      WHERE source_id=? AND project_id=?`).run(
+      input.status, input.fetchedAt || null, input.contentHash || null,
+      JSON.stringify(input.metadata || {}), JSON.stringify(input.snippets || []), JSON.stringify(input.candidateFields || {}),
+      input.failureCode || null, input.now, input.sourceId, input.projectId
+    );
+    if (!result.changes) return null;
+    return getTruthSource(input.sourceId);
+  }
+
+  function getTruthSource(sourceId) {
+    const row = db.prepare("SELECT * FROM dashboard_truth_sources WHERE source_id = ? LIMIT 1").get(sourceId);
+    return row ? mapTruthSource(row) : null;
+  }
+
+  function listTruthSources(projectId) {
+    return db.prepare("SELECT * FROM dashboard_truth_sources WHERE project_id = ? ORDER BY created_at ASC")
+      .all(projectId).map(mapTruthSource);
+  }
+
+  function getTruthBaseline(projectId, branchId = "primary") {
+    const row = db.prepare(`SELECT * FROM dashboard_truth_baselines
+      WHERE project_id = ? AND branch_id = ? ORDER BY version DESC LIMIT 1`).get(projectId, branchId);
+    return row ? attachTruthBaselineSources(mapTruthBaseline(row)) : null;
+  }
+
+  function createTruthBaseline(input) {
+    return transaction(() => {
+      const current = db.prepare("SELECT COALESCE(MAX(version), 0) AS version FROM dashboard_truth_baselines WHERE project_id = ? AND branch_id = ?")
+        .get(input.projectId, input.branchId || "primary");
+      const version = Number(current?.version || 0) + 1;
+      db.prepare(`INSERT INTO dashboard_truth_baselines (
+        baseline_id, project_id, branch_id, branch_name, version, fields_json, source_ids_json,
+        status, confirmed_by, confirmed_at, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, 'confirmed', ?, ?, ?)`).run(
+        input.baselineId, input.projectId, input.branchId || "primary", input.branchName || null, version,
+        JSON.stringify(input.fields || {}), JSON.stringify(input.sourceIds || []), input.accountId, input.confirmedAt, input.now
+      );
+      for (const source of input.sourceSnapshots || []) {
+        db.prepare(`INSERT INTO dashboard_truth_baseline_sources (
+          baseline_id, source_id, canonical_url, content_hash, snippets_json, metadata_json, captured_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?)`).run(
+          input.baselineId, source.sourceId, source.canonicalUrl, source.contentHash || null,
+          JSON.stringify(source.snippets || []), JSON.stringify(source.metadata || {}), input.confirmedAt
+        );
+      }
+      return getTruthBaselineById(input.baselineId);
+    });
+  }
+
+  function getTruthBaselineById(baselineId) {
+    const row = db.prepare("SELECT * FROM dashboard_truth_baselines WHERE baseline_id = ? LIMIT 1").get(baselineId);
+    return row ? attachTruthBaselineSources(mapTruthBaseline(row)) : null;
+  }
+
+  function attachTruthBaselineSources(baseline) {
+    baseline.sourceSnapshots = db.prepare(`SELECT source_id, canonical_url, content_hash, snippets_json, metadata_json, captured_at
+      FROM dashboard_truth_baseline_sources WHERE baseline_id = ? ORDER BY source_id ASC`).all(baseline.baselineId).map((row) => ({
+      sourceId: row.source_id, canonicalUrl: row.canonical_url, contentHash: row.content_hash || null,
+      snippets: parseJson(row.snippets_json, []), metadata: parseJson(row.metadata_json, {}), capturedAt: row.captured_at
+    }));
+    return baseline;
+  }
+
+  function createTruthCheck(input) {
+    db.prepare(`INSERT INTO dashboard_truth_check_runs (
+      check_id, project_id, baseline_id, engine_ids_json, status, parser_version,
+      created_by, created_at, updated_at, completed_at, error_code
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL)`).run(
+      input.checkId, input.projectId, input.baselineId, JSON.stringify(input.engineIds), input.status || "queued",
+      input.parserVersion, input.accountId, input.now, input.now
+    );
+    return getTruthCheck(input.checkId);
+  }
+
+  function claimTruthCheck(input) {
+    const changed = db.prepare("UPDATE dashboard_truth_check_runs SET status='running', updated_at=? WHERE check_id=? AND status='queued'")
+      .run(input.now, input.checkId).changes;
+    return changed ? getTruthCheck(input.checkId) : null;
+  }
+
+  function listQueuedTruthChecks(limit = 10) {
+    return db.prepare(`SELECT truth_check.*, baseline.version AS baseline_version
+      FROM dashboard_truth_check_runs truth_check
+      JOIN dashboard_truth_baselines baseline ON baseline.baseline_id = truth_check.baseline_id
+      WHERE truth_check.status = 'queued' ORDER BY truth_check.created_at ASC LIMIT ?`).all(Math.max(1, Math.min(50, Number(limit) || 10)))
+      .map(mapTruthCheck);
+  }
+
+  function getTruthCheck(checkId) {
+    const row = db.prepare(`SELECT truth_check.*, baseline.version AS baseline_version
+      FROM dashboard_truth_check_runs truth_check
+      JOIN dashboard_truth_baselines baseline ON baseline.baseline_id = truth_check.baseline_id
+      WHERE truth_check.check_id = ? LIMIT 1`).get(checkId);
+    if (!row) return null;
+    const check = mapTruthCheck(row);
+    check.claims = db.prepare("SELECT * FROM dashboard_truth_claims WHERE check_id = ? ORDER BY created_at ASC").all(checkId).map(mapTruthClaim);
+    check.findings = db.prepare("SELECT * FROM dashboard_truth_findings WHERE check_id = ? ORDER BY created_at ASC").all(checkId).map(mapTruthFinding);
+    return check;
+  }
+
+  function insertTruthClaim(input) {
+    db.prepare(`INSERT INTO dashboard_truth_claims (
+      claim_id, check_id, observation_id, engine, model, field_name, claim_value,
+      claim_text, entity_match, condition_json, parser_version, created_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`).run(
+      input.claimId, input.checkId, input.observationId || null, input.engine, input.model || null,
+      input.field, input.value || null, input.text, input.entityMatch || "unknown",
+      JSON.stringify(input.condition || {}), input.parserVersion, input.now
+    );
+    return mapTruthClaim(db.prepare("SELECT * FROM dashboard_truth_claims WHERE claim_id = ?").get(input.claimId));
+  }
+
+  function insertTruthFinding(input) {
+    db.prepare(`INSERT INTO dashboard_truth_findings (
+      finding_id, check_id, claim_id, baseline_id, field_name, status, severity,
+      confidence, evidence_json, review_status, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?)`).run(
+      input.findingId, input.checkId, input.claimId || null, input.baselineId, input.field,
+      input.status, input.severity, input.confidence || "unknown", JSON.stringify(input.evidence || {}), input.now, input.now
+    );
+    return mapTruthFinding(db.prepare("SELECT * FROM dashboard_truth_findings WHERE finding_id = ?").get(input.findingId));
+  }
+
+  function finishTruthCheck(input) {
+    db.prepare("UPDATE dashboard_truth_check_runs SET status=?, updated_at=?, completed_at=?, error_code=? WHERE check_id=?")
+      .run(input.status, input.now, input.completedAt || input.now, input.errorCode || null, input.checkId);
+    return getTruthCheck(input.checkId);
+  }
+
+  function getTruthFindingForProject(projectId, findingId) {
+    const row = db.prepare(`SELECT finding.* FROM dashboard_truth_findings finding
+      JOIN dashboard_truth_check_runs truth_check ON truth_check.check_id = finding.check_id
+      WHERE truth_check.project_id = ? AND finding.finding_id = ? LIMIT 1`).get(projectId, findingId);
+    return row ? mapTruthFinding(row) : null;
+  }
+
+  function reviewTruthFinding(input) {
+    return transaction(() => {
+      const changed = db.prepare(`UPDATE dashboard_truth_findings SET review_status=?, updated_at=?
+        WHERE finding_id=? AND review_status='pending'`).run(input.decision, input.now, input.findingId);
+      if (!changed.changes) return null;
+      db.prepare(`INSERT INTO dashboard_truth_reviews (
+        review_id, finding_id, project_id, account_id, decision, reason, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)`).run(
+        input.reviewId, input.findingId, input.projectId, input.accountId, input.decision, input.reason, input.now
+      );
+      return getTruthFindingForProject(input.projectId, input.findingId);
+    });
+  }
+
   return {
     insertInvitation, consumeInvitation, findVerifiedAccountByEmail, authenticateSession, createSession,
     createProject, getProject, listProjects, getMembership, getEntitlement, upsertEntitlement, countProjects,
@@ -401,6 +598,9 @@ function createSqliteDashboardStore(options = {}) {
     getObservationForProject, createAnnotation, listAnnotations,
     upsertGoogleConnection, getGoogleConnection, revokeGoogleConnection, startGscSync, finishGscSync,
     upsertGscDailyMetrics, listGscDailyMetrics, purgeGscMetrics,
+    getTruthReadiness, setTruthReadiness, insertTruthSource, updateTruthSource, getTruthSource, listTruthSources,
+    getTruthBaseline, getTruthBaselineById, createTruthBaseline, createTruthCheck, claimTruthCheck, listQueuedTruthChecks, getTruthCheck,
+    insertTruthClaim, insertTruthFinding, finishTruthCheck, getTruthFindingForProject, reviewTruthFinding,
     close: () => db.close()
   };
 }

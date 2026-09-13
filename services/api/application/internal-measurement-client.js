@@ -55,13 +55,14 @@ function createInternalMeasurementClient(options = {}) {
     }
   }
 
-  async function submitMeasurement({ idempotencyKey, prompt, locale, target }) {
+  async function submitMeasurement({ idempotencyKey, prompt, locale, target, engineIds }) {
     return request("/internal/v1/measurements", {
       method: "POST",
       headers: { "Content-Type": "application/json", "Idempotency-Key": String(idempotencyKey || "") },
       body: JSON.stringify({
         input: { type: "prompt", text: String(prompt || "") },
         locale: locale || "zh-TW",
+        engine_ids: Array.isArray(engineIds) ? engineIds : undefined,
         target: target?.name || target?.url ? { name: target.name || null, url: target.url || null } : undefined
       })
     });

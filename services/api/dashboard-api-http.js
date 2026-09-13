@@ -1,11 +1,23 @@
 const { createHash, timingSafeEqual } = require("node:crypto");
 const { createDashboardService, DashboardError } = require("./application/dashboard-service.js");
+const { createDashboardTruthService } = require("./application/dashboard-truth-service.js");
+const { createTruthSourceFetcher } = require("./application/dashboard-truth-source-fetcher.js");
 
 function createDashboardApiHttpHandler(options = {}) {
   const config = normalizeConfig(options.config || process.env, options);
   if (!config.enabled) return { handle: async () => false, state: () => ({ enabled: false }) };
   const store = options.store || createLocalStore(options, config);
   const api = options.api || createDashboardService({ store, tokenPepper: config.tokenPepper, googleTokenKey: config.gscTokenEncryptionKey, gscClient: options.gscClient, now: options.now });
+  const truthApi = options.truthApi || createDashboardTruthService({
+    store,
+    dashboardApi: api,
+    sourceFetcher: options.sourceFetcher || createTruthSourceFetcher({ fetch: options.fetch }),
+    now: options.now,
+    enabled: config.truthEnabled,
+    allowlist: config.truthAllowlist,
+    schedule: options.truthSchedule,
+    executeCheck: options.truthExecuteCheck
+  });
 
   async function handle({ req, res, url, readJson, sendJson }) {
     if (!url.pathname.startsWith("/app-api/v1/")) return false;
@@ -52,6 +64,67 @@ function createDashboardApiHttpHandler(options = {}) {
       if (req.method === "POST" && url.pathname === "/app-api/v1/projects") {
         const body = await readJson(req, 16 * 1024);
         sendPrivate(201, await api.createProject({ sessionToken, name: body.name, siteUrl: body.site_url, timezone: body.timezone }));
+        return true;
+      }
+      const truthSourcesMatch = url.pathname.match(/^\/app-api\/v1\/projects\/([^/]+)\/truth\/sources$/);
+      if (truthSourcesMatch && req.method === "POST") {
+        const body = await readJson(req, 64 * 1024);
+        sendPrivate(200, { data: await truthApi.addTruthSources({
+          sessionToken, projectId: decodeURIComponent(truthSourcesMatch[1]), sources: body.sources
+        }) });
+        return true;
+      }
+      if (truthSourcesMatch && req.method === "GET") {
+        sendPrivate(200, { data: await truthApi.listTruthSources({
+          sessionToken, projectId: decodeURIComponent(truthSourcesMatch[1])
+        }) });
+        return true;
+      }
+      const truthBaselineMatch = url.pathname.match(/^\/app-api\/v1\/projects\/([^/]+)\/truth\/baseline$/);
+      if (truthBaselineMatch && req.method === "GET") {
+        sendPrivate(200, await truthApi.getTruthBaseline({
+          sessionToken, projectId: decodeURIComponent(truthBaselineMatch[1])
+        }));
+        return true;
+      }
+      const truthReadinessMatch = url.pathname.match(/^\/app-api\/v1\/projects\/([^/]+)\/truth\/readiness$/);
+      if (truthReadinessMatch && req.method === "GET") {
+        sendPrivate(200, { truth_readiness: await truthApi.getTruthReadiness({
+          sessionToken, projectId: decodeURIComponent(truthReadinessMatch[1])
+        }) });
+        return true;
+      }
+      const truthBaselineConfirmMatch = url.pathname.match(/^\/app-api\/v1\/projects\/([^/]+)\/truth\/baseline\/confirm$/);
+      if (truthBaselineConfirmMatch && req.method === "POST") {
+        const body = await readJson(req, 32 * 1024);
+        sendPrivate(201, await truthApi.confirmTruthBaseline({
+          sessionToken, projectId: decodeURIComponent(truthBaselineConfirmMatch[1]), branchId: body.branch_id,
+          branchName: body.branch_name, fields: body.fields, sourceIds: body.source_ids
+        }));
+        return true;
+      }
+      const truthChecksMatch = url.pathname.match(/^\/app-api\/v1\/projects\/([^/]+)\/truth\/checks$/);
+      if (truthChecksMatch && req.method === "POST") {
+        const body = await readJson(req, 16 * 1024);
+        sendPrivate(202, await truthApi.startTruthCheck({
+          sessionToken, projectId: decodeURIComponent(truthChecksMatch[1]), engineIds: body.engine_ids
+        }));
+        return true;
+      }
+      const truthCheckMatch = url.pathname.match(/^\/app-api\/v1\/projects\/([^/]+)\/truth\/checks\/([^/]+)$/);
+      if (truthCheckMatch && req.method === "GET") {
+        sendPrivate(200, await truthApi.getTruthCheck({
+          sessionToken, projectId: decodeURIComponent(truthCheckMatch[1]), checkId: decodeURIComponent(truthCheckMatch[2])
+        }));
+        return true;
+      }
+      const truthReviewMatch = url.pathname.match(/^\/app-api\/v1\/projects\/([^/]+)\/truth\/findings\/([^/]+)\/review$/);
+      if (truthReviewMatch && req.method === "POST") {
+        const body = await readJson(req, 16 * 1024);
+        sendPrivate(200, await truthApi.reviewTruthFinding({
+          sessionToken, projectId: decodeURIComponent(truthReviewMatch[1]), findingId: decodeURIComponent(truthReviewMatch[2]),
+          decision: body.decision, reason: body.reason
+        }));
         return true;
       }
       const questionMatch = url.pathname.match(/^\/app-api\/v1\/projects\/([^/]+)\/question-sets$/);
@@ -136,7 +209,7 @@ function createDashboardApiHttpHandler(options = {}) {
     }
   }
 
-  return { handle, workerApi: api, state: () => ({ enabled: true }) };
+  return { handle, workerApi: api, truthApi, state: () => ({ enabled: true }) };
 }
 
 function normalizeConfig(source, options) {
@@ -151,7 +224,10 @@ function normalizeConfig(source, options) {
   if (!databasePath && !options.store) throw new Error("DASHBOARD_DATABASE_PATH is required when Dashboard API is enabled");
   if (Buffer.byteLength(tokenPepper, "utf8") < 32) throw new Error("DASHBOARD_TOKEN_PEPPER must be at least 32 bytes");
   if (Buffer.byteLength(adminToken, "utf8") < 20) throw new Error("DASHBOARD_ADMIN_TOKEN must be at least 20 bytes");
-  return { enabled, tokenPepper, adminToken, databasePath, gscTokenEncryptionKey };
+  const truthAllowlist = String(source.DASHBOARD_TRUTH_ALLOWLIST || options.truthAllowlist || "");
+  const truthEnabledFlag = String(source.DASHBOARD_TRUTH_ENABLED || options.truthEnabled || "false").toLowerCase() === "true";
+  const truthEnabled = truthEnabledFlag && truthAllowlist.split(",").some((value) => String(value || "").trim());
+  return { enabled, tokenPepper, adminToken, databasePath, gscTokenEncryptionKey, truthEnabled, truthAllowlist };
 }
 
 function bearerToken(req) {

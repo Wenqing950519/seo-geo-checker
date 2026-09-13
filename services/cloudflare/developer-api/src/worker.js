@@ -176,6 +176,8 @@ function platformAssetPath(pathname) {
   // Keep crawler metadata on the Platform origin while Console/API paths stay isolated.
   if (pathname === "/" || pathname === "/developers" || pathname === "/developers/") return "/developers";
   if (pathname === "/docs" || pathname === "/docs/" || pathname === "/developers/docs" || pathname === "/developers/docs/") return "/developers/docs";
+  if (pathname === "/sitemap.xml") return "/platform-sitemap.xml";
+  if (pathname === "/robots.txt") return "/platform-robots.txt";
   if (isConsolePath(pathname)) return "/developers-console";
   if (pathname === "/sitemap.xml") return "/platform-sitemap.xml";
   if (pathname === "/robots.txt") return "/platform-robots.txt";

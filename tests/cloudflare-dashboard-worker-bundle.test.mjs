@@ -82,6 +82,7 @@ try {
   assert.match(bundle, /configuration_incomplete/, "The Dashboard Worker must fail closed without runtime secrets");
   assert.match(worker, /REQUIRED_RUNTIME_SECRETS/, "Dashboard readiness must be an explicit secret list");
   assert.match(worker, /admission_enabled/, "Dashboard health must report the admission switch");
+  assert.match(worker, /truth_enabled/, "Dashboard health must report Brand Truth feature gating");
   assert.match(worker, /admission_closed/, "Dashboard payment callbacks must stay admission-gated");
   assert.match(worker, /Strict-Transport-Security/, "Dashboard Worker responses must enable HSTS");
   assert.match(worker, /"Cache-Control": "no-store"/, "Dashboard Worker responses must not be cached");
@@ -93,6 +94,7 @@ try {
   // actually runs; the value is pinned here so a later edit is a deliberate one.
   // This opens `scheduled()` only -- the NewebPay callback below stays hard-closed.
   assert.equal(config.vars.DASHBOARD_ADMISSION_ENABLED, "true", "Dashboard tracking admission is open");
+  assert.equal(config.vars.DASHBOARD_TRUTH_ENABLED, "false", "Brand Truth live admission remains closed until controlled smoke passes");
   assert.equal(config.vars.DASHBOARD_PAYMENT_MODE, "sandbox", "Dashboard payments must ship in sandbox mode");
   assert.equal(config.d1_databases[0].binding, "DASHBOARD_DB");
   assert.equal(config.d1_databases[0].database_name, "geocheck-dashboard");
