@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-09-12
+last_updated: 2026-09-14
 tags:
   - geocheck
   - current-state
@@ -14,7 +14,18 @@ tags:
 
 ## 最新產品方向（決策不等於實作）
 
-依 D-040／D-041／D-046，產品方向已確認為「短測引流 → SaaS Dashboard → 診斷型 Agent」，Developer API 作共用四引擎量測基礎並可作外部技術產品；未來台灣付款優先採藍新金流。Dashboard Paid Beta 契約為 TWD 330／訂閱週年月、6 個 active Projects、每期共享 24 次手動更新與固定 Asia/Taipei 每日最多 6 次；Free 為 2 個 active Projects、每週自動追蹤、無手動更新。這是待驗證的 Beta 商業契約，不是實收、毛利或留存證據。付款、排程與 provider runner 均必須預設 admission closed；目前沒有可據此新增的遠端 D1、Worker、藍新商店、正式扣款或公開流量證據。
+> [!important] 2026-09-14 起以 D-051 為準
+> LS-Labs 已由 SaaS 營利路線重設為研究室定位。本節以下所有 SaaS 商業路徑的描述均已被 D-051 取代，保留僅供追溯。
+> 目的優先序：**1. 持續發表衝流量、以後台數據為成果 ｜ 2. 學習與實踐 SEO／GEO 的場所、對外對話的媒介 ｜ 3. 在不影響 1、2 的前提下迭代 GeoCheck 與 Platform 作為 MVP 能力佐證**。
+>
+> - `lslabs.tw` 研究發表 = 主軸；`geocheck.lslabs.tw` 與 `platform.lslabs.tw` = 續行迭代；`app.lslabs.tw` Dashboard = **暫停推進，程式碼保留不刪**。
+> - Platform 未來計費改 **usage-based**，實際開通取決於金流審核；審核通過前不得宣稱可購買。
+> - **不封存 Platform、不刪除 Dashboard 程式碼、不停用任何網域。**
+> - 完整決策與邊界見 `DECISION_LOG.md` D-051；跨 repo 的方向正本見 `../DIRECTION.md`。
+
+`[已被 D-051 取代]` 依 D-040／D-041／D-046，產品方向曾確認為「短測引流 → SaaS Dashboard → 診斷型 Agent」，Developer API 作共用四引擎量測基礎並可作外部技術產品；未來台灣付款優先採藍新金流。Dashboard Paid Beta 契約為 TWD 330／訂閱週年月、6 個 active Projects、每期共享 24 次手動更新與固定 Asia/Taipei 每日最多 6 次；Free 為 2 個 active Projects、每週自動追蹤、無手動更新。這是待驗證的 Beta 商業契約，不是實收、毛利或留存證據。付款、排程與 provider runner 均必須預設 admission closed；目前沒有可據此新增的遠端 D1、Worker、藍新商店、正式扣款或公開流量證據。
+
+`[待執行 2026-09-14]` D-047 階段 2 後 A 的排程 admission 為 `true`，remote D1 有一筆 `next_run_at=2026-09-18T05:38:05.804Z` 的 tracking plan（`dashboard_question_sets` 為 0 筆，故目前不會產生 provider 呼叫）。依 D-051 Dashboard 已暫停推進，`DASHBOARD_ADMISSION_ENABLED` 與 B 的 `internal_admission_enabled` 應關回 `false`。此為使用者操作，**尚未執行**。
 
 `[全站三層品牌系統改版與正式發佈 2026-09-12]` 依 D-048、D-049 與品牌手冊規範，全站完成品牌層（LS-Labs）、能力層（GeoCheck）、交付層（Audit、Monitor、Platform）重構。
 - 程式碼已合併至 `main`（commit `e3935c4`）並推送至 GitHub origin。

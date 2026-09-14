@@ -1,3 +1,8 @@
+> [!important] 部分取代 — 讀前先確認哪些還有效
+> 本檔的**商業模式、定價、訂閱與產品路線**假設已由 `DECISION_LOG.md` **D-051**（2026-09-14 定位重設）取代：不再走 SaaS 營利路線，Dashboard 暫停推進，Platform 續行且改 usage-based 計費。
+> 本檔的 **A／B 產品隔離邊界（D-042）仍然有效**，不受 D-051 影響。
+> 現行方向見 `../DIRECTION.md`。
+
 # GeoCheck A / Developer Platform B 邊界提案
 
 > 2026-09-09 更新：依 D-037，Developer API 的 customer／console／admin 後臺、tenant/key、持久 job、配額與成本 ledger、OpenAPI 及獨立 D1 adapter 已實作並通過本機測試。視覺前端、SDK client、金流、正式寄信、遠端 B D1、額度效期與保存期限仍未完成。現行 A API 見 `API_CONTRACT.md`；B 是附屬產品，不得改變 A。資料夾存在不代表已部署。

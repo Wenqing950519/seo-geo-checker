@@ -1,3 +1,7 @@
+> [!warning] Superseded — 寫於 SaaS 時期，不是現行方向
+> 本檔的商業模式、定價、訂閱與路線圖假設已由 `DECISION_LOG.md` **D-051**（2026-09-14 定位重設）取代。
+> 現行方向見 `../../DIRECTION.md`。本檔僅供追溯，**不得作為現行方向或實作依據**。
+
 # GeoCheck 全主流 AI（GEO Visibility）開發者服務化與 API 剝離技術企劃書
 **Technical Brief & RFC for Next-Gen Architecture Planning**
 

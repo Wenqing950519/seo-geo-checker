@@ -1,7 +1,7 @@
 ---
 type: decision-log
 project: GeoCheck
-last_updated: 2026-09-12
+last_updated: 2026-09-14
 tags:
   - geocheck
   - decisions
@@ -600,3 +600,42 @@ tags:
 - **影響範圍**：`home/`（首頁、選單、內頁、路由）、`apps/web/`（app 標題、登入閘、側欄、brand.html、home.html）、品牌資產 `geocheck-track-logo-*.svg`（原 `geocheck-monitor-logo-*.svg`，內嵌文字已更新）、相關測試。主域路徑 `/product/geocheck-monitor/` 改為 `/product/geocheck-track/`，舊路徑以 301 承接。
 - **維持不變**：`app.lslabs.tw` 網域不變；D-042 的 A／B 隱私與授權邊界不變；`packages/monitor` 等內部模組名稱不在本次範圍。
 - **可追溯來源**：使用者 2026-09-12 表示 `Monitor` 名稱不適，並於 Pulse／Track 中採納 Track。
+
+### D-051 LS-Labs 定位重設：研究室優先，Dashboard 暫停，Platform 續行
+
+- **日期**：2026-09-14 ｜ **狀態**：Confirmed
+- **決策內容**：LS-Labs 不再以 SaaS 營利為發展主軸。LS-Labs 對外是一間研究 AI 時代 SEO／GEO 與數位行銷的網路實驗室，現有產品的角色由「要賣的東西」改為「研究的放大器與工具」。
+
+  **目的優先序（由重到輕，此順序即資源分配順序）**：
+
+  ```
+  1. 持續發表（研究報告、SEO 文章、Blog）把流量衝起來，
+     以 GA4／GSC／Ahrefs 後台數據作為可證明的成果
+  2. 作為學習與實踐 SEO／GEO 概念的場所，
+     並作為與產業先進對話的媒介（例如 coffee chat 前的先備材料）
+  3. 在不影響 1 與 2 的前提下迭代 GeoCheck 與 Platform，
+     作為「做得出 MVP、具備 product／ops 基礎能力」的佐證
+  ```
+
+- **各產品面的處置**：
+
+  | 產品面 | 處置 | 說明 |
+  |---|---|---|
+  | `lslabs.tw` 研究發表 | **主軸** | 目的 1、2 的載體。內容產出是現階段最高優先 |
+  | `geocheck.lslabs.tw` 快檢 | **續行迭代** | 目的 3。同時是「讀者可以自己驗證我」的證據面 |
+  | `platform.lslabs.tw` Platform／Product B | **續行迭代** | 目的 3。仍是要讓人方便使用的技術產品 |
+  | `app.lslabs.tw` Dashboard／Product A（GeoCheck Track） | **暫停推進** | 訂閱制工作空間不再是發展方向。程式碼保留不刪 |
+
+- **計費方向**：Platform 未來仍會計費，但改採 **usage-based**（對標大模型公司的用量計價），取代原本 D-030 的輪數方案與 D-032 的訂閱制。實際開通時點取決於金流公司審核結果，審核通過前不得宣稱可購買。現有 `services/api/payments/newebpay-periodic.js` 是週期性訂閱扣款，與 usage-based 是不同計費模型，保留但預期需重寫。
+- **前端處置**：現階段只做保守調整——降低主站對產品面的過度導引，尤其是首頁；不進行大範圍 UI 改版。價格頁與法務頁不下架。
+- **網域處置**：既有網域全部不動。不停用、不改 DNS、不設新的 301。
+- **決策邊界（最容易被誤讀的四點，Agent 讀到此處必須遵守）**：
+  1. 這**不是**封存 Platform。`packages/sdk`、`apps/developer-console`、`services/developer-d1-gateway`、`services/cloudflare/developer-api` 全部保留且持續迭代。
+  2. 這**不是**刪除 Dashboard。`apps/web/app/` 與 `dashboard_*` 後端保留在版控中，只是不再主動推進；既有後端功能與前端顯示與新方向不衝突，可以繼續提交。
+  3. 這**不是**停用網域或下架頁面。
+  4. 「研究為主體」指的是**未來開發與經營的方向**，不代表要把 `research/` 搬家或歸檔。
+- **仍待執行**：Product A 的排程 admission 於 D-047 階段 2 後為 `true`，remote D1 有一筆 `next_run_at=2026-09-18T05:38:05.804Z` 的 tracking plan。既然 Dashboard 暫停推進，`DASHBOARD_ADMISSION_ENABLED` 與 B 的 `internal_admission_enabled` 應關回 `false`，避免留下無人看管的付費排程。此為使用者操作，尚未執行。
+- **考慮過的替代方案**：(a) 依 2026-09-14 初版 `ARCHIVE.md` 把 Platform 連同 SDK、Console、D1 gateway 一併封存 —— 與目的 3 直接衝突，Platform 正是 MVP 能力佐證的主要載體，已否決；(b) 下架價格與退款頁、停用 `app.`／`platform.` 網域 —— 在金流審核結果未定前過度不可逆，且外部連結是資產，已否決。
+- **影響範圍**：`LS-Labs/DIRECTION.md`（新增）、`LS-Labs/PRODUCT.md`、`LS-Labs/ARCHIVE.md`、`LS-Labs/WORKSPACE.md`、`docs/CURRENT_STATE.md`、`docs/PROJECT_CHARTER.md` §0 與 §6、`docs/strategy/` 既有策略文件（標記為 Superseded）、`home/` 前端導引。
+- **取代**：D-040、D-041 的「短測引流 → SaaS Dashboard → 診斷型 Agent」商業路徑；D-030／D-032 的 Beta 定價方案。D-048、D-049 的網域與三層架構**維持不變**；D-029 固定四引擎、D-042 的 A／B 隔離、D-047 內部通道契約**維持不變**。
+- **可追溯來源**：使用者 2026-09-14 說明「product(SaaS) 的發展方向出現問題，打算將 LS-Labs 重新定位成一間網路實驗室」，並逐項列出三個目的優先序、確認 Platform 續行與未來 usage-based 計費、確認前端保守調整與網域不動。

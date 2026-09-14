@@ -1,3 +1,7 @@
+> [!warning] Superseded — 寫於 SaaS 時期，不是現行方向
+> 本檔的商業模式、定價、訂閱與路線圖假設已由 `DECISION_LOG.md` **D-051**（2026-09-14 定位重設）取代。
+> 現行方向見 `../../DIRECTION.md`。本檔僅供追溯，**不得作為現行方向或實作依據**。
+
 # 商業路線與程式位置對照
 
 資料夾應同時支援 A、Developer API，以及 Project／Dashboard／Agent 工作流。依 D-040，Developer API 是共用量測基礎並可作外部技術產品；使用者體驗仍依「短測引流 → SaaS Dashboard → 診斷型 Agent」推進，不把公開 API 當成建立第二次使用的必經之路。

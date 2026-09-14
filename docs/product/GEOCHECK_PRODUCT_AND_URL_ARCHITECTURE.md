@@ -1,3 +1,8 @@
+> [!important] 部分取代 — 讀前先確認哪些還有效
+> 本檔的**商業模式與產品路線**假設已由 `DECISION_LOG.md` **D-051**（2026-09-14 定位重設）取代。
+> 本檔的**網域與三層架構配置（D-048、D-049）仍然有效**，不受 D-051 影響——網域全部不動。惟 `app.lslabs.tw` 的 Dashboard 已暫停推進，主站不得再導向該網域。
+> 現行方向見 `../../DIRECTION.md`。
+
 # LS Labs and GeoCheck Product Architecture
 
 Status: Current product and URL architecture
