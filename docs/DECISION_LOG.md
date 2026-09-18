@@ -639,3 +639,10 @@ tags:
 - **影響範圍**：`LS-Labs/DIRECTION.md`（新增）、`LS-Labs/PRODUCT.md`、`LS-Labs/ARCHIVE.md`、`LS-Labs/WORKSPACE.md`、`docs/CURRENT_STATE.md`、`docs/PROJECT_CHARTER.md` §0 與 §6、`docs/strategy/` 既有策略文件（標記為 Superseded）、`home/` 前端導引。
 - **取代**：D-040、D-041 的「短測引流 → SaaS Dashboard → 診斷型 Agent」商業路徑；D-030／D-032 的 Beta 定價方案。D-048、D-049 的網域與三層架構**維持不變**；D-029 固定四引擎、D-042 的 A／B 隔離、D-047 內部通道契約**維持不變**。
 - **可追溯來源**：使用者 2026-09-14 說明「product(SaaS) 的發展方向出現問題，打算將 LS-Labs 重新定位成一間網路實驗室」，並逐項列出三個目的優先序、確認 Platform 續行與未來 usage-based 計費、確認前端保守調整與網域不動。
+
+## D-052 — 清理公開舊網址與未發布頁面（2026-09-19）
+
+- **來源與授權**：使用者要求處理仍運作的 geocheck.lisheng.cv，以及 Wave 0 等已上線但無法使用的連結，並已授權部署與正式站驗證。
+- **決策**：舊 GeoCheck 公開 GET/HEAD 頁面 308 至 geocheck.lslabs.tw；developers.lslabs.tw 308 至 Platform；Wave 0 歷史網址 302 至已發布文章列表；主站與 GeoCheck 的不存在頁面回傳真正 404；GeoCheck 舊品牌規範 308 至主站現行規範。
+- **邊界**：僅取代 D-051「不設新轉址」對上述公開路徑的限制；不改 DNS、不刪網域、不改 API、OAuth、報告、計費或 admission。白皮書、法務頁與明確標示的示範頁保留。
+- **維護**：Pages 專用 host routing 不得加入 Developer API 共用資產目錄；以 test:pages 驗證。部署程序見 services/cloudflare/pages/README.md。

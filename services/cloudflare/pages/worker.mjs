@@ -10,6 +10,9 @@ export default {
     if (/^\/research\/xinyi-dining-wave0(?:\.html|\/index\.html|\/)?$/.test(pathname)) {
       return Response.redirect('https://lslabs.tw/blog/', 302);
     }
+    if (/^\/brand(?:\.html|\/)?$/.test(pathname)) {
+      return Response.redirect('https://lslabs.tw/brand/', 308);
+    }
     const platformPaths = {
       '/developers':'/', '/developers/':'/', '/developers.html':'/',
       '/developers/docs':'/docs', '/developers/docs/':'/docs', '/developers-docs':'/docs',

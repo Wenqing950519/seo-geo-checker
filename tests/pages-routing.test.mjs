@@ -31,3 +31,8 @@ test('public Pages includes a noindex 404 document',()=>{
   const html=fs.readFileSync(new URL('../apps/web/public/404.html',import.meta.url),'utf8');
   assert.match(html,/noindex/);
 });
+test('outdated brand pages resolve to the maintained brand guide',async()=>{
+  for(const pathname of ['/brand','/brand/','/brand.html']){
+    assert.equal((await worker.fetch(request('geocheck.lslabs.tw',pathname),env)).headers.get('location'),'https://lslabs.tw/brand/');
+  }
+});
