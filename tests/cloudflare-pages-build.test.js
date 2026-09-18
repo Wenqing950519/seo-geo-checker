@@ -8,6 +8,10 @@ execFileSync(process.execPath, ["scripts/cloudflare/build-pages-static.cjs"], { 
 execFileSync(process.execPath, ["scripts/cloudflare/build-dashboard-static.cjs"], { cwd: root, stdio: "inherit" });
 
 const output = (...parts) => path.join(root, "dist", "pages", ...parts);
+assert.ok(fs.existsSync(output("404.html")), "Unknown Pages routes must return 404");
+assert.equal(fs.readFileSync(output("_worker.js"), "utf8"), fs.readFileSync(path.join(root, "services/cloudflare/pages/worker.mjs"), "utf8"));
+assert.deepEqual(JSON.parse(fs.readFileSync(output("_routes.json"), "utf8")).exclude, ["/api/*", "/app-api/*", "/report/*", "/v1/*", "/internal/*"]);
+assert.ok(!fs.existsSync(path.join(root, "apps/web/public/_worker.js")), "Pages routing must not affect the Developer API asset binding");
 for (const file of [
   "home.html",
   "index.html",

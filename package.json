@@ -31,7 +31,7 @@
     "build": "node scripts/cloudflare/build-pages-static.cjs && node scripts/cloudflare/build-dashboard-static.cjs",
     "build:pages": "node scripts/cloudflare/build-pages-static.cjs",
     "build:dashboard-pages": "node scripts/cloudflare/build-dashboard-static.cjs",
-    "test:pages": "node tests/cloudflare-pages-build.test.js"
+    "test:pages": "node tests/cloudflare-pages-build.test.js && node --test tests/pages-routing.test.mjs"
   },
   "dependencies": {
     "playwright": "^1.60.0"
