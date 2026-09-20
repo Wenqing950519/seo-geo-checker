@@ -173,6 +173,9 @@ function isConsolePath(pathname) {
 }
 
 function platformAssetPath(pathname) {
+  // Product B must not inherit Product A's subscription contract from ASSETS.
+  const legalPage = /^\/(pricing|terms|privacy|refund)(?:\/|\.html)?$/.exec(pathname);
+  if (legalPage) return `/platform/${legalPage[1]}`;
   // Keep crawler metadata on the Platform origin while Console/API paths stay isolated.
   if (pathname === "/" || pathname === "/developers" || pathname === "/developers/") return "/developers";
   if (pathname === "/docs" || pathname === "/docs/" || pathname === "/developers/docs" || pathname === "/developers/docs/") return "/developers/docs";
@@ -200,7 +203,7 @@ async function handleRequest(request, env) {
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
   // platform.lslabs.tw is the entire developer surface: landing, documentation,
   // Console and /v1 share one origin so browser sessions never cross products.
-  if (request.method === "GET" && url.hostname === "platform.lslabs.tw") {
+  if ((request.method === "GET" || request.method === "HEAD") && url.hostname === "platform.lslabs.tw") {
     const contentRedirect = platformContentRedirect(url);
     if (contentRedirect) return contentRedirect;
     const assetPath = platformAssetPath(pathname);

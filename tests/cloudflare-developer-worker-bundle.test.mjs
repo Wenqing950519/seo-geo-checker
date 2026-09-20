@@ -31,7 +31,11 @@ try {
   // platform.lslabs.tw and the redirect to the main domain never runs.
   assert.deepEqual(developerConfig.assets.run_worker_first, [
     "/brand", "/brand/", "/whitepaper", "/whitepaper/",
-    "/sitemap.xml", "/robots.txt"
+    "/sitemap.xml", "/robots.txt",
+    "/pricing", "/pricing/", "/pricing.html",
+    "/terms", "/terms/", "/terms.html",
+    "/privacy", "/privacy/", "/privacy.html",
+    "/refund", "/refund/", "/refund.html"
   ]);
   assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "false");
   assert.equal(auditConfig.containers[0].image_build_context, "../../..");

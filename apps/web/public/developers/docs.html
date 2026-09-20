@@ -876,13 +876,13 @@ deadline = time.monotonic() + 600
 
     <!-- Data Retention -->
     <section class="docs-section" id="data-retention">
-      <h2>資料保存與隱私刪除合規</h2>
+      <h2>資料保存與結果刪除</h2>
       <p>
-        依據歐盟 GDPR 及企業隱私合規規範，GeoCheck 實施嚴謹的資料生命週期管理：
+        LS-Labs Platform 的資料處理範圍見<a href="/privacy">隱私權政策</a>，指定結果的刪除方式如下：
       </p>
       <ul>
         <li><strong>保存與清理</strong>：結果保存與清理範圍會在帳戶開通時由 Console 與服務條款顯示；公開文件不在此承諾固定天數。</li>
-        <li><strong>主動抹除端點</strong>：客戶端可隨時呼叫 <code>DELETE /v1/measurements/{id}</code>。執行後伺服器回傳 <code>204 No Content</code>，所有搜尋快照與文字回答即刻永久刪除，後續再度查詢將回傳 <code>410 Gone</code> 墓碑標記。</li>
+        <li><strong>刪除指定結果</strong>：具備存取權的客戶端可呼叫 <code>DELETE /v1/measurements/{id}</code>。成功時回傳 <code>204 No Content</code>，後續查詢該結果回傳 <code>410 Gone</code>。此操作不等於刪除帳戶、安全或交易紀錄，也不代表上游供應商同步刪除資料。</li>
       </ul>
     </section>
 
