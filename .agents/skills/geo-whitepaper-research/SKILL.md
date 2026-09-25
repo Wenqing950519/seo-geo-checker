@@ -1,6 +1,6 @@
 ---
 name: geo-whitepaper-research
-description: Run reproducible GeoCheck industry-whitepaper research using human-reviewed DeepSeek question design, Perplexity search evidence for quantified GEO visibility, and DeepSeek V4 Flash for basic site, industry, structure, and content classification. Use when Codex needs to measure tens or hundreds of websites, export CSV or JSONL evidence, compare industries, quantify brand mentions or official citations, or prepare concise whitepaper findings without generating optimization advice.
+description: Run reproducible GeoCheck industry-whitepaper research using human-reviewed DeepSeek question design, Perplexity search evidence for quantified GEO visibility, and DeepSeek V4 Flash for basic site, industry, structure, and content classification. Use when an agent needs to measure tens or hundreds of websites, export CSV or JSONL evidence, compare industries, quantify brand mentions or official citations, or prepare concise whitepaper findings without generating optimization advice.
 ---
 
 # GeoCheck Whitepaper Research
@@ -9,7 +9,7 @@ Use the production GeoCheck measurement pipeline. DeepSeek may draft industry se
 
 ## Required contract
 
-- Import the shared production pipeline from `mock-api/lib/geo-measurement.js`; never copy scoring weights into the Skill.
+- Import the shared production pipeline from `services/api/application/geo-measurement.js` (`mock-api/lib/` is a compatibility shim); never copy scoring weights into the Skill.
 - Question design follows `DeepSeek candidate generation -> human review -> frozen query-set JSON -> Perplexity batch search`.
 - Never run the whitepaper batch with dynamically generated per-site questions. Every site in the same comparison cohort must receive the same approved unbranded questions.
 - Require `review_status=approved`, `reviewed_by`, `reviewed_at`, a pinned `query_set_version`, and at least two questions.
@@ -30,7 +30,7 @@ Generate a draft from a representative site. This makes one DeepSeek call and ze
 ```powershell
 node .agents/skills/geo-whitepaper-research/scripts/draft-query-set.mjs `
   --site https://representative.example/ `
-  --output research-input/restaurant-query-set.draft.json `
+  --output research/inputs/restaurant-query-set.draft.json `
   --max-deepseek-calls 1
 ```
 
@@ -42,10 +42,10 @@ Run from the project root after human approval:
 
 ```powershell
 node .agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs `
-  --input research-input/<approved-sites>.csv `
-  --master research-input/<approved-entity-master>.csv `
-  --query-set research-input/<approved-query-set>.json `
-  --output-dir research-output/taiwan-sme-2026 `
+  --input research/inputs/<approved-sites>.csv `
+  --master research/inputs/<approved-entity-master>.csv `
+  --query-set research/inputs/<approved-query-set>.json `
+  --output-dir research/outputs/taiwan-sme-2026 `
   --max-perplexity-calls 1200 `
   --max-deepseek-calls 400 `
   --concurrency 2 `

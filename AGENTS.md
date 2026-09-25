@@ -1,4 +1,4 @@
-This file contains mandatory instructions for Codex.
+This file contains the instructions every coding agent follows in this repo.
 Read the referenced project documents before making substantial changes.
 When instructions conflict, this file and the nearest scoped AGENTS.md take precedence.
 
