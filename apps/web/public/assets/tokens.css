@@ -79,4 +79,14 @@
   --ls-surface: #FFFFFF;
   --ls-surface-alt: #F8FAFC;
   --ls-line: #E2E8F0;
+
+  /* --- Product accents. Same family, own personality (D-054): GeoCheck
+         keeps the LS blue above; Platform carries the LS indigo.
+         -fill takes white text (white on #4F46E5 = 6.29:1, on #4338CA =
+         7.94:1); -on-dark is text/icon on a navy ground (#A5B4FC on
+         --ls-navy = 8.02:1). --- */
+  --ls-platform-fill: #4F46E5;
+  --ls-platform-fill-strong: #4338CA;
+  --ls-platform-on-dark: #A5B4FC;
+  --ls-platform-tint: #EEF2FF;
 }
