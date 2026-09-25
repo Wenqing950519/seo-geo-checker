@@ -49,7 +49,7 @@
 .callout-formula{margin-top:10px;font-size:1.25rem;font-weight:900;color:var(--gc-ink);line-height:1.5}
 .callout-desc{margin-top:8px;color:var(--gc-muted);font-size:.95rem}
 .disclaimer-box{padding:22px 24px;border-radius:6px;background:var(--gc-desk);scroll-margin-top:88px}
-.disclaimer-box h4{margin:0 0 10px;font-size:1rem;color:var(--gc-ink)}
+.document-body .disclaimer-box .disclaimer-title{margin:0 0 10px;padding:0;font-size:1rem;color:var(--gc-ink)}
 .disclaimer-box ol{margin:0;padding-left:1.3em;font-size:.93rem}
 .disclaimer-box li+li{margin-top:8px}
 .math-box{padding:16px 20px;border:1px solid var(--gc-rule);border-radius:6px;overflow-x:auto;background:var(--gc-paper)}
@@ -60,11 +60,11 @@
 .flow-node-root{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:6px;background:var(--gc-field);color:var(--gc-on-field);font-weight:700;font-size:.95rem}
 .flow-connector-fork,.flow-connector-merge{display:block}
 .flow-dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.flow-card{padding:18px 20px;border:1px solid var(--gc-rule);border-top:2px solid var(--gc-ink);border-radius:2px;background:var(--gc-paper)}
+.flow-card{padding:18px 20px;border:1px solid var(--gc-rule);border-top:2px solid var(--gc-ink);border-radius:0;background:var(--gc-paper)}
 .flow-card.pillar-1{border-top-color:var(--gc-action)}
 .flow-card.pillar-3{border-top-color:var(--gc-faint)}
 .flow-card-badge{display:inline-block;margin-bottom:6px;font-size:.76rem;font-weight:700;color:var(--gc-muted)}
-.flow-card h4{margin:0;font-size:1rem;color:var(--gc-ink)}
+.document-body .flow-card h3{margin:0;font-size:1rem;color:var(--gc-ink)}
 .flow-card-sub{margin-top:4px;font-size:.84rem;color:var(--gc-muted)}
 .flow-card-body{margin:12px 0 0!important;padding:10px 0 0 1.1em!important;border-top:1px solid var(--gc-rule-soft);font-size:.9rem}
 .flow-aux-notice{font-size:.76rem;color:var(--gc-muted)}
@@ -132,7 +132,7 @@
     <!-- Disclaimer Box -->
     <div class="disclaimer-box" id="sec-disclaimer">
       <div class="disclaimer-head">
-        <h4>重要聲明與研究邊界</h4>
+        <h2 class="disclaimer-title">重要聲明與研究邊界</h2>
       </div>
       <ol>
         <li><strong>非商業成效保證</strong>：GeoCheck 量測的是特定條件下「可觀測的搜尋與引用證據」，絕不承諾或保證任何搜尋引擎或 AI 平台的特定排名、推薦率、點擊流量、獲客量或營收轉換。</li>
@@ -187,7 +187,7 @@
         <div class="flow-card pillar-1">
           <div class="flow-card-head">
             <span class="flow-card-badge">面向一 · 產品核心指標</span>
-            <h4>1. 產品核心指標：AI 信任值</h4>
+            <h3>1. 產品核心指標：AI 信任值</h3>
             <div class="flow-card-sub">對齊商業曝光與官方背書</div>
           </div>
           <ul class="flow-card-body">
@@ -202,7 +202,7 @@
         <div class="flow-card pillar-2">
           <div class="flow-card-head">
             <span class="flow-card-badge">面向二 · 研究基石層</span>
-            <h4>2. 研究基石層：GEO Core</h4>
+            <h3>2. 研究基石層：GEO Core</h3>
             <div class="flow-card-sub">可審計原始觀測紀錄 · 跨樣本對齊基準</div>
           </div>
           <ul class="flow-card-body">
@@ -232,7 +232,7 @@
               <span class="flow-card-badge aux">面向三 · 輔助技術診斷</span>
               <span class="flow-aux-notice">獨立診斷 · 不計入總分</span>
             </div>
-            <h4>3. 輔助技術診斷：網站技術準備度</h4>
+            <h3>3. 輔助技術診斷：網站技術準備度</h3>
             <div class="flow-card-sub">Site Tech Readiness · 機器可檢索性與結構化標準</div>
           </div>
           <div class="flow-bottom-items">

@@ -9,50 +9,42 @@
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/assets/tokens.css">
 <style>
 :root {
-  /* LS-Labs Brand Tokens (Dark Cosmic Developer Edition) */
-  --gc-bg-canvas: #090D1A;         /* Cosmic Base */
-  --gc-sidebar-bg: #0D1424;        /* Dark Navy Sidebar */
-  --gc-card-bg: #121B30;           /* Elevated Navy Card */
-  --gc-card-border: #1E2B4A;       /* Crisp Border */
-  --gc-card-hover-border: #2F4270; /* Hover Border */
-  --gc-border-subtle: #17223B;
-  
-  /* Text & Accents */
+  /* Platform Console: the inside of the code panel. Navy grounds from the
+     LS family, LS indigo for every action, hairlines instead of glows. */
+  --gc-bg-canvas: #060E1C;
+  --gc-sidebar-bg: #0A1628;
+  --gc-card-bg: #0E1D36;
+  --gc-card-border: #1C2E4D;
+  --gc-card-hover-border: #2B4169;
+  --gc-border-subtle: #152540;
+
   --gc-text-primary: #F8FAFC;
-  --gc-text-secondary: #94A3B8;
-  --gc-text-muted: #64748B;
-  
-  /* Aliases into /assets/tokens.css. The mint name used to hold the success
-     green here and the accent blue on the other pages: one name, two
-     meanings, which is how a palette stops being checkable. */
-  --gc-accent: var(--ls-accent-surface);
-  --gc-accent-glow: rgba(59, 130, 246, 0.18);
-  --gc-accent-hover: #2563EB;
+  --gc-text-secondary: #A9B7CB;
+  --gc-text-muted: #8FA2C6;
+
+  --gc-accent: var(--ls-platform-fill);
+  --gc-accent-glow: rgba(79, 70, 229, 0.18);
+  --gc-accent-hover: var(--ls-platform-fill-strong);
 
   --gc-success: var(--ls-success);
   --gc-success-glow: rgba(16, 185, 129, 0.15);
   --gc-warning: var(--ls-warning);
   --gc-danger: var(--ls-danger);
 
-  /* 4-Engine Official Visual Identity. Claude was #D97706, which is the
-     brand manual's --color-warning-dark: an engine identity must not double
-     as a status colour. */
   --color-openai: var(--ls-engine-openai);
   --color-gemini: var(--ls-engine-gemini);
   --color-perplexity: var(--ls-engine-perplexity);
   --color-claude: var(--ls-engine-anthropic);
 
-  /* Typography */
-  --font-sans: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, monospace;
-  
-  /* Crisp Professional Geometry (Slightly angular, not overly bubbly) */
-  --radius-xs: 3px;
+  --font-sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', SFMono-Regular, Menlo, monospace;
+
+  --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 10px;
@@ -1036,13 +1028,56 @@ aside.console-sidebar {
 }
 
 /* ===== Accessibility & motion safety ===== */
-.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
+.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:6px;background:var(--ls-platform-fill);color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
 .skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--ls-platform-on-dark);outline-offset:3px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
 }
+
+/* ===== Platform system layer (D-054) ===== */
+.font-number, .meter-main-val, .stat-box-val { font-family: 'Space Grotesk', var(--font-sans); font-variant-numeric: tabular-nums; }
+::selection { background: rgba(165, 180, 252, .35); color: #fff; }
+:focus-visible { outline: 2px solid var(--ls-platform-on-dark); outline-offset: 2px; }
+html { scrollbar-color: #2B4169 transparent; }
+a { color: var(--ls-platform-on-dark); }
+.fullpage-auth-gate { background: var(--gc-bg-canvas); }
+.fullpage-auth-card { box-shadow: 0 16px 32px -16px rgba(0, 0, 0, .7); border: 1px solid var(--gc-card-border); }
+.gate-title { font-weight: 900; letter-spacing: 0; }
+.user-avatar-circle { background: var(--gc-accent); }
+.engine-dot { box-shadow: none; }
+.gc-feature-banner { background: var(--gc-card-bg); border: 1px solid var(--gc-card-border); }
+.progress-bar-fill { background: var(--ls-platform-on-dark); }
+.btn-primary-blue, .btn-plan-blue, .btn-banner-action { background: var(--gc-accent); border-color: var(--gc-accent); color: #fff; }
+.btn-primary-blue:hover, .btn-plan-blue:hover, .btn-banner-action:hover { background: var(--gc-accent-hover); border-color: var(--gc-accent-hover); color: #fff; }
+.nav-item.active { background: rgba(79, 70, 229, .16); color: #fff; }
+.nav-item.active svg { color: var(--ls-platform-on-dark); }
+.sidebar-brand-name { font-family: 'Space Grotesk', var(--font-sans); letter-spacing: -.01em; }
+.sidebar-brand-badge { background: transparent; border: 1px solid var(--gc-card-border); color: var(--gc-text-secondary); }
+.meter-card, .stat-box, .panel-card, .plan-card { box-shadow: none; }
+.plan-card.featured { border-color: var(--gc-accent); }
+.modal-overlay { backdrop-filter: none; background: rgba(3, 8, 18, .72); }
+.modal-card { box-shadow: 0 16px 32px -16px rgba(0, 0, 0, .7); }
+.btn-revoke:hover { background: #B91C1C; border-color: #B91C1C; color: #fff; }
+code { font-family: var(--font-mono); }
+@media (max-width: 900px) {
+  .console-app { flex-direction: column; }
+  aside.console-sidebar { display: flex; position: sticky; top: 0; z-index: 50; width: 100%; height: auto; flex-direction: row; align-items: center; gap: 8px; padding: 8px 12px; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--gc-card-border); }
+  .console-sidebar .sidebar-header { flex: none; padding: 0; border: 0; margin: 0; }
+  .console-sidebar .sidebar-brand-badge, .console-sidebar .sidebar-nav-bottom, .console-sidebar .sidebar-footer { display: none; }
+  .console-sidebar .sidebar-nav { display: flex; flex-direction: row; gap: 4px; padding: 0; margin: 0; }
+  .console-sidebar .nav-item { flex: none; width: auto; white-space: nowrap; padding: 8px 10px; }
+  .console-sidebar .nav-item svg { display: none; }
+  .engine-gateway-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .engine-status-list { flex-wrap: wrap; }
+  .page-title-row, .section-header { flex-direction: column; align-items: stretch; gap: 14px; }
+  .page-title-row > div:last-child { flex-wrap: wrap; }
+  .gc-feature-banner { flex-direction: column; align-items: flex-start; }
+  .meter-footnote { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+.gate-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; }
+
 </style>
 </head>
 <body>
@@ -1056,7 +1091,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="gate-brand-logo">
       <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='./assets/logo-mark.svg';}" alt="LS-Labs">
     </div>
-    <span class="gate-tag">LS LABS PLATFORM</span>
     <h1 class="gate-title">登入 Developer 控制台</h1>
     <p class="gate-desc">
       品牌的生成式 AI 能見度量測平台。<br>使用 Google 帳號登入以存取四大官方搜尋引擎 API、管理金鑰與配額。
@@ -1087,7 +1121,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="sidebar-header">
       <a href="/" class="sidebar-logo">
         <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='./assets/logo-mark.svg';}" alt="LS-Labs">
-        <span class="sidebar-brand-name">LS-Labs</span>
+        <span class="sidebar-brand-name">Platform</span>
       </a>
       <span class="sidebar-brand-badge">CONSOLE</span>
     </div>

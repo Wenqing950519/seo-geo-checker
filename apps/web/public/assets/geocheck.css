@@ -76,7 +76,7 @@ code, kbd, samp { font-family: var(--gc-mono); font-size: .92em; }
   text-decoration: none; cursor: pointer;
   transition: background-color .18s ease, transform .18s var(--gc-ease);
 }
-.gc-btn:hover { background: var(--gc-action-strong); color: #fff; }
+.gc-btn:hover, a.gc-btn:hover { background: var(--gc-action-strong); color: #fff; }
 .gc-btn:active { transform: translateY(1px); }
 .gc-btn:disabled { background: #7C8BA1; cursor: progress; }
 .gc-link {

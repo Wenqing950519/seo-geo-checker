@@ -12,6 +12,10 @@ tags:
 
 # GeoCheck 當前運作狀態
 
+## GeoCheck／Platform 前端重構（2026-09-25，未部署）
+
+依 D-054，GeoCheck 公開頁（首頁、/report 報告、demo、pricing、白皮書、法務、404）與 Platform 公開頁（首頁、docs、Console、計費與法務）已完成視覺重構，程式在分支 `claude/geocheck-platform-frontend-redesign-2wcco8`。本機 `npm test` 全綠並完成桌面與手機截圖驗收；**尚未部署**，正式站仍是舊版。Dashboard 不在範圍內。部署後需重跑 `npm run test:pages` 與正式站網址檢查。
+
 ## Platform 金流準備（2026-09-20，公開草案已部署）
 
 依使用者授權，Platform 專用計費／條款／隱私／退款草案、首頁／文件／Console 入口與手機導覽修正已部署。原始碼 `7d52188`、`d7e32fa` 已推送，正式站七頁內容一致；29 項網址檢查及桌面／手機瀏覽器驗收通過，完整 geocheck 測試與 home 66 項測試通過。D-053 已確認個人一般賣家與預付優先。付款維持關閉，尚未送件、付款交易、退款或金流開通；人工申請由使用者接續。尚缺單價及交付條件、個人預付承作及履約保障答覆、KYC，以及帳本／退款／清理的實作驗證。版本與證據見 [綠界送審準備](developer-api/ECPAY_READINESS.md)。

@@ -655,3 +655,15 @@ tags:
 - **尚未決定／驗證**：計價單位、單價、交付期限；個人預付承作及履約保障方式；KYC 與實際稅務狀態。使用者確認目前無營業登記，但不能因此推論永久免登記或免開統一發票。不得編造稅籍核定或保障機構。
 - **交付邊界**：本次保留付款關閉，修訂 Platform 專用草案與申請準備文件。尚未送件、聯絡綠界、部署或執行付款；帳本、回呼、退款及正式對帳仍須實作驗收。正本見 [ECPAY_READINESS.md](developer-api/ECPAY_READINESS.md)。
 - **同日追加發布授權**：使用者要求將確認可部署內容推上線並驗證，人工送審由使用者接續。已發布 Platform 公開草案、法務路由／入口與驗收發現的手機導覽修正；不等於核准收款或完成送審。發布與正式站驗收見上述正本。
+
+## D-054 — GeoCheck 與 Platform 前端視覺全面重構（2026-09-25）
+
+- **來源與狀態**：使用者 2026-09-25 要求以 impeccable skill 重構 GeoCheck 與 Platform 兩個應用的所有前端設計，可參考 LS-Labs 主視覺但不受既有設計拘束；Confirmed（視覺方向與範圍；尚未部署）。
+- **取代**：D-051「前端處置：現階段只做保守調整、不進行大範圍 UI 改版」對 `geocheck.lslabs.tw` 與 `platform.lslabs.tw` 公開頁面的限制。D-051 其餘內容（研究室定位、Dashboard 暫停、Platform 續行、網域不動）維持不變。
+- **範圍（使用者選定）**：兩站所有公開頁面；**不含** `app.lslabs.tw` Dashboard（`apps/web/app/`）。
+- **品牌關係（使用者選定）**：同一家族、各有個性。共用 LS 標誌、字體家族（Noto Sans TC、Space Grotesk、IBM Plex Mono）與 navy 基底；GeoCheck 沿用 LS 藍為唯一行動色，Platform 以 LS 靛色（`--ls-platform-fill` #4F46E5）為行動色。
+- **方向（使用者選定）**：GeoCheck 採「簡化檢驗單＋保留雷達、元素越少越好」：navy 雷達為量測儀器，白色檢測單呈現結果，判讀旗標把「未知」與「0」分開。Platform 採類別標準的開發者平台做法，精緻度以 Stripe／Resend／Vercel 文件站為基準（此基準由 Agent 設定）。
+- **維持不變**：法務與計費草案文字、白皮書內文、docs 內文、audit JS、Console JS、API／報告資料邏輯、網域與路由。
+- **有意刪減（依「元素越少越好」）**：GeoCheck 首頁移除四張量測指標示意圖卡、SEO／GEO 搜尋對照模擬、「50+ 已檢查網站」數字、報告預覽的實景截圖與持續監測四步驟；保留並改寫為檢測單範例、公式、FAQ 與結尾。白皮書移除裝飾用 banner 圖。Platform 首頁的引擎示例卡改為真實回應結構的 JSON 範例。`demo.html` 改由 `scripts/maintenance/render-demo-report.cjs` 以真實報告 renderer 加示範資料產生，取代舊的原型頁（含只會 `alert()` 的假表單）。
+- **驗證邊界**：本機 `npm test` 全綠與桌面／手機截圖驗收；尚未部署 Cloudflare、尚未在正式站驗收。方向擲骰因網路政策無法連線 impeccable.style，以降級模式執行。
+- **可追溯來源**：`PRODUCT.md`、`.impeccable/surfaces/`（方向契約）、`DESIGN.md`。

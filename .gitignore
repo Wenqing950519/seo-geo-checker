@@ -32,3 +32,7 @@ dist/
 # Local scratch scripts (screenshot capture, one-off probes)
 _shot.mjs
 _*.mjs
+
+# impeccable review captures (local only)
+.impeccable/review/
+.impeccable/config.local.json

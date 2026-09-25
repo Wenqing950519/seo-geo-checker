@@ -17,1022 +17,232 @@
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/platform.css">
 <style>
-:root {
-  /* Brand Primitive Colors */
-  /* Aliases into /assets/tokens.css. These carried mint-flavoured names
-     while holding blue; the role is in the name now. */
-  --gc-navy: var(--ls-navy);
-  --gc-navy-dark: var(--ls-navy-deep);
-  --gc-navy-light: #17355F;
-  --gc-navy-surface: var(--ls-navy-surface);
-  --gc-accent: var(--ls-accent-surface);
-  --gc-accent-on-light: var(--ls-accent-on-light);
-  --gc-accent-on-dark: var(--ls-accent-on-dark);
-  --gc-accent-tint: var(--ls-accent-tint);
+/* Landing only. Shared rules live in /assets/platform.css. */
+.hero { padding: clamp(56px, 8vw, 104px) 0 clamp(64px, 9vw, 112px); background: linear-gradient(180deg, var(--pf-wash), var(--pf-paper) 70%); border-bottom: 1px solid var(--pf-line); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 72px); align-items: center; }
+.hero h1 { margin-top: 20px; font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 900; letter-spacing: -.015em; line-height: 1.15; }
+.hero-desc { margin-top: 20px; max-width: 34em; color: var(--pf-muted); font-size: 1.05rem; }
+.hero-desc strong { color: var(--pf-ink); font-weight: 700; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.hero-code pre { max-height: 440px; font-size: .78rem; }
 
-  /* Neutrals & Surfaces */
-  --gc-bg: #FFFFFF;
-  --gc-bg-alt: #F8FAFC;
-  --gc-card: #FFFFFF;
-  --gc-text: #1E293B;
-  --gc-muted: #475569;
-  --gc-border: rgba(11, 31, 59, 0.1);
-  --gc-border-focus: rgba(59, 130, 246, 0.4);
+.principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; margin-top: 48px; border-top: 1px solid var(--pf-line-strong); }
+.principle { padding: 28px 0; border-bottom: 1px solid var(--pf-line); }
+.principle h3 { display: flex; align-items: baseline; gap: 12px; font-size: 1.1rem; font-weight: 900; }
+.principle h3 code { font-size: .74rem; font-weight: 400; }
+.principle p { margin-top: 8px; color: var(--pf-muted); }
 
-  /* Semantic Status Colors */
-  --gc-success: #10B981;
-  --gc-warning: #F59E0B;
-  --gc-danger: #EF4444;
+.sdk-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(40px, 6vw, 72px); align-items: start; }
+.sdk-points { margin: 28px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--pf-line-strong); }
+.sdk-points li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--pf-line); }
+.sdk-points svg { width: 18px; height: 18px; margin-top: 4px; color: var(--pf-accent); }
 
-  /* Layout & Metrics */
-  --gc-radius-sm: 4px;
-  --gc-radius-md: 6px;
-  --gc-radius-lg: 8px;
-  --gc-radius-pill: 6px;
-  --gc-shadow-sm: 0 4px 14px rgba(11, 31, 59, 0.05);
-  --gc-shadow-md: 0 10px 30px rgba(11, 31, 59, 0.08);
-  --gc-shadow-lg: 0 20px 50px rgba(11, 31, 59, 0.12);
+.access { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
+.access-col { display: flex; flex-direction: column; padding: 26px 24px; background: var(--pf-paper); border: 1px solid var(--pf-line); border-radius: 10px; }
+.access-col.is-current { border-color: var(--pf-accent); box-shadow: 0 0 0 1px var(--pf-accent); }
+.access-col h3 { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 1.05rem; font-weight: 900; }
+.access-col h3 span { padding: 2px 8px; border-radius: 4px; background: var(--pf-accent-tint); color: var(--pf-accent-strong); font: 500 .72rem/1.6 var(--pf-mono); }
+.access-col > p { margin-top: 10px; color: var(--pf-muted); font-size: .92rem; }
+.access-col ul { flex: 1; margin: 18px 0 24px; padding: 16px 0 0 1.1em; border-top: 1px solid var(--pf-line); font-size: .9rem; }
+.access-col li + li { margin-top: 6px; }
+.access-col .pf-btn { align-self: flex-start; }
 
-  /* Fonts */
-  --gc-font-sans: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  --gc-font-number: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --gc-font-mono: 'JetBrains Mono', monospace;
-}
-
-.font-number {
-  font-family: var(--gc-font-number);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body {
-  font-family: var(--gc-font-sans);
-  color: var(--gc-text);
-  background: var(--gc-bg-alt);
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-
-/* Toast */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1000;
-  background: var(--gc-navy-dark);
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: var(--gc-radius-pill);
-  font-size: 0.88rem;
-  font-weight: 700;
-  box-shadow: var(--gc-shadow-lg);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  pointer-events: none;
-}
-.toast.show { opacity: 1; transform: translateY(0); }
-
-/* Navigation */
-header.dev-nav {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--gc-border);
-}
-.nav-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 24px;
-}
-.brand-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-.brand-title {
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  letter-spacing: -0.02em;
-}
-.brand-badge {
-  font-family: var(--gc-font-sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--gc-accent-on-light);
-  background: var(--gc-accent-tint);
-  padding: 3px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.04em;
-}
-.nav-links {
-  display: flex;
-  gap: 22px;
-  align-items: center;
-  list-style: none;
-}
-.nav-links a {
-  text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--gc-muted);
-  transition: color 0.2s ease;
-}
-.nav-links a:hover, .nav-links a.active {
-  color: var(--gc-navy);
-}
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border-radius: var(--gc-radius-pill);
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
-}
-.btn-primary {
-  /* white on --gc-accent is 3.68:1; the on-light role is 6.70:1 */
-  background: var(--gc-accent-on-light);
-  color: #FFFFFF;
-}
-.btn-primary:hover {
-  background: var(--ls-accent-on-light-strong);
-  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.3);
-}
-.btn-outline {
-  background: #FFFFFF;
-  color: var(--gc-navy);
-  border-color: var(--gc-border);
-}
-.btn-outline:hover {
-  border-color: var(--gc-navy);
-  background: var(--gc-bg-alt);
-}
-.btn-navy {
-  background: var(--gc-navy);
-  color: #FFFFFF;
-}
-.btn-navy:hover {
-  background: var(--gc-navy-dark);
-}
-
-/* Hero Section */
-.dev-hero {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 64px 24px 72px;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 48px;
-  align-items: center;
-}
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--gc-accent-tint);
-  color: var(--gc-accent-on-light);
-  font-family: var(--gc-font-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: var(--gc-radius-pill);
-  margin-bottom: 20px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-.hero-tag::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--gc-accent);
-}
-.dev-hero h1 {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 900;
-  color: var(--gc-navy);
-  line-height: 1.25;
-  letter-spacing: -0.03em;
-  margin-bottom: 20px;
-}
-.dev-hero p.hero-desc {
-  font-size: 1.1rem;
-  color: var(--gc-muted);
-  line-height: 1.75;
-  margin-bottom: 32px;
-}
-.hero-ctas {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.hero-ctas .btn {
-  padding: 12px 26px;
-  font-size: 0.95rem;
-}
-
-/* Engine Architecture Widget */
-.hero-preview-card {
-  background: #0B192C;
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  border-radius: var(--gc-radius-lg);
-  padding: 28px;
-  box-shadow: var(--gc-shadow-lg);
-  color: #FFFFFF;
-}
-.preview-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 20px;
-}
-.header-dot-group {
-  display: flex;
-  gap: 6px;
-}
-.header-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.header-dot.red { background: #FF5F56; }
-.header-dot.yellow { background: #FFBD2E; }
-.header-dot.green { background: #10B981; }
-.header-badge {
-  font-family: var(--gc-font-sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: var(--gc-accent-on-dark);
-  background: rgba(59, 130, 246, 0.15);
-  padding: 3px 8px;
-  border-radius: 4px;
-  letter-spacing: 0.03em;
-}
-.engine-stream-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.engine-stream-item {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--gc-radius-sm);
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
-.engine-stream-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(59, 130, 246, 0.3);
-}
-.engine-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.engine-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 800;
-  font-family: var(--gc-font-mono);
-}
-.engine-name {
-  font-weight: 700;
-  color: #F1F5F9;
-}
-.engine-model {
-  font-family: var(--gc-font-mono);
-  font-size: 0.75rem;
-  color: #94A3B8;
-  margin-left: 6px;
-}
-.engine-status-tag {
-  font-family: var(--gc-font-mono);
-  font-size: 0.72rem;
-  padding: 3px 8px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.engine-status-tag.ok {
-  background: rgba(39, 201, 63, 0.15);
-  color: #10B981;
-}
-
-/* Feature Grid */
-.features-section {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 40px 24px 80px;
-}
-.sec-header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 48px;
-}
-.sec-header h2 {
-  font-size: 2.2rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-}
-.sec-header p {
-  color: var(--gc-muted);
-  font-size: 1.05rem;
-}
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-.feature-card {
-  background: #FFFFFF;
-  border: 1px solid var(--gc-border);
-  border-radius: var(--gc-radius-md);
-  padding: 28px 24px;
-  box-shadow: var(--gc-shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.feature-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--gc-shadow-md);
-  border-color: rgba(59, 130, 246, 0.4);
-}
-.feature-icon-wrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--gc-accent-tint);
-  color: var(--gc-accent-on-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.feature-card h3 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--gc-navy);
-  margin-bottom: 10px;
-}
-.feature-card p {
-  font-size: 0.92rem;
-  color: var(--gc-muted);
-  line-height: 1.65;
-}
-
-/* Interactive Code Snippet Section */
-.code-showcase-section {
-  background: #FFFFFF;
-  border-top: 1px solid var(--gc-border);
-  border-bottom: 1px solid var(--gc-border);
-  padding: 72px 24px;
-}
-.code-showcase-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 48px;
-  align-items: center;
-}
-.code-showcase-info h2 {
-  font-size: 2.1rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  margin-bottom: 16px;
-  line-height: 1.3;
-}
-.code-showcase-info p {
-  font-size: 1.05rem;
-  color: var(--gc-muted);
-  margin-bottom: 24px;
-}
-.code-feature-bullets {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.code-feature-bullets li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.94rem;
-  color: var(--gc-text);
-}
-.code-feature-bullets svg {
-  color: var(--gc-accent);
-  flex-shrink: 0;
-  margin-top: 3px;
-}
-
-.terminal-box {
-  background: #06101E;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: var(--gc-radius-md);
-  overflow: hidden;
-  box-shadow: var(--gc-shadow-lg);
-}
-.terminal-bar {
-  background: #0B192C;
-  padding: 10px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-.tab-group {
-  display: flex;
-  gap: 8px;
-}
-.tab-btn {
-  background: transparent;
-  border: none;
-  color: #94A3B8;
-  font-family: var(--gc-font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.tab-btn.active {
-  background: rgba(59, 130, 246, 0.2);
-  color: var(--gc-accent-on-dark);
-}
-.copy-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #CBD5E1;
-  font-family: var(--gc-font-mono);
-  font-size: 0.75rem;
-  padding: 4px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-}
-.copy-btn:hover {
-  background: var(--gc-accent-on-light);
-  border-color: var(--gc-accent-on-light);
-  color: #FFFFFF;
-}
-.terminal-content {
-  padding: 22px;
-  font-family: var(--gc-font-mono);
-  font-size: 0.84rem;
-  line-height: 1.7;
-  color: #E2E8F0;
-  overflow-x: auto;
-  min-height: 280px;
-}
-.terminal-content pre { margin: 0; }
-.c-keyword { color: #F472B6; }
-.c-string { color: #34D399; }
-.c-func { color: #60A5FA; }
-.c-comment { color: var(--ls-on-dark-muted); font-style: italic; }
-
-/* Pricing Section */
-.pricing-section {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 80px 24px 96px;
-}
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-top: 40px;
-}
-.pricing-card {
-  background: #FFFFFF;
-  border: 1px solid var(--gc-border);
-  border-radius: var(--gc-radius-lg);
-  padding: 36px 30px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: var(--gc-shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.pricing-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--gc-shadow-md);
-}
-.pricing-card.featured {
-  border-color: var(--gc-accent);
-  box-shadow: 0 12px 36px rgba(59, 130, 246, 0.12);
-}
-.popular-badge {
-  position: absolute;
-  top: -12px;
-  right: 28px;
-  background: var(--gc-accent-on-light);
-  color: #FFFFFF;
-  font-size: 0.75rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: var(--gc-radius-pill);
-  letter-spacing: 0.05em;
-}
-.plan-name {
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  margin-bottom: 8px;
-}
-.plan-desc {
-  font-size: 0.9rem;
-  color: var(--gc-muted);
-  min-height: 48px;
-  margin-bottom: 20px;
-}
-.plan-price-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin-bottom: 24px;
-}
-.plan-currency {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--gc-navy);
-}
-.plan-price {
-  font-family: var(--gc-font-number);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  line-height: 1;
-}
-.plan-cycle {
-  font-size: 0.88rem;
-  color: var(--gc-muted);
-}
-.plan-features-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
-  flex-grow: 1;
-}
-.plan-features-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: var(--gc-text);
-}
-.plan-features-list svg {
-  color: var(--gc-accent);
-  flex-shrink: 0;
-}
-.pricing-card .btn {
-  width: 100%;
-  padding: 12px;
-  font-size: 0.95rem;
-}
-
-/* Footer */
-footer.dev-footer {
-  background: var(--gc-navy-dark);
-  color: #94A3B8;
-  padding: 48px 24px;
-  font-size: 0.88rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-.footer-wrap {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  list-style: none;
-}
-.footer-links a {
-  color: #CBD5E1;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-links a:hover {
-  color: var(--gc-accent-on-dark);
-}
-
-@media (max-width: 990px) {
-  .nav-links { display: none; }
-  .dev-hero { grid-template-columns: 1fr; }
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .code-showcase-container { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .grid-4 { grid-template-columns: 1fr; }
-  .nav-container { flex-wrap: wrap; gap: 12px; }
-  .nav-actions { flex: 1 0 100%; }
-  .nav-actions .btn { flex: 1; white-space: nowrap; }
-}
-
-/* ===== Accessibility & motion safety ===== */
-.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
-.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
-}
+@media (max-width: 960px) {
+  .hero-grid, .sdk-grid { grid-template-columns: 1fr; }
+  .access { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) { .principles { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要內容</a>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<div id="toast" class="toast" role="status" aria-live="polite">✓ 已複製代碼到剪貼簿</div>
-
-<!-- Header -->
-<header class="dev-nav">
-  <div class="nav-container">
-    <a href="/" class="brand-group">
-      <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='./assets/logo-mark.svg';}" width="28" height="28" alt="LS-Labs">
-      <div>
-        <div style="font-family:var(--gc-font-sans);font-size:1.15rem;font-weight:900;color:var(--gc-navy);line-height:1.1">Platform<span style="color:var(--gc-accent-on-light)">.</span></div>
-        <div style="font-size:0.7rem;font-weight:700;color:var(--gc-muted);letter-spacing:0.04em">By LS-Labs</div>
-      </div>
-      <span class="brand-badge" style="margin-left:6px">PLATFORM</span>
-    </a>
-
-    <ul class="nav-links">
-      <li><a href="https://lslabs.tw/">LS-Labs 首頁</a></li>
+<header class="pf-nav">
+  <div class="pf-wrap pf-nav-inner">
+    <a href="/" class="pf-logo" aria-label="Platform By LS-Labs 首頁"><img src="/assets/logo-mark.svg" width="26" height="26" alt=""><b>Platform</b><small>By LS-Labs</small></a>
+    <ul class="pf-nav-links">
       <li><a href="/docs">技術文件</a></li>
       <li><a href="#pricing">開放狀態</a></li>
+      <li><a href="/pricing">計費說明</a></li>
+      <li><a href="https://lslabs.tw/">LS-Labs 首頁</a></li>
     </ul>
-
-    <div class="nav-actions">
-      <a href="/docs" class="btn btn-outline">閱讀文件</a>
-      <a href="/console" class="btn btn-primary">進入控制台</a>
+    <div class="pf-nav-actions">
+      <a href="/docs" class="pf-btn pf-btn--ghost">閱讀文件</a>
+      <a href="/console" class="pf-btn">進入控制台</a>
     </div>
   </div>
 </header>
 
 <main id="main">
 
-<!-- Hero -->
-<section class="dev-hero">
-  <div>
-    <div class="hero-tag">四引擎觀測契約 · 以控制台開放狀態為準</div>
-    <h1>跨生成式搜尋引擎的<br>客觀 GEO 引用觀測 API</h1>
-    <p class="hero-desc">
-      API 的回應設計包含 <strong>OpenAI</strong>、<strong>Google Gemini</strong>、<strong>Perplexity</strong> 與 <strong>Anthropic</strong> 四個引擎欄位，並明確區分完成、部分完成與失敗。
-      實際可用引擎、帳戶權益與用量以控制台顯示為準；結果仍可回到回答與引用證據檢視。
-    </p>
-    <div class="hero-ctas">
-      <a href="/console" class="btn btn-primary">查看控制台開放狀態</a>
-      <a href="/docs" class="btn btn-outline">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        閱讀技術文件
-      </a>
-    </div>
-  </div>
-
-  <!-- Hero Interactive Preview Widget -->
-  <div class="hero-preview-card">
-    <div class="preview-card-header">
-      <div class="header-dot-group">
-        <div class="header-dot red"></div>
-        <div class="header-dot yellow"></div>
-        <div class="header-dot green"></div>
-      </div>
-      <div class="header-badge">4-ENGINE RESPONSE EXAMPLE</div>
-    </div>
-
-    <div class="engine-stream-list">
-      <div class="engine-stream-item">
-        <div class="engine-meta">
-          <div class="engine-icon" style="background:var(--ls-engine-openai); color:var(--gc-navy);">OA</div>
-          <div>
-            <div class="engine-name">OpenAI</div>
-            <span class="engine-model">gpt-5.6-luna</span>
-          </div>
-        </div>
-        <span class="engine-status-tag ok">示例 · 2 筆引用</span>
-      </div>
-
-      <div class="engine-stream-item">
-        <div class="engine-meta">
-          <div class="engine-icon" style="background:var(--ls-engine-gemini); color:var(--gc-navy);">G</div>
-          <div>
-            <div class="engine-name">Google Gemini</div>
-            <span class="engine-model">gemini-3.5-flash-lite</span>
-          </div>
-        </div>
-        <span class="engine-status-tag ok">示例 · 3 筆引用</span>
-      </div>
-
-      <div class="engine-stream-item">
-        <div class="engine-meta">
-          <div class="engine-icon" style="background:var(--ls-engine-perplexity); color:var(--gc-navy);">PX</div>
-          <div>
-            <div class="engine-name">Perplexity</div>
-            <span class="engine-model">sonar</span>
-          </div>
-        </div>
-        <span class="engine-status-tag ok">示例 · 4 筆引用</span>
-      </div>
-
-      <div class="engine-stream-item">
-        <div class="engine-meta">
-          <div class="engine-icon" style="background:var(--ls-engine-anthropic); color:var(--gc-navy);">CL</div>
-          <div>
-            <div class="engine-name">Anthropic Claude</div>
-            <span class="engine-model">claude-haiku-4.5</span>
-          </div>
-        </div>
-        <span class="engine-status-tag ok">示例 · 2 筆引用</span>
+<section class="hero">
+  <div class="pf-wrap hero-grid">
+    <div>
+      <span class="pf-status">Private Beta · 付款尚未開放</span>
+      <h1>跨生成式搜尋引擎的<br>客觀 GEO 引用觀測 API</h1>
+      <p class="hero-desc">API 的回應設計包含 <strong>OpenAI</strong>、<strong>Google Gemini</strong>、<strong>Perplexity</strong> 與 <strong>Anthropic</strong> 四個引擎欄位，並明確區分完成、部分完成與失敗。實際可用引擎、帳戶權益與用量以控制台顯示為準；結果仍可回到回答與引用證據檢視。</p>
+      <div class="hero-ctas">
+        <a href="/docs" class="pf-btn pf-btn--lg">閱讀技術文件</a>
+        <a href="/console" class="pf-btn pf-btn--ghost pf-btn--lg">查看控制台開放狀態</a>
       </div>
     </div>
+    <div class="pf-code hero-code" data-tabs>
+      <div class="pf-code-bar">
+        <div class="pf-tabs" role="tablist" aria-label="請求與回應範例">
+          <button class="pf-tab" role="tab" aria-selected="true" aria-controls="hero-res" id="hero-res-tab">GET /v1/measurements/:id</button>
+          <button class="pf-tab" role="tab" aria-selected="false" aria-controls="hero-req" id="hero-req-tab">POST /v1/measurements</button>
+        </div>
+      </div>
+      <pre id="hero-res" role="tabpanel" aria-labelledby="hero-res-tab" tabindex="0"><code><span class="c-p">{</span>
+  <span class="c-k">"measurement_id"</span>: <span class="c-s">"msr_6cdf92d2-…"</span>,
+  <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>,
+  <span class="c-k">"engines"</span>: [
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-openai)"></span><span class="c-s">"openai"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>, <span class="c-k">"citations"</span>: [<span class="c-n">…</span>] },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-gemini)"></span><span class="c-s">"gemini"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>, <span class="c-k">"citations"</span>: [<span class="c-n">…</span>] },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-perplexity)"></span><span class="c-s">"perplexity"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>, <span class="c-k">"citations"</span>: [<span class="c-n">…</span>] },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-anthropic)"></span><span class="c-s">"anthropic"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>, <span class="c-k">"citations"</span>: [<span class="c-n">…</span>] }
+  ],
+  <span class="c-k">"completed_at"</span>: <span class="c-s">"2026-09-12T08:00:10.420Z"</span>
+<span class="c-p">}</span></code></pre>
+      <pre id="hero-req" role="tabpanel" aria-labelledby="hero-req-tab" tabindex="0" hidden><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
+  -H <span class="c-s">"Authorization: Bearer gck_live_xxxxxxxxxxxx"</span> \
+  -H <span class="c-s">"Content-Type: application/json"</span> \
+  -H <span class="c-s">"Idempotency-Key: $(uuidgen)"</span> \
+  -d <span class="c-s">'{
+    "input": { "type": "url", "url": "https://example.com" },
+    "locale": "zh-TW"
+  }'</span>
 
-    <div style="margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:0.78rem; color:#94A3B8; font-family:var(--gc-font-mono);">
-      <span>示例資料，不代表即時服務狀態</span>
-      <span style="color:var(--gc-accent-on-dark);">實際額度以 Console 為準</span>
+<span class="c-c"># 202 Accepted</span>
+<span class="c-p">{</span> <span class="c-k">"measurement_id"</span>: <span class="c-s">"msr_6cdf92d2-…"</span>, <span class="c-k">"status"</span>: <span class="c-s">"queued"</span> <span class="c-p">}</span></code></pre>
+      <p class="pf-code-note">示例資料，不代表即時服務狀態；實際額度以 Console 為準。</p>
     </div>
   </div>
 </section>
 
-<!-- Feature Section -->
-<section class="features-section">
-  <div class="sec-header">
-    <h2>為企業級 GEO 監測打造的開發者基礎設施</h2>
-    <p>以可追溯的結果結構呈現觀測資料。公開範圍、可用引擎與資料保存設定會在開通時由 Console 顯示。</p>
-  </div>
-
-  <div class="grid-4">
-    <div class="feature-card">
-      <div class="feature-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
-      </div>
-      <h3>四引擎結果結構</h3>
-      <p>回應會按引擎保留狀態與可取得的引用資料；沒有成功結果時，不以零分或空白冒充已完成。</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h3>全成才扣量原則</h3>
-      <p>扣量與結果狀態的語意會由 API 契約與 Console 顯示；partial_results 保留已完成部分，不能視為完整觀測。</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <h3>TypeScript 整合介面</h3>
-      <p>技術文件說明型別、冪等鍵與非同步輪詢。取得存取資格後，再依文件與 Console 提供的方式整合。</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
-      </div>
-      <h3>資料範圍與刪除</h3>
-      <p>保存、刪除與可匯出資料的範圍須以現行技術文件與帳戶開通內容為準，不在行銷頁承諾固定天數。</p>
+<section class="pf-section">
+  <div class="pf-wrap">
+    <h2 class="pf-h2">為企業級 GEO 監測打造的開發者基礎設施</h2>
+    <p class="pf-lede">以可追溯的結果結構呈現觀測資料。公開範圍、可用引擎與資料保存設定會在開通時由 Console 顯示。</p>
+    <div class="principles">
+      <div class="principle"><h3>四引擎結果結構<code>engines[]</code></h3><p>回應會按引擎保留狀態與可取得的引用資料；沒有成功結果時，不以零分或空白冒充已完成。</p></div>
+      <div class="principle"><h3>全成才扣量原則<code>partial_results</code></h3><p>扣量與結果狀態的語意會由 API 契約與 Console 顯示；partial_results 保留已完成部分，不能視為完整觀測。</p></div>
+      <div class="principle"><h3>TypeScript 整合介面<code>Idempotency-Key</code></h3><p>技術文件說明型別、冪等鍵與非同步輪詢。取得存取資格後，再依文件與 Console 提供的方式整合。</p></div>
+      <div class="principle"><h3>資料範圍與刪除<code>DELETE</code></h3><p>保存、刪除與可匯出資料的範圍須以現行技術文件與帳戶開通內容為準，不在行銷頁承諾固定天數。</p></div>
     </div>
   </div>
 </section>
 
-<!-- Code Showcase Section -->
-<section class="code-showcase-section">
-  <div class="code-showcase-container">
-    <div class="code-showcase-info">
-      <h2>只需 3 行程式碼，<br>搞定多引擎 GEO 觀測</h2>
-      <p>使用 <code>@geocheck/sdk</code>，您可以將複雜的並發呼叫、任務輪詢、延遲等待與錯誤降級化繁為簡。</p>
-      
-      <ul class="code-feature-bullets">
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>完整 TypeScript 型別推導，自動提示四引擎結構化欄位。</span>
-        </li>
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>自動處理非同步 Job 輪詢狀態與 HTTP 409 Retry-After。</span>
-        </li>
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>支援網址 (URL) 自動分析或自然語言 Prompt 直觀觀測。</span>
-        </li>
+<section class="pf-section pf-section--wash">
+  <div class="pf-wrap sdk-grid">
+    <div>
+      <h2 class="pf-h2">只需 3 行程式碼，<br>搞定多引擎 GEO 觀測</h2>
+      <p class="pf-lede">使用 <code>@geocheck/sdk</code>，您可以將複雜的並發呼叫、任務輪詢、延遲等待與錯誤降級化繁為簡。</p>
+      <ul class="sdk-points">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>完整 TypeScript 型別推導，自動提示四引擎結構化欄位。</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>自動處理非同步 Job 輪詢狀態與 HTTP 409 Retry-After。</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>支援網址 (URL) 自動分析或自然語言 Prompt 直觀觀測。</span></li>
       </ul>
+      <p style="margin-top:24px"><a class="pf-arrow" href="/docs#sdk-guide">SDK 文件<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
-
-    <!-- Code Block -->
-    <div class="terminal-box">
-      <div class="terminal-bar">
-        <div class="tab-group">
-          <button class="tab-btn active" onclick="switchTab('ts')">TypeScript SDK</button>
-          <button class="tab-btn" onclick="switchTab('curl')">cURL</button>
-          <button class="tab-btn" onclick="switchTab('py')">Python</button>
+    <div class="pf-code" data-tabs>
+      <div class="pf-code-bar">
+        <div class="pf-tabs" role="tablist" aria-label="程式語言">
+          <button class="pf-tab" role="tab" aria-selected="true" aria-controls="code-ts" id="code-ts-tab">TypeScript SDK</button>
+          <button class="pf-tab" role="tab" aria-selected="false" aria-controls="code-curl" id="code-curl-tab">cURL</button>
+          <button class="pf-tab" role="tab" aria-selected="false" aria-controls="code-py" id="code-py-tab">Python</button>
         </div>
-        <button class="copy-btn" onclick="copySnippet()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          複製代碼
-        </button>
+        <button class="pf-copy" type="button" data-copy><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製</button>
       </div>
+      <pre id="code-ts" role="tabpanel" aria-labelledby="code-ts-tab" tabindex="0"><code><span class="c-k">import</span> { GeoCheckClient } <span class="c-k">from</span> <span class="c-s">"@geocheck/sdk"</span>;
 
-      <div class="terminal-content">
-        <pre id="code-ts"><code><span class="c-keyword">import</span> { GeoCheckClient } <span class="c-keyword">from</span> <span class="c-string">"@geocheck/sdk"</span>;
-
-<span class="c-keyword">const</span> client = <span class="c-keyword">new</span> <span class="c-func">GeoCheckClient</span>({ 
-  apiKey: process.env.GEOCHECK_API_KEY! 
+<span class="c-k">const</span> client = <span class="c-k">new</span> <span class="c-f">GeoCheckClient</span>({
+  apiKey: process.env.GEOCHECK_API_KEY!
 });
 
-<span class="c-comment">// 發起跨 4 大搜尋引擎的觀測任務</span>
-<span class="c-keyword">const</span> accepted = <span class="c-keyword">await</span> client.<span class="c-func">createMeasurement</span>(
-  { input: { type: <span class="c-string">"url"</span>, url: <span class="c-string">"https://example.com"</span> }, locale: <span class="c-string">"zh-TW"</span> },
-  crypto.<span class="c-func">randomUUID</span>()
+<span class="c-c">// 發起跨 4 大搜尋引擎的觀測任務</span>
+<span class="c-k">const</span> accepted = <span class="c-k">await</span> client.<span class="c-f">createMeasurement</span>(
+  { input: { type: <span class="c-s">"url"</span>, url: <span class="c-s">"https://example.com"</span> }, locale: <span class="c-s">"zh-TW"</span> },
+  crypto.<span class="c-f">randomUUID</span>()
 );
 
-<span class="c-comment">// 自動輪詢並等待四家引擎全成結果</span>
-<span class="c-keyword">const</span> result = <span class="c-keyword">await</span> client.<span class="c-func">pollMeasurement</span>(accepted.measurement_id);
+<span class="c-c">// 自動輪詢並等待四家引擎全成結果</span>
+<span class="c-k">const</span> result = <span class="c-k">await</span> client.<span class="c-f">pollMeasurement</span>(accepted.measurement_id);
 
-console.<span class="c-func">log</span>(result.engines); <span class="c-comment">// [OpenAI, Gemini, Perplexity, Anthropic]</span></code></pre>
-
-        <pre id="code-curl" style="display:none;"><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
-  -H "Authorization: Bearer gck_live_xxxxxxxxxxxx" \
-  -H "Content-Type: application/json" \
-  -H "Idempotency-Key: $(uuidgen)" \
-  -d '{
+console.<span class="c-f">log</span>(result.engines); <span class="c-c">// [OpenAI, Gemini, Perplexity, Anthropic]</span></code></pre>
+      <pre id="code-curl" role="tabpanel" aria-labelledby="code-curl-tab" tabindex="0" hidden><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
+  -H <span class="c-s">"Authorization: Bearer gck_live_xxxxxxxxxxxx"</span> \
+  -H <span class="c-s">"Content-Type: application/json"</span> \
+  -H <span class="c-s">"Idempotency-Key: $(uuidgen)"</span> \
+  -d <span class="c-s">'{
     "input": {
       "type": "url",
       "url": "https://example.com"
     },
     "locale": "zh-TW"
-  }'</code></pre>
+  }'</span></code></pre>
+      <pre id="code-py" role="tabpanel" aria-labelledby="code-py-tab" tabindex="0" hidden><code><span class="c-k">import</span> requests, uuid
 
-        <pre id="code-py" style="display:none;"><code>import requests, uuid
-
-api_key = "gck_live_xxxxxxxxxxxx"
+api_key = <span class="c-s">"gck_live_xxxxxxxxxxxx"</span>
 headers = {
-    "Authorization": f"Bearer {api_key}",
-    "Content-Type": "application/json",
-    "Idempotency-Key": str(uuid.uuid4())
+    <span class="c-s">"Authorization"</span>: <span class="c-s">f"Bearer {api_key}"</span>,
+    <span class="c-s">"Content-Type"</span>: <span class="c-s">"application/json"</span>,
+    <span class="c-s">"Idempotency-Key"</span>: <span class="c-f">str</span>(uuid.<span class="c-f">uuid4</span>())
 }
 
-# 建立觀測任務
-response = requests.post(
-    "https://platform.lslabs.tw/v1/measurements",
+<span class="c-c"># 建立觀測任務</span>
+response = requests.<span class="c-f">post</span>(
+    <span class="c-s">"https://platform.lslabs.tw/v1/measurements"</span>,
     headers=headers,
-    json={"input": {"type": "url", "url": "https://example.com"}, "locale": "zh-TW"}
+    json={<span class="c-s">"input"</span>: {<span class="c-s">"type"</span>: <span class="c-s">"url"</span>, <span class="c-s">"url"</span>: <span class="c-s">"https://example.com"</span>}, <span class="c-s">"locale"</span>: <span class="c-s">"zh-TW"</span>}
 )
-job = response.json()
-print("Job created:", job["measurement_id"])</code></pre>
+job = response.<span class="c-f">json</span>()
+<span class="c-f">print</span>(<span class="c-s">"Job created:"</span>, job[<span class="c-s">"measurement_id"</span>])</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="pf-section" id="pricing">
+  <div class="pf-wrap">
+    <h2 class="pf-h2">目前開放狀態</h2>
+    <p class="pf-lede">Developer API 目前以 Private Beta 方式管理存取，尚未開放付款。未來採按用量計費；計價與付款方式會在開放前公開說明。</p>
+    <div class="access">
+      <div class="access-col">
+        <h3>技術文件</h3>
+        <p>先確認請求、回應與錯誤語意，避免在未開通前把範例憑證當成可用金鑰。</p>
+        <ul><li>查看 API 請求與非同步輪詢流程</li><li>查看狀態與結果語意</li><li>確認憑證安全與錯誤處理</li><li>以現行文件為準</li></ul>
+        <a href="/docs" class="pf-btn pf-btn--ghost">閱讀技術文件</a>
+      </div>
+      <div class="access-col is-current">
+        <h3>Console 存取<span>Private Beta</span></h3>
+        <p>登入後檢查帳戶是否已有存取資格與可用額度；沒有資格時，不會產生虛構的用量資料。</p>
+        <ul><li>帳戶權益與額度由後端提供</li><li>結果狀態依 API 契約呈現</li><li>速率限制在開通時顯示</li><li>不在本頁承諾商業方案內容</li></ul>
+        <a href="/console" class="pf-btn">進入 Console</a>
+      </div>
+      <div class="access-col">
+        <h3>付費通道</h3>
+        <p>按用量計費方案準備中。正式開放前，會公開新台幣單價、計量方式、付款與退款規則。</p>
+        <ul><li>不提供公開結帳</li><li>不預設任何付費額度</li><li>開放前不承諾保存期限</li><li>權益會在正式開通時另外說明</li></ul>
+        <a href="/pricing" class="pf-btn pf-btn--ghost">查看計費說明</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Pricing Section -->
-<section class="pricing-section" id="pricing">
-  <div class="sec-header">
-    <h2>目前開放狀態</h2>
-    <p>Developer API 目前以 Private Beta 方式管理存取，尚未開放付款。未來採按用量計費；計價與付款方式會在開放前公開說明。</p>
-  </div>
-
-  <div class="pricing-grid">
-    <div class="pricing-card">
-      <div class="plan-name">技術文件</div>
-      <div class="plan-desc">先確認請求、回應與錯誤語意，避免在未開通前把範例憑證當成可用金鑰。</div>
-      <ul class="plan-features-list">
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>查看 API 請求與非同步輪詢流程</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>查看狀態與結果語意</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>確認憑證安全與錯誤處理</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>以現行文件為準</span>
-        </li>
-      </ul>
-      <a href="/docs" class="btn btn-outline">閱讀技術文件</a>
-    </div>
-
-    <div class="pricing-card featured">
-      <span class="popular-badge">PRIVATE BETA</span>
-      <div class="plan-name">Console 存取</div>
-      <div class="plan-desc">登入後檢查帳戶是否已有存取資格與可用額度；沒有資格時，不會產生虛構的用量資料。</div>
-      <ul class="plan-features-list">
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>帳戶權益與額度由後端提供</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>結果狀態依 API 契約呈現</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>速率限制在開通時顯示</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>不在本頁承諾商業方案內容</span>
-        </li>
-      </ul>
-      <a href="/console" class="btn btn-primary">進入 Console</a>
-    </div>
-
-    <div class="pricing-card">
-      <div class="plan-name">付費通道</div>
-      <div class="plan-desc">按用量計費方案準備中。正式開放前，會公開新台幣單價、計量方式、付款與退款規則。</div>
-      <ul class="plan-features-list">
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>不提供公開結帳</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>不預設任何付費額度</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>開放前不承諾保存期限</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>權益會在正式開通時另外說明</span>
-        </li>
-      </ul>
-      <a href="/console" class="btn btn-outline">查看開放狀態</a>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
 </main>
 
-<footer class="dev-footer">
-  <div class="footer-wrap">
+<footer class="pf-foot">
+  <div class="pf-wrap pf-foot-inner">
     <div>
-      <span style="font-weight:900; color:#FFFFFF;">Platform By LS-Labs</span>
-      <p style="margin-top:4px; font-size:0.8rem; color:var(--ls-on-dark-muted);">© 2026 LS-Labs. GeoCheck 是平台上的 AI 能見度量測模組。</p>
+      <b>Platform By LS-Labs</b>
+      <p>© 2026 LS-Labs. GeoCheck 是平台上的 AI 能見度量測模組。</p>
     </div>
-    <ul class="footer-links">
+    <ul>
       <li><a href="/docs">技術文件</a></li>
       <li><a href="/console">控制台</a></li>
       <li><a href="/pricing">計費說明</a></li>
@@ -1047,31 +257,6 @@ print("Job created:", job["measurement_id"])</code></pre>
   </div>
 </footer>
 
-<script>
-let currentTab = 'ts';
-function switchTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById('code-ts').style.display = tab === 'ts' ? 'block' : 'none';
-  document.getElementById('code-curl').style.display = tab === 'curl' ? 'block' : 'none';
-  document.getElementById('code-py').style.display = tab === 'py' ? 'block' : 'none';
-}
-
-function copySnippet() {
-  const codeEl = document.getElementById(`code-${currentTab}`);
-  navigator.clipboard.writeText(codeEl.innerText).then(() => {
-    showToast('已複製代碼到剪貼簿');
-  });
-}
-
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  toast.innerText = `✓ ${msg}`;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2400);
-}
-</script>
-
+<script src="/assets/platform.js"></script>
 </body>
 </html>
