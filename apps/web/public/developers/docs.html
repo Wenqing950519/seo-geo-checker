@@ -67,14 +67,21 @@
 .callout.info{border-color:#C7D2FE;background:var(--pf-accent-tint)}
 .callout.warn{border-color:#FCD9A8;background:#FFF8EB}
 .callout strong{color:var(--pf-ink)}
-.docs-table{width:100%;margin-top:18px!important;border-collapse:collapse;font-size:.88rem}
+.docs-table{width:100%;margin-top:18px!important;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
 @media(max-width:700px){.docs-table{display:block;overflow-x:auto}}
 .docs-table th,.docs-table td{padding:10px 12px;border-bottom:1px solid var(--pf-line);text-align:left;vertical-align:top}
 .docs-table thead th,.docs-table tr:first-child th{border-bottom:1px solid var(--pf-line-strong);color:var(--pf-ink);font-weight:700;white-space:nowrap;background:var(--pf-wash)}
 .docs-table td code{white-space:nowrap}
+.docs-toc>summary{display:none}
 @media(max-width:900px){
   .docs-layout{grid-template-columns:1fr}
-  .docs-sidebar{position:static;height:auto;padding:20px 0;border-right:0;border-bottom:1px solid var(--pf-line);display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .docs-sidebar{position:static;height:auto;padding:8px 0;border-right:0;border-bottom:1px solid var(--pf-line)}
+  .docs-toc>summary{display:flex;align-items:center;justify-content:space-between;min-height:44px;cursor:pointer;list-style:none;font-weight:700;color:var(--pf-ink)}
+  .docs-toc>summary::-webkit-details-marker{display:none}
+  .docs-toc>summary::after{content:"";width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .2s}
+  .docs-toc[open]>summary::after{transform:rotate(-135deg)}
+  .docs-toc[open]{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-bottom:12px}
+  .docs-toc[open]>summary{grid-column:1/-1}
   .sidebar-section+.sidebar-section{margin-top:0}
   .docs-content{padding-left:0}
 }
@@ -103,6 +110,8 @@
 <div class="docs-layout">
   <!-- Left Navigation (Docusaurus Style Tree) -->
   <aside class="docs-sidebar">
+    <details class="docs-toc" open>
+    <summary>文件目錄</summary>
     <div class="sidebar-section">
       <div class="sidebar-heading">快速開始</div>
       <ul class="sidebar-links">
@@ -165,6 +174,7 @@
         </li>
       </ul>
     </div>
+    </details>
   </aside>
 
   <!-- Main Content -->
@@ -736,6 +746,14 @@ deadline = time.monotonic() + 600
 </div>
 
 <script>
+// Small screens start with the table of contents folded so the title leads.
+(function(){
+  const toc=document.querySelector('.docs-toc');
+  if(toc&&window.matchMedia('(max-width: 900px)').matches) toc.removeAttribute('open');
+  toc?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    if(window.matchMedia('(max-width: 900px)').matches) toc.removeAttribute('open');
+  }));
+})();
 function copySnippet(id) {
   const el = document.getElementById(id);
   if (!el) return;

@@ -440,7 +440,7 @@ function realLiteReportHtml(report) {
     ["AI 爬蟲可讀性", [
       check("robots.txt 存取權限", hasRobotsIssue ? ["no", "缺失"] : PASS, hasRobotsIssue ? "部分 AI 搜尋爬蟲存取受阻" : "未封鎖主串流 AI 搜尋爬蟲"),
       check("sitemap.xml 索引清單", hasSitemapIssue ? ["part", "待修"] : PASS, hasSitemapIssue ? "網站地圖未設定或格式不全" : "成功讀取重要頁面索引"),
-      check("HTTP 伺服器回應", hasFetchIssue ? ["no", "異常"] : PASS, hasFetchIssue ? "伺服器讀取異常或連線逾時" : "首頁正常回應 (HTTP 200)"),
+      check("HTTP 伺服器回應", hasFetchIssue ? ["no", "缺失"] : PASS, hasFetchIssue ? "伺服器讀取異常或連線逾時" : "首頁正常回應 (HTTP 200)"),
       check("llms.txt AI 專用摘要", ["part", "建議"], "建議部署 /llms.txt 加深語意識別")
     ]],
     ["標籤與結構語意", [
@@ -452,8 +452,8 @@ function realLiteReportHtml(report) {
     ["內容可引用性", [
       check("常見問答 (FAQ)", hasFaqGap ? ["no", "缺失"] : PASS, hasFaqGap ? "缺少針對顧客疑慮的一問一答" : "站內具備清楚問答段落"),
       check("文字化服務與價格", hasPriceGap ? ["part", "待修"] : PASS, hasPriceGap ? "以圖片呈現或缺少明確文字價目" : "服務項目與價格資訊皆以文字呈現"),
-      check("地理位置與聯絡資訊", hasLocationGap ? ["part", "待補"] : PASS, hasLocationGap ? "地址、電話或交通資訊不夠顯眼" : "門市地址與營業時間標示明確"),
-      check("顧客好評與客觀背書", hasProofGap ? ["part", "待補"] : PASS, hasProofGap ? "缺少第三方評測或案例佐證" : "包含豐富真實評價與背書")
+      check("地理位置與聯絡資訊", hasLocationGap ? ["part", "待修"] : PASS, hasLocationGap ? "地址、電話或交通資訊不夠顯眼" : "門市地址與營業時間標示明確"),
+      check("顧客好評與客觀背書", hasProofGap ? ["part", "待修"] : PASS, hasProofGap ? "缺少第三方評測或案例佐證" : "包含豐富真實評價與背書")
     ]]
   ];
   const checksHtml = checkGroups.map(([title, rows]) => `

@@ -260,6 +260,9 @@
   .specimen-copy { padding-top: 0; order: 2; }
   .method-cols { grid-template-columns: 1fr; }
 }
+@media (max-width: 600px) {
+  .radar-scope { width: 125vw; translate: 0 -12%; }
+}
 @media (max-width: 560px) {
   .field { padding: 104px 16px 132px; min-height: 0; }
   .probe { flex-direction: column; padding: 6px; }
@@ -333,12 +336,12 @@
   <div class="gc-wrap specimen-grid">
     <div class="specimen-slip">
       <article class="slip" aria-label="報告範例">
-        <span class="stamp" aria-hidden="true">範例</span>
-        <header class="slip-head">
-          <p class="slip-title">AI 能見度檢測單</p>
+                <header class="slip-head">
+          <p class="slip-title">AI 能見度檢測單 <span class="flag flag--sample">範例</span></p>
           <div class="slip-meta">
             <span>受檢網站 <b>À Point Steak &amp; Bistro</b></span>
             <span>觀測題數 <b>4</b></span>
+            <span>報告編號 <b>GC-SAMPLE</b></span>
           </div>
         </header>
         <table class="slip-table">

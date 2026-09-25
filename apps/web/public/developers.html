@@ -24,11 +24,13 @@
 /* Landing only. Shared rules live in /assets/platform.css. */
 .hero { padding: clamp(56px, 8vw, 104px) 0 clamp(64px, 9vw, 112px); background: linear-gradient(180deg, var(--pf-wash), var(--pf-paper) 70%); border-bottom: 1px solid var(--pf-line); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 72px); align-items: center; }
-.hero h1 { margin-top: 20px; font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 900; letter-spacing: -.015em; line-height: 1.15; }
+.hero h1 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 900; letter-spacing: -.015em; line-height: 1.15; }
 .hero-desc { margin-top: 20px; max-width: 34em; color: var(--pf-muted); font-size: 1.05rem; }
 .hero-desc strong { color: var(--pf-ink); font-weight: 700; }
+.hero-state { margin-top: 16px; font-size: .86rem; color: var(--pf-muted); }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
-.hero-code pre { max-height: 440px; font-size: .78rem; }
+.hero-code pre { max-height: 460px; font-size: .78rem; }
+@media (max-width: 520px) { .pf-code pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .74rem; } }
 
 .principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; margin-top: 48px; border-top: 1px solid var(--pf-line-strong); }
 .principle { padding: 28px 0; border-bottom: 1px solid var(--pf-line); }
@@ -41,21 +43,22 @@
 .sdk-points li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--pf-line); }
 .sdk-points svg { width: 18px; height: 18px; margin-top: 4px; color: var(--pf-accent); }
 
-.access { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
-.access-col { display: flex; flex-direction: column; padding: 26px 24px; background: var(--pf-paper); border: 1px solid var(--pf-line); border-radius: 10px; }
-.access-col.is-current { border-color: var(--pf-accent); box-shadow: 0 0 0 1px var(--pf-accent); }
-.access-col h3 { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 1.05rem; font-weight: 900; }
-.access-col h3 span { padding: 2px 8px; border-radius: 4px; background: var(--pf-accent-tint); color: var(--pf-accent-strong); font: 500 .72rem/1.6 var(--pf-mono); }
-.access-col > p { margin-top: 10px; color: var(--pf-muted); font-size: .92rem; }
-.access-col ul { flex: 1; margin: 18px 0 24px; padding: 16px 0 0 1.1em; border-top: 1px solid var(--pf-line); font-size: .9rem; }
-.access-col li + li { margin-top: 6px; }
-.access-col .pf-btn { align-self: flex-start; }
+.access { width: 100%; margin-top: 40px; border-collapse: collapse; font-size: .95rem; }
+.access th, .access td { padding: 18px 20px 18px 0; border-bottom: 1px solid var(--pf-line); text-align: left; vertical-align: top; }
+.access thead th { padding-block: 10px; border-bottom-color: var(--pf-line-strong); font-size: .78rem; font-weight: 500; letter-spacing: .06em; color: var(--pf-faint); }
+.access tbody th { width: 9em; color: var(--pf-ink); font-weight: 900; }
+.access td { color: var(--pf-muted); }
+.access td:last-child { width: 10em; white-space: nowrap; padding-right: 0; }
 
 @media (max-width: 960px) {
   .hero-grid, .sdk-grid { grid-template-columns: 1fr; }
-  .access { grid-template-columns: 1fr; }
 }
-@media (max-width: 640px) { .principles { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .principles { grid-template-columns: 1fr; }
+  .access thead { display: none; }
+  .access tr { display: grid; gap: 6px; padding: 16px 0; border-bottom: 1px solid var(--pf-line); }
+  .access th, .access td { padding: 0; border: 0; width: auto !important; }
+}
 </style>
 </head>
 <body>
@@ -83,51 +86,61 @@
 <section class="hero">
   <div class="pf-wrap hero-grid">
     <div>
-      <span class="pf-status">Private Beta · 付款尚未開放</span>
       <h1>跨生成式搜尋引擎的<br>客觀 GEO 引用觀測 API</h1>
-      <p class="hero-desc">API 的回應設計包含 <strong>OpenAI</strong>、<strong>Google Gemini</strong>、<strong>Perplexity</strong> 與 <strong>Anthropic</strong> 四個引擎欄位，並明確區分完成、部分完成與失敗。實際可用引擎、帳戶權益與用量以控制台顯示為準；結果仍可回到回答與引用證據檢視。</p>
+      <p class="hero-desc">一次呼叫，同步取得 OpenAI、Google Gemini、Perplexity 與 Anthropic 的原生回答與引用證據。</p>
       <div class="hero-ctas">
         <a href="/docs" class="pf-btn pf-btn--lg">閱讀技術文件</a>
-        <a href="/console" class="pf-btn pf-btn--ghost pf-btn--lg">查看控制台開放狀態</a>
+        <a href="/console" class="pf-btn pf-btn--ghost pf-btn--lg">進入控制台</a>
       </div>
+      <p class="hero-state">目前為 Private Beta，付款尚未開放；可用額度以控制台顯示為準。</p>
     </div>
     <div class="pf-code hero-code" data-tabs>
       <div class="pf-code-bar">
         <div class="pf-tabs" role="tablist" aria-label="請求與回應範例">
-          <button class="pf-tab" role="tab" aria-selected="true" aria-controls="hero-res" id="hero-res-tab">GET /v1/measurements/:id</button>
-          <button class="pf-tab" role="tab" aria-selected="false" aria-controls="hero-req" id="hero-req-tab">POST /v1/measurements</button>
+          <button class="pf-tab" role="tab" aria-selected="true" aria-controls="hero-curl" id="hero-curl-tab">cURL</button>
+          <button class="pf-tab" role="tab" aria-selected="false" aria-controls="hero-ts" id="hero-ts-tab">TypeScript</button>
         </div>
+        <button class="pf-copy" type="button" data-copy><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製</button>
       </div>
-      <pre id="hero-res" role="tabpanel" aria-labelledby="hero-res-tab" tabindex="0"><code><span class="c-p">{</span>
-  <span class="c-k">"measurement_id"</span>: <span class="c-s">"msr_6cdf92d2-…"</span>,
+      <pre id="hero-curl" role="tabpanel" aria-labelledby="hero-curl-tab" tabindex="0"><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
+  -H <span class="c-s">"Authorization: Bearer $GEOCHECK_API_KEY"</span> \
+  -H <span class="c-s">"Idempotency-Key: $(uuidgen)"</span> \
+  -d <span class="c-s">'{"input":{"type":"url","url":"https://example.com"}}'</span>
+
+<span class="c-c"># 202 → 輪詢 GET /v1/measurements/:id</span>
+<span class="c-p">{</span>
   <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>,
   <span class="c-k">"engines"</span>: [
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-openai)"></span><span class="c-s">"openai"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>, <span class="c-k">"citations"</span>: [<span class="c-n">…</span>] },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-gemini)"></span><span class="c-s">"gemini"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>, <span class="c-k">"citations"</span>: [<span class="c-n">…</span>] },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-perplexity)"></span><span class="c-s">"perplexity"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>, <span class="c-k">"citations"</span>: [<span class="c-n">…</span>] },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-anthropic)"></span><span class="c-s">"anthropic"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>, <span class="c-k">"citations"</span>: [<span class="c-n">…</span>] }
-  ],
-  <span class="c-k">"completed_at"</span>: <span class="c-s">"2026-09-12T08:00:10.420Z"</span>
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-openai)"></span><span class="c-s">"openai"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-gemini)"></span><span class="c-s">"gemini"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-perplexity)"></span><span class="c-s">"perplexity"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-anthropic)"></span><span class="c-s">"anthropic"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> }
+  ]
 <span class="c-p">}</span></code></pre>
-      <pre id="hero-req" role="tabpanel" aria-labelledby="hero-req-tab" tabindex="0" hidden><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
-  -H <span class="c-s">"Authorization: Bearer gck_live_xxxxxxxxxxxx"</span> \
-  -H <span class="c-s">"Content-Type: application/json"</span> \
-  -H <span class="c-s">"Idempotency-Key: $(uuidgen)"</span> \
-  -d <span class="c-s">'{
-    "input": { "type": "url", "url": "https://example.com" },
-    "locale": "zh-TW"
-  }'</span>
+      <pre id="hero-ts" role="tabpanel" aria-labelledby="hero-ts-tab" tabindex="0" hidden><code><span class="c-k">const</span> accepted = <span class="c-k">await</span> client.<span class="c-f">createMeasurement</span>(
+  { input: { type: <span class="c-s">"url"</span>, url: <span class="c-s">"https://example.com"</span> } },
+  crypto.<span class="c-f">randomUUID</span>()
+);
+<span class="c-k">const</span> result = <span class="c-k">await</span> client.<span class="c-f">pollMeasurement</span>(accepted.measurement_id);
 
-<span class="c-c"># 202 Accepted</span>
-<span class="c-p">{</span> <span class="c-k">"measurement_id"</span>: <span class="c-s">"msr_6cdf92d2-…"</span>, <span class="c-k">"status"</span>: <span class="c-s">"queued"</span> <span class="c-p">}</span></code></pre>
+<span class="c-c"># 202 → 輪詢 GET /v1/measurements/:id</span>
+<span class="c-p">{</span>
+  <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>,
+  <span class="c-k">"engines"</span>: [
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-openai)"></span><span class="c-s">"openai"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-gemini)"></span><span class="c-s">"gemini"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-perplexity)"></span><span class="c-s">"perplexity"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
+    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-anthropic)"></span><span class="c-s">"anthropic"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> }
+  ]
+<span class="c-p">}</span></code></pre>
       <p class="pf-code-note">示例資料，不代表即時服務狀態；實際額度以 Console 為準。</p>
     </div>
-  </div>
+    </div>
 </section>
 
 <section class="pf-section">
   <div class="pf-wrap">
-    <h2 class="pf-h2">為企業級 GEO 監測打造的開發者基礎設施</h2>
+    <h2 class="pf-h2">為 GEO 監測打造的開發者基礎設施</h2>
     <p class="pf-lede">以可追溯的結果結構呈現觀測資料。公開範圍、可用引擎與資料保存設定會在開通時由 Console 顯示。</p>
     <div class="principles">
       <div class="principle"><h3>四引擎結果結構<code>engines[]</code></h3><p>回應會按引擎保留狀態與可取得的引用資料；沒有成功結果時，不以零分或空白冒充已完成。</p></div>
@@ -141,7 +154,7 @@
 <section class="pf-section pf-section--wash">
   <div class="pf-wrap sdk-grid">
     <div>
-      <h2 class="pf-h2">只需 3 行程式碼，<br>搞定多引擎 GEO 觀測</h2>
+      <h2 class="pf-h2">建立一次觀測，<br>SDK 幫你等四個引擎回來</h2>
       <p class="pf-lede">使用 <code>@geocheck/sdk</code>，您可以將複雜的並發呼叫、任務輪詢、延遲等待與錯誤降級化繁為簡。</p>
       <ul class="sdk-points">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>完整 TypeScript 型別推導，自動提示四引擎結構化欄位。</span></li>
@@ -211,26 +224,15 @@ job = response.<span class="c-f">json</span>()
   <div class="pf-wrap">
     <h2 class="pf-h2">目前開放狀態</h2>
     <p class="pf-lede">Developer API 目前以 Private Beta 方式管理存取，尚未開放付款。未來採按用量計費；計價與付款方式會在開放前公開說明。</p>
-    <div class="access">
-      <div class="access-col">
-        <h3>技術文件</h3>
-        <p>先確認請求、回應與錯誤語意，避免在未開通前把範例憑證當成可用金鑰。</p>
-        <ul><li>查看 API 請求與非同步輪詢流程</li><li>查看狀態與結果語意</li><li>確認憑證安全與錯誤處理</li><li>以現行文件為準</li></ul>
-        <a href="/docs" class="pf-btn pf-btn--ghost">閱讀技術文件</a>
-      </div>
-      <div class="access-col is-current">
-        <h3>Console 存取<span>Private Beta</span></h3>
-        <p>登入後檢查帳戶是否已有存取資格與可用額度；沒有資格時，不會產生虛構的用量資料。</p>
-        <ul><li>帳戶權益與額度由後端提供</li><li>結果狀態依 API 契約呈現</li><li>速率限制在開通時顯示</li><li>不在本頁承諾商業方案內容</li></ul>
-        <a href="/console" class="pf-btn">進入 Console</a>
-      </div>
-      <div class="access-col">
-        <h3>付費通道</h3>
-        <p>按用量計費方案準備中。正式開放前，會公開新台幣單價、計量方式、付款與退款規則。</p>
-        <ul><li>不提供公開結帳</li><li>不預設任何付費額度</li><li>開放前不承諾保存期限</li><li>權益會在正式開通時另外說明</li></ul>
-        <a href="/pricing" class="pf-btn pf-btn--ghost">查看計費說明</a>
-      </div>
-    </div>
+    <table class="access">
+      <caption class="visually-hidden">Platform 各項目前開放狀態</caption>
+      <thead><tr><th scope="col">項目</th><th scope="col">目前狀態</th><th scope="col">在哪裡確認</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">技術文件</th><td>公開。先確認請求、回應與錯誤語意，避免在未開通前把範例憑證當成可用金鑰。</td><td><a class="pf-arrow" href="/docs">閱讀技術文件<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></td></tr>
+        <tr><th scope="row">Console 存取</th><td>Private Beta。登入後檢查帳戶是否已有存取資格與可用額度；沒有資格時，不會產生虛構的用量資料。帳戶權益、額度與速率限制由後端提供，不在本頁承諾商業方案內容。</td><td><a class="pf-arrow" href="/console">進入 Console<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></td></tr>
+        <tr><th scope="row">付費通道</th><td>尚未開放。不提供公開結帳，不預設任何付費額度。按用量計費方案準備中；正式開放前，會公開新台幣單價、計量方式、付款與退款規則。</td><td><a class="pf-arrow" href="/pricing">查看計費說明<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 

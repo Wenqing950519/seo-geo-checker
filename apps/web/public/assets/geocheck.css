@@ -20,7 +20,6 @@
   --gc-on-field: var(--ls-on-dark);
   --gc-on-field-muted: var(--ls-on-dark-muted);
   --gc-signal: var(--ls-accent-on-dark);
-  --gc-stamp: #B42318;           /* 範例 stamp ink, 6.36:1 on white */
 
   --gc-sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
   --gc-latin: 'Space Grotesk', 'Noto Sans TC', system-ui, sans-serif;
@@ -138,13 +137,13 @@ code, kbd, samp { font-family: var(--gc-mono); font-size: .92em; }
 }
 .slip-head {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; align-items: baseline;
-  padding: 24px 96px 18px 28px;
+  padding: 24px 28px 18px;
   border-bottom: 2px solid var(--gc-ink);
 }
 .slip-title { font-size: 1.15rem; font-weight: 900; letter-spacing: .04em; color: var(--gc-ink); }
 .slip-meta { display: flex; flex-wrap: wrap; gap: 4px 20px; font: 400 .78rem/1.6 var(--gc-mono); color: var(--gc-muted); }
 .slip-meta b { font-weight: 500; color: var(--gc-text); }
-.slip-table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.slip-table { width: 100%; border-collapse: collapse; font-size: .95rem; font-variant-numeric: tabular-nums; }
 .slip-table caption { text-align: left; }
 .slip-table th, .slip-table td { padding: 14px 28px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--gc-rule-soft); }
 .slip-table thead th { padding-top: 10px; padding-bottom: 10px; font: 500 .74rem/1.4 var(--gc-sans); letter-spacing: .08em; color: var(--gc-faint); border-bottom: 1px solid var(--gc-rule); }
@@ -166,22 +165,17 @@ code, kbd, samp { font-family: var(--gc-mono); font-size: .92em; }
 .flag--unknown { color: var(--ls-unknown-on-light); background: var(--ls-unknown-tint); }
 .flag--unknown::before { background: transparent; border: 1.5px solid currentColor; width: 7px; height: 7px; }
 
-.stamp {
-  position: absolute; right: 24px; top: 18px;
-  padding: 2px 10px; border: 2px solid var(--gc-stamp); border-radius: 4px;
-  color: var(--gc-stamp); font: 900 .9rem/1.5 var(--gc-sans); letter-spacing: .3em; padding-right: calc(10px - .3em);
-  transform: rotate(-6deg); opacity: .9; pointer-events: none;
-}
+.flag--sample { color: var(--gc-ink); background: transparent; border: 1px solid var(--gc-ink); vertical-align: .15em; margin-left: 6px; letter-spacing: .12em; }
+.flag--sample::before { display: none; }
 
 @media (max-width: 640px) {
-  .slip-head { padding: 20px 76px 14px 18px; }
+  .slip-head { padding: 20px 18px 14px; }
   .slip-table th, .slip-table td { padding: 12px 18px; }
   .slip-table thead { display: none; }
   .slip-table tbody tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 12px 18px; border-bottom: 1px solid var(--gc-rule-soft); }
   .slip-table tbody th, .slip-table tbody td { padding: 0; border: 0; width: auto; }
   .slip-table td.slip-note { grid-column: 1 / -1; }
   .slip-foot { padding: 14px 18px 18px; }
-  .stamp { right: 14px; top: 12px; }
 }
 
 /* ----- Reading pages (whitepaper, legal) -------------------------- */

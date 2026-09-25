@@ -57,11 +57,11 @@ const replaceOnce = (from, to) => {
 };
 
 replaceOnce("<title>GeoCheck — AI 信任值報告</title>", "<title>範例報告｜GeoCheck AI 搜尋能見度觀測鏡</title>\n<link rel=\"stylesheet\" href=\"/assets/tokens.css\">");
-replaceOnce("<h1>AI 信任值檢測單</h1>", "<h1>AI 信任值檢測單</h1>\n    <span class=\"sample-stamp\" aria-hidden=\"true\">範例</span>");
+replaceOnce("<h1>AI 信任值檢測單</h1>", "<h1>AI 信任值檢測單 <span class=\"sample-flag\">範例</span></h1>");
 replaceOnce("<main class=\"sheet\">", `<p class="sample-note">這是 GeoCheck（AI 搜尋能見度觀測鏡）報告的<strong>範例</strong>：網站、問題、回答與數字皆為示範資料。<a href="/#top">檢測你自己的網站</a></p>
 <main class="sheet">`);
 replaceOnce("</style>", `.head{position:relative}
-.sample-stamp{position:absolute;right:28px;top:24px;padding:2px 10px;padding-right:calc(10px - .3em);border:2px solid #B42318;border-radius:4px;color:#B42318;font:900 .95rem/1.5 var(--sans);letter-spacing:.3em;transform:rotate(-6deg)}
+.sample-flag{display:inline-block;margin-left:8px;padding:0 8px;border:1px solid var(--ink);border-radius:4px;font:700 .8rem/1.8 var(--sans);letter-spacing:.12em;vertical-align:.3em}
 .sample-note{width:min(100% - 32px,880px);margin:24px auto 0;padding:12px 16px;border:1px solid #C7D7FE;border-radius:6px;background:#EFF6FF;color:var(--ink);font-size:.9rem}
 .sample-note a{margin-left:8px;font-weight:700}
 </style>`);

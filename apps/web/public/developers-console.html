@@ -1061,6 +1061,19 @@ a { color: var(--ls-platform-on-dark); }
 .modal-card { box-shadow: 0 16px 32px -16px rgba(0, 0, 0, .7); }
 .btn-revoke:hover { background: #B91C1C; border-color: #B91C1C; color: #fff; }
 code { font-family: var(--font-mono); }
+button, input, select, textarea { font: inherit; }
+.ico-inline { display: inline-block; width: 14px; height: 14px; vertical-align: -2px; margin: 0 2px; flex: none; }
+.btn-primary-blue .ico-inline { margin: 0 6px 0 0; }
+.btn-banner-action .ico-inline { margin: 0 0 0 6px; }
+.inline-link, .job-id { color: var(--ls-platform-on-dark); text-decoration: none; }
+.job-id { font-size: .78rem; }
+.inline-link:hover { text-decoration: underline; }
+/* The three counters read as one row of facts, not three hero cards. */
+.stats-tri-grid { gap: 0; border: 1px solid var(--gc-card-border); border-radius: var(--radius-md); background: var(--gc-card-bg); overflow: hidden; }
+.stats-tri-grid .stat-box { border: 0; border-radius: 0; background: transparent; padding: 16px 20px; }
+.stats-tri-grid .stat-box + .stat-box { border-left: 1px solid var(--gc-card-border); }
+.stats-tri-grid .stat-box-val { font-size: 1.4rem; }
+@media (max-width: 900px) { .stats-tri-grid .stat-box + .stat-box { border-left: 0; border-top: 1px solid var(--gc-card-border); } }
 @media (max-width: 900px) {
   .console-app { flex-direction: column; }
   aside.console-sidebar { display: flex; position: sticky; top: 0; z-index: 50; width: 100%; height: auto; flex-direction: row; align-items: center; gap: 8px; padding: 8px 12px; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--gc-card-border); }
@@ -1107,7 +1120,7 @@ code { font-family: var(--font-mono); }
     </button>
 
     <div class="gate-links">
-      <a href="/docs">API 技術文件 ↗</a>
+      <a href="/docs">API 技術文件<svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       <a href="/terms">服務條款</a>
       <a href="/privacy">隱私權政策</a>
     </div>
@@ -1186,7 +1199,7 @@ code { font-family: var(--font-mono); }
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
           <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
         </svg>
-        <span>API 技術文件 ↗</span>
+        <span>API 技術文件</span><svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
 
       <button type="button" class="nav-item" onclick="openFeedbackModal()">
@@ -1204,7 +1217,7 @@ code { font-family: var(--font-mono); }
           <line x1="2" y1="12" x2="22" y2="12"/>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
-        <span>LS-Labs 官網 ↗</span>
+        <span>LS-Labs 官網</span><svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
     </div>
 
@@ -1252,7 +1265,7 @@ code { font-family: var(--font-mono); }
             </div>
           </div>
           <div style="display:flex; gap:10px;">
-            <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()">+ 建立 API 金鑰</button>
+            <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()"><svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>建立 API 金鑰</button>
             <button type="button" class="btn-card-action" onclick="openPlanModal()" style="padding:6px 14px;">查看方案狀態</button>
           </div>
         </div>
@@ -1262,7 +1275,7 @@ code { font-family: var(--font-mono); }
           <div class="feature-banner-text">
             <strong>配額計算：</strong>發起量測時，只有 OpenAI、Google Gemini、Perplexity (Sonar) 與 Anthropic (Claude) 四家全數完成回傳，才扣除 1 輪配額；任一家逾時或報錯不扣配額。這是用量紀錄，並非付款帳單；付費方案尚未開放。
           </div>
-          <button type="button" class="btn-banner-action" onclick="switchConsoleTab('quickstart')">發起首次量測 →</button>
+          <button type="button" class="btn-banner-action" onclick="switchConsoleTab('quickstart')">發起首次量測<svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
 
         <!-- Top Quota Meter Grid -->
@@ -1303,7 +1316,7 @@ code { font-family: var(--font-mono); }
             </div>
             <div class="meter-footnote" style="margin-top:10px;">
               <span>支援 Bearer 全域 API 金鑰隔離</span>
-              <a href="/docs" style="color:#60A5FA; text-decoration:none;">調用規格文件 ↗</a>
+              <a href="/docs" class="inline-link">調用規格文件<svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
             </div>
           </div>
         </div>
@@ -1358,7 +1371,7 @@ code { font-family: var(--font-mono); }
             <h1 class="page-title">API 金鑰管理</h1>
             <p class="section-desc">管理用於授權 GeoCheck API 呼叫之 Bearer 金鑰。金鑰建立時僅會完整顯示一次，請妥善保管。</p>
           </div>
-          <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()">+ 建立新 API 金鑰</button>
+          <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()"><svg class="ico-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>建立新 API 金鑰</button>
         </div>
 
         <div class="panel-card">
@@ -1708,9 +1721,9 @@ print("Measurement initiated:", job["measurement_id"])</code></pre>
       如果您在對接 API、量測結果判讀或架構集成上有任何問題，歡迎直接聯絡 LS-Labs 核心團隊：
     </p>
     <div style="background:#0B111F; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--gc-card-border); font-size:0.85rem; color:#CBD5E1; line-height:1.8;">
-      • 技術支援信箱：<a href="mailto:dev@lslabs.tw" style="color:#60A5FA;">dev@lslabs.tw</a><br>
-      • 官方網站：<a href="https://lslabs.tw/" target="_blank" rel="noopener" style="color:#60A5FA;">https://lslabs.tw/</a><br>
-      • API 技術文件：<a href="/docs" style="color:#60A5FA;">/docs</a>
+      • 技術支援信箱：<a href="mailto:dev@lslabs.tw" class="inline-link">dev@lslabs.tw</a><br>
+      • 官方網站：<a href="https://lslabs.tw/" target="_blank" rel="noopener" class="inline-link">https://lslabs.tw/</a><br>
+      • API 技術文件：<a href="/docs" class="inline-link">/docs</a>
     </div>
     <div style="margin-top:18px; text-align:right;">
       <button type="button" class="btn-primary-blue" onclick="closeFeedbackModal()">關閉</button>
@@ -1965,7 +1978,7 @@ function renderJobsTable() {
   STATE.jobs.forEach((job) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><code class="font-mono" style="font-size:0.78rem; color:#60A5FA;">${escapeHtml(job.job_id)}</code></td>
+      <td><code class="font-mono job-id">${escapeHtml(job.job_id)}</code></td>
       <td><code class="font-mono" style="font-size:0.76rem; color:var(--gc-text-secondary);">${escapeHtml(job.measurement_id)}</code></td>
       <td><span style="display:inline-flex; align-items:center; gap:5px; font-weight:600; font-size:0.8rem; color:var(--gc-success);"><span style="width:6px; height:6px; border-radius:50%; background:var(--gc-success);"></span>${escapeHtml(job.status || 'unknown')}</span></td>
       <td style="color:var(--gc-text-secondary); font-size:0.8rem;">${formatDate(job.created_at)}</td>
