@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { createRequire } from "node:module";
+import { defaultAiEvidenceOutputDir as defaultOutputDir } from "./default-output-dir.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 const projectRoot = path.resolve(args["project-root"] || process.cwd());
@@ -466,7 +467,6 @@ function parseArgs(tokens) {
 
 function required(values, key) { if (values[key] === undefined) throw new Error(`Missing required --${key}`); return values[key]; }
 function boundedInt(value, fallback, min, max) { const number = Number(value ?? fallback); return Number.isFinite(number) ? Math.max(min, Math.min(max, Math.floor(number))) : fallback; }
-function defaultOutputDir() { return path.join("research-output", `ai-evidence-${new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19)}`); }
 function assertFile(file, message) { if (!fs.existsSync(file)) throw new Error(message); }
 function safeDomain(value) { try { return new URL(value).hostname.replace(/^www\./, ""); } catch { return ""; } }
 function csvValue(value) { const text = value === null || value === undefined ? "" : String(value); return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text; }
