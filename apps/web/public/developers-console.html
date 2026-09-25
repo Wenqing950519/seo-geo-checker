@@ -1068,12 +1068,14 @@ button, input, select, textarea { font: inherit; }
 .inline-link, .job-id { color: var(--ls-platform-on-dark); text-decoration: none; }
 .job-id { font-size: .78rem; }
 .inline-link:hover { text-decoration: underline; }
-/* The three counters read as one row of facts, not three hero cards. */
-.stats-tri-grid { gap: 0; border: 1px solid var(--gc-card-border); border-radius: var(--radius-md); background: var(--gc-card-bg); overflow: hidden; }
-.stats-tri-grid .stat-box { border: 0; border-radius: 0; background: transparent; padding: 16px 20px; }
-.stats-tri-grid .stat-box + .stat-box { border-left: 1px solid var(--gc-card-border); }
-.stats-tri-grid .stat-box-val { font-size: 1.4rem; }
-@media (max-width: 900px) { .stats-tri-grid .stat-box + .stat-box { border-left: 0; border-top: 1px solid var(--gc-card-border); } }
+/* The three counters are facts in a list, not hero numbers. */
+.stats-tri-grid { display: block; border: 1px solid var(--gc-card-border); border-radius: var(--radius-md); background: var(--gc-card-bg); }
+.stats-tri-grid .stat-box { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 2px 16px; border: 0; border-radius: 0; background: transparent; padding: 12px 20px; }
+.stats-tri-grid .stat-box + .stat-box { border-top: 1px solid var(--gc-card-border); }
+.stats-tri-grid .stat-box-label { grid-column: 1; margin: 0; color: var(--gc-text-primary); font-weight: 500; }
+.stats-tri-grid .stat-box-val { grid-column: 2; grid-row: 1 / span 2; margin: 0; font-size: 1.05rem; }
+.stats-tri-grid .stat-box-desc { grid-column: 1; margin: 0; font-size: .8rem; }
+
 @media (max-width: 900px) {
   .console-app { flex-direction: column; }
   aside.console-sidebar { display: flex; position: sticky; top: 0; z-index: 50; width: 100%; height: auto; flex-direction: row; align-items: center; gap: 8px; padding: 8px 12px; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--gc-card-border); }

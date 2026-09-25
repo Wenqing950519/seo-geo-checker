@@ -30,7 +30,7 @@
 .hero-state { margin-top: 16px; font-size: .86rem; color: var(--pf-muted); }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
 .hero-code pre { max-height: 460px; font-size: .78rem; }
-@media (max-width: 520px) { .pf-code pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .74rem; } }
+@media (max-width: 520px) { .pf-code pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .7rem; padding: 16px 14px; } }
 
 .principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; margin-top: 48px; border-top: 1px solid var(--pf-line-strong); }
 .principle { padding: 28px 0; border-bottom: 1px solid var(--pf-line); }
@@ -111,10 +111,10 @@
 <span class="c-p">{</span>
   <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>,
   <span class="c-k">"engines"</span>: [
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-openai)"></span><span class="c-s">"openai"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-gemini)"></span><span class="c-s">"gemini"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-perplexity)"></span><span class="c-s">"perplexity"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-anthropic)"></span><span class="c-s">"anthropic"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> }
+    {<span class="c-k">"id"</span>:<span class="eng-dot" style="background:var(--ls-engine-openai)"></span><span class="c-s">"openai"</span>,<span class="c-k">"status"</span>:<span class="c-s">"succeeded"</span>},
+    {<span class="c-k">"id"</span>:<span class="eng-dot" style="background:var(--ls-engine-gemini)"></span><span class="c-s">"gemini"</span>,<span class="c-k">"status"</span>:<span class="c-s">"succeeded"</span>},
+    {<span class="c-k">"id"</span>:<span class="eng-dot" style="background:var(--ls-engine-perplexity)"></span><span class="c-s">"perplexity"</span>,<span class="c-k">"status"</span>:<span class="c-s">"succeeded"</span>},
+    {<span class="c-k">"id"</span>:<span class="eng-dot" style="background:var(--ls-engine-anthropic)"></span><span class="c-s">"anthropic"</span>,<span class="c-k">"status"</span>:<span class="c-s">"succeeded"</span>}
   ]
 <span class="c-p">}</span></code></pre>
       <pre id="hero-ts" role="tabpanel" aria-labelledby="hero-ts-tab" tabindex="0" hidden><code><span class="c-k">const</span> accepted = <span class="c-k">await</span> client.<span class="c-f">createMeasurement</span>(
@@ -127,10 +127,10 @@
 <span class="c-p">{</span>
   <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span>,
   <span class="c-k">"engines"</span>: [
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-openai)"></span><span class="c-s">"openai"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-gemini)"></span><span class="c-s">"gemini"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-perplexity)"></span><span class="c-s">"perplexity"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> },
-    { <span class="c-k">"id"</span>: <span class="eng-dot" style="background:var(--ls-engine-anthropic)"></span><span class="c-s">"anthropic"</span>, <span class="c-k">"status"</span>: <span class="c-s">"succeeded"</span> }
+    {<span class="c-k">"id"</span>:<span class="eng-dot" style="background:var(--ls-engine-openai)"></span><span class="c-s">"openai"</span>,<span class="c-k">"status"</span>:<span class="c-s">"succeeded"</span>},
+    {<span class="c-k">"id"</span>:<span class="eng-dot" style="background:var(--ls-engine-gemini)"></span><span class="c-s">"gemini"</span>,<span class="c-k">"status"</span>:<span class="c-s">"succeeded"</span>},
+    {<span class="c-k">"id"</span>:<span class="eng-dot" style="background:var(--ls-engine-perplexity)"></span><span class="c-s">"perplexity"</span>,<span class="c-k">"status"</span>:<span class="c-s">"succeeded"</span>},
+    {<span class="c-k">"id"</span>:<span class="eng-dot" style="background:var(--ls-engine-anthropic)"></span><span class="c-s">"anthropic"</span>,<span class="c-k">"status"</span>:<span class="c-s">"succeeded"</span>}
   ]
 <span class="c-p">}</span></code></pre>
       <p class="pf-code-note">示例資料，不代表即時服務狀態；實際額度以 Console 為準。</p>
