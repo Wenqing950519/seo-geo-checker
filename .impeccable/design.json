@@ -1,0 +1,1262 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-25T14:10:43+00:00",
+  "title": "Design System: GeoCheck & Platform (LS-Labs family)",
+  "extensions": {
+    "scope": {
+      "family": "apps/web/public/assets/tokens.css (--ls-*)",
+      "geocheck": [
+        "apps/web/public/assets/geocheck.css (--gc-*)",
+        "services/api/server.js realLiteReportHtml (inline mirror of geocheck.css values)",
+        "apps/web/public/home.html",
+        "pricing.html",
+        "whitepaper.html",
+        "terms/privacy/refund/404.html",
+        "demo.html (scripts/maintenance/render-demo-report.cjs)"
+      ],
+      "platform": [
+        "apps/web/public/assets/platform.css (--pf-*)",
+        "apps/web/public/assets/platform.js",
+        "developers.html",
+        "developers/docs.html",
+        "developers-console.html (navy Console exception)",
+        "platform/*.html"
+      ],
+      "outOfScope": "apps/web/app/ (Dashboard)",
+      "decision": "docs/DECISION_LOG.md D-054"
+    },
+    "fonts": {
+      "source": "Google Fonts; LS-Labs parent brand pinned faces",
+      "families": {
+        "Noto Sans TC": [
+          400,
+          500,
+          700,
+          900
+        ],
+        "Space Grotesk": [
+          500,
+          700
+        ],
+        "IBM Plex Mono": [
+          400,
+          500
+        ]
+      }
+    },
+    "colorMeta": {
+      "navy-field": {
+        "role": "neutral",
+        "displayName": "Navy Field",
+        "canonical": "#0B1F3B",
+        "source": "--ls-navy",
+        "oklch": "oklch(24.0% 0.060 257)",
+        "tonalRamp": [
+          "oklch(15% 0.030 257)",
+          "oklch(26% 0.053 257)",
+          "oklch(38% 0.060 257)",
+          "oklch(49% 0.060 257)",
+          "oklch(61% 0.060 257)",
+          "oklch(72% 0.055 257)",
+          "oklch(84% 0.033 257)",
+          "oklch(95% 0.010 257)"
+        ]
+      },
+      "navy-deep": {
+        "role": "neutral",
+        "displayName": "Navy Deep",
+        "canonical": "#060E1C",
+        "source": "--ls-navy-deep",
+        "oklch": "oklch(16.4% 0.033 260)",
+        "tonalRamp": [
+          "oklch(15% 0.016 260)",
+          "oklch(26% 0.029 260)",
+          "oklch(38% 0.033 260)",
+          "oklch(49% 0.033 260)",
+          "oklch(61% 0.033 260)",
+          "oklch(72% 0.030 260)",
+          "oklch(84% 0.018 260)",
+          "oklch(95% 0.005 260)"
+        ]
+      },
+      "slate-ink": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "#1E293B",
+        "source": "--ls-ink",
+        "oklch": "oklch(27.9% 0.037 260)",
+        "tonalRamp": [
+          "oklch(15% 0.018 260)",
+          "oklch(26% 0.032 260)",
+          "oklch(38% 0.037 260)",
+          "oklch(49% 0.037 260)",
+          "oklch(61% 0.037 260)",
+          "oklch(72% 0.034 260)",
+          "oklch(84% 0.020 260)",
+          "oklch(95% 0.006 260)"
+        ],
+        "contrast": "14.63:1 on white"
+      },
+      "slate-muted": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "canonical": "#475569",
+        "source": "--ls-ink-muted",
+        "oklch": "oklch(44.6% 0.037 257)",
+        "tonalRamp": [
+          "oklch(15% 0.019 257)",
+          "oklch(26% 0.033 257)",
+          "oklch(38% 0.037 257)",
+          "oklch(49% 0.037 257)",
+          "oklch(61% 0.037 257)",
+          "oklch(72% 0.035 257)",
+          "oklch(84% 0.021 257)",
+          "oklch(95% 0.006 257)"
+        ],
+        "contrast": "7.58:1 on white"
+      },
+      "slate-faint": {
+        "role": "neutral",
+        "displayName": "Slate Faint",
+        "canonical": "#64748B",
+        "source": "--ls-ink-faint",
+        "oklch": "oklch(55.4% 0.041 257)",
+        "tonalRamp": [
+          "oklch(15% 0.020 257)",
+          "oklch(26% 0.036 257)",
+          "oklch(38% 0.041 257)",
+          "oklch(49% 0.041 257)",
+          "oklch(61% 0.041 257)",
+          "oklch(72% 0.038 257)",
+          "oklch(84% 0.022 257)",
+          "oklch(95% 0.007 257)"
+        ],
+        "contrast": "4.76:1 on white; 4.23:1 on desk-grey, 3.47:1 on navy (computed) — white paper only"
+      },
+      "on-navy": {
+        "role": "neutral",
+        "displayName": "On Navy",
+        "canonical": "#F8FAFC",
+        "source": "--ls-on-dark",
+        "oklch": "oklch(98.4% 0.003 248)",
+        "tonalRamp": [
+          "oklch(15% 0.003 248)",
+          "oklch(26% 0.003 248)",
+          "oklch(38% 0.003 248)",
+          "oklch(49% 0.003 248)",
+          "oklch(61% 0.003 248)",
+          "oklch(72% 0.003 248)",
+          "oklch(84% 0.003 248)",
+          "oklch(95% 0.003 248)"
+        ],
+        "contrast": "18.81:1 on --ls-void"
+      },
+      "on-navy-body": {
+        "role": "neutral",
+        "displayName": "On Navy Body",
+        "canonical": "#CBD5E1",
+        "source": "--ls-on-dark-body",
+        "oklch": "oklch(86.9% 0.020 253)",
+        "tonalRamp": [
+          "oklch(15% 0.010 253)",
+          "oklch(26% 0.017 253)",
+          "oklch(38% 0.020 253)",
+          "oklch(49% 0.020 253)",
+          "oklch(61% 0.020 253)",
+          "oklch(72% 0.018 253)",
+          "oklch(84% 0.011 253)",
+          "oklch(95% 0.003 253)"
+        ],
+        "contrast": "13.26:1 per tokens.css; 11.11:1 on navy (computed)"
+      },
+      "on-navy-muted": {
+        "role": "neutral",
+        "displayName": "On Navy Muted",
+        "canonical": "#94A3B8",
+        "source": "--ls-on-dark-muted",
+        "oklch": "oklch(71.1% 0.035 257)",
+        "tonalRamp": [
+          "oklch(15% 0.018 257)",
+          "oklch(26% 0.031 257)",
+          "oklch(38% 0.035 257)",
+          "oklch(49% 0.035 257)",
+          "oklch(61% 0.035 257)",
+          "oklch(72% 0.033 257)",
+          "oklch(84% 0.019 257)",
+          "oklch(95% 0.006 257)"
+        ],
+        "contrast": "2.56:1 on white — dark grounds only; 6.43:1 on navy (computed)"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#FFFFFF",
+        "source": "--ls-surface",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#E2E8F0",
+        "source": "--ls-line",
+        "oklch": "oklch(92.9% 0.013 256)",
+        "tonalRamp": [
+          "oklch(15% 0.006 256)",
+          "oklch(26% 0.011 256)",
+          "oklch(38% 0.013 256)",
+          "oklch(49% 0.013 256)",
+          "oklch(61% 0.013 256)",
+          "oklch(72% 0.012 256)",
+          "oklch(84% 0.007 256)",
+          "oklch(95% 0.002 256)"
+        ]
+      },
+      "lab-blue": {
+        "role": "primary",
+        "displayName": "LS Lab Blue",
+        "canonical": "#1D4ED8",
+        "source": "--ls-accent-on-light / --gc-action",
+        "oklch": "oklch(48.8% 0.217 264)",
+        "tonalRamp": [
+          "oklch(15% 0.109 264)",
+          "oklch(26% 0.191 264)",
+          "oklch(38% 0.217 264)",
+          "oklch(49% 0.217 264)",
+          "oklch(61% 0.217 264)",
+          "oklch(72% 0.202 264)",
+          "oklch(84% 0.119 264)",
+          "oklch(95% 0.036 264)"
+        ],
+        "contrast": "white on it 6.70:1"
+      },
+      "lab-blue-strong": {
+        "role": "primary",
+        "displayName": "Lab Blue Strong",
+        "canonical": "#1E40AF",
+        "source": "--ls-accent-on-light-strong / --gc-action-strong",
+        "oklch": "oklch(42.4% 0.181 266)",
+        "tonalRamp": [
+          "oklch(15% 0.090 266)",
+          "oklch(26% 0.159 266)",
+          "oklch(38% 0.181 266)",
+          "oklch(49% 0.181 266)",
+          "oklch(61% 0.181 266)",
+          "oklch(72% 0.168 266)",
+          "oklch(84% 0.099 266)",
+          "oklch(95% 0.030 266)"
+        ],
+        "contrast": "white on it 8.72:1"
+      },
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "canonical": "#60A5FA",
+        "source": "--ls-accent-on-dark / --gc-signal",
+        "oklch": "oklch(71.4% 0.143 255)",
+        "tonalRamp": [
+          "oklch(15% 0.072 255)",
+          "oklch(26% 0.126 255)",
+          "oklch(38% 0.143 255)",
+          "oklch(49% 0.143 255)",
+          "oklch(61% 0.143 255)",
+          "oklch(72% 0.133 255)",
+          "oklch(84% 0.079 255)",
+          "oklch(95% 0.024 255)"
+        ],
+        "contrast": "on navy 6.49:1 (computed)"
+      },
+      "sweep-edge": {
+        "role": "primary",
+        "displayName": "Sweep Edge",
+        "canonical": "#93C5FD",
+        "source": "home.html .radar-sweep (rgba(147,197,253,.42))",
+        "oklch": "oklch(80.9% 0.096 252)",
+        "tonalRamp": [
+          "oklch(15% 0.048 252)",
+          "oklch(26% 0.084 252)",
+          "oklch(38% 0.096 252)",
+          "oklch(49% 0.096 252)",
+          "oklch(61% 0.096 252)",
+          "oklch(72% 0.089 252)",
+          "oklch(84% 0.052 252)",
+          "oklch(95% 0.016 252)"
+        ]
+      },
+      "lab-blue-tint": {
+        "role": "primary",
+        "displayName": "Lab Blue Tint",
+        "canonical": "#EFF6FF",
+        "source": "--ls-accent-tint",
+        "oklch": "oklch(97.0% 0.014 255)",
+        "tonalRamp": [
+          "oklch(15% 0.007 255)",
+          "oklch(26% 0.012 255)",
+          "oklch(38% 0.014 255)",
+          "oklch(49% 0.014 255)",
+          "oklch(61% 0.014 255)",
+          "oklch(72% 0.013 255)",
+          "oklch(84% 0.008 255)",
+          "oklch(95% 0.002 255)"
+        ]
+      },
+      "desk-grey": {
+        "role": "neutral",
+        "displayName": "Desk Grey",
+        "canonical": "#EEF2F7",
+        "source": "--gc-desk",
+        "oklch": "oklch(96.0% 0.008 254)",
+        "tonalRamp": [
+          "oklch(15% 0.008 254)",
+          "oklch(26% 0.008 254)",
+          "oklch(38% 0.008 254)",
+          "oklch(49% 0.008 254)",
+          "oklch(61% 0.008 254)",
+          "oklch(72% 0.008 254)",
+          "oklch(84% 0.008 254)",
+          "oklch(95% 0.008 254)"
+        ]
+      },
+      "slip-rule": {
+        "role": "neutral",
+        "displayName": "Slip Rule",
+        "canonical": "#D5DDE8",
+        "source": "--gc-rule",
+        "oklch": "oklch(89.5% 0.017 256)",
+        "tonalRamp": [
+          "oklch(15% 0.009 256)",
+          "oklch(26% 0.015 256)",
+          "oklch(38% 0.017 256)",
+          "oklch(49% 0.017 256)",
+          "oklch(61% 0.017 256)",
+          "oklch(72% 0.016 256)",
+          "oklch(84% 0.010 256)",
+          "oklch(95% 0.003 256)"
+        ]
+      },
+      "flag-yes-text": {
+        "role": "tertiary",
+        "displayName": "Flag 有 text",
+        "canonical": "#047857",
+        "source": "--ls-success-on-light",
+        "oklch": "oklch(50.8% 0.105 166)",
+        "tonalRamp": [
+          "oklch(15% 0.052 166)",
+          "oklch(26% 0.092 166)",
+          "oklch(38% 0.105 166)",
+          "oklch(49% 0.105 166)",
+          "oklch(61% 0.105 166)",
+          "oklch(72% 0.097 166)",
+          "oklch(84% 0.057 166)",
+          "oklch(95% 0.017 166)"
+        ],
+        "contrast": "5.21:1 on its tint"
+      },
+      "flag-yes-tint": {
+        "role": "tertiary",
+        "displayName": "Flag 有 tint",
+        "canonical": "#ECFDF5",
+        "source": "--ls-success-tint",
+        "oklch": "oklch(97.9% 0.021 166)",
+        "tonalRamp": [
+          "oklch(15% 0.010 166)",
+          "oklch(26% 0.018 166)",
+          "oklch(38% 0.021 166)",
+          "oklch(49% 0.021 166)",
+          "oklch(61% 0.021 166)",
+          "oklch(72% 0.019 166)",
+          "oklch(84% 0.011 166)",
+          "oklch(95% 0.003 166)"
+        ]
+      },
+      "flag-part-text": {
+        "role": "tertiary",
+        "displayName": "Flag 部分 text",
+        "canonical": "#B45309",
+        "source": "--ls-warning-on-light",
+        "oklch": "oklch(55.5% 0.146 49)",
+        "tonalRamp": [
+          "oklch(15% 0.073 49)",
+          "oklch(26% 0.128 49)",
+          "oklch(38% 0.146 49)",
+          "oklch(49% 0.146 49)",
+          "oklch(61% 0.146 49)",
+          "oklch(72% 0.135 49)",
+          "oklch(84% 0.080 49)",
+          "oklch(95% 0.024 49)"
+        ],
+        "contrast": "4.61:1 on its tint"
+      },
+      "flag-part-tint": {
+        "role": "tertiary",
+        "displayName": "Flag 部分 tint",
+        "canonical": "#FFF4E0",
+        "source": "--ls-warning-tint",
+        "oklch": "oklch(97.0% 0.029 83)",
+        "tonalRamp": [
+          "oklch(15% 0.014 83)",
+          "oklch(26% 0.025 83)",
+          "oklch(38% 0.029 83)",
+          "oklch(49% 0.029 83)",
+          "oklch(61% 0.029 83)",
+          "oklch(72% 0.027 83)",
+          "oklch(84% 0.016 83)",
+          "oklch(95% 0.005 83)"
+        ]
+      },
+      "flag-no-text": {
+        "role": "tertiary",
+        "displayName": "Flag 無 text",
+        "canonical": "#B91C1C",
+        "source": "--ls-danger-on-light",
+        "oklch": "oklch(50.5% 0.190 28)",
+        "tonalRamp": [
+          "oklch(15% 0.095 28)",
+          "oklch(26% 0.168 28)",
+          "oklch(38% 0.190 28)",
+          "oklch(49% 0.190 28)",
+          "oklch(61% 0.190 28)",
+          "oklch(72% 0.177 28)",
+          "oklch(84% 0.104 28)",
+          "oklch(95% 0.032 28)"
+        ],
+        "contrast": "5.91:1 on its tint"
+      },
+      "flag-no-tint": {
+        "role": "tertiary",
+        "displayName": "Flag 無 tint",
+        "canonical": "#FEF2F2",
+        "source": "--ls-danger-tint",
+        "oklch": "oklch(97.1% 0.013 17)",
+        "tonalRamp": [
+          "oklch(15% 0.006 17)",
+          "oklch(26% 0.011 17)",
+          "oklch(38% 0.013 17)",
+          "oklch(49% 0.013 17)",
+          "oklch(61% 0.013 17)",
+          "oklch(72% 0.012 17)",
+          "oklch(84% 0.007 17)",
+          "oklch(95% 0.002 17)"
+        ]
+      },
+      "flag-unknown-text": {
+        "role": "tertiary",
+        "displayName": "Flag 未知 text",
+        "canonical": "#475569",
+        "source": "--ls-unknown-on-light",
+        "oklch": "oklch(44.6% 0.037 257)",
+        "tonalRamp": [
+          "oklch(15% 0.019 257)",
+          "oklch(26% 0.033 257)",
+          "oklch(38% 0.037 257)",
+          "oklch(49% 0.037 257)",
+          "oklch(61% 0.037 257)",
+          "oklch(72% 0.035 257)",
+          "oklch(84% 0.021 257)",
+          "oklch(95% 0.006 257)"
+        ],
+        "contrast": "6.92:1 on its tint"
+      },
+      "flag-unknown-tint": {
+        "role": "tertiary",
+        "displayName": "Flag 未知 tint",
+        "canonical": "#F1F5F9",
+        "source": "--ls-unknown-tint",
+        "oklch": "oklch(96.8% 0.007 248)",
+        "tonalRamp": [
+          "oklch(15% 0.007 248)",
+          "oklch(26% 0.007 248)",
+          "oklch(38% 0.007 248)",
+          "oklch(49% 0.007 248)",
+          "oklch(61% 0.007 248)",
+          "oklch(72% 0.007 248)",
+          "oklch(84% 0.007 248)",
+          "oklch(95% 0.007 248)"
+        ]
+      },
+      "status-amber": {
+        "role": "tertiary",
+        "displayName": "Status Amber",
+        "canonical": "#F59E0B",
+        "source": "--ls-warning",
+        "oklch": "oklch(76.9% 0.165 70)",
+        "tonalRamp": [
+          "oklch(15% 0.082 70)",
+          "oklch(26% 0.145 70)",
+          "oklch(38% 0.165 70)",
+          "oklch(49% 0.165 70)",
+          "oklch(61% 0.165 70)",
+          "oklch(72% 0.153 70)",
+          "oklch(84% 0.090 70)",
+          "oklch(95% 0.027 70)"
+        ]
+      },
+      "platform-indigo": {
+        "role": "secondary",
+        "displayName": "Platform Indigo",
+        "canonical": "#4F46E5",
+        "source": "--ls-platform-fill / --pf-accent",
+        "oklch": "oklch(51.1% 0.230 277)",
+        "tonalRamp": [
+          "oklch(15% 0.115 277)",
+          "oklch(26% 0.203 277)",
+          "oklch(38% 0.230 277)",
+          "oklch(49% 0.230 277)",
+          "oklch(61% 0.230 277)",
+          "oklch(72% 0.214 277)",
+          "oklch(84% 0.126 277)",
+          "oklch(95% 0.038 277)"
+        ],
+        "contrast": "white on it 6.29:1"
+      },
+      "platform-indigo-strong": {
+        "role": "secondary",
+        "displayName": "Indigo Strong",
+        "canonical": "#4338CA",
+        "source": "--ls-platform-fill-strong / --pf-accent-strong",
+        "oklch": "oklch(45.7% 0.215 277)",
+        "tonalRamp": [
+          "oklch(15% 0.107 277)",
+          "oklch(26% 0.189 277)",
+          "oklch(38% 0.215 277)",
+          "oklch(49% 0.215 277)",
+          "oklch(61% 0.215 277)",
+          "oklch(72% 0.199 277)",
+          "oklch(84% 0.118 277)",
+          "oklch(95% 0.036 277)"
+        ],
+        "contrast": "white on it 7.90:1"
+      },
+      "platform-indigo-on-navy": {
+        "role": "secondary",
+        "displayName": "Indigo on Navy",
+        "canonical": "#A5B4FC",
+        "source": "--ls-platform-on-dark / --pf-accent-on-dark",
+        "oklch": "oklch(78.5% 0.104 275)",
+        "tonalRamp": [
+          "oklch(15% 0.052 275)",
+          "oklch(26% 0.092 275)",
+          "oklch(38% 0.104 275)",
+          "oklch(49% 0.104 275)",
+          "oklch(61% 0.104 275)",
+          "oklch(72% 0.097 275)",
+          "oklch(84% 0.057 275)",
+          "oklch(95% 0.017 275)"
+        ],
+        "contrast": "8.27:1 on navy"
+      },
+      "platform-indigo-tint": {
+        "role": "secondary",
+        "displayName": "Indigo Tint",
+        "canonical": "#EEF2FF",
+        "source": "--ls-platform-tint / --pf-accent-tint",
+        "oklch": "oklch(96.2% 0.018 272)",
+        "tonalRamp": [
+          "oklch(15% 0.009 272)",
+          "oklch(26% 0.016 272)",
+          "oklch(38% 0.018 272)",
+          "oklch(49% 0.018 272)",
+          "oklch(61% 0.018 272)",
+          "oklch(72% 0.017 272)",
+          "oklch(84% 0.010 272)",
+          "oklch(95% 0.003 272)"
+        ]
+      },
+      "platform-wash": {
+        "role": "neutral",
+        "displayName": "Platform Wash",
+        "canonical": "#F6F7FB",
+        "source": "--pf-wash",
+        "oklch": "oklch(97.7% 0.005 275)",
+        "tonalRamp": [
+          "oklch(15% 0.005 275)",
+          "oklch(26% 0.005 275)",
+          "oklch(38% 0.005 275)",
+          "oklch(49% 0.005 275)",
+          "oklch(61% 0.005 275)",
+          "oklch(72% 0.005 275)",
+          "oklch(84% 0.005 275)",
+          "oklch(95% 0.005 275)"
+        ]
+      },
+      "platform-line-strong": {
+        "role": "neutral",
+        "displayName": "Line Strong",
+        "canonical": "#CBD5E1",
+        "source": "--pf-line-strong",
+        "oklch": "oklch(86.9% 0.020 253)",
+        "tonalRamp": [
+          "oklch(15% 0.010 253)",
+          "oklch(26% 0.017 253)",
+          "oklch(38% 0.020 253)",
+          "oklch(49% 0.020 253)",
+          "oklch(61% 0.020 253)",
+          "oklch(72% 0.018 253)",
+          "oklch(84% 0.011 253)",
+          "oklch(95% 0.003 253)"
+        ]
+      },
+      "code-bar": {
+        "role": "neutral",
+        "displayName": "Code Bar",
+        "canonical": "#0A1A33",
+        "source": "--pf-code-bar",
+        "oklch": "oklch(21.9% 0.054 259)",
+        "tonalRamp": [
+          "oklch(15% 0.027 259)",
+          "oklch(26% 0.047 259)",
+          "oklch(38% 0.054 259)",
+          "oklch(49% 0.054 259)",
+          "oklch(61% 0.054 259)",
+          "oklch(72% 0.050 259)",
+          "oklch(84% 0.029 259)",
+          "oklch(95% 0.009 259)"
+        ]
+      },
+      "code-text": {
+        "role": "neutral",
+        "displayName": "Code Text",
+        "canonical": "#E2E8F0",
+        "source": "--pf-code-text",
+        "oklch": "oklch(92.9% 0.013 256)",
+        "tonalRamp": [
+          "oklch(15% 0.006 256)",
+          "oklch(26% 0.011 256)",
+          "oklch(38% 0.013 256)",
+          "oklch(49% 0.013 256)",
+          "oklch(61% 0.013 256)",
+          "oklch(72% 0.012 256)",
+          "oklch(84% 0.007 256)",
+          "oklch(95% 0.002 256)"
+        ]
+      },
+      "code-muted": {
+        "role": "neutral",
+        "displayName": "Code Muted",
+        "canonical": "#94A3B8",
+        "source": "--pf-code-muted",
+        "oklch": "oklch(71.1% 0.035 257)",
+        "tonalRamp": [
+          "oklch(15% 0.018 257)",
+          "oklch(26% 0.031 257)",
+          "oklch(38% 0.035 257)",
+          "oklch(49% 0.035 257)",
+          "oklch(61% 0.035 257)",
+          "oklch(72% 0.033 257)",
+          "oklch(84% 0.019 257)",
+          "oklch(95% 0.006 257)"
+        ]
+      },
+      "syntax-keyword": {
+        "role": "tertiary",
+        "displayName": "Syntax Keyword",
+        "canonical": "#C4B5FD",
+        "source": ".c-k / .k",
+        "oklch": "oklch(81.1% 0.101 294)",
+        "tonalRamp": [
+          "oklch(15% 0.051 294)",
+          "oklch(26% 0.089 294)",
+          "oklch(38% 0.101 294)",
+          "oklch(49% 0.101 294)",
+          "oklch(61% 0.101 294)",
+          "oklch(72% 0.094 294)",
+          "oklch(84% 0.055 294)",
+          "oklch(95% 0.017 294)"
+        ]
+      },
+      "syntax-string": {
+        "role": "tertiary",
+        "displayName": "Syntax String",
+        "canonical": "#A7F3D0",
+        "source": ".c-s / .s",
+        "oklch": "oklch(90.5% 0.089 164)",
+        "tonalRamp": [
+          "oklch(15% 0.045 164)",
+          "oklch(26% 0.079 164)",
+          "oklch(38% 0.089 164)",
+          "oklch(49% 0.089 164)",
+          "oklch(61% 0.089 164)",
+          "oklch(72% 0.083 164)",
+          "oklch(84% 0.049 164)",
+          "oklch(95% 0.015 164)"
+        ]
+      },
+      "syntax-comment": {
+        "role": "tertiary",
+        "displayName": "Syntax Comment",
+        "canonical": "#7C8DA6",
+        "source": ".c-c / .c",
+        "oklch": "oklch(63.9% 0.043 258)",
+        "tonalRamp": [
+          "oklch(15% 0.021 258)",
+          "oklch(26% 0.037 258)",
+          "oklch(38% 0.043 258)",
+          "oklch(49% 0.043 258)",
+          "oklch(61% 0.043 258)",
+          "oklch(72% 0.039 258)",
+          "oklch(84% 0.023 258)",
+          "oklch(95% 0.007 258)"
+        ]
+      },
+      "syntax-function": {
+        "role": "tertiary",
+        "displayName": "Syntax Function",
+        "canonical": "#93C5FD",
+        "source": ".c-f / .f",
+        "oklch": "oklch(80.9% 0.096 252)",
+        "tonalRamp": [
+          "oklch(15% 0.048 252)",
+          "oklch(26% 0.084 252)",
+          "oklch(38% 0.096 252)",
+          "oklch(49% 0.096 252)",
+          "oklch(61% 0.096 252)",
+          "oklch(72% 0.089 252)",
+          "oklch(84% 0.052 252)",
+          "oklch(95% 0.016 252)"
+        ]
+      },
+      "syntax-number": {
+        "role": "tertiary",
+        "displayName": "Syntax Number",
+        "canonical": "#FCD34D",
+        "source": ".c-n",
+        "oklch": "oklch(87.9% 0.153 92)",
+        "tonalRamp": [
+          "oklch(15% 0.077 92)",
+          "oklch(26% 0.135 92)",
+          "oklch(38% 0.153 92)",
+          "oklch(49% 0.153 92)",
+          "oklch(61% 0.153 92)",
+          "oklch(72% 0.142 92)",
+          "oklch(84% 0.084 92)",
+          "oklch(95% 0.026 92)"
+        ]
+      },
+      "engine-openai": {
+        "role": "tertiary",
+        "displayName": "Engine OpenAI",
+        "canonical": "#10A37F",
+        "source": "--ls-engine-openai",
+        "oklch": "oklch(63.7% 0.124 170)",
+        "tonalRamp": [
+          "oklch(15% 0.062 170)",
+          "oklch(26% 0.109 170)",
+          "oklch(38% 0.124 170)",
+          "oklch(49% 0.124 170)",
+          "oklch(61% 0.124 170)",
+          "oklch(72% 0.115 170)",
+          "oklch(84% 0.068 170)",
+          "oklch(95% 0.021 170)"
+        ]
+      },
+      "engine-gemini": {
+        "role": "tertiary",
+        "displayName": "Engine Gemini",
+        "canonical": "#4285F4",
+        "source": "--ls-engine-gemini",
+        "oklch": "oklch(63.0% 0.180 260)",
+        "tonalRamp": [
+          "oklch(15% 0.090 260)",
+          "oklch(26% 0.159 260)",
+          "oklch(38% 0.180 260)",
+          "oklch(49% 0.180 260)",
+          "oklch(61% 0.180 260)",
+          "oklch(72% 0.167 260)",
+          "oklch(84% 0.099 260)",
+          "oklch(95% 0.030 260)"
+        ]
+      },
+      "engine-anthropic": {
+        "role": "tertiary",
+        "displayName": "Engine Anthropic",
+        "canonical": "#CC785C",
+        "source": "--ls-engine-anthropic",
+        "oklch": "oklch(65.8% 0.113 39)",
+        "tonalRamp": [
+          "oklch(15% 0.057 39)",
+          "oklch(26% 0.100 39)",
+          "oklch(38% 0.113 39)",
+          "oklch(49% 0.113 39)",
+          "oklch(61% 0.113 39)",
+          "oklch(72% 0.105 39)",
+          "oklch(84% 0.062 39)",
+          "oklch(95% 0.019 39)"
+        ]
+      },
+      "engine-perplexity": {
+        "role": "tertiary",
+        "displayName": "Engine Perplexity",
+        "canonical": "#22B8CD",
+        "source": "--ls-engine-perplexity",
+        "oklch": "oklch(71.9% 0.119 210)",
+        "tonalRamp": [
+          "oklch(15% 0.059 210)",
+          "oklch(26% 0.104 210)",
+          "oklch(38% 0.119 210)",
+          "oklch(49% 0.119 210)",
+          "oklch(61% 0.119 210)",
+          "oklch(72% 0.110 210)",
+          "oklch(84% 0.065 210)",
+          "oklch(95% 0.020 210)"
+        ]
+      },
+      "console-sidebar": {
+        "role": "neutral",
+        "displayName": "Console Sidebar",
+        "canonical": "#0A1628",
+        "source": "developers-console.html --gc-sidebar-bg",
+        "oklch": "oklch(20.0% 0.040 258)",
+        "tonalRamp": [
+          "oklch(15% 0.020 258)",
+          "oklch(26% 0.035 258)",
+          "oklch(38% 0.040 258)",
+          "oklch(49% 0.040 258)",
+          "oklch(61% 0.040 258)",
+          "oklch(72% 0.037 258)",
+          "oklch(84% 0.022 258)",
+          "oklch(95% 0.007 258)"
+        ]
+      },
+      "console-card": {
+        "role": "neutral",
+        "displayName": "Console Card",
+        "canonical": "#0E1D36",
+        "source": "developers-console.html --gc-card-bg",
+        "oklch": "oklch(23.2% 0.053 260)",
+        "tonalRamp": [
+          "oklch(15% 0.026 260)",
+          "oklch(26% 0.046 260)",
+          "oklch(38% 0.053 260)",
+          "oklch(49% 0.053 260)",
+          "oklch(61% 0.053 260)",
+          "oklch(72% 0.049 260)",
+          "oklch(84% 0.029 260)",
+          "oklch(95% 0.009 260)"
+        ]
+      },
+      "console-card-border": {
+        "role": "neutral",
+        "displayName": "Console Card Border",
+        "canonical": "#1C2E4D",
+        "source": "developers-console.html --gc-card-border",
+        "oklch": "oklch(30.2% 0.061 261)",
+        "tonalRamp": [
+          "oklch(15% 0.031 261)",
+          "oklch(26% 0.054 261)",
+          "oklch(38% 0.061 261)",
+          "oklch(49% 0.061 261)",
+          "oklch(61% 0.061 261)",
+          "oklch(72% 0.057 261)",
+          "oklch(84% 0.034 261)",
+          "oklch(95% 0.010 261)"
+        ]
+      },
+      "console-text-secondary": {
+        "role": "neutral",
+        "displayName": "Console Text Secondary",
+        "canonical": "#A9B7CB",
+        "source": "developers-console.html --gc-text-secondary",
+        "oklch": "oklch(77.5% 0.033 257)",
+        "tonalRamp": [
+          "oklch(15% 0.016 257)",
+          "oklch(26% 0.029 257)",
+          "oklch(38% 0.033 257)",
+          "oklch(49% 0.033 257)",
+          "oklch(61% 0.033 257)",
+          "oklch(72% 0.030 257)",
+          "oklch(84% 0.018 257)",
+          "oklch(95% 0.005 257)"
+        ]
+      },
+      "console-text-muted": {
+        "role": "neutral",
+        "displayName": "Console Text Muted",
+        "canonical": "#8FA2C6",
+        "source": "developers-console.html --gc-text-muted",
+        "oklch": "oklch(71.0% 0.057 263)",
+        "tonalRamp": [
+          "oklch(15% 0.029 263)",
+          "oklch(26% 0.050 263)",
+          "oklch(38% 0.057 263)",
+          "oklch(49% 0.057 263)",
+          "oklch(61% 0.057 263)",
+          "oklch(72% 0.053 263)",
+          "oklch(84% 0.031 263)",
+          "oklch(95% 0.010 263)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "GeoCheck 首頁 navy 場域兩行標題；強調詞改 Signal Blue。"
+      },
+      "display-platform": {
+        "displayName": "Display Platform",
+        "purpose": "Platform 首頁 hero 標題。"
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "GeoCheck 區塊標題。"
+      },
+      "headline-platform": {
+        "displayName": "Headline Platform",
+        "purpose": "Platform 區塊標題。"
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "檢測單抬頭與 /report 分段標題（字距 0.04em）。"
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "GeoCheck 內文，閱讀欄 42rem。"
+      },
+      "body-platform": {
+        "displayName": "Body Platform",
+        "purpose": "Platform 內文，法務欄 44rem。"
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "檢測單結果欄、價格、步驟編號；tabular-nums。"
+      },
+      "numeral-lead": {
+        "displayName": "Numeral Lead",
+        "purpose": "/report 主分數（手機 2rem）。"
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "GeoCheck／Platform 字標。"
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "報告編號、受檢網站、題數、日期；網址輸入框。"
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "navy 程式碼面板內文。"
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "檢測單表頭「項目／結果／判讀」。"
+      },
+      "flag": {
+        "displayName": "Flag",
+        "purpose": "判讀旗標文字。"
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "主要按鈕文字（Platform 為 0.9rem）。"
+      }
+    },
+    "shadows": [
+      {
+        "name": "slip-lift",
+        "value": "0 1px 0 #D5DDE8, 0 24px 48px -28px rgba(11, 31, 59, .35)",
+        "purpose": "檢測單浮在 Desk Grey 或場域邊緣；/report 單張為 0 1px 0 #D5DDE8, 0 28px 56px -32px rgba(11,31,59,.4)。"
+      },
+      {
+        "name": "probe-float",
+        "value": "0 24px 60px -20px rgba(0, 0, 0, .55)",
+        "purpose": "navy 場域上的白色網址輸入框。"
+      },
+      {
+        "name": "code-panel",
+        "value": "0 30px 60px -30px rgba(11, 31, 59, .55)",
+        "purpose": "Platform 首頁 navy 程式碼面板；docs 內程式碼區塊不帶陰影。"
+      },
+      {
+        "name": "modal",
+        "value": "0 32px 80px -24px rgba(0, 0, 0, .6)",
+        "purpose": "GeoCheck 設定視窗（遮罩 rgba(6,14,28,.62)）。"
+      },
+      {
+        "name": "toast",
+        "value": "0 16px 40px -16px rgba(0, 0, 0, .5)",
+        "purpose": "Platform 複製提示。"
+      },
+      {
+        "name": "nav-glass",
+        "value": "background: rgba(255,255,255,.92–.96); backdrop-filter: saturate(1.4) blur(10px)",
+        "purpose": "兩站 sticky 導覽列；唯一使用 backdrop-filter 的元素。"
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 2px solid <action colour>; outline-offset: 2–3px; border-radius: 4px",
+        "purpose": "GeoCheck #1D4ED8（navy 上 #60A5FA）；Platform #4F46E5（navy 上 #A5B4FC）。"
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "兩站共用緩出（--gc-ease / --pf-ease）。"
+      },
+      {
+        "name": "radar-sweep",
+        "value": "sweep 9s linear infinite (rotate 360deg)",
+        "purpose": "GeoCheck 唯一的持續動畫。"
+      },
+      {
+        "name": "radar-sweep-scanning",
+        "value": "animation-duration: 2.4s (body.is-scanning)",
+        "purpose": "送出檢查後加速；錯誤時移除 is-scanning。"
+      },
+      {
+        "name": "button-state",
+        "value": ".15s–.18s ease",
+        "purpose": "按鈕底色／框線轉換；GeoCheck 按下 translateY(1px)。"
+      },
+      {
+        "name": "arrow-nudge",
+        "value": "transform translateX(3px) .2s ease-out-expo",
+        "purpose": "文字連結箭頭 hover。"
+      },
+      {
+        "name": "disclosure",
+        "value": "transform rotate(45deg) .3s ease-out-expo",
+        "purpose": "FAQ 加號轉 ×；摺疊箭頭 .2–.3s。"
+      },
+      {
+        "name": "nav-drop",
+        "value": "translateY(-100%) → none, .35s ease-out-expo",
+        "purpose": "GeoCheck 捲動後導覽列滑入。"
+      },
+      {
+        "name": "modal-rise",
+        "value": "translateY(16px)+opacity 0 → none, .35s; overlay fade .2s",
+        "purpose": "GeoCheck 設定視窗。"
+      },
+      {
+        "name": "progress-fill",
+        "value": "width .9s ease-out-expo",
+        "purpose": "檢查進度條。"
+      },
+      {
+        "name": "toast",
+        "value": "translate(-50%,16px)+opacity → shown, .3s",
+        "purpose": "Platform 複製提示，2.2s 後收回。"
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation/transition-duration .01ms, iteration 1, scroll-behavior auto",
+        "purpose": "兩站 prefers-reduced-motion；雷達因此靜止。"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "geocheck-probe-stack",
+        "value": "560px"
+      },
+      {
+        "name": "geocheck-radar-mobile",
+        "value": "600px"
+      },
+      {
+        "name": "slip-stack",
+        "value": "640px"
+      },
+      {
+        "name": "report-stack",
+        "value": "760px"
+      },
+      {
+        "name": "geocheck-nav-fold",
+        "value": "820px"
+      },
+      {
+        "name": "geocheck-specimen-stack",
+        "value": "880px"
+      },
+      {
+        "name": "platform-nav-min",
+        "value": "420px"
+      },
+      {
+        "name": "platform-code-wrap",
+        "value": "520px"
+      },
+      {
+        "name": "platform-table-stack",
+        "value": "640px"
+      },
+      {
+        "name": "platform-nav-fold",
+        "value": "860px"
+      },
+      {
+        "name": "docs-sidebar-fold",
+        "value": "900px"
+      },
+      {
+        "name": "platform-hero-stack",
+        "value": "960px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "GeoCheck Primary Button",
+      "kind": "button",
+      "refersTo": "button-geocheck",
+      "description": "GeoCheck 唯一行動按鈕：開始檢查、免費檢查。",
+      "html": "<button class=\"ds-gc-btn\">開始檢查</button>",
+      "css": ".ds-gc-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border:0;border-radius:8px;background:var(--ls-accent-on-light,#1D4ED8);color:#fff;font:700 .95rem/1 'Noto Sans TC',system-ui,sans-serif;letter-spacing:.01em;cursor:pointer;transition:background-color .18s ease,transform .18s cubic-bezier(0.16,1,0.3,1)}.ds-gc-btn:hover{background:var(--ls-accent-on-light-strong,#1E40AF)}.ds-gc-btn:active{transform:translateY(1px)}.ds-gc-btn:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px}.ds-gc-btn:disabled{background:#7C8BA1;cursor:progress}"
+    },
+    {
+      "name": "Platform Primary Button",
+      "kind": "button",
+      "refersTo": "button-platform",
+      "description": "Platform／Console 行動按鈕：進入控制台、閱讀技術文件。",
+      "html": "<button class=\"ds-pf-btn\">進入控制台</button>",
+      "css": ".ds-pf-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border:1px solid transparent;border-radius:8px;background:var(--ls-platform-fill,#4F46E5);color:#fff;font:700 .9rem/1 'Noto Sans TC',system-ui,sans-serif;white-space:nowrap;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease}.ds-pf-btn:hover{background:var(--ls-platform-fill-strong,#4338CA)}.ds-pf-btn:focus-visible{outline:2px solid #4F46E5;outline-offset:2px}.ds-pf-btn:disabled{opacity:.55;cursor:not-allowed}"
+    },
+    {
+      "name": "Platform Ghost Button",
+      "kind": "button",
+      "refersTo": "button-platform-ghost",
+      "description": "Platform 次要動作，與 primary 並排。",
+      "html": "<button class=\"ds-pf-ghost\">閱讀文件</button>",
+      "css": ".ds-pf-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid #CBD5E1;border-radius:8px;background:#fff;color:#0B1F3B;font:700 .9rem/1 'Noto Sans TC',system-ui,sans-serif;cursor:pointer;transition:background-color .15s ease,border-color .15s ease}.ds-pf-ghost:hover{background:#F6F7FB;border-color:#64748B}.ds-pf-ghost:focus-visible{outline:2px solid #4F46E5;outline-offset:2px}"
+    },
+    {
+      "name": "URL Probe",
+      "kind": "input",
+      "refersTo": "probe-input",
+      "description": "GeoCheck navy 場域中央的網址輸入框＋開始檢查。",
+      "html": "<div class=\"ds-field\"><form class=\"ds-probe\" onsubmit=\"return false\"><input type=\"url\" placeholder=\"https://your-website.com\" aria-label=\"網站網址\"><button class=\"ds-probe-btn\">開始檢查</button></form></div>",
+      "css": ".ds-field{padding:32px 16px;background:radial-gradient(120% 90% at 50% 38%,#10284A 0%,#0B1F3B 46%,#060E1C 100%)}.ds-probe{display:flex;gap:6px;width:min(100%,580px);margin:0 auto;padding:6px;border-radius:10px;background:#fff;box-shadow:0 24px 60px -20px rgba(0,0,0,.55)}.ds-probe input{flex:1;min-width:0;height:52px;padding:0 14px;border:0;border-radius:6px;background:transparent;font:400 1rem/1 'IBM Plex Mono',ui-monospace,monospace;color:#0B1F3B}.ds-probe input::placeholder{color:#64748B}.ds-probe input:focus-visible{outline:2px solid #1D4ED8;outline-offset:0}.ds-probe-btn{min-height:52px;padding:0 24px;border:0;border-radius:8px;background:#1D4ED8;color:#fff;font:700 1rem/1 'Noto Sans TC',system-ui,sans-serif;cursor:pointer;transition:background-color .18s ease}.ds-probe-btn:hover{background:#1E40AF}.ds-probe-btn:focus-visible{outline:2px solid #60A5FA;outline-offset:3px}"
+    },
+    {
+      "name": "Result Flags",
+      "kind": "chip",
+      "refersTo": "flag-yes",
+      "description": "判讀旗標：有／部分／無／未知（空心點），以及「範例」樣本標記。",
+      "html": "<div class=\"ds-flags\"><span class=\"ds-flag ds-flag--yes\">有</span><span class=\"ds-flag ds-flag--part\">部分</span><span class=\"ds-flag ds-flag--no\">無</span><span class=\"ds-flag ds-flag--unknown\">未知</span><span class=\"ds-flag ds-flag--sample\">範例</span></div>",
+      "css": ".ds-flags{display:flex;flex-wrap:wrap;gap:8px}.ds-flag{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:4px;font:700 .76rem/1.6 'Noto Sans TC',system-ui,sans-serif;letter-spacing:.04em;white-space:nowrap}.ds-flag::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}.ds-flag--yes{color:#047857;background:#ECFDF5}.ds-flag--part{color:#B45309;background:#FFF4E0}.ds-flag--no{color:#B91C1C;background:#FEF2F2}.ds-flag--unknown{color:#475569;background:#F1F5F9}.ds-flag--unknown::before{background:transparent;border:1.5px solid currentColor;width:7px;height:7px}.ds-flag--sample{color:#0B1F3B;background:transparent;border:1px solid #0B1F3B;letter-spacing:.12em}.ds-flag--sample::before{display:none}"
+    },
+    {
+      "name": "Result Slip",
+      "kind": "card",
+      "refersTo": "result-slip",
+      "description": "GeoCheck 的白色檢測單：抬頭＋等寬中繼資料＋項目／結果／判讀三欄。",
+      "html": "<article class=\"ds-slip\"><header class=\"ds-slip-head\"><p class=\"ds-slip-title\">AI 能見度檢測單 <span class=\"ds-sflag\">範例</span></p><div class=\"ds-slip-meta\"><span>受檢網站 <b>example.com</b></span><span>觀測題數 <b>4</b></span><span>報告編號 <b>GC-SAMPLE</b></span></div></header><table class=\"ds-slip-table\"><thead><tr><th>項目</th><th>結果</th><th>判讀</th></tr></thead><tbody><tr><th>AI 信任值</th><td class=\"ds-v\">44 / 100</td><td class=\"ds-f\"><span class=\"ds-fl ds-part\">部分</span></td></tr><tr><th>未取得回答</th><td class=\"ds-v\">0 題</td><td class=\"ds-f\"><span class=\"ds-fl ds-unk\">未知另計</span></td></tr></tbody></table></article>",
+      "css": ".ds-slip{background:#fff;border:1px solid #D5DDE8;border-radius:4px;box-shadow:0 1px 0 #D5DDE8,0 24px 48px -28px rgba(11,31,59,.35);font-family:'Noto Sans TC',system-ui,sans-serif;color:#1E293B}.ds-slip-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;align-items:baseline;padding:24px 28px 18px;border-bottom:2px solid #0B1F3B}.ds-slip-title{margin:0;font-size:1.15rem;font-weight:900;letter-spacing:.04em;color:#0B1F3B}.ds-slip-meta{display:flex;flex-wrap:wrap;gap:4px 20px;font:400 .78rem/1.6 'IBM Plex Mono',ui-monospace,monospace;color:#475569}.ds-slip-meta b{font-weight:500;color:#1E293B}.ds-sflag{display:inline-flex;padding:2px 8px;border:1px solid #0B1F3B;border-radius:4px;font:700 .76rem/1.6 'Noto Sans TC',sans-serif;letter-spacing:.12em;vertical-align:.15em;margin-left:6px}.ds-slip-table{width:100%;border-collapse:collapse;font-size:.95rem;font-variant-numeric:tabular-nums}.ds-slip-table th,.ds-slip-table td{padding:14px 28px;text-align:left;border-bottom:1px solid #E2E8F0}.ds-slip-table thead th{padding-top:10px;padding-bottom:10px;font:500 .74rem/1.4 'Noto Sans TC',sans-serif;letter-spacing:.08em;color:#64748B;border-bottom:1px solid #D5DDE8}.ds-slip-table tbody th{font-weight:700;color:#0B1F3B;width:38%}.ds-v{font:700 1.05rem/1.4 'Space Grotesk','Noto Sans TC',sans-serif;color:#0B1F3B;white-space:nowrap}.ds-f{text-align:right}.ds-fl{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:4px;font:700 .76rem/1.6 'Noto Sans TC',sans-serif;letter-spacing:.04em}.ds-fl::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}.ds-part{color:#B45309;background:#FFF4E0}.ds-unk{color:#475569;background:#F1F5F9}.ds-unk::before{background:transparent;border:1.5px solid currentColor;width:7px;height:7px}"
+    },
+    {
+      "name": "Navy Radar Field",
+      "kind": "custom",
+      "refersTo": "navy-field",
+      "description": "GeoCheck 的量測儀器：同心圓細線雷達＋單一藍色掃描；檢查進行中加速。",
+      "html": "<div class=\"ds-radar\" aria-hidden=\"true\"><div class=\"ds-scope\"><svg viewBox=\"0 0 100 100\" fill=\"none\"><g stroke=\"rgba(148,163,184,.16)\" stroke-width=\".12\"><circle cx=\"50\" cy=\"50\" r=\"17.5\"/><circle cx=\"50\" cy=\"50\" r=\"35\" stroke=\"rgba(148,163,184,.22)\"/><circle cx=\"50\" cy=\"50\" r=\"52.5\"/><circle cx=\"50\" cy=\"50\" r=\"69.9\"/><path d=\"M50 0V100M0 50H100\" stroke=\"rgba(148,163,184,.08)\"/></g></svg><div class=\"ds-sweep\"></div></div></div>",
+      "css": ".ds-radar{position:relative;overflow:hidden;height:320px;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 38%,#10284A 0%,#0B1F3B 46%,#060E1C 100%)}.ds-scope{position:relative;width:520px;aspect-ratio:1}.ds-scope svg{position:absolute;inset:0;width:100%;height:100%}.ds-sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(96,165,250,0) 0deg,rgba(96,165,250,0) 300deg,rgba(96,165,250,.16) 352deg,rgba(147,197,253,.42) 359.6deg,rgba(96,165,250,0) 360deg);-webkit-mask:radial-gradient(circle,#000 0 69.5%,transparent 70%);mask:radial-gradient(circle,#000 0 69.5%,transparent 70%);animation:ds-sweep 9s linear infinite}.ds-radar:hover .ds-sweep{animation-duration:2.4s}@keyframes ds-sweep{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){.ds-sweep{animation:none}}"
+    },
+    {
+      "name": "Navy Code Panel",
+      "kind": "custom",
+      "refersTo": "code-panel",
+      "description": "Platform 每畫面一塊的 navy 程式碼面板：分頁＋複製＋真實 request/response。",
+      "html": "<div class=\"ds-code\"><div class=\"ds-code-bar\"><div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">cURL</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">TypeScript</button></div><button class=\"ds-copy\">複製</button></div><pre><span class=\"ds-c\">curl</span> -X POST https://platform.lslabs.tw/v1/measurements \\\n  -H <span class=\"ds-s\">\"Idempotency-Key: $(uuidgen)\"</span>\n\n<span class=\"ds-cm\"># 202 → 輪詢 GET /v1/measurements/:id</span>\n{ <span class=\"ds-k\">\"status\"</span>: <span class=\"ds-s\">\"succeeded\"</span> }</pre></div>",
+      "css": ".ds-code{background:#0B1F3B;color:#E2E8F0;border-radius:10px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(11,31,59,.55)}.ds-code-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 8px 0 4px;background:#0A1A33;border-bottom:1px solid rgba(148,163,184,.14)}.ds-tabs{display:flex;gap:2px}.ds-tab{min-height:40px;padding:0 12px;border:0;border-bottom:2px solid transparent;background:transparent;color:#94A3B8;font:500 .8rem/1 'IBM Plex Mono',ui-monospace,monospace;cursor:pointer}.ds-tab:hover{color:#E2E8F0}.ds-tab[aria-selected=true]{color:#fff;border-bottom-color:#A5B4FC}.ds-tab:focus-visible,.ds-copy:focus-visible{outline:2px solid #A5B4FC;outline-offset:2px}.ds-copy{min-height:30px;padding:0 10px;border:1px solid rgba(148,163,184,.25);border-radius:6px;background:transparent;color:#94A3B8;font:500 .76rem/1 'Noto Sans TC',sans-serif;cursor:pointer}.ds-copy:hover{color:#fff;border-color:rgba(148,163,184,.5)}.ds-code pre{margin:0;padding:20px 22px;overflow-x:auto;font:400 .82rem/1.7 'IBM Plex Mono',ui-monospace,monospace}.ds-k{color:#C4B5FD}.ds-s{color:#A7F3D0}.ds-cm{color:#7C8DA6}.ds-c{color:#93C5FD}"
+    },
+    {
+      "name": "GeoCheck Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link-geocheck",
+      "description": "白色毛玻璃 sticky 導覽列；目前頁為藍字淡藍底。",
+      "html": "<nav class=\"ds-gnav\"><a class=\"ds-glogo\" href=\"#\"><b>GeoCheck</b><small>by LS-Labs</small></a><ul><li><a href=\"#\" class=\"on\">報告長什麼樣</a></li><li><a href=\"#\">計算方法</a></li><li><a href=\"#\">常見問題</a></li><li><a href=\"#\" class=\"ds-gcta\">免費檢查</a></li></ul></nav>",
+      "css": ".ds-gnav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding:0 16px;background:rgba(255,255,255,.94);border-bottom:1px solid #E2E8F0;backdrop-filter:saturate(1.4) blur(10px)}.ds-glogo{display:inline-flex;align-items:baseline;gap:10px;color:#0B1F3B;text-decoration:none}.ds-glogo b{font:700 1.12rem/1 'Space Grotesk',sans-serif;letter-spacing:-.01em}.ds-glogo small{font:500 .72rem/1 'Space Grotesk',sans-serif;color:#475569}.ds-gnav ul{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0}.ds-gnav a:not(.ds-glogo):not(.ds-gcta){display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border-radius:6px;font:500 .92rem/1 'Noto Sans TC',sans-serif;color:#1E293B;text-decoration:none}.ds-gnav a:not(.ds-glogo):not(.ds-gcta):hover,.ds-gnav a.on{color:#1D4ED8;background:#EFF6FF}.ds-gcta{display:inline-flex;align-items:center;min-height:38px;padding:0 16px;margin-left:8px;border-radius:8px;background:#1D4ED8;color:#fff;font:700 .88rem/1 'Noto Sans TC',sans-serif;text-decoration:none}.ds-gcta:hover{background:#1E40AF}.ds-gnav a:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px}"
+    },
+    {
+      "name": "Platform Status Pill",
+      "kind": "chip",
+      "refersTo": "status-pill",
+      "description": "只顯示真實開放狀態的膠囊（琥珀圓點）。",
+      "html": "<span class=\"ds-status\">Private Beta・付款尚未開放</span>",
+      "css": ".ds-status{display:inline-flex;align-items:center;gap:8px;padding:4px 10px;border:1px solid #CBD5E1;border-radius:999px;font:400 .8rem/1.5 'Noto Sans TC',sans-serif;color:#475569;background:#fff}.ds-status::before{content:'';width:7px;height:7px;border-radius:50%;background:#F59E0B}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Instrument and Its Slip（GeoCheck）／The Request Is the Proof（Platform）",
+    "overview": "家族層只有一個承諾：同一片 navy 夜色（`navy-field` #0B1F3B）、同一組字體（Noto Sans TC、Space Grotesk、IBM Plex Mono，皆為 LS-Labs 母品牌指定字體）、同一套 slate 中性色與 1px 細線。兩個產品在這個底上各自有一個主視覺與一個行動色，互不借用。\n\nGeoCheck 是「儀器與它印出的檢測單」。navy 場域裡只有一座細線雷達與一道藍色掃描；它產出的是一張白色、方角、有印刷格線的檢測單（簡化版實驗室報告）：每列是「項目／結果／判讀」，判讀用一個小旗標（有／部分／無／未知），報告編號與日期用等寬字。LS 藍（`lab-blue` #1D4ED8）是唯一行動色。它明確拒絕發光的深色 SaaS hero、漂浮晶片與分數儀表。\n\nPlatform 是把類別標準做到位的開發者平台（以 Stripe／Resend／Vercel 文件站的精緻度為基準）：白與冷灰紙面、navy 墨色、每個畫面一塊 navy 程式碼面板，證據就是真實的 request 與四引擎 response。LS 靛色（`platform-indigo` #4F46E5）是 Platform 自己的行動色。Console 是唯一的深色例外：它被視為「程式碼面板的內部」，沿用同一套色、字與靛色行動，但不發光。",
+    "keyCharacteristics": [
+      "一片 navy 基底、兩個行動色：GeoCheck 藍、Platform 靛，各守各的站。",
+      "資料永遠有字體分工：中文用 Noto Sans TC，數字用 Space Grotesk 等寬數字，編號／日期／程式碼用 IBM Plex Mono。",
+      "以 1px 細線與紙面層次分區；陰影只用在「浮起的紙」與「程式碼面板」。",
+      "「未知」在視覺上與「0」和「無」都不同：灰色、空心圓點。",
+      "動態極少：GeoCheck 只有一道雷達掃描；其他都是短暫的狀態轉場，並尊重 reduced motion。"
+    ],
+    "rules": [
+      {
+        "name": "The One Action Colour Rule",
+        "body": "每個產品只有一個行動色：GeoCheck 是 LS 藍（#1D4ED8），Platform 與 Console 是 LS 靛（#4F46E5）。不在 GeoCheck 用靛色，不以 LS 藍當 Platform 的按鈕。",
+        "section": "colors"
+      },
+      {
+        "name": "The On-Light / On-Dark Rule",
+        "body": "顏色依「放在什麼底上」取用，不依色相取用。亮面文字用 `-on-light` 階；navy 上用 `-on-dark` 階。#3B82F6 當白底文字或承載白字都只有 3.68:1，一律不用；#94A3B8 在白底只有 2.56:1，只准出現在 navy 上；#64748B 在 `--ls-void` 上只有 4.14:1、在 navy 上 3.47:1、在 Desk Grey 上 4.23:1（後兩者本檔計算），只准出現在白紙上。",
+        "section": "colors"
+      },
+      {
+        "name": "The Green Is a Status Rule",
+        "body": "綠色只表示「有／成功」，永遠不是行動。所有互動由行動色承擔。",
+        "section": "colors"
+      },
+      {
+        "name": "The Unknown Is Not Zero Rule",
+        "body": "「未知」有自己的灰色與空心圓點，不得借用「無」的紅，也不得顯示為 0。",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Voices Rule",
+        "body": "文字、數字、證據三種聲音各用一款字：Noto Sans TC 說話、Space Grotesk 計數、IBM Plex Mono 記錄。不在內文段落中使用等寬字，也不用 Space Grotesk 排中文。",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Numbers Rule",
+        "body": "任何會上下比對的數字（分數、百分比、題數、價格）都開 `font-variant-numeric: tabular-nums`。",
+        "section": "typography"
+      },
+      {
+        "name": "The Paper Lifts, Nothing Glows Rule",
+        "body": "只有紙（檢測單、輸入框、視窗）與程式碼面板可以有陰影；Console 的卡片、統計框、方案卡陰影為 none，以 1px 框線分層。",
+        "section": "elevation"
+      },
+      {
+        "name": "The Sticky Glass Rule",
+        "body": "捲動時的導覽列是唯一使用 backdrop-filter 的元素（白 92–96% 透明度＋`saturate(1.4) blur(10px)`）。",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** 先載入 `tokens.css`，再載入產品層 CSS；新值先進 `--ls-*`（家族）或 `--gc-*`／`--pf-*`（產品），以用途命名，不以色相命名。",
+      "**Do** 讓每個產品只有一個行動色：GeoCheck 用 Lab Blue（#1D4ED8），Platform 與 Console 用 Platform Indigo（#4F46E5）。",
+      "**Do** 依底色取用色階：亮面用 `-on-light`，navy 上用 `-on-dark`／Signal Blue／Indigo on Navy。",
+      "**Do** 在 GeoCheck 以「白色檢測單＋項目／結果／判讀＋旗標」呈現結果，數字用 Space Grotesk 等寬數字，編號與日期用 IBM Plex Mono。",
+      "**Do** 把缺資料標成「未知」旗標（灰、空心圓點），並與 0 分和「無」分開呈現。",
+      "**Do** 在任何示範資料上加「範例」旗標。",
+      "**Do** 在 Platform 每個畫面只放一塊 navy 程式碼面板，內容是真實 request／response 結構，並附分頁與複製。",
+      "**Do** 以 1px 細線與底色交替分區；GeoCheck 的卡片型內容用 0 圓角＋頂端 2px 墨線。",
+      "**Do** 保持 16px 手機邊距與無水平捲動；表格在 640px 以下改成堆疊列。"
+    ],
+    "donts": [
+      "**Don't** 做發光的深色 SaaS hero、漂浮晶片或分數儀表（GeoCheck 方向契約明確拒絕）。",
+      "**Don't** 在 GeoCheck 加第二座雷達、第二道掃描或其他持續動畫；雷達只在檢查進行中加速。",
+      "**Don't** 把 #3B82F6 當白底文字或讓它承載白字（3.68:1）；不把 #94A3B8 用在亮面（2.56:1）；不把 #64748B 用在 navy 或 Desk Grey 上。",
+      "**Don't** 用綠色當行動色；綠色只代表「有」。",
+      "**Don't** 把四個引擎識別色合併成品牌藍，也不拿它們當裝飾色。",
+      "**Don't** 在 GeoCheck 使用靛色，或在 Platform 使用 LS 藍當按鈕。",
+      "**Don't** 在 Console 加發光陰影或 glow；Console 卡片以框線分層。",
+      "**Don't** 用硬邊位移陰影；陰影只給檢測單、輸入框、視窗、程式碼面板與 toast。",
+      "**Don't** 用狀態膠囊或任何視覺元素暗示未開放的能力（付款、額度）已開放。"
+    ]
+  }
+}
