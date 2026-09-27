@@ -77,6 +77,10 @@ assert.match(
   "The legacy hyphenated docs path must keep working"
 );
 
+const whitepaper = fs.readFileSync(output("whitepaper.html"), "utf8");
+assert.match(whitepaper, /src="\/assets\/dashboard-banner\.webp"/, "Whitepaper must use the optimized dashboard banner");
+assert.ok(fs.statSync(output("assets", "dashboard-banner.webp")).size < 1_000_000, "Dashboard banner must stay below 1 MB");
+
 // The Console must be same-origin with the B API it calls. On platform.lslabs.tw
 // the canonical link is therefore root-relative and cannot drift to the legacy host.
 const CONSOLE_PATH = "/console";
