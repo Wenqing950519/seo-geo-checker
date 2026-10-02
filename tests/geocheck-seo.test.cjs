@@ -25,3 +25,8 @@ test('legal pages retain deliberate noindex, follow and matching HTTPS canonical
     assert.ok(!sitemap.includes(`https://geocheck.lslabs.tw/${name}</loc>`));
   }
 });
+
+test('the indexable interface demo is reachable from the public homepage',()=>{
+  const home=fs.readFileSync(path.join(publicDir,'home.html'),'utf8');
+  assert.ok(home.includes('href="/demo"'), 'Homepage must provide a real link to its sitemap-listed demo');
+});
