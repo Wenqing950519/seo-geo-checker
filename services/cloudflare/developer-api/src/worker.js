@@ -177,8 +177,8 @@ function platformAssetPath(pathname) {
   const legalPage = /^\/(pricing|terms|privacy|refund)(?:\/|\.html)?$/.exec(pathname);
   if (legalPage) return `/platform/${legalPage[1]}`;
   // Keep crawler metadata on the Platform origin while Console/API paths stay isolated.
-  if (pathname === "/" || pathname === "/developers" || pathname === "/developers/") return "/developers";
-  if (pathname === "/docs" || pathname === "/docs/" || pathname === "/developers/docs" || pathname === "/developers/docs/") return "/developers/docs";
+  if (pathname === "/" || pathname === "/developers" || pathname === "/developers/" || pathname === "/developers.html") return "/developers";
+  if (pathname === "/docs" || pathname === "/docs/" || pathname === "/developers/docs" || pathname === "/developers/docs/" || pathname === "/docs.html" || pathname === "/developers/docs.html") return "/developers/docs";
   if (pathname === "/sitemap.xml") return "/platform-sitemap.xml";
   if (pathname === "/robots.txt") return "/platform-robots.txt";
   if (isConsolePath(pathname)) return "/developers-console";
@@ -204,6 +204,13 @@ async function handleRequest(request, env) {
   // platform.lslabs.tw is the entire developer surface: landing, documentation,
   // Console and /v1 share one origin so browser sessions never cross products.
   if ((request.method === "GET" || request.method === "HEAD") && url.hostname === "platform.lslabs.tw") {
+    // Redirect only anonymous public pages. API, OAuth and Console requests
+    // retain their existing methods and routing behavior.
+    if (url.protocol === "http:" && !isConsolePath(pathname)
+      && (platformAssetPath(pathname) || platformContentRedirect(url))) {
+      url.protocol = "https:";
+      return Response.redirect(url.href, 301);
+    }
     const contentRedirect = platformContentRedirect(url);
     if (contentRedirect) return contentRedirect;
     const assetPath = platformAssetPath(pathname);

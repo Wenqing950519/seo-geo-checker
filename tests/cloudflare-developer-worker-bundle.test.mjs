@@ -30,6 +30,9 @@ try {
   // geocheck.lslabs.tw. Without this, static assets answer first on
   // platform.lslabs.tw and the redirect to the main domain never runs.
   assert.deepEqual(developerConfig.assets.run_worker_first, [
+    "/", "/developers", "/developers/", "/developers.html",
+    "/docs", "/docs/", "/docs.html",
+    "/developers/docs", "/developers/docs/", "/developers/docs.html",
     "/brand", "/brand/", "/whitepaper", "/whitepaper/",
     "/sitemap.xml", "/robots.txt",
     "/pricing", "/pricing/", "/pricing.html",

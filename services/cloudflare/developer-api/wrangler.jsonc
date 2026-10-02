@@ -9,6 +9,9 @@
     "directory": "../../../apps/web/public",
     "binding": "ASSETS",
     "run_worker_first": [
+      "/", "/developers", "/developers/", "/developers.html",
+      "/docs", "/docs/", "/docs.html",
+      "/developers/docs", "/developers/docs/", "/developers/docs.html",
       "/brand", "/brand/", "/whitepaper", "/whitepaper/",
       "/sitemap.xml", "/robots.txt",
       "/pricing", "/pricing/", "/pricing.html",
