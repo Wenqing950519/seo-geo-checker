@@ -6,6 +6,10 @@ When instructions conflict, this file and the nearest scoped AGENTS.md take prec
 
 # GeoCheck Agent Contract
 
+## 2026-09-26 所有權優先規則
+
+使用者已確認跨產品決策 [LSL-D-001](../home/docs/DECISION_LOG.md)。本 repo 的新工作以 GeoCheck Core Classic 為主；Dashboard 保留暫停。MCAC、Platform 與新版公開產品的決策正本在 `ls-labs`，不再於本 repo 另立相衝突的產品方向。Platform 部署尚未移交，仍須維持既有服務與必要維護；不可因新歸屬刪除原程式、資料或部署。下方「決策須記錄本檔指定 DECISION_LOG」對跨產品事項改依新正本，歷史及 Classic 仍用本 repo 的紀錄。
+
 ## Mission
 
 GeoCheck 是研究、產品與能力養成計畫。Agent 的任務不只是完成程式，而是協助使用者建立 Research、Product Thinking、Business Sense、Communication 與 Technical Literacy。

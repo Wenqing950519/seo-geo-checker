@@ -41,6 +41,8 @@ assert.match(dashboardIndex, /src="\/app\.js"/, "Dashboard deployment must serve
 assert.match(dashboardIndex, /https:\/\/app\.lslabs\.tw\//, "Dashboard must declare its new canonical origin");
 
 const redirects = fs.readFileSync(output("_redirects"), "utf8");
+assert.match(redirects, /^\/home\s+\/\s+301$/m, "GeoCheck /home must permanently redirect to /");
+assert.match(redirects, /^\/home\/\s+\/\s+301$/m, "GeoCheck /home/ must permanently redirect to /");
 assert.doesNotMatch(redirects, /^\/(privacy|terms|refund)\s/m, "Pages automatically maps extensionless HTML paths; duplicate redirects loop");
 
 // _redirects is shared by Cloudflare Pages and the B API Worker, whose assets
@@ -75,6 +77,26 @@ assert.ok(
 assert.match(
   redirects, /^\/developers-docs\s+\/developers\/docs\s+308$/m,
   "The legacy hyphenated docs path must keep working"
+);
+
+const sitemap = fs.readFileSync(output("sitemap.xml"), "utf8");
+for (const route of ["privacy", "terms", "refund"]) {
+  assert.ok(!sitemap.includes(`https://geocheck.lslabs.tw/${route}`), `${route} must stay out of the sitemap`);
+  const html = fs.readFileSync(output(`${route}.html`), "utf8");
+  assert.match(html, /<meta name="robots" content="noindex,follow">/, `${route} must be noindex,follow`);
+  assert.match(html, new RegExp(`<link rel="canonical" href="https://geocheck\\.lslabs\\.tw/${route}">`));
+}
+for (const route of ["demo", "whitepaper"]) {
+  const html = fs.readFileSync(output(`${route}.html`), "utf8");
+  assert.match(html, new RegExp(`<link rel="canonical" href="https://geocheck\\.lslabs\\.tw/${route}">`));
+}
+const whitepaper = fs.readFileSync(output("whitepaper.html"), "utf8");
+assert.match(whitepaper, /src="\/assets\/dashboard-banner\.webp"/, "Whitepaper must use the optimized dashboard banner");
+assert.ok(fs.statSync(output("assets", "dashboard-banner.webp")).size < 1_000_000, "Dashboard banner must stay below 1 MB");
+assert.match(
+  fs.readFileSync(output("home.html"), "utf8"),
+  /<!--email_off--><a href="mailto:zzz\.lisheng@gmail\.com">聯絡我們<\/a><!--\/email_off-->/,
+  "Cloudflare must not rewrite the public contact link into an email-protection crawl URL"
 );
 
 // The Console must be same-origin with the B API it calls. On platform.lslabs.tw

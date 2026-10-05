@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-09-14
+last_updated: 2026-10-02
 tags:
   - geocheck
   - current-state
@@ -11,6 +11,22 @@ tags:
 > 內容未經改動。此檔為營運現況的共同事實來源；狀態變更時必須更新此處，不得只寫在對話或記憶中。
 
 # GeoCheck 當前運作狀態
+
+## 2026-10-02 公開 SEO 修復（已部署，三個 LS-Labs Ahrefs 新掃描驗收通過）
+
+Geo 原始修復 `358265367607492e5cd06986dbb199af98a9af7f` 與 demo 內鏈 `4e0ab9c82f10eb11249cd81565f6034b3acb640b` 已推送正式 main，GitHub Cloudflare Pages／Workers Builds success。最新 Platform Worker `6204b967-2b1d-48d0-8a14-4ea96f8bc9f1` 為 100% 流量；Geo Pages `6fb0936e-10ff-4981-8c2f-97dd9c51f9c3` success，精確來源為 `4e0ab9c`。
+
+Platform 公開 GET／HEAD 的 HTTP 版本 301 到相同 HTTPS path/query；首頁／文件別名 canonical 收斂，sitemap 只列 `/`、`/docs`，OG／Twitter 齊備。API POST、OAuth、Console 路由與金流狀態保持既有邊界。Geo 首頁 mailto 正常，不再生成 email-protection 壞連結；demo／歷史白皮書 metadata 與首頁「介面示範」入口已驗收。法務頁保留 noindex,follow 並移出 sitemap，白皮書保留歷史 65/35 方法。
+
+10/2 Ahrefs GeoCheck、Platform、LS-Labs Public Web 均 Completed、Health Score 100、errors 0。原生 export 確認舊 Geo orphan 是 `/demo`、舊 Platform orphan 是兩個 developers 別名；新掃描已無這些警報。Public Web 補上兩個子站的 sitemap URL sources 後，6 個 sitemap 假警報消失，最新 12:58 crawl 完成。100 分不代表 warning／notice 為零，索引意圖不為追分而變更。
+
+GSC `sc-domain:lslabs.tw` 基線選定 9/2–9/29：5 點擊／175 曝光；日期表只含 9/11–9/29 共 19 列，未補零。明確頁面篩選查詢支持 Jev 與 CTR 摘要修訂；Home commit `297eff29663e3affcacf8a6b3d2fc50b516dce09`、Pages `62e9522f-0743-465c-b5c7-b6fa5268f910` success，正式摘要／OG 一致。先重現兩項失敗，再修復；完整 Home 115 tests 通過。Geo 原始成品 10 項、內鏈相關 3 項、ASSETS 15 路由、既有 Geo 回歸與 50 組正式 URL／method 驗收已保存。保留正本其他 dirty 修改，未建立第二份 LS checkout。
+
+整體五項工單尚未全部完成：chain.tw HTTP 裸網域仍 522，現有 Cloudflare 帳號無該 zone；黑客松 Vercel 子站 robots／sitemap 404，缺正本及部署存取。兩項未部署修復成品已備妥。Ahrefs 原生 affected-URL、四專案 completed crawl、GSC 原生 ZIP／頁面篩選觀測已取得，不能沿用「未登入」的中間狀態。尚無修復後排名／流量／AI 引用提升證據，各專案資料不可相加。證據正本：`C:/Users/eason/Documents/Codex/2026-10-02/new-chat/outputs/seo-repair-progress-2026-10-02.md` 與同目錄 ZIP／JSON／CSV。
+
+## 2026-09-26 所有權與改版準備
+
+依 [LSL-D-001](../../home/docs/DECISION_LOG.md)，本 repo 擁有 **GeoCheck Core Classic** 研究通道，保留暫停 Dashboard。新版 MCAC、公開產品與 Platform 的維護歸屬為 `ls-labs`。Platform 程式、資料與正式部署尚未移交；目前僅建立治理、遷移清單與本機新版入口。未執行付費 API、未更改 admission、未切換正式流量。來源與部署擁有者見 [ownership.json](../../home/products/geocheck/ownership.json)。
 
 ## Platform 金流準備（2026-09-20，公開草案已部署）
 

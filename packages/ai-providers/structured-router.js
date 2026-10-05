@@ -38,12 +38,12 @@ async function openai(prompt, options) {
   const data = await request("openai", `${base("OPENAI_BASE_URL", "https://api.openai.com/v1")}/responses`, {
     Authorization: `Bearer ${required("OPENAI_API_KEY")}`
   }, {
-    model: process.env.OPENAI_MODEL || "gpt-5.6-luna",
+    model: process.env.OPENAI_MODEL || "gpt-6-luna",
     input: [{ role: "developer", content: "You must output valid JSON only. Do not output Markdown or explanatory text." }, { role: "user", content: prompt }],
     text: { format: { type: "json_object" } }, reasoning: { effort: "none" }, max_output_tokens: options.maxTokens || 4096, store: false
   }, options);
   const text = data.body?.output?.flatMap((item) => item?.content || []).find((item) => item?.type === "output_text")?.text;
-  return parsed("openai", data, text, { input_tokens: data.body?.usage?.input_tokens, output_tokens: data.body?.usage?.output_tokens, total_tokens: data.body?.usage?.total_tokens }, data.body?.model || process.env.OPENAI_MODEL || "gpt-5.6-luna", null);
+  return parsed("openai", data, text, { input_tokens: data.body?.usage?.input_tokens, output_tokens: data.body?.usage?.output_tokens, total_tokens: data.body?.usage?.total_tokens }, data.body?.model || process.env.OPENAI_MODEL || "gpt-6-luna", null);
 }
 
 async function gemini(prompt, options) {

@@ -9,6 +9,8 @@ tags:
 
 # GeoCheck Decision Log
 
+> **2026-09-26 所有權移交**：使用者已確認 [LSL-D-001](../../home/docs/DECISION_LOG.md)。跨產品、MCAC 與 Platform 的後續決策只記錄於該正本；本檔保留 D-001 起歷史紀錄，後續僅記錄 Classic 決策。下方「唯一憑據」限 Classic 及歷史範圍。Platform 正式部署仍在本 repo，待逐批驗收移交；不得據此刪除服務、Dashboard 或研究資料。
+
 > [!important] 這是「正式決策」的唯一憑據
 > 依 `AGENTS.md` Human Ownership 條款：**未記錄於本檔的重大方向，不得視為正式決策。**
 > Agent 提出的建議在使用者確認並記入本檔之前，一律是「建議」而非「已確認決策」。

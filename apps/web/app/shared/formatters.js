@@ -5,7 +5,7 @@ export const ENGINES = {
   openai: {
     id: 'openai',
     name: 'OpenAI',
-    model: 'gpt-5.6-luna',
+    model: 'gpt-6-luna',
     color: '#10A37F',
     bg: '#EBF8F4',
     border: 'rgba(16, 163, 127, 0.25)',

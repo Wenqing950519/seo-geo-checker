@@ -1,7 +1,7 @@
 const PRICING_VERSION = "2026-09-09";
 
 const LIST_PRICES_USD = Object.freeze({
-  "openai-web": Object.freeze({ inputPerMillion: 0.20, outputPerMillion: 1.20, searchPerRequest: 0.010 }),
+  "openai-web": Object.freeze({ pricingVersion: "2026-09-23", inputPerMillion: 0.10, outputPerMillion: 0.50, searchPerRequest: 0.010 }),
   "google-web": Object.freeze({ inputPerMillion: 0.30, outputPerMillion: 2.50, searchPerRequest: 0.014, searchAllowanceUnknown: true }),
   "perplexity-sonar": Object.freeze({ inputPerMillion: 1.00, outputPerMillion: 1.00, searchPerRequest: 0.005 }),
   "anthropic-web": Object.freeze({ inputPerMillion: 1.00, outputPerMillion: 5.00, searchPerRequest: 0.010 })
@@ -10,6 +10,7 @@ const LIST_PRICES_USD = Object.freeze({
 function estimateProviderCost(profileId, usage = {}) {
   const price = LIST_PRICES_USD[profileId];
   if (!price) return { status: "unknown", pricing_version: PRICING_VERSION };
+  const pricingVersion = price.pricingVersion || PRICING_VERSION;
   const reported = finiteNonNegative(usage.provider_reported_cost_usd);
   const inputTokens = finiteNonNegative(usage.input_tokens);
   const outputTokens = finiteNonNegative(usage.output_tokens);
@@ -28,7 +29,7 @@ function estimateProviderCost(profileId, usage = {}) {
   if (reported != null) {
     return {
       status: "provider_reported",
-      pricing_version: PRICING_VERSION,
+      pricing_version: pricingVersion,
       provider_reported_usd: round(reported),
       estimated_list_usd: listMaximum == null ? null : round(listMaximum)
     };
@@ -36,7 +37,7 @@ function estimateProviderCost(profileId, usage = {}) {
   if (listMinimum == null || listMaximum == null) {
     return {
       status: "unknown",
-      pricing_version: PRICING_VERSION,
+      pricing_version: pricingVersion,
       token_cost_usd: tokenCost == null ? null : round(tokenCost),
       search_cost_usd: searchCost == null ? null : round(searchCost)
     };
@@ -44,7 +45,7 @@ function estimateProviderCost(profileId, usage = {}) {
   const isRange = listMinimum !== listMaximum;
   return {
     status: price.searchAllowanceUnknown ? "estimated_range_free_allowance_unknown" : isRange ? "estimated_list_price_range" : "estimated_list_price",
-    pricing_version: PRICING_VERSION,
+    pricing_version: pricingVersion,
     estimated_usd: round(listMaximum),
     estimated_min_usd: round(listMinimum),
     estimated_max_usd: round(listMaximum),
