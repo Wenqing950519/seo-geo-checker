@@ -9,10 +9,10 @@ const { callStructuredJson } = require("../../packages/ai-providers/structured-r
 
 (async () => {
   let requests = [];
-  global.fetch = async (url) => {
-    requests.push(String(url));
+  global.fetch = async (url, options) => {
+    requests.push({ url: String(url), body: JSON.parse(options.body) });
     if (String(url).includes("deepseek")) return new Response(JSON.stringify({ error: { message: "busy" } }), { status: 503 });
-    return new Response(JSON.stringify({ model: "gpt-5.6-luna", output: [{ type: "message", content: [{ type: "output_text", text: "{\"ok\":true}" }] }], usage: { input_tokens: 3, output_tokens: 2, total_tokens: 5 } }), { status: 200 });
+    return new Response(JSON.stringify({ model: "gpt-6-luna", output: [{ type: "message", content: [{ type: "output_text", text: "{\"ok\":true}" }] }], usage: { input_tokens: 3, output_tokens: 2, total_tokens: 5 } }), { status: 200 });
   };
   try {
     const result = await callStructuredJson('{"task":"json"}', { attempts: 1, timeoutMs: 1000 });
@@ -20,6 +20,7 @@ const { callStructuredJson } = require("../../packages/ai-providers/structured-r
     assert.equal(result.fallbackUsed, true);
     assert.deepEqual(result.failedProviders, [{ provider: "deepseek", stage: "deepseek_api" }]);
     assert.equal(requests.length, 2);
+    assert.equal(requests[1].body.model, "gpt-6-luna");
     requests = [];
     await assert.rejects(() => callStructuredJson('{"task":"json"}', { allowFallback: false, timeoutMs: 1000 }));
     assert.equal(requests.length, 1);

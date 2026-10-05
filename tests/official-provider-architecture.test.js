@@ -22,11 +22,19 @@ assert.deepEqual(
 
 for (const profile of listOfficialEngineProfiles()) {
   assert.equal(profile.routing, "official_direct");
-  assert.equal(profile.developerApiStatus, "prototype_benchmark_verified");
-  assert.equal(profile.modelStatus, "account_smoke_verified");
-  assert.equal(profile.searchCapabilityStatus, "controlled_benchmark_verified");
-  assert.equal(profile.lastSmokeDate, "2026-09-09");
-  assert.equal(profile.lastBenchmarkDate, "2026-09-09");
+  if (profile.id === "openai-web") {
+    assert.equal(profile.developerApiStatus, "pending_live_smoke");
+    assert.equal(profile.modelStatus, "official_documentation_verified");
+    assert.equal(profile.searchCapabilityStatus, "official_documentation_verified");
+    assert.equal(profile.lastSmokeDate, null);
+    assert.equal(profile.lastBenchmarkDate, null);
+  } else {
+    assert.equal(profile.developerApiStatus, "prototype_benchmark_verified");
+    assert.equal(profile.modelStatus, "account_smoke_verified");
+    assert.equal(profile.searchCapabilityStatus, "controlled_benchmark_verified");
+    assert.equal(profile.lastSmokeDate, "2026-09-09");
+    assert.equal(profile.lastBenchmarkDate, "2026-09-09");
+  }
   assert.ok(profile.provider);
   assert.ok(profile.model);
   assert.ok(profile.searchSurface);
@@ -37,7 +45,7 @@ for (const profile of listOfficialEngineProfiles()) {
 assert.deepEqual(
   Object.fromEntries(listOfficialEngineProfiles().map((profile) => [profile.id, profile.model])),
   {
-    "openai-web": "gpt-5.6-luna",
+    "openai-web": "gpt-6-luna",
     "google-web": "gemini-3.5-flash-lite",
     "perplexity-sonar": "sonar",
     "anthropic-web": "claude-haiku-4-5-20251001"

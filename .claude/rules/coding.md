@@ -11,10 +11,10 @@
 | 量測核心 | `services/api/application/geo-measurement.js` |
 | 查詢規劃 | `services/api/application/query-planner.js` |
 | 研究 profile | `research/lib/research-profile.js` |
-| Provider | `packages/ai-providers/perplexity.js` |
+| Provider | `packages/ai-providers/`（搜尋、結構化分析與用量紀錄） |
 | Server | `services/api/server.js` |
 | 研究 skill | `.agents/skills/geo-whitepaper-research/` |
-| 研究工具鏈 | `research/work/`（23 支 .mjs/.py） |
+| 研究工具鏈 | `research/work/` |
 
 > 註：Contract 範本提到的 `src/` 與 `tests/` 在本 repo 對應 `services/api/`、`apps/web/`、`packages/` 與 `tests/regression/`。
 > 2026-09-08 已依使用者明確要求完成目錄整理（D-026）；mock-api 僅是相容入口。不得新增第二份核心實作。

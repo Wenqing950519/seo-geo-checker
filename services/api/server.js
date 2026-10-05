@@ -1094,7 +1094,7 @@ async function handleRequest(req, res) {
     const assetsDir = path.resolve(__dirname, "../../apps/web/public/assets");
     if (fs.existsSync(safeAssetPath) && safeAssetPath.toLowerCase().startsWith(assetsDir.toLowerCase())) {
       const ext = path.extname(safeAssetPath).toLowerCase();
-      const mimeTypes = { ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml", ".webp": "image/webp" };
+      const mimeTypes = { ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml", ".webp": "image/webp", ".css": "text/css; charset=utf-8", ".js": "application/javascript; charset=utf-8" };
       res.writeHead(200, {
         ...SECURITY_HEADERS,
         "Content-Type": mimeTypes[ext] || "application/octet-stream",

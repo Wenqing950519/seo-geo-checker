@@ -1,5 +1,11 @@
 # GeoCheck
 
+## GeoCheck Core Classic — 2026-09-26 所有權更新
+
+本 repo 保留低成本研究量測、舊評分與方法版本，名稱為 **GeoCheck Core Classic**；暫停 Dashboard 保留。新版 MCAC、公開 GeoCheck 與 Platform 的維護歸屬已移至 `ls-labs`，依 [LSL-D-001](../home/docs/DECISION_LOG.md)。Platform 程式與正式部署尚未實體移交，本 repo 在驗收切換前仍負責既有服務。下方產品進度為歷史描述，以 [CURRENT_STATE.md](docs/CURRENT_STATE.md) 為準。
+
+Classic 原 API 與批次執行命令保持相容，不新增自動 MCAC fallback、不借用 Platform 客戶額度。當前 HEAD 是遷移來源，不代表第一份白皮書使用的版本；白皮書方法須以其原研究紀錄核對。
+
 GeoCheck 目前提供單站 AI 搜尋曝光診斷；此 repository 已按產品、核心規則、外部整合與研究資料分層。Developer API 的 B0～B2 後臺、OpenAPI 與四家官方 adapter 已實作，20 輪受控 benchmark 全數成功；視覺前端、SDK client、付款、遠端 B D1 與公開部署仍未完成，因此不是已上線服務。
 
 ## 從這裡開始

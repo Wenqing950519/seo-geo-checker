@@ -1,12 +1,12 @@
 function profile(value) {
   return Object.freeze({
-    ...value,
     routing: "official_direct",
     developerApiStatus: "prototype_benchmark_verified",
     modelStatus: "account_smoke_verified",
     searchCapabilityStatus: "controlled_benchmark_verified",
     lastSmokeDate: "2026-09-09",
-    lastBenchmarkDate: "2026-09-09"
+    lastBenchmarkDate: "2026-09-09",
+    ...value
   });
 }
 
@@ -14,10 +14,15 @@ const OFFICIAL_ENGINE_PROFILES = Object.freeze({
   "openai-web": profile({
     id: "openai-web",
     provider: "openai",
-    model: "gpt-5.6-luna",
+    model: "gpt-6-luna",
     apiFamily: "responses",
     searchSurface: "openai_web_search",
-    existingAdapter: true
+    existingAdapter: true,
+    developerApiStatus: "pending_live_smoke",
+    modelStatus: "official_documentation_verified",
+    searchCapabilityStatus: "official_documentation_verified",
+    lastSmokeDate: null,
+    lastBenchmarkDate: null
   }),
   "google-web": profile({
     id: "google-web",

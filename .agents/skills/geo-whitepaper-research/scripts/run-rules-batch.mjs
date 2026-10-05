@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { createRequire } from "node:module";
+import { defaultRulesOutputDir as defaultOutputDir } from "./default-output-dir.mjs";
 
 const args = parseArgs(process.argv.slice(2));
 const projectRoot = path.resolve(args["project-root"] || process.cwd());
@@ -359,5 +360,4 @@ function round(value, digits) { return Number(Number(value).toFixed(digits)); }
 function sha256(value) { return crypto.createHash("sha256").update(value).digest("hex"); }
 function safeDomain(value) { try { return new URL(value).hostname.replace(/^www\./, ""); } catch { return ""; } }
 function assertFile(file, message) { if (!fs.existsSync(file)) throw new Error(message); }
-function defaultOutputDir() { return path.join("research-output", new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19)); }
 function sleep(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
