@@ -83,7 +83,7 @@ Platform 四頁正本在 `apps/web/public/platform/`：
 
 ### 1. 註冊 Portaly（使用者本人）
 
-- [ ] 到 <https://portaly.cc/signup?registerType=payment> 註冊，Email 建議用與網站客服一致的 `zzz.lisheng@gmail.com`
+- [ ] 到 <https://portaly.cc/signup?registerType=payment> 註冊，Email 用網站公開客服信箱 `me@lslabs.tw`（Cloudflare 轉寄至主 Gmail）
 - [ ] 身分證正反面（清晰、未遮擋、檔名可辨識）
 - [ ] 本人同名新台幣銀行帳戶存摺封面
 - [ ] 基本資料姓名、地址與網站「營運者與聯絡方式」一致（林立勝、新北市新莊區地址）
@@ -154,7 +154,7 @@ Portaly 要求商品公開上架才能送審。依 Email 答覆選一種：
 > 謝謝！
 >
 > 林立勝
-> LS-Labs Platform｜zzz.lisheng@gmail.com
+> LS-Labs Platform｜me@lslabs.tw
 
 信中三個網址已於 2026-10-15 部署，可直接寄出。
 
@@ -172,3 +172,7 @@ Portaly 要求商品公開上架才能送審。依 Email 答覆選一種：
 驗收 15 項通過：四頁各含無斜線、尾斜線、`.html` 的 GET 200 且內文與 `dead736` 正本 SHA-256 一致、HEAD 200 無內文（12 項）；Platform 首頁、`/docs`、`/console` 200（3 項）。正式頁含「扣 8 點」「最低 NT$100」「最高 NT$10,000」「尚未開放付款」、條款含 `#points`「不得轉讓」「兌換現金」，無購買表單、舊 330 月費或藍新字樣。375px 手機寬度無水平溢出（scrollWidth 375，表格右緣 355）。部署前完整 geocheck `npm test` 與 home 124 項測試通過。
 
 home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用者尚未提交的 LSL-D-002 草稿未納入。
+
+## 公開聯絡信箱改為 me@lslabs.tw（2026-10-15）
+
+使用者完成 `me@lslabs.tw` 收寄設定（`work/2026-10-15-email-setup/`），要求網站全面停用 `zzz.lisheng@gmail.com`。geocheck 公開頁共 18 處改為 `me@lslabs.tw`：Platform 四頁、Platform 首頁、Console（原 `dev@lslabs.tw` 未確認可收信，一併改）、GeoCheck 首頁與舊 pricing／terms／refund。home 主站原已使用 `me@lslabs.tw`。`platform-legal` 測試新增全站掃描，任何公開 HTML 出現舊信箱即失敗。寄給 Portaly 的信請從 `me@lslabs.tw` 寄出，或至少在信中留此地址；Gmail 寄件身分尚未加入 `me`，需用 Resend SMTP 設定。
