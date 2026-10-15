@@ -25,7 +25,7 @@ export const ENGINES = {
   anthropic: {
     id: 'anthropic',
     name: 'Claude',
-    model: 'claude-haiku-4.5',
+    model: 'claude-haiku-5.5',
     color: '#CC785C',
     bg: '#FAF3F0',
     border: 'rgba(204, 120, 92, 0.25)',

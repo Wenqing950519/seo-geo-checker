@@ -175,7 +175,7 @@ class DashboardApiClient {
             latest_observations: [
               { observationId: 'dobs_measured_wildwood_openai', engine: 'openai', model: 'gpt-5.6-luna', status: 'measured', brandMentioned: true, officialCitation: false },
               { observationId: 'dobs_zero_wildwood_gemini', engine: 'gemini', model: 'gemini-3.5-flash-lite', status: 'measured', brandMentioned: false, officialCitation: false },
-              { observationId: 'dobs_unknown_anthropic', engine: 'anthropic', model: 'claude-haiku-4.5', status: 'unknown', brandMentioned: null, officialCitation: null },
+              { observationId: 'dobs_unknown_anthropic', engine: 'anthropic', model: 'claude-haiku-5.5', status: 'unknown', brandMentioned: null, officialCitation: null },
               { observationId: 'dobs_measured_wildwood_perplexity', engine: 'perplexity', model: 'sonar', status: 'measured', brandMentioned: true, officialCitation: true }
             ]
           }))

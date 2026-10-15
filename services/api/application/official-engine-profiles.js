@@ -43,10 +43,16 @@ const OFFICIAL_ENGINE_PROFILES = Object.freeze({
   "anthropic-web": profile({
     id: "anthropic-web",
     provider: "anthropic",
-    model: "claude-haiku-4-5-20251001",
+    model: "claude-haiku-5-5",
     apiFamily: "messages",
     searchSurface: "anthropic_web_search",
-    existingAdapter: true
+    existingAdapter: true,
+    // LSL-D-002: 2026-10-14 benchmarks v1 and v2 both 17/20 (max_tokens, then missing citations).
+    developerApiStatus: "controlled_benchmark_failed",
+    modelStatus: "account_smoke_verified",
+    searchCapabilityStatus: "account_smoke_verified",
+    lastSmokeDate: "2026-10-14",
+    lastBenchmarkDate: "2026-10-14"
   })
 });
 

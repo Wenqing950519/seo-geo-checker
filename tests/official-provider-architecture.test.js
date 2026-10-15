@@ -22,7 +22,13 @@ assert.deepEqual(
 
 for (const profile of listOfficialEngineProfiles()) {
   assert.equal(profile.routing, "official_direct");
-  if (profile.id === "openai-web") {
+  if (profile.id === "anthropic-web") {
+    assert.equal(profile.developerApiStatus, "controlled_benchmark_failed");
+    assert.equal(profile.modelStatus, "account_smoke_verified");
+    assert.equal(profile.searchCapabilityStatus, "account_smoke_verified");
+    assert.equal(profile.lastSmokeDate, "2026-10-14");
+    assert.equal(profile.lastBenchmarkDate, "2026-10-14");
+  } else if (profile.id === "openai-web") {
     assert.equal(profile.developerApiStatus, "pending_live_smoke");
     assert.equal(profile.modelStatus, "official_documentation_verified");
     assert.equal(profile.searchCapabilityStatus, "official_documentation_verified");
@@ -48,7 +54,7 @@ assert.deepEqual(
     "openai-web": "gpt-6-luna",
     "google-web": "gemini-3.5-flash-lite",
     "perplexity-sonar": "sonar",
-    "anthropic-web": "claude-haiku-4-5-20251001"
+    "anthropic-web": "claude-haiku-5-5"
   }
 );
 
