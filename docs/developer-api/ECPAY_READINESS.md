@@ -1,4 +1,7 @@
 # Platform 綠界送審與按用量計費
+
+> 2026-10-15：金流改用 Portaly，由 [PORTALY_READINESS.md](PORTALY_READINESS.md) 取代本檔的綠界申請與串接部分；法規分析、退款與稅務查證仍可參考。
+
 查核日期：2026-09-20（Asia/Taipei）。狀態：開放前草案已部署並驗證正式站；尚未送件、開通或完成金流交易。
 
 ## 判斷

@@ -28,6 +28,10 @@ GSC `sc-domain:lslabs.tw` 基線選定 9/2–9/29：5 點擊／175 曝光；日�
 
 依 [LSL-D-001](../../home/docs/DECISION_LOG.md)，本 repo 擁有 **GeoCheck Core Classic** 研究通道，保留暫停 Dashboard。新版 MCAC、公開產品與 Platform 的維護歸屬為 `ls-labs`。Platform 程式、資料與正式部署尚未移交；目前僅建立治理、遷移清單與本機新版入口。未執行付費 API、未更改 admission、未切換正式流量。來源與部署擁有者見 [ownership.json](../../home/products/geocheck/ownership.json)。
 
+## Platform 改用 Portaly（2026-10-15，本機草案，未部署）
+
+依 [LSL-D-003](../../home/docs/DECISION_LOG.md)，金流改為 Portaly Payment、預付點數（1 點＝NT$1）。Platform 計費頁已在本機改為儲值方案頁（自訂金額 NT$100–10,000，完整觀測扣 8 點；定價已於 2026-10-15 確認），條款新增點數規則，退款與隱私頁對應更新；付款仍關閉。未註冊、寄信、部署、上架或收款。人工步驟與 Email 草稿見 [Portaly 送審準備](developer-api/PORTALY_READINESS.md)。下段綠界紀錄保留為歷史。
+
 ## Platform 金流準備（2026-09-20，公開草案已部署）
 
 依使用者授權，Platform 專用計費／條款／隱私／退款草案、首頁／文件／Console 入口與手機導覽修正已部署。原始碼 `7d52188`、`d7e32fa` 已推送，正式站七頁內容一致；29 項網址檢查及桌面／手機瀏覽器驗收通過，完整 geocheck 測試與 home 66 項測試通過。D-053 已確認個人一般賣家與預付優先。付款維持關閉，尚未送件、付款交易、退款或金流開通；人工申請由使用者接續。尚缺單價及交付條件、個人預付承作及履約保障答覆、KYC，以及帳本／退款／清理的實作驗證。版本與證據見 [綠界送審準備](developer-api/ECPAY_READINESS.md)。

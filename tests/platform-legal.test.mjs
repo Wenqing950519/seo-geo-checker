@@ -43,6 +43,35 @@ test('prelaunch pricing cannot sell an invented plan and legal pages link to eac
   for (const page of pages) assert.ok(home.includes(`href="/${page}"`), `landing links to ${page}`);
 });
 
+test('top-up page publishes custom-amount TWD points while payment stays closed', async () => {
+  const html = await (await worker.fetch(new Request('https://platform.lslabs.tw/pricing'), env)).text();
+  assert.match(html, /儲值/);
+  assert.match(html, /1 點.{0,20}新台幣 1 元/);
+  assert.match(html, /自訂金額/);
+  assert.match(html, /最低 NT\$100/);
+  assert.match(html, /最高 NT\$10,000/);
+  assert.doesNotMatch(html, /入門|標準方案|進階/);
+  assert.match(html, /四個引擎全部完成.{0,20}扣 8 點/);
+  assert.match(html, /Portaly/);
+  assert.match(html, /尚未開放付款/);
+});
+
+test('points rules state own-service use, no transfer or cash-out, refunds and expiry', async () => {
+  for (const page of ['pricing', 'terms', 'refund']) {
+    const html = await (await worker.fetch(new Request(`https://platform.lslabs.tw/${page}`), env)).text();
+    assert.match(html, /點數/, page);
+  }
+  const terms = await (await worker.fetch(new Request('https://platform.lslabs.tw/terms'), env)).text();
+  assert.match(terms, /僅限.{0,30}LS-Labs Platform/);
+  assert.match(terms, /不得轉讓/);
+  assert.match(terms, /兌換現金/);
+  assert.match(terms, /使用期限/);
+  assert.match(terms, /href="\/refund"/);
+  const refund = await (await worker.fetch(new Request('https://platform.lslabs.tw/refund'), env)).text();
+  assert.match(refund, /未使用.{0,10}付費點數/);
+  assert.match(refund, /十五日/);
+});
+
 test('Product A/shared legal source remains reachable on its existing host', async () => {
   const response = await pagesWorker.fetch(new Request('https://geocheck.lslabs.tw/terms'), env);
   assert.equal(response.status, 200);
