@@ -90,4 +90,8 @@ function round(value) {
   return Math.round((Number(value) + Number.EPSILON) * 1_000_000) / 1_000_000;
 }
 
-module.exports = { buildBenchmarkSummary, costBoundsFromOutcomes, nearestRank };
+function maxOutputTokensFor(limits, profileId) {
+  return limits.max_output_tokens_by_profile?.[profileId] ?? limits.max_output_tokens;
+}
+
+module.exports = { buildBenchmarkSummary, costBoundsFromOutcomes, maxOutputTokensFor, nearestRank };

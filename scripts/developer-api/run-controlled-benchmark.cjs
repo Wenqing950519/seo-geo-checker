@@ -4,7 +4,7 @@ const { createHash, randomUUID } = require("node:crypto");
 const { isIP } = require("node:net");
 const { loadEnvFiles } = require("../../packages/shared/env.js");
 const { createOfficialProvidersFromEnv } = require("../../services/api/application/official-search-providers.js");
-const { buildBenchmarkSummary, costBoundsFromOutcomes } = require("./benchmark-metrics.cjs");
+const { buildBenchmarkSummary, costBoundsFromOutcomes, maxOutputTokensFor } = require("./benchmark-metrics.cjs");
 
 const root = path.resolve(__dirname, "../..");
 const defaultPlan = path.join(root, "docs/developer-api/evidence/controlled-benchmark-inputs-20-v1.json");
@@ -116,7 +116,7 @@ async function executeProvider(provider, question, plan) {
       prompt: question.prompt,
       locale: plan.locale,
       input: { type: "prompt", text: question.prompt },
-      maxOutputTokens: plan.limits.max_output_tokens,
+      maxOutputTokens: maxOutputTokensFor(plan.limits, provider.id),
       maxSearchRequests: plan.limits.max_search_requests_where_supported,
       timeoutMs: plan.limits.provider_timeout_ms
     });
@@ -173,6 +173,7 @@ function validatePlan(plan) {
   for (const key of ["required_rounds", "minimum_all_four_success_rounds", "p95_round_cost_twd_max", "maximum_round_duration_ms", "total_budget_twd"]) positiveNumber(criteria[key], `criteria.${key}`);
   const limits = plan.limits || {};
   for (const key of ["attempts_per_provider", "max_output_tokens", "max_search_requests_where_supported", "provider_timeout_ms", "unknown_round_cost_reserve_twd"]) positiveNumber(limits[key], `limits.${key}`);
+  for (const [profileId, value] of Object.entries(limits.max_output_tokens_by_profile || {})) positiveNumber(value, `limits.max_output_tokens_by_profile.${profileId}`);
   if (limits.attempts_per_provider !== 1) throw new Error("Controlled benchmark forbids retries");
   if (limits.provider_timeout_ms >= criteria.maximum_round_duration_ms) throw new Error("Provider timeout must leave room inside the round duration limit");
 }

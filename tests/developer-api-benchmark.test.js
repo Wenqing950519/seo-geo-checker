@@ -1,7 +1,10 @@
 const assert = require("node:assert/strict");
-const { buildBenchmarkSummary, costBoundsFromOutcomes, nearestRank } = require("../scripts/developer-api/benchmark-metrics.cjs");
+const { buildBenchmarkSummary, costBoundsFromOutcomes, maxOutputTokensFor, nearestRank } = require("../scripts/developer-api/benchmark-metrics.cjs");
 
 assert.equal(nearestRank([1, 2, 3, 4, 5], 0.95), 5);
+assert.equal(maxOutputTokensFor({ max_output_tokens: 1024 }, "anthropic-web"), 1024);
+assert.equal(maxOutputTokensFor({ max_output_tokens: 1024, max_output_tokens_by_profile: { "anthropic-web": 2048 } }, "anthropic-web"), 2048);
+assert.equal(maxOutputTokensFor({ max_output_tokens: 1024, max_output_tokens_by_profile: { "anthropic-web": 2048 } }, "openai-web"), 1024);
 assert.deepEqual(
   costBoundsFromOutcomes([
     { cost: { status: "estimated_list_price", estimated_usd: 0.02 } },
