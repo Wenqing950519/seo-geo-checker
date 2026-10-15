@@ -80,6 +80,17 @@ function runtimeJavaScriptFiles(directory) {
   });
 }
 
+// Public Platform pages show the model id the API returns (profile.model), not a display name.
+const profileModels = listOfficialEngineProfiles().map((profile) => profile.model).sort();
+for (const [page, pattern] of [
+  ["apps/web/public/developers.html", /<span class="engine-model">([^<]+)<\/span>/g],
+  ["apps/web/public/developers/docs.html", /<tr><td><strong>[^<]+<\/strong><\/td><td><code>([^<]+)<\/code><\/td>/g],
+  ["apps/web/public/developers/docs.html", /<span class="s">"model"<\/span>: <span class="s">"([^"]+)"<\/span>/g]
+]) {
+  const shown = [...fs.readFileSync(at(page), "utf8").matchAll(pattern)].map((match) => match[1]).sort();
+  assert.deepEqual(shown, profileModels, `${page} must list exactly the official engine profile models`);
+}
+
 for (const file of [
   ...runtimeJavaScriptFiles(at("packages")),
   ...runtimeJavaScriptFiles(at("services"))
