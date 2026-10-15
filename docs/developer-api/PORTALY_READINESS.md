@@ -1,6 +1,6 @@
 # Platform Portaly 送審準備與儲值點數
 
-查核日期：2026-10-15（Asia/Taipei）。狀態：本機草案完成、測試通過；**尚未註冊送審、寄信、部署或收款**。
+查核日期：2026-10-15（Asia/Taipei）。狀態：儲值與條款四頁已部署並驗證正式站（2026-10-15）；**尚未註冊送審、寄信、上架或收款**，付款維持關閉。
 
 金流改用 Portaly（真實引擎）取代 [ECPAY_READINESS.md](ECPAY_READINESS.md) 的綠界路線，決策見 `home/docs/DECISION_LOG.md` LSL-D-003。D-053 的個人申請、預付優先、未用可退、無效期政策沿用。
 
@@ -23,7 +23,7 @@
 | 退款費用 | 爭議退款衍生的手續費由賣家負擔。本案退款政策「不扣退款費」，此成本由營運者吸收 |
 | 客服 | 教學 FAQ 與頁尾為 `service@portaly.cc`；`/payment` 頁尾另列 `support@portaly.cc` |
 
-## 本次已完成（本機，未部署）
+## 本次已完成
 
 Platform 四頁正本在 `apps/web/public/platform/`：
 
@@ -98,7 +98,7 @@ Platform 四頁正本在 `apps/web/public/platform/`：
 ### 3. 部署儲值方案頁（需使用者另行授權）
 
 - [x] 定價已確認（8 點／次、自訂金額 NT$100–10,000，LSL-D-003）
-- [ ] 授權後提交、推送並部署 Developer Worker（流程同 ECPAY_READINESS「正式發布與驗收」），驗證 `https://platform.lslabs.tw/pricing`、`/terms#points`、`/refund`、`/privacy` 免登入可讀
+- [x] 2026-10-15 已提交、推送並部署（見文末「正式發布與驗收」）；原步驟：授權後提交、推送並部署 Developer Worker（流程同 ECPAY_READINESS「正式發布與驗收」），驗證 `https://platform.lslabs.tw/pricing`、`/terms#points`、`/refund`、`/privacy` 免登入可讀
 
 ### 4. Portaly 後台上架商品（使用者本人）
 
@@ -156,7 +156,7 @@ Portaly 要求商品公開上架才能送審。依 Email 答覆選一種：
 > 林立勝
 > LS-Labs Platform｜zzz.lisheng@gmail.com
 
-寄出前：信中三個網址要等第 3 步部署後才會顯示新內容。若要先寄，可改附 PDF 或截圖，或刪掉網址段落。
+信中三個網址已於 2026-10-15 部署，可直接寄出。
 
 ## 尚未驗證
 
@@ -164,3 +164,11 @@ Portaly 要求商品公開上架才能送審。依 Email 答覆選一種：
 - Portaly callback 實際欄位：未取得文件，`privacy.html` 只寫「例如」
 - 履約保障是否適用：ECPAY_READINESS 的法規分析仍適用，未取得主管機關或 Portaly 答覆
 - 稅籍：月網路銷售額達 NT$5 萬須辦稅籍登記（財政部，114-01-01 起），與 Portaly 開發票是兩件事
+
+## 正式發布與驗收（2026-10-15）
+
+使用者授權「提交並部署 Platform 儲值與條款四頁，部署後驗證正式站」。geocheck 提交 `dead736` 只含四頁、`platform-legal` 測試與本檔等文件，其他未提交的 provider／benchmark 變更未納入。推送 origin/main 後由 Cloudflare Workers Builds 自動建置；新版本 `8c4a4f0a-0e12-4602-ab46-30716dfa3a02`（2026-10-15T03:31:56Z）為 100% 流量，前一版 `9bcdf5b5-3d9a-48d4-b5b2-0ce74a656468` 可供必要時回復。未修改 D1、secret 或環境變數，未開啟結帳。
+
+驗收 15 項通過：四頁各含無斜線、尾斜線、`.html` 的 GET 200 且內文與 `dead736` 正本 SHA-256 一致、HEAD 200 無內文（12 項）；Platform 首頁、`/docs`、`/console` 200（3 項）。正式頁含「扣 8 點」「最低 NT$100」「最高 NT$10,000」「尚未開放付款」、條款含 `#points`「不得轉讓」「兌換現金」，無購買表單、舊 330 月費或藍新字樣。375px 手機寬度無水平溢出（scrollWidth 375，表格右緣 355）。部署前完整 geocheck `npm test` 與 home 124 項測試通過。
+
+home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用者尚未提交的 LSL-D-002 草稿未納入。
