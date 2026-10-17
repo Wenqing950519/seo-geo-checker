@@ -1,8 +1,19 @@
 # Platform Portaly 送審準備與儲值點數
 
-查核日期：2026-10-15（Asia/Taipei）。狀態：儲值與條款四頁已部署並驗證正式站（2026-10-15）；**尚未註冊送審、寄信、上架或收款**，付款維持關閉。
+查核日期：2026-10-17（Asia/Taipei）。狀態：儲值與條款四頁已部署並驗證正式站（2026-10-15）；Test Key 串接已部署、方案已啟用並通過 callback 驗收（2026-10-17，見下方「Test 模式部署」）；觀測扣點程式已在 main，但 `DEVELOPER_API_BILLING` 未開啟。**正式收款維持關閉**（仍為 Test 金鑰）；金流審核與儲值商品接受條件尚未驗證。
 
 金流改用 Portaly（真實引擎）取代 [ECPAY_READINESS.md](ECPAY_READINESS.md) 的綠界路線，決策見 `home/docs/DECISION_LOG.md` LSL-D-003。D-053 的個人申請、預付優先、未用可退、無效期政策沿用。
+
+## Test API 初始設定（2026-10-16）
+
+依工作區 `.agents/skills/portaly-payment/SKILL.md` v0.18.1 與隨附 `references/api-contract.md` 設定，使用本機 Test Key 呼叫 `https://portaly.ai`。`GET /api/creator-subscription/config` 與 `/plans` 均回傳 200；版本回報亦為 200。API Key 與 Callback Secret 僅放在受 Git 忽略保護的 `geocheck/.env`，不記錄內容。
+
+- 商家：沿用「LS-Labs Platform」與既有 Logo，補上 `appBaseUrl: https://platform.lslabs.tw`，設定 `locale: zh-TW`。
+- 方案：先查詢確認無既有方案，再建立「LS-Labs Platform 點數儲值」。方案 ID 為 `qywC12Oif0GAOlYbo8o9`，`merchantPlanId: lslabs-platform-credits`，`billingPeriod: one-time`、`pricingType: dynamic`、`currency: TWD`、`status: inactive`、`collectPhone: false`；已用單一方案 GET 讀回驗證，中文品名與描述正常。非機密方案 ID 另存本機 `PORTALY_PLAN_ID`。
+- 動態金額：建立與讀回成功，確認 API 支援此方案類型，取代下方 2026-10-15「未見動態金額」的文件觀察。NT$100–10,000 與整數限制目前只寫入商品描述，尚須由未來建立 checkout session 的後端強制檢查，不能視為 Portaly 已替本案限制金額。
+- 驗簽工具：`node .agents/skills/portaly-payment/scripts/check_callback_vectors.mjs --runtime webcrypto` 通過 7 組向量與反例。這只驗證 Skill 隨附 WebCrypto adapter；本案尚無 callback receiver，填入的 Callback Secret 尚未由真實回呼驗證。
+
+商家設定與方案在 Test／Live 間共用，因此方案維持 `inactive`，尚未建立 checkout session、啟用方案或收款。點數帳本、結帳、callback、退款與對帳仍待另案實作；Portaly 是否接受本案儲值點數、交易上限及部分退款條件仍待書面答覆。
 
 ## Portaly 已查證事實
 

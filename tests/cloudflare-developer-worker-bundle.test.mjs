@@ -18,6 +18,8 @@ try {
   assert.doesNotMatch(bundle, /node:sqlite/, "Workers bundle must not include the local SQLite runtime");
   assert.doesNotMatch(bundle, /path\.join\(__dirname/, "Workers bundle must not evaluate CommonJS __dirname paths");
   assert.match(bundle, /configuration_incomplete/, "Developer Worker must fail closed when runtime secrets are absent");
+  assert.match(bundle, /mcp_admission_closed/, 'Research MCP must fail closed');
+  assert.match(bundle, /create_measurement/, 'Worker bundle must contain the MCP tools');
   assert.equal(developerConfig.vars.DEVELOPER_API_QUOTA_WINDOW_STRATEGY, "rolling_24h");
   assert.equal(developerConfig.vars.DEVELOPER_API_RESULT_RETENTION_DAYS, "30");
   assert.deepEqual(developerConfig.routes, [
