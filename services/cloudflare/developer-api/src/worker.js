@@ -1,6 +1,9 @@
 import developerApiModule from "../../../api/developer-api-http.js";
 import d1StoreModule from "../../../api/storage/developer-platform-d1-store.js";
 import oauthModule from "../../../api/google-oauth-http.js";
+import pointsServiceModule from "../../../api/application/developer-points-service.js";
+import pointsStoreModule from "../../../api/storage/developer-points-d1-store.js";
+import portalyClientModule from "../../../api/payments/portaly-client.js";
 
 const { createDeveloperApiHttpHandler } = developerApiModule;
 const { createBoundD1DeveloperPlatformStore } = d1StoreModule;
@@ -117,6 +120,52 @@ function sendJson(res, status, body, extraHeaders = {}) {
   res.end(status === 204 ? "" : JSON.stringify(body));
 }
 
+const PORTALY_CALLBACK_URL = "https://platform.lslabs.tw/v1/payments/portaly/callback";
+const MAX_PORTALY_CALLBACK_BYTES = 64 * 1024;
+
+// Prepaid points (LSL-D-003). Absent Portaly secrets mean no points service at
+// all; PORTALY_CHECKOUT_ENABLED must also be "true" before anyone can pay.
+function createPointsService(env) {
+  const apiKey = String(env.PORTALY_API_KEY || "").trim();
+  const callbackSecret = String(env.PORTALY_CALLBACK_SECRET || "").trim();
+  if (!apiKey || !callbackSecret) return null;
+  return pointsServiceModule.createDeveloperPointsService({
+    store: pointsStoreModule.createBoundDeveloperPointsD1Store({ db: env.DEVELOPER_DB }),
+    client: portalyClientModule.createPortalyClient({ apiKey, host: env.PORTALY_API_HOST || undefined }),
+    config: {
+      checkoutEnabled: String(env.PORTALY_CHECKOUT_ENABLED || "").toLowerCase() === "true",
+      callbackSecret,
+      callbackUrl: PORTALY_CALLBACK_URL,
+      successUrl: "https://platform.lslabs.tw/console?topup=success",
+      cancelUrl: "https://platform.lslabs.tw/console?topup=cancel"
+    }
+  });
+}
+
+async function handlePortalyCallback(request, env, url) {
+  if (url.hostname !== "platform.lslabs.tw" || url.protocol !== "https:") {
+    return new Response(JSON.stringify({ error: { code: "not_found" } }), { status: 404, headers: JSON_HEADERS });
+  }
+  if (request.method !== "POST") {
+    return new Response(JSON.stringify({ error: { code: "method_not_allowed" } }), { status: 405, headers: { ...JSON_HEADERS, Allow: "POST" } });
+  }
+  const points = createPointsService(env);
+  if (!points) {
+    return new Response(JSON.stringify({ error: { code: "payment_unavailable" } }), { status: 503, headers: JSON_HEADERS });
+  }
+  const rawBody = await request.text();
+  if (new TextEncoder().encode(rawBody).byteLength > MAX_PORTALY_CALLBACK_BYTES) {
+    return new Response(JSON.stringify({ error: { code: "request_too_large" } }), { status: 413, headers: JSON_HEADERS });
+  }
+  try {
+    const result = await points.handleCallback({ headers: request.headers, rawBody });
+    return new Response(JSON.stringify(result.body), { status: result.status, headers: JSON_HEADERS });
+  } catch {
+    // A 5xx lets Portaly redeliver; crediting is idempotent on the payload's event identity.
+    return new Response(JSON.stringify({ error: { code: "service_unavailable" } }), { status: 503, headers: JSON_HEADERS });
+  }
+}
+
 function createRuntime(env) {
   const store = createBoundD1DeveloperPlatformStore({ db: env.DEVELOPER_DB });
   let runtime;
@@ -127,7 +176,8 @@ function createRuntime(env) {
     platformStore: store,
     directD1Binding: true,
     enqueue,
-    recoverOnStartup: false
+    recoverOnStartup: false,
+    points: createPointsService(env)
   });
   return runtime;
 }
@@ -201,6 +251,7 @@ async function handleRequest(request, env) {
   const url = new URL(request.url);
   const pathname = url.pathname;
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
+  if (pathname === "/v1/payments/portaly/callback") return handlePortalyCallback(request, env, url);
   // platform.lslabs.tw is the entire developer surface: landing, documentation,
   // Console and /v1 share one origin so browser sessions never cross products.
   if ((request.method === "GET" || request.method === "HEAD") && url.hostname === "platform.lslabs.tw") {

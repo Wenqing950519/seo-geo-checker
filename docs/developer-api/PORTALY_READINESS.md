@@ -176,3 +176,32 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 ## 公開聯絡信箱改為 me@lslabs.tw（2026-10-15）
 
 使用者完成 `me@lslabs.tw` 收寄設定（`work/2026-10-15-email-setup/`），要求網站全面停用 `zzz.lisheng@gmail.com`。geocheck 公開頁共 18 處改為 `me@lslabs.tw`：Platform 四頁、Platform 首頁、Console（原 `dev@lslabs.tw` 未確認可收信，一併改）、GeoCheck 首頁與舊 pricing／terms／refund。home 主站原已使用 `me@lslabs.tw`。`platform-legal` 測試新增全站掃描，任何公開 HTML 出現舊信箱即失敗。寄給 Portaly 的信請從 `me@lslabs.tw` 寄出，或至少在信中留此地址；Gmail 寄件身分尚未加入 `me`，需用 Resend SMTP 設定。
+
+## 信箱更換正式站驗收（2026-10-17）
+
+提交 `25e2ca6` 推送 main 後由 Workers Builds 與 Pages 自動部署。2026-10-17 逐頁檢查 10 頁：Platform `/pricing`、`/terms`、`/privacy`、`/refund`、`/`、`/console`，GeoCheck `/`、`/pricing`、`/terms`、`/refund`，均 HTTP 200，舊信箱與 `dev@lslabs.tw` 出現 0 次，新信箱每頁 1–4 處。
+
+## Test 模式串接（2026-10-17，分支 `platform/portaly-points`，未部署）
+
+使用者選擇「先用 Test Key 開工」。實作在獨立 worktree 分支，未動另一工作階段尚未提交的 MCP 檔案。依 portaly-ai/portaly-skills `portaly-payment-integration` v0.15.0（commit `4c3ef19`）的 API 契約。
+
+| 元件 | 位置 | 行為 |
+|---|---|---|
+| Portaly client | `services/api/payments/portaly-client.js` | 模式由金鑰前綴決定；方案於執行時讀取 `GET /plans?status=active`；建立 checkout session |
+| Callback 驗簽 | `services/api/payments/portaly-callback-signature.js` | 移植官方 WebCrypto adapter（MIT），以官方 7 組 production-derived 向量驗證 |
+| 點數帳本 | migration `0007_portaly_points.sql`、`services/api/storage/developer-points-d1-store.js` | 訂單、帳本、callback 事件三表；餘額＝帳本加總，依 test／live 分開 |
+| 服務 | `services/api/application/developer-points-service.js` | 只提供 active、one-time、TWD 方案；動態方案強制 NT$100–10,000 整數；固定方案不傳自算金額 |
+| 路由 | `developer-api-http.js`、`worker.js` | `GET /v1/console/points`、`GET /v1/console/points/plans`、`POST /v1/console/points/checkout`（需登入）；`POST /v1/payments/portaly/callback`（僅 `platform.lslabs.tw` HTTPS、64 KiB 上限） |
+| Console | `developers-console.html` | 「點數儲值」區塊預設隱藏，API 可用才顯示；測試模式另標示；只導向 `https://portaly.ai/` |
+
+入帳規則：簽章正確、時間戳 ±5 分鐘、header 事件與內文一致，且 callback 的金額、幣別、方案、模式都與本平台建立的訂單相符，才寫入一筆 `purchase`。同一 session 重送只入帳一次；不符者標為 `review` 不入帳；失敗事件標為 `failed`，之後的完成通知不會重新開啟訂單。瀏覽器返回頁不入帳。
+
+開關：Worker 未設 `PORTALY_API_KEY`、`PORTALY_CALLBACK_SECRET` 時整個點數服務不存在（callback 回 503）；另需 `PORTALY_CHECKOUT_ENABLED=true` 才能讀方案與結帳。
+
+驗證：新增 `tests/developer-points.test.js`（以 SQLite 模擬 D1，Portaly 為 stub）與 `tests/platform-points-http.test.mjs`；完整 `npm test` 通過，含 Worker 打包。另以本機 Test Key 唯讀呼叫真實 API：模式判定為 test，`status=active` 方案 0 個，全部方案只有停用中的動態方案 `qywC12Oif0GAOlYbo8o9`。未建立 checkout session、未啟用方案、未部署、未套用遠端 migration。
+
+尚未完成：
+
+- 觀測扣點（每次四引擎全成扣 8 點、失敗不扣）尚未接到工作結算；目前仍是原本的輪數配額。
+- Portaly 發起的退款（`payment.refunded`）只會被忽略，尚未扣回點數。
+- 端到端 Test 付款需要：啟用方案、遠端 D1 套用 migration 0007、Worker 設定三個 secret／變數並部署，再由使用者用結帳頁顯示的測試卡付款。

@@ -40,6 +40,7 @@ function createDeveloperApiHttpHandler(options = {}) {
         providers: config.mode === "official" ? providers : undefined,
         resultStore: options.resultStore || createPrototypeMeasurementResultStore({ config: options.storageConfig || process.env })
       }));
+  const points = options.points || null;
   const rateLimiter = createRequestRateLimiter();
   if (config.platformEnabled && options.recoverOnStartup !== false) {
     schedule(() => api.recoverPendingJobs().catch((error) => {
@@ -156,6 +157,24 @@ function createDeveloperApiHttpHandler(options = {}) {
         await api.revokeApiKey({ sessionToken, keyId: decodeURIComponent(keyMatch[1]) });
         sendPrivateJson(204, null);
         return true;
+      }
+      if (url.pathname === "/v1/console/points" || url.pathname.startsWith("/v1/console/points/")) {
+        if (!points) throw new DeveloperApiError("payment_unavailable", "Point purchases are not open yet", 503);
+        if (req.method === "GET" && url.pathname === "/v1/console/points") {
+          sendPrivateJson(200, await points.getBalance({ tenantId: session.tenantId }));
+          return true;
+        }
+        if (req.method === "GET" && url.pathname === "/v1/console/points/plans") {
+          sendPrivateJson(200, await points.listTopUpPlans());
+          return true;
+        }
+        if (req.method === "POST" && url.pathname === "/v1/console/points/checkout") {
+          const body = await readJson(req, 8 * 1024);
+          sendPrivateJson(201, await points.createTopUpCheckout({
+            tenantId: session.tenantId, planId: String(body.plan_id || ""), amount: body.amount
+          }));
+          return true;
+        }
       }
       if (req.method === "GET" && url.pathname === "/v1/console/usage") {
         sendPrivateJson(200, await api.getUsage({ tenantId: session.tenantId }));
