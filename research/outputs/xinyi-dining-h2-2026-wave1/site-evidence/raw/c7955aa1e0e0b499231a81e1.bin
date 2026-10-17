@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html     class="no-js"
+ lang="zh-TW">
+    <head>
+            <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M67H7EDWB3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M67H7EDWB3');
+</script>        <title>    INPARADISE 饗饗｜名饌百匯 | 饗饗官網 | 
+     首頁
+</title>
+            <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="饗饗INPARADISE焠鍊各國料理精髓，詮釋特選食材新樣貌，以鮮緻玩味，感動心中最珍視的人。在每一個珍貴時刻，一起饗饗。" />
+    <meta name="keywords" content="饗饗,響響,想想,INPARADISE,饗饗INPARADISE,饗饗官網,吃到飽,自助餐,Buffet,饗饗優惠,饗饗訂位,Buffet推薦,高級Buffet,夜景餐廳,景觀餐廳,線上訂位,網路訂位,聚餐,西洋情人節,情人節,父親節,母親節,謝師宴,七夕,畢業,生日,晚餐" />
+    <!--====== FAVICON ICON =======-->
+    <link rel="shortcut icon" type="image/ico" href="https://www.inparadise.com.tw/favicon.ico" />
+                <!--====== STYLESHEETS ======-->
+    <link rel="preload" href="https://www.inparadise.com.tw/css/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://www.inparadise.com.tw/css/animate.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://www.inparadise.com.tw/css/pogo-slider.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://www.inparadise.com.tw/css/owl.carousel.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://www.inparadise.com.tw/css/datepicker.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://www.inparadise.com.tw/css/timepicker.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://www.inparadise.com.tw/css/magnific-popup.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://www.inparadise.com.tw/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://www.inparadise.com.tw/css/normalize.css">
+        <link rel="stylesheet" href="https://www.inparadise.com.tw/css/animate.css">
+        <link rel="stylesheet" href="https://www.inparadise.com.tw/css/pogo-slider.css">
+        <link rel="stylesheet" href="https://www.inparadise.com.tw/css/owl.carousel.css">
+        <link rel="stylesheet" href="https://www.inparadise.com.tw/css/datepicker.css">
+        <link rel="stylesheet" href="https://www.inparadise.com.tw/css/timepicker.min.css">
+        <link rel="stylesheet" href="https://www.inparadise.com.tw/css/magnific-popup.css">
+        <link rel="stylesheet" href="https://www.inparadise.com.tw/css/font-awesome.min.css">
+    </noscript>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link href="https://www.inparadise.com.tw/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--====== MAIN STYLESHEETS ======-->
+    <link href="https://www.inparadise.com.tw/css/style.css" rel="stylesheet">
+    <link href="https://www.inparadise.com.tw/css/responsive.css" rel="stylesheet">
+    <link href="https://www.inparadise.com.tw/css/main.css?v=2026090702" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://www.inparadise.com.tw/css/home.css?v=2025081801">
+            <script src="https://www.inparadise.com.tw/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js') }}"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
+    <![endif]-->
+    </head>
+    <body >
+            <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--- PRELOADER -->
+    <div class="preeloader">
+        
+        <div class="loading_block"></div>
+    </div>
+
+    <!--START TOP AREA-->
+        <header class="top-area " id="home">
+        <div class="header-top-area">
+            <div class="top-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="top-social-bookmark">
+                                <ul>
+                                    <li><a href="https://www.facebook.com/inparadise.com.tw" class="icon" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.instagram.com/inparadise_tw/" class="icon" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="http://www.ieatogether.com.tw/" target="_blank">iEAT</a></li>
+                                    
+                                    <!-- 智能客服 -->
+                                    <li><a href="https://joy.feastogether.com.tw/?chatwebId=20250529060859153&traceTag=饗饗官網" target="_blank" >智能客服</a></li>
+                                    <li><a href="https://www.inparadise.com.tw/zh-TW/contact">聯絡我們</a></li>
+                                    
+                                </ul>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--MAINMENU AREA-->
+            <div class="mainmenu-area" id="mainmenu-area">
+                <div class="mainmenu-area-bg"></div>
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button class="collapsed navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-scrollspy">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href="https://www.inparadise.com.tw/zh-TW/home" class="navbar-brand visible-md visible-lg"><img src="/image/inparadise_logo.svg" alt="饗饗" class="logo_img"></a>
+                            <a href="https://www.inparadise.com.tw/zh-TW/home" class="navbar-brand visible-xs visible-sm"><img src="/image/inparadise_logo_m.svg" alt="饗饗" class="logo_img"></a>
+                        </div>
+                        <div class="collapse navbar-collapse bs-example-js-navbar-scrollspy">
+                            
+                            <ul id="nav" class="nav navbar-nav cl-effect-11">
+                                
+                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#menu_inparadise_1" class="at-drop-down">遊歷饗饗 <i class="hidden-md hidden-lg fa fa-angle-down"></i></a>
+                                                                        <ul class="sub-menu">
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#guide_inparadise_1">豐大海</a></li>
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#guide_inparadise_2">旬巧原</a></li>
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#guide_inparadise_3">炙丘</a></li>
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#guide_inparadise_4">大快地</a></li>
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#guide_inparadise_5">京山</a></li>
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#guide_inparadise_6">禾烹湖</a></li>
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#guide_inparadise_7">長飲川</a></li>
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/guide#guide_inparadise_8">甜田</a></li>
+                                                                            </ul>                 
+                                                                    </li>
+                                <li><a href="#" class="at-drop-down">分店資訊 <i class="hidden-md hidden-lg fa fa-angle-down"></i></a>
+                                    
+                                    
+                                                                        <ul class="sub-menu">
+                                         
+                                            <li><a href="https://www.inparadise.com.tw/zh-TW/store/Xinyi">信義店</a></li>
+                                         
+                                            <li><a href="https://www.inparadise.com.tw/zh-TW/store/Xinzhuang">新莊店</a></li>
+                                                                            </ul>                 
+                                                                    </li>
+                                <li><a href="https://www.inparadise.com.tw/zh-TW/news" class="at-drop-down">最新消息 <i class="hidden-md hidden-lg fa fa-angle-down"></i></a>
+                                                                        <ul class="sub-menu">
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/news/announcement">公告</a></li>  
+                                                                                <li><a href="https://www.inparadise.com.tw/zh-TW/news/campaign">活動</a></li>  
+                                                                            </ul>                                       
+                                                                    </li>
+                                <!-- 網路訂位 -->
+                                <li><a href="#" class="at-drop-down">網路訂位 <i class="hidden-md hidden-lg fa fa-angle-down"></i></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="https://www.feastogether.com.tw/booking/Inparadise" target="_blank">網路訂位</a></li>
+                                        <li><a href="https://www.inparadise.com.tw/zh-TW/qa">訂位問答</a></li>                                        
+                                    </ul>
+                                </li>
+                                <!-- 餐券購買 -->
+                                <li><a href="#" class="at-drop-down">餐券購買 <i class="hidden-md hidden-lg fa fa-angle-down"></i></a>
+                                    <ul class="sub-menu">                                        
+                                        <li><a href="https://twanga.mohist.com.tw/LIKEGO/sort.php?GetStore=EET&b=1629" target="_blank">線上餐券</a></li>
+                                        <li><a href="https://twanga.mohist.com.tw/LIKEGO/sort.php?GetStore=EET&b=2897" target="_blank">商品禮券</a></li>
+                                    </ul>
+                                </li>
+                                
+                                <li><a href="#" class="at-drop-down">饗賓集團 <i class="hidden-md hidden-lg fa fa-angle-down"></i></a>
+                                    <ul class="sub-menu">
+                                                                                <li><a href="https://www.ajoy.com.tw" target="_blank">饗 A Joy</a></li>
+                                                                                <li><a href="https://inparadise.com.tw" target="_blank">饗饗 名饌百匯</a></li>
+                                                                                <li><a href="https://www.xujisunrise.com.tw" target="_blank">旭集 和食集錦</a></li>
+                                                                                <li><a href="https://urbanparadise.com.tw" target="_blank">URBAN PARADISE</a></li>
+                                                                                <li><a href="https://zhi-yun.com.tw" target="_blank">旨醞 鐵板料理</a></li>
+                                                                                <li><a href="https://www.eatogether.com.tw" target="_blank">饗食天堂 自助美饌</a></li>
+                                                                                <li><a href="https://www.fruitfulfood.com.tw" target="_blank">果然匯 多國蔬食百匯</a></li>
+                                                                                <li><a href="https://doricious-steak.com.tw" target="_blank">朵頤牛排</a></li>
+                                                                                <li><a href="https://www.kaifun.com.tw" target="_blank">開飯 川食堂</a></li>
+                                                                                <li><a href="https://www.siammore.com.tw" target="_blank">饗泰多 泰式風格餐廳</a></li>
+                                                                                <li><a href="https://www.jinzhu.com.tw" target="_blank">真珠 台灣佳味</a></li>
+                                                                                <li><a href="https://www.meowchan.com.tw" target="_blank">貓將 日本料理</a></li>
+                                                                            </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!--END MAINMENU AREA END-->
+        </div>
+
+        
+    
+        <div class="banner_section staggered-animation-wrap full_screen">
+        <div id="carouselExampleControls" class="carousel slide carousel-fade carousel_style1 light_arrow" data-ride="carousel">
+            <div class="carousel-inner">
+                                <div class="item active background_bg overlay_bg_60" data-img-src="/storage/website/kv/20221220122303_PC-KV.jpeg" data-mobile-img-src="/storage/website/kv/20221220122303_Mobile-KV.jpeg">
+                    <!-- 點圖連結 -->
+                    <a href="" target=&quot;_blank&quot;></a>
+                </div>
+                                <div class="item  background_bg overlay_bg_60" data-img-src="/storage/website/kv/20221220122400_PC-KV.jpeg" data-mobile-img-src="/storage/website/kv/20221220122400_Mobile-KV.jpeg">
+                    <!-- 點圖連結 -->
+                    <a href="" ></a>
+                </div>
+                            </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><i class="ion-chevron-left"></i></a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><i class="ion-chevron-right"></i></a>
+                    </div>
+    </div>
+        
+    
+
+    </header>
+    <!--END TOP AREA-->
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="eatModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="html_edit">
+                        <div class="xdj266r x14z9mp xat24cr x1lziwak x1vvkbs x126k92a">
+<h4 style="text-align: center;"><span style="color: #ff6600;">【2026聖誕＆跨年訂位公告】</span></h4>
+<p style="text-align: center;">2026/10/10(六)10:00起，iEAT黑卡會員優先電話訂位</p>
+<p style="text-align: center;">2026/10/17(六) 10:00起，iEAT金卡會員優先電話訂位</p>
+<p style="text-align: center;">2026/10/24(六) 09:00起，依用餐日陸續開放網路/電話訂位</p>
+<p style="text-align: center;"><span>信義店跨年晚餐場次二：僅開放電話訂位</span></p>
+<h4 style="text-align: center;"><a href="../../../../zh-TW/news/detail/2026xmas"><span style="color: #ff6600;"><img src="../../../../storage/media/2026/202610/20261002/20261002174157.jpeg" width="550" height="367" alt="" /></span></a></h4>
+<h4 style="text-align: center;"><span style="color: #ff6600;">-</span></h4>
+<h4 style="text-align: center;"><span style="color: #ff6600;">2026/10/1起【訂位開放區間 調整公告】</span></h4>
+<p style="text-align: center;"><span style="color: #ff6600;"><strong><span>2026/10/1(四)起 開</span><span>放「2個月內」上午9:00網路訂位、10:00電話訂位</span></strong><br /><span>*</span><span>開放日以<span style="background-color: #ffff99;">「月份+2」計算</span></span></span></p>
+<p style="text-align: center;"><a href="../../../../zh-TW/news/detail/202610"><span style="color: #ff6600;"><span><img src="../../../../storage/media/2026/202609/20260929/20260929110952.jpeg" width="550" height="367" alt="" /></span></span></a></p>
+<h4 style="text-align: center;"><span style="color: #ff6600;"></span>-</h4>
+<h4 style="text-align: center;"><span style="color: #ff6600;">【世界的饗饗 味旅法蘭西】全新登場</span></h4>
+<p><a href="../../../../zh-TW/news/detail/frence"><span style="color: #ff6600;"><img src="../../../../storage/media/2026/202609/20260914/20260914083827.jpeg" width="550" alt="" style="display: block; margin-left: auto; margin-right: auto;" /></span></a></p>
+</div>
+<h4 style="text-align: center;"><span style="color: #ff6600;">-</span></h4>
+<h4 style="text-align: center;"><span style="color: #ff6600;">【2027年 農曆春節訂位公告】</span></h4>
+<p style="text-align: center;">親愛的貴賓您好，INPARADISE 饗饗農曆春節期間訂位辦法如下</p>
+<p style="text-align: center;"><strong><span>2026/10/15(四)10:00起，全面開放電話訂位</span></strong></p>
+<p style="text-align: center;">2026/10/01(四)<strong>10:00</strong>起，<strong>iEAT饗愛吃黑卡</strong>會員優先電話訂位</p>
+<p style="text-align: center;"><strong>2026/10/08(四)10:00</strong>起，<strong>iEAT饗愛吃金卡</strong>會員優先電話訂位</p>
+<p><a href="../../../../zh-TW/news/detail/CNY2027"><img src="../../../../storage/media/2026/202609/20260917/20260917033132.jpeg" width="550" height="367" alt="" style="display: block; margin-left: auto; margin-right: auto;" /></a></p>
+<div style="text-align: center;"><span lang="EN-US"><span style="font-family: microsoft jhenghei, sans-serif;">-</span></span></div>
+<h4 style="text-align: center;"><span style="color: #ff6600;">【音樂佐宴 愉悅加倍】</span></h4>
+<div style="text-align: center;"><span>聚餐、派對少不了音樂的加乘，每首動人曲目來自創作人的心血；<wbr />飲食要付費、使用音樂更需取得授權。</span><span lang="EN-US"><br />MÜST</span><span>是全台最大集管團體，為創作人管理作品公開權，<wbr />協助音樂利用人取得權利；公開使用音樂，請找</span><span lang="EN-US">MÜST</span><span>為您服務。</span><span lang="EN-US"><br />Music enriches life.</span></div>
+<div style="text-align: center;"><span lang="EN-US"><span style="font-family: microsoft jhenghei, sans-serif;"><a href="https://linktr.ee/musttw">https://linktr.ee/musttw</a><a href="https://linktr.ee/musttw" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://linktr.ee/musttw&amp;source=gmail&amp;ust=1776996965404000&amp;usg=AOvVaw3CYtK6dTiHc89N2wuaWSCQ" rel="noopener"></a></span></span></div>
+<div style="text-align: center;"><span lang="EN-US"><span style="font-family: microsoft jhenghei, sans-serif;"></span></span></div>
+<div style="text-align: center;"><span lang="EN-US"><span style="font-family: microsoft jhenghei, sans-serif;">-</span></span></div>
+<h4 style="text-align: center;"><span style="color: #ff6600;">【饗賓餐旅事業 防詐騙通知提醒】</span></h4>
+<p style="text-align: center;">貴賓您好，近期詐騙份子猖狂，敬請您接到陌生來電務必小心。</p>
+<p style="text-align: center;">詐騙者慣用手法如下但不限於此：座位權取消（動搖安全感）、費用溢繳欲退款（製造被侵權恐慌）、釋放利多如贈券<span>/</span>升等（營造中獎之興奮）、擴增<span>Line</span>或市話聯繫管道（博取信任再行詐騙）。</p>
+<p style="text-align: center;">手法日新月異，敬請貴賓留意，集團訂位權益變動資訊，僅於官方網頁、訂位系統或集團<span>APP</span>揭露。<span><br /></span>官方反詐騙電話僅為一線，敬請利用<strong>《顧客關懷專線<span> (03) 275-3200</span>》</strong>諮詢或至官方網站留言，</p>
+<p style="text-align: center;">饗賓集團感謝您的支持，邀請一起以智慧保護自身權益！</p>                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <a href="https://www.feastogether.com.tw/booking/Inparadise" target="_blank" class="ai_cs"></a>
+
+    <!--FOOER AREA-->
+        <div class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="footer-copyright">
+                        <a href="https://www.ieatogether.com.tw/policy.html" target="_blank">隱私權政策</a>
+                        <a href="https://allergen.feastogether.com.tw/IPD/food_safe" target="_blank">政府食安規範標示</a>
+                        <span>Copyright © 饗饗 , 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FOOER AREA END-->
+
+                <!--====== SCRIPTS JS ======-->
+    <script src="https://www.inparadise.com.tw/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="https://www.inparadise.com.tw/js/vendor/bootstrap.min.js"></script>
+
+    <!--====== PLUGINS JS ======-->
+    <script src="https://www.inparadise.com.tw/js/vendor/jquery.easing.1.3.js"></script>
+    <script src="https://www.inparadise.com.tw/js/vendor/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://www.inparadise.com.tw/js/jquery.pogo-slider.js"></script>
+    <script src="https://www.inparadise.com.tw/js/owl.carousel.min.js"></script>
+    <script src="https://www.inparadise.com.tw/js/jquery.mixitup.min.js"></script>
+    <script src="https://www.inparadise.com.tw/js/spectragram.js"></script>
+    <script src="https://www.inparadise.com.tw/js/jquery.magnific-popup.min.js"></script>
+    
+    <script src="https://www.inparadise.com.tw/js/bootstrap-datepicker.js"></script>
+    <script src="https://www.inparadise.com.tw/js/timepicker.min.js"></script>
+    <script src="https://www.inparadise.com.tw/js/waypoints.min.js"></script>
+    <script src="https://www.inparadise.com.tw/js/jquery.counterup.min.js"></script>
+    <script src="https://www.inparadise.com.tw/js/wow.min.js"></script>
+    <script src="https://www.inparadise.com.tw/js/contact-form.js"></script>
+    <script src="https://www.inparadise.com.tw/js/jquery.sticky.js"></script>
+
+    <!--===== ACTIVE JS=====-->
+    <script src="https://www.inparadise.com.tw/js/main.js?ver=2025090201"></script>
+    
+
+    <script>
+        $(function(){
+            //videoAutoplay();
+            //首頁POP視窗
+            $('#eatModal').modal();
+            $(window).click(function (e) { 
+                videoAutoplay();
+            }); 
+
+            background_img_set();
+            $(window).resize(function () { 
+                background_img_set();
+            });
+        });
+        function videoAutoplay () 
+        {  
+            //20191111 Tina Chrome autoplay fix
+            if($('#home_video').length > 0)
+            {
+                var promise = $('#home_video').get(0).play();
+                if (promise !== undefined) {
+                    promise.then(_ => {
+                        // Autoplay started!
+                        document.getElementById('home_video').muted = false; 
+                    }).catch(error => {
+                        // Autoplay was prevented.
+                        // Show a "Play" button so that user can start playback.
+                        console.log('Show a "Play" button so that user can start playback.');
+                    });
+                }
+            }
+        }
+        function background_img_set()
+        {
+            $(".background_bg").each(function() {
+                var attr = $(this).attr('data-mobile-img-src');
+                if (typeof attr !== typeof undefined && attr !== false) 
+                {
+                    var w = $(window).width();
+                    if(w < 768)
+                    {
+                        $(this).css('background-image', 'url(' + attr + ')');
+                    }
+                    else
+                    {
+                        attr = $(this).attr('data-img-src');
+                        $(this).css('background-image', 'url(' + attr + ')');
+                    }
+                }
+                else
+                {
+                    var attr = $(this).attr('data-img-src');
+                    if (typeof attr !== typeof undefined && attr !== false) 
+                    {
+                        $(this).css('background-image', 'url(' + attr + ')');
+                    }
+                }
+            });
+        }
+    </script>
+    </body>
+</html>

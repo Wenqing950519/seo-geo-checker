@@ -1,0 +1,17 @@
+{
+  "id": 10,
+  "input_url": "https://www.gbarestaurants.com.tw/",
+  "store_id": "XY-045",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0017-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0017-response.txt",
+  "sequence": 10,
+  "started_at": "2026-10-15T06:36:56.590Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_72468427-2113-42e2-9005-4e38bc7446aa",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:59.402Z"
+}

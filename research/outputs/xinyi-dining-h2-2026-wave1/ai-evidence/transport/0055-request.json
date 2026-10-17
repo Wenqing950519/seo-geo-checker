@@ -1,0 +1,28 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 55,
+  "provider": "deepseek",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "reserved_at": "2026-10-15T06:23:21.617Z",
+  "payload": {
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You must output valid JSON only. Do not output Markdown or explanatory text."
+      },
+      {
+        "role": "user",
+        "content": "你是研究資料標註員，只能根據提供的網站證據輸出 JSON。\n任務是標準化基本資訊、產業分類、網站結構與內容特徵；不是提出優化建議。\n不得產出 recommendation、action、improvement、rewrite、expected impact 或任何行銷建議。\n證據不足時填 unknown，並降低 confidence；不得從網域名稱猜測。\n輸出格式：\n{\"entity_name\":\"string | unknown\",\"industry\":\"string | unknown\",\"business_scope\":\"string | unknown\",\"geography\":[\"string\"],\"primary_language\":\"string | unknown\",\"page_purpose\":\"string | unknown\",\"structure_summary\":{\"information_architecture\":\"string | unknown\",\"content_format\":[\"string\"],\"schema_types\":[\"string\"],\"js_dependency\":\"low | medium | high | unknown\"},\"observed_content_topics\":[\"string\"],\"evidence_basis\":[\"string\"],\"confidence\":\"low | medium | high\"}\n網站證據：\n{\"url\":\"https://www.lawrys.com.tw/\",\"detected_site_type\":\"restaurant\",\"title\":\"首頁 | Lawry's Taipei 勞瑞斯餐廳\",\"description\":\"​Lawry's 勞瑞斯牛肋排餐廳創立於1938年美國比佛利山莊，提供頂級熟成牛肋排與桌邊服務，特色包括銀色餐車現切牛排、冰旋翡翠沙拉秀及專屬酒標葡萄酒，致力於打造高雅用餐體驗。\",\"h1\":\"\",\"language\":\"\",\"text_excerpt\":\"首頁 | Lawry's Taipei 勞瑞斯餐廳 --> 品牌故事 Our Story 極品美饌 Menu 最新消息 News 線上訂餐 Order Online 線上訂位 Online Booking 餐廳實景 Environment 聯絡我們 Contact 感恩火雞禮籃(即將推出) Lawry's Turkey Baskets(Coming Soon) MORE INFO 尾牙春酒熱烈訂席中 Year-end Party MORE INFO 感恩節火雞內用套餐 Thanksgiving Dinner Menu MORE INFO (02) 2729-8555 台北市信義區松仁路28號6樓(BELLAVITA百貨) Business Hour 營業時間：午間時段 11:30~15:00, 晚間時段 17:30~21:30 Deposit 預付訂金 © 2021 Lawry's The Prime Rib Taipei. All rights reserved.\",\"representative_pages\":[{\"url\":\"https://www.lawrys.com.tw/upload/menu/2503041326170000001.pdf\",\"title\":\"\",\"h1\":\"\",\"text_excerpt\":\"\"},{\"url\":\"https://www.lawrys.com.tw/upload/menu/2502261701540000001.pdf\",\"title\":\"\",\"h1\":\"\",\"text_excerpt\":\"\"},{\"url\":\"https://www.lawrys.com.tw/upload/menu/2503310942510000001.pdf\",\"title\":\"\",\"h1\":\"\",\"text_excerpt\":\"\"}],\"observed_structure\":{\"title_present\":true,\"h1_present\":false,\"description_present\":true,\"readable_text_length\":439,\"schema_types\":[],\"sitemap_status\":200,\"crawl_method\":\"http\"}}"
+      }
+    ],
+    "response_format": {
+      "type": "json_object"
+    },
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "disabled"
+    },
+    "temperature": 0
+  }
+}

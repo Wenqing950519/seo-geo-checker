@@ -1,0 +1,1859 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Humble House Taipei 台北艾麗 希爾頓格芮精選酒店</title>
+<meta name="description" content="Humble House Taipei represents a non-conventional concept that blends art, culture, and living in its aesthetics. We take root in caring for people, combining aesthetic values to provide a harmonious and sophisticated sense for life. Everyone that walks in Humble House Taipei is not only a guest but also an artist in living.">
+<meta name="keywords" CONTENT="humblehouse, humble, house, hotel, hotels, taipei, art, 寒舍, 艾麗, 酒店, 台北, 信義, 藝術, アート, ギャラリー, ホテル">
+<meta name="viewport" content="width=device-width" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<link rel="icon" href="/icon.png" />
+<link rel="apple-touch-icon" href="/icon.png"/>
+<link rel="apple-touch-icon-precomposed" href="/icon.png"/>
+
+<link rel="stylesheet" href="/reset.css" />
+<link rel="stylesheet" href="/fonts_en.css" />
+<link rel="stylesheet" href="/style_1910301146.css?v=10" />
+<link rel="stylesheet" type="text/css" href="/style_m.css" media="handheld" />
+<link rel="stylesheet" href="/fonts_icon.css" />
+<link rel="stylesheet" href="/fonts.css" />
+<link rel="stylesheet" href="/weather-icons.min.css" />
+
+<!--
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" />
+-->
+
+<link rel="stylesheet" href="/calender.css" />
+<link rel="stylesheet" href="/fontawesome/css/all.css" />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+
+
+
+<!-- slider -->
+<link rel="stylesheet" href="/js/royalslider/royalslider.css">
+<link rel="stylesheet" href="/js/royalslider/skins/default/rs-default.css">
+<script src="/js/royalslider/jquery.royalslider.min.js"></script>
+
+
+<!-- jscrollpane -->
+<script type="text/javascript" src="/js/jqy.jscrollpane.min.js"></script>
+<script type="text/javascript" src="/js/jq.mousewheel.js"></script>
+<link rel="stylesheet" href="/js/jq.jscrollpane.css" />
+
+
+<!-- nprogress -->
+<script type="application/javascript" src="/js/nprogress.js"></script>
+<link rel="stylesheet" href="/js/nprogress.css" />
+
+
+<!-- other -->
+<script type="text/javascript" src="/js/jq.placeholder.js"></script>
+
+
+<!--script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=geometry&amp;sensor=false&amp;language=en&amp;key=AIzaSyCSQ9pj3UsdGNUbbJwMvSEG07skcCoh200"></script-->
+
+<script src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<!--script src="https://maps.googleapis.com/maps/api/js?sensor=true&amp;key=AIzaSyASFZe2LYhRzLEmi8-0yvM2UoVHkyt0i6U"></script-->
+
+
+
+<!-- scope -->
+<link rel="stylesheet" href="/scope.css" />
+
+
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400' rel='stylesheet' type='text/css'>
+
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+
+
+<!--script type="text/x-jquery-tmpl" id="week_day_temp">
+
+<div class="week_day" style="text-align:right;" onmouseover="changeWeather(this, '${Math.round((parseFloat(high)+parseFloat(low))/2)}&deg;','${$item.getIcon(code)}')">${day}</div>
+
+</script-->
+
+<script type="text/javascript"><!--
+
+var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+
+
+$(window).load(function() {
+
+
+//	$("#index_load").stop().animate({top:'-100%'}, {duration: 500, queue: false});  
+	$("#index_load").fadeOut(1000);
+	$("header").stop().fadeIn('500');
+
+if ($.support.leadingWhitespace) {
+NProgress.done();
+}
+
+if($(window).width() >= 1000) {
+setTimeout(function() {
+
+if($("#sec_res").length){
+  	$("#sec_res").stop().animate({right:'0%'}, {duration: 400, queue: false});
+ }
+
+	$("#sec_float_body").stop().animate({right:'0%'}, {duration: 400, queue: false});
+}, 200);
+}
+
+
+});
+
+$(document).ready(function(){
+jQuery.support.cors = true;
+
+//	var device_width =  $(window).width();
+//	$("#index_load").css({'width':device_width});
+
+
+if ($.support.leadingWhitespace) {
+NProgress.start();
+}
+
+if($(window).width() >= 1000) {
+$("#sec_float_body").css({'right':'-40%'});
+$("#sec_res").css({'right':'-40%'});
+}
+$("header").css({'display':'none'});
+
+$(".royalSlider").royalSlider({
+        captionShowEffects:["moveleft", "fade"],
+        imageScaleMode:"fill",
+        imageAlignCenter:true,
+        directionNavAutoHide: true,
+        navigateByClick: false
+    });  
+
+$('.royalSlider').data('royalSlider').updateSliderSize(true);
+
+////Desktop
+if ($(window).width() > 1000) {
+
+var slider = $(".royalSlider").data('royalSlider');
+slider.ev.on('rsSlideClick', function(event, originalEvent) {
+showHideDes();
+});
+
+}
+
+//GetWeatherData();
+getWtheater();
+
+});
+
+
+$(function(){
+$('.scroll-pane').jScrollPane({
+    contentWidth: '0px'
+});
+
+reIntScroll();
+
+});
+
+$(function() {
+	$( "#input_from").datepicker({
+		minDate: +1,
+		dateFormat: 'yy-mm-dd', 
+		showOtherMonths: true, 
+		nextText: '>', 
+		prevText: '<',
+		onClose: function(dateText, inst) {
+			$(this).attr("disabled", false);
+		},
+		beforeShow: function(input, inst) {
+			$(this).attr("disabled", true);
+		}
+    });
+});
+
+
+
+
+
+function reIntScroll() {
+ $.each( $('.scroll-pane'), function(){
+						var api = $(this).data('jsp');
+						api.reinitialise();
+						
+						//$(this).find('.jspPane').css({width:'+=' + $(this).find('.jspTrack').width()});						
+						$(this).find('.jspPane').css({width:$(this).find('.jspContainer').width()});						
+						
+						
+					});
+}
+
+function GetWeatherData() {
+    var loc = 'TWXX0021';
+    var u = 'c';
+    var query = "select * from weather.forecast(0,5) where woeid = 2306179 and u ='c'";    
+    var url = 'https://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent(query) + '&format=json';
+
+
+        $.ajax({
+            url: url,
+//            type: "GET",
+            dataType: "jsonp",
+            success: function (data) {
+            var forcastData = data.query.results.channel.item.forecast;
+            forcastData = forcastData.slice(0, 5);
+                $("#week").html("");
+                $("#week_day_temp").tmpl( forcastData, {
+					getIcon: function(code) {
+						///cloud
+						var icon = "&#xe000;";
+						
+						if(code <= 4 || (code >= 37 && code <= 39) || code == 45 || code == 47) {
+						//thunder
+						icon = "&#xe009;";
+						}
+						else if ((code >= 5 && code <= 7) || (code >= 13 && code <= 19) || (code >= 41 && code <= 43) || code == 46) {
+						//snow
+						icon = "&#xe008;";
+						}
+						else if(code >= 8 && code <= 9) {
+						//drizzle
+						icon = "&#xe004;";
+						}
+						else if((code >= 10 && code <= 12) || code == 35) {
+						//rainy
+						icon = "&#xe005;";
+						}
+						else if(code >= 20 && code <= 23) {
+						//foggy
+						icon = "&#xe00c;";
+						}
+						else if(code == 24) {
+						//windy
+						icon = "&#xe00a;";
+						}
+						else if(code >=26 && code <=28) {
+						//cloudy
+						icon = "&#xe007;";
+						}
+						else if((code >=29 && code <=30)|| code ==34|| code ==44) {
+						//partly cloudy
+						icon = "&#xe003;";
+						}
+						else if((code >=31 && code <=32) || code == 36) {
+						//sun
+						icon = "&#xe002;";
+						}
+						
+						return icon;
+						} 
+   				 }).appendTo("#week");
+   				 
+   				 ////update main data
+           			$('#week .week_day:first').trigger('mouseover');
+   				 
+   				 
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //alert(ajaxOptions + thrownError);
+            },
+            timeout: 3000 
+        });
+
+    }
+
+function changeWeather(item, temp, img) {
+
+$("#degree").stop().animate({opacity:'0'}, {duration: 500, queue: false, complete: function(){
+	$("#degree").html(temp);
+	$("#degree").animate({opacity:'1'}, {duration: 500, queue: false});
+				}
+				});
+
+$("#wimg").stop().animate({opacity:'0'}, {duration: 500, queue: false, complete: function(){
+	$( "#wimg" ).attr({'data-icon': img});
+	$("#wimg").animate({opacity:'1'}, {duration: 500, queue: false});
+				}
+				});
+
+$(".week_day").css({'color':'#000', 'border':0, 'padding':0});
+
+$(item).css({'color':'#a39382', 'border-right': 'solid 2px #a39382', 'padding-right':'0.3em'});
+				
+}
+
+var secDesStatus = 1;
+function showHideDes(){
+	if(secDesStatus) {
+	secDesStatus = 0;
+	$("#sec_float_body").stop().animate({right:'-100%'}, {duration: 800, queue: false});
+	
+	$("#sec_res").stop().animate({right:'-100%'}, {duration: 800, queue: false});
+
+	$("#sec_body_controller").stop().fadeIn('500');
+
+	//$("#sec_banner.index .ag_area").addClass("addlogo");
+	//$("#sec_banner.index .ag_area").fadeIn(1000);
+	$(".ag_area").fadeIn(1000);
+
+	}
+	else {
+	secDesStatus = 1;
+	$("#sec_float_body").stop().animate({right:'0%'}, {duration: 800, queue: false});
+	
+	$("#sec_res").stop().animate({right:'0%'}, {duration: 800, queue: false});
+	
+	$("#sec_body_controller").stop().css({'display':'none'});
+
+	//$("#sec_banner.index .ag_area").removeClass("addlogo");
+	//$("#sec_banner.index .ag_area").fadeOut(1000);
+	$(".ag_area").fadeOut(1000);
+
+	}
+	
+
+}
+
+var secFooterStatus = 0;
+function showHideFooter(){
+	if(secFooterStatus) {
+	secFooterStatus = 0;
+	$("footer").stop().animate({height:'38px'}, {duration: 400, queue: true}).animate({width:'38px'}, {duration: 400, queue: true});
+	$("footer").removeClass("footer_dark");
+	$("#footer_content").stop().animate({opacity:'0'}, {duration: 500, queue: false});
+	$("#footer_control span").removeClass("icon-minus");
+	$("#footer_control span").addClass("icon-plus");
+	}
+	else {
+	secFooterStatus = 1;
+	$("footer").stop().animate({width:'100%'}, {duration: 400, queue: true}).animate({height:'333px'}, {duration: 400, queue: true, complete:function(){
+	//// destroy and activate 
+	
+			$('.footer-scroll-pane').jScrollPane({
+		contentWidth: '0px'
+		});
+
+	}
+	});
+	$("footer").addClass("footer_dark");
+	$("#footer_content").stop().animate({opacity:'1'}, {duration: 500, queue: false});
+	$("#footer_control span").removeClass("icon-plus");
+	$("#footer_control span").addClass("icon-minus");
+	}
+	
+
+}
+
+
+function updateValue (value, id){
+	$("#"+id).html(value);
+}
+
+function genBookURL(){
+
+var fromDate = $('#input_from').datepicker('getDate');
+var toDate = $('#input_from').datepicker('getDate');
+var nights = parseInt($('#input_nights').val());
+//var adults = parseInt($('#input_adults').val());
+var adults = 2;
+
+toDate.setDate(fromDate.getDate() + nights);
+
+		document.getElementById('sec_res_button_book').onclick = function(){
+//		location.href='https://gc.synxis.com/rez.aspx?Hotel=60348&Chain=15953&arrive='+$.datepicker.formatDate('mm/dd/yy', fromDate)+'&depart='+$.datepicker.formatDate('mm/dd/yy', toDate)+'&adult='+adults;
+		location.href='/book?Hotel=63333&Chain=5154&lang=en&arrive='+$.datepicker.formatDate('mm/dd/yy', fromDate)+'&depart='+$.datepicker.formatDate('mm/dd/yy', toDate)+'&adult='+adults;
+
+
+	};
+}
+
+var secSubDesStatus = 0;
+function showHideSubdes(){
+
+	if(secSubDesStatus) {
+  	$("#sec_subdes_back").stop().animate({right:'-110%'}, {duration: 500, queue: false});
+  	$("#sec_subdes").stop().animate({right:'-110%'}, {duration: 500, queue: false});
+  	secSubDesStatus = 0;
+  	}
+  	else {
+  	$("#sec_subdes_back").stop().animate({right:'-10%'}, {duration: 500, queue: false});
+  	$("#sec_subdes").stop().animate({right:'0%'}, {duration: 500, queue: false});
+  	secSubDesStatus = 1;
+  	}
+  	
+}
+
+var secSubDetStatus = 0;
+function showHideSubdet(){
+
+	if(secSubDetStatus) {
+  	$("#sec_subdet_back").stop().animate({right:'-110%'}, {duration: 500, queue: false});
+  	$("#sec_subdet").stop().animate({right:'-110%'}, {duration: 500, queue: false});
+  	secSubDetStatus = 0;
+  	}
+  	else {
+  	$("#sec_subdet_back").stop().animate({right:'-10%'}, {duration: 500, queue: false});
+  	$("#sec_subdet").stop().animate({right:'0%'}, {duration: 500, queue: false});
+  	secSubDetStatus = 1;
+  	}
+  	
+}
+
+var secSubResStatus = 0;
+function showHideSubres(){
+
+	if(secSubResStatus) {
+  	$("#sec_subres_back").stop().animate({right:'-110%'}, {duration: 500, queue: false});
+  	$("#sec_subres").stop().animate({right:'-110%'}, {duration: 500, queue: false});
+  	secSubResStatus = 0;
+  	}
+  	else {
+  	$("#sec_subres_back").stop().animate({right:'-10%'}, {duration: 500, queue: false});
+  	$("#sec_subres").stop().animate({right:'0%'}, {duration: 500, queue: false});
+  	secSubResStatus = 1;
+  	}
+  	
+}
+
+function showHide(id, tran){
+	
+	if(tran == "fade") {
+	$(id).fadeToggle("500");
+	}
+	else {
+	$(id).slideToggle("500");
+	}
+}
+
+
+function showHideRestDetail(id){
+
+	if(secSubDetStatus) {
+  	$("#sec_subdet_back").stop().animate({right:'-110%'}, 500).animate({right:'-10%'}, 500);
+  	$("#sec_subdet").stop().animate({right:'-110%'}, 500).animate({right:'0%'}, 500);
+  	secSubDetStatus = 1;
+  	
+  	
+  	setTimeout(function(){
+		$("#sec_subdet_text h1").html($('#title_'+id).val());
+		$("#sec_subdet_text h2").html($('#description_'+id).val());
+		$("#sec_subdet_text_img").html('<div class="loading"><img src="/images/loading.gif" border="0"></div>');
+		var newImg = new Image();
+		newImg.src = $('#img_'+id).val();
+		
+		newImg.onload = function(){
+		$("#sec_subdet_text_img").html('<img src="'+$('#img_'+id).val()+'" border="0">');
+		reIntScroll();
+		};
+		
+	}, 500);
+  	}
+  	else {
+		$("#sec_subdet_text h1").html($('#title_'+id).val());
+		$("#sec_subdet_text h2").html($('#description_'+id).val());
+		$("#sec_subdet_text_img").html('<div class="loading"><img src="/images/loading.gif" border="0"></div>');
+		var newImg = new Image();
+		newImg.src = $('#img_'+id).val();		
+		newImg.onload = function(){
+		$("#sec_subdet_text_img").html('<img src="'+$('#img_'+id).val()+'" border="0">');
+		reIntScroll();
+		};
+  	
+  	$("#sec_subdet_back").stop().animate({right:'-10%'}, {duration: 500, queue: false});
+  	$("#sec_subdet").stop().animate({right:'0%'}, {duration: 500, queue: false});
+  	secSubDetStatus = 1;
+  	}
+  	
+}
+
+function showLocDetial(id){
+
+	if(secSubResStatus) {
+  	$("#sec_subres_back").stop().animate({right:'-110%'}, 500).animate({right:'-10%'}, 500);
+  	$("#sec_subres").stop().animate({right:'-110%'}, 500).animate({right:'0%'}, 500);
+  	secSubResStatus = 1;
+  	
+  	setTimeout(function(){
+		$("#sec_subres_text h1").html($('#title_'+id).val());
+		$("#sec_subres_text h2").html($('#description_'+id).val());
+		$("#sec_subres_text p").html($('#address_'+id).val());
+		$("#sec_subres_button").attr("href", $('#link_'+id).val());
+		
+		if($('#img_'+id).val()) {
+			$("#sec_subres_text_img").css({display:'block'});
+			$("#sec_subres_text_img").html('<div class="loading"><img src="/images/loading.gif" border="0"></div>');
+			var newImg = new Image();
+			newImg.src = $('#img_'+id).val();
+		
+			newImg.onload = function(){
+				$("#sec_subres_text_img").html('<img src="'+$('#img_'+id).val()+'" border="0">');
+				reIntScroll();
+			};
+		
+		}
+		else {
+			$("#sec_subres_text_img").css({display:'none'});
+			reIntScroll();
+		}
+		
+	}, 500);
+  	}
+  	else {
+		$("#sec_subres_text h1").html($('#title_'+id).val());
+		$("#sec_subres_text h2").html($('#description_'+id).val());
+		$("#sec_subres_text p").html($('#address_'+id).val());
+		$("#sec_subres_button").attr("href", $('#link_'+id).val());
+		
+		if($('#img_'+id).val()) {
+			$("#sec_subres_text_img").css({display:'block'});
+			$("#sec_subres_text_img").html('<div class="loading"><img src="/images/loading.gif" border="0"></div>');
+			var newImg = new Image();
+			newImg.src = $('#img_'+id).val();
+		
+			newImg.onload = function(){
+				$("#sec_subres_text_img").html('<img src="'+$('#img_'+id).val()+'" border="0">');
+				reIntScroll();
+			};
+		
+		}
+		else {
+			$("#sec_subres_text_img").css({display:'none'});
+			reIntScroll();
+		}
+		
+  	$("#sec_subres_back").stop().animate({right:'-10%'}, {duration: 500, queue: false});
+  	$("#sec_subres").stop().animate({right:'0%'}, {duration: 500, queue: false});
+  	secSubResStatus = 1;
+  	}	
+}
+
+
+$(window).ready(function(){
+	$('#menu > li').click(function(){
+		//console.log('click!!!!!!!');
+		//console.log('this =');
+		//console.log($(this));
+		if ( $(this).children("ul").css('visibility') == 'hidden' ){
+			$('#menu > li > ul').css('visibility','hidden');
+			$('#menu_mobile > li > ul').css('visibility','hidden');
+	    	$(this).children("ul").css('visibility','visible');
+	    }
+	  	else{
+	    	$(this).children("ul").css('visibility','hidden');
+	    }
+
+	    if ($(this).children().length == 1 ) {
+	    	$('#menu > li > ul').css('visibility','hidden');
+	    	$('#menu_mobile > li > ul').css('visibility','hidden');
+	    }
+
+	});
+
+	/*
+	$('#menu_mobile > li').click(function(){
+			
+		if ( $(this).children("ul").css('visibility') == 'hidden' ){
+			$('#menu > li > ul').css('visibility','hidden');
+			$('#menu_mobile > li > ul').css('visibility','hidden');
+	    	$(this).children("ul").css('visibility','visible');
+	    }
+	  	else{
+	    	$(this).children("ul").css('visibility','hidden');
+	    }
+
+	    if ($(this).children().length == 1 ) {
+	    	$('#menu > li > ul').css('visibility','hidden');
+	    	$('#menu_mobile > li > ul').css('visibility','hidden');
+	    }
+
+	});
+	*/
+
+	$('#menu_mobile > li').click(function(){
+		$('#menu_mobile > li').children("ul").removeClass('open');
+		$(this).children("ul").toggleClass('open');
+	});
+
+});
+
+$(window).resize(function(){
+
+//    $('.royalSlider').data('royalSlider').st.autoScaleSliderWidth = 100;
+
+
+    reIntScroll(); 
+    
+	if($(window).width() >= 1000) {
+		var slider = $(".royalSlider").data('royalSlider');
+	slider.ev.on('rsSlideClick', function(event, originalEvent) {
+	showHideDes();
+	});
+	}
+	else{
+		if(!secDesStatus){
+		secDesStatus = 1;
+		$("#sec_float_body").css({right:'0%'});		
+		$("#sec_res").css({right:'0%'});
+		$("#sec_body_controller").css({'display':'none'});
+		}
+		var slider = $(".royalSlider").data('royalSlider');
+		slider.ev.off('rsSlideClick');
+	}
+	  
+});
+
+
+
+function formSubmit(id, type) {
+
+	if((type=='mail') && validateEmail($('#input_email').val()) && $('#input_comments').val()){	
+	
+		$(id).animate({opacity: 0}, 500, function(){
+			$(id).animate({height: 0}, 300);
+		});
+		
+		$.post('/websendmail', $(id).serialize())
+			.success(function(data) {
+					
+					$('#sec_subres_text').find('h1').html($('#sec_subres_h1_re').val());
+					//$('#sec_subres_text').find('h2').html($('#sec_subres_h2_re').val());
+					//alert(data);
+		});
+	}
+	else if((type=='book') && validateEmail($('#input_email').val()) && $('#input_time').val()){	
+		$(id).animate({opacity: 0}, 500, function(){
+				$(id).animate({height: 0}, 300);
+		});
+		$.post('/webajax', $(id).serialize())
+			.success(function(data) {
+					
+					$('#sec_subres_text').find('h1').html($('#sec_subres_h1_re').val());
+					$('#sec_subres_text').find('h2').html($('#sec_subres_h2_re').val());
+		});
+	}
+	else {
+	///show req
+		$('.required').css({'display':'inline-block'});;
+	}
+
+}
+
+function socialShare() {
+
+	if($('#sec_social').css('display') == 'none') {
+	$('#sec_social_container .circle_button').css({'margin-right': '-2em'});
+	$('#sec_social_container .circle_button').stop().animate({'margin-right': '1em'}, 500, 'easeOutQuart', function(){
+		});
+	}
+
+	$('#sec_social').fadeToggle();
+	$('#sec_mask').fadeToggle();
+	$('#sec_mask').unbind('click').click(function(){socialShare();});
+	
+}
+
+function showVideo() {
+
+
+	$('#sec_video').fadeToggle();
+	$('#sec_video_close').fadeToggle();	
+	$('#sec_mask').fadeToggle();
+	$('#sec_mask').unbind('click').click(function(){showVideo();});
+
+	
+	$('#sec_video').toggleClass('toggled');
+	
+	if ($('#sec_video').hasClass('toggled')) {
+	$(".royalSliderVideo").royalSlider({
+        captionShowEffects:["moveleft", "fade"],
+        imageScaleMode:"fill",
+        imageAlignCenter:true,
+        directionNavAutoHide: true,
+        navigateByClick: false
+    });
+	}
+	else{
+	$('.royalSliderVideo').royalSlider('updateSliderSize', true);
+	$('.royalSliderVideo').royalSlider('goTo', 0);
+	$('.royalSliderVideo').royalSlider('stopVideo');
+	
+	}
+}
+
+function validateEmail(email) {   
+    var regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(email);
+}
+
+
+
+////new add 221215
+	function temperatureConverter(valNum) {
+	  var valNum = parseFloat(valNum);
+	  //valNum = Math.round((valNum-32)/1.8);
+	  valNum = Math.round(valNum);
+	  //console.log('weatherOut='+valNum);
+	  //console.log('valNum='+valNum);
+	  if(!valNum){
+	  	//console.log('weatherOut!');
+	  	//valNum = Math.floor(Math.random()*(36-33+1))+33;
+	  	valNum = Math.floor(Math.random()*(14-21+1))+33;
+	  	//console.log('weatherOut='+valNum);
+	  }
+	  	
+
+	  // document.getElementById("degree").innerHTML = valNum + "°C";
+	  document.getElementById("degree").innerHTML = valNum + "°";
+	}
+
+	function weatherOutput(condCode,dncode) {
+		//console.log(condCode);
+		//console.log(dncode);
+		if(!condCode)
+			var condCode = 802;
+
+		if(condCode >= 200 && condCode < 300){
+			//thunderstorm
+			condCode = 4;
+		}
+		else if(condCode >= 300 && condCode < 700){
+			//rain
+			condCode = 40;
+		}
+		else if(condCode >= 700 && condCode < 800){
+			//windy
+			condCode = 21;
+		}
+		else if(condCode == 800){
+			//clear
+			if(dncode == '01d'){
+				condCode = 32;
+			}else {
+				condCode = 31;
+			}	
+		}
+		else if(condCode == 801){
+			//cloudy sun moon
+			if(dncode == '02d'){
+				condCode = 30;
+			}else {
+				condCode = 29;
+			}	
+		}
+		//else (condCode >= 802 && condCode < 900){
+		else{	
+			//cloudy
+			condCode = 26;	
+		}
+
+
+		// determine the proper
+		switch ( condCode ) {
+			case 0:
+				condIcon = 'tornado';
+				break;
+
+			case 1:
+				condIcon = 'day-storm-showers';
+				break;
+
+			case 2:
+				condIcon = 'hurricane';
+				break;
+
+			case 3:
+			case 4:
+				condIcon = 'thunderstorm';
+				break;
+
+			case 5:
+			case 6:
+			case 7:
+				condIcon = 'rain-mix';
+				break;
+
+			case 8:
+				condIcon = 'hail';
+				break;
+
+			case 9:
+				condIcon = 'showers';
+				break;
+
+			case 10:
+				condIcon = 'hail';
+				break;
+
+			case 11:
+			case 12:
+				condIcon = 'showers';
+				break;
+
+			case 13:
+				condIcon = 'snow';
+				break;
+
+			case 14:
+				condIcon = 'day-snow';
+				break;
+
+			case 15:
+				condIcon = 'snow-wind';
+				break;			 
+
+			case 16:
+				condIcon = 'snow';
+				break;
+
+			case 17:
+				condIcon = 'hail';
+				break;
+
+			case 18:
+				condIcon = 'rain-mix';
+				break;
+
+			case 19:
+				condIcon = 'dust';
+				break;
+
+			case 20:
+				condIcon = 'fog';
+				break;
+
+			case 21:
+				condIcon = 'windy';
+				break;
+
+			case 22:
+				condIcon = 'smoke';
+				break;
+
+			case 23:
+			case 24:
+				condIcon = 'strong-wind';
+				break;
+
+			case 25:
+				condIcon = 'snowflake-cold';
+				break;
+
+			case 26:
+				condIcon = 'cloudy';
+				break;
+
+			case 27:
+			case 29:
+				condIcon = 'night-cloudy';
+				break;
+
+			case 28:
+			case 30:
+				condIcon = 'day-cloudy';
+				break;
+
+			case 31:
+				condIcon = 'night-clear';
+				break;
+
+			case 32:
+				condIcon = 'day-sunny';
+				break;
+
+			case 33:
+				condIcon = ' night-partly-cloudy';
+				break;
+
+			case 34:
+				condIcon = 'day-sunny';
+				break;
+
+			case 35:
+				condIcon = 'hail';
+				break;
+
+			case 36:
+				condIcon = 'hot';
+				break;
+
+			case 37:
+			case 38:
+				condIcon = 'thunderstorm';
+				break;
+
+			case 39:
+				condIcon = 'day-showers';
+				break;
+				
+			case 40:
+				condIcon = 'rain';
+				break;
+
+			case 41:
+				condIcon = 'day-snow';
+				break;
+
+			case 42:
+				condIcon = 'snow';
+				break;
+
+			case 43:
+				condIcon = 'storm-showers';
+				break;
+
+			case 44:
+				condIcon = 'na';
+				break;
+
+			case 45:
+				condIcon = 'night-showers';
+				break;
+
+			case 46:
+				condIcon = 'night-alt-snow';
+				break;
+
+			case 47:
+				condIcon = 'day-storm-showers';
+				break;
+
+			default:
+				condIcon = 'refresh';
+		}
+		// add the css prefix
+		condIcon = 'wi-' + condIcon;
+		// set the image
+		$('#wimg .wi').addClass(condIcon);
+
+		var objToday = new Date(),
+		weekday = new Array('SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT'),
+		dayOfWeek = weekday[objToday.getDay()];
+
+		//$('#week').find('.select_day').remove();
+
+		$('#'+dayOfWeek).addClass("select_day");
+
+	}
+
+	function getWtheater() {
+		//widther
+		
+		$.ajax({
+		  	type : "GET",
+		  	url : 'https://api.openweathermap.org/data/2.5/weather?q=Taipei&appid=f2f311c9a6e722b92820b8431e79599c&units=metric',
+		  	success : function (data){
+		  		//console.log('weather=');
+			    //console.log(data);
+			    if(data){
+			    	temperatureConverter(data.main.temp);
+					weatherOutput(data.weather[0].id, data.weather[0].icon);
+			    }else {
+			    	temperatureConverter();
+					weatherOutput();
+			    }
+			    
+			    
+			// data would be here if loading successfully
+			},
+			error: function () {
+				//console.log('weatherErr');
+				temperatureConverter();
+				weatherOutput();
+			}
+		});
+		
+	}
+
+
+
+//// new add end
+
+
+
+//--></script>
+
+<!--[if lt IE 10]>
+<script type="text/javascript">
+$(function() {
+	$('input, textarea').placeholder();
+});
+</script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+<script type="text/javascript">
+
+$(function() {
+	if($('#sec_news').height() > $(window).height() && $('#sec_news').length) {
+	$('body').css({height: $('#sec_news').height()});
+	}
+	if($('#sec_list').height() > $(window).height() && $('#sec_list').length) {
+	$('body').css({height: $('#sec_list').height()});
+	}
+});
+
+</script>
+<![endif]-->
+
+<!-- Google tag (gtag.js) --> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZF9YV4DE85"></script> 
+<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-ZF9YV4DE85'); </script>
+
+</head>
+<body>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "Humble House Hotels",
+  "url" : "https://www.humblehousehotels.com",
+  "sameAs" : [
+    "https://plus.google.com/+Humblehousehotels",
+    "https://zh-tw.facebook.com/humblehousetaipei"
+  ]
+}
+</script> 
+
+
+<div id="index_load">
+<div id="index_load_container">
+</div>
+</div>
+
+	<div id="site_container">
+
+		<header>
+        	<div id="branding">
+				<a href="/en/"><img src="/images/logo.png" alt="humble house hotels" border="0"></a>
+            </div>
+
+ 		<ul id="menu" class="menu-scroll-pane">
+ 		
+ 		
+				<li><a href="javascript: void(0);">NEWS</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=annc&amp;subcat=15">ANNOUNCEMENTS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=35">ROOM PACKAGES</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=33">DINING OFFERS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=38">WEDDING</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=7">EVENTS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=36">HILTON HONORS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat="></a></li>
+
+		                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Rooms</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=7">DELUXE ROOM</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=38">DELUXE ROOM HIGH FLOOR</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=5">DELUXE ROOM WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=8">PREMIUM ROOM</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=13">PREMIUM ROOM WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=21">TWIN DELUXE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=22">KING DELUXE SUITE WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=23">PRESTIGE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=24">HUMBLE HOUSE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=43">ACCESSIBLE ROOM</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Events</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=14">Grand Ballroom</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=37">Meeting Service</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Facilities</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=17">OUTDOOR SWIMMING POOL</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=16">FITNESS CENTER</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=15">SPA</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">About Hotel</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=2">OVERVIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=1">HUMBLE HOUSE EXPERIENCE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=12">ENVIRONMENTAL PROTECTION CONCEPTS</a></li>
+			                    
+                    </ul>
+				</li>
+		<li><a href="/en/websev?cat=art">Art Gallery</a></li><li><a href="javascript: void(0);">OUR CITY</a>
+				
+				<ul>
+				<li><a href="/en/websev?cat=neighborhood&amp;id=9">Art</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=7">City Scenery</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=8">Dining</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=6">Shopping</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=1">Tourism</a></li>
+				</ul>
+				
+				</li><li><a href="/en/websev?cat=contact">Contact us</a></li>
+ 		
+		</ul>
+
+	
+
+
+			<ul id="menu_sec">
+
+<li><a href="/zh-tw/">CN</a>
+
+			</ul>
+			
+		<ul id="menu_social">
+			<li><a href="https://www.facebook.com/humblehousetaipei" target="_blank"><span class="icon-facebook2"></span></a></li>
+			<!--li><a href="https://plus.google.com/112391563909167120696/about" target="_blank" rel="publisher"><span class="icon-googleplus2"></span></a></li-->
+			<li><a id="igHbutton" href="https://www.instagram.com/humblehousehotels/" target="_blank" rel="publisher"><i id="igHicon" class="fab fa-instagram"></i></a></li>
+			<!--<li><a href="javascript:return false;" class="twitter"></a></li>-->
+		</ul>
+
+			<div id="menu_switch" onclick="showHide('#menu_mobile'); $(window).scrollTop(0);"><a href="javascript:return false;"></a></div>
+  
+        </header>
+
+<ul id="menu_mobile">
+	<li class="splitter">Menu</li>
+	
+				<li><a href="javascript: void(0);">NEWS</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=annc&amp;subcat=15">ANNOUNCEMENTS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=35">ROOM PACKAGES</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=33">DINING OFFERS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=38">WEDDING</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=7">EVENTS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=36">HILTON HONORS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat="></a></li>
+
+		                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Rooms</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=7">DELUXE ROOM</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=38">DELUXE ROOM HIGH FLOOR</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=5">DELUXE ROOM WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=8">PREMIUM ROOM</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=13">PREMIUM ROOM WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=21">TWIN DELUXE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=22">KING DELUXE SUITE WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=23">PRESTIGE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=24">HUMBLE HOUSE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=43">ACCESSIBLE ROOM</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Events</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=14">Grand Ballroom</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=37">Meeting Service</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Facilities</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=17">OUTDOOR SWIMMING POOL</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=16">FITNESS CENTER</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=15">SPA</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">About Hotel</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=2">OVERVIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=1">HUMBLE HOUSE EXPERIENCE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=12">ENVIRONMENTAL PROTECTION CONCEPTS</a></li>
+			                    
+                    </ul>
+				</li>
+		<li><a href="/en/websev?cat=art">Art Gallery</a></li><li><a href="javascript: void(0);">OUR CITY</a>
+				
+				<ul>
+				<li><a href="/en/websev?cat=neighborhood&amp;id=9">Art</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=7">City Scenery</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=8">Dining</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=6">Shopping</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=1">Tourism</a></li>
+				</ul>
+				
+				</li>
+				<li><a href="/en/websev?cat=page&amp;id=40">PRIVACY POLICY</a></li>
+		<li><a href="/en/websev?cat=contact">Contact us</a></li>
+		
+	<li class="splitter">Language</li>
+	<li><a href="/en">English</a></li>
+	<li><a href="/zh-tw">中文</a></li>
+<!--	<li><a href="/kr">한국어</a></li>-->
+</ul>
+
+<section id="sec_banner" class="index">
+
+
+<div class="royalSlider rsDefault">
+
+
+    <div class="rsContent">
+    	<div class="ag_area"></div>
+ 	    <div class="rsABlock bannerBlock " data-fade-effect="" data-move-offset="10" data-move-effect="top" data-speed="200">
+			<div class="bannerBlock_container">
+
+			<h1>Welcome to my <br> Humble House</h1>
+			<h2>Let life be beautiful like summer flowers.<br> - Rabindranath Tagore
+<BR>
+<a href=" https://www.designhotels.com/hotels/taiwan/taipei/humble-house-taipei "></a></h2>
+			</div>
+		</div>
+	</div>
+				
+
+</div>	
+
+
+</section>
+
+
+			<div id="sec_mask_ad" onclick="hideAD();"></div>
+			<div id="alert">
+				<div class="container">
+				<img src="/files/other_179076300515e1sw5.jpg" border="0" onclick='window.open("https://www.humblehousehotels.com/en/websev?cat=annc&id=159"); return false;' >
+				</div>
+				
+				<div id="alert_close" class="pointer" onclick="hideAD();"><div class="close-button"></div></div>
+			</div>
+		
+			<script type="text/javascript">
+			function hideAD() {
+				$('#alert').fadeToggle();
+				$('#sec_mask_ad').fadeToggle();
+			}
+			</script>
+		
+<section id="sec_float_body" class="index" style="background:transparent;">
+
+<div id="sec_res">
+	<div id="sec_res_container">
+		<div id="sec_res_scroll" class="scroll-pane">
+			<div id="sec_res_text">
+				<h1>Reservation</h1>
+				<div class="sec_res_input" style="display: none;">
+		<div class="sec_res_input_button">From <span id="sec_res_input_date">15 / 10 / 2026</span> <span class="icon-play sec_res_text_icon"></span></div>
+		<div class="sec_res_input_input">
+			<input type="text" name="input_from" id="input_from" value="2026-10-15" onchange="updateValue($.datepicker.formatDate('dd /mm / yy', $('#input_from').datepicker('getDate')), 'sec_res_input_date'); genBookURL();">
+		</div>
+	</div>	
+				<div class="sec_res_input" style="display: none;">
+					<div class="sec_res_input_button"><span id="sec_res_input_nights">2</span> Nights <span class="icon-play sec_res_text_icon"></span></div>
+					<div class="sec_res_input_input">
+						<select id="input_nights" name="input_nights" onchange="updateValue(this.value, 'sec_res_input_nights'); genBookURL();">
+							<option value="1">1</option>
+							<option value="2" selected>2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+					</div>
+				</div>		
+				<div id="sec_res_button" class="index">
+					<div id="sec_res_button_book" class="circle_button" onclick="location.href='/book?Hotel=63333&amp;Chain=5154&amp;lang=en'">
+						<div class="circle_button_text">Book<br>Now</div>
+					</div>
+				</div>
+				<p>
+				<br><br><br>
+Humble House Taipei represents a non-conventional concept that blends art, culture, and living in its aesthetics. We take root in caring for people, combining aesthetic values to provide a harmonious and sophisticated sense for life. Everyone that walks in Humble House Taipei is not only a guest but also an artist in living.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="sec_news">
+
+
+
+	<div class="news">
+		
+		<div class="news_element square">
+			<div class="news_img index_warea" style="background-image:url('/images/weather.png');">
+				<div id="weather" style="padding:1.5em 1.5em;">
+					<div id="weather_mdisplay">
+						<div style="font-size:1.7em; font-weight:400;display:block;line-height:1em;">TAIPEI</div>
+						<div id="degree" style="font-size:3.5em; font-weight:400; display:block; line-height:1em;">--&deg;</div>
+						<div id="wimg" class="fs1" style="font-size:3em; line-height:1em;"><i class="wi"></i></div>
+					</div>
+					
+					<div id="week">
+						<div id="MON" class="week_day" style="text-align:right;">MON</div>
+						<div id="TUE" class="week_day" style="text-align:right;">TUE</div>
+						<div id="WED" class="week_day" style="text-align:right;">WED</div>
+						<div id="THUR" class="week_day" style="text-align:right;">THUR</div>
+						<div id="FRI" class="week_day" style="text-align:right;">FRI</div>
+						<div id="SAT" class="week_day" style="text-align:right;">SAT</div>
+						<div id="SUN" class="week_day" style="text-align:right;">SUN</div>
+					</div>
+				</div>
+				
+				
+				
+									
+			</div>
+		</div>
+		
+		
+				<div class="news_element square video" onclick="showVideo();">
+					<div class="news_img" style="background-image:url('/files/other_160407197911abvhf_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/other_160407197911abvhf_s.jpg',sizingMethod='scale');"
+
+					>
+						<div class="news_play_container">
+							<div class="news_play_cell">
+<img class="news_play_image" src="/images/play.png" border="0">
+								
+<!--								
+<video autoplay loop poster="/files/annc_1392628387um47rp_s.jpg" id="" style="height:100%;">
+    <source src="/temp/teaser-video.webm" type="video/webm">
+    <source src="/temp/teaser-video.mp4" type="video/mp4">
+</video>
+-->								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			
+	</div>
+	
+	
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=144'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179121572815edcfa_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179121572815edcfa_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">ANNOUNCEMENTS</h2>
+						<h1 itemprop="name">【Notice】7F Outdoor Pool Seasonal Closure</h1>
+						
+						<p itemprop="description">The outdoor swimming pool on the 7th floor will be temporari...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=144">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=160'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179076416715e1trl_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179076416715e1trl_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">HILTON HONORS</h2>
+						<h1 itemprop="name">Join Hilton Honors</h1>
+						<h3>Hilton Honors</h3>
+						<p itemprop="description">Hilton Honors is Hilton’s global travel rewards program, designed to make every journey mo...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=160">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=115'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179076449115e1u4g_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179076449115e1u4g_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">ROOM PACKAGES</h2>
+						<h1 itemprop="name">【Stay for Less】Hilton Honors Member Offer</h1>
+						<h3>Awaken Your Spirit of Discovery in the City Garden</h3>
+						<p itemprop="description">Curio Collection by Hilton bel...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=115">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=162'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179076507615e1uka_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179076507615e1uka_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">DINING OFFERS</h2>
+						<h1 itemprop="name">【Auspicious Year of the Goat】2027 Lunar New Year’s Eve Reunion Dinner</h1>
+						<h3>February 5｜A Festive Feast to Welcome a Prosperous New Year Together</h3>
+						<p itemprop="description">As the Year of the Horse comes...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=162">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=159'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_178715101815bbw8j_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_178715101815bbw8j_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">ROOM PACKAGES</h2>
+						<h1 itemprop="name">【Welcoming 2027】 New Year’s Eve Package</h1>
+						<h3>Prime Xinyi Fireworks View & Countdown Party with 3-Meal Luxury Experience</h3>
+						<p itemprop="description">The ultimate New Year’s Eve de...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=159">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=163'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179076546315e1uvm_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179076546315e1uvm_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category"></h2>
+						<h1 itemprop="name">A New Dining Experience Coming Soon</h1>
+						
+						<p itemprop="description">Humble House Taipei is currently upgrading its 6th-floor dining spaces. LA FARFALLA and Th...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=163">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=169'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179076973715e20l6_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179076973715e20l6_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">EVENTS</h2>
+						<h1 itemprop="name">【Year-End & New Year Celebration】2026–2027 Banquet Package</h1>
+						<h3>Enjoy a Complimentary Night’s Stay with the Designated Number of Tables｜Book by August 31 to Enjoy Heineken Draft Beer</h3>
+						<p itemprop="description">Humble House Taipei is delight...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=169">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=171'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179077049615e219f_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179077049615e219f_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">EVENTS</h2>
+						<h1 itemprop="name">【Cherished Baby】Baby Celebration Party Package</h1>
+						
+						<p itemprop="description">Humble House Taipei, Curio Collection by Hilton, presents th...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=171">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=172'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179077057115e21bl_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179077057115e21bl_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">EVENTS</h2>
+						<h1 itemprop="name">【My Little One】Birthday Party Package</h1>
+						
+						<p itemprop="description">Humble House Taipei, Curio Collection by Hilton, presents th...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=172">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="news" onclick="location.href='/en/websev?cat=annc&amp;id=168'">
+				<div class="news_element square">
+					<div class="news_img zoom" style="background-image:url('/files/annc_179076930115e208d_s.jpg');background-size:cover;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/files/annc_179076930115e208d_s.jpg',sizingMethod='scale');">
+					</div>
+				</div>
+				<div class="news_element square">
+					<div class="news_text" itemscope itemtype="http://schema.org/Event">
+						<h2 itemprop="category">WEDDING</h2>
+						<h1 itemprop="name">【Cherished Moments】Wedding Anniversary Package</h1>
+						<h3>Celebrate Your Anniversary at Humble House Taipei</h3>
+						<p itemprop="description">Celebrate your wedding anniver...</p>
+						<div class="read_more"><a itemprop="url" href="/en/websev?cat=annc&amp;id=168">Read More ></a></div>
+					</div>
+				</div>
+			</div>
+			
+
+</div>
+
+</section>	
+	
+<div id="video_player">
+
+
+</div>
+	
+<div id="sec_mask">
+
+</div>
+
+<div id="sec_social">
+	<div id="sec_social_container">
+				<div class="circle_button" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww%2Ehumblehousehotels%2Ecom%2F', '_blank', 'width=500,height=500,location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1'); return false;">
+					<div class="circle_button_symbol"><span class="icon-facebook"></span></div>
+				</div>
+				
+				<div class="circle_button" onclick="window.open('http://twitter.com/share?text=&amp;url=http%3A%2F%2Fwww%2Ehumblehousehotels%2Ecom%2F', '_blank', 'width=500,height=500,location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1'); return false;">
+					<div class="circle_button_symbol"><span class="icon-twitter"></span></div>
+				</div>
+				
+				<div class="circle_button" onclick="window.open('https://plus.google.com/share?url=http%3A%2F%2Fwww%2Ehumblehousehotels%2Ecom%2F', '_blank', 'width=500,height=500,location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1'); return false;">
+					<div class="circle_button_symbol"><span class="icon-googleplus"></span></div>
+				</div>
+	</div>
+</div>
+
+<div id="sec_video">
+	<div id="sec_video_container">
+
+<div class="royalSliderVideo rsDefault">
+
+
+    
+ 	<div class="rsContent">
+ 	    <img class="rsImg" src="/files/other_160407197911abvhf.jpg" data-rsVideo="https://www.youtube.com/watch?v=WwEDyf_far0" />
+ 	   <div class="rsABlock bannerBlock " data-fade-effect="" data-move-offset="10" data-move-effect="top" data-speed="200">
+		</div>
+	</div>			
+			
+ 	<div class="rsContent">
+ 	    <img class="rsImg" src="/files/other_1458636099w3hlvo.jpg" data-rsVideo="https://www.youtube.com/watch?v=WwEDyf_far0" />
+ 	   <div class="rsABlock bannerBlock " data-fade-effect="" data-move-offset="10" data-move-effect="top" data-speed="200">
+		</div>
+	</div>			
+			
+ 	<div class="rsContent">
+ 	    <img class="rsImg" src="/files/other_1464597948w7xb83.jpg" data-rsVideo="https://www.youtube.com/watch?v=aLJyBCJ9D_0" />
+ 	   <div class="rsABlock bannerBlock " data-fade-effect="" data-move-offset="10" data-move-effect="top" data-speed="200">
+		</div>
+	</div>			
+			
+
+
+</div>
+
+
+
+	</div>
+</div>
+
+
+<div id="sec_video_close">
+				<div class="reg_button" onclick="showVideo();">
+					<div class="close white"></div>
+				</div>
+</div>
+
+				
+
+
+<!--
+<div id="sec_body_controller" onclick="showHideDes();"><div><span class="icon-bow-light-left"></span></div></div>		
+-->
+
+
+
+<footer>
+<div id="footer_content">
+<div>
+	<div id="footer_content_left">
+		<div id="footer_content_left_container" itemscope itemtype="http://schema.org/Organization">
+	<h1 itemprop="name">Humble House Taipei</h1>
+	
+	<div id="footer_social">
+		<a href="https://www.facebook.com/humblehousetaipei" target="_blank"><span class="icon-facebook2"></span></a>
+		<!--<span class="icon-twitter2"></span>-->
+		<!--a href="https://plus.google.com/112391563909167120696/about" target="_blank"><span class="icon-googleplus2"></span></a-->
+		<a id="igFbutton" href="https://www.instagram.com/humblehousehotels/" target="_blank" rel="publisher"><i id="igFicon" class="fab fa-instagram"></i></a>
+		<a href="http://www.104.com.tw/jobbank/custjob/index.php?r=cust&amp;j=3f39416a33353d662f313962373d35186282828283f6b356795j02" target="_blank"><span class="icon_104">&nbsp;</span></a>
+	</div>
+
+	<h3>
+license NO. 1567<br>T <span itemprop="telephone">+886 2 6631 8000</span><br>F <span itemprop="faxNumber">+886 2 6631 8080</span><br><span itemprop="address">NO.18, SONGGAO RD., XINYI DIST., TAIPEI 110, TAIWAN (R.O.C.)</span>
+	<br>
+	<span itemprop="vat">VAT: 53098740</span>
+	<br>
+	<span itemprop="hh"></span>
+	</h3>
+	<div>Copyright &copy; Humble House Hotel Co. Ltd. All rights reserved.</div>
+		</div>
+	</div>
+
+	<div id="footer_content_right">
+			<div class="footer-scroll-pane" style="height:290px;">
+				<div id="footer_content_right_container">
+	<h1>Sitemap & Terms</h1>
+<h2></h2>
+
+	
+	<div id="sitemap_container">
+	
+            <ul id="sitemap">
+				
+				<li><a href="javascript: void(0);">NEWS</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=annc&amp;subcat=15">ANNOUNCEMENTS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=35">ROOM PACKAGES</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=33">DINING OFFERS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=38">WEDDING</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=7">EVENTS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat=36">HILTON HONORS</a></li>
+
+		
+							<li><a href="/en/websev?cat=annc&amp;subcat="></a></li>
+
+		                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Rooms</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=7">DELUXE ROOM</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=38">DELUXE ROOM HIGH FLOOR</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=5">DELUXE ROOM WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=8">PREMIUM ROOM</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=13">PREMIUM ROOM WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=21">TWIN DELUXE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=22">KING DELUXE SUITE WITH LANDMARK VIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=23">PRESTIGE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=24">HUMBLE HOUSE SUITE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=43">ACCESSIBLE ROOM</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Events</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=14">Grand Ballroom</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=37">Meeting Service</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">Facilities</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=17">OUTDOOR SWIMMING POOL</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=16">FITNESS CENTER</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=15">SPA</a></li>
+			                    
+                    </ul>
+				</li>
+		
+				<li><a href="javascript: void(0);">About Hotel</a>
+                    <ul>
+						
+							<li><a href="/en/websev?cat=page&amp;id=2">OVERVIEW</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=1">HUMBLE HOUSE EXPERIENCE</a></li>
+			
+							<li><a href="/en/websev?cat=page&amp;id=12">ENVIRONMENTAL PROTECTION CONCEPTS</a></li>
+			                    
+                    </ul>
+				</li>
+		<li><a href="/en/websev?cat=art">Art Gallery</a></li><li><a href="javascript: void(0);">OUR CITY</a>
+				
+				<ul>
+				<li><a href="/en/websev?cat=neighborhood&amp;id=9">Art</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=7">City Scenery</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=8">Dining</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=6">Shopping</a></li>
+				
+				<li><a href="/en/websev?cat=neighborhood&amp;id=1">Tourism</a></li>
+				</ul>
+				
+				</li>
+				<li><a href="/en/websev?cat=page&amp;id=40">PRIVACY POLICY</a></li>
+		<li><a href="/en/websev?cat=contact">Contact us</a></li>			
+             </ul>
+
+	</div>
+	
+	
+	<h2 class="terms"></h2>
+				</div>
+			</div>
+		</div>
+	
+</div>
+
+
+</div>
+<div id="footer_control"><span class="icon-plus" onclick="showHideFooter();"></span></div>
+</footer>
+
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-46847753-1']);
+  _gaq.push(['_trackPageview']);
+
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+
+
+</body>
+</html>

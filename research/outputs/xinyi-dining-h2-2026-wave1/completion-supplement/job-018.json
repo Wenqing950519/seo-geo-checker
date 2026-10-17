@@ -1,0 +1,17 @@
+{
+  "id": 18,
+  "input_url": "https://www.ichiran.com.tw/",
+  "store_id": "XY-012",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0029-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0029-response.txt",
+  "sequence": 18,
+  "started_at": "2026-10-15T06:37:09.189Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_e910c9b1-92f1-4019-af38-7662e67c624f",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:12.167Z"
+}

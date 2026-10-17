@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "input_url": "https://www.apointsteak.com.tw/",
+  "store_id": "XY-003",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0002-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0002-response.txt",
+  "sequence": 1,
+  "started_at": "2026-10-15T06:36:40.611Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_69ac0ada-de5a-464b-a06a-e9f34801c2d4",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:44.904Z"
+}

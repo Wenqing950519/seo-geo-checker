@@ -1,0 +1,17 @@
+{
+  "id": 57,
+  "input_url": "https://www.tgifridays.com.tw/",
+  "store_id": "XY-040",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0094-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0094-response.txt",
+  "sequence": 57,
+  "started_at": "2026-10-15T06:38:12.785Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_69dba230-78dc-446a-a39f-c0dc0835c6f3",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:16.039Z"
+}

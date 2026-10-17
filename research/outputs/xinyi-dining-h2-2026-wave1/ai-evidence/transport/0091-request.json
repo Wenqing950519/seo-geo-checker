@@ -1,0 +1,27 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 91,
+  "provider": "perplexity",
+  "endpoint": "https://api.perplexity.ai/chat/completions",
+  "reserved_at": "2026-10-15T06:27:36.361Z",
+  "payload": {
+    "model": "sonar",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+      },
+      {
+        "role": "user",
+        "content": "Verify the exact entity represented by website tgifridays.com.tw (title: TGI FRIDAYS 星期五美式餐廳). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN."
+      }
+    ],
+    "max_tokens": 260,
+    "temperature": 0,
+    "search_language_filter": [
+      "zh",
+      "en"
+    ],
+    "return_related_questions": false
+  }
+}

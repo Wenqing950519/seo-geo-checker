@@ -1,0 +1,17 @@
+{
+  "id": 28,
+  "input_url": "https://www.kanpaiclassic.com.tw/",
+  "store_id": "XY-024",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0047-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0047-response.txt",
+  "sequence": 28,
+  "started_at": "2026-10-15T06:37:25.023Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_6867eea6-4c02-4031-9b0d-6cf093bb624f",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:29.014Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 12,
+  "input_url": "https://www.gbarestaurants.com.tw/",
+  "store_id": "XY-045",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0019-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0019-response.txt",
+  "sequence": 12,
+  "started_at": "2026-10-15T06:36:59.771Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_4baada81-328c-4061-8ab9-9cc483af21e2",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:02.809Z"
+}

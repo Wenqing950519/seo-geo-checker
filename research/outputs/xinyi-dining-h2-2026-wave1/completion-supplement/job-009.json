@@ -1,0 +1,17 @@
+{
+  "id": 9,
+  "input_url": "https://www.eatogether.com.tw/",
+  "store_id": "XY-032",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0014-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0014-response.txt",
+  "sequence": 9,
+  "started_at": "2026-10-15T06:36:55.088Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_8cabce3f-4dc7-42ed-983a-0031bbc77fdc",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:58.265Z"
+}

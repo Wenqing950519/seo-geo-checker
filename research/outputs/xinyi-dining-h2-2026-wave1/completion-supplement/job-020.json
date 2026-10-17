@@ -1,0 +1,17 @@
+{
+  "id": 20,
+  "input_url": "https://www.indianfoodtaiwan.com/",
+  "store_id": "XY-009",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0033-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0033-response.txt",
+  "sequence": 20,
+  "started_at": "2026-10-15T06:37:12.198Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_f67b8121-a3bf-4a3c-8694-fd8ebecae502",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:15.244Z"
+}

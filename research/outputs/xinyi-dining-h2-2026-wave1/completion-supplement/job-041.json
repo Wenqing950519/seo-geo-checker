@@ -1,0 +1,17 @@
+{
+  "id": 41,
+  "input_url": "https://www.orangeshabu.com/",
+  "store_id": "XY-060",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0068-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0068-response.txt",
+  "sequence": 41,
+  "started_at": "2026-10-15T06:37:46.907Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_df284169-a390-4691-84a1-3ce6c1acdc4e",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:50.199Z"
+}

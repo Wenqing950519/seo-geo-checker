@@ -1,0 +1,833 @@
+[
+  {
+    "input_url": "https://www.bellavita.com.tw/",
+    "root_domain": "bellavita.com.tw",
+    "issue": "- https://www.bellavita.com.tw/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-023",
+        "official_name": "L'Atelier de Joël Robuchon 侯布雄法式餐廳",
+        "branch_name": "BELLAVITA店",
+        "owned_urls": [
+          "https://www.bellavita.com.tw/cht/store.php?d=94"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.bellavita.com.tw/cht/store.php?d=94",
+            "final_url": "https://www.bellavita.com.tw/cht/floor.php",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "BELLAVITA",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "侯布雄法式餐廳",
+              "侯布雄"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/e40564b11ce7379f39bfc382.bin",
+            "raw_sha256": "ae36e3937fa39ee0aedbda4dc678f78070e4df7b2a6c4b8a5ada7af6796e1b69"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.breeze.com.tw/",
+    "root_domain": "breeze.com.tw",
+    "issue": "- https://www.breeze.com.tw/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-035",
+        "official_name": "心潮飯店 Sinchao Rice Shoppe",
+        "branch_name": "微風信義店",
+        "owned_urls": [
+          "https://www.breeze.com.tw/floor/store/267"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.breeze.com.tw/floor/store/267",
+            "final_url": "https://www.breeze.com.tw/floor/store/267",
+            "http_status": 404,
+            "status": "response_saved",
+            "title": "微風廣場 - Breeze Center 微風廣場",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/25e3b94e36d3b693e161b1ce.bin",
+            "raw_sha256": "6334f52666944d886f0f3323fab0ee4f3522487c3da1da253e2dae28015911fd"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.chunshuitang.com.tw/",
+    "root_domain": "chunshuitang.com.tw",
+    "issue": "- https://www.chunshuitang.com.tw/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-029",
+        "official_name": "春水堂人文茶館",
+        "branch_name": "松菸店",
+        "owned_urls": [
+          "https://www.chunshuitang.com.tw/location-detail/41"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.chunshuitang.com.tw/location-detail/41",
+            "final_url": "https://www.chunshuitang.com.tw/location-detail/41/",
+            "http_status": 404,
+            "status": "response_saved",
+            "title": "404 找不到網頁了！ - 春水堂人文茶館",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "chunshuitang",
+              "春水堂人文茶館",
+              "春水堂"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/93f3772110208ea4fab648fc.bin",
+            "raw_sha256": "4c983f08816240a3d697a160dd6afecbccf9fe6c5902d7df6e1cf482429aec47"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-043",
+        "official_name": "春水堂人文茶館",
+        "branch_name": "信義新光三越A9店",
+        "owned_urls": [
+          "https://www.chunshuitang.com.tw/location-detail/40"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.chunshuitang.com.tw/location-detail/40",
+            "final_url": "https://www.chunshuitang.com.tw/location-detail/40/",
+            "http_status": 404,
+            "status": "response_saved",
+            "title": "404 找不到網頁了！ - 春水堂人文茶館",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "chunshuitang",
+              "春水堂人文茶館",
+              "春水堂"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/01fb6a0842c88ce7ccc28546.bin",
+            "raw_sha256": "4c983f08816240a3d697a160dd6afecbccf9fe6c5902d7df6e1cf482429aec47"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.dannycompany.com.tw/",
+    "root_domain": "dannycompany.com.tw",
+    "issue": "- https://www.dannycompany.com.tw/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-016",
+        "official_name": "Top Cap Steakhouse",
+        "branch_name": "信義新光A4店",
+        "owned_urls": [
+          "https://www.dannycompany.com.tw/home/top-cap-steakhouse/"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.dannycompany.com.tw/home/top-cap-steakhouse/",
+            "final_url": "https://www.dannycompany.com.tw/home/top-cap-steakhouse/",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "Top Cap Steakhouse | 教父牛排 Danny's Steakhouse",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "topcapsteakhouse"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/2c1eff9dc5144587cc7f48b0.bin",
+            "raw_sha256": "b35a932851a944fc9b6cec93f6cd7be7c0320c49517b15502354d8440321ed27"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.dintaifung.com.tw/",
+    "root_domain": "dintaifung.com.tw",
+    "issue": "- https://www.dintaifung.com.tw/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-001",
+        "official_name": "鼎泰豐",
+        "branch_name": "101店",
+        "owned_urls": [
+          "https://www.dintaifung.com.tw/store-detail.php?id=252"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.dintaifung.com.tw/store-detail.php?id=252",
+            "final_url": "https://www.dintaifung.com.tw/store-detail.php?id=252",
+            "http_status": 404,
+            "status": "response_saved",
+            "title": "404 Not Found",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/b43148de7a882b94da0cf5c4.bin",
+            "raw_sha256": "33d28cfbfaeeb7ec70b35a8e19e259e58149bc0c9f8a0801315fe952269700cc"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-018",
+        "official_name": "鼎泰豐",
+        "branch_name": "信義新光A4店",
+        "owned_urls": [
+          "https://www.dintaifung.com.tw/store-detail.php?id=253"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.dintaifung.com.tw/store-detail.php?id=253",
+            "final_url": "https://www.dintaifung.com.tw/store-detail.php?id=253",
+            "http_status": 404,
+            "status": "response_saved",
+            "title": "404 Not Found",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/a3e10661dc10d3aff40e273b.bin",
+            "raw_sha256": "33d28cfbfaeeb7ec70b35a8e19e259e58149bc0c9f8a0801315fe952269700cc"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.dt101.com.tw/",
+    "root_domain": "dt101.com.tw",
+    "issue": "- https://www.dt101.com.tw/: ambiguous owned_urls match across multiple entities",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-007",
+        "official_name": "隨意鳥101高空觀景餐廳",
+        "branch_name": "101店",
+        "owned_urls": [
+          "https://www.dt101.com.tw/"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.dt101.com.tw/",
+            "final_url": "https://www.dt101.com.tw/",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "首頁",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "隨意鳥地方"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/ae19c5f4e7e9da9df3608b69.bin",
+            "raw_sha256": "180eb0976c949696f3c18cc8b54c742178c8d6e1cc47311b95546662b530b2e9"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-038",
+        "official_name": "DA ANTONIO By 大安東尼",
+        "branch_name": "台北101店",
+        "owned_urls": [
+          "https://www.dt101.com.tw/"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.dt101.com.tw/",
+            "final_url": "https://www.dt101.com.tw/",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "首頁",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "daantonio",
+              "大安東尼"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/ae19c5f4e7e9da9df3608b69.bin",
+            "raw_sha256": "180eb0976c949696f3c18cc8b54c742178c8d6e1cc47311b95546662b530b2e9"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.elite-concepts.com/",
+    "root_domain": "elite-concepts.com",
+    "issue": "- https://www.elite-concepts.com/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-053",
+        "official_name": "夜上海",
+        "branch_name": "信義新光A4店",
+        "owned_urls": [
+          "https://www.elite-concepts.com/restaurants/ye-shanghai/taipei/zh/"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.elite-concepts.com/restaurants/ye-shanghai/taipei/zh/",
+            "final_url": null,
+            "http_status": null,
+            "status": "fetch_failed",
+            "title": null,
+            "error": "The operation was aborted due to timeout",
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": null,
+            "raw_sha256": null
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.haidilao.com/",
+    "root_domain": "haidilao.com",
+    "issue": "- https://www.haidilao.com/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-017",
+        "official_name": "海底撈火鍋",
+        "branch_name": "微風南山店",
+        "owned_urls": [
+          "https://www.haidilao.com/tw/"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.haidilao.com/tw/",
+            "final_url": null,
+            "http_status": null,
+            "status": "fetch_failed",
+            "title": null,
+            "error": "fetch failed",
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": null,
+            "raw_sha256": null
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.humblehousehotels.com/",
+    "root_domain": "humblehousehotels.com",
+    "issue": "- https://www.humblehousehotels.com/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-008",
+        "official_name": "LA FARFALLA 義式餐廳",
+        "branch_name": "台北艾麗酒店",
+        "owned_urls": [
+          "https://www.humblehousehotels.com/zh-tw/websev?cat=restaurant&id=1"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.humblehousehotels.com/zh-tw/websev?cat=restaurant&id=1",
+            "final_url": "https://www.humblehousehotels.com/zh-tw/websev?cat=restaurant&id=1",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "台北艾麗 希爾頓格芮精選酒店 - 餐廳與酒吧 - LA FARFALLA 餐廳",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "lafarfalla"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/b95dc3e231543f8cf77a84ea.bin",
+            "raw_sha256": "2630102858b0de80c3da905f12f98190b2096fd9e6c7fdf3029fb0f17e4efabb"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.hyatt.com/",
+    "root_domain": "hyatt.com",
+    "issue": "- https://www.hyatt.com/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-011",
+        "official_name": "凱菲屋",
+        "branch_name": "台北君悅酒店",
+        "owned_urls": [
+          "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cafe"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cafe",
+            "final_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cafe",
+            "http_status": 429,
+            "status": "response_saved",
+            "title": "",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/498a4b748a8ffb7ce151d8e1.bin",
+            "raw_sha256": "c5e68124e192932cb53cc1bd4ebfba74f6db6c873891fb25303d88c5ea01dcde"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-014",
+        "official_name": "彩日本料理",
+        "branch_name": "台北君悅酒店",
+        "owned_urls": [
+          "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/irodori"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/irodori",
+            "final_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/irodori",
+            "http_status": 429,
+            "status": "response_saved",
+            "title": "",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/f97a2ae713f2b5f804c308ea.bin",
+            "raw_sha256": "cc63e64eb7c8c033d144dc7f1e55af941ecb5fb5f35c628a54d08fe655cf7f6e"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-046",
+        "official_name": "寶艾西餐廳 Bel Air Bar & Grill",
+        "branch_name": "台北君悅酒店",
+        "owned_urls": [
+          "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/bel-air-bar-and-grill"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/bel-air-bar-and-grill",
+            "final_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/bel-air-bar-and-grill",
+            "http_status": 429,
+            "status": "response_saved",
+            "title": "",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/7ef69a2b8c91b70d065e9cbf.bin",
+            "raw_sha256": "7d5c85fef9ae0aeb39fb5dd136f6297103f931d5f7bee185d44d40c01a1fefbf"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-047",
+        "official_name": "茶苑",
+        "branch_name": "台北君悅酒店",
+        "owned_urls": [
+          "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cha-yuan"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cha-yuan",
+            "final_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cha-yuan",
+            "http_status": 429,
+            "status": "response_saved",
+            "title": "",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/7b814a024c8ef9b557203012.bin",
+            "raw_sha256": "6c4227f0eaacefb5abdab35d2a8704be45cd934f88783b0c10c13c66119264ca"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-048",
+        "official_name": "漂亮廣式海鮮餐廳",
+        "branch_name": "台北君悅酒店",
+        "owned_urls": [
+          "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/pearl-liang"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/pearl-liang",
+            "final_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/pearl-liang",
+            "http_status": 429,
+            "status": "response_saved",
+            "title": "",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/270af85fd9d2bf689c1ceef2.bin",
+            "raw_sha256": "e8f054a1ea9d05eeb6c9cd217b84d0543dfb12bfdbff99654cc518d3e8bdb145"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-056",
+        "official_name": "Ziga Zaga 義大利餐廳",
+        "branch_name": "台北君悅酒店",
+        "owned_urls": [
+          "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/ziga-zaga"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/ziga-zaga",
+            "final_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/ziga-zaga",
+            "http_status": 429,
+            "status": "response_saved",
+            "title": "",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/4f1288f6f1464dbf5bac1853.bin",
+            "raw_sha256": "d00d964c590d1858ddbaffd366ab50823e568dd6049115f67940ddb1be617611"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-068",
+        "official_name": "雲錦中餐廳",
+        "branch_name": "台北君悅酒店",
+        "owned_urls": [
+          "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/yun-jin"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/yun-jin",
+            "final_url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/yun-jin",
+            "http_status": 429,
+            "status": "response_saved",
+            "title": "",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/cfb81314266c4c0e4d96cf9c.bin",
+            "raw_sha256": "aefce66f57e86c34ea6644f079a92f634de0020f42167edef8a72649e29346a6"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.lemeridien-taipei.com/",
+    "root_domain": "lemeridien-taipei.com",
+    "issue": "- https://www.lemeridien-taipei.com/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-020",
+        "official_name": "探索廚房",
+        "branch_name": "台北寒舍艾美酒店",
+        "owned_urls": [
+          "https://www.lemeridien-taipei.com/websev?cat=restaurant&id=5"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.lemeridien-taipei.com/websev?cat=restaurant&id=5",
+            "final_url": "https://www.lemeridien-taipei.com/websev?cat=restaurant&id=5",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "台北寒舍艾美酒店 - Le Méridien Taipei",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "探索廚房"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/47ff9371ec46cd22f30cc7d5.bin",
+            "raw_sha256": "fe6685c0cc438d5c48433f1451d0eaf73eb8eaf5d59c4d7fade886d3de33b7a9"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-063",
+        "official_name": "寒舍食譜",
+        "branch_name": "台北寒舍艾美酒店",
+        "owned_urls": [
+          "https://www.lemeridien-taipei.com/websev?cat=restaurant&id=2"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.lemeridien-taipei.com/websev?cat=restaurant&id=2",
+            "final_url": "https://www.lemeridien-taipei.com/websev?cat=restaurant&id=2",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "台北寒舍艾美酒店 - Le Méridien Taipei",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "寒舍食譜"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/5b086ad99737c2e713124fce.bin",
+            "raw_sha256": "b0dda5c6a8f53405aea75f603d2148a604b6dc28f1cb5cb27eef653db40864ed"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.marriott.com/",
+    "root_domain": "marriott.com",
+    "issue": "- https://www.marriott.com/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-004",
+        "official_name": "紫艷中餐廳",
+        "branch_name": "台北W飯店",
+        "owned_urls": [
+          "https://www.marriott.com/en-us/hotels/tpewh-w-taipei/dining/yen-chinese-restaurant/"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.marriott.com/en-us/hotels/tpewh-w-taipei/dining/yen-chinese-restaurant/",
+            "final_url": "https://www.marriott.com/en-us/hotels/tpewh-w-taipei/dining/",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "Restaurants & Dining | W Taipei",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "yenchineserestaurant",
+              "yen"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/18d167fffc36513b50b867f4.bin",
+            "raw_sha256": "49508f1cea640035ad7b80061c5062b8ba501179268e359b3207a6e074d8f0e0"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.paradisegp.com/",
+    "root_domain": "paradisegp.com",
+    "issue": "- https://www.paradisegp.com/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-039",
+        "official_name": "樂天皇朝",
+        "branch_name": "微風信義店",
+        "owned_urls": [
+          "https://www.paradisegp.com/tc/tw/"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.paradisegp.com/tc/tw/",
+            "final_url": "https://www.paradisegp.com/tc/tw/",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "台灣 | 樂天集團",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "八色小籠包",
+              "樂天皇朝"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/07886c86c4f25c0d07730118.bin",
+            "raw_sha256": "07a6ec04a644fc712d981c4c1d2189b703a43e39a72c200d969aed8aeb7182ed"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.shinyeh.com.tw/",
+    "root_domain": "shinyeh.com.tw",
+    "issue": "- https://www.shinyeh.com.tw/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-026",
+        "official_name": "欣葉台菜",
+        "branch_name": "信義A9店",
+        "owned_urls": [
+          "https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=1&Id=1"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=1&Id=1",
+            "final_url": "https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=1&Id=1",
+            "http_status": 500,
+            "status": "response_saved",
+            "title": "值不能為 null。 參數名稱: value",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "shinyeh"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/afc45d71e743e3d1a6bcc8e5.bin",
+            "raw_sha256": "d4a7fc6dba3a2b317914e2e2e1c5de6a1c785546aa318a05d1b4ed3e114ad843"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      },
+      {
+        "store_id": "XY-041",
+        "official_name": "欣葉日本料理",
+        "branch_name": "信義新光A11店",
+        "owned_urls": [
+          "https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=4&Id=13"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=4&Id=13",
+            "final_url": "https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=4&Id=13",
+            "http_status": 500,
+            "status": "response_saved",
+            "title": "值不能為 null。 參數名稱: value",
+            "error": null,
+            "brand_terms_in_saved_preview": [],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/6bc6be9886ebd27c2a90f3a0.bin",
+            "raw_sha256": "d4a7fc6dba3a2b317914e2e2e1c5de6a1c785546aa318a05d1b4ed3e114ad843"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.skm.com.tw/",
+    "root_domain": "skm.com.tw",
+    "issue": "- https://www.skm.com.tw/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-006",
+        "official_name": "樂軒松阪亭",
+        "branch_name": "信義新光A4店",
+        "owned_urls": [
+          "https://www.skm.com.tw/brand/11129"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.skm.com.tw/brand/11129",
+            "final_url": "https://www.skm.com.tw/brand/11129",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "MATSUZAKA TEI 樂軒松阪亭 專櫃/門市｜新光三越 | 新光百貨首頁 | 最新優惠 | SKM官方網站",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "樂軒松阪亭",
+              "松阪亭",
+              "樂軒"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/9e00531cbc0e319c4c90a6e3.bin",
+            "raw_sha256": "93ef104407b62bc4769f0d8408fe1caf3eacbdb6c8efba08a7160bfb14d61376"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  },
+  {
+    "input_url": "https://www.thaitown.com.tw/",
+    "root_domain": "thaitown.com.tw",
+    "issue": "- https://www.thaitown.com.tw/: shared official domain requires an exact owned_urls match",
+    "proposed_action": "Resolve each intended restaurant against its exact owned page; retain current unknown until author review. No automatic exclusion or approval.",
+    "candidate_entities": [
+      {
+        "store_id": "XY-044",
+        "official_name": "瓦城泰國料理",
+        "branch_name": "台北統一時代店（原阪急店）",
+        "owned_urls": [
+          "https://www.thaitown.com.tw/store/1"
+        ],
+        "source_reviewed_by": "eason",
+        "source_reviewed_at": "2026-09-09",
+        "current_evidence": [
+          {
+            "input_url": "https://www.thaitown.com.tw/store/1",
+            "final_url": "https://www.thaitown.com.tw/store/1",
+            "http_status": 200,
+            "status": "response_saved",
+            "title": "分店資訊｜瓦城泰國料理",
+            "error": null,
+            "brand_terms_in_saved_preview": [
+              "瓦城泰國料理",
+              "瓦城"
+            ],
+            "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave1/site-evidence/raw/4f286fc3765ee2bc32f870c4.bin",
+            "raw_sha256": "b5f160184d9a881a6d2f48d731a5b345fa7a1ee1b8545b305fcbfb689e7b69f8"
+          }
+        ],
+        "october_review_status": "pending_author_review"
+      }
+    ],
+    "recommendation_status": "proposal_only"
+  }
+]

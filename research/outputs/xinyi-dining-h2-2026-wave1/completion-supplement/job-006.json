@@ -1,0 +1,17 @@
+{
+  "id": 6,
+  "input_url": "https://www.celavi.com/",
+  "store_id": "XY-022",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0009-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0009-response.txt",
+  "sequence": 6,
+  "started_at": "2026-10-15T06:36:49.973Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_a8117d0b-389a-4023-adbc-9940bdae3c4f",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:53.581Z"
+}

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html  lang="zh-Hant">
+
+<head>
+	<meta charset="UTF-8">
+	<title>
+		Smith &amp; Wollensky	</title>
+	<base href='/' />
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<!-- Core Style -->
+	<link rel="stylesheet" href="css/style.min.css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--FAV ICON -->
+	<link rel="icon" href="/upfiles/favicon.png" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+			<meta name="keywords" content="牛排" />
+	<meta name="description" content="Smith &amp; Wollensky是美國最受歡迎的經典美式牛排餐廳，Smith &amp; Wollensky Taipei位於信義區微風南山47樓，為一頂級牛排餐廳，擁有多個私人包廂，提供客戶頂級的聚會餐飲場所。廚房設有肉品分切室和乾式熟成室，所進口的USDA Prime牛肉歷經了獨特且傳統的乾式熟成過程，增強了原始牛肉的風味，提供了完美平衡的絕佳牛排" />
+	<meta name="robots" content="all" />
+	<meta property="og:title" content="Smith &amp; Wollensky">
+	<meta property="og:locale" content="zh-TW" />
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://www.smithandwollensky.com.tw/">
+	<meta property="og:description" content="Smith &amp; Wollensky是美國最受歡迎的經典美式牛排餐廳，Smith &amp; Wollensky Taipei位於信義區微風南山47樓，為一頂級牛排餐廳，擁有多個私人包廂，提供客戶頂級的聚會餐飲場所。廚房設有肉品分切室和乾式熟成室，所進口的USDA Prime牛肉歷經了獨特且傳統的乾式熟成過程，增強了原始牛肉的風味，提供了完美平衡的絕佳牛排">
+	<meta property="og:image" content="/upfiles/Overhead-Table.jpg">
+	<meta property="og:site_name" content="Smith &amp; Wollensky">
+	
+
+				<!-- GA -->
+	<script defer src="https://www.googletagmanager.com/gtag/js?id=G-LJ44EKGHGP"></script>
+	<script defer>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-LJ44EKGHGP');
+	</script>
+			
+			<!-- Facebook Pixel Code -->
+	<script defer>
+		!function (f, b, e, v, n, t, s) {
+			if (f.fbq)
+				return;
+
+			n = f.fbq = function () {
+				n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+			};
+			if (!f._fbq)
+				f._fbq = n;
+
+			n.push = n;
+			n.loaded = !0;
+			n.version = '2.0';
+			n.queue = [];
+			t = b.createElement(e);
+			t.async = !0;
+			t.src = v;
+			s = b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t, s)
+		}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '265294064697372');
+		fbq('track', 'PageView');
+	</script>
+	<noscript>
+		<img height="1" width="1" src="https://www.facebook.com/tr?id=265294064697372&ev=PageView&noscript=1" />
+	</noscript>
+	</head>
+
+<body data-barba="wrapper">
+  <div id="container" data-barba="container" data-barba-namespace="default">
+    <div id="js__body" class="home page-template-default  preloading">
+	
+	
+		<header class="header" id="main-header" role="banner">
+	<div class="u__wrap">
+		<div class="row align-items-center">
+			<div class="col-3 d-flex d-xl-none text-left">
+				<div class="header__logo-mobile u__img-contain">
+					<a href="/zh_TW"><img src="img/logo_mobile.png" class="" srcset="" sizes="(max-width: 3200px) 100vw, 3200px" alt="Smith & Wollensky monogram logo"/></a>
+				</div>
+			</div>
+			<div class="col text-left d-none d-xl-flex justify-content-between">
+									
+					<a href="zh_TW/menu" class="header__link f__link-sans u__c-gold">極品美饌</a>
+									
+					<a href="zh_TW/event" class="header__link f__link-sans u__c-gold">包場活動</a>
+									
+					<a href="zh_TW/news" class="header__link f__link-sans u__c-gold">最新消息</a>
+									
+					<a href="zh_TW/story" class="header__link f__link-sans u__c-gold">品牌故事</a>
+							</div>
+			<div class="col-3 text-center d-none d-xl-block">
+				<a href="/zh_TW">
+					<div class="header__logo u__img-contain"><img src="img/logo.png" class="img-fluid" alt="S&W logo"/></div>
+				</a>
+			</div>
+
+			<div class="col text-end d-xl-flex justify-content-between align-items-center">
+														<a href="zh_TW/locations" class="header__link f__link-sans u__c-gold d-none d-xl-inline-block">分店資訊</a>
+														<a href="zh_TW/shop" class="header__link f__link-sans u__c-gold d-none d-xl-inline-block">商店</a>
+				
+				<a href="zh_TW/reserve" class="button header__reservations">
+					<span>線上訂位</span>
+				</a>
+				<div class="header__hamburger  d-none d-xl-block">
+        					<a href="/en">
+						<img class="header__hamburger-icon" src="img/en.svg" alt="english"/>
+						<img class="header__hamburger-icon-hover header__hamburger-icon" src="img/en__hover.svg" alt="english"/></a>
+        				</div>
+				<div class="header__hamburger open d-xl-none">
+					<a href="#main-nav" class="js__popup" aria-label="Open main navigation">
+						<img class="header__hamburger-icon" src="img/nav-open.svg" alt="Open main navigation Icon"/>
+						<img class="header__hamburger-icon-hover header__hamburger-icon" src="img/nav-open__hover.svg" alt="Open main navigation Icon, hover over version"/></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup" id="main-nav">
+		<div class="popup__header header">
+			<div class="u__wrap">
+				<div class="row align-items-center">
+					<div class="col-8 d-flex d-xl-none text-left">
+						<div class="header__logo-mobile-open | u__img-contain">
+							<a href="/zh_TW"><img src="img/pop_logo.png" class=" " sizes="(max-width: 3200px) 100vw, 3200px" alt="Smith & Wollensky logo"/></a>
+						</div>
+					</div>
+					<div class="col-4 col-xl-4 text-end">
+						<div class="header__hamburger close js__close-popups">
+							<img class="header__hamburger-icon" src="img/nav-close.svg" alt="Close main navigation Icon"/>
+							<img class="header__hamburger-icon-hover header__hamburger-icon" src="img/nav-close__hover.svg" alt="Close main navigation Icon, hover over version"/></div>
+					</div>
+					<div class="col-12 d-block d-xl-none text-end">
+						<a href="zh_TW/reserve" class="button header__reservations-mobile d-inline-block d-xl-none">
+							<span>線上訂位</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="u__wrap main-nav">
+			<div class="row align-items-center">
+				<div class="col-12  text-center">
+					<ul class="main-nav__links">
+													
+							<li class="main-nav__link">
+								<a href="zh_TW/menu" class="f__headline-h2 u__c-brown js__nav-link">極品美饌</a>
+							</li>
+													
+							<li class="main-nav__link">
+								<a href="zh_TW/event" class="f__headline-h2 u__c-brown js__nav-link">包場活動</a>
+							</li>
+													
+							<li class="main-nav__link">
+								<a href="zh_TW/news" class="f__headline-h2 u__c-brown js__nav-link">最新消息</a>
+							</li>
+													
+							<li class="main-nav__link">
+								<a href="zh_TW/story" class="f__headline-h2 u__c-brown js__nav-link">品牌故事</a>
+							</li>
+													
+							<li class="main-nav__link">
+								<a href="zh_TW/locations" class="f__headline-h2 u__c-brown js__nav-link">分店資訊</a>
+							</li>
+													
+							<li class="main-nav__link">
+								<a href="zh_TW/shop" class="f__headline-h2 u__c-brown js__nav-link">商店</a>
+							</li>
+																			<li class="main-nav__link">
+								<a href="/en" target="" class="f__headline-h2 u__c-brown js__nav-link">English</a>
+							</li>
+											</ul>
+				</div>
+			  <div class="col-12 pb-4">
+							<ul  class="social-links nav main-nav__social text-center justify-content-center text-xl-right"><li><a href="https://www.instagram.com/smithwollenskytw" target="_blank" class="social-link social-link__instagram" aria-label="Smith and Wollensky instagram account"><i class="fa fa-instagram"></i></a></li><li><a href="https://www.facebook.com/smithandwollenskytw" target="_blank" class="social-link social-link__facebook-f" aria-label="Smith and Wollensky facebook-f account"><i class="fa fa-facebook-f"></i></a></li></ul>						</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+		<main class="ignite-modules" style="min-height:100vh;width:100vw;overflow:hidden;">
+			<!-- 載入動畫 -->
+<section class="preloader" id="js__preloader">
+<div class="preloader__background"><div class="preloader__background-top"></div><div class="preloader__background-left"></div><div class="preloader__background-middle"></div><div class="preloader__background-right"></div><div class="preloader__background-bottom"></div></div>
+
+<div class="preloader__overlay">
+<div class="u__wrap">
+<div class="align-items-center justify-content-center row">
+<div class="d-inline-block preloader__overlay-inner text-center">
+<p class="f__section-header preloader__overlay-subtitle">Welcome To</p>
+
+<h1 class="f__poster preloader__overlay-title">America&#39;s Steakhouse</h1>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 載入動畫 END -->
+
+<section class="m__hero">
+<div class="m__hero__background"><div class="m__hero__background-tint" style="background-color:rgba(0,0,0,0.4);"></div>
+<div class="m__hero__background-video">
+<video class="js__inline-video" loop="" muted="" playsinline="" poster="video/cover.png"><source data-src="video/Hero-15sec.webmhd.webm" type="video/webm" /> <source data-src="video/Hero-15sec.mp4" type="video/mp4" /></video>
+</div>
+</div>
+
+<div class="m__hero__overlay">
+<div class="u__wrap">
+<div class="align-items-center justify-content-center row">
+<div class="d-inline-block m__hero__overlay-inner text-center">
+<p class="f__section-header m__hero__overlay-subtitle u__c-cream">Welcome To</p>
+
+<h1 class="f__poster m__hero__overlay-title u__c-white">America&#39;s Steakhouse</h1>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="m__pslider  m__pslider-mobile-card">
+<div class="u__wrap">
+<div class="m__pslider__nav-wrapper swiper">
+<ul class="m__pslider__nav swiper-wrapper |">
+	<li class="m__pslider__nav-item js__pslider-nav-item f__link-sans u__c-brown swiper-slide active" data-slide-index="0">台北店</li>
+	<li class="m__pslider__nav-item js__pslider-nav-item f__link-sans u__c-brown swiper-slide " data-slide-index="1">台中店</li>
+	<li class="m__pslider__nav-item js__pslider-nav-item f__link-sans u__c-brown swiper-slide " data-slide-index="2">馬尼拉</li>
+	<li class="m__pslider__nav-item js__pslider-nav-item f__link-sans u__c-brown swiper-slide " data-slide-index="3">東京</li>
+</ul>
+</div>
+
+<div class="m__pslider__swiper-wrapper">
+<div class="m__pslider__swiper swiper">
+<div class="swiper-wrapper">
+<div class="m__pslider__swiper-slide swiper-slide">
+<div class="flex-xl-row-reverse row">
+<div class="col-12 col-xl-6 m__pslider__swiper-slide-right">
+<div class="m__pslider__swiper-slide-highlight u__img-cover"><img src="img/taipei.jpg" /></div>
+
+<div class="m__pslider__swiper-slide-card">
+<p class="f__headline-h2 m__pslider__swiper-slide-card-title u__c-green">台北</p>
+<div class="m__pslider__swiper-slide-card-divider"></div>
+
+<p class="f__paragraph-regular m__pslider__swiper-slide-excerpt u__c-brown">亞洲第一間分店，位於微風南山47樓，台北101與信義區美景盡收眼底。除了賓至如歸的服務，頂級的酒藏飲品與夜間酒吧的live band表演，都將帶給你最難忘的體驗。</p>
+<a class="button " href="zh_TW/menu/taipei" target=""><span>瀏覽菜單</span></a></div>
+</div>
+
+<div class="col-12 col-xl-6 col-xxl-5 d-none d-xl-block m__pslider__swiper-slide-left">
+<p class="f__poster m__pslider__swiper-slide-title u__c-green |">台北</p>
+<div class="m__pslider__swiper-slide-divider"></div>
+
+<p class="f__paragraph-large m__pslider__swiper-slide-large-text u__c-brown">台北市信義區松智路17號47樓<br />
+(微風南山)<br />
+(02)2345-5647</p>
+</div>
+<div class="col-1 d-none d-xxl-block"></div></div>
+</div>
+
+<div class="m__pslider__swiper-slide swiper-slide">
+<div class="flex-xl-row-reverse row">
+<div class="col-12 col-xl-6 m__pslider__swiper-slide-right">
+<div class="m__pslider__swiper-slide-highlight u__img-cover"><img src="img/taichung.jpg" /></div>
+
+<div class="m__pslider__swiper-slide-card">
+<p class="f__headline-h2 m__pslider__swiper-slide-card-title u__c-green">台中</p>
+<div class="m__pslider__swiper-slide-card-divider"></div>
+
+<p class="f__paragraph-regular m__pslider__swiper-slide-excerpt u__c-brown">位於七期，經典綠色搭配木質調營造出優雅舒適氛圍，五間包廂提供不同用餐需求。戶外用餐區壯闊景觀令人讚嘆，爵士樂團演奏與專業侍酒服務打造獨一無二的用餐體驗。</p>
+<a class="button " href="zh_TW/menu/taichung" target=""><span>瀏覽菜單</span></a></div>
+</div>
+
+<div class="col-12 col-xl-6 col-xxl-5 d-none d-xl-block m__pslider__swiper-slide-left">
+<p class="f__poster m__pslider__swiper-slide-title u__c-green |">台中</p>
+<div class="m__pslider__swiper-slide-divider"></div>
+
+<p class="f__paragraph-large m__pslider__swiper-slide-large-text u__c-brown">台中市西屯區朝富路213號34樓<br />
+(CBD時代廣場)<br />
+(04)2252-5647</p>
+</div>
+<div class="col-1 d-none d-xxl-block"></div></div>
+</div>
+
+<div class="m__pslider__swiper-slide swiper-slide">
+<div class="flex-xl-row-reverse row">
+<div class="col-12 col-xl-6 m__pslider__swiper-slide-right">
+<div class="m__pslider__swiper-slide-highlight u__img-cover"><img src="img/manila_cover.jpg" /></div>
+
+<div class="m__pslider__swiper-slide-card">
+<p class="f__headline-h2 m__pslider__swiper-slide-card-title u__c-green">馬尼拉</p>
+<div class="m__pslider__swiper-slide-card-divider"></div>
+
+<p class="f__paragraph-regular m__pslider__swiper-slide-excerpt u__c-brown">位於BGC 精華特區頂級地標「金融中心大樓」，結合了頂級牛排館與優雅的小酒館空間，提供尊榮的餐飲體驗與專屬包廂，是高階商務會議與重要慶典的絕佳首選；The Grill and Lounge 則營造出微醺放鬆的精緻氛圍，週末夜間現場音樂演出，適合愜意的小聚</p>
+<a class="button " href="https://smithandwollensky.com.ph/" target="_blank"><span>瀏覽網站</span></a></div>
+</div>
+
+<div class="col-12 col-xl-6 col-xxl-5 d-none d-xl-block m__pslider__swiper-slide-left">
+<p class="f__poster m__pslider__swiper-slide-title u__c-green |">菲律賓</p>
+<div class="m__pslider__swiper-slide-divider"></div>
+
+<p class="f__paragraph-large m__pslider__swiper-slide-large-text u__c-brown">第26街與第9大道交叉口，金融中心大樓2樓<br />
+(馬尼拉 BGC 特區)<br />
++632 8248 9470</p>
+</div>
+<div class="col-1 d-none d-xxl-block"></div></div>
+</div>
+
+<div class="m__pslider__swiper-slide swiper-slide">
+<div class="flex-xl-row-reverse row">
+<div class="col-12 col-xl-6 m__pslider__swiper-slide-right">
+<div class="m__pslider__swiper-slide-highlight u__img-cover"><img src="img/tokyo_cover.jpg" /></div>
+
+<div class="m__pslider__swiper-slide-card">
+<p class="f__headline-h2 m__pslider__swiper-slide-card-title u__c-green">東京</p>
+<div class="m__pslider__swiper-slide-card-divider"></div>
+
+<p class="f__paragraph-regular m__pslider__swiper-slide-excerpt u__c-brown">進駐東京時尚核心「銀座五丁目」，日本首間分店坐落於頂樓 12 樓。承襲美式經典的頂級乾式熟成牛排工藝，店內不僅設有專屬的頂級酒窖，收藏超過 2,000 瓶精選佳釀，酒吧更引進精彩的現場樂團演奏，在銀座高空為您交織出兼具視覺、聽覺與味覺的頂級優雅奢華饗宴。</p>
+<a class="button " href="https://www.smithandwollensky.jp/" target="_blank"><span>瀏覽網站</span></a></div>
+</div>
+
+<div class="col-12 col-xl-6 col-xxl-5 d-none d-xl-block m__pslider__swiper-slide-left">
+<p class="f__poster m__pslider__swiper-slide-title u__c-green |">日本</p>
+<div class="m__pslider__swiper-slide-divider"></div>
+
+<p class="f__paragraph-large m__pslider__swiper-slide-large-text u__c-brown">東京都中央區銀座 5-8-15，12樓<br />
++81 3-6274-6171</p>
+</div>
+<div class="col-1 d-none d-xxl-block"></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="js__pslider__swiper-prev m__pslider__swiper-arrow m__pslider__swiper-prev"><img alt="Arrow pointing to the left" src="img/left-arrow-white.svg" /></div>
+
+<div class="js__pslider__swiper-next m__pslider__swiper-arrow m__pslider__swiper-next"><img alt="Arrow pointing to the right" src="img/right-arrow-white.svg" /></div>
+</section>
+
+<section class="m__cslider">
+<div class="u__wrap">
+<h1 class="f__section-header m__cslider__title u__c-gold">特色餐點</h1>
+
+<div class="m__cslider__swiper swiper">
+<div class="swiper-wrapper">
+<div class="m__cslider__swiper-slide swiper-slide">
+<div class="m__cslider__swiper-slide-content">
+<div class="m__cslider__swiper-slide-highlight u__img-cover"><img src="img/feature01.jpg" /></div>
+
+<p class="f__headline-h2 m__cslider__swiper-slide-title u__c-green">乾式熟成美國和牛戰斧牛排</p>
+<div class="m__cslider__swiper-slide-divider"></div>
+
+<p class="f__paragraph-regular m__cslider__swiper-slide-copy u__c-brown">44OZ.重量級和牛戰斧懸吊登場！以火槍炙燒乾式熟成牛油，香氣逼人的牛油為烤至焦酥的牛排增添風味！</p>
+</div>
+</div>
+
+<div class="m__cslider__swiper-slide swiper-slide">
+<div class="m__cslider__swiper-slide-content">
+<div class="m__cslider__swiper-slide-highlight u__img-cover"><img src="img/feature02.jpg" /></div>
+
+<p class="f__headline-h2 m__cslider__swiper-slide-title u__c-green">乾式熟成帶骨戴爾莫尼科35OZ</p>
+<div class="m__cslider__swiper-slide-divider"></div>
+
+<p class="f__paragraph-regular m__cslider__swiper-slide-copy u__c-brown">戴爾莫尼科牛排保留了肋眼的迷人脂香，也帶有紐約客的奔放肉香，外層包裹上特製牛肝菌香料，高溫爐烤至外焦內嫩，上桌前淋上紅酒牛肉醬汁。</p>
+</div>
+</div>
+
+<div class="m__cslider__swiper-slide swiper-slide">
+<div class="m__cslider__swiper-slide-content">
+<div class="m__cslider__swiper-slide-highlight u__img-cover"><img src="img/feature03.jpg" /></div>
+
+<p class="f__headline-h2 m__cslider__swiper-slide-title u__c-green">巨大巧克力蛋糕</p>
+<div class="m__cslider__swiper-slide-divider"></div>
+
+<p class="f__paragraph-regular m__cslider__swiper-slide-copy u__c-brown">5層貝禮詩奶酒注入巧克力蛋糕，再層疊上5層牛奶巧克力慕斯，最上方塗上一層濃郁的黑巧克力甘納許裝飾著可愛的小牛餅乾，是餐廳超人氣甜點。</p>
+</div>
+</div>
+
+<div class="m__cslider__swiper-slide swiper-slide">
+<div class="m__cslider__swiper-slide-content">
+<div class="m__cslider__swiper-slide-highlight u__img-cover"><img src="img/feature04.jpg" /></div>
+
+<p class="f__headline-h2 m__cslider__swiper-slide-title u__c-green">2016 RUTHERFORD CABERNET SAUVIGNON</p>
+<div class="m__cslider__swiper-slide-divider"></div>
+
+<p class="f__paragraph-regular m__cslider__swiper-slide-copy u__c-brown">100% Cabernet Sauvignon，來自美國知名納帕谷魯盧瑟福AVA產區。</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="js__cslider__swiper-prev m__cslider__swiper-arrow m__cslider__swiper-prev"><img alt="Arrow pointing to the left" src="img/left-arrow-white.svg" /></div>
+
+<div class="js__cslider__swiper-next m__cslider__swiper-arrow m__cslider__swiper-next"><img alt="Arrow pointing to the right" src="img/right-arrow-white.svg" /></div>
+</div>
+</section>
+
+<section class="m__fmedia m__fmedia__right module module__5" id="scroll-5">
+<div class="u__wrap">
+<div class="align-items-center flex-row-reverse row">
+<div class="col-12 col-xl-6">
+<div class="m__promo__content-highlight u__img-cover"><img src="img/bar.jpg" /></div>
+</div>
+
+<div class="col-12 col-xl-6">
+<div class="m__fmedia__content">
+<h1 class="f__poster m__promo__content-title u__c-green">頂級酒品</h1>
+<div class="m__fmedia__divider"></div>
+
+<p class="f__paragraph-medium m__promo__content-copy u__c-brown">Smith &amp; Wollensky Taipei榮獲葡萄酒雜誌權威「葡萄酒觀察家」Wine Spectator頒發2023餐廳酒單大獎&ndash;兩支酒杯的卓越之最獎「Best of Award of Excellence」。<br />
+<br />
+店內酒單為餐廳侍酒師王東崧(Tony Wang)依據店內餐點與台灣消費者喜好細心規劃，放入大量的餐酒選項，提供賓客超過370種紅白酒選擇，酒款來自歐洲、北美、南美、大洋洲各地，賓客可依照自己的預算及口味喜好挑選，豐富的酒單使搭餐有了多變的自由度。</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="m__fmedia m__fmedia__left">
+<div class="u__wrap">
+<div class="align-items-center row">
+<div class="col-12 col-xl-6">
+<div class="m__promo__content-highlight u__img-cover">
+<div class="sw-slider" data-autoplay="true" data-interval="3000">
+<div class="is-active sw-slide"><img src="img/music01.jpg" /></div>
+
+<div class="sw-slide"><img src="img/music02.jpg" /></div>
+
+<div class="sw-slide"><img src="img/music03.jpg" /></div>
+
+<div class="sw-slide"><img src="img/music04.jpg" /></div>
+</div>
+</div>
+</div>
+
+<div class="col-12 col-xl-6">
+<div class="m__fmedia__content">
+<h1 class="f__poster m__promo__content-title u__c-green">音樂演奏</h1>
+<div class="m__fmedia__divider"></div>
+
+<p class="f__paragraph-medium m__promo__content-copy u__c-brown">結合音樂打造時尚酒吧，爵士樂團現場演奏帶你體驗正宗紐約之夜。酒吧特地打造小舞台，讓Live Jazz Band成為夜晚的主角，滿足味覺與聽覺雙重需求，不僅是商務聚餐首選，更是午後與下班放鬆小酌的好去處。</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="active custom-popup exclusive popup" data-automatic="" data-filter="exclusive" data-interval="1" data-pages="" id="GC-BC">
+<div class="cross-area mb-3 mt-4 text-end">
+<div class="d-inline-block ghost-button" style="opacity:0; pointer-events:none"><a class="button js__popup header__reservations d-none d-xl-inline-block" href="#reservations" target="_self"><span>Reservations</span></a></div>
+
+<div class="close d-inline-block header__hamburger js__close-popups"><img alt="Close main navigation Icon" class="header__hamburger-icon" src="img/nav-close.svg" /> <img alt="Close main navigation Icon, hover over version" class="header__hamburger-icon header__hamburger-icon-hover" src="img/nav-close__hover.svg" /></div>
+</div>
+
+<div class="u__wrap">
+<div class="align-items-center row">
+<div class="col-12">
+<p class="custom-popup__title f__headline-h2 u__c-green">S&amp;W商品禮券開賣!</p>
+
+<div class="custom-popup__content f__paragraph-regular u__c-brown">
+<p>約會請客首選Smith &amp; Wollensky! 送禮自用兩相宜，一起感受S&amp;W獨特的品味魅力!<br />
+<br />
+<a href="zh_TW/shop"><img class="img-fluid" src="img/pop_img.png" /></a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style type="text/css">/* 主輪播：完整露出＋等比例 */
+.sw-slider{
+  position: relative;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  background: #000; /* 留白底色，可改 transparent */
+}
+
+/* 疊在一起淡入淡出 */
+.sw-slider .sw-slide{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.sw-slider .sw-slide.is-active{ opacity: 1; }
+
+/* ✅完整露出（不裁切） */
+.sw-slider .sw-slide img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Popup fade */
+.sw-fade{
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.sw-fade .sw-fade__item{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .9s ease-in-out;
+  pointer-events: none;
+}
+.sw-fade .sw-fade__item.is-active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.sw-fade img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+</style>
+<script>
+(function(){
+  function setAspectByImage(root, img){
+    const apply = () => {
+      const w = img.naturalWidth, h = img.naturalHeight;
+      if(!w || !h) return;
+
+      root.style.aspectRatio = `${w} / ${h}`;
+
+      // fallback
+      const widthPx = root.clientWidth || root.getBoundingClientRect().width;
+      if (!CSS.supports('aspect-ratio: 1 / 1')) {
+        root.style.height = (widthPx * h / w) + 'px';
+      }
+    };
+
+    if (img.complete) apply();
+    else img.addEventListener('load', apply, { once:true });
+  }
+
+  function initSwSlider(){
+    document.querySelectorAll('.sw-slider[data-autoplay="true"]').forEach((slider) => {
+      const slides = Array.from(slider.querySelectorAll('.sw-slide'));
+      if (!slides.length) return;
+
+      let idx = slides.findIndex(s => s.classList.contains('is-active'));
+      if (idx < 0) idx = 0;
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+
+      const img0 = slides[idx].querySelector('img');
+      if (img0) setAspectByImage(slider, img0);
+
+      const interval = parseInt(slider.getAttribute('data-interval') || '3000', 10);
+
+      // 避免 Barba/重複初始化造成多個 setInterval
+      if (slider.__swTimer) clearInterval(slider.__swTimer);
+
+      if (slides.length > 1){
+        slider.__swTimer = setInterval(() => {
+          slides[idx].classList.remove('is-active');
+          idx = (idx + 1) % slides.length;
+          slides[idx].classList.add('is-active');
+
+          const img = slides[idx].querySelector('img');
+          if (img) setAspectByImage(slider, img);
+        }, interval);
+      }
+
+      // resize
+      if (!slider.__swResizeBound){
+        slider.__swResizeBound = true;
+        window.addEventListener('resize', () => {
+          const img = slides[idx]?.querySelector('img');
+          if (img) setAspectByImage(slider, img);
+        });
+      }
+    });
+  }
+
+  function initSwFade(){
+    document.querySelectorAll('.sw-fade').forEach((root) => {
+      const items = Array.from(root.querySelectorAll('.sw-fade__item'));
+      if (!items.length) return;
+
+      let idx = items.findIndex(s => s.classList.contains('is-active'));
+      if (idx < 0) idx = 0;
+      items.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+
+      const img0 = items[idx].querySelector('img');
+      if (img0) setAspectByImage(root, img0);
+
+      const interval = parseInt(root.getAttribute('data-interval') || '4000', 10);
+
+      if (root.__fadeTimer) clearInterval(root.__fadeTimer);
+
+      if (items.length > 1){
+        root.__fadeTimer = setInterval(() => {
+          items[idx].classList.remove('is-active');
+          idx = (idx + 1) % items.length;
+          items[idx].classList.add('is-active');
+
+          const img = items[idx].querySelector('img');
+          if (img) setAspectByImage(root, img);
+        }, interval);
+      }
+    });
+  }
+
+  // ✅ DOM ready 後再跑，避免抓不到節點
+  document.addEventListener('DOMContentLoaded', () => {
+    initSwSlider();
+    initSwFade();
+  });
+
+  // ✅ 如果你有用 Barba 換頁，下一頁也要重跑（保守不報錯）
+  document.addEventListener('barba:after', () => {
+    initSwSlider();
+    initSwFade();
+  });
+})();
+</script>
+
+		</main>
+		<!-- Footer
+											============================================= -->
+		
+						<footer class="footer">
+<div class="u__wrap">
+<div class="align-items-start row">
+<div class="col-12 col-xl-9 footer__col">
+<div class="d-xl-inline-block footer__col-item pe-3"><a class="footer__col-link f__link-sans u__c-white" href="zh_TW/about" target="">關於我們</a></div>
+
+<div class="d-xl-inline-block footer__col-item pe-3"><a class="footer__col-link f__link-sans u__c-white" href="zh_TW/careers" target="">加入我們</a></div>
+
+<div class="d-xl-inline-block footer__col-item pe-3"><a class="footer__col-link f__link-sans u__c-white" href="zh_TW/privacy" target="">隱私權條款</a></div>
+
+<div class="d-xl-inline-block footer__col-item pe-3"><a class="footer__col-link f__link-sans u__c-white" href="https://www.smithandwollensky.com/" target="_blank">SMITH &amp; WOLLENSKY US</a></div>
+</div>
+
+<div class="col-12 col-xl-3 d-none d-xl-block text-end">
+<ul class="footer__social nav social-links">
+	<li><a aria-label="Smith and Wollensky instagram account" class="social-link social-link__instagram" href="https://www.instagram.com/smithwollenskytw" target="_blank"><i class="fa fa-instagram"></i></a></li>
+	<li><a aria-label="Smith and Wollensky facebook-f account" class="social-link social-link__facebook-f" href="https://www.facebook.com/smithandwollenskytw" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+</ul>
+</div>
+</div>
+
+<div class="col-12 col-xl-3 footer__col">
+<div class="footer__col-item">
+<p class="f__link-sans footer__col-link-ignite u__c-cream">&copy;2023 Smith &amp; Wollensky</p>
+</div>
+</div>
+</div>
+
+<div class="footer__logo u__img-contain"><img src="img/footer-logo.svg" /></div>
+</footer>
+							<!-- #footer end -->
+    <!-- #js__body -->
+	</div>
+	</div>
+  <!-- #container -->
+	<!-- TypeKit Fonts -->
+<link rel="stylesheet" href="css/hei2crz.css">
+
+  <!-- Barba CDN -->
+  <script src="https://unpkg.com/@barba/core"></script>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"
+    integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- GSAP ScrollTo Plugin CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollToPlugin.min.js"
+    integrity="sha512-Eenw6RBFiF4rO89LCaB5fkd4WXI4Y7GSRxrLMMWx73dZNcl+dBU3/pJtITD2gTCoEGIf/Ph3spwp0zZnF+UEJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- easepick CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.0/dist/index.umd.min.js"></script>
+
+  <!-- FontAwesome CDN -->
+  <script src="https://kit.fontawesome.com/ec74220fa4.js" crossorigin="anonymous"></script>
+
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLDv4YaZkvEsjZ8RUWt-lvuy9D6x9qrNg"></script>
+
+  <!-- Swiper JS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="js/functions.min.js" id="function_js-js"></script>
+  <script type="text/javascript" src="js/control.min.js" id="control_js-js"></script>
+  <script src="js/jquery.js"></script>
+	<script src="/js/common.js"></script>
+	<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"0ec7974c8a544c31a5a645bca98d95ee","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+
+</html>

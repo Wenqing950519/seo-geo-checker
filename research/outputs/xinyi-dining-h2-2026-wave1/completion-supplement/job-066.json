@@ -1,0 +1,17 @@
+{
+  "id": 66,
+  "input_url": "https://www.wildwood.com.tw/",
+  "store_id": "XY-057",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0109-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0109-response.txt",
+  "sequence": 66,
+  "started_at": "2026-10-15T06:38:27.874Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_8ccf6f78-6fc4-4fcc-85e6-b6ea3249725d",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:31.610Z"
+}

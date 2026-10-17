@@ -35,6 +35,7 @@ const {
 const { normalizeQuerySet } = require(path.join(projectRoot, "mock-api", "lib", "geo-probes.js"));
 const {
   buildEntityProfile,
+  assertReviewedEntityCoverage,
   findEntityForUrl,
   loadEntityMaster
 } = require(path.join(projectRoot, "mock-api", "lib", "entity-master.js"));
@@ -66,7 +67,7 @@ fs.mkdirSync(outputDir, { recursive: true });
 fs.mkdirSync(path.join(outputDir, "raw"), { recursive: true });
 const jsonlPath = path.join(outputDir, "results.jsonl");
 const existingRows = readJsonl(jsonlPath);
-const rowsByUrl = new Map(existingRows.map((row) => [row.url, row]));
+const rowsByUrl = new Map(existingRows.map((row) => [row.input_url || row.url, row]));
 const pending = urls.filter((url) => {
   const row = rowsByUrl.get(url);
   return !row
@@ -199,7 +200,7 @@ async function auditOne(url) {
     } catch (error) {
       profileError = { stage: String(error.stage || "deepseek_profile"), message: String(error.message || error).slice(0, 300) };
     }
-    return researchRow(measurement, profileResult, profileError, measuredAt, { entity, entityProfile, rawRef });
+    return { ...researchRow(measurement, profileResult, profileError, measuredAt, { entity, entityProfile, rawRef }), input_url: url };
   } catch (error) {
     return {
       url,
@@ -386,44 +387,11 @@ function readUrls(file) {
   });
 }
 
-function assertReviewedEntityCoverage(urls, master) {
-  const failures = [];
-  for (const url of urls) {
-    const entity = findEntityForUrl(master, url);
-    if (!entity) {
-      failures.push(`${url}: entity master has no matching official domain`);
-      continue;
-    }
-    const row = entity.row;
-    const hasCanonicalTerm = [row.official_name_zh, row.official_name_en, ...(row.aliases || [])].some(Boolean);
-    if (row.include_status === "pending") failures.push(`${url}: matched entity ${row.store_id} is still pending review`);
-    if (!hasCanonicalTerm) failures.push(`${url}: matched entity ${row.store_id} has no canonical brand term`);
-    if (!(row.official_domains || []).length) failures.push(`${url}: matched entity ${row.store_id} has no official domain`);
-    if (!row.reviewed_by || !row.reviewed_at || !row.truth_source) failures.push(`${url}: matched entity ${row.store_id} lacks review provenance`);
-    if (entity.sharedDomain && !(row.owned_urls || []).some((ownedUrl) => normalizeComparableUrl(ownedUrl) === normalizeComparableUrl(url))) {
-      failures.push(`${url}: shared official domain requires an exact owned_urls match`);
-    }
-  }
-  if (failures.length) throw new Error(`Entity master preflight failed before provider configuration or paid calls:\n- ${failures.join("\n- ")}`);
-}
-
-function normalizeComparableUrl(value) {
-  try {
-    const parsed = new URL(value);
-    parsed.hash = "";
-    parsed.search = "";
-    parsed.pathname = "/";
-    return parsed.toString();
-  } catch {
-    return "";
-  }
-}
-
 function normalizeUrl(value) {
   const input = String(value || "").trim();
   const parsed = new URL(/^https?:\/\//i.test(input) ? input : `https://${input}`);
   if (!["http:", "https:"].includes(parsed.protocol)) throw new Error("Unsupported protocol");
-  parsed.username = ""; parsed.password = ""; parsed.hash = ""; parsed.pathname = "/"; parsed.search = "";
+  parsed.username = ""; parsed.password = ""; parsed.hash = "";
   return parsed.toString();
 }
 

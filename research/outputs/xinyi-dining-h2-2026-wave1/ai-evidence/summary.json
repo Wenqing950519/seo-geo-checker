@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-10-15T06:31:28.680Z",
+  "total_sites": 33,
+  "measured_sites": 23,
+  "excluded_by_master_sites": 0,
+  "failed_or_unknown_sites": 10,
+  "refusal_or_empty_queries": 0,
+  "platform_root_input_sites": 0,
+  "deepseek_profile_successes": 23,
+  "ai_trust_index": {
+    "mean": 2.8,
+    "median": 0,
+    "min": 0,
+    "max": 21.5
+  },
+  "site_readiness_score": {
+    "mean": 66.3,
+    "median": 70,
+    "min": 35,
+    "max": 97
+  },
+  "perplexity_score": {
+    "mean": 27.7,
+    "median": 26,
+    "min": 12,
+    "max": 43
+  },
+  "mean_answer_adoption_rate": 4.3,
+  "mean_source_evidence_rate": 0,
+  "entity_grounded_rate": 100,
+  "by_industry": {
+    "餐飲業／牛排餐廳": 3,
+    "restaurant": 3,
+    "餐飲業／自助百匯餐廳": 2,
+    "餐飲業": 4,
+    "美式餐廳": 1,
+    "食品電商／拉麵伴手禮零售": 1,
+    "Indian restaurant chain": 1,
+    "餐飲服務業": 2,
+    "餐飲業／燒肉餐廳": 1,
+    "餐飲業／中式料理連鎖餐廳": 1,
+    "餐飲業／連鎖牛排餐廳": 1,
+    "餐飲服務業／美式連鎖餐廳": 1,
+    "tea retail and tea salon": 1,
+    "餐飲與生活風格複合空間": 1
+  },
+  "dataset_sha256": "547edbd83ee5a5b76067102ca7fecabe1ba97caea65eb424ce6159422affe548"
+}

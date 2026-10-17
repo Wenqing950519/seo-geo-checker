@@ -1,0 +1,17 @@
+{
+  "id": 58,
+  "input_url": "https://www.twgtea.com/",
+  "store_id": "XY-070",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0097-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0097-response.txt",
+  "sequence": 58,
+  "started_at": "2026-10-15T06:38:14.287Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_bb97ad6c-504f-433c-b6a5-fe3a9b9356ef",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:17.377Z"
+}

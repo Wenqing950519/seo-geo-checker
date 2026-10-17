@@ -1,0 +1,17 @@
+{
+  "id": 60,
+  "input_url": "https://www.twgtea.com/",
+  "store_id": "XY-070",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0099-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0099-response.txt",
+  "sequence": 60,
+  "started_at": "2026-10-15T06:38:17.737Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_f35359df-2e0e-49cf-a249-68e432883eec",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:20.606Z"
+}

@@ -1,0 +1,877 @@
+{
+  "created_at": "2026-10-15T03:51:19.364Z",
+  "timezone": "Asia/Taipei",
+  "mode": "public_http_only",
+  "paid_ai_calls": 0,
+  "concurrency": 3,
+  "timeout_ms_per_url": 20000,
+  "maximum_redirects": 5,
+  "maximum_bytes": 2000000,
+  "source_files": [
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv",
+      "sha256": "7293782a31876806d5c9da6fe45fd26dbf10670d8fbafe2b1cc024d71e8b110a"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv",
+      "sha256": "2a455be2198afb77cd02f8219b054b6268786d69c1be5c5fd4ea3374e20bfd4b"
+    }
+  ],
+  "urls": [
+    {
+      "url": "https://www.85td-101.com/",
+      "roles": [
+        "approved_root_input",
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-066"
+      ]
+    },
+    {
+      "url": "https://www.apointsteak.com.tw/",
+      "roles": [
+        "approved_root_input",
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-003"
+      ]
+    },
+    {
+      "url": "https://www.bellavita.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.breeze.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.celavi.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.chunshuitang.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.dannycompany.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.dintaifung.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.dt101.com.tw/",
+      "roles": [
+        "approved_root_input",
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-007",
+        "XY-038"
+      ]
+    },
+    {
+      "url": "https://www.eatogether.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.elite-concepts.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.gbarestaurants.com.tw/",
+      "roles": [
+        "approved_root_input",
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-045"
+      ]
+    },
+    {
+      "url": "https://www.haidilao.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.hooters.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.hostshabu.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.humblehousehotels.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.hyatt.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.ichiran.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.indianfoodtaiwan.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.inparadise.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.irelandspotato.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.jkstudio.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.joycecafetw.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.kanpaiclassic.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.karenteppanyaki.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.lawrys.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.lemeridien-taipei.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.mala.com.tw/",
+      "roles": [
+        "approved_root_input",
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-031"
+      ]
+    },
+    {
+      "url": "https://www.marriott.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.meatlove.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.mortons.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.orangeshabu.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.paradisegp.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.ricebar.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.saffron46.com/",
+      "roles": [
+        "approved_root_input",
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-028"
+      ]
+    },
+    {
+      "url": "https://www.shilingshabu.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.shinyeh.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.skm.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.smithandwollensky.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.snmfood.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.texasroadhouse.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.tgifridays.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.thaitown.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.timhowan.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.tsujihan.com.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.twgtea.com/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.ukai-tpe.com.tw/",
+      "roles": [
+        "approved_root_input",
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-064"
+      ]
+    },
+    {
+      "url": "https://www.wildwood.com.tw/",
+      "roles": [
+        "approved_root_input",
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-057"
+      ]
+    },
+    {
+      "url": "https://www.woolloomooloo.tw/",
+      "roles": [
+        "approved_root_input"
+      ],
+      "store_ids": []
+    },
+    {
+      "url": "https://www.dintaifung.com.tw/store-detail.php?id=252",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-001"
+      ]
+    },
+    {
+      "url": "http://www.shilingshabu.com/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-002"
+      ]
+    },
+    {
+      "url": "https://www.marriott.com/en-us/hotels/tpewh-w-taipei/dining/yen-chinese-restaurant/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-004"
+      ]
+    },
+    {
+      "url": "https://www.hostshabu.com/hostshabulocation.html",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-005"
+      ]
+    },
+    {
+      "url": "https://www.skm.com.tw/brand/11129",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-006"
+      ]
+    },
+    {
+      "url": "https://www.humblehousehotels.com/zh-tw/websev?cat=restaurant&id=1",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-008"
+      ]
+    },
+    {
+      "url": "https://www.indianfoodtaiwan.com/zh",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-009"
+      ]
+    },
+    {
+      "url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cafe",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-011"
+      ]
+    },
+    {
+      "url": "https://ichiran.com.tw/shop/stores.aspx",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-012"
+      ]
+    },
+    {
+      "url": "https://texasroadhouse.com.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-013"
+      ]
+    },
+    {
+      "url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/irodori",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-014"
+      ]
+    },
+    {
+      "url": "https://inparadise.com.tw/zh-TW/store/Xinyi",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-015"
+      ]
+    },
+    {
+      "url": "https://www.dannycompany.com.tw/home/top-cap-steakhouse/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-016"
+      ]
+    },
+    {
+      "url": "https://www.haidilao.com/tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-017"
+      ]
+    },
+    {
+      "url": "https://www.dintaifung.com.tw/store-detail.php?id=253",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-018"
+      ]
+    },
+    {
+      "url": "https://www.lemeridien-taipei.com/websev?cat=restaurant&id=5",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-020"
+      ]
+    },
+    {
+      "url": "https://www.lawrys.com.tw/about.php",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-021"
+      ]
+    },
+    {
+      "url": "https://tw.celavi.com/zh-tw",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-022"
+      ]
+    },
+    {
+      "url": "https://www.bellavita.com.tw/cht/store.php?d=94",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-023"
+      ]
+    },
+    {
+      "url": "https://www.kanpaiclassic.com.tw/zh/branch",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-024"
+      ]
+    },
+    {
+      "url": "https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=1&Id=1",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-026"
+      ]
+    },
+    {
+      "url": "https://meatlove.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-027"
+      ]
+    },
+    {
+      "url": "https://www.chunshuitang.com.tw/location-detail/41",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-029"
+      ]
+    },
+    {
+      "url": "https://woolloomooloo.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-030"
+      ]
+    },
+    {
+      "url": "https://www.eatogether.com.tw/zh-TW/store/EAT007",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-032"
+      ]
+    },
+    {
+      "url": "https://smithandwollensky.com.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-033"
+      ]
+    },
+    {
+      "url": "https://www.breeze.com.tw/floor/store/267",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-035"
+      ]
+    },
+    {
+      "url": "https://www.hooters.com.tw/en/category/event/xinyi/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-036"
+      ]
+    },
+    {
+      "url": "http://karenteppanyaki.com/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-037"
+      ]
+    },
+    {
+      "url": "https://www.paradisegp.com/tc/tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-039"
+      ]
+    },
+    {
+      "url": "https://tgifridays.com.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-040"
+      ]
+    },
+    {
+      "url": "https://www.shinyeh.com.tw/content/zh/brand/Store.aspx?BrandId=4&Id=13",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-041"
+      ]
+    },
+    {
+      "url": "https://www.mortons.com/location/mortons-the-steakhouse-taipei-taiwan/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-042"
+      ]
+    },
+    {
+      "url": "https://www.chunshuitang.com.tw/location-detail/40",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-043"
+      ]
+    },
+    {
+      "url": "https://www.thaitown.com.tw/store/1",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-044"
+      ]
+    },
+    {
+      "url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/bel-air-bar-and-grill",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-046"
+      ]
+    },
+    {
+      "url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/cha-yuan",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-047"
+      ]
+    },
+    {
+      "url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/pearl-liang",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-048"
+      ]
+    },
+    {
+      "url": "http://www.snmfood.com.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-051"
+      ]
+    },
+    {
+      "url": "https://www.elite-concepts.com/restaurants/ye-shanghai/taipei/zh/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-053"
+      ]
+    },
+    {
+      "url": "https://www.joycecafetw.com/joyce-east",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-054"
+      ]
+    },
+    {
+      "url": "https://www.timhowan.com.tw/store/xinyi",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-055"
+      ]
+    },
+    {
+      "url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/ziga-zaga",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-056"
+      ]
+    },
+    {
+      "url": "https://tsujihan.com.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-058"
+      ]
+    },
+    {
+      "url": "https://www.facebook.com/mukibeefnoodles/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-059"
+      ]
+    },
+    {
+      "url": "https://orangeshabu.com/zh-TW/store/store_A9",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-060"
+      ]
+    },
+    {
+      "url": "https://ricebar.com.tw/store/11",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-061"
+      ]
+    },
+    {
+      "url": "https://www.facebook.com/LAPHOTW/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-062"
+      ]
+    },
+    {
+      "url": "https://www.lemeridien-taipei.com/websev?cat=restaurant&id=2",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-063"
+      ]
+    },
+    {
+      "url": "http://www.irelandspotato.com.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-065"
+      ]
+    },
+    {
+      "url": "https://jkstudio.tw/",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-067"
+      ]
+    },
+    {
+      "url": "https://www.hyatt.com/grand-hyatt/zh-HK/taigh-grand-hyatt-taipei/dining/yun-jin",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-068"
+      ]
+    },
+    {
+      "url": "https://goo.gl/maps/weimei",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-069"
+      ]
+    },
+    {
+      "url": "https://twgtea.com/locations/asia-pacific/taiwan/taipei/twg-tea-salon-boutique-at-taipei-101-mall",
+      "roles": [
+        "reviewed_owned_url"
+      ],
+      "store_ids": [
+        "XY-070"
+      ]
+    }
+  ],
+  "interpretation": "HTTP reachability and returned content only; no automatic operating-status or ownership approval."
+}

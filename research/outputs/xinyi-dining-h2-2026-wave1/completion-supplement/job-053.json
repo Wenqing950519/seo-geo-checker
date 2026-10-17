@@ -1,0 +1,17 @@
+{
+  "id": 53,
+  "input_url": "https://www.texasroadhouse.com.tw/",
+  "store_id": "XY-013",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0088-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0088-response.txt",
+  "sequence": 53,
+  "started_at": "2026-10-15T06:38:06.374Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_36d8b975-b169-4b02-b07a-8f962c82cb83",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:09.381Z"
+}

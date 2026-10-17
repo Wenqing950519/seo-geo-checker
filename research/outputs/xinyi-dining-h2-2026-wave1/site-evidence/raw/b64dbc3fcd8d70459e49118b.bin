@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+    <head>
+    <base href="/kanpaiclassic/zh/">  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>老乾杯&KANPAI CLASSIC | 分店據點</title>
+    <meta name="description"        content="在舒適雅致的包廂卡座空間，與優雅慢板的爵士樂中，盡情享受頂級和牛燒肉盛宴。">
+    <meta property="og:url"         content="https://www.kanpaiclassic.com.tw/zh/branch">
+    <meta property="og:title"       content="老乾杯&amp;KANPAI CLASSIC | 分店據點">
+    <meta property="og:type"        content="website">
+    <meta property="og:description" content="在舒適雅致的包廂卡座空間，與優雅慢板的爵士樂中，盡情享受頂級和牛燒肉盛宴。">
+    <meta property="og:image"       content="https://www.kanpaiclassic.com.tw/kanpaiclassic/zh/assets/images/static/fbshare.jpg?v=1">
+    <meta property="keywords"       content="老乾杯、KANPAI CLASSIC、和牛燒肉、燒肉定烤、滿壽泉、米其林燒肉、燒肉推薦、精緻燒肉、美食推薦">    
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <style>
+      html,body { margin: 0; padding: 0; background-color: #0F0F0F; color: white; } .is-overflow-hidden .sections, .is-overflow-hidden footer { display: none; }
+      body#index {background-color: #121212}
+      .app__loading{position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;display: flex; justify-content: center;align-items: center;}
+      .loading--caption { text-align: center; display: flex; justify-content: center; align-items: flex-start; opacity: 0; position: relative; will-change: opacity;}
+      .loading--caption .caption__title { writing-mode: tb-rl; font-size: 36px; font-weight: 700; letter-spacing: 4px;}
+      .loading--caption .caption__subtitle { position: relative; writing-mode: tb-rl; font-size: 20px; font-weight: 600; letter-spacing: 2px;}
+      .loading--caption .caption__subtitle::after { content: ''; position: relative; display: inline-block; width: 1px; height: 67px; background-color: #D2A674; margin-top: 1rem;}
+      .loading--2 { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); opacity: 0; pointer-events: none; filter: blur(30px);}
+      .section--cover { opacity: 0;}
+      .section--cover .cover--caption { opacity: 0;}
+      .section--cover .cover--caption .cover--title i { transform: scaleX(0)}
+      .section--cover .cover--caption .cover--title span { opacity: 0; }
+      .section--cover .cover--more { opacity: 0; }
+      #index header .header--logo, #index header .header--content { opacity: 0 } 
+      .app__loading .loading--bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-size: 315px 500px; background-repeat: repeat; background-position: center top;}
+      .loading--mask { position: fixed; width: 100%; height: 100%; left: 0; top: 0; background-color: $black; background-image: url(assets/images/loading--bg.jpg); background-size: 157px 250px; background-repeat: repeat; background-position: left top; z-index: 999; pointer-events: none; transition: 1s ease; }
+      .webp .loading--mask {backgroind-image: url('assets/images/webp/loading--bg.webp')}
+    </style>
+       
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T9SBTDTM');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '796491400087687');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=796491400087687&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <link href="assets/css/common.css?v=1722999871" rel="stylesheet"></head>
+    
+    <body class="is-overflow-hidden" id="location">
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src=""https://www.googletagmanager.com/ns.html?id=GTM-T9SBTDTM""
+height=""0"" width=""0"" style=""display:none;visibility:hidden""></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div class="view">
+      <div class="app__content" id="viewport">
+        <div id="top"></div>
+        <div class="header--back"></div>
+                <header><a class="header--logo" href="index#skip"></a>
+          <div class="header--content"><a class="button--reserve" href="https://lihi1.cc/mIroY/kpcweb" target="_blank">
+            <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                      <g id="Group" transform="translate(25.583333, 6.000000)">
+                          <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                      </g>
+                  </g>
+              </g>
+            </svg><span>線上訂位</span></a>
+                          <div class="lang--select">
+                <div class="icon_earth"></div>
+                <select onchange="window.location=this.options[this.selectedIndex].value">
+                                    <option value="/zh/branch" selected>繁體中文</option>
+                                    <option value="/jp/branch" >日本語</option>
+                                    <option value="/en/branch" >ENGLISH</option>
+                                  </select>
+              </div>
+                        <a class="menu" href="javascript:;" data-toggle="drawer"><span></span><span></span><span></span></a></div>
+          <nav>
+            <div class="drawer">
+              <div class="drawer--close" data-toggle="drawer-close"><i></i></div>
+              <div class="drawer--caption"><a class="header--logo" href="https://www.kanpaiclassic.com.tw/zh#skip"></a>
+                <ul>
+                  <li><a href="https://www.kanpaiclassic.com.tw/zh/about"><span>關於品牌</span>
+                      <div class="en">ABOUT US</div></a></li>
+                  <li><a href="https://www.kanpaiclassic.com.tw/zh/menu"><span>菜單介紹</span>
+                      <div class="en">MENU & DRINKS</div></a></li>
+                  <li><a href="https://www.kanpaiclassic.com.tw/zh/news"><span>最新情報</span>
+                      <div class="en">NEWS & EVENTS</div></a></li>
+                  <li><a href="https://www.kanpaiclassic.com.tw/zh/branch"><span>分店據點</span>
+                      <div class="en">BRANCH</div></a></li>
+                  <li><a href="https://lihi1.com/KjFgu/kpcweb" target="_blank"><span>人才招募</span>
+                      <div class="en">RECRUITS</div></a></li>
+                  <li><a href="mailto:cc@kanpai.com.tw?subject=【顧客回饋】姓名_請簡述事項&amp;body=姓名： %0D%0D聯絡電話： %0D%0D用餐日期、時間： %0D%0D用餐品牌：老乾杯%0D%0D分店： %0D%0D回饋事項：" target="_blank"><span>聯絡我們</span>
+                      <div class="en">CONTACT US</div></a></li>
+                </ul>
+                <div class="header--bottom">
+                  <div class="col"><a class="button--sm" href="https://kanpai-go-club.com.tw/?utm_source=kpc&amp;utm_medium=web" target="_blank">
+                    <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g id="Group" transform="translate(25.583333, 6.000000)">
+                                  <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                              </g>
+                          </g>
+                      </g>
+                    </svg><span>加入會員</span></a></div>
+                    <div class="col"><a class="button--sm is-online" href="https://lihi1.cc/mIroY/kpcwebmenu" target="_blank">
+                    <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g id="Group" transform="translate(25.583333, 6.000000)">
+                                  <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                              </g>
+                          </g>
+                      </g>
+                    </svg><span>線上訂位</span></a></div>
+                  <div class="col--full">
+                                        <div class="lang--select">
+                    <div class="icon_earth"></div>
+                      <select onchange="window.location=this.options[this.selectedIndex].value">
+                                                <option value="/zh/branch" selected>繁體中文</option>
+                                                <option value="/jp/branch" >日本語</option>
+                                                <option value="/en/branch" >ENGLISH</option>
+                                              </select>
+                    </div>
+                                      </div>
+                </div>
+                <div class="header--follow">
+                  <div class="tt--follow">Follow us</div>
+                  <ul>
+                    <li><a class="follow--link" href="https://www.facebook.com/kanpaiclassic" target="_blank"><svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="桌機主頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="乾杯燒肉_首頁" transform="translate(-44.000000, -572.000000)" fill="#000000" fill-rule="nonzero">
+                                <g id="社群按鈕" transform="translate(44.000000, 480.000000)">
+                                    <g id="SNS" transform="translate(0.000000, 92.000000)">
+                                        <path d="M11,0 C4.92525,0 0,4.92525 0,11 C0,17.07475 4.92525,22 11,22 C17.07475,22 22,17.07475 22,11 C22,4.92525 17.07475,0 11,0 Z M13.75,7.33333333 L12.5125,7.33333333 C12.0193333,7.33333333 11.9166667,7.53591667 11.9166667,8.0465 L11.9166667,9.16666667 L13.75,9.16666667 L13.5584167,11 L11.9166667,11 L11.9166667,17.4166667 L9.16666667,17.4166667 L9.16666667,11 L7.33333333,11 L7.33333333,9.16666667 L9.16666667,9.16666667 L9.16666667,7.051 C9.16666667,5.42941667 10.0200833,4.58333333 11.94325,4.58333333 L13.75,4.58333333 L13.75,7.33333333 Z" id="Shape"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                      </svg></a></li>
+                    <li><a class="follow--link" href="https://lihi1.com/XgqWK/kpcweb" target="_blank">
+                        <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="桌機主頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="乾杯燒肉_首頁" transform="translate(-44.000000, -609.000000)" fill="#000000" fill-rule="nonzero">
+                                  <g id="社群按鈕" transform="translate(44.000000, 480.000000)">
+                                      <g id="SNS" transform="translate(0.000000, 92.000000)">
+                                          <path d="M18.3293,46.615791 C18.3286933,46.9356498 18.0698229,47.1946244 17.7507,47.1946239 L16.1425,47.1946239 L16.1425,48.2288053 L17.7507,48.2288053 C17.962834,48.219519 18.1629418,48.3276628 18.271774,48.5104081 C18.3806062,48.6931535 18.3806062,48.9210203 18.271774,49.1037656 C18.1629418,49.286511 17.962834,49.3946548 17.7507,49.3853685 L15.565,49.3853685 C15.2480235,49.3829547 14.9919961,49.1253531 14.9908,48.8076381 L14.9908,44.4239438 C14.9908,44.1075152 15.2493,43.8451109 15.5683,43.8451109 L17.7551,43.8451109 C18.0740444,43.8460243 18.3318612,44.105917 18.33095,44.4255976 C18.3300387,44.7452782 18.0707444,45.00369 17.7518,45.0027767 L16.1436,45.0027767 L16.1436,46.0369581 L17.7518,46.0369581 C18.0719,46.0369581 18.3304,46.2982598 18.3304,46.615791 L18.3293,46.615791 Z M13.8215,49.3555999 C13.7624472,49.3743078 13.7008307,49.3836088 13.6389,49.3831634 C13.4551807,49.3872455 13.2808999,49.3017536 13.1714,49.1538353 L10.9318,46.106418 L10.9318,48.8076381 C10.9089856,49.1094929 10.6579726,49.3427466 10.35595,49.3427466 C10.0539274,49.3427466 9.80291445,49.1094929 9.78009892,48.8076381 L9.78009892,44.4239438 C9.77949098,44.106519 10.0354079,43.8485316 10.3521,43.847316 C10.5303,43.847316 10.6953,43.9421343 10.8053,44.0799517 L13.0625,47.1394969 L13.0625,44.4239438 C13.0625,44.1075152 13.321,43.8451109 13.64,43.8451109 C13.9557,43.8451109 14.2175,44.1075152 14.2175,44.4239438 L14.2175,48.8076381 C14.2171799,49.0567653 14.0575666,49.277629 13.8215,49.3555999 L13.8215,49.3555999 Z M8.3765,49.3853685 C8.0590937,49.3835563 7.80240174,49.1257799 7.8012,48.8076381 L7.8012,44.4239438 C7.8012,44.1075152 8.0608,43.8451109 8.3787,43.8451109 C8.6966,43.8451109 8.9551,44.1075152 8.9551,44.4239438 L8.9551,48.8076381 C8.95328777,49.1268145 8.694946,49.384768 8.3765,49.3853685 L8.3765,49.3853685 Z M6.6935,49.3853685 L4.5078,49.3853685 C4.19003097,49.3835679 3.9327023,49.1261366 3.9303,48.8076381 L3.9303,44.4239438 C3.95646413,44.12379 4.20719652,43.8934786 4.5078,43.8934786 C4.80840348,43.8934786 5.05913587,44.12379 5.0853,44.4239438 L5.0853,48.2277027 L6.6957,48.2277027 C7.01464444,48.2277027 7.2732,48.486855 7.2732,48.8065356 C7.2732,49.1262162 7.01464444,49.3853685 6.6957,49.3853685 L6.6935,49.3853685 Z M11,37.5 C4.9357,37.5 0,41.5165489 0,46.4504102 C0,50.8715908 3.9138,54.5750187 9.1993,55.2784385 C9.5568,55.3534111 10.0452,55.5154843 10.1684,55.8208876 C10.2784,56.0965223 10.241,56.5243074 10.2036,56.8131725 L10.0529,57.7503305 C10.0122,58.0259652 9.8329,58.8396389 11.0143,58.3423939 C12.1979,57.8473539 17.3547,54.595967 19.6647,51.9344382 C21.2443,50.1979396 22,48.420647 22,46.4504102 C22,41.5165489 17.0632,37.5 11,37.5 Z" id="Shape"></path>
+                                      </g>
+                                  </g>
+                              </g>
+                          </g>
+                        </svg></a></li>
+                    <li><a class="follow--link" href="https://lihi3.me/NolVa/kpcweb" target="_blank">
+                        <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="桌機主頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="乾杯燒肉_首頁" transform="translate(-44.000000, -646.000000)" fill="#000000" fill-rule="nonzero">
+                                  <g id="社群按鈕" transform="translate(44.000000, 480.000000)">
+                                      <g id="SNS" transform="translate(0.000000, 92.000000)">
+                                          <path d="M11,74 C13.9887,74 14.3616,74.011 15.5342,74.066 C16.7057,74.121 17.5032,74.3047 18.205,74.5775 C18.931,74.8569 19.5426,75.2353 20.1542,75.8458 C20.713543,76.3956856 21.146349,77.0608479 21.4225,77.795 C21.6942,78.4957 21.879,79.2943 21.934,80.4658 C21.9857,81.6384 22,82.0113 22,85 C22,87.9887 21.989,88.3616 21.934,89.5342 C21.879,90.7057 21.6942,91.5032 21.4225,92.205 C21.1471443,92.9395542 20.7142328,93.6048787 20.1542,94.1542 C19.6041576,94.7133512 18.9390403,95.1461279 18.205,95.4225 C17.5043,95.6942 16.7057,95.879 15.5342,95.934 C14.3616,95.9857 13.9887,96 11,96 C8.0113,96 7.6384,95.989 6.4658,95.934 C5.2943,95.879 4.4968,95.6942 3.795,95.4225 C3.06055879,95.1469207 2.39527994,94.7140389 1.8458,94.1542 C1.28634708,93.6044043 0.853524357,92.9392162 0.5775,92.205 C0.3047,91.5043 0.121,90.7057 0.066,89.5342 C0.0143,88.3616 0,87.9887 0,85 C0,82.0113 0.011,81.6384 0.066,80.4658 C0.121,79.2932 0.3047,78.4968 0.5775,77.795 C0.852759713,77.0603973 1.285684,76.3950532 1.8458,75.8458 C2.39543807,75.2861544 3.06067144,74.8533022 3.795,74.5775 C4.4968,74.3047 5.2932,74.121 6.4658,74.066 C7.6384,74.0143 8.0113,74 11,74 Z M11,79.5 C7.96243388,79.5 5.5,81.9624339 5.5,85 C5.5,88.0375661 7.96243388,90.5 11,90.5 C14.0375661,90.5 16.5,88.0375661 16.5,85 C16.5,81.9624339 14.0375661,79.5 11,79.5 L11,79.5 Z M18.15,79.225 C18.15,78.4656085 17.5343915,77.85 16.775,77.85 C16.0156085,77.85 15.4,78.4656085 15.4,79.225 C15.4,79.9843915 16.0156085,80.6 16.775,80.6 C17.5343915,80.6 18.15,79.9843915 18.15,79.225 Z M11,81.7 C12.8225397,81.7 14.3,83.1774603 14.3,85 C14.3,86.8225397 12.8225397,88.3 11,88.3 C9.17746033,88.3 7.7,86.8225397 7.7,85 C7.7,83.1774603 9.17746033,81.7 11,81.7 Z" id="Shape"></path>
+                                      </g>
+                                  </g>
+                              </g>
+                          </g>
+                        </svg></a></li>
+                    <li><a class="follow--link" href="https://lihi1.com/ljeHK/kpcweb" target="_blank">
+                        <svg width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="桌機主頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="乾杯燒肉_首頁" transform="translate(-44.000000, -683.000000)" fill="#000000" fill-rule="nonzero">
+                                  <g id="社群按鈕" transform="translate(44.000000, 480.000000)">
+                                      <g id="SNS" transform="translate(0.000000, 92.000000)">
+                                          <path d="M17.9804167,111.673894 C14.67675,111.441563 7.31866667,111.442508 4.01958333,111.673894 C0.447333333,111.925112 0.0265833333,114.148304 0,120 C0.0265833333,125.841308 0.443666667,128.073943 4.01958333,128.326106 C7.31958333,128.557492 14.67675,128.558437 17.9804167,128.326106 C21.5526667,128.074888 21.9734167,125.851696 22,120 C21.9734167,114.158692 21.5563333,111.926057 17.9804167,111.673894 Z M8.25,123.777725 L8.25,116.222275 L15.5833333,119.993389 L8.25,123.777725 L8.25,123.777725 Z" id="Shape"></path>
+                                      </g>
+                                  </g>
+                              </g>
+                          </g>
+                        </svg></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <style>
+            @media (max-width: 380px) {
+              header nav .drawer .header--bottom .col .button--sm {
+                white-space: nowrap;
+                font-size: 4.26666667vw;
+              }
+              .header--follow .tt--follow {
+                white-space: nowrap;
+              }
+            }
+          </style>
+        </header>
+        
+        <!--header選單-->
+        <main>
+          <section class="section--locationTop">
+            <div class="container scroll-enter-in">
+              <div class="section--title">
+                <h1>分店據點</h1>
+                <div class="en">BRANCH</div>
+              </div>
+            </div>
+          </section>
+          <section class="section--white is-location ">
+                          <div class="container scroll-enter-in">
+                <div class="location--search"><span>快速搜尋</span>
+                  <div class="location--select">
+                    <select class="filter" id="filter_k1">
+                      <option value="">請選擇</option>
+                                            <option value="k1_108" >老乾杯</option>
+                                            <option value="k1_109" >KANPAI CLASSIC</option>
+                                          </select>
+                  </div>
+                  <div class="location--select">
+                    <select class="filter" id="filter_k2">
+                      <option value="">請選擇</option>
+                                            <option value="k2_129" >台北</option>
+                                            <option value="k2_130" >桃竹</option>
+                                            <option value="k2_131" >台中</option>
+                                            <option value="k2_132" >南臺灣</option>
+                                          </select>
+                  </div>
+                  <!--div class="location--button"><a href="#">
+                    <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="乾杯燒肉_分店據點" transform="translate(-821.000000, -572.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g id="快速搜尋" transform="translate(281.000000, 552.000000)">
+                                  <g id="Group-3-Copy" transform="translate(495.000000, 0.000000)">
+                                      <g id="Group-3" transform="translate(45.000000, 18.000000)">
+                                          <path d="M11.8444153,12.6472666 L8.6689617,9.47047541 C8.60475708,9.40760838 8.52851409,9.3648053 8.44290792,9.33805337 C8.98195924,8.58097386 9.30298235,7.65268202 9.30298235,6.65082238 C9.30164476,4.08263746 7.2190073,2 4.65215997,2 C2.08263746,2 0,4.08263746 0,6.65215997 C0,9.2203449 2.08263746,11.3029824 4.65215997,11.3029824 C5.65401961,11.3029824 6.58097386,10.9832968 7.34072856,10.4429079 C7.36614289,10.5271765 7.40894598,10.6047571 7.471813,10.6689617 L10.6486042,13.8444153 C10.9027475,14.0972211 11.374919,14.0356916 11.7053053,13.7053053 C12.0356916,13.374919 12.0972211,12.9014099 11.8444153,12.6472666 Z M4.65215997,9.61092302 C3.01895488,9.61092302 1.69205934,8.28536507 1.69205934,6.65082238 C1.69205934,5.01761728 3.01895488,3.69072174 4.65215997,3.69072174 C6.28670267,3.69072174 7.61226061,5.01761728 7.61226061,6.65082238 C7.61092302,8.28536507 6.28536507,9.61092302 4.65215997,9.61092302 Z" id="search"></path>
+                                      </g>
+                                  </g>
+                              </g>
+                          </g>
+                      </g>
+                    </svg><span>搜尋</span></a></div-->
+                </div>
+              </div>
+
+            
+            <div class="container scroll-enter-in">
+              <div class="searchs">
+
+                                <div class="search--content k1_109 k2_129">
+                  <div class="search--title">KANPAI CLASSIC 天母店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/284_1cd04609cc.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(02) 2877-1550">(02) 2877-1550</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週日至週四<br />
+11:00 - 15:00 ( Last order 14:00 )<br />
+17:00 - 21:30 ( Last order 21:00 )<br />
+週五、週六<br />
+11:00 - 15:00 ( Last order 14:00 )<br />
+17:00 - 22:00 ( Last order 21:00 )<br />
+</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台北市士林區忠誠路二段 200 號 2 樓 ( 新光三越台北天母店二館 )                                                 </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><span><a href="https://www.kanpaiclassic.com.tw/zh/news-detail/336" target="_blank" rel="noopener">包廂預訂 &gt;</a><br><a href="https://lihi1.com/M4Sq1" target="_blank" rel="noopener">skm eats 訂餐 &gt;</a><br><a href="https://lihi2.com/V4KFD" target="_blank" rel="noopener">Uber Eats 訂餐 &gt;</a><br><br></span>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/q9qli" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://g.page/r/CfasjqgOuuMsEAE" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_129">
+                  <div class="search--title">老乾杯 信義店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/233_facb5027f3.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(02) 2725-3311">(02) 2725-3311</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週日至週四<br />
+11:30 - 15:00 ( Last order 14:30 )<br />
+17:00 - 23:00 ( Last order 22:00 )<br />
+週五、週六<br />
+11:30 - 15:00 ( Last order 14:30 )<br />
+17:00 - 23:30 ( Last order 22:30 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台北市信義區松壽路 9 號 8 樓 ( 新光三越台北信義新天地 A9 館 )                                                 <!--(新光三越南西店本館)-->
+                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a data-cke-saved-href="http://lihi1.com/zdC48" href="https://lihi1.com/bPgTc" target="_blank" rel="noopener">skm eats 訂餐 &gt;</a><br><a href="http://lihi1.com/LeaTB">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/IXo0g" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/DpxLen999BD4eoGk8" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_129">
+                  <div class="search--title">老乾杯 慶城店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/234_0c1d2243af.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(02) 2713-9000">(02) 2713-9000</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週日<br />
+11:30 - 14:30 ( Last order 14:00 )<br />
+17:00 - 23:00 ( Last order 21:30 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台北市松山區慶城街 29 號 ( 近捷運南京復興站 )                                                 <!--(文心路及市政北五路口，台中市警局對面)-->
+                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a href="http://lihi1.com/P9say/webbranches" target="_blank" rel="noopener">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/muxsI" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/so2i7ybaEDECPdJ78" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_129">
+                  <div class="search--title">老乾杯 南西店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/235_80376a29b7.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(02) 2521-5255">(02) 2521-5255</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週四 <br />
+11:00 - 15:00 ( Last order 14:30 )<br />
+17:00 - 21:30 ( Last order 20:30 )<br />
+週五 <br />
+11:00 - 15:00 ( Last order 14:30 )<br />
+17:00 - 22:00 ( Last order 21:00 )<br />
+週六 <br />
+11:00 - 22:00 ( Last order 21:00 )<br />
+週日<br />
+11:00 - 21:30 ( Last order 20:30 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台北市中山區南京西路 12 號 7 樓 ( 新光三越台北南西店一館 )                                                <!--(夢時代購物中心 - 藍鯨館)-->
+                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a href="https://lihi1.com/Dgmn8" target="_blank" class="no-barba" rel="noopener">skm eats 訂餐 &gt;</a><br><a href="https://lihi1.com/TbWpA">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/piJbM" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/McKRhTZDyiQaQxj27" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_129">
+                  <div class="search--title">老乾杯 SOGO 復興店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/240_11a70fdf2d.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(02) 2731-6660">(02) 2731-6660</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週四<br />
+11:00 - 15:00 ( Last order 14:00 )<br />
+17:00 - 22:00 ( Last order 21:00 )<br />
+週五<br />
+11:00 - 15:00 ( Last order 14:00 )<br />
+17:00 - 22:30 ( Last order 21:30 )<br />
+週六<br />
+11:00 - 22:30 ( Last order 21:30 )<br />
+週日<br />
+11:00 - 22:00 ( Last order 21:00 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台北市大安區忠孝東路三段 300 號 11 樓 ( SOGO 百貨復興館 )                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a data-cke-saved-href="http://lihi1.com/cqkL1/0603web" href="https://lihi1.com/ANEbL" class="no-barba" target="_blank" rel="noopener">inline 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/QP1mW" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/ZVSdyauouyT63SUz5" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_129">
+                  <div class="search--title">老乾杯 大直忠泰店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/292_006bacd2ab.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(02) 8502-5551">(02) 8502-5551</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週日至週四<br />
+11:00 - 15:00 ( Last order 14:30 )<br />
+17:00 - 21:30 ( Last order 20:30 )<br />
+週五至週六<br />
+11:00 - 15:00 ( Last order 14:30 )<br />
+17:00 - 22:00 ( Last order 21:00 )<br />
+</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台北市中山區樂群三路 200 號 5 樓 ( 忠泰 NOKE 樂生活 )                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><span><a href="https://lihi2.com/wyIDz" target="_blank" rel="noopener">Uber Eats 訂餐 &gt;</a><br><br></span>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://lihi2.com/ySUOf" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://maps.app.goo.gl/8xNQGoRxGN8CNHsz7?g_st=ic" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_129">
+                  <div class="search--title">老乾杯 板橋大遠百店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/294_db34421fde.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(02) 2952-6466">(02) 2952-6466</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週五<br />
+11:00-15:00 ( Last Order 14:30 )<br />
+17:00-22:00 ( Last Order 21:00 )<br />
+<br />
+週六至週日<br />
+11:00-22:00 ( Last Order 21:00 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">新北市板橋區新站路 28 號 11F ( 板橋大遠百影城樓上 )                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a href="https://www.ubereats.com/tw/store/%E8%80%81%E4%B9%BE%E6%9D%AF-%E6%9D%BF%E6%A9%8B%E5%A4%A7%E9%81%A0%E7%99%BE%E5%BA%97/x9-8i7iQUGysveZJKuJkiQ" target="_blank" rel="noopener">Uber Eats&gt;</a><br>與黑毛屋本家板橋大遠百店同樓層，歡迎蒞臨用餐                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://lihi2.com/fggRT" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://maps.app.goo.gl/XX33L8FU1isk6KZz6?g_st=il" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_130">
+                  <div class="search--title">老乾杯 桃園中茂店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/241_70ae55ddb5.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(03) 316-3350">(03) 316-3350</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週日<br />
+11:30 - 15:00 ( Last order 14:00 )<br />
+17:00 - 22:30 ( Last order 21:00 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">桃園市桃園區同德 5 街 77 號 3 樓 ( 中茂新天地 3F ) *無特約停車場                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a data-cke-saved-href="http://lihi1.com/cqkL1/0603web" href="http://lihi1.com/cqkL1/webbranches" class="no-barba">inline 訂餐 &gt;</a><br><a data-cke-saved-href="http://lihi1.com/1FGsT/0513web" href="http://lihi1.com/1FGsT/webbranches" class="no-barba">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/EaSly" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/wLsX9NfJv8AbWyx7A" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_130">
+                  <div class="search--title">老乾杯 桃園台茂店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/301_a528574ab0.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(03)321-0106">(03)321-0106</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週五<br />
+11:00~15:00 ( Last Order 14:00 )<br />
+17:00~22:00 ( Last Order 21:00 )<br />
+週六、日及國定假日<br />
+11:00~22:00 ( Last Order 21:00 )<br />
+</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">桃園市蘆竹區南崁路一段 112 號 B2 ( 桃園 TaiMall 台茂購物中心 )                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><span> </span>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://lihi2.com/jkvR2" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://maps.app.goo.gl/omR2itDTLPbG64e27" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_130">
+                  <div class="search--title">老乾杯 新竹喜來登店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/242_715d3597e6.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(03) 657-9222">(03) 657-9222</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週日<br />
+11:30 - 15:00 ( Last order 14:00 )<br />
+17:00 - 22:30 ( Last order 21:30 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">新竹縣竹北市光明六路東一段 265 號 2 樓 ( 新竹喜來登大飯店 2F )                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a data-cke-saved-href="http://lihi1.com/AOpOC/0513web" href="http://lihi1.com/AOpOC/webbranches">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/qRTKo" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/41JNu4YEPCGb9n9bA" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_109 k2_131">
+                  <div class="search--title">KANPAI CLASSIC 台中新光店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/291_88d61f3723.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(04) 2253-2175">(04) 2253-2175</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週五<br />
+11:00 - 16:00 ( Last Order 14:30 )<br />
+17:00 - 24:00 ( Last Order 22:30 )<br />
+週六、週日<br />
+10:30 - 16:00 ( Last Order 14:30 )<br />
+17:00 - 24:00 ( Last Order 22:30 )<br />
+春節期間最後加點時間依各店規範為準</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台中市西屯區台灣大道三段 301 號 7 樓（新光三越台中中港店 7F）                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><span><a href="https://www.kanpaiclassic.com.tw/zh/news-detail/336" target="_blank" rel="noopener">包廂預訂 &gt;</a><br><a href="https://reurl.cc/qVRrdg" target="_blank" rel="noopener">Uber Eats &gt;</a><br><a href="https://rsv.skm.com.tw/groups/skm-taichung/companies/-Ksq_LYziPrwRXZXlsQT/restaurants/-NKTAesKE4u3vAWUUA7v/takeout" target="_blank" rel="noopener">skm eats &gt;</a><br><br></span>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/H7Hwt" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/sSssJRrZq1R5aUZN6" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_131">
+                  <div class="search--title">老乾杯 台中市政店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/243_d75b21d64e.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(04) 2254-9777">(04) 2254-9777</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週日<br />
+11:30 - 16:00 ( Last order 14:30 )<br />
+17:00 - 24:00 ( Last order 22:30 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台中市西屯區文心路二段 209 號 1 樓 ( 文心路及市政北五路口，台中市警局對面 )                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a data-cke-saved-href="http://lihi1.com/o0uex/0603web" href="http://lihi1.com/o0uex/webbranches" class="no-barba">inline 訂餐 &gt;</a><br><a data-cke-saved-href="http://lihi1.com/YgOg9/0513web" href="http://lihi1.com/YgOg9/webbranches" class="no-barba">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/Px8cD" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/AFyXikMDHxsUsRj59" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_132">
+                  <div class="search--title">老乾杯 嘉義耐斯王子店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/280_d21a3b80a7.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(05) 277-0557">(05) 277-0557</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週日<br />
+11:30-15:00 ( Last order 14:30 )<br />
+17:00-23:00 ( Last order 22:00 )<br />
+<br />
+</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">嘉義市忠孝路 600 號 17 樓 ( 嘉義耐斯王子大飯店 )                                                 </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a data-cke-saved-href="http://lihi1.com/cqkL1/0603web" href="https://lihi1.com/BW4aE/webbranches" class="no-barba">inline 訂餐 &gt;</a><br><a data-cke-saved-href="http://lihi1.com/1FGsT/0513web" href="https://lihi1.com/CrMaI/webbranches" class="no-barba">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://inline.app/booking/-Ksq_LYziPrwRXZXlsQT/-N1lvhK6gn4Oc6mY4Hvy" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/fcpSAfMqXARYJ1bG7" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_132">
+                  <div class="search--title">老乾杯 台南西門店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/244_a82b7b7aec.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(06) 214-8222">(06) 214-8222</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週日至週四<br />
+11:00 - 15:00 ( Last order 14:00 )<br />
+17:00 - 22:00 ( Last order 21:30 )<br />
+週五&週六<br />
+11:00 - 15:00 ( Last order 14:00 )<br />
+17:00 - 23:00 ( Last order 22:00 )<br />
+<br />
+每日最後入場時間21:30</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">台南市中西區和意路 3 號 1 樓 ( 面向晶英酒店左側 ) ( 新光三越台南新天地二館 )                                                 </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc">停車資訊：消費折抵限新光三越台南新天地停車場<br><br><a data-cke-saved-href="http://lihi1.com/3WoEu" href="https://lihi1.com/qjttU" class="no-barba" target="_blank" rel="noopener">skm eats 訂餐 &gt;</a><br><a href="http://lihi1.com/7MFvQ">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://kanpaigroup.tw/1M7fF" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://goo.gl/maps/XxSwZMHBdXdY4r8d9" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_132">
+                  <div class="search--title">老乾杯 高雄夢時代店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/245_377f549cf0.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(07) 811-5022">(07) 811-5022</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週四<br />
+11:30 - 15:00 ( Last order 14:30 )<br />
+17:00 - 22:00 ( Last order 21:30 )<br />
+週五<br />
+11:30 - 15:00 ( Last order 14:30 )<br />
+17:00 - 22:30 ( Last order 22:00 )<br />
+週六<br />
+11:00 - 15:00 ( Last order 14:30 )<br />
+17:00 - 22:30 ( Last order 22:00 )<br />
+週日<br />
+11:00 - 15:00 ( Last order 14:30 )<br />
+17:00 - 22:00 ( Last order 21:30 )<br />
+<br />
+每日最後入場時間21:30</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">高雄市前鎮區中華五路 789 號 2 樓 ( 夢時代購物中心藍鯨館 )                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a href="https://inline.app/order/-Ksq_LYziPrwRXZXlsQT/-LKZcVhz_Kz9HU-Io7Sr?language=zh-tw" target="_blank" rel="noopener">Inline訂餐 &gt;</a><br><a data-cke-saved-href="http://lihi1.com/zMQJk/0615web" href="http://lihi1.com/zMQJk/webbranches" class="no-barba">Uber Eats 訂餐 &gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://lihi1.com/HI3Pe/webbranches" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://kanpaigroup.tw/Lv1tO" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                                <div class="search--content k1_108 k2_132">
+                  <div class="search--title">老乾杯 高雄漢神本館店</div>
+                  <div class="card--search">
+                    <div class="search--img"><img class="lazy" data-src="https://www.kanpaiclassic.com.tw/kanpaiclassic/media/branch/297_a047ea5b89.jpg" onerror="this.src=''"></div>
+                    <div class="search--caption">
+                                            <div class="caption__contact is-phone">
+                        <div class="caption__tt">電話</div>
+                        <div class="caption__desc"><a href="tel:(07) 211-0668">(07) 211-0668</a></div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">營業時間</div>
+                        <div class="caption__desc">週一至週四 <br />
+11:00 - 15:00 ( Last order 14:30 )<br />
+17:00 - 21:30 ( Last order 21:30 )<br />
+週五<br />
+11:00 - 15:00 ( Last order 14:30 )<br />
+17:00 - 22:00 ( Last order 21:30 )<br />
+週六 <br />
+11:00 - 22:00 ( Last order 21:30 )<br />
+週日<br />
+11:00 - 21:30 ( Last order 21:30 )</div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">地址</div>
+                        <div class="caption__desc">高雄市前金區榮復里成功一路 266 之 1 號 B3F (高雄漢神本館 B3F)                                                </div>
+                      </div>
+                                                                  <div class="caption__contact">
+                        <div class="caption__tt">備註</div>
+                        <div class="caption__desc"><a href="https://www.ubereats.com/tw/store/%E8%80%81%E4%B9%BE%E6%9D%AF-%E9%AB%98%E9%9B%84%E6%BC%A2%E7%A5%9E%E6%9C%AC%E9%A4%A8%E5%BA%97/zmTRUrZXVee5ZLYjsX0rig" target="_blank" rel="noopener">Uber Eats訂餐&gt;</a>                        </div>
+                      </div>
+                                            <div class="search--buttons">
+                                                <div class="button--col"><a class="button--black" href="https://lihi2.com/bK7Mb" target="_blank">
+                          <svg width="15px" height="17px" viewBox="0 0 15 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1144.000000, -881.000000)">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)" fill="#FFFFFF">
+                                        <g id="線上訂位" transform="translate(852.000000, 221.000000)">
+                                            <g id="Shape" transform="translate(43.000000, 14.000000)">
+                                                <path d="M12.1153846,1.17241379 L10.9615385,1.17241379 L10.9615385,0.586206897 C10.9615385,0.262453767 10.7032412,0 10.3846154,0 C10.0659896,0 9.80769231,0.262453767 9.80769231,0.586206897 L9.80769231,1.17241379 L5.19230769,1.17241379 L5.19230769,0.586206897 C5.19230769,0.262453767 4.93401043,0 4.61538462,0 C4.2967588,0 4.03846154,0.262453767 4.03846154,0.586206897 L4.03846154,1.17241379 L2.88461538,1.17241379 C1.2914863,1.17241379 0,2.48468263 0,4.10344828 L0,14.0689655 C0,15.6877312 1.2914863,17 2.88461538,17 L12.1153846,17 C13.7085137,17 15,15.6877312 15,14.0689655 L15,4.10344828 C15,2.48468263 13.7085137,1.17241379 12.1153846,1.17241379 Z M13.8461538,13.4827586 C13.8461538,14.7777711 12.8129648,15.8275862 11.5384615,15.8275862 L3.46153846,15.8275862 C2.18703519,15.8275862 1.15384615,14.7777711 1.15384615,13.4827586 L1.15384615,7.03448276 L13.8461538,7.03448276 L13.8461538,13.4827586 Z M13.8461538,5.86206897 L1.15384615,5.86206897 L1.15384615,4.68965517 C1.15384615,3.39464266 2.18703519,2.34482759 3.46153846,2.34482759 L4.03846154,2.34482759 L4.03846154,2.93103448 C4.03846154,3.25478761 4.2967588,3.51724138 4.61538462,3.51724138 C4.93401043,3.51724138 5.19230769,3.25478761 5.19230769,2.93103448 L5.19230769,2.34482759 L9.80769231,2.34482759 L9.80769231,2.93103448 C9.80769231,3.25478761 10.0659896,3.51724138 10.3846154,3.51724138 C10.7032412,3.51724138 10.9615385,3.25478761 10.9615385,2.93103448 L10.9615385,2.34482759 L11.5384615,2.34482759 C12.8129648,2.34482759 13.8461538,3.39464266 13.8461538,4.68965517 L13.8461538,5.86206897 Z M7.21153846,12.6456552 L7.59865385,13.0395862 L10.5248077,10.0663448 L9.70846154,9.23744828 L7.21153846,11.7745517 L4.71403846,9.23744828 L3.89826923,10.0663448 L6.82384615,13.0384138 L7.21153846,12.6456552 Z"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>線上訂位</span></a></div>
+                                                                        <div class="button--col"><a class="button--outline" href="https://maps.app.goo.gl/ADXtbBJUihAR8Szp9?g_st=il" target="_blank">
+                          <svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="桌機其他內頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="乾杯燒肉_分店據點" transform="translate(-1133.000000, -829.000000)" fill="#120F0E" fill-rule="nonzero">
+                                    <g id="Access-List" transform="translate(249.000000, 646.000000)">
+                                        <g id="Google-Map" transform="translate(852.000000, 166.000000)">
+                                            <g id="Group-2" transform="translate(32.000000, 16.000000)">
+                                                <path d="M9.38914149,2.47354482 C8.35033915,1.52331454 6.9691128,1 5.50005125,1 C4.03096407,1 2.64978896,1.52329111 1.61090975,2.47354482 C0.572107411,3.42375166 0,4.68708472 0,6.03087903 C0,7.37467334 0.572107411,8.63805327 1.61090975,9.58828355 L5.2282951,12.8970387 C5.30334448,12.9657108 5.40171068,13 5.50005125,13 C5.59841744,13 5.69678363,12.9656639 5.77180739,12.8970387 L9.38906463,9.58830699 C10.4278926,8.63807671 11,7.37469678 11,6.03090246 C11,4.68706128 10.4279182,3.42372822 9.38914149,2.47354482 Z M7.0556242,7.17133991 C6.64010185,7.56551338 6.08764128,7.7826087 5.49998846,7.7826087 C4.91233564,7.7826087 4.35987507,7.56553527 3.9443758,7.1713618 C3.52883037,6.77718834 3.3,6.25311232 3.3,5.69565217 C3.3,5.13821392 3.52883037,4.6141379 3.9443758,4.21994254 C4.35987507,3.82576908 4.91233564,3.60869565 5.49998846,3.60869565 C6.08764128,3.60869565 6.64010185,3.82576908 7.0556242,4.21994254 C7.47114655,4.61409412 7.7,5.13817014 7.7,5.69563028 C7.7,6.25309043 7.47112348,6.77718834 7.0556242,7.17133991 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>Google Map</span></a></div>
+                                                </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </section>
+        </main>
+                <footer>
+          <div class="footer--container">
+            <div class="row--footer">
+              <div class="col--logo"><a class="logo" href="https://www.kanpai.com.tw/" target="_blank"></a></div>
+              <div class="col">
+                <div class="footer--content">
+                  <div class="footer--block is-rest">
+                    <div class="footer--title">餐廳事業</div>
+                    <ul>
+                      <li><a href="https://www.kanpaiyakiniku.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">乾杯燒肉居酒屋</a></li>
+                      <!-- <li> <a href="https://www.kanpaiyakiniku.com.tw/zh/menu#kanpaibar?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">乾杯BAR</a></li> -->
+                      <li> <a href="https://www.kanpaiclassic.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">老乾杯</a></li>
+                      <li> <a href="https://www.honke.kurogeya.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">黑毛屋本家</a></li>
+                      <li> <a href="https://www.daily.kurogeya.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">黑毛屋</a></li>
+                      <li> <a href="https://www.wagyu47.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">和牛47</a></li>
+                      <!-- <li> <a href="https://www.mala45.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">麻辣45</a></li> -->
+                      <li> <a href="https://www.facebook.com/takagi.wagyu.shokudo?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">高木和牛食堂</a></li>
+                      <li><a href="https://www.gyutanyusuke.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank" rel="noopener noreferrer">牛舌佑介</a></li>
+                    </ul>
+                    <style>
+                      @media (min-width: 1025px) {
+                        footer ul {
+                          height: 130px;
+                        }
+                        footer ul li {
+                          height: 25%;
+                          flex: 0 0 25%;
+                        }
+                      }
+                    </style>
+                  </div>
+                  <div class="footer--block">
+                    <div class="footer--title">電商事業</div>
+                    <ul>
+                      <li><a href="https://www.kanpai-mart.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">乾杯超市</a></li>
+                      <li><a href="https://www.kpet.com.tw?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">毛孩乾杯</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer--block">
+                    <div class="footer--title">集團會員</div>
+                    <ul>
+                      <li><a href="https://kanpai-go-club.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">KANPAI GO！CLUB</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer--block">
+                    <div class="footer--title">企業相關</div>
+                    <ul>
+                      <li><a href="https://lihi1.com/KjFgu/kpcweb" target="_blank">人才招募</a></li>
+                      <li><a href="mailto:cc@kanpai.com.tw?subject=【顧客回饋】姓名_請簡述事項&amp;body=姓名： %0D%0D聯絡電話： %0D%0D用餐日期、時間： %0D%0D用餐品牌：老乾杯%0D%0D分店： %0D%0D回饋事項：" target="_blank">聯絡我們</a></li>
+                      <li><a href="https://kanpai-go-club.com.tw/zh/privacy?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">隱私權保護政策</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="copyright--content"><span>Copyright &copy; 乾杯集團 All Rights Reserved.</span>
+                            <div class="lang--select">
+                <div class="icon_earth"></div>
+                <select onchange="window.location=this.options[this.selectedIndex].value">
+                                    <option value="/zh/branch" selected>繁體中文</option>
+                                    <option value="/jp/branch" >日本語</option>
+                                    <option value="/en/branch" >ENGLISH</option>
+                                  </select>
+              </div>
+                          </div>
+          </div>
+        </footer><a class="gotop" href="javascript:;" js-scroll="#top"><i></i><span>TOP</span></a>
+            </div>
+    </div>
+    <div class="loading--mask"></div>
+    <style>
+      @media (max-width: 767.98px) {
+        .card--newsDetail .card--caption .caption__title {
+          -webkit-box-orient: vertical
+        }
+      }
+
+    </style>
+        <script>
+      WebFontConfig = {
+        google: {
+          families: [
+            'Noto+Sans+TC:300,400,500,700,900',
+            'Noto+Serif+TC:400,500,600,700',
+            'Cinzel&display=swap'
+            //- 'Roboto:500',
+            //- 'Merriweather:ital,wght@1,400,700'
+          ]
+        }
+      };
+      
+      (function() {
+          var wf = document.createElement('script');
+          wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+          wf.type = 'text/javascript';
+          wf.async = 'true';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+    <script src="assets/js/fancybox.umd.js"></script>
+    <script type="text/javascript" src="assets/js/vendor.js?v=1640158527"></script>
+    <script type="text/javascript" src="assets/js/common.js?v=1642418013"></script>
+    <script type="text/javascript" src="assets/js/runtime.js?v=1638868167"></script>
+    
+    <script>
+    var k1='';
+    var k2='';
+    $( document ).ready(function() {
+              $('.filter').on('change',function(){
+          var k1 = $('#filter_k1').val();
+          var k2 = $('#filter_k2').val();
+          if(k1=='' && k2==''){
+            $('.search--content').show();
+          }else{
+            if(k1){k1='.'+k1;}
+            if(k2){k2='.'+k2;}
+            $('.search--content').hide();
+            $(k1+k2).show();
+          }
+        });
+          });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "id": 40,
+  "input_url": "https://www.orangeshabu.com/",
+  "store_id": "XY-060",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0067-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0067-response.txt",
+  "sequence": 40,
+  "started_at": "2026-10-15T06:37:45.393Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_6ed2514c-49e1-4a1e-8270-56cd32a5eca9",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:48.469Z"
+}

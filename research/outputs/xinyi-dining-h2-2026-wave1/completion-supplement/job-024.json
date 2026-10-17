@@ -1,0 +1,17 @@
+{
+  "id": 24,
+  "input_url": "https://www.inparadise.com.tw/",
+  "store_id": "XY-015",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0039-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0039-response.txt",
+  "sequence": 24,
+  "started_at": "2026-10-15T06:37:18.493Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_0db015db-1fe8-4f6d-993e-808b6b2ecf34",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:21.543Z"
+}

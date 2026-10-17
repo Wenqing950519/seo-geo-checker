@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="author" content="艾傑網頁設計">
+<link rel="icon" href="image/favicon.png?v=2" type="image/png">
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- PNG 格式的 favicon，適用於現代瀏覽器 -->
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="image/app/144x144.jpg">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="image/app/114x114.jpg">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="image/app/72x72.jpg">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="image/app/57x57.jpg">
+
+<meta name="description" content="勞瑞斯牛肋排餐廳，1938年成立於美國比佛利山莊，提供五星級評價的頂級牛肋排桌邊現拌的冰旋翡翠沙拉為晚餐拉開序幕，穿著一身潔白的專業師傅，搭配紅色絲絨繫著閃耀的金牌領著價值百萬的銀色手工打造餐車至桌邊服務，提供最正統的低溫烘烤牛肋排這些元素都是打造勞瑞斯牛肋排餐廳80多年來的成功與不朽">
+<title>品牌故事 | Lawry&#039;s Taipei 勞瑞斯餐廳</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap-grid.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+<link href="css/style.css" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131000608-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131000608-1');
+</script>
+
+<script src="https://cdn.holmesmind.com/js/rtid.js"></script>
+<script src="https://cdn.holmesmind.com/dmp/cft/triggerTracker.js"></script>
+<script async src="https://cdn.holmesmind.com/dmp/cft/tracker.js"></script>
+<script>
+    clickforce_rtid("10242001");
+    /* Website track (tracker.js) - B.I.DMP By ClickForce */
+    window.cft=window.cft||function(){(cft.q=cft.q||[]).push([].slice.call(arguments))};
+    function clickForceMyyCFT(){
+        cft("setSiteId", "CF-251100165824");
+        cft("setViewPercentage");
+    };
+    clickForceDelayLoading();
+</script>
+<!-- <link href="css/animate.css" rel="stylesheet"> --></head>
+
+<body>
+
+  <nav class="navbar-default">
+
+  <div class="logo">
+    <a href="index.php">
+      <img src="image/logo.svg" class="img-fluid" alt="勞瑞斯">
+    </a>
+  </div>
+
+  <div class="nav_box">
+    <i></i>
+    <dl>
+      <dd>
+        <a href="about.php">
+          品牌故事 <span>Our Story</span>
+        </a>
+      </dd>
+      <dd>
+        <a href="menu.php">
+          極品美饌 <span>Menu</span>
+        </a>
+      </dd>
+      <dd>
+        <a href="news.php">
+          最新消息 <span>News</span>
+        </a>
+      </dd>
+
+      <dd>
+        <a href="https://iwhispering.com/pt_module2/public/meals2/1656819204/home?outside=1" target="_blank">
+          線上訂餐 <span>Order Online</span>
+        </a>
+      </dd> 
+      <dd>
+        <a href="https://inline.app/booking/-L-V29Yyw_H_XuPoeSre/-L-V29bpr2xsg-AH0kJz?language=zh-tw" target="_blank">
+          線上訂位 <span>Online Booking</span>
+        </a>
+      </dd>
+      <dd>
+        <a href="environment.php">
+          餐廳實景 <span>Environment</span>
+        </a>
+      </dd>
+      <dd>
+        <a href="contact.php">
+          聯絡我們 <span>Contact</span>
+        </a>
+      </dd>
+    </dl>    
+  </div>
+
+  <div class="togglebar">
+    <i></i><i></i><i></i>
+  </div>
+
+</nav>    <header class="about_bg">
+    <picture>
+      <source data-srcset="upload/banner_page/2111091502420000002.jpg" media="(max-width: 991px)" />
+      <img src="image/a_noimg.svg" data-src="upload/banner_page/2111091037430000001.jpg" width="100%" class="lazyload" alt="品牌故事" />
+    </picture>
+    <div class="a_banner_title">
+      <h1>品牌故事<span>OUR STORY</span></h1>
+      <p>
+      勞瑞斯牛肋排餐廳，1938年成立於美國比佛利山莊，提供五星級評價的頂級牛肋排桌邊現拌的冰旋翡翠沙拉為晚餐拉開序幕，穿著一身潔白的專業師傅，搭配紅色絲絨繫著閃耀的金牌領著價值百萬的銀色手工打造餐車至桌邊服務，提供最正統的低溫烘烤牛肋排這些元素都是打造勞瑞斯牛肋排餐廳80多年來的成功與不朽      </p>
+    </div>
+  </header>
+
+  <div class="wrapper">
+
+          <section class="a_bg">
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-xl-5 col-lg-10 col-md-10 col-sm-11">
+<div class="a_box a_box1">
+<p>西元1938年，勞倫斯‧法蘭克(Lawrence L. Frank) 和華特‧肯培(Walter Van de Kamp) 合作的第一家勞瑞斯牛肋排餐廳，在位於<a href="https://www.google.com.tw/maps/place/Lawry's+The+Prime+Rib/@34.067699,-118.3786501,17z/data=!3m1!4b1!4m6!3m5!1s0x80c2b94f25c7eb0f:0x83add879c8fe0c99!8m2!3d34.067699!4d-118.3760752!16s%2Fg%2F1v96m19q?entry=ttu">加州比佛利山莊</a>(Beverly Hills) 的拉辛尼倫吉大道上(La Cienega Boulevard) 正式開幕。對勞倫斯而言，開設牛肋排餐廳是實現他小時候長久以來的夢想，無非是希望大家和親朋好友相聚的同時，可以一起大啖牛肋排，分享生命中每一刻美好的時光。勞倫斯敏銳的直覺告訴了他，餐廳的格調要非常高雅，讓消費者覺得魅力十足，但在價格上要讓消費者覺得可以信賴、精緻卻又物超所值、不會有壓力。因此，勞倫斯對於盤飾和上桌的呈現手法特別重視；例如在餐桌旁現場切割牛肋排的銀色不鏽鋼餐車，就是個令消費者歎為觀止的創意，仿佛是把迷你廚房帶到餐桌旁來為消費者服務。<br /><br />勞瑞斯牛肋排餐廳目前除了加州比佛利山莊創始店之外，另有<a href="https://www.google.com.tw/maps/place/Lawry's+The+Prime+Rib/@36.1151116,-115.1620988,17z/data=!3m1!4b1!4m6!3m5!1s0x80c8c448b1ae27e9:0xac4ac6be3f45f92c!8m2!3d36.1151073!4d-115.1595239!16s%2Fg%2F1tnqh87q?entry=ttu">拉斯維加斯</a>分店。亞洲地區則有<a href="https://www.google.com.tw/maps/place/Lawry's+The+Prime+Rib+Singapore/@1.3018686,103.832127,17z/data=!3m2!4b1!5s0x31da199173a982cf:0x64dca853b27fe057!4m6!3m5!1s0x31da199220d20b9f:0xf9880657f2be22a5!8m2!3d1.3018632!4d103.8369979!16s%2Fg%2F1tl_j6w1?entry=ttu">新加坡</a>、台北、<a href="https://www.google.com.tw/maps/place/Lawry%E2%80%99s+The+Prime+Rib+%E8%B5%A4%E5%9D%82%E5%BA%97/@35.6699416,139.7400625,17z/data=!3m2!4b1!5s0x60188b8f77a2d699:0x917c7d276d610071!4m6!3m5!1s0x60188b8f7a4df4f9:0xf8422f275730646b!8m2!3d35.6699373!4d139.7426374!16s%2Fg%2F11d_23nsqk?entry=ttu">東京赤坂</a>、<a href="https://www.google.com.tw/maps/place/Lawry's+The+Prime+Rib/@22.2802324,114.1536625,17z/data=!3m1!4b1!4m6!3m5!1s0x34040066bcd3a513:0xff40757504dec5e9!8m2!3d22.2802275!4d114.1585334!16s%2Fg%2F12vr50drt?entry=ttu">香港</a>、<a href="https://www.google.com.tw/maps/place/Lawrys+The+Prime+Rib/@34.6995173,135.4914249,17z/data=!3m2!4b1!5s0x6000e68d2720c7c1:0x486cece455398279!4m6!3m5!1s0x6000e68cdb562ae1:0xb7b8ed9baa806192!8m2!3d34.6995129!4d135.4939998!16s%2Fg%2F11b7rttpwr?entry=ttu">大阪</a>、<a href="https://www.google.com.tw/maps/place/Lawry's+The+Prime+Rib/@37.4978783,127.0234711,17z/data=!3m1!4b1!4m6!3m5!1s0x357ca15bd138859d:0x5341de171bd3949f!8m2!3d37.4978741!4d127.026046!16s%2Fg%2F1q5ccvdky?entry=ttu">首爾</a>、<a href="https://www.google.com.tw/maps/place/Lawry's+The+Prime+Rib/@35.642203,137.0769462,7z/data=!3m1!5s0x60188b15c5b0a50f:0x1bcc6720d8a23b26!4m10!1m2!2m1!1zTGF3cnkncyBUaGUgUHJpbWUgUmliIOaDoOavlOWjvQ!3m6!1s0x60188b15d5d7e215:0xf718a97f1f94aef2!8m2!3d35.642203!4d139.713665!15sCh9MYXdyeSdzIFRoZSBQcmltZSBSaWIg5oOg5q-U5aO9WiMiIWxhd3J5J3MgdGhlIHByaW1lIHJpYiDmg6Ag5q-UIOWjvZIBE2FtZXJpY2FuX3Jlc3RhdXJhbnSaASNDaFpEU1VoTk1HOW5TMFZKUTBGblNVUktka3d0TkZkbkVBReABAA!16s%2Fg%2F1xg5snnx?entry=ttu">東京惠比壽</a>、<a href="https://www.google.com.tw/maps/place/LAWRY'S/@31.2204966,121.4720541,17z/data=!3m1!4b1!4m6!3m5!1s0x35b27071f3951023:0xbe652bb291a17704!8m2!3d31.220492!4d121.474629!16s%2Fg%2F1tks4b6y?entry=ttu">上海</a>、<a href="https://www.google.com.tw/maps/place/Lawry's+The+Prime+Rib,+Jakarta/@-6.238509,106.7872082,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f1605b3915f9:0xc1a9e6eed24c5d5b!8m2!3d-6.2385143!4d106.7897831!16s%2Fg%2F11vhzg5s_c?entry=ttu">雅加達</a>分店。每家分店都同樣提供著最經典的英式烘烤牛肋排及各式美味餐點，在亞太地區始終深獲消費者的喜愛。</p>
+<p></p>
+</div>
+</div>
+<div class="col-xl-5 col-lg-10 col-md-10 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p5.png" class="img-fluid lazyload a_img1" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-7 col-lg-7 col-md-7 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p6.jpg" class="img-fluid lazyload" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-3 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p7.jpg" class="img-fluid lazyload" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-10 col-lg-10 col-md-10 col-sm-11">
+<div class="a_box3">
+<h3>驚艷的視覺 X 頂級的味覺享受</h3>
+<p>嚴選食材、選擇最佳的烹調方式，是勞瑞斯提供頂級美食的首要堅持，採用有美國農業部認可背書的USDA PRIME、或經過安格斯協會認證的Certificate Angus Beef (CAB)優質牛肉。取其第6-12根的牛肋排(Prime Rib)部位，再經過長達28天的熟成(Aging)讓肉質呈現最鮮嫩的口感，是勞瑞斯多年來不曾改變的堅持，讓肉質呈現最鮮嫩的口感，同時也讓消費者吃得健康吃得美味，牛肋排放在舖上海鹽的烤盤上，送進旋風烘烤箱中低溫烘烤，為的就是讓牛肋排受熱均勻，並且將肉汁確實的保留在其中。</p>
+</div>
+</div>
+<div class="col-xl-5 col-lg-5 col-md-5 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p8.jpg" class="img-fluid lazyload" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-5 col-lg-5 col-md-5 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p9.jpg" class="img-fluid lazyload" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-10 col-lg-10 col-md-10 col-sm-11">
+<div class="a_box3">
+<h3>尊榮級桌邊服務</h3>
+<p>勞瑞斯牛肋排餐廳創辦人勞倫斯‧法蘭克獨創的銀色手工打造餐車，也是勞瑞斯餐廳最知名的特色。自1930年代開始，便是一項極具創意的設計，吸引無數客人拍照留念。當時，打造一輛餐車的成本高達美金$32,000，簡直等同於一台凱迪拉克轎車的售價！當牛肋排師傅推著餐車來到桌邊，應饕客的需求切下所需的熟度和份量並端上桌時，還沒開動享用就已經看到饕客人們滿足的眼神。肉質纖細多汁且油花適中都完全被毫不保留的表現在肋排的橫切面上。熱騰騰的蒸氣帶出原味肉汁的香氣令人食指大動，這就是美食的真諦也是採用『烘烤』作為烹調方式的最動人之處。</p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-10 col-md-10 col-sm-11">
+<div class="a_box a_box4">
+<p>勞瑞斯著名的冰旋翡翠沙拉秀是揭開這場頂級饗宴的第一波高潮，您的專屬桌邊服務人員推著沙拉車至桌邊，沙拉缽底下枕放著碎冰，如此則可以保持沙拉的溫度進而維持它的青脆口感。<br />服務人員輕轉著沙拉缽，優雅的墊起腳來並舉起手將勞瑞斯獨家的葡萄酒沙拉醬淋至旋轉的沙拉缽裡，巧妙的將鮮脆的沙拉與酸甜的沙拉醬均勻的融合在一起。緊接著以精緻的銀盤為您呈上沙拉專用的冰叉，當您手拿著冰叉，入口品嚐到的是從製作到呈盤一樣冰度的冰旋翡翠沙拉，每一口，都充滿了鮮脆獨特的好滋味，每一口，都代表著勞瑞斯對餐點品質的堅持與用心。</p>
+</div>
+</div>
+<div class="col-xl-6 col-lg-10 col-md-10 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p10.png" class="img-fluid lazyload a_img2" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-4 col-lg-4 col-md-4 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p11.jpg" class="img-fluid lazyload" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-3 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p12.jpg" class="img-fluid lazyload" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-3 col-lg-3 col-md-3 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p13.jpg" class="img-fluid lazyload" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-10 col-lg-10 col-md-10 col-sm-11">
+<div class="a_box3">
+<p>走進勞瑞斯牛肋排餐廳，盡入眼簾的是古典精緻的維多利亞式裝潢，不論大廳或包廂都巧妙融入寬幅的台北市景。北側面對忠孝東路並可遠眺陽明山系，往南則是對著台北101、微風南山、新光三越信義新天地欣賞台北市的璀璨夜景。穿著英式家僕裝扮的服務人員正微笑的迎接您的到來，並親切的為您介紹菜單及桌邊服務的流程，讓您在高級典雅的用餐環境中仍能有如身在家中一般的自在。這是勞瑞斯牛肋排餐廳80多年來的堅持，沒有變過！不論是家庭聚餐、商務餐會、產品發表、會議用餐，都能創造出令人驚艷的用餐體驗。</p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-4 col-md-10 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p14.jpg" class="img-fluid lazyload a_img3" alt="這是一張圖" /></div>
+</div>
+<div class="col-xl-6 col-lg-6 col-md-10 col-sm-11">
+<div class="a_box a_box5">
+<h3>勞瑞斯調味鹽</h3>
+<p>為了使Lawry's的頂級牛肋排更有特色，勞倫斯‧法蘭克(Lawrence L. Frank) 在家中廚房不斷鑽研各式香料，經過一年的細心鑽研後，創造出風味絕佳內含17種草本及辛香等材料的勞瑞斯調味鹽，並巧妙的運用在牛肋排料理中。他所獨創的配方Lawry's調味鹽(Lawry's Seasoned Salt) 目前在北美各處的超市均有銷售，此種牛排調味料口味於目前市面上大受歡迎，深得民眾迴響。像這樣的創新是Lawry's的傳統，不僅包含了對於細微末節所秉持之嚴謹性，另一方面也仔細端倪顧客的需求。Lawry's的餐飲哲學使我們走在時代的尖端，並且經由不斷檢視改良我們的菜單以吸引世世代代的顧客。</p>
+</div>
+</div>
+<div class="col-xl-4 col-lg-5 col-md-10 col-sm-11">
+<div class="a_box a_box6">
+<h3>私家酒標葡萄酒</h3>
+<p>Lawry's Private Label &ndash; 誘人的芳香，酒體均衡佳及容易入口。勞瑞斯目前有三個品種的私家酒標葡萄酒，分別是Cabernet Sauvignon、Merlot和Chardonnay。由於葡萄酒及食物的搭配能增加彼此的味道變化及層次，1990年，時任的集團主席Mr. Richard N. Frank為了讓客人能夠在以一個很合理平實的價位，體驗到佳釀美食完美搭配的愉悅感受，特地到加州最著名的產酒區「那帕谷」進行多家酒廠的觀察。經過數次的無記名測試後，決定採用Rutherford Hill Winery作為合作的酒廠，並且在瓶身賦予典雅設計的Lawry's酒標。能像勞瑞斯牛肋排餐廳一樣擁有專屬酒標(Private Label)的同業在台灣仍屬極少數，除了釀造生產的量體要夠，也代表著餐廳對美酒搭配的理念堅持。</p>
+</div>
+</div>
+<div class="col-xl-6 col-lg-5 col-md-10 col-sm-11">
+<div class="a_box2"><img src="image/menu_noimg.svg" data-src="image/p15.png" class="img-fluid lazyload a_img4" alt="這是一張圖" /></div>
+</div>
+<div style="position: absolute; left: -14168px;"><a href="https://apecu.org/">bahis siteleri</a> <a href="https://lline.net/">bahis siteleri</a> <a href="https://world-oceans.org/">bahis siteleri</a> <a href="https://febayder.com">casino siteleri</a></div>
+</div>
+</div>
+</section>
+  </div>
+
+  <footer class="footer">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-9 col-md-8 order-1 order-md-1">
+				<div class="footer_box">
+					<ul>
+						<li>
+							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="29.157" viewBox="0 0 31.361 29.157">
+								<path d="M83.824,1571.024c1.329-.8,3.06-1.685,4.627-1.042,1.2.492,1.969,2.374,2.748,3.334a1.153,1.153,0,0,0,1.492.325,20.964,20.964,0,0,0,10.461-8.962,1.286,1.286,0,0,0-.161-1.754,7.062,7.062,0,0,1-1.9-3.085,6.744,6.744,0,0,1,.849-3.65c.632-1.361,1.337-3.295,2.7-4.064a3.691,3.691,0,0,1,4.011.6,8.148,8.148,0,0,1,2.824,6.453,9.277,9.277,0,0,1-.252,2.048,16.939,16.939,0,0,1-1.966,4.526,35.209,35.209,0,0,1-2.051,3.118,31.657,31.657,0,0,1-8.895,8.26,26.791,26.791,0,0,1-5.546,2.638c-2.174.719-4.111,1.466-6.458,1.021a7.815,7.815,0,0,1-5.855-4.355,3.772,3.772,0,0,1-.272-2.221C80.511,1572.676,82.583,1571.765,83.824,1571.024Z" transform="translate(-80.11 -1551.762)" fill="#fff" fill-rule="evenodd" />
+							</svg>
+							<a href="tel:02-27298555">(02) 2729-8555</a>
+						</li>
+						<li>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="29.314" viewBox="0 0 22.305 29.314">
+								<path d="M656.174,1551.668a11.152,11.152,0,0,0-11.153,11.153c0,6.157,11.153,18.162,11.153,18.162s11.152-12,11.152-18.162A11.152,11.152,0,0,0,656.174,1551.668Zm0,15.035a4.418,4.418,0,1,1,4.418-4.418A4.418,4.418,0,0,1,656.174,1566.7Z" transform="translate(-645.021 -1551.668)" fill="#fff" />
+							</svg>
+							<a href="https://goo.gl/maps/JAywcgyHap1YUNe2A" target="_blank">台北市信義區松仁路28號6樓(BELLAVITA百貨)</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 order-2 order-md-1">
+				<div class="footer_box">
+					<ol>
+					    						<li>
+							<a href="https://www.facebook.com/LawrysTaiwan/" target="_blank">
+								<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 46.33 46.331">
+									<g transform="translate(-1614.103 -1539.43)">
+										<path d="M1643.768,1564.893l.774-5.055h-4.85v-3.28a2.529,2.529,0,0,1,2.85-2.733h2.2v-4.3a26.755,26.755,0,0,0-3.914-.343c-3.994,0-6.6,2.422-6.6,6.8v3.854h-4.441v5.055h4.441v12.217h5.464v-12.217Z" fill="#fff" />
+										<path d="M1659.655,1562.6a22.387,22.387,0,1,1-22.386-22.387A22.389,22.389,0,0,1,1659.655,1562.6Z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.557" />
+									</g>
+								</svg>
+							</a>
+						</li>
+																		<li>
+							<a href="https://www.instagram.com/lawrystaipei/" target="_blank">
+								<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 46.321 46.331">
+									<g transform="translate(-1706.069 -1539.43)">
+										<path d="M1736.62,1553.618a1.638,1.638,0,1,0,1.638,1.639A1.639,1.639,0,0,0,1736.62,1553.618Z" fill="#fff" />
+										<path d="M1729.342,1555.718a6.878,6.878,0,1,0,6.876,6.878A6.886,6.886,0,0,0,1729.342,1555.718Zm0,11.284a4.406,4.406,0,1,1,4.4-4.406A4.411,4.411,0,0,1,1729.342,1567Z" fill="#fff" />
+										<path d="M1734.8,1576.562h-11.149a8.4,8.4,0,0,1-8.385-8.389V1557.02a8.4,8.4,0,0,1,8.385-8.39H1734.8a8.4,8.4,0,0,1,8.389,8.39v11.153A8.4,8.4,0,0,1,1734.8,1576.562Zm-11.149-25.3a5.767,5.767,0,0,0-5.759,5.761v11.153a5.767,5.767,0,0,0,5.759,5.762H1734.8a5.77,5.77,0,0,0,5.763-5.762V1557.02a5.77,5.77,0,0,0-5.763-5.761Z" fill="#fff" />
+										<path d="M1751.612,1562.6a22.382,22.382,0,1,1-22.384-22.387A22.385,22.385,0,0,1,1751.612,1562.6Z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.557" />
+									</g>
+								</svg>
+							</a>
+						</li>
+												<li>
+							<a href="contact.php">
+								<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 46.33 46.331">
+									<g transform="translate(-1798.024 -1539.43)">
+										<path d="M1843.576,1562.6a22.387,22.387,0,1,1-22.387-22.387A22.388,22.388,0,0,1,1843.576,1562.6Z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.557" />
+										<path d="M1808.439,1553.493v20.18h25.508v-20.18Zm21.29,2.376-8.536,9.732-8.535-9.732Zm-18.915,15.429v-13.93l10.379,11.833,10.379-11.833v13.93Z" fill="#fff" />
+									</g>
+								</svg>
+							</a>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div class="col-12 d-md-block d-none order-md-1">
+				<div class="f_line"></div>
+			</div>
+			<div class="col-lg-9 col-md-8 order-1 order-md-1">
+				<div class="footer_box2">
+					<p>Business Hour 營業時間：午間時段 11:30~15:00, 晚間時段 17:30~21:30</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 order-2 order-md-1">
+				<div class="footer_box2">
+					<a href="deposit.php">
+						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35.527 35.527">
+							<g transform="translate(-1542.092 -1664.759)">
+								<g transform="translate(1555.452 1672.62)">
+									<path d="M1563.975,1694.2H1562.3v-2.4a7.346,7.346,0,0,1-3.493-.984l.586-1.841a6.413,6.413,0,0,0,3.284.983,2.237,2.237,0,0,0,2.53-2.217c0-1.254-.773-2.028-2.678-2.865-2.07-.941-3.554-2.029-3.554-4.1a3.979,3.979,0,0,1,3.471-3.974v-2.4h1.673v2.279a6.31,6.31,0,0,1,2.969.8l-.584,1.777a5.949,5.949,0,0,0-2.846-.774,2.092,2.092,0,0,0-2.321,1.966c0,1.171.941,1.8,2.7,2.656,2.384,1.067,3.576,2.217,3.576,4.392a4.155,4.155,0,0,1-3.639,4.182Z" transform="translate(-1558.81 -1674.391)" fill="#fff" />
+								</g>
+								<circle cx="13.983" cy="13.983" r="13.983" transform="matrix(0.16, -0.987, 0.987, 0.16, 1543.813, 1694.085)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="3" />
+							</g>
+						</svg>
+						Deposit 預付訂金
+					</a>
+				</div>
+			</div>
+			<div class="col-12 order-2 order-md-1">
+				<div class="copyright">
+					<p>© 2021 Lawry's The Prime Rib Taipei. All rights reserved.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</footer>
+  <script src="js/bootstrap.min.js?=1.01"></script>
+<script src="js/jquery-3.7.0.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/lazysizes.min.js"></script>
+
+<script>
+  $('.togglebar').click(function(){
+    $('.nav_box').toggleClass('active');
+    $(this).toggleClass('active');
+  });
+
+  $('.nav_box i').click(function(){
+    $('.nav_box').removeClass('active');
+    $('.togglebar').removeClass('active');
+  });
+
+</script>
+
+
+</body>
+
+</html>

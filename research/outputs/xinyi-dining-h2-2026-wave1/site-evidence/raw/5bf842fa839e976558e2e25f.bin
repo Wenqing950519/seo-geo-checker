@@ -1,0 +1,253 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant-TW">
+
+<head>
+    <!-- load head css js -->
+    <meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>TGI FRIDAYS 星期五美式餐廳</title>
+<meta property="og:title" content="TGI FRIDAYS 星期五美式餐廳" />
+
+<meta name="description" content="TGI FRIDAYS 星期五餐廳提供道地的美式食物、特色調酒飲品與真正的個性化服務。不論你是與家人朋友聯繫感情；還是尋求週末般的解放，FRIDAYS 提供最完美的休閒場所。">
+<meta property="og:description" content="TGI FRIDAYS 星期五餐廳提供道地的美式食物、特色調酒飲品與真正的個性化服務。不論你是與家人朋友聯繫感情；還是尋求週末般的解放，FRIDAYS 提供最完美的休閒場所。" />
+<meta property="og:keyword" content="TGI FRIDAYS, TGIF, FRIDAYS, 星期五, 星期五餐廳, 星期五美式餐廳, 美式餐廳, 美式料理, 豬肋排, 漢堡, 牛排, 沙拉, 餐酒館, 義大利麵, 啤酒, 調酒, 酒吧, steak, American-styled restaurant, American food, Ribs, Cocktail, Beer" />
+
+
+<meta property="og:image" content="https://tgifridays.com.tw/asset/types/main/img/logo.svg" />
+
+<base href="https://tgifridays.com.tw/" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="https://tgifridays.com.tw/asset/types/main/images/favicon.ico">
+
+<link media="screen" rel="stylesheet" href="https://tgifridays.com.tw/asset/types/main/css/plugin.css?v2.0">
+<link media="screen" rel="stylesheet" href="https://tgifridays.com.tw/asset/types/main/css/MainStyle.css?v2.0">
+<link media="screen" rel="stylesheet" href="https://tgifridays.com.tw/asset/types/main/css/patch.css?v2.0">
+<script  src="https://tgifridays.com.tw/asset/types/main/js/jquery-3.5.1.min.js?v2.0"></script>
+<script src="https://tgifridays.com.tw/asset/types/main/js/plugin.min.js?v2.0"></script>
+<script src="https://tgifridays.com.tw/asset/types/main/js/main.js?v2.0"></script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ1LH3XN81"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZZ1LH3XN81');
+</script></head>
+
+<body>
+    <div class="header sticker">
+        <div class="top-header">
+            <div class="container pd_style">
+                <div class="header_nav   align-items-center ">
+                    <a href="https://tgifridays.com.tw/" class="logo navbar-brand">
+                        <img src="https://tgifridays.com.tw/asset/types/main/images/logo.svg" alt="">
+                    </a>
+                    <div class="top-menu">
+                        <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler" data-target="#navigation" data-control="navigation"
+                                data-toggle="collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navigation">
+                                    <ul class="nav navbar-nav justify-content-center">
+                                        <li class=""><a href="https://inline.app/booking/-KzvYo7DTgcAy5Kb4khD" target="_blank" >線上訂位</a></li>
+                                        <li class=""><a href="https://tgifridays.com.tw/locations" class="" >餐廳店址</a></li>
+                                        <li class=""><a href="https://tgifridays.com.tw/food"  class="">線上菜單</a></li>
+                                        <li class=""><a href="https://www.casualrestaurants.com/member" target="_blank" >加入會員</a></li>
+                                        <li class=""><a href="https://tgifridays.com.tw/contactus" class="" >聯絡我們</a></li>
+                                        <li class=""><a href="https://tgifridays.com.tw/news" class="" >最新消息</a></li>
+                                        <li class=""><a href="https://www.104.com.tw/company/azt1pfk" target="_blank">徵人訊息</a></li>
+                                        <li class=""><a href="https://tgifridays.com.tw/en" >English</a></li>
+                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    <div class="kv">
+        <div class="kv-slider">
+                <div class="kv-slider-item">
+                    <img src="https://tgifridays.com.tw/asset/types/main/images/kv_img1.jpg" alt="">
+                </div>
+                <div class="kv-slider-item">
+                    <img src="https://tgifridays.com.tw/asset/types/main/images/kv_img2.jpg" alt="">
+                </div>
+        </div>
+        <div class="kv-text">
+             <h2>
+               <span>In here,</span> <br>
+                It's always Friday<sup>®</sup>
+             </h2>
+        </div>
+        <div class="kv-bottom">
+            <div class="row">
+                <div class="col-lg-4">
+                    <a href="https://inline.app/booking/-KzvYo7DTgcAy5Kb4khD" target="_blank">
+                        <div class="kv-item">
+                        <div class="kv-item-icon">
+                                <img src="https://tgifridays.com.tw/asset/types/main/images/kv_icon1.svg" alt="">
+                            </div>
+                            <div class="kv-item-text">
+                                <h3>線上訂位</h3>
+                                <p>動動手指，網路訂位最方便</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="https://tgifridays.com.tw/food">
+                        <div class="kv-item">
+                            <div class="kv-item-icon">
+                                <img src="https://tgifridays.com.tw/asset/types/main/images/kv_icon2.svg" alt="">
+                            </div>
+                            <div class="kv-item-text">
+                                <h3>美味菜單</h3>
+                                <p>聚餐首選，道地餐點任你挑</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <a href="https://www.casualrestaurants.com/member" target="_blank">
+                        <div class="kv-item">
+                            <div class="kv-item-icon">
+                                <img src="https://tgifridays.com.tw/asset/types/main/images/kv_icon3.svg" alt="">
+                            </div>
+                            <div class="kv-item-text">
+                                <h3>加入會員</h3>
+                                <p>搶先獲得會員禮與專屬優惠</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <div class="section1">
+            <div class="container pd_style">
+                <div class="section1-title">
+                    最新消息
+                </div>
+                <div class="row">
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="section1-item">
+                                <a href="https://tgifridays.com.tw/news/display/45">
+                                    <div class="section1-img">
+                                        <img src="./uploads/news/45/8b2812db9f7ad807ea20bef2ae0ae2d1.jpg" alt="">
+                                    </div>
+                                    <div class="section1-text">
+                                        <h3>歡慶來台35週年！PARTY LIKE IT'S FRIDAY！</h3>
+                                        <p>2026/10/13~11/30期間限定派對拼盤狂歡開吃！一起共享派對拼盤、一起熱鬧慶祝！</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="section1-item">
+                                <a href="https://tgifridays.com.tw/news/display/30">
+                                    <div class="section1-img">
+                                        <img src="./uploads/news/30/78d6ec55a59dd6e2f343430cd6eaabc9.png" alt="">
+                                    </div>
+                                    <div class="section1-text">
+                                        <h3>FRIDAYS超值商業午餐｜主餐$290起</h3>
+                                        <p>平日一至五17:00前限定午間優惠，輕鬆享受！</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="section1-item">
+                                <a href="https://tgifridays.com.tw/news/display/5">
+                                    <div class="section1-img">
+                                        <img src="./uploads/news/5/26f525ba63229a448dc31d615eeec6d0.jpg" alt="">
+                                    </div>
+                                    <div class="section1-text">
+                                        <h3>天天都是HAPPY HOUR</h3>
+                                        <p>TGI FRIDAYS 招牌飲品天天買一送一</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="section1-item">
+                                <a href="https://tgifridays.com.tw/news/display/10">
+                                    <div class="section1-img">
+                                        <img src="./uploads/news/10/908dd7b2c40b77ee9d7f906ff249c176.jpg" alt="">
+                                    </div>
+                                    <div class="section1-text">
+                                        <h3>【FRIDAYS美式餐盒】隨時隨地享受美味</h3>
+                                        <p>一個人輕鬆享用，道地美式餐點帶著走</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+        </div>
+        
+    
+    <!-- load foot js -->
+    <div class="footer">
+    <div class="container ">
+        <div class="footer-body">
+                <ul>
+                    <li>
+                        <a href="https://tgifridays.com.tw/certificates" class="">
+                           <b>禮券購買</b> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://tgifridays.com.tw/about" class="">
+                            品牌介紹
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://tgifridays.com.tw/privacy" class="">
+                            隱私權宣告
+                        </a>
+                    </li>
+                </ul>
+                <div class="footer-icon">
+                    <ul>
+                        <li>
+                            <a href="https://www.facebook.com/tgifridaystaiwan" target="_blank">
+                                <img src="https://tgifridays.com.tw/asset/types/main/images/icon_facebook.png"  alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/tgifridaystaiwan/" target="_blank">
+                                <img src="https://tgifridays.com.tw/asset/types/main/images/icon_instagram.png"  alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/user/TGIFridaysTaiwan" target="_blank">
+                                <img src="https://tgifridays.com.tw/asset/types/main/images/icon_youtube.png"  alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.ubereats.com/tw?next=%2Fsearch%2F&q=tgi%20fridays&utm_campaign=referral&utm_medium=website&utm_source=tgifridays_taiwan" target="_blank">
+                                <img src="https://tgifridays.com.tw/asset/types/main/images/icon_ubereats.png"  alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+    <div class="text-center cpyright">
+        <p>© 2025 TGI Fridays Taiwan. All rights reserved.</p>
+    </div>
+</div>    </body>
+
+</html>

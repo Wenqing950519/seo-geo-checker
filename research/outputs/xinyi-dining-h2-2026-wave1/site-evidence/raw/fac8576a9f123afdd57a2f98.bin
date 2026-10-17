@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>凱林鐵板燒</title>
+<link href="index.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery_1.8.1.min.js"></script>
+	<script type="text/javascript" src="js/supersized.2.0.js"></script>
+	<script type="text/javascript">  
+		$(function(){
+			$.fn.supersized.options = {  
+				startwidth: 1920, //照片長度 
+				startheight: 1080, //照片寬度
+				vertical_center: 1, //垂直居中 1居中 0關閉
+				slideshow: 1, //自動輪播 1開 0關
+				navigation: 0, //播放控制鈕 1開 0關
+				transition: 1, //0-None, 1-Fade, 2-slide top, 3-slide right, 4-slide bottom, 5-slide left //換場效果
+				pause_hover: 0, //滑入停止輪播
+				slide_counter: 0, //顯示圖片筆數 1開,0關
+				slide_captions: 0, //圖片名稱
+				slide_interval: 5000  //換圖片時間
+				//淡入圖片轉場時間要開啟supersized.2.0檔案，修改第218行的紅色數字
+			};
+	        $('#supersize').supersized(); 
+	    });
+	</script>
+</head>
+
+<body>
+<div class="skip">
+	<div class="logo"><img src="images/logo.png" border="0"></div>
+	<div class="skip_in">
+		<a href="http://www.karenteppanyaki.com/home.php?lang=tw"><div class="language">繁體中文</div></a>
+		<a href="http://www.karenteppanyaki.com/home.php?lang=eng"><div class="language language_space">English</div></a>
+		<a href="http://www.karenteppanyaki.com/home.php?lang=ko"><div class="language language_space">한국어</div></a>
+	</div>
+</div>
+<div id="supersize">
+	<a><img src="images/wel02.jpg"/></a>
+    <a><img src="images/wel03.jpg"/></a>
+</div>
+</body>
+</html>

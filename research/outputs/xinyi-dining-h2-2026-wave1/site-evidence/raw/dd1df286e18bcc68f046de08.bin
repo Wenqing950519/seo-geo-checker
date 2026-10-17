@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+    <head>
+    <base href="/kanpaiclassic/zh/">  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>老乾杯&KANPAI CLASSIC | 頂級和牛燒肉殿堂</title>
+    <meta name="description"        content="老乾杯創立於西元 2005 年為全台首間澳洲和牛專門店。西元 2017 年率先引進日本和牛宮崎牛，打造頂級和牛燒肉殿堂。我們投入時間精力，致力於牛肉的研究，以一頭燒的模式開發出各式分切及獨門吃法。美味，就是我們的堅持，提供最美味的牛肉，獻給喜愛老乾杯的您。">
+    <meta property="og:url"         content="https://www.kanpaiclassic.com.tw/">
+    <meta property="og:title"       content="老乾杯&amp;KANPAI CLASSIC | 頂級和牛燒肉殿堂">
+    <meta property="og:type"        content="website">
+    <meta property="og:description" content="老乾杯創立於西元 2005 年為全台首間澳洲和牛專門店。西元 2017 年率先引進日本和牛宮崎牛，打造頂級和牛燒肉殿堂。我們投入時間精力，致力於牛肉的研究，以一頭燒的模式開發出各式分切及獨門吃法。美味，就是我們的堅持，提供最美味的牛肉，獻給喜愛老乾杯的您。">
+    <meta property="og:image"       content="https://www.kanpaiclassic.com.tw/kanpaiclassic/zh/assets/images/static/fbshare.jpg?v=1">
+    <meta property="keywords"       content="老乾杯、KANPAI CLASSIC、和牛燒肉、燒肉定烤、滿壽泉、米其林燒肉、燒肉推薦、精緻燒肉、美食推薦">    
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <style>
+      html,body { margin: 0; padding: 0; background-color: #0F0F0F; color: white; } .is-overflow-hidden .sections, .is-overflow-hidden footer { display: none; }
+      body#index {background-color: #121212}
+      .app__loading{position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;display: flex; justify-content: center;align-items: center;}
+      .loading--caption { text-align: center; display: flex; justify-content: center; align-items: flex-start; opacity: 0; position: relative; will-change: opacity;}
+      .loading--caption .caption__title { writing-mode: tb-rl; font-size: 36px; font-weight: 700; letter-spacing: 4px;}
+      .loading--caption .caption__subtitle { position: relative; writing-mode: tb-rl; font-size: 20px; font-weight: 600; letter-spacing: 2px;}
+      .loading--caption .caption__subtitle::after { content: ''; position: relative; display: inline-block; width: 1px; height: 67px; background-color: #D2A674; margin-top: 1rem;}
+      .loading--2 { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); opacity: 0; pointer-events: none; filter: blur(30px);}
+      .section--cover { opacity: 0;}
+      .section--cover .cover--caption { opacity: 0;}
+      .section--cover .cover--caption .cover--title i { transform: scaleX(0)}
+      .section--cover .cover--caption .cover--title span { opacity: 0; }
+      .section--cover .cover--more { opacity: 0; }
+      #index header .header--logo, #index header .header--content { opacity: 0 } 
+      .app__loading .loading--bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-size: 315px 500px; background-repeat: repeat; background-position: center top;}
+      .loading--mask { position: fixed; width: 100%; height: 100%; left: 0; top: 0; background-color: $black; background-image: url(assets/images/loading--bg.jpg); background-size: 157px 250px; background-repeat: repeat; background-position: left top; z-index: 999; pointer-events: none; transition: 1s ease; }
+      .webp .loading--mask {backgroind-image: url('assets/images/webp/loading--bg.webp')}
+    </style>
+       
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T9SBTDTM');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '796491400087687');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=796491400087687&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <link href="assets/css/common.css?v=1722999871" rel="stylesheet"></head>
+    
+    <body class="is-overflow-hidden" id="index">
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src=""https://www.googletagmanager.com/ns.html?id=GTM-T9SBTDTM""
+height=""0"" width=""0"" style=""display:none;visibility:hidden""></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div class="view">
+      <div class="app__content" id="viewport">
+        <div id="top"></div>
+        <div class="header--back"></div>
+                <header><a class="header--logo" href="index#skip"></a>
+          <div class="header--content"><a class="button--reserve" href="https://lihi1.cc/mIroY/kpcweb" target="_blank">
+            <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                      <g id="Group" transform="translate(25.583333, 6.000000)">
+                          <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                      </g>
+                  </g>
+              </g>
+            </svg><span>線上訂位</span></a>
+                          <div class="lang--select">
+                <div class="icon_earth"></div>
+                <select onchange="window.location=this.options[this.selectedIndex].value">
+                                    <option value="/zh/#skip" selected>繁體中文</option>
+                                    <option value="/jp/#skip" >日本語</option>
+                                    <option value="/en/#skip" >ENGLISH</option>
+                                  </select>
+              </div>
+                        <a class="menu" href="javascript:;" data-toggle="drawer"><span></span><span></span><span></span></a></div>
+          <nav>
+            <div class="drawer">
+              <div class="drawer--close" data-toggle="drawer-close"><i></i></div>
+              <div class="drawer--caption"><a class="header--logo" href="https://www.kanpaiclassic.com.tw/zh#skip"></a>
+                <ul>
+                  <li><a href="https://www.kanpaiclassic.com.tw/zh/about"><span>關於品牌</span>
+                      <div class="en">ABOUT US</div></a></li>
+                  <li><a href="https://www.kanpaiclassic.com.tw/zh/menu"><span>菜單介紹</span>
+                      <div class="en">MENU & DRINKS</div></a></li>
+                  <li><a href="https://www.kanpaiclassic.com.tw/zh/news"><span>最新情報</span>
+                      <div class="en">NEWS & EVENTS</div></a></li>
+                  <li><a href="https://www.kanpaiclassic.com.tw/zh/branch"><span>分店據點</span>
+                      <div class="en">BRANCH</div></a></li>
+                  <li><a href="https://lihi1.com/KjFgu/kpcweb" target="_blank"><span>人才招募</span>
+                      <div class="en">RECRUITS</div></a></li>
+                  <li><a href="mailto:cc@kanpai.com.tw?subject=【顧客回饋】姓名_請簡述事項&amp;body=姓名： %0D%0D聯絡電話： %0D%0D用餐日期、時間： %0D%0D用餐品牌：老乾杯%0D%0D分店： %0D%0D回饋事項：" target="_blank"><span>聯絡我們</span>
+                      <div class="en">CONTACT US</div></a></li>
+                </ul>
+                <div class="header--bottom">
+                  <div class="col"><a class="button--sm" href="https://kanpai-go-club.com.tw/?utm_source=kpc&amp;utm_medium=web" target="_blank">
+                    <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g id="Group" transform="translate(25.583333, 6.000000)">
+                                  <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                              </g>
+                          </g>
+                      </g>
+                    </svg><span>加入會員</span></a></div>
+                    <div class="col"><a class="button--sm is-online" href="https://lihi1.cc/mIroY/kpcwebmenu" target="_blank">
+                    <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g id="Group" transform="translate(25.583333, 6.000000)">
+                                  <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                              </g>
+                          </g>
+                      </g>
+                    </svg><span>線上訂位</span></a></div>
+                  <div class="col--full">
+                                        <div class="lang--select">
+                    <div class="icon_earth"></div>
+                      <select onchange="window.location=this.options[this.selectedIndex].value">
+                                                <option value="/zh/#skip" selected>繁體中文</option>
+                                                <option value="/jp/#skip" >日本語</option>
+                                                <option value="/en/#skip" >ENGLISH</option>
+                                              </select>
+                    </div>
+                                      </div>
+                </div>
+                <div class="header--follow">
+                  <div class="tt--follow">Follow us</div>
+                  <ul>
+                    <li><a class="follow--link" href="https://www.facebook.com/kanpaiclassic" target="_blank"><svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="桌機主頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="乾杯燒肉_首頁" transform="translate(-44.000000, -572.000000)" fill="#000000" fill-rule="nonzero">
+                                <g id="社群按鈕" transform="translate(44.000000, 480.000000)">
+                                    <g id="SNS" transform="translate(0.000000, 92.000000)">
+                                        <path d="M11,0 C4.92525,0 0,4.92525 0,11 C0,17.07475 4.92525,22 11,22 C17.07475,22 22,17.07475 22,11 C22,4.92525 17.07475,0 11,0 Z M13.75,7.33333333 L12.5125,7.33333333 C12.0193333,7.33333333 11.9166667,7.53591667 11.9166667,8.0465 L11.9166667,9.16666667 L13.75,9.16666667 L13.5584167,11 L11.9166667,11 L11.9166667,17.4166667 L9.16666667,17.4166667 L9.16666667,11 L7.33333333,11 L7.33333333,9.16666667 L9.16666667,9.16666667 L9.16666667,7.051 C9.16666667,5.42941667 10.0200833,4.58333333 11.94325,4.58333333 L13.75,4.58333333 L13.75,7.33333333 Z" id="Shape"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                      </svg></a></li>
+                    <li><a class="follow--link" href="https://lihi1.com/XgqWK/kpcweb" target="_blank">
+                        <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="桌機主頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="乾杯燒肉_首頁" transform="translate(-44.000000, -609.000000)" fill="#000000" fill-rule="nonzero">
+                                  <g id="社群按鈕" transform="translate(44.000000, 480.000000)">
+                                      <g id="SNS" transform="translate(0.000000, 92.000000)">
+                                          <path d="M18.3293,46.615791 C18.3286933,46.9356498 18.0698229,47.1946244 17.7507,47.1946239 L16.1425,47.1946239 L16.1425,48.2288053 L17.7507,48.2288053 C17.962834,48.219519 18.1629418,48.3276628 18.271774,48.5104081 C18.3806062,48.6931535 18.3806062,48.9210203 18.271774,49.1037656 C18.1629418,49.286511 17.962834,49.3946548 17.7507,49.3853685 L15.565,49.3853685 C15.2480235,49.3829547 14.9919961,49.1253531 14.9908,48.8076381 L14.9908,44.4239438 C14.9908,44.1075152 15.2493,43.8451109 15.5683,43.8451109 L17.7551,43.8451109 C18.0740444,43.8460243 18.3318612,44.105917 18.33095,44.4255976 C18.3300387,44.7452782 18.0707444,45.00369 17.7518,45.0027767 L16.1436,45.0027767 L16.1436,46.0369581 L17.7518,46.0369581 C18.0719,46.0369581 18.3304,46.2982598 18.3304,46.615791 L18.3293,46.615791 Z M13.8215,49.3555999 C13.7624472,49.3743078 13.7008307,49.3836088 13.6389,49.3831634 C13.4551807,49.3872455 13.2808999,49.3017536 13.1714,49.1538353 L10.9318,46.106418 L10.9318,48.8076381 C10.9089856,49.1094929 10.6579726,49.3427466 10.35595,49.3427466 C10.0539274,49.3427466 9.80291445,49.1094929 9.78009892,48.8076381 L9.78009892,44.4239438 C9.77949098,44.106519 10.0354079,43.8485316 10.3521,43.847316 C10.5303,43.847316 10.6953,43.9421343 10.8053,44.0799517 L13.0625,47.1394969 L13.0625,44.4239438 C13.0625,44.1075152 13.321,43.8451109 13.64,43.8451109 C13.9557,43.8451109 14.2175,44.1075152 14.2175,44.4239438 L14.2175,48.8076381 C14.2171799,49.0567653 14.0575666,49.277629 13.8215,49.3555999 L13.8215,49.3555999 Z M8.3765,49.3853685 C8.0590937,49.3835563 7.80240174,49.1257799 7.8012,48.8076381 L7.8012,44.4239438 C7.8012,44.1075152 8.0608,43.8451109 8.3787,43.8451109 C8.6966,43.8451109 8.9551,44.1075152 8.9551,44.4239438 L8.9551,48.8076381 C8.95328777,49.1268145 8.694946,49.384768 8.3765,49.3853685 L8.3765,49.3853685 Z M6.6935,49.3853685 L4.5078,49.3853685 C4.19003097,49.3835679 3.9327023,49.1261366 3.9303,48.8076381 L3.9303,44.4239438 C3.95646413,44.12379 4.20719652,43.8934786 4.5078,43.8934786 C4.80840348,43.8934786 5.05913587,44.12379 5.0853,44.4239438 L5.0853,48.2277027 L6.6957,48.2277027 C7.01464444,48.2277027 7.2732,48.486855 7.2732,48.8065356 C7.2732,49.1262162 7.01464444,49.3853685 6.6957,49.3853685 L6.6935,49.3853685 Z M11,37.5 C4.9357,37.5 0,41.5165489 0,46.4504102 C0,50.8715908 3.9138,54.5750187 9.1993,55.2784385 C9.5568,55.3534111 10.0452,55.5154843 10.1684,55.8208876 C10.2784,56.0965223 10.241,56.5243074 10.2036,56.8131725 L10.0529,57.7503305 C10.0122,58.0259652 9.8329,58.8396389 11.0143,58.3423939 C12.1979,57.8473539 17.3547,54.595967 19.6647,51.9344382 C21.2443,50.1979396 22,48.420647 22,46.4504102 C22,41.5165489 17.0632,37.5 11,37.5 Z" id="Shape"></path>
+                                      </g>
+                                  </g>
+                              </g>
+                          </g>
+                        </svg></a></li>
+                    <li><a class="follow--link" href="https://lihi3.me/NolVa/kpcweb" target="_blank">
+                        <svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="桌機主頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="乾杯燒肉_首頁" transform="translate(-44.000000, -646.000000)" fill="#000000" fill-rule="nonzero">
+                                  <g id="社群按鈕" transform="translate(44.000000, 480.000000)">
+                                      <g id="SNS" transform="translate(0.000000, 92.000000)">
+                                          <path d="M11,74 C13.9887,74 14.3616,74.011 15.5342,74.066 C16.7057,74.121 17.5032,74.3047 18.205,74.5775 C18.931,74.8569 19.5426,75.2353 20.1542,75.8458 C20.713543,76.3956856 21.146349,77.0608479 21.4225,77.795 C21.6942,78.4957 21.879,79.2943 21.934,80.4658 C21.9857,81.6384 22,82.0113 22,85 C22,87.9887 21.989,88.3616 21.934,89.5342 C21.879,90.7057 21.6942,91.5032 21.4225,92.205 C21.1471443,92.9395542 20.7142328,93.6048787 20.1542,94.1542 C19.6041576,94.7133512 18.9390403,95.1461279 18.205,95.4225 C17.5043,95.6942 16.7057,95.879 15.5342,95.934 C14.3616,95.9857 13.9887,96 11,96 C8.0113,96 7.6384,95.989 6.4658,95.934 C5.2943,95.879 4.4968,95.6942 3.795,95.4225 C3.06055879,95.1469207 2.39527994,94.7140389 1.8458,94.1542 C1.28634708,93.6044043 0.853524357,92.9392162 0.5775,92.205 C0.3047,91.5043 0.121,90.7057 0.066,89.5342 C0.0143,88.3616 0,87.9887 0,85 C0,82.0113 0.011,81.6384 0.066,80.4658 C0.121,79.2932 0.3047,78.4968 0.5775,77.795 C0.852759713,77.0603973 1.285684,76.3950532 1.8458,75.8458 C2.39543807,75.2861544 3.06067144,74.8533022 3.795,74.5775 C4.4968,74.3047 5.2932,74.121 6.4658,74.066 C7.6384,74.0143 8.0113,74 11,74 Z M11,79.5 C7.96243388,79.5 5.5,81.9624339 5.5,85 C5.5,88.0375661 7.96243388,90.5 11,90.5 C14.0375661,90.5 16.5,88.0375661 16.5,85 C16.5,81.9624339 14.0375661,79.5 11,79.5 L11,79.5 Z M18.15,79.225 C18.15,78.4656085 17.5343915,77.85 16.775,77.85 C16.0156085,77.85 15.4,78.4656085 15.4,79.225 C15.4,79.9843915 16.0156085,80.6 16.775,80.6 C17.5343915,80.6 18.15,79.9843915 18.15,79.225 Z M11,81.7 C12.8225397,81.7 14.3,83.1774603 14.3,85 C14.3,86.8225397 12.8225397,88.3 11,88.3 C9.17746033,88.3 7.7,86.8225397 7.7,85 C7.7,83.1774603 9.17746033,81.7 11,81.7 Z" id="Shape"></path>
+                                      </g>
+                                  </g>
+                              </g>
+                          </g>
+                        </svg></a></li>
+                    <li><a class="follow--link" href="https://lihi1.com/ljeHK/kpcweb" target="_blank">
+                        <svg width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <g id="桌機主頁" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                              <g id="乾杯燒肉_首頁" transform="translate(-44.000000, -683.000000)" fill="#000000" fill-rule="nonzero">
+                                  <g id="社群按鈕" transform="translate(44.000000, 480.000000)">
+                                      <g id="SNS" transform="translate(0.000000, 92.000000)">
+                                          <path d="M17.9804167,111.673894 C14.67675,111.441563 7.31866667,111.442508 4.01958333,111.673894 C0.447333333,111.925112 0.0265833333,114.148304 0,120 C0.0265833333,125.841308 0.443666667,128.073943 4.01958333,128.326106 C7.31958333,128.557492 14.67675,128.558437 17.9804167,128.326106 C21.5526667,128.074888 21.9734167,125.851696 22,120 C21.9734167,114.158692 21.5563333,111.926057 17.9804167,111.673894 Z M8.25,123.777725 L8.25,116.222275 L15.5833333,119.993389 L8.25,123.777725 L8.25,123.777725 Z" id="Shape"></path>
+                                      </g>
+                                  </g>
+                              </g>
+                          </g>
+                        </svg></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <style>
+            @media (max-width: 380px) {
+              header nav .drawer .header--bottom .col .button--sm {
+                white-space: nowrap;
+                font-size: 4.26666667vw;
+              }
+              .header--follow .tt--follow {
+                white-space: nowrap;
+              }
+            }
+          </style>
+        </header>
+        
+        <!--header選單-->
+        <main>
+          <div class="cover">
+            <section class="section--cover is-2 section--top">
+              <div class="cover--mask"></div>
+              <div class="cover--mask_ani"></div>
+              <div class="swiper-container" id="coverSwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <picture>
+                      <source srcset="assets/images/webp/kv--1.webp" type="image/webp">
+                      <source srcset="assets/images/static/kv--1.jpg" type="image/jpg">
+                      <img src="assets/images/static/kv--1.jpg">
+                    </picture>
+                  </div>
+                  <div class="swiper-slide">
+                    <picture>
+                      <source srcset="assets/images/webp/kv--2.webp" type="image/webp">
+                      <source srcset="assets/images/static/kv--2.jpg" type="image/jpg">
+                      <img src="assets/images/static/kv--2.jpg">
+                    </picture>
+                  </div>
+                  <div class="swiper-slide">
+                    <picture>
+                      <source srcset="assets/images/webp/kv--3.webp" type="image/webp">
+                      <source srcset="assets/images/static/kv--3.jpg" type="image/jpg">
+                      <img src="assets/images/static/kv--3.jpg">
+                    </picture>
+                  </div>
+                  <div class="swiper-slide">
+                    <picture>
+                      <source srcset="assets/images/webp/kv--4.webp" type="image/webp">
+                      <source srcset="assets/images/static/kv--4.jpg" type="image/jpg">
+                      <img src="assets/images/static/kv--4.jpg">
+                    </picture>
+                  </div>
+                </div>
+              </div>
+              <div class="cover--caption">
+                <div class="logo--classic"></div>
+                <div class="cover--title"><i></i><span>歡．迎．入．座</span><i></i></div>
+              </div>
+              <div class="cover--more"><span>SCROLL</span>
+                <div class="line"></div>
+              </div>
+            </section>
+            <section class="section--index_about">
+              <div class="container">
+                <div class="row">
+                  <div class="col col--img scroll-enter-in">
+                    <div class="colorRun">
+                      <div class="index--about"></div>
+                    </div>
+                  </div>
+                  <div class="col col--caption scroll-enter-in">
+                    <div class="index_about--caption">
+                      <div class="caption__title">專屬於成熟大人的<br>頂級和牛燒肉殿堂。</div>
+                      <div class="caption__desc">
+                        <div>老乾杯創立於西元 2005 年<br class="v-xs v-sm v-md"><span>，</span>為全台首間澳洲和牛專門店<br>西元 2017 年率先引進日本和牛宮崎牛<br class="v-xs v-sm v-md"><span>，</span>打造頂級和牛燒肉殿堂</div>
+                        <div>我們投入時間精力<br class="v-xs v-sm v-md"><span>，</span>致力於牛肉的研究<br>以一頭燒的模式<br class="v-xs v-sm v-md"><span>，</span>開發出各式分切及獨門吃法</div>
+                        <div>美味，就是我們的堅持<br>提供最美味的牛肉<br class="v-xs v-sm v-md"><span>，</span>獻給喜愛老乾杯的您</div>
+                        <div class="buttons"><a class="button is-black" href="https://www.kanpaiclassic.com.tw/zh/menu">
+                          <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                    <g id="Group" transform="translate(25.583333, 6.000000)">
+                                        <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>菜單介紹</span></a></div>
+                                                  <div class="buttons"><a class="button is-outline" href="https://www.kanpaiclassic.com.tw/zh/about">
+                          <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                    <g id="Group" transform="translate(25.583333, 6.000000)">
+                                        <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg><span>關於品牌</span></a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="index_about--title scroll-enter-in">在舒適雅致的包廂卡座空間<br>與優雅慢板的爵士樂中，盡情享受燒肉盛宴</div>
+              </div>
+              <div class="swiper--content scroll-enter-in">
+                <div class="swiper-container" id="indexAboutSwiper">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/01.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/01.jpg" type="image/jpg"> 
+                          <img src="assets/images/upload/01.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/02.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/02.jpg" type="image/jpg"> 
+                          <img src="assets/images/upload/02.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/03.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/03.jpg" type="image/jpg"> 
+                          <img class="lazy" data-src="assets/images/upload/03.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/04.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/04.jpg" type="image/jpg"> 
+                          <img class="lazy" data-src="assets/images/upload/04.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/05.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/05.jpg" type="image/jpg"> 
+                          <img class="lazy" data-src="assets/images/upload/05.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/06.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/06.jpg" type="image/jpg"> 
+                          <img class="lazy" data-src="assets/images/upload/06.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/07.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/07.jpg" type="image/jpg"> 
+                          <img class="lazy" data-src="assets/images/upload/07.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/08.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/08.jpg" type="image/jpg"> 
+                          <img class="lazy" data-src="assets/images/upload/08.jpg">
+                      </picture>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/09.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/09.jpg" type="image/jpg"> 
+                          <img class="lazy" data-src="assets/images/upload/09.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="parallax--img">
+                        <picture>
+                          <source srcset="assets/images/webp/10.webp" type="image/webp"> 
+                          <source srcset="assets/images/upload/10.jpg" type="image/jpg"> 
+                          <img class="lazy" data-src="assets/images/upload/10.jpg">
+                        </picture>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper--buttons">
+                    <div class="swiper--prev">
+                      <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                <g id="Group" transform="translate(25.583333, 6.000000)">
+                                    <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                                          </div>
+                                          <div class="swiper--paginations"></div>
+                                          <div class="swiper--next">
+                      <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                <g id="Group" transform="translate(25.583333, 6.000000)">
+                                    <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="text-center"><a class="button--outline" href="https://www.kanpaiclassic.com.tw/zh/branch">
+                  <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                            <g id="Group" transform="translate(25.583333, 6.000000)">
+                                <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                  </svg><span>分店據點</span></a></div>
+              </div>
+            </section>
+          </div>
+          <div class="sections">
+                        <section class="section--iNews">
+              <div class="container scroll-enter-in">
+                <div class="row row--iNews">
+                  <div class="col--slogan">
+                    <div class="slogan--title">
+                      <div class="ch">最新情報</div>
+                      <div class="en">NEWS & EVENTS</div>
+                    </div>
+                  </div>
+                  <div class="col--caption">
+                    <ul>
+                                            <li>                            <a href="https://www.kanpaiclassic.com.tw/zh/news-detail/684">
+                                                    <div class="iNews--date">2026-09-08</div>
+                          <div class="iNews--title">【中秋檔期套餐】Under the Blue Moon | 2026 月逢此夜</div>
+                          <div class="iNews--btn">
+                            <div class="btn--outline">
+                              <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g id="Group" transform="translate(25.583333, 6.000000)">
+                                            <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                        </g>
+                                    </g>
+                                </g>
+                              </svg>
+                            </div>
+                          </div></a></li>
+                                            <li>                            <a href="https://www.kanpaiclassic.com.tw/zh/news-detail/668">
+                                                    <div class="iNews--date">2026-06-24</div>
+                          <div class="iNews--title">【正式登場】老乾杯全新菜單</div>
+                          <div class="iNews--btn">
+                            <div class="btn--outline">
+                              <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g id="Group" transform="translate(25.583333, 6.000000)">
+                                            <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                        </g>
+                                    </g>
+                                </g>
+                              </svg>
+                            </div>
+                          </div></a></li>
+                                            <li>                            <a href="https://www.kanpaiclassic.com.tw/zh/news-detail/667">
+                                                    <div class="iNews--date">2026-06-24</div>
+                          <div class="iNews--title">老乾杯 &amp; KANPAI CLASSIC 餐點過敏原標示說明</div>
+                          <div class="iNews--btn">
+                            <div class="btn--outline">
+                              <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g id="Group" transform="translate(25.583333, 6.000000)">
+                                            <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                        </g>
+                                    </g>
+                                </g>
+                              </svg>
+                            </div>
+                          </div></a></li>
+                          
+                    </ul>
+                    <div class="text-right"><a class="button--more" href="https://www.kanpaiclassic.com.tw/zh/news"><span>更多情報</span>
+                        <div class="btn--outline">
+                          <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                    <g id="Group" transform="translate(25.583333, 6.000000)">
+                                        <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                    </g>
+                                </g>
+                            </g>
+                          </svg>
+                        </div></a></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+                        <section class="section--kanpai_mart">
+              <!-- <div class="kanpai_mart--top">
+                <div class="container scroll-enter-in">
+                  <div class="row--kanpai_mart">
+                    <div class="col--title">
+                      <div class="kanpai_mart--tt">
+                        <div class="kanpai_mart--title">宅家乾杯</div>
+                        <div class="kanpai_mart--subtitle">雲端燒肉店 / 雲端鍋物店</div>
+                      </div>
+                    </div>
+                    <div class="col--caption">
+                      <div class="kanpai_mart--desc">每月挑一天在家就像在乾杯。月月定期配送和店內相同的頂級和牛，<br>宅家享受充滿樂趣的燒肉料理體驗。</div>
+                      <div class="text-right"><a class="button--more" href="#"><span>了解更多</span>
+                          <div class="btn--outline">
+                            <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                              <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                  <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                      <g id="Group" transform="translate(25.583333, 6.000000)">
+                                          <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                      </g>
+                                  </g>
+                              </g>
+                            </svg>
+                          </div></a></div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="container">
+                <div class="row--club">
+                  <div class="col scroll-enter-in">
+                    <div class="card--club">
+                      <div class="card--caption">
+                        <div class="caption__title"><span>乾杯超市 線上購物</span>
+                          <div class="ox--logo"></div>
+                        </div>
+                        <div class="caption__desc">集結乾杯集團旗下出品美味，將精品般的頂級生鮮肉品，從餐廳延伸到自家餐桌。</div>
+                        <div class="caption__button"><a class="button--more" href="https://www.kanpai-mart.com.tw/?utm_source=kp&amp;utm_medium=web&amp;utm_campaign=index" target="_blank"><span>來去逛逛</span>
+                            <div class="btn--outline">
+                              <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g id="Group" transform="translate(25.583333, 6.000000)">
+                                            <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                        </g>
+                                    </g>
+                                </g>
+                              </svg>
+                            </div></a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col scroll-enter-in">
+                    <div class="card--club">
+                      <div class="card--caption">
+                        <div class="caption__title"><span>KANPAI GO！CLUB</span>
+                          <div class="ox--logo"></div>
+                        </div>
+                        <div class="caption__desc">乾杯集團會員招募中！集點最高享有「豪華和牛千點禮」招待，還有入會、生日等專屬禮遇。</div>
+                        <div class="caption__button"><a class="button--more" href="https://kanpai-go-club.com.tw/?utm_source=kp&amp;utm_medium=web&amp;utm_campaign=index" target="_blank"><span>立即加入</span>
+                            <div class="btn--outline">
+                              <svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="HEADER" transform="translate(-25.000000, -13.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                        <g id="Group" transform="translate(25.583333, 6.000000)">
+                                            <polygon id="Path" points="0 8.0125 1.009375 7 6 12 6 12 6 12 1.009375 17 0 15.9875 3.978125 12"></polygon>
+                                        </g>
+                                    </g>
+                                </g>
+                              </svg>
+                            </div></a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+                <footer>
+          <div class="footer--container">
+            <div class="row--footer">
+              <div class="col--logo"><a class="logo" href="https://www.kanpai.com.tw/" target="_blank"></a></div>
+              <div class="col">
+                <div class="footer--content">
+                  <div class="footer--block is-rest">
+                    <div class="footer--title">餐廳事業</div>
+                    <ul>
+                      <li><a href="https://www.kanpaiyakiniku.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">乾杯燒肉居酒屋</a></li>
+                      <!-- <li> <a href="https://www.kanpaiyakiniku.com.tw/zh/menu#kanpaibar?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">乾杯BAR</a></li> -->
+                      <li> <a href="https://www.kanpaiclassic.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">老乾杯</a></li>
+                      <li> <a href="https://www.honke.kurogeya.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">黑毛屋本家</a></li>
+                      <li> <a href="https://www.daily.kurogeya.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">黑毛屋</a></li>
+                      <li> <a href="https://www.wagyu47.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">和牛47</a></li>
+                      <!-- <li> <a href="https://www.mala45.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">麻辣45</a></li> -->
+                      <li> <a href="https://www.facebook.com/takagi.wagyu.shokudo?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">高木和牛食堂</a></li>
+                      <li><a href="https://www.gyutanyusuke.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank" rel="noopener noreferrer">牛舌佑介</a></li>
+                    </ul>
+                    <style>
+                      @media (min-width: 1025px) {
+                        footer ul {
+                          height: 130px;
+                        }
+                        footer ul li {
+                          height: 25%;
+                          flex: 0 0 25%;
+                        }
+                      }
+                    </style>
+                  </div>
+                  <div class="footer--block">
+                    <div class="footer--title">電商事業</div>
+                    <ul>
+                      <li><a href="https://www.kanpai-mart.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">乾杯超市</a></li>
+                      <li><a href="https://www.kpet.com.tw?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">毛孩乾杯</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer--block">
+                    <div class="footer--title">集團會員</div>
+                    <ul>
+                      <li><a href="https://kanpai-go-club.com.tw/?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">KANPAI GO！CLUB</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer--block">
+                    <div class="footer--title">企業相關</div>
+                    <ul>
+                      <li><a href="https://lihi1.com/KjFgu/kpcweb" target="_blank">人才招募</a></li>
+                      <li><a href="mailto:cc@kanpai.com.tw?subject=【顧客回饋】姓名_請簡述事項&amp;body=姓名： %0D%0D聯絡電話： %0D%0D用餐日期、時間： %0D%0D用餐品牌：老乾杯%0D%0D分店： %0D%0D回饋事項：" target="_blank">聯絡我們</a></li>
+                      <li><a href="https://kanpai-go-club.com.tw/zh/privacy?utm_source=kpc&amp;utm_medium=web&amp;utm_campaign=footer" target="_blank">隱私權保護政策</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="copyright--content"><span>Copyright &copy; 乾杯集團 All Rights Reserved.</span>
+                            <div class="lang--select">
+                <div class="icon_earth"></div>
+                <select onchange="window.location=this.options[this.selectedIndex].value">
+                                    <option value="/zh/#skip" selected>繁體中文</option>
+                                    <option value="/jp/#skip" >日本語</option>
+                                    <option value="/en/#skip" >ENGLISH</option>
+                                  </select>
+              </div>
+                          </div>
+          </div>
+        </footer><a class="gotop" href="javascript:;" js-scroll="#top"><i></i><span>TOP</span></a>
+            </div>
+      
+    </div>
+    <div class="app__loading">
+      <div class="loading--bg"></div>
+      <div class="loading--caption">
+        <div class="caption__title">成熟大人的聖地</div>
+        <div class="caption__subtitle">專屬經過歲月洗鍊的</div>
+      </div>
+    </div>
+    <div class="loading--mask"></div>
+        <script>
+      WebFontConfig = {
+        google: {
+          families: [
+            'Noto+Sans+TC:300,400,500,700,900',
+            'Noto+Serif+TC:400,500,600,700',
+            'Cinzel&display=swap'
+            //- 'Roboto:500',
+            //- 'Merriweather:ital,wght@1,400,700'
+          ]
+        }
+      };
+      
+      (function() {
+          var wf = document.createElement('script');
+          wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+          wf.type = 'text/javascript';
+          wf.async = 'true';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+    <script src="assets/js/fancybox.umd.js"></script>
+    <script type="text/javascript" src="assets/js/vendor.js?v=1640158527"></script>
+    <script type="text/javascript" src="assets/js/common.js?v=1642418013"></script>
+    <script type="text/javascript" src="assets/js/runtime.js?v=1638868167"></script>
+      </body>  
+</html>

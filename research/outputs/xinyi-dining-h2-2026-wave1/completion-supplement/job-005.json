@@ -1,0 +1,17 @@
+{
+  "id": 5,
+  "input_url": "https://www.celavi.com/",
+  "store_id": "XY-022",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0008-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0008-response.txt",
+  "sequence": 5,
+  "started_at": "2026-10-15T06:36:47.926Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_862b6ca4-7b33-4c3b-b691-78004ef7c086",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:50.696Z"
+}

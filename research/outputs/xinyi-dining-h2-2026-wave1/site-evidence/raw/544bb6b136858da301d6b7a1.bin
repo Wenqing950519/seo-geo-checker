@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>一蘭拉麵| 一蘭台灣官方購物網 - 一蘭、一蘭拉麵、拉麵、一蘭台灣購物網、一蘭購物、一蘭伴手禮、台灣一蘭、日本食品、博多細麵、捲麵、豚骨拉麵、一蘭商品、伴手禮、拉麵商品、即食麵、釜醬汁豚骨拉麵、博多拉麵、日本泡麵、日本進口、福岡、九州、日本</title>
+    <meta name="description" content="『在家也能享受到一蘭的美味。』一蘭的伴手禮便是從這些客人的意見中誕生。自1960年創業以來，一蘭為追求更高層次的美味，不斷用心鑽研，終於烹調出集合了各專業師傅經驗、技術及手藝的傑作。不但能保有專門店一貫的味道，也不須繁複的步驟，輕鬆、簡單、方便這正是一蘭所追求的。不論是家庭飯桌上的料理，作為旅行的回憶，抑或是作為禮品送給珍視之人，都能將「一蘭的堅持」一起送達。">
+    <meta name="keywords" content="一蘭,一蘭拉麵,拉麵,一蘭台灣購物網,一蘭購物,一蘭伴手禮,台灣一蘭,日本食品,博多細麵,捲麵,豚骨拉麵,一蘭商品,伴手禮,拉麵商品,即食麵,釜醬汁豚骨拉麵,博多拉麵,日本泡麵,日本進口,福岡,九州,日本">
+    <link rel="icon" type="image/x-icon" href="../tw_img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="../tw_img/logo.png" />
+    <!-- Bootstrap -->
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="css/bootstrap-reboot.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- hp -->
+    <link href="css/slick.css" rel="stylesheet">
+    <link href="css/slick-theme.css" rel="stylesheet">
+    <link href="css/owl.carousel.min.css" rel="stylesheet">
+    <link href="css/tw_aside.css" rel="stylesheet">
+    <!---------pro carousal (FlexSlider)--------->
+    <link href="css/flexslider.css" rel="stylesheet">
+    <link href="css/bootstrapValidator.css" rel="stylesheet">
+    <link href="css/tw_style.css?v=2" rel="stylesheet">
+    <link href="css/lucky-canvas.css" rel="stylesheet">
+    <meta name="google-site-verification" content="Ohofa9q8aqbfnIkv8MdAP43N1uZOUhnLix6AJa0YUog" />
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P25BKHP');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P25BKHP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</head>
+<body>
+    <div id="wrapper">
+        
+        <header>
+            <div class="hearder_top">
+                <div class="container">
+                    <div class="hearder_box">
+                        
+                        <a class="disno576" href="OrderTrack.aspx">訪客訂購查詢</a>
+                        <a href="Login.aspx">會員登入</a>
+                        
+                        <!-- 2026-05-20 追加CartNum1的class調整樣式 -->
+                        <a href="Cart.aspx">購物車<span id="CartNum" class="CartNum1">0</span></a>
+                        <a class="disno576" href="Contact.aspx">聯絡我們</a>
+                        <form action="products.aspx" class="search-wrapper">
+                            <input type="text" name="Search" placeholder="搜尋..." required="">
+                            <button type="submit">搜尋</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="headerBar"></div>
+            <div class="nav_box">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a href="index.aspx" class="navbar-brand">
+                            <img class=" img-responsive logo-img" src="tw_img/index/logo.png" alt="company logo">
+                        </a>
+                        <div class="mobileBtn">
+                            
+                            <a href="Login.aspx">
+                                <i class="fa fa-user-o" aria-hidden="true"></i>
+                                <p>會員登入</p>
+                            </a>
+                            
+                            <a href="Cart.aspx">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                <p>購物車</p>
+                                <span id="CartNum2" class="CartNum2">0</span>
+                            </a>
+                            <a>
+                                <span class="btn_menu" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><b></b></span>
+                                <p>選單</p>
+                            </a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item newsArea">
+                                    <div class="newTag">new!</div>
+                                    <a class="nav-link" href="News.aspx">最新消息</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="ProductInfo.aspx">商品介紹</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Stores.aspx">門市據點</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="products.aspx">所有商品</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="Guide.aspx">購物說明</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="QA.aspx">常見問題</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link sm_nav-link" href="Contact.aspx">聯絡我們</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link sm_nav-link" href="OrderTrack.aspx">訪客訂購查詢</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <form action="products.aspx" class="search-wrapper mobileForm">
+                                        <input type="text" name="Search" placeholder="搜尋..." required="">
+                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="Inside_page">
+        
+    <div class="container">
+        <p class="page_title">門市據點</p>
+        <div class="store_box">
+            <div class="row">
+                
+                <div class="col-md-6 store_con">
+                    <img src="../images/BranchStore/3/20259101414143750.png">
+                </div>
+                <div class="col-md-6">
+                    <p class="title">台灣台北本店</p>
+                    <hr>
+                    <div class="text">
+                        <p>
+                            <img src="tw_img/other/map.png">地址:台北市信義區松仁路97號</p>
+                        <p>
+                            <img src="tw_img/other/phone.png">電話:(02)2758-8918</p>
+                        <p>
+                            <img src="tw_img/other/time.png">依Google Map營業時間為主</p>
+                    </div>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading_1">
+                                <p class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_1" aria-expanded="true" aria-controls="collapse_1">交通資訊
+                                    </a>
+                                </p>
+                            </div>
+                            <div id="collapse_1" class="panel-collapse collapse in show" role="tabpanel" aria-labelledby="heading_1">
+                                <div class="panel-body">
+                                    位於群益金融大樓1樓</span><br><span>．捷運淡水信義線象山站</span><br><span>　1號出口步行5分鐘</span><br><span>．捷運板南線市政府站</span><br><span>　3號出口步行10分鐘
+                                    <div class="LinkMap">
+                                        <a href="https://goo.gl/maps/zwJC13gM7fDn5wd39" target="_blank">連結地圖</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 store_con">
+                    <img src="../images/BranchStore/2/2020517134863414.jpg">
+                </div>
+                <div class="col-md-6">
+                    <p class="title">台灣台北本店別館</p>
+                    <hr>
+                    <div class="text">
+                        <p>
+                            <img src="tw_img/other/map.png">地址:台北市信義區松壽路11號B1F
+（位於新光三越信義新天地 A11）</p>
+                        <p>
+                            <img src="tw_img/other/phone.png">電話:(02)2729-9866</p>
+                        <p>
+                            <img src="tw_img/other/time.png">依Google營業時間為準</p>
+                    </div>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading_2">
+                                <p class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_2" aria-expanded="true" aria-controls="collapse_2">交通資訊
+                                    </a>
+                                </p>
+                            </div>
+                            <div id="collapse_2" class="panel-collapse collapse in show" role="tabpanel" aria-labelledby="heading_2">
+                                <div class="panel-body">
+                                    ．捷運淡水信義線象山站</span><br><span>　1號出口步行5分鐘</span><br><span>．捷運板南線市政府站</span><br><span>　3號出口步行10分鐘
+                                    <div class="LinkMap">
+                                        <a href="https://goo.gl/maps/koYUsKAwggwQTucb8" target="_blank">連結地圖</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 store_con">
+                    <img src="../images/BranchStore/3028/2022341451365843.jpg">
+                </div>
+                <div class="col-md-6">
+                    <p class="title">台灣台中朝富店</p>
+                    <hr>
+                    <div class="text">
+                        <p>
+                            <img src="tw_img/other/map.png">地址:台中市西屯區朝富路2號2樓</p>
+                        <p>
+                            <img src="tw_img/other/phone.png">電話:(04)2258-3658</p>
+                        <p>
+                            <img src="tw_img/other/time.png">10:00~翌日01:30</p>
+                    </div>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading_3">
+                                <p class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_3" aria-expanded="true" aria-controls="collapse_3">交通資訊
+                                    </a>
+                                </p>
+                            </div>
+                            <div id="collapse_3" class="panel-collapse collapse in show" role="tabpanel" aria-labelledby="heading_3">
+                                <div class="panel-body">
+                                    台中捷運-市政府站</span><br><span>・1號出口(往新光三越方向)步行20分鐘</span><br><span>公車</span><br><span>・搭乘153號公車至秋紅谷站下車步行1分鐘</span><br><span>汽車停車場</span><br><span>・秋紅谷停車場 (步行5分鐘)</span><br><span>・新長越至善路停車場 (步行5分鐘)</span><br><span>・惠安停車場、上安停車場  (步行7~8分鐘)
+                                    <div class="LinkMap">
+                                        <a href="https://goo.gl/maps/7NAYmuugAvBAz9xy9" target="_blank">連結地圖</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+        
+        </div>
+        <!-- FOOTER 底部資訊 -->
+        <footer>
+            <div class="footer_box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="logo_box">
+                                <span>
+                                    <a href="https://www.instagram.com/ichiran_tw/" target="_blank">
+                                        <img src="tw_img/other/ig.svg" width="66px" height="66px">
+                                        <p>Instagram</p>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="https://www.facebook.com/ichiran.tw/" target="_blank">
+                                        <img src="tw_img/other/fb.svg" width="66px" height="66px">
+                                        <p>Facebook</p>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="https://ichiran.com/" target="_blank">
+                                        <img src="tw_img/other/logo2.svg" width="66px" height="66px">
+                                        <p>一蘭官方網站</p>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 link_box">
+                            <div class="link_box_item">
+                                <a href="Company.aspx">公司簡介</a>
+                                <a href="Contact.aspx">聯絡我們</a>
+                            </div>
+                            <div class="link_box_item">
+                                <a href="ServiceTerms.aspx">網站使用條款</a>
+                                <a href="Privacy.aspx">個人資料保護法</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright">
+                        <hr>
+                        COPYRIGHT © 一蘭台灣購物網 | 香港商一蘭有限公司台灣分公司
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <div class="go_top">
+            
+            <a href="#wrapper">
+                <img src="tw_img/other/topbtn.png"></a>
+            
+            <a class="lineLink" href="https://line.me/R/ti/p/%40ichirantw" target="_blank">
+                <img src="tw_img/other/linebtn.png">
+            </a>
+            
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+
+    <!--------search-------->
+    <script>
+        function searchToggle(obj, evt) {
+            var container = $(obj).closest('.search-wrapper');
+            if (!container.hasClass('active')) {
+                container.addClass('active');
+                evt.preventDefault();
+            }
+            else if (container.hasClass('active') && $(obj).closest('.input-holder').length == 0) {
+                container.removeClass('active');
+                // clear input
+                container.find('.search-input').val('');
+            }
+        }
+    </script>
+
+    <!-- <script type="text/javascript">
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {          /* 要滑動到選單的距離 */
+                    $('header').addClass('navFixed');   /* 幫選單加上固定效果 */
+                } else {
+                    $('header').removeClass('navFixed'); /* 移除選單固定效果 */
+                }
+            });
+        });
+    </script> -->
+
+    <script>
+        $(".editor img").addClass("img-responsive mt15 mb15");
+        $(".editor table").addClass("table");
+        $(".editor table").wrap('<div class="table-responsive"></div>');
+    </script>
+    <script>
+        $(document).ready(function () {
+            var localAuthCode = localStorage.getItem('AuthCode');
+            var AuthCode = "2aa423d558134ce6b0f6759a5420bff0"
+            if (AuthCode != localAuthCode)
+                localStorage.Reset();
+        });
+    </script>
+
+    
+
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        
+    </script>
+</body>
+</html>

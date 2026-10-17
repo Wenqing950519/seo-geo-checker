@@ -1,0 +1,150 @@
+{
+  "generated_at": "2026-10-15T06:31:28.679Z",
+  "mode": "perplexity_plus_deepseek_evidence",
+  "input_file": "research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv",
+  "site_count": 49,
+  "result_count": 49,
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "profile_version": "1.1.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "scoring_model": "AI Trust Index: visible answer adoption 65% + verified first-party URL evidence 35%",
+  "product_metric": "AI Trust Index",
+  "research_metric": "GEO Core",
+  "ai_trust_index_version": "1.0.0",
+  "perplexity_model": "sonar",
+  "deepseek_model": "deepseek-v4-flash",
+  "deepseek_model_release": "0731",
+  "perplexity_calls_per_site": 4,
+  "deepseek_calls_per_site": 1,
+  "query_set_version": "xinyi-dining-2026h2-v2.0",
+  "query_set_file": "research/inputs/xinyi-restaurants-h2-2026/query-set.xinyi-dining-h2-2026.approved.json",
+  "query_set_review_status": "approved",
+  "query_set_reviewed_by": "eason",
+  "query_set_reviewed_at": "2026-09-09",
+  "entity_master_file": "research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv",
+  "entity_master_dataset_version": "xinyi-dining-2026h2-v1.0",
+  "raw_evidence_dir": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/raw",
+  "planned_perplexity_calls": 132,
+  "planned_deepseek_calls": 33,
+  "max_perplexity_calls": 132,
+  "max_deepseek_calls": 33,
+  "deepseek_scope": "basic information, industry, structure and observed content classification only",
+  "deepseek_thinking": "disabled",
+  "optimization_advice_generated": false,
+  "concurrency": 1,
+  "delay_ms": 500,
+  "representative_pages": 3,
+  "query_design": "one exact-entity authority query and 3 human-reviewed frozen unbranded discovery queries (xinyi-dining-2026h2-v2.0) shared by every site",
+  "claim_boundary": "Results describe this Perplexity model, fixed approved query set and collection window. They measure answer adoption and verified first-party URL evidence, not an AI model's internal trust or universal visibility across AI systems.",
+  "api_usage_run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "api_usage_summary_file": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/api-usage-summary.json",
+  "api_usage_events_file": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/api-usage-events.jsonl",
+  "api_usage_events_sha256": "8144d69b057010410f8432c6b17cf0ec1b8a07178ebf07bb52552ce8c1c3ac97",
+  "dataset_sha256": null,
+  "scope": "All 49 inherited root inputs, including 16 preflight-unknown rows",
+  "collected_subset_input_file": "research\\outputs\\xinyi-dining-h2-2026-wave1\\preparation\\sites-passing-existing-approval.csv",
+  "requested_models": {
+    "perplexity": "sonar",
+    "deepseek": "deepseek-v4-flash",
+    "deepseek_release": "0731"
+  },
+  "returned_models": {
+    "sonar": 92,
+    "deepseek-flash": 23
+  },
+  "historical_configuration_continuity": "Unverified: September full request bodies, finish reasons and execution source commit were not preserved. The frozen protocol baseline-code statement describes current code, not proven historical request equivalence.",
+  "canonical_batch_methodology": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/methodology.json",
+  "protocol_ref": "research/outputs/xinyi-dining-h2-2026-wave1/protocol.json",
+  "primary_outputs": "Original pipeline values retained; query-runs.csv separately identifies truncation, actual citations, retrieved sources, and unknowns.",
+  "source_head": "6d3dae319e3457bc8595da0811957d5b3e58650f",
+  "source_verification": [
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv",
+      "sha256": "2a455be2198afb77cd02f8219b054b6268786d69c1be5c5fd4ea3374e20bfd4b",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv",
+      "sha256": "7293782a31876806d5c9da6fe45fd26dbf10670d8fbafe2b1cc024d71e8b110a",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/query-set.xinyi-dining-h2-2026.approved.json",
+      "sha256": "8b30d91a3a74b46d29338fd4034fe68feb44a338d2c98530b51109b7be3c5954",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/inputs/xinyi-restaurants-h2-2026/query-set.xinyi-dining-h2-2026.approved.json"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave1/preparation/sites-passing-existing-approval.csv",
+      "sha256": "12af8ca1e4ef01b5f3a5f66464c4a66278e300d8a36b797e2bae2c6746061575",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/outputs/xinyi-dining-h2-2026-wave1/preparation/sites-passing-existing-approval.csv"
+    },
+    {
+      "path": ".agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs",
+      "sha256": "8615d6842ec7410fb8120533e9a45471381c0d27c12953abbd56e18c137a19f8",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/.agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs"
+    },
+    {
+      "path": "research/lib/entity-master.js",
+      "sha256": "b31d2d4689a67228cfb06e2782062027aee27548be7399e16a031f949ee6a92b",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/lib/entity-master.js"
+    },
+    {
+      "path": "research/lib/transport-recorder.js",
+      "sha256": "75bd1b436cf902b19936e0bf82476ddc6512153d59c06265adc197f4253ce4e3",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/lib/transport-recorder.js"
+    },
+    {
+      "path": "research/work/run-october-wave1.mjs",
+      "sha256": "b5e56d30ba9256353efab3c124b4d006f07d74c96166908a96cf3e35bb498a0b",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/work/run-october-wave1.mjs"
+    },
+    {
+      "path": "services/api/application/geo-measurement.js",
+      "sha256": "878efb0c59fdb7ee75b0a866ee69522ecaa4ab581ee2003352cb4b349e45d0fe",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/services/api/application/geo-measurement.js"
+    },
+    {
+      "path": "packages/ai-providers/perplexity.js",
+      "sha256": "766d721255f44afd4efd8015087d817a6112b59c0032356b64e8de438f3cbe48",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/ai-providers/perplexity.js"
+    },
+    {
+      "path": "packages/ai-providers/deepseek.js",
+      "sha256": "ef7a3b2019be3a8e4ee1b3fdd75b04d129ea28c6991746ae89abca651997ed97",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/ai-providers/deepseek.js"
+    },
+    {
+      "path": "packages/geo-core/evidence/brand-match.js",
+      "sha256": "2aee99b435f578f332f6a8b5b6b6be4c2298a26adace835a536a2eac7310875b",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/geo-core/evidence/brand-match.js"
+    },
+    {
+      "path": "packages/geo-core/evidence/perplexity-visibility.js",
+      "sha256": "4978b264513ff753d11ffa10a7d4000cd4dc973372a4863a29b35ea7e148f066",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/geo-core/evidence/perplexity-visibility.js"
+    },
+    {
+      "path": "packages/geo-core/scoring/ai-trust-index.js",
+      "sha256": "0a073e721d22250d13bd2b09758c3674061e011ceed5a9758fd29a923808a991",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/geo-core/scoring/ai-trust-index.js"
+    }
+  ],
+  "combined_results_file_sha256": "d5010dfd737262b2ff5a0c67b2e80d1894abb0976a6dbe99a890d38e7cf04ea4",
+  "canonical_subset_dataset_sha256": "547edbd83ee5a5b76067102ca7fecabe1ba97caea65eb424ce6159422affe548",
+  "hash_definition": "Use combined_results_file_sha256 for the full-cohort file; the canonical semantic hash applies only to the 33-row subset."
+}

@@ -1,0 +1,17 @@
+{
+  "id": 62,
+  "input_url": "https://www.ukai-tpe.com.tw/",
+  "store_id": "XY-064",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0103-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0103-response.txt",
+  "sequence": 62,
+  "started_at": "2026-10-15T06:38:20.744Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_49574bc4-7d8a-4a26-86d5-c94d148b52b4",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:23.581Z"
+}

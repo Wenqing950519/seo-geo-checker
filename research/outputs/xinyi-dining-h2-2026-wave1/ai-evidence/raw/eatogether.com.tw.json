@@ -1,0 +1,513 @@
+{
+  "url": "https://www.eatogether.com.tw/zh-TW/home",
+  "measured_at": "2026-10-15T06:17:25.462Z",
+  "pipeline_version": "3.0.0-query1.5.0-perplexity-p2.1.0-s3.1.0-trust1.0.0",
+  "parser_version": "2.1.0",
+  "scoring_version": "3.1.0",
+  "query_set_version": "xinyi-dining-2026h2-v2.0",
+  "search_evidence": {
+    "enabled": true,
+    "provider": "perplexity",
+    "plan": {
+      "location": null,
+      "category": null,
+      "querySetVersion": "xinyi-dining-2026h2-v2.0",
+      "queries": [
+        "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？",
+        "台北信義區聚餐推薦？",
+        "信義區想吃高評價的火鍋或燒肉推薦？"
+      ],
+      "queryIds": [
+        "dating-celebration-01",
+        "gathering-general-01",
+        "hotpot-bbq-01"
+      ],
+      "queryIntents": [
+        "recommendation",
+        "recommendation",
+        "comparison"
+      ]
+    },
+    "authority": {
+      "enabled": true,
+      "provider": "perplexity",
+      "model": "sonar",
+      "query": "Verify the exact entity represented by website eatogether.com.tw (title: 饗食天堂 自助美饌｜EATOGETHER | 首頁). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN.",
+      "answer": "ALIASES: 饗食天堂 | EATOGETHER\n\nThe exact website eatogether.com.tw identifies the Taiwanese buffet restaurant brand “饗食天堂,” using the English name “EATOGETHER.”[1][4]",
+      "citations": [
+        "https://www.eatogether.com.tw/zh-TW/menu/Classic_dishes",
+        "https://eatogether.eatogo.com.tw/zh-TW",
+        "https://eatogether.eatogo.com.tw/zh-TW/product/81?quantity=1",
+        "https://www.eatogether.com.tw/zh-TW/about",
+        "https://ajunfun.tw/eatogether-taichung-top-city-buffet-review/",
+        "https://www.klook.com/zh-TW/activity/177402-eatogether-taipei-xinyi-branch-taipei-101-world-trade-center-mrt-station/",
+        "https://www.eatogether.com.tw/zh-TW/store/EAT007",
+        "https://globalfoodelicious.com/eatogether-taipei-buffet/",
+        "https://hanblog.tw/eatogether-xinyi/",
+        "https://www.eatogether.com.tw/zh-TW/store/EAT013"
+      ],
+      "searchResults": [
+        {
+          "date": null,
+          "last_updated": "2026-10-03",
+          "place_metadata": null,
+          "snippet": "饗食天堂 自助美饌｜EATOGETHER |\n...\n## 經典菜色\n### 饗食天堂 經典必選美味\n#### 焗烤生蠔\n##### ◇ 供應餐期：平日晚餐 / 假日午餐 / 假日晚餐",
+          "source": "web",
+          "title": "經典菜色",
+          "url": "https://www.eatogether.com.tw/zh-TW/menu/Classic_dishes"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-06-12",
+          "place_metadata": null,
+          "snippet": "饗食天堂 自助美饌｜饗帶走 EATOGO",
+          "source": "web",
+          "title": "饗食天堂｜饗帶走EATOGO｜官方外帶/外送訂餐平台",
+          "url": "https://eatogether.eatogo.com.tw/zh-TW"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-07-16",
+          "place_metadata": null,
+          "snippet": "超人氣海陸美味任意搭配，5道料理輕鬆上桌！\n...\n饗食天堂 自助美饌｜饗帶走 EATOGO\n...\n超人氣海陸美味任意搭配，5道料理輕鬆上桌，兩人享受剛剛好！(份量：約2人)\n【大口吃肉6選2】紅酒燴牛肉/鐵板牛柳/大口饗樂骨/和風照燒雞腿排 (1支去骨雞腿)/日式唐揚炸雞/經典鹽焗雞\n【大啖海鮮4選2】吉利炸蝦(5隻)/油爆鹹酥蝦(8尾)/姿燒香魚(2尾)/塔香炒蛤蜊\n【好好吃菜2選1】櫻花蝦高麗菜/爐烤季節時蔬",
+          "source": "web",
+          "title": "官方外帶/外送訂餐平台",
+          "url": "https://eatogether.eatogo.com.tw/zh-TW/product/81?quantity=1"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-10-08",
+          "place_metadata": null,
+          "snippet": "饗食天堂 自助美饌｜EATOGETHER |\n...\n每個值得慶祝的歡聚時刻，邀請您一同共聚饗食天堂，\n以料理和場域的萬種風情，共享美好的相聚時刻。\n...\n匯集中/西/日式料理職人，精心烹調上百道多國美食；\n...\n饗食天堂採開放式廚房、主廚現場料理，",
+          "source": "web",
+          "title": "關於品牌",
+          "url": "https://www.eatogether.com.tw/zh-TW/about"
+        },
+        {
+          "date": "2026-05-29",
+          "last_updated": "2026-09-28",
+          "place_metadata": null,
+          "snippet": "🏠店名饗食天堂 台中大遠百店（EATOGETHER） 📍地址台中市西屯區台灣大道三段 251 號 11 樓（台中大遠百 11F） 📞電話04-2258-5006 🕒\n下午茶時段平日 14:30–16:30（以現場入場時段為準） 💰2026 新價平日下午茶 **NT$758**、平日午餐 NT$928、平日晚餐 NT$1,028（假日另計，皆需\n...\n## 常見問題\nA：NT$758，另加 10% 服務費，實際支付 NT$833.8。 2026/1/1 起新價，全台同步。\n...\nA：平日下午茶為 14:30 入場、16:30 結束，用餐時間約兩小時（以現場時段為準）。",
+          "source": "web",
+          "title": "饗食天堂台中大遠百攻略｜2026 下午茶$758 爐烤牛排封神",
+          "url": "https://ajunfun.tw/eatogether-taichung-top-city-buffet-review/"
+        },
+        {
+          "date": "2026-05-12",
+          "last_updated": "2026-10-15",
+          "place_metadata": null,
+          "snippet": "## 如何使用\n#### 分店名稱＆地址\n- 饗食天堂 - 台北信義店\n- 地址：台北市信義區松壽路12號6樓（ATT 4 FUN百貨6F）\n- 電話：02-77375889\n...\n- 如何前往：搭乘捷運至台北101 / 世貿站，4號出口步行約10~15分鐘即可抵達\n...\n#### 其他\n- 營業時間：\n午餐：11:30-14:00\n下午餐：14:30-16:30\n晚餐：週一至週五 17:30-21:00、週六至週日 17:30-21:30",
+          "source": "web",
+          "title": "饗食天堂- 台北信義店- 捷運台北101 / 世貿站 - Klook",
+          "url": "https://www.klook.com/zh-TW/activity/177402-eatogether-taipei-xinyi-branch-taipei-101-world-trade-center-mrt-station/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-10-04",
+          "place_metadata": null,
+          "snippet": "饗食天堂 自助美饌｜EATOGETHER |\n...\n## 餐廳據點\n** 台北市信義區松壽路12號6樓(ATT 4 FUN)\n** 02-7737-5889\n座位數：364\n包廂：無\n營業時間：\n午　餐　11：30 - 14：00\n下午餐 14：30 - 16：30\n晚 餐 17：30 - 21：30（平日週一至五營業至21:00）\n...\nVISA / MASTER / JCB / 國民旅遊卡 / 銀聯卡\n｜電子支付｜\nApple Pay / Google Pay / Samsung Pay / LINE Pay / 街口支付 / 悠遊付 / 支付寶 / 微信支付\n...\n- 站牌「華納威...",
+          "source": "web",
+          "title": "饗食天堂 自助美饌｜EATOGETHER",
+          "url": "https://www.eatogether.com.tw/zh-TW/store/EAT007"
+        },
+        {
+          "date": "2023-04-01",
+          "last_updated": "2026-03-10",
+          "place_metadata": null,
+          "snippet": "✅ 網路訂位: https://www.feastogether.com.tw/booking/Eatogether\n✅ 電話訂位 (分店電話) : https://www.eatogether.com.tw/zh-TW/store/EAT007\n...\n餐廳店名: 饗食天堂吃到飽餐廳\n...\nWebsite: https://www.eatogether.com.tw/zh-TW/home\n.",
+          "source": "web",
+          "title": "Taipei Buffet 》關於饗食天堂吃到飽的五個重點(內有訂位方式)",
+          "url": "https://globalfoodelicious.com/eatogether-taipei-buffet/"
+        },
+        {
+          "date": "2026-01-05",
+          "last_updated": "2026-09-23",
+          "place_metadata": null,
+          "snippet": "饗食天堂在雙北有四家分店，分別是**台北京站店、台北信義店、新北板橋店、林口三井店**，小涵最常去的是台北信義店。饗食天堂台北信義店位於信義區ATT 4 FUN的6樓。\n...\n小涵直接在饗食天堂的官網線上訂位，和饗饗和旭集比，好訂太多了，線上訂位的時間是每日早上9:00開放一個月內的訂位，只要準時上網訂位就可以訂到。\n...\n饗食天堂 台北信義店\n地址: 110台北市信義區松壽路12號ATT 4 FUN百貨6樓\n電話: 02-7737-5889\n官網: https://www.eatogether.com.tw/zh-TW/home",
+          "source": "web",
+          "title": "饗食天堂台北信義店~ 菜色豐富，爐烤牛排、焗烤生蠔、現煎天使紅蝦",
+          "url": "https://hanblog.tw/eatogether-xinyi/"
+        },
+        {
+          "date": null,
+          "last_updated": "2026-10-03",
+          "place_metadata": null,
+          "snippet": "饗食天堂 自助美饌｜EATOGETHER |\n餐廳據點\n...\n** 新竹市東區西大路323號9樓(新竹大遠百9F)\n** 03-527-8800\n座位數：402位\n包廂：無\n營業時間：\n午　餐　11：30 - 14：00\n下午餐 14：30 - 16：30\n晚 餐 17：30 - 21：30（平日週一至五營業至21:00）\n...\n｜信用卡｜\nVISA / MASTER / JCB / AE / 國民旅遊卡 / 銀聯卡\n｜電子支付｜\nApple Pay / Samsung Pay / HAPPY GO Pay / LINE Pay / 台灣Pay (僅支援Android 5.0 NFC感應)...",
+          "source": "web",
+          "title": "饗食天堂自助美饌｜EATOGETHER | 餐廳據點",
+          "url": "https://www.eatogether.com.tw/zh-TW/store/EAT013"
+        }
+      ],
+      "usage": {
+        "inputTokens": 133,
+        "outputTokens": 51,
+        "totalTokens": 184
+      },
+      "latencyMs": 3820,
+      "attempts": 1
+    },
+    "discovery": [
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？",
+        "answer": "有。以目前資料，信義區可優先考慮：\n\n- **寶艾西餐廳**：歐式宮廷風格，獲米其林餐盤肯定，適合求婚、紀念日或正式慶生。[3]\n- **WILDWOOD**：位於 A9，主打牛排與甜點，適合午間約會或逛街後慶祝。[2]\n- **A CUT 牛排館**：高級牛排餐廳，適合重視正式用餐體驗的生日聚餐；但搜尋資料未確認其目前是否位於信義區，**地點需另行確認**。[6]\n- **暖暖私宅、天邊的家**：私廚與較高私密性的選擇，適合想要安靜約會或包場感；搜尋資料未提供完整菜單、價格與最新營業資訊，**細節未知**。[8]\n- **枡和 和牛清酒專門店**：適合喜歡和牛與清酒、氣氛較輕鬆的約會；搜尋資料未提供",
+        "citations": [
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://stancylife.com/taipei-date/",
+          "https://blog.myfunnow.com/blog/5494",
+          "https://www.opentable.com.tw/features/best-restaurants-for-birthdays-greater-taipei-area-xinyi-district",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://jzhappylifeday.com/restaurant-2/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://ai-finedining.com/best/xinyi-date-night/",
+          "https://salihaha.com/dating-restaurant/",
+          "https://kaikk.tw/xinyi-taipei/"
+        ],
+        "searchResults": [
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-10-15",
+            "place_metadata": null,
+            "snippet": "# 【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶人包\n## 信義牛排&餐酒館推薦\n### ▍Range Bistrokaya餐酒館(NEW)\n#### 十年淬鍊菜色具創意的台北餐酒館，高回訪率的約會、消夜餐廳",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶人包 - Ke...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2026-09-18",
+            "last_updated": "2026-10-06",
+            "place_metadata": null,
+            "snippet": "# 「台北約會餐廳懶人包」 男女朋友約會、慶生、親子、姐妹聚餐、兄弟宵夜小酌全蒐錄\n## WILDWOOD｜A9明亮木質空間，牛排吃完再分甜點\n- 適合：午間約會、紀念日吃牛排、信義區逛街後用餐。",
+            "source": "web",
+            "title": "台北約會餐廳推薦｜精選高級火鍋、壽喜燒、鐵板燒與餐酒館懶人包",
+            "url": "https://stancylife.com/taipei-date/"
+          },
+          {
+            "date": "2026-07-23",
+            "last_updated": "2026-10-07",
+            "place_metadata": null,
+            "snippet": "## 米其林餐盤｜君悅｜寶艾西餐廳｜台北 101 / 世貿站｜絕美求婚噴泉西餐廳\n獲得米其林餐盤肯定的寶艾西餐廳，以大理石噴泉造景與優雅古典的歐式宮廷氣派聞名，是台北最頂級的求婚與慶生聖地。主廚嚴選頂級美國乾式熟成牛排與產地直送頂級海鮮，搭配傳統法式精細工法呈現。",
+            "source": "web",
+            "title": "信義區約會去哪裡？精選質感約會餐廳與周邊飯店推薦",
+            "url": "https://blog.myfunnow.com/blog/5494"
+          },
+          {
+            "date": "2026-09-22",
+            "last_updated": "2026-10-14",
+            "place_metadata": null,
+            "snippet": "# 位於信義區​且適合慶祝生日的優質餐廳\n### 附近有80間餐廳可供訂位\n###### 9. 梨谷韓式鐵炭燒肉\n推薦銅盤烤肉及彩虹燒酒，適合與朋友聚會小酌，送餐速度快，服務人員也很友善，生意很好，前往用餐建議先預約以免久候。",
+            "source": "web",
+            "title": "位於信義區​且適合慶祝生日的優質餐廳 - OpenTable",
+            "url": "https://www.opentable.com.tw/features/best-restaurants-for-birthdays-greater-taipei-area-xinyi-district"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-10-04",
+            "place_metadata": null,
+            "snippet": "# 【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單\n## 信義區美食推薦 君曜雞湯\n台北信義區美食**《君曜雞湯》** 在網路擁有「雞湯界LV」稱號的好喝雞湯火鍋，餐廳提供可歡唱的大包廂空間，適合重要節日、生日慶祝、活動派對和長官升遷等推薦",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2026-03-04",
+            "last_updated": "2026-09-29",
+            "place_metadata": null,
+            "snippet": "# 2026情人節約會、生日餐廳推薦！雙北精緻浪漫儀式感高級餐廳懶人包\n## 雙北情人節約會、生日餐廳/A CUT\nA CUT 牛排館位於 國賓大飯店 B1，也是台北相當知名的高級牛排餐廳之一",
+            "source": "web",
+            "title": "生日餐廳推薦！雙北精緻浪漫儀式感高級餐廳懶人包",
+            "url": "https://jzhappylifeday.com/restaurant-2/"
+          },
+          {
+            "date": "2026-09-20",
+            "last_updated": "2026-10-15",
+            "place_metadata": null,
+            "snippet": "# 蛋寶趴趴go\n## 【 初泰 】(信義象山門市)\n[台北美食] 宵夜約會「艾朋牛排餐酒館」火鍋、牛排一次滿足！À Point Steak & Bar #信義區 #市政府站",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": null,
+            "last_updated": "2026-09-27",
+            "place_metadata": null,
+            "snippet": "# 信義區約會餐廳推薦:24 家精選合集(2026 持續更新)\n信義區目前收錄 24 家適合約會的精緻餐廳。想要包場私密感,首推頂樓天台私廚「暖暖私宅」與無菜單的「天邊的家」(Google 評分皆 4.9 以上);想以和牛配清酒加溫氣氛,「枡和 和牛清酒專門店」是區內評價最高的選擇之一(Google 5.0)。完整列表見下表。\n...\n## 在信義區約會,怎麼挑餐廳?\n信義區是台北地標密度最高的約會場景:101、市府商圈與各大百貨高樓讓「飯後散步路線」自帶儀式感。本區約會型餐廳兩極明顯——藏在大樓裡的預約制私廚(人少、包場感強),以及百貨高樓層的景觀餐廳(熱鬧、視野好)。價位帶整體偏高:本區此...",
+            "source": "web",
+            "title": "信義區約會餐廳推薦:24 家精選合集(2026 持續更新) - AI Fine Dining",
+            "url": "https://ai-finedining.com/best/xinyi-date-night/"
+          },
+          {
+            "date": "2026-02-06",
+            "last_updated": "2026-09-22",
+            "place_metadata": null,
+            "snippet": "# 2026情人節特輯*台北46間浪漫約會餐廳整理*燈光好氣氛佳,平價也有好品質,過生日好選擇\n## 雙北浪漫餐廳推薦-情人節、紀念日好去處\n•地址：台北市信義區松仁路101號B2",
+            "source": "web",
+            "title": "2026情人節特輯*台北46間浪漫約會餐廳整理*燈光好氣氛佳,平價也有 ...",
+            "url": "https://salihaha.com/dating-restaurant/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-10-14",
+            "place_metadata": null,
+            "snippet": "# 10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有，吃美食不怕荷包破洞\n## 潮品集‧潮坊 潮州餐廳\n【潮萃火焰瀨尿燒鵝】份量大，適合6~8人聚餐，需要提前訂位、訂鵝。",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 51,
+          "outputTokens": 261,
+          "totalTokens": 312
+        },
+        "latencyMs": 4677,
+        "attempts": 1,
+        "queryId": "dating-celebration-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "台北信義區聚餐推薦？",
+        "answer": "台北信義區聚餐可依需求選：\n\n- **麻辣鍋、多人聚餐**：辛殿麻辣鍋信義店，位於松壽路，適合朋友聚會。[1]\n- **火鍋、方便交通**：海底撈信義店，位於松仁路，適合晚餐或宵夜聚餐。[8]\n- **6–8人合菜**：潮品集／潮坊潮州餐廳，火焰瀨尿燒鵝需提前預訂。[3]\n- **餐酒館、約會兼聚餐**：Hoda Bistro，提供料理與特色調酒。[9]\n- **景觀型聚餐**：Flare Taipei，位於ATT Valley，鄰近象山站，可欣賞台北101景觀。[7]\n- **公司餐敘、同學會**：信義區飯店自助餐選擇多，適合多人聚餐。[6]\n\n實際價格、營業時間、包廂與訂位狀況：**未知，建議用餐前向店家確認**。",
+        "citations": [
+          "https://www.klook.com/zh-TW/blog/xinyi-restaurant-fnb-taipei-taiwan/",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://kaikk.tw/xinyi-taipei/",
+          "https://eggie.tw/blog/posts/8226109444",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://kenalice.tw/blog/post/xinyi",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E8%81%9A%E9%A4%90%E7%81%AB%E9%8D%8B%E6%8E%A8%E8%96%A6",
+          "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/",
+          "https://niniyeh.com/xinyi-food-guide/"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-03-24",
+            "last_updated": "2026-09-26",
+            "place_metadata": null,
+            "snippet": "# 【2026信義區美食推薦】9家必吃餐廳，早午餐、聚餐首選\n## 信義區美食｜辛殿麻辣鍋 信義店\n**辛殿麻辣鍋 信義店 店家資訊**\n- 地址：台北市信義區松壽路28號\n- 電話：(02) 2722-7667",
+            "source": "web",
+            "title": "【2026信義區美食推薦】9家必吃餐廳，早午餐、聚餐首選",
+            "url": "https://www.klook.com/zh-TW/blog/xinyi-restaurant-fnb-taipei-taiwan/"
+          },
+          {
+            "date": "2026-06-26",
+            "last_updated": "2026-10-13",
+            "place_metadata": null,
+            "snippet": "# 【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館、包廂聚餐的不踩雷名單全攻略！\n【來吧台北】台北國父紀念館日式餐酒館推薦，3小時調酒暢飲只要1000元！信義區好評不斷的聚會餐廳推薦",
+            "source": "web",
+            "title": "【信義區聚會餐廳】精選10間必訪推薦：信義商圈質感餐酒館",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E8%81%9A%E6%9C%83%E9%A4%90%E5%BB%B3%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2025-06-07",
+            "last_updated": "2026-10-14",
+            "place_metadata": null,
+            "snippet": "# 10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有，吃美食不怕荷包破洞\n## 潮品集‧潮坊 潮州餐廳\n【潮萃火焰瀨尿燒鵝】份量大，適合6~8人聚餐，需要提前訂位、訂鵝。",
+            "source": "web",
+            "title": "10間信義區美食這樣吃！平價套餐、高檔聚餐、約會餐廳都有",
+            "url": "https://kaikk.tw/xinyi-taipei/"
+          },
+          {
+            "date": "2026-09-20",
+            "last_updated": "2026-10-15",
+            "place_metadata": null,
+            "snippet": "# 蛋寶趴趴go\n## 【 初泰 】(信義象山門市)\n- 營業電話：02-2756-7788",
+            "source": "web",
+            "title": "【2025 台北信義區美食懶人包】約會聚餐慶生餐廳推薦#市 ...",
+            "url": "https://eggie.tw/blog/posts/8226109444"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-10-04",
+            "place_metadata": null,
+            "snippet": "# 【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單\n岩漿火鍋微風信義店、Retro House 美式餐廳、神樂坂割烹\n...\n## 信義區美食推薦 Flare Taipei\n營業時間：星期一 休息",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-06-26",
+            "last_updated": "2026-10-15",
+            "place_metadata": null,
+            "snippet": "# 【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶人包\n## 信義吃到飽自助餐\n吃到飽是台灣人很愛的飲食型態之一，信義區堪稱Buffet激戰區，知名餐廳及五星級飯店自助餐都沒缺席，十分適合公司餐敘或同學會等多人聚餐。",
+            "source": "web",
+            "title": "【台北信義美食】45間精選信義餐廳推薦，聚餐、約會、慶生懶人包 - Ke...",
+            "url": "https://kenalice.tw/blog/post/xinyi"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-10-13",
+            "place_metadata": null,
+            "snippet": "# 2026信義區美食：解鎖吃到飽天花板、台菜餐酒館，踩點23家必吃餐廳！\n## 信義區美食推薦｜必訪５家早午餐\n### 15.Flare Taipei：南洋渡假風早午餐｜信義區ATT Valley餐廳\n「Flare Taipei」是一家位於台北信義區ATT Valley地下２樓的餐廳，白天是時尚的咖啡及早午餐餐廳，晚上則轉為充滿南洋渡假風情的餐酒館。位於捷運象山站，步行約７分鐘可抵達，並擁有絕佳的戶外泳池及瀑布景觀，還能欣賞台北101美景。",
+            "source": "web",
+            "title": "吃遍信義區！23家必收好評美食：牛肉麵節冠軍、火鍋界LV、最難訂位吃到飽 | 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2025-07-21",
+            "last_updated": "2026-03-28",
+            "place_metadata": null,
+            "snippet": "# 🔎 台北地區的『信義區聚餐火鍋』Top 15 推薦！\n臺北市信義區松仁路182號\n火鍋晚餐宵夜",
+            "source": "web",
+            "title": "台北信義區聚餐火鍋推薦Top 15 推薦！ 海底撈信義店 - 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E8%81%9A%E9%A4%90%E7%81%AB%E9%8D%8B%E6%8E%A8%E8%96%A6"
+          },
+          {
+            "date": "2026-03-14",
+            "last_updated": "2026-09-24",
+            "place_metadata": null,
+            "snippet": "# 【台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高、高CP值不踩雷全攻略！\n【Hoda Bistro】台北信義評分最高的平價餐酒館美食推薦，多款精緻料理與特色調酒，台北信義約會聚餐首選餐廳",
+            "source": "web",
+            "title": "【2026台北信義美食推薦】精選12間必吃餐廳：在地人回訪率最高",
+            "url": "https://dalang.tw/%E5%8F%B0%E5%8C%97%E4%BF%A1%E7%BE%A9%E7%BE%8E%E9%A3%9F%E6%87%B6%E4%BA%BA%E5%8C%85/"
+          },
+          {
+            "date": "2026-07-01",
+            "last_updated": "2026-10-14",
+            "place_metadata": null,
+            "snippet": "# 信義區美食推薦｜30+餐廳小吃清單一次看\n因為交通便利，信義區幾乎是我約會、朋友聚餐的首選。",
+            "source": "web",
+            "title": "信義區美食推薦｜30+餐廳小吃清單一次看 @Nico＆妮喃小語",
+            "url": "https://niniyeh.com/xinyi-food-guide/"
+          }
+        ],
+        "usage": {
+          "inputTokens": 37,
+          "outputTokens": 265,
+          "totalTokens": 302
+        },
+        "latencyMs": 4645,
+        "attempts": 1,
+        "queryId": "gathering-general-01",
+        "queryIntent": "recommendation"
+      },
+      {
+        "enabled": true,
+        "provider": "perplexity",
+        "model": "sonar",
+        "query": "信義區想吃高評價的火鍋或燒肉推薦？",
+        "answer": "信義區可優先考慮：\n\n- **橘色涮涮屋 A9 館**：高級涮涮鍋，評分 4.8；適合重視食材與用餐品質者。[1]\n- **燒肉中山台北信義店**：位於 ATT 4 FUN 10 樓，提供代客燒烤與高樓景觀；訂位較難，建議提前預約。[2]\n- **新馬辣經典麻辣鍋 Plus+**：吃到飽麻辣鍋，適合多人聚餐；實際價格與供應內容未知。[3]\n- **石研室石頭火鍋（信義誠品店）**：個人鍋約 298 元起，免服務費，較適合預算中等或個人用餐。[4]\n- **火鍋106**：粵式豬肚煲鍋，適合想吃不同於一般涮涮鍋口味者；評分與價格資訊不足，未知。[5]\n\n若只選一家：**火鍋選�",
+        "citations": [
+          "https://supertaste.tvbs.com.tw/category/food/taipei-city/hot-pot?district=xinyi-district",
+          "https://supertaste.tvbs.com.tw/pack/346434",
+          "https://sfexplorer.tw/content/551",
+          "https://niniyeh.com/xinyi-hotpot/",
+          "https://www.mecocute.com/xinyi-district-food/",
+          "https://www.rayuncle.com/xinyi-hotpot/",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%81%AB%E9%8D%8B",
+          "https://dpmm2021.pixnet.net/blog/posts/16117922543",
+          "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E8%81%9A%E9%A4%90%E7%81%AB%E9%8D%8B%E6%8E%A8%E8%96%A6",
+          "https://www.dcard.tw/f/food/p/260782035"
+        ],
+        "searchResults": [
+          {
+            "date": "2026-09-11",
+            "last_updated": "2026-10-13",
+            "place_metadata": null,
+            "snippet": "# 台北市信義區火鍋 推薦\n### 泰奶冰淇淋吃到飽！高CP值鍋物「泰味季」８款搶看，加碼送超Ｑ大象玩偶\n- ### 信義區這家太狂！「壽喜燒吃到飽」759元起爽嗑和牛，海鮮炸物、甜點暢吃",
+            "source": "web",
+            "title": "台北市信義區火鍋推薦｜食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/category/food/taipei-city/hot-pot?district=xinyi-district"
+          },
+          {
+            "date": "2026-08-01",
+            "last_updated": "2026-10-13",
+            "place_metadata": null,
+            "snippet": "# 2026信義區美食：解鎖吃到飽天花板、台菜餐酒館，踩點23家必吃餐廳！\n## 信義區美食有哪些特色？\n|信義區美食、餐廳一次看|信義區美食、餐廳一次看|信義區美食、餐廳一次看|\n|--|--|--|\n|吃到飽餐廳|饗A Joy、旭集、饗饗、新馬辣經典麻辣鍋Plus+、NAGOMI雅、Urban Paradise|饗食天堂、探索廚房、阿豬媽韓式烤肉吃到飽、Fundamental、凱菲屋、兩餐、涮乃葉|",
+            "source": "web",
+            "title": "吃遍信義區！23家必收好評美食：牛肉麵節冠軍、火鍋界LV、最難訂位吃到飽 | 食尚玩家",
+            "url": "https://supertaste.tvbs.com.tw/pack/346434"
+          },
+          {
+            "date": "2025-11-06",
+            "last_updated": "2026-09-21",
+            "place_metadata": null,
+            "snippet": "# 信義區火鍋推薦：精選10大熱門店，麻辣鍋、日式涮涮鍋等五大派系真實評比\n## ? 高CP值個人鍋/石頭火鍋派代表 ?\n### 【石研室 石頭火鍋 (信義誠品店)】\n- **價格區間：** 平價~中價位。個人鍋$298起（基本豬雞牛），海鮮或高階肉品$380-$580左右。免服務費！",
+            "source": "web",
+            "title": "信義區火鍋推薦：精選10大熱門店，麻辣鍋、日式涮涮鍋等五大派系真實...",
+            "url": "https://sfexplorer.tw/content/551"
+          },
+          {
+            "date": "2026-04-25",
+            "last_updated": "2026-10-15",
+            "place_metadata": null,
+            "snippet": "# 信義區火鍋推薦｜9間必訪清單一次看\n## 信義區火鍋｜ 火鍋106粵式豬肚煲鍋\n信義區粵式火鍋首推《火鍋106》",
+            "source": "web",
+            "title": "信義區火鍋推薦｜9間必訪清單一次看",
+            "url": "https://niniyeh.com/xinyi-hotpot/"
+          },
+          {
+            "date": "2026-04-10",
+            "last_updated": "2026-10-04",
+            "place_metadata": null,
+            "snippet": "# 【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單\n## 信義區美食推薦 燒肉中山台北信義\n「**燒肉中山台北信義店**」擁有高空橘紅夕陽餘暉、科幻系百萬夜景的台北頂級燒肉店稱號，地點位於ATT 4 FUN 信義店10樓，全程代客燒烤服務和信義區街道美麗夜景很適合情侶的台北約會餐廳或朋友聚餐推薦，但也是台北有名的難訂位燒肉店。",
+            "source": "web",
+            "title": "【信義區美食】16間信義區美食推薦，台北聚餐餐廳名單",
+            "url": "https://www.mecocute.com/xinyi-district-food/"
+          },
+          {
+            "date": "2025-04-10",
+            "last_updated": "2026-10-14",
+            "place_metadata": null,
+            "snippet": "# 2025【信義區火鍋推薦】Top11台北高級火鍋百貨美食,A5和牛超鮮海鮮必吃不錯過!\n## 信義區火鍋#7-Beef King日本頂級A5和牛鍋物放題火鍋吃到飽推薦\n原本在信義區ATT 4 Fun 10樓，現在已搬移到1大安區復興南路一段的日本頂級A5和牛鍋物放題為高級火鍋吃到飽，吃到飽分別為四個價位，經典和牛2499元、 豪華和牛$3799元、神領域和牛6999元，皇家御用伊藤牧場和牛9999元，個人套餐三種價位。A5豪華2980元、3980元、4980元。",
+            "source": "web",
+            "title": "2025【信義區火鍋推薦】Top11台北高級火鍋百貨美食,A5和牛 ...",
+            "url": "https://www.rayuncle.com/xinyi-hotpot/"
+          },
+          {
+            "date": "2021-06-29",
+            "last_updated": "2026-10-09",
+            "place_metadata": null,
+            "snippet": "## 橘色涮涮屋A9館\n4.8",
+            "source": "web",
+            "title": "台北信義區火鍋 Top 15 推薦！ 紅九九個人鴛鴦鍋、無老鍋 信義店... |...",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E7%81%AB%E9%8D%8B"
+          },
+          {
+            "date": "2026-09-15",
+            "last_updated": "2026-09-22",
+            "place_metadata": null,
+            "snippet": "## 2026信義區火鍋推薦名單\nGoogle 評價：4.7\n...\nGoogle 評價：4.6",
+            "source": "web",
+            "title": "2026最新【信義區火鍋推薦】TOP7必吃信義區火鍋店訂位！吃到飽單 ...",
+            "url": "https://dpmm2021.pixnet.net/blog/posts/16117922543"
+          },
+          {
+            "date": "2025-07-21",
+            "last_updated": "2026-03-28",
+            "place_metadata": null,
+            "snippet": "# 🔎 台北地區的『信義區聚餐火鍋』Top 15 推薦！\n(12則評論)\n...\n臺北市信義區松仁路182號",
+            "source": "web",
+            "title": "台北信義區聚餐火鍋推薦Top 15 推薦！ 海底撈信義店 - 愛食記",
+            "url": "https://ifoodie.tw/explore/%E5%8F%B0%E5%8C%97%E5%B8%82/list/%E4%BF%A1%E7%BE%A9%E5%8D%80%E8%81%9A%E9%A4%90%E7%81%AB%E9%8D%8B%E6%8E%A8%E8%96%A6"
+          },
+          {
+            "date": "2026-02-03",
+            "last_updated": "2026-02-07",
+            "place_metadata": null,
+            "snippet": "## 信義區 500 吃到火鍋＋燒肉吃到飽，真的飽到天靈蓋 #生活打卡計畫\n旁邊火鍋還同時在煮， 就是一邊烤、一邊煮，腦袋完全沒在冷靜。",
+            "source": "web",
+            "title": "信義區 500 吃到火鍋＋燒肉吃到飽，真的飽到天靈蓋 #生活打卡計畫 - 美食板 | Dcard",
+            "url": "https://www.dcard.tw/f/food/p/260782035"
+          }
+        ],
+        "usage": {
+          "inputTokens": 46,
+          "outputTokens": 273,
+          "totalTokens": 319
+        },
+        "latencyMs": 4510,
+        "attempts": 1,
+        "queryId": "hotpot-bbq-01",
+        "queryIntent": "comparison"
+      }
+    ]
+  },
+  "citation_resolution": {}
+}
