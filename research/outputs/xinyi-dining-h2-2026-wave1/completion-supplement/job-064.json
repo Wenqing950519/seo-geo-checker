@@ -1,0 +1,17 @@
+{
+  "id": 64,
+  "input_url": "https://www.wildwood.com.tw/",
+  "store_id": "XY-057",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0107-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0107-response.txt",
+  "sequence": 64,
+  "started_at": "2026-10-15T06:38:24.857Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_09740ea1-5691-4be6-b055-897902747afd",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:28.119Z"
+}

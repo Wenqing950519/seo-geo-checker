@@ -1,0 +1,17 @@
+{
+  "id": 42,
+  "input_url": "https://www.orangeshabu.com/",
+  "store_id": "XY-060",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0069-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0069-response.txt",
+  "sequence": 42,
+  "started_at": "2026-10-15T06:37:48.577Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_ea202c4f-ea1d-4b0e-8dde-cec091526ac7",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:51.781Z"
+}

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>wildwood live fire cuisine - Imparts a flavor that cannot be replicated by modern cooking methods.</title>
+	<meta charset="UTF-8">
+    <link rel="icon" href="img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Grilling over wood fire is not only primal and beautiful, but also imparts a flavor that cannot be replicated by modern cooking methods." />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="stylesheets/slick.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/slick-theme.css" />
+    <link rel="stylesheet" href="stylesheets/computer.css">
+
+    <script type="text/javascript" src="javascripts/jquery-2.2.4.min.js"></script>
+    <script type='text/javascript' src="javascripts/TweenMax.min.js"></script>
+    <script type='text/javascript' src='javascripts/ScrollMagic.min.js'></script>
+	
+    <script type='text/javascript' src="javascripts/debug.addIndicators.min.js"></script>
+    <script type='text/javascript' src="javascripts/animation.gsap.min.js"></script>
+
+	<!-- <script type='text/javascript' src="javascripts/scrollreveal.min.js"></script> -->
+    <script type='text/javascript' type="text/javascript" src="javascripts/slick.js"></script>
+    <script type='text/javascript' src="javascripts/global.js"></script>
+    
+    <!-- share -->
+    <meta property="og:url"                content="http://longtail.com.tw/9800077mtel43/" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="Wildwood" />
+    <meta property="og:description"        content="Imparts a flavor that cannot be replicated by modern cooking methods." />
+    <meta property="og:site_name"          content="Wildwood"/>
+    <meta property="fb:admins" content="USER_ID"/>
+    <meta property="og:image" content="http://longtail.com.tw/9800077mtel43/img/img_slide.jpg" />
+    <meta property="og:image" content="http://longtail.com.tw/9800077mtel43/img/img_slide1.jpg" />
+    <meta property="og:image" content="http://longtail.com.tw/9800077mtel43/img/img_slide2.jpg" />
+
+    <!-- twitter share -->
+    <meta name="twitter:url" content="http://longtail.com.tw/9800077mtel43/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Wildwood" />
+    <meta name="twitter:description" content="Imparts a flavor that cannot be replicated by modern cooking methods." />
+    <meta name="twitter:site" content="Wildwood" />
+    <meta name="twitter:image" content="http://longtail.com.tw/9800077mtel43/img/img_slide.jpg" />
+    <meta name="twitter:image" content="http://longtail.com.tw/9800077mtel43/img/img_slide1.jpg" />
+    <meta name="twitter:image" content="http://longtail.com.tw/9800077mtel43/img/img_slide2.jpg" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128599479-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-128599479-1');
+    </script>
+
+    <!-- Google tag (gtag.js) 20240714 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-49FFE3QW95"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-49FFE3QW95');
+    </script>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TT5VVQ2X');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT5VVQ2X"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="menu-burger" id="indro_menu">
+        <div class="lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        
+    </div>
+    <nav>
+        <div class="menu-burger close" id="opened_menu">
+            <div class="lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <ul>
+            <li><a title="CHEF" href="#anchor_chef">CHEF</a></li>
+            <li><a title="ABOUT" href="#anchor_about">ABOUT</a></li>
+            <li> <a title="MENUS" href="#anchor_menu">MENUS</a></li>   
+            <li> <a title="GALLERY" href="#anchor_gallery">GALLERY</a></li>
+            <!-- <li><a title="CONTACT" href="#anchor_contact">CONTACT</a></li> -->
+            <li class="language-m">
+               <a title="ENGLISH" href="index.php">ENGLISH</a>
+                 <a title="繁體中文" href="index_ch.php">繁體中文</a>
+            </li>
+            <li>
+                <div class="reservation-m">
+                    <a title="RESERVATION" target="_blank" href="https://inlineapps.com/booking/-LFoIMdVDp6fy8E_URpm/-LFoIMdVDp6fy8E_URpn" class="reservation-btn">RESERVATION</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <header>
+        <div class="language">
+            <a title="ENGLISH" href="index.php">ENGLISH</a>
+                 <a title="繁體中文" href="index_ch.php">繁體中文</a>
+        </div>
+        <div class="reservation">
+            <a title="RESERVATION" target="_blank" href="https://inlineapps.com/booking/-LFoIMdVDp6fy8E_URpm/-LFoIMdVDp6fy8E_URpn" class="reservation-btn">RESERVATION</a>
+        </div>
+    </header>
+   <div class="container">
+        <section class="intro-wrapper">
+            <a title="Wildwood" href="/" class="logo">
+                <img src="img/img_logo.svg" alt="Wildwood">
+            </a>
+
+            <div class="main-slider">
+                <div class="main-slider-pic">
+                    <div class="content" style="background: url('img/img_slide1.jpg') center no-repeat; 
+                       -moz-background-size: cover;
+                       -o-background-size: cover;
+                       -webkit-background-size: cover;
+                       background-size: cover;
+                      ">
+                    </div>
+                </div>
+                <div class="main-slider-pic">
+                    <div class="content" style="background: url('img/img_slide2.jpg') center no-repeat; 
+                       -moz-background-size: cover;
+                       -o-background-size: cover;
+                       -webkit-background-size: cover;
+                       background-size: cover;
+                      ">
+                    </div>
+                </div>
+                <div class="main-slider-pic">
+                    <div class="content" style="background: url('img/img_slide3.jpg') center no-repeat; 
+                       -moz-background-size: cover;
+                       -o-background-size: cover;
+                       -webkit-background-size: cover;
+                       background-size: cover;
+                      ">
+                    </div>
+                </div>
+                <!--
+                <div class="main-slider-pic">
+                    <div class="content" style="background: url('img/img_slide4.jpg') center no-repeat; 
+                       -moz-background-size: cover;
+                       -o-background-size: cover;
+                       -webkit-background-size: cover;
+                       background-size: cover;
+                      ">
+                    </div>
+                </div>
+                -->
+            </div>
+            <div class="intro-info">
+                <div class="intro-text">
+                    OPEN A FOOD JOURNEY
+                </div>
+            </div>
+            <!-- <p class="scroll-hint">scroll</p> -->
+            <div class="scroll-animation"></div>
+        </section>
+        <section class="square-info ">
+            <div class="scroll-container " id="ScrollContainer">
+                <div class="square-info-box green scroll-parallax speed-green scroll-reveal">
+                    <div class="square-info-text" itemscope itemtype="http：//schema.org/Person">
+                        <h2 class="square-info-til" id="anchor_chef" itemprop="jobTitle">
+                            CHEF
+                        </h2>
+                        <h1 class="square-info-subtil" itemprop="name">
+                            Jarry 劉建志
+                        </h1>
+                        <span class="dash"></span>
+                        <p class="square-info-desc" itemprop="description">
+                            Chef Jarry began his culinary career at the age of 19 and now brings over 20 years of experience to the table. He has honed his exceptional grill techniques through years of training at Danny's Steakhouse, Fresh & Aged Italian Steak House, and Ciao by Fratelli Pennisi Macelleria Sicilia at Palais de Chine Hotel. His deep understanding of grilling is matched by his versatile approach to European cuisine, skillfully blending precision with creativity. 
+                        </p>
+                        <!-- <a title="RESERVATION" target="_blank" href="https://inlineapps.com/booking/-LFoIMdVDp6fy8E_URpm/-LFoIMdVDp6fy8E_URpn" class="btn btn-white">RESERVATION</a>-->
+                    </div>
+                </div>
+
+                <div class="square-info-images scroll-parallax speed-chef scroll-reveal">
+                    <div class="image-container">
+                        <div class="img-slider">
+                            <div class="image-container-pic">
+                                  <div class="content" style="background: url('img/img_chef_4.jpg') center no-repeat; 
+                                 -moz-background-size: cover;
+                                 -o-background-size: cover;
+                                 -webkit-background-size: cover;
+                                 background-size: cover;
+
+                                ">  
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mask"></div>
+                </div> 
+                
+                <div class=" scroll-parallax single-image scroll-reveal">
+
+                    <div class="single-image-container ">
+                        <div class="single-image-wrap"><img src="img/img_restaurant.jpg" alt="Wildwood"/></div>
+                    </div>
+                    <div class="mask"></div>
+
+                </div>
+
+
+                <div class="scroll-parallax  deco-box speed-box">
+                    <div class="content"></div>
+                </div>
+
+                <div class="square-info-box no-bg transparent more scroll-parallax speed-transparent scroll-reveal ">
+                    <div class="square-info-text">
+                        <h2 class="square-info-til" id="anchor_about">
+                            ABOUT WILDWOOD
+                        </h2>
+                        <span class="dash no-bg"></span>
+                        <p class="square-info-desc">
+                            Wildwood presents a rustic yet elevated dining experience unlike any in Taipei. The restaurant is anchored by an open kitchen and custom grill that invites guests to witness the theatre and drama of live fire cooking.
+                        </p>
+                        <a title="RESERVATION" target="_blank" href="https://inlineapps.com/booking/-LFoIMdVDp6fy8E_URpm/-LFoIMdVDp6fy8E_URpn" class="btn btn-blue">RESERVATION</a>
+                    </div>
+                </div>
+
+                <div class="square-info-box gold scroll-parallax speed-menu scroll-reveal">
+                    <div class="square-info-text">
+                        <h2 class="square-info-til" id="anchor_menu">
+                            MENU
+                        </h2>
+                        <span class="dash"></span>
+                        <p class="square-info-desc">
+                            Grilling over wood fire is not only primal and beautiful, but also imparts a flavor that cannot be replicated by modern cooking methods. The inspired menu pushes the boundaries of live-fire cuisine with dry aged meats, the freshest local seafood and produce, and artisanal baked goods.
+                        </p>
+                        <div class="square-link-group">
+                                                        <a title="Lunch" target="_blank" href="http://www.longtail.com.tw/files/menu/03d3a426e684464b1492743cce3c5015.pdf" class="square-link">LUNCH</a>
+                                                                                    <a title="DINNER" target="_blank" href="http://www.longtail.com.tw/files/menu/59b5e6c74d9ef104ada4e1741aabfed2.pdf" class="square-link">A LA CARTE</a>
+                                                                                    <a title="DRINK" target="_blank" href="http://www.longtail.com.tw/files/menu/f6b2a6be34aa7593ac0acb4042153d5b.pdf" class="square-link">DRINK</a>
+                                                    </div>
+                        
+                        <a title="RESERVATION" target="_blank" href="https://inlineapps.com/booking/-LFoIMdVDp6fy8E_URpm/-LFoIMdVDp6fy8E_URpn" class="btn btn-white">RESERVATION</a>
+                    </div>
+                </div>
+
+                <div class="square-info-images scroll-parallax speed-food scroll-reveal">
+                    <div class="image-container ">
+                        <div class=" img-slider ">
+                            <div class="image-container-pic">
+                                  <div class="content" style="background: url('img/img_food.jpg') center no-repeat; 
+                                 -moz-background-size: cover;
+                                 -o-background-size: cover;
+                                 -webkit-background-size: cover;
+                                 background-size: cover;
+
+                                ">
+                                  </div>
+                            </div>
+                            <div class="image-container-pic">
+                                  <div class="content" style="background: url('img/img_food2.jpg') center no-repeat; 
+                                 -moz-background-size: cover;
+                                 -o-background-size: cover;
+                                 -webkit-background-size: cover;
+                                 background-size: cover;
+                                ">
+                                  </div>
+                            </div>
+                            <div class="image-container-pic">
+                                  <div class="content" style="background: url('img/img_food3.jpg') center no-repeat; 
+                                 -moz-background-size: cover;
+                                 -o-background-size: cover;
+                                 -webkit-background-size: cover;
+                                 background-size: cover;
+                                ">
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mask"></div>
+                </div>
+            </div>
+            <!-- <div class="scroll-container scroll-images ">
+
+                
+        	    
+                <div class="square-info-images scroll-parallax speed-restaurant">
+                    
+                    <div class="image-container img-slider ">
+                        <div class="image-container-pic">
+                              <div class="content" style="background: url('img/img_restaurant.jpg') center no-repeat; 
+                             -moz-background-size: cover;
+                             -o-background-size: cover;
+                             -webkit-background-size: cover;
+                             background-size: cover;
+
+                            ">
+                              </div>
+                        </div>
+                        <div class="image-container-pic">
+                              <div class="content" style="background: url('img/img_restaurant2.jpg') center no-repeat; 
+                             -moz-background-size: cover;
+                             -o-background-size: cover;
+                             -webkit-background-size: cover;
+                             background-size: cover;
+                            ">
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div> -->
+            
+        </section>
+        <section class="footer-slider scroll-parallax speed-footer-slider" id="anchor_gallery">
+                        <div class="footer-slider-pic">
+                <div class="content" style="background: url('http://www.longtail.com.tw/files/photo/11f8f08e8e530737d04fce78a4724ee4.jpg') center no-repeat; -moz-background-size: cover;-o-background-size: cover;-webkit-background-size: cover;background-size: cover;">     </div>
+            </div>
+                        <div class="footer-slider-pic">
+                <div class="content" style="background: url('http://www.longtail.com.tw/files/photo/2f85eacbb1236bd0de7d5937ed18036a.jpg') center no-repeat; -moz-background-size: cover;-o-background-size: cover;-webkit-background-size: cover;background-size: cover;">     </div>
+            </div>
+                        <div class="footer-slider-pic">
+                <div class="content" style="background: url('http://www.longtail.com.tw/files/photo/989e37093ddb948003a80cd22d705dca.jpg') center no-repeat; -moz-background-size: cover;-o-background-size: cover;-webkit-background-size: cover;background-size: cover;">     </div>
+            </div>
+                        <div class="footer-slider-pic">
+                <div class="content" style="background: url('http://www.longtail.com.tw/files/photo/5280d7259cad3af77369cd9c07f44935.jpg') center no-repeat; -moz-background-size: cover;-o-background-size: cover;-webkit-background-size: cover;background-size: cover;">     </div>
+            </div>
+                    </section>
+        <!-- <section class="contact">
+            <div class="square-info-til" id="anchor_contact">CONTACT US</div>
+            <div class="dash no-bg"></div>
+            <form class="contact-info" id="contactForm" action="sendmail.php" method="post">
+                <input type="hidden" name="lang" value="en">
+                <div class="field-container">
+                    <input type="text" placeholder="NAME*" id="ContactName" name="ContactName">
+                    <div class="error-text">Please fill in your name.</div>
+                </div>
+                <div class="field-container">
+                    <input type="text" placeholder="EMAIL*" name="ContactEmail" id="ContactEmail">
+                    <div class="error-text">Please fill in your email.</div>
+
+                </div>
+                <div class="field-container">
+                    <input type="text" placeholder="SUBJECT" name="ContactSubject" id="ContactSubject">
+
+                </div>
+                <div class="field-container">
+                    <input placeholder="CONTENT*" id="ContactContent" name="ContactContent"></input>
+                    <div class="error-text">Please fill in some comments.</div>
+                </div>
+                <a title="SEND" href="javascript:void(0)" id="submitBtn" class="btn">SEND</a>
+            </form>
+        </section> -->
+        <footer>
+            <div class="footer-group">
+                <div class="footer-til">
+                    RESERVATION
+                </div>
+                <a title="call for reservation" href="tel:+886-2-2722-8886" class="footer-phone">+886 2 2722 8886</a>
+            </div>
+            <div class="footer-group">
+                <div class="footer-til">
+                    OPENING HOURS
+                </div>
+                <ul>
+                                        <li>
+                        <div class="footer-list-left">
+                            Monday - Thursday                        </div>
+                        <div class="footer-list-right">
+                            11:30-15:00 17:30-21:30                        </div>
+                    </li>
+                                        <li>
+                        <div class="footer-list-left">
+                            Friday                        </div>
+                        <div class="footer-list-right">
+                            11:30-15:00 17:30-22:00                        </div>
+                    </li>
+                                        <li>
+                        <div class="footer-list-left">
+                            Sataurday                        </div>
+                        <div class="footer-list-right">
+                            11:00-17:00 17:30-22:00                        </div>
+                    </li>
+                                        <li>
+                        <div class="footer-list-left">
+                            Sunday                        </div>
+                        <div class="footer-list-right">
+                            11:00-17:00 17:30-21:30                        </div>
+                    </li>
+                                    </ul>
+            </div>
+            <div class="footer-group">
+                <div class="footer-til">
+                    LOCATION
+                </div>
+                <ul>
+                    <li><a title="address" target="_blank" href="https://goo.gl/maps/31RYiSmvcG92">4F, No. 9, Songshou Road, Xinyi District, Taipei City, 110</a></li>
+                    <li>Shin Kong Mitsukoshi Xinyi Place A9</li>
+                    <li style="font-size:20px;padding-top: 6px;">CONTACT US</li>
+                    <li><a href="mailto:info@wildwood.com.tw">info@wildwood.com.tw</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <a title="facebook of Wildwood" href="https://www.facebook.com/wildwood.tw/" target="_blank" class="facebook-share"></a>
+                <!-- <a title="kith and kin culinary" href="http://kithandkinculinary.com/" target="_blank" class="kithkin-link"></a> -->
+                <span class="copyright">
+                    © 2017 WILDWOOD. ALL RIGHTS RESERVED.
+                </span>
+            </div>
+        </footer>
+   </div>
+    <script>
+      // // disable scrollmagic
+      jQuery( document ).ready( function($) {
+
+        var tooSmall = false;
+        var controller = null;
+        var maxWidth = 1025; // or whatever your max width is
+
+        if( $(window).width() < maxWidth ) {
+          tooSmall = true;
+        }
+        
+        $('#submitBtn').click(function(){
+
+		var ContactName =$("#ContactName").val().trim();
+	    var ContactEmail =$("#ContactEmail").val().trim();
+	    var ContactContent = $("#ContactContent").val();
+	    
+	    
+	    if(ContactName==""){
+         $('#ContactName').parent('.field-container').addClass("error");
+	         return;
+	     }
+	     else{
+	         $('#ContactName').parent('.field-container').removeClass("error");
+	     }
+	
+	     if(ContactEmail==""){
+	         $('#ContactEmail').parent('.field-container').addClass("error");
+	         return;
+	     }
+	     else{
+	         $('#ContactEmail').parent('.field-container').removeClass("error");
+	     }
+	
+	
+	 
+	     if(ContactContent==""){
+	         $('#ContactContent').parent('.field-container').addClass("error");
+	         return;
+	     }
+	     else{
+	         $('#ContactContent').parent('.field-container').removeClass("error");
+	     }
+	    	 
+	     $('#contactForm').submit();
+	});
+
+
+        function initScrollMagic() {
+          $('body').scrollTop( 0 );
+
+          // parallax
+          var controller = new ScrollMagic.Controller();
+
+
+          $(".scroll-container").each(function() {
+              // 
+
+              var parallaxImage = TweenMax.to($(this).find(".speed-green"), 1, {
+                  y: $(".speed-green").position().top 
+              });
+              var projectImage = new ScrollMagic.Scene({
+                      triggerElement: this,
+                      triggerHook: 1,
+                      duration: '120%'
+                  })
+                  .setTween(parallaxImage)
+                  .addTo(controller);
+              // 
+
+              var parallaxImage = TweenMax.to($(this).find(".speed-chef"), 1, {
+                  y: $(".speed-chef").position().top + 80
+              });
+              var projectImage = new ScrollMagic.Scene({
+                      triggerElement: this,
+                      triggerHook: 1,
+                      duration: '200%'
+                  })
+                  .setTween(parallaxImage)
+                  .addTo(controller);
+              //
+              var parallaxImage = TweenMax.to($(this).find(".speed-box"), 1, {
+                  y: $(".speed-box").position().top + 300
+              });
+
+              var projectImage = new ScrollMagic.Scene({
+                      triggerElement: this,
+                      triggerHook: 0.1,
+                      duration: '180%'
+                  })
+                  .setTween(parallaxImage)
+                  .addTo(controller);
+              // 
+
+              var parallaxImage = TweenMax.to($(this).find(".speed-transparent"), 1, {
+                  y: '270%'
+              });
+
+              console.log( $(".speed-transparent").offset().top - $(".square-info").offset().top)
+
+
+              var projectImage = new ScrollMagic.Scene({
+                      triggerElement: this,
+                      triggerHook: 1,
+                      duration: '250%'
+                  })
+                  .setTween(parallaxImage)
+                  .addTo(controller);
+              //
+              var parallaxImage = TweenMax.to($(this).find(".speed-food"), 1, {
+                  y: $(".speed-food").position().top +50
+              });
+              var projectImage = new ScrollMagic.Scene({
+                      triggerElement: this,
+                      triggerHook: 1,
+                      duration: '300%'
+                  })
+                  .setTween(parallaxImage)
+                  .addTo(controller);
+              //
+              var parallaxImage = TweenMax.to($(this).find(".speed-menu"), 1, {
+                  y: '220%'
+              });
+              var projectImage = new ScrollMagic.Scene({
+                      triggerElement: this,
+                      triggerHook: -2,
+                      duration: '320%'
+                  })
+                  .setTween(parallaxImage)
+                  .addTo(controller);
+
+
+
+               // $(window).trigger('resize');
+
+          });
+          var controller = new ScrollMagic.Controller();
+
+          $(".single-image").each(function() {
+
+              var parallaxImage = TweenMax.to($(this).find(".single-image-container"), 1, {
+                  y: '-5%'
+              });
+
+              var projectImage = new ScrollMagic.Scene({
+                      triggerElement: this,
+                      triggerHook: 1,
+                      duration: '140%'
+                  })
+                  .setTween(parallaxImage)
+                  .addTo(controller);
+
+          });
+        }
+
+        if( !tooSmall ) {
+          initScrollMagic();
+        }
+
+        // part of the problem is that window resizes can trigger multiple times as the events fire rapidly
+        // this solution prevents the controller from being initialized/destroyed more than once
+        $(window).resize( function() {
+          var wWidth = $(window).width();
+          if( wWidth < maxWidth ) {
+            if( controller !== null && controller !== undefined ) {
+              // completely destroy the controller
+              controller = controller.destroy( true );
+              // if needed, use jQuery to manually remove styles added to DOM elements by GSAP etc. here
+            }
+          } else if( wWidth >= maxWidth ) {
+            if( controller === null || controller === undefined ) {
+              // reinitialize ScrollMagic only if it is not already initialized
+              initScrollMagic();
+            }
+          }
+        });
+
+        if ($(window).width() < 699) {
+          $('nav a').click(function(){
+            $('nav').removeClass('open');
+            $('.menu-burger').removeClass('hidden');
+          })
+        }
+        else {
+        }
+
+      });
+    </script>
+</body>
+
+</html>

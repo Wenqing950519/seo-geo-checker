@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="csrf-token" content="t4r2sR3DX7IGSm4ADrELhPvh4oTnn3ni8Bk0Vrun"/>
+
+    <link rel="icon" href="https://jkstudio.tw/favicon.ico">
+
+    
+    <title>JK STUDIO</title>
+    <meta name     = "description"    content="以精品餐廳為定位，站在顧客角度思考，創造美好的沉浸式餐飲體驗，歡迎光臨JK STUDIO" />
+    <meta name     = "keywords"       content="台北美食，市政府站美食，信義區美食，台北餐廳，Finedining，foodie ，Taipeifood，JKSTUDIO，modernasia，JKSTUDIOModernAsia" />
+    <meta property = "og:title"       content="JK STUDIO" />
+    <meta property = "og:description" content="以精品餐廳為定位，站在顧客角度思考，創造美好的沉浸式餐飲體驗，歡迎光臨JK STUDIO" />
+    <meta property = "og:image"       content="https://jkstudio.tw/images/seo/1700462317906.png" />
+    <meta property = "og:url"         content="https://jkstudio.tw" />
+    <meta property = "og:type"        content="website" />
+    <meta property = "og:image:width"  content="1200"/>
+    <meta property = "og:image:height" content="630"/>
+    <meta name="thumbnail"             content="https://jkstudio.tw/images/thumbnail/1700462317907.png" />
+
+    
+    
+    
+        <link rel="stylesheet" href="https://jkstudio.tw/ben/npm/css/frontend/index.min.css?id=7ea696ae138a892c249688298c368db5">
+
+    
+    
+    
+    <script type="text/javascript" src="https://jkstudio.tw/ben/npm/js/frontend/manifest.js?id=e30c08f0e34af78521eb3a58031f0450"></script>
+    <script type="text/javascript" src="https://jkstudio.tw/ben/npm/js/frontend/vendor.js?id=66293118b2a02b2b3e37e8d5931a7463"></script>
+        <script type="text/javascript" src="https://jkstudio.tw/ben/npm/js/frontend/common.js?id=a295921aed69eb54a053bcceea2b57dd"></script>
+
+    <script type="text/javascript">
+        
+        
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+</head>
+
+<body ondragstart="return false">
+    
+    
+    
+        <nav class="navbar navbar-expand-lg fixed-top animated slideInDown">
+    <div class="container-fluid">
+        <!-- home link -->
+        <a class="nav-brand" href="https://jkstudio.tw">
+            <img src="https://jkstudio.tw/ben/npm/images/frontend/brand/logo/main.svg" alt="" class="nav-logo">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- page link -->
+            <ul class="navbar-nav navbar-sub">
+                <!-- lang -->
+                <li class="nav-item nav-lang">
+    <div class="lang-item  lang-active "><a href="https://jkstudio.tw/tw">中</a></div>
+    <div class="lang-item"><span>|</span></div>
+    <div class="lang-item "><a href="https://jkstudio.tw/en">EN</a></div>
+</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    
+    
+    
+            <div class="container-fluid container-brand" style="pointer-events: none">
+        <div class="row h-100 flex-lg-row flex-column">
+            <!-- brand -->
+                            <div class="col brand-entry wow fadeIn" data-wow-duration=".5s" data-wow-delay=".1s">
+                    <a class="entry-link" href="https://jkstudio.tw/benjamin-butter-entrcote"></a>
+                    <img class="w-100 h-100 brand-image" src="https://jkstudio.tw/images/restaurant/resize/1791800152173.jpg" alt="">
+                    <div class="d-flex brand-logo brand-logo-text">
+                        Benjamin Butter Entrcôte
+
+                    </div>
+                </div>
+                            <div class="col brand-entry wow fadeIn" data-wow-duration=".5s" data-wow-delay=".2s">
+                    <a class="entry-link" href="https://jkstudio.tw/italian-french"></a>
+                    <img class="w-100 h-100 brand-image" src="https://jkstudio.tw/images/restaurant/resize/1789755138619.jpg" alt="">
+                    <div class="d-flex brand-logo brand-logo-text">
+                        歐陸餐廳
+
+                    </div>
+                </div>
+                            <div class="col brand-entry wow fadeIn" data-wow-duration=".5s" data-wow-delay=".3s">
+                    <a class="entry-link" href="https://jkstudio.tw/french"></a>
+                    <img class="w-100 h-100 brand-image" src="https://jkstudio.tw/images/restaurant/resize/1791801169553.jpg" alt="">
+                    <div class="d-flex brand-logo brand-logo-text">
+                        法式餐酒館
+
+                    </div>
+                </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        </div>
+    </div>
+            <div class="container-fluid press-pattern">
+            <div class="container container-press">
+                <div class="press-pattern"></div>
+                <div class="row wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".1s">
+                    <div class="col d-flex justify-content-center">
+                        <h3 class="section-title">媒體曝光</h3>
+                    </div>
+                </div>
+                <div class="row press-slider swiper wow fadeInUp" data-wow-duration=".5s" data-wow-delay=".1s">
+                    <div class="swiper-wrapper">
+                        <!-- press -->
+                        
+                            <a href="https://www.walkerland.com.tw/amp/article/view/402475" target="_blank" class="text-center press-item swiper-slide">
+                                <div class="item-top">
+                                    <h5 class="press-title">以高質感料理著稱，林口三井新開幕「JK Studio歐陸餐廳」</h5>
+                                    <p class="press-text">“ 用餐體驗堪稱完美，從龍蝦麵到油封鴨腿再到肋眼牛排，每道菜都令人驚艷。 ”</p>
+                                                                            <p class="press-from">JK STUDIO</p>
+                                                                    </div>
+                                <div class="item-bottom">
+                                    <img class="press-logo" src="https://jkstudio.tw/images/media/resize/1740545539100.png" alt="">
+                                </div>
+                            </a>
+                        
+                            <a href="https://www.walkerland.com.tw/amp/article/view/404444" target="_blank" class="text-center press-item swiper-slide">
+                                <div class="item-top">
+                                    <h5 class="press-title">台北最美餐廳插旗三井 OUTLET，充滿現代與經典的融合</h5>
+                                    <p class="press-text">“ JK STUDIO 歐陸餐廳，美味與氛圍的雙重享受，聚餐、約會首選！ ”</p>
+                                                                            <p class="press-from">JK STUDIO</p>
+                                                                    </div>
+                                <div class="item-bottom">
+                                    <img class="press-logo" src="https://jkstudio.tw/images/media/resize/1740545139898.png" alt="">
+                                </div>
+                            </a>
+                        
+                            <a href="https://www.walkerland.com.tw/amp/article/view/394392" target="_blank" class="text-center press-item swiper-slide">
+                                <div class="item-top">
+                                    <h5 class="press-title">台北中山區美食推薦：JK STUDIO法式餐酒館 大直忠泰店</h5>
+                                    <p class="press-text">“ 經典的法式餐酒料理，傳統老法菜道道美味！老饕必點限量波士頓龍蝦麵 ”</p>
+                                                                            <p class="press-from">JK STUDIO | 法式餐酒館</p>
+                                                                    </div>
+                                <div class="item-bottom">
+                                    <img class="press-logo" src="https://jkstudio.tw/images/media/resize/1740544851628.png" alt="">
+                                </div>
+                            </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    <div class="swiper-pagination">
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    
+    
+        <footer>
+    <div class="container-fluid text-center position-relative">
+        <div class="d-flex flex-column justify-content-center">
+            <p class="m-0 copyright">Copyright © 2023 JK STUDIO ALL RIGHTS RESERVED</p>    
+            <a class="m-0 privacy mt-1 mt-sm-0" href="https://generated-lamb-1e4.notion.site/JK-Studio-12f092b6de8a80ae9f39e108c198b1e4" target="_blank">隱私權政策</a>
+        </div>
+    </div>
+</footer>
+    
+    
+    
+        <script type="text/javascript" src="https://jkstudio.tw/ben/npm/js/frontend/index.js?id=d0741ba20408276df8f3509e93587e38"></script>
+</body>
+</html>

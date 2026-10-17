@@ -1,0 +1,17 @@
+{
+  "id": 17,
+  "input_url": "https://www.ichiran.com.tw/",
+  "store_id": "XY-012",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0028-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0028-response.txt",
+  "sequence": 17,
+  "started_at": "2026-10-15T06:37:07.680Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_89fda0cc-b6a6-48db-9f0f-79926b506cc9",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:10.510Z"
+}

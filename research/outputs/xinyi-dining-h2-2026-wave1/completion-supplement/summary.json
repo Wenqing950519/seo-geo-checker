@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-10-15T06:38:50.799Z",
+  "scope": "Separate completion supplement, no primary scores or September comparison",
+  "cohort_rows": 49,
+  "expected_slots": 147,
+  "attempted_slots": 69,
+  "complete_answer_count": 69,
+  "status_counts": {
+    "unknown_unavailable": 30,
+    "complete_answer": 69,
+    "unknown_entity_mapping": 48
+  },
+  "observed_brand_mentions": 3,
+  "observed_official_citation_slots": 0,
+  "observed_official_search_result_slots": 0,
+  "unique_response_ids": 69,
+  "distinct_answer_hashes": 69,
+  "actual_requests": 69,
+  "provider_reported_cost_usd": 0.2325999999999999,
+  "partial_reported_cost_usd": 0.2325999999999999,
+  "collection_window_utc": [
+    "2026-10-15T06:36:40.614Z",
+    "2026-10-15T06:38:36.460Z"
+  ],
+  "no_payload_drift_except_max_tokens": true,
+  "all_request_caps_verified": true,
+  "human_review_complete": false,
+  "publication_ready": false,
+  "caveat": "Mentions are automatic text matches, not verified recommendation, correct branch, citation support, independent trials or population visibility. No new score is computed. Original and supplemental observations must not be pooled."
+}

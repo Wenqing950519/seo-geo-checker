@@ -1,0 +1,17 @@
+{
+  "id": 47,
+  "input_url": "https://www.saffron46.com/",
+  "store_id": "XY-028",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0078-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0078-response.txt",
+  "sequence": 47,
+  "started_at": "2026-10-15T06:37:56.482Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_bba16820-0659-4fc6-ad20-d63757ad5166",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:59.912Z"
+}

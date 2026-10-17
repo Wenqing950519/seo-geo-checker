@@ -1,0 +1,74 @@
+[
+  {
+    "domain": "eatogether.com.tw",
+    "store_id": "XY-032",
+    "query_id": "gathering-general-01",
+    "stored_answer_status": "answered",
+    "replay_answer_status": "answered",
+    "stored_brand_mentioned": true,
+    "replay_brand_mentioned": true,
+    "master_only_brand_mentioned": true,
+    "master_only_terms": [
+      "饗食天堂"
+    ],
+    "stored_first_party": false,
+    "replay_first_party": false,
+    "official_citation_urls": [],
+    "official_search_result_urls": [],
+    "exact_answer_preserved": true,
+    "matches": true,
+    "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave0/raw/eatogether.com.tw.json",
+    "raw_locator": "search_evidence.discovery[queryId=gathering-general-01]",
+    "official_name": "饗食天堂",
+    "answer": "台北**信義區聚餐**很適合選 **吃到飽、餐酒館、泰式/中式合菜、或有包廂的餐廳**；如果你想要我先幫你縮小成「朋友聚餐、家庭聚餐、慶生、約會」其中一種，我可以再精準推薦。信義區本身交通與百貨餐廳選擇都很集中，適合聚餐約見面[6]。\n\n先給你一份比較實用的方向：\n\n- **多人聚餐 / 家庭聚餐**：可優先看 **饗食天堂（信義區市府路45號B1）**，主打菜色多、適合多人分食[5]。\n- **高預算 / 想吃精緻一點**：可看 **明水然・樂 遠百信義店**，在愛食記的信義區聚餐清單中屬於較高單價選項[4]。\n- **吃到飽 / 慶生聚會**：可參考 **寒舍艾美酒店探索廚房**",
+    "review_status": "pending_human_semantic_review"
+  },
+  {
+    "domain": "hostshabu.com",
+    "store_id": "XY-005",
+    "query_id": "hotpot-bbq-01",
+    "stored_answer_status": "answered",
+    "replay_answer_status": "answered",
+    "stored_brand_mentioned": true,
+    "replay_brand_mentioned": true,
+    "master_only_brand_mentioned": true,
+    "master_only_terms": [
+      "合shabu"
+    ],
+    "stored_first_party": false,
+    "replay_first_party": false,
+    "official_citation_urls": [],
+    "official_search_result_urls": [],
+    "exact_answer_preserved": true,
+    "matches": true,
+    "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave0/raw/hostshabu.com.json",
+    "raw_locator": "search_evidence.discovery[queryId=hotpot-bbq-01]",
+    "official_name": "合.Shabu",
+    "answer": "信義區想吃**高評價火鍋**的話，優先可看 **明水然・樂信義松菸店、辛殿麻辣鍋、岩漿火鍋、橘色涮涮屋、合‧shabu**；想吃**高評價燒肉**，你這次提供的搜尋結果裡沒有足夠的燒肉店資料可直接比對，所以燒肉推薦目前**無法可靠下結論**。[1][2][7][9]\n\n- **明水然・樂 信義松菸店**：在愛食記的信義區聚餐火鍋推薦列表中被標示為「評分最高」之一，適合想找高評價餐廳的人。[1]\n- **辛殿麻辣鍋**：出現在信義區火鍋吃到飽的熱門店名單，也被多篇信義區火鍋整理文列為代表性名店。[6][7][10]\n- **岩漿火鍋**：多篇整理文都把它列入信義區推薦火鍋，",
+    "review_status": "pending_human_semantic_review"
+  },
+  {
+    "domain": "wildwood.com.tw",
+    "store_id": "XY-057",
+    "query_id": "dating-celebration-01",
+    "stored_answer_status": "answered",
+    "replay_answer_status": "answered",
+    "stored_brand_mentioned": true,
+    "replay_brand_mentioned": true,
+    "master_only_brand_mentioned": true,
+    "master_only_terms": [
+      "wildwood"
+    ],
+    "stored_first_party": false,
+    "replay_first_party": false,
+    "official_citation_urls": [],
+    "official_search_result_urls": [],
+    "exact_answer_preserved": true,
+    "matches": true,
+    "raw_ref": "research/outputs/xinyi-dining-h2-2026-wave0/raw/wildwood.com.tw.json",
+    "raw_locator": "search_evidence.discovery[queryId=dating-celebration-01]",
+    "official_name": "WILDWOOD 原木燒烤牛排海鮮餐廳",
+    "answer": "有，**信義區**很適合約會或生日慶祝的高級餐廳不少，以下幾間在你提供的資料裡都有被列為約會／慶生取向，且評價與氛圍都偏高檔。[1][5][6][9]\n\n| 餐廳 | 類型/特色 | 適合場合 |\n|---|---|---|\n| **寶艾西餐廳** | 米其林餐盤肯定，歐式宮廷風、大理石噴泉造景，主打乾式熟成牛排與海鮮 | 求婚、生日、正式約會[5] |\n| **WILDWOOD** | 乾式熟成牛排、現流海鮮、原木燒烤風格 | 約會、慶生、重視餐點質感[6] |\n| **SEA TO SKY** | 地中海景觀餐廳，屬於高單價型 | 紀念日、生日、想要景觀氛圍[9] |\n| **竹苑高級Shabu** | 高級火",
+    "review_status": "pending_human_semantic_review"
+  }
+]

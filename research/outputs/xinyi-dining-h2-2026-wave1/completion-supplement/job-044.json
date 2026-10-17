@@ -1,0 +1,17 @@
+{
+  "id": 44,
+  "input_url": "https://www.ricebar.com.tw/",
+  "store_id": "XY-061",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0073-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0073-response.txt",
+  "sequence": 44,
+  "started_at": "2026-10-15T06:37:51.706Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_d2e0ff41-61bd-4676-86c5-a4077d8cc430",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:54.508Z"
+}

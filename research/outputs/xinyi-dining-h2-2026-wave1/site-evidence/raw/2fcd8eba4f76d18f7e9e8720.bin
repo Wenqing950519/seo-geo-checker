@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>The UKAI台北 | 御盟集團</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500&family=Jost:wght@300;400&display=swap"
+    rel="stylesheet">
+<style>
+ :root {
+    --main-color: 26, 29, 55;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="icon" href="https://yuimomgroup.com/archive/images/favicon/a34e3de023cf35ad.png">
+<meta property="fb:app_id" content="">
+<meta property="fb:admins" content="" />
+<meta property="og:url" content="https://yuimomgroup.com/brands/restaurant-bar/the-ukai-taipei" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="The UKAI台北 | 御盟集團" />
+<meta property="og:description" content="位於台北微風南山46樓，2022台北/台中米其林指南推薦鐵板燒，與日式割烹料理以板前即席形式供應，款待之心提供美味細膩料理，傳遞幸福喜悅的時刻給每位來訪人們！" />
+<meta property="og:image" content="https://yuimomgroup.com/archive/images/favicon/a34e3de023cf35ad.png" />
+<meta name="twitter:image" content="https://yuimomgroup.com/archive/images/favicon/a34e3de023cf35ad.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="位於台北微風南山46樓，2022台北/台中米其林指南推薦鐵板燒，與日式割烹料理以板前即席形式供應，款待之心提供美味細膩料理，傳遞幸福喜悅的時刻給每位來訪人們！" />
+<meta name="twitter:title" content="The UKAI台北 | 御盟集團" />
+<meta itemprop="name" content="The UKAI台北 | 御盟集團">
+<meta itemprop="description" content="位於台北微風南山46樓，2022台北/台中米其林指南推薦鐵板燒，與日式割烹料理以板前即席形式供應，款待之心提供美味細膩料理，傳遞幸福喜悅的時刻給每位來訪人們！">
+<meta itemprop="image" content="https://yuimomgroup.com/archive/images/favicon/a34e3de023cf35ad.png">
+<link href="https://yuimomgroup.com/archive/images/favicon/a34e3de023cf35ad.png" rel="image_src" type="image/jpeg" />
+<link rel="apple-touch-icon" href="https://yuimomgroup.com/archive/images/favicon/a34e3de023cf35ad.png">
+<meta name="description" content="位於台北微風南山46樓，2022台北/台中米其林指南推薦鐵板燒，與日式割烹料理以板前即席形式供應，款待之心提供美味細膩料理，傳遞幸福喜悅的時刻給每位來訪人們！">
+
+
+<!-- 後台客製欄位 -->
+ <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-YQ1ZKE76JH"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YQ1ZKE76JH'); </script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T2WTK2X');</script>
+<!-- End Google Tag Manager -->
+
+</head>
+
+<body class="brand-detail">
+<div class="intro" id="intro">
+    <div class="intro-logo">
+        <div class="graphic">
+            <svg xmlns="http://www.w3.org/2000/svg" width="222" height="222" viewBox="0 0 222 222">
+                <g id="Group_38" data-name="Group 38" transform="translate(-863 298)">
+                  <path id="c_graphic" data-name="Union 2" d="M121.317,197.96c-5.261-1.933-5.692-4.357-4.838-7.5.844-3.158,1.815-4.493,7.5-2.905,5.7,1.57,6.064.228,6.064.228s7.744-2.178,8.47-9.923-2.905-8.242-7.018-8.724-23.925-.617-28.586-.971-14.289-2.416-14.289-2.416-8.471-2.905-11.139,1.689c-2.66,4.611-11.629,15.75-14.044,17.937-1.718,1.545-7.5,4.1-9.653,4.908a7.3,7.3,0,0,1-.754.379c-1.771.773-5.13,1.546-7.276-1.174-3.632-4.611-8.361-15.016-8.724-16.966-.364-1.934-2-2.542-4.358-3.86-2.356-1.343-.608-4,.245-5.582a4.943,4.943,0,0,1,6.046-2.416c3.159.963,6.486,2.905,6.546,8.952.067,6.063,1.7,11.392,4.357,9.45,2.677-1.934,5.329-18.166,5.329-18.166a14.543,14.543,0,0,0-4.357-12.592,82.635,82.635,0,0,1-9.923-11.392c-2-2.761-3.209-7.71-5.084-7.263s-1.908,1.926-1.123,6-2.711,4.51-4.94,2.483C20.8,130,11.726,116.794,1.178,110.039c-1.57-1.208-1.57-3.387,0-5.321,3.876-4.366,4.856-10.9,5.084-15.032.245-4.113-1.005-10.81,4.856-6.537,3.142,2.424,9.509,5.6,6.6,11.046-1.815,4.916-3.15,11.047-.794,11.975,4.333,1.7,6.9,3.074,8.952,3.142s2.432-.237,6.063-4.839c5.329-6.756,17.76-14.787,20.1-16.966,5.793-3.826,10-14.644,6.841-19-3.15-3.454-4.653-3.6-9.307-3.749a52.9,52.9,0,0,0-7.119.355c-5.658.549-3.851-.507-.093-2.542A32.148,32.148,0,0,1,52.017,59.1a18.544,18.544,0,0,1,9.239.566C70.006,62.653,68.274,73.7,68.274,73.7a42.582,42.582,0,0,0,12.11-11.621c3.15-4.112,5.886-13.926-4.113-16.949-7.439.844-16.544,6.123-20.175,7.744-1.368.617-3.065,1.369-4.881,2.129-3.007,1.275-6.325,2.61-8.851,3.437-4.054,1.343-6.427-1.03-1.453-4.585,6.841-4.433,18.647-10.9,18.647-10.9s8.47-4.358-1.208-5.329c-9.695-.98-16.654-.98-20.345-1.208-3.707-.253-11.147-.253-10.978-1.875.194-1.647,2.55-1.765,6.368-2.254S46.723,30.6,50.354,29.38c0,0,7.026-2.238,9.205-4.358S63,18.113,67.548,16.8c4.535-1.342,3.8-2.356,8.015-6.426,4.358-4.206,15.717-5.7,21.78-5.456A14.566,14.566,0,0,0,108.49.8c1.934-1.7,5.321-.971,1.453,4.847s-9.29,14.188-13.571,18.639c.794,1.148,10.142-.845,13.292-1.073s5.152.355,5.633,4.957-.033,5.566-.033,5.566-.726,1.224-2.905.971-9.5-1.6-11.257,2.93,1.309,5.726,1.807,10.818c.473,5.084-1.681,11.207,0,14.593,1.706,3.387,4.357,7.517,7.761,7.744,3.387.254,7.026-2.179,8.724-4.113,2.289-2.077,3.344-2.981,1.824.988-1.487,3.091-2.5,5.346-3.741,6.554a11.7,11.7,0,0,1-10.936,2.634c-3.936-.988-7.8-7.152-8.952-7.017-1.148.11-7.034,11.62-11.62,16.941-4.612,5.337-11.655,10.978-10.557,18.908,1.132,8.116,3.834,18.031,12.964,23.967,9.872,3.328,21.079-4.594,23.984-6.046s13.858-5.117,15.259.481c.524,2.111,3.269-1.706,4.848-4.113,1.57-2.432,2.178-7.161,5.32-8.242,1.622-.566-.482-12.432,2.981-21.071,2.838-7.271,11.072-15.438,12.524-18.9s4.476-11.561-3.378-16.958c-7.88-5.387-15.869-1.79-17.693,1.225s.726,8.47,2.179,10.176a3.827,3.827,0,0,1,.591,1.2s.887,1.6-3.133-.895c-6.418-5.067-6.537-12.736-2.719-16.907a10.9,10.9,0,0,1,8.419-3.749s-6.545-20.285-4.856-28.334c1.7-8.073,7.153-12.912,13.326-13.579,6.174-.651,11.748,4.256,13.081,8.724s-.059,6.224-.059,6.224l-1.149-1.14s-2.981-8.049-9.695-7.989-10.48,6.055-10.421,14.053c.076,7.989,3.632,16.654,8.487,21.316,4.839,4.67,10.2,7.82,12.82,13.166s.6,11.713-.3,13.216a23.459,23.459,0,0,0-1.681,3.859,15.613,15.613,0,0,1,5.287-.254c3.454.3,5.853,1.368,7.136,2.711a5.537,5.537,0,0,1,1.427,3,13.936,13.936,0,0,0-9.315-1.048c-4.206.752-8.859,6.908-11.714,13.673-2.255,4.805-2.559,9.905-2.694,14.652,2.694-1.588,8.184-5.7,12.845-7.018a17.384,17.384,0,0,1,6.717-.284,17.27,17.27,0,0,0,6.365-.214c4.476-1.208,6.874-12.322,6.841-15.742s-2.179-5.988-3.632-9.442-3.091-12.9.726-18.891,13.766-6.5,13.5-5.819-4.129,1.571-7.271,5.338c-3.15,3.749-4.6,10.176-3.395,13.554s2.905,7.271,5.582,7.271c2.652,0,4.358-8.724,11.858-9.923A10.762,10.762,0,0,1,209.493,73.7c.827,2.474,1.156,2.888.769,3.58s-4.451-2.761-4.451-2.761c-5.261-4.206-12.381,1.976-13.276,7.787-2.356,14.348-2.3,28.223-5.338,35-3.023,6.79-13.748,16.231-21.551,16.231-7.82,0-14.7,5.261-17.608,11.992L142.4,153.4s10.168-7.407,12.829-8.969-1.123,3.015-4.113,6.064-9.695,12.828-9.695,12.828,8.968-4.535,10.675-.971c.726,2.669,22.734-8.285,25.909-11.629a14.906,14.906,0,0,0,4.071-11.308c-.3-3.606-1.148-4.054-.651-4.73s2.576,1.495,4.1,5.135,4.662,14.424-8.724,23.5c-11.7,7.094-15.75,9.45-19.39,13.563s-4.839,12.6-14.281,16.958c-6.829,3.149-12.428,4.913-16.993,4.913A13.723,13.723,0,0,1,121.317,197.96ZM89.834,11.273c-1.8.152-6.772,1.376-9.323,3.091s-4,2.66-5.692,6.545,4.721,2.061,9.079.836a25.62,25.62,0,0,0,12.718-8.107c1.891-2.287.3-2.841-1.851-2.841A47.737,47.737,0,0,0,89.834,11.273Zm.617,91.452a13.58,13.58,0,1,1,13.58,13.579A13.581,13.581,0,0,1,90.451,102.725Z" transform="translate(869 -286)" fill="#1a1d37" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>
+                  <rect id="Rectangle_19" data-name="Rectangle 19" width="222" height="222" transform="translate(863 -298)" fill="none"/>
+                </g>
+              </svg>
+
+
+
+        </div>
+        <div class="for-bov">
+            <svg xmlns="http://www.w3.org/2000/svg" width="222" height="222" viewBox="0 0 222 222">
+              <g id="Group_38" data-name="Group 38" transform="translate(-863 298)">
+                <path id="dd_graphic" data-name="Union 2" d="M121.317,197.96c-5.261-1.933-5.692-4.357-4.838-7.5.844-3.158,1.815-4.493,7.5-2.905,5.7,1.57,6.064.228,6.064.228s7.744-2.178,8.47-9.923-2.905-8.242-7.018-8.724-23.925-.617-28.586-.971-14.289-2.416-14.289-2.416-8.471-2.905-11.139,1.689c-2.66,4.611-11.629,15.75-14.044,17.937-1.718,1.545-7.5,4.1-9.653,4.908a7.3,7.3,0,0,1-.754.379c-1.771.773-5.13,1.546-7.276-1.174-3.632-4.611-8.361-15.016-8.724-16.966-.364-1.934-2-2.542-4.358-3.86-2.356-1.343-.608-4,.245-5.582a4.943,4.943,0,0,1,6.046-2.416c3.159.963,6.486,2.905,6.546,8.952.067,6.063,1.7,11.392,4.357,9.45,2.677-1.934,5.329-18.166,5.329-18.166a14.543,14.543,0,0,0-4.357-12.592,82.635,82.635,0,0,1-9.923-11.392c-2-2.761-3.209-7.71-5.084-7.263s-1.908,1.926-1.123,6-2.711,4.51-4.94,2.483C20.8,130,11.726,116.794,1.178,110.039c-1.57-1.208-1.57-3.387,0-5.321,3.876-4.366,4.856-10.9,5.084-15.032.245-4.113-1.005-10.81,4.856-6.537,3.142,2.424,9.509,5.6,6.6,11.046-1.815,4.916-3.15,11.047-.794,11.975,4.333,1.7,6.9,3.074,8.952,3.142s2.432-.237,6.063-4.839c5.329-6.756,17.76-14.787,20.1-16.966,5.793-3.826,10-14.644,6.841-19-3.15-3.454-4.653-3.6-9.307-3.749a52.9,52.9,0,0,0-7.119.355c-5.658.549-3.851-.507-.093-2.542A32.148,32.148,0,0,1,52.017,59.1a18.544,18.544,0,0,1,9.239.566C70.006,62.653,68.274,73.7,68.274,73.7a42.582,42.582,0,0,0,12.11-11.621c3.15-4.112,5.886-13.926-4.113-16.949-7.439.844-16.544,6.123-20.175,7.744-1.368.617-3.065,1.369-4.881,2.129-3.007,1.275-6.325,2.61-8.851,3.437-4.054,1.343-6.427-1.03-1.453-4.585,6.841-4.433,18.647-10.9,18.647-10.9s8.47-4.358-1.208-5.329c-9.695-.98-16.654-.98-20.345-1.208-3.707-.253-11.147-.253-10.978-1.875.194-1.647,2.55-1.765,6.368-2.254S46.723,30.6,50.354,29.38c0,0,7.026-2.238,9.205-4.358S63,18.113,67.548,16.8c4.535-1.342,3.8-2.356,8.015-6.426,4.358-4.206,15.717-5.7,21.78-5.456A14.566,14.566,0,0,0,108.49.8c1.934-1.7,5.321-.971,1.453,4.847s-9.29,14.188-13.571,18.639c.794,1.148,10.142-.845,13.292-1.073s5.152.355,5.633,4.957-.033,5.566-.033,5.566-.726,1.224-2.905.971-9.5-1.6-11.257,2.93,1.309,5.726,1.807,10.818c.473,5.084-1.681,11.207,0,14.593,1.706,3.387,4.357,7.517,7.761,7.744,3.387.254,7.026-2.179,8.724-4.113,2.289-2.077,3.344-2.981,1.824.988-1.487,3.091-2.5,5.346-3.741,6.554a11.7,11.7,0,0,1-10.936,2.634c-3.936-.988-7.8-7.152-8.952-7.017-1.148.11-7.034,11.62-11.62,16.941-4.612,5.337-11.655,10.978-10.557,18.908,1.132,8.116,3.834,18.031,12.964,23.967,9.872,3.328,21.079-4.594,23.984-6.046s13.858-5.117,15.259.481c.524,2.111,3.269-1.706,4.848-4.113,1.57-2.432,2.178-7.161,5.32-8.242,1.622-.566-.482-12.432,2.981-21.071,2.838-7.271,11.072-15.438,12.524-18.9s4.476-11.561-3.378-16.958c-7.88-5.387-15.869-1.79-17.693,1.225s.726,8.47,2.179,10.176a3.827,3.827,0,0,1,.591,1.2s.887,1.6-3.133-.895c-6.418-5.067-6.537-12.736-2.719-16.907a10.9,10.9,0,0,1,8.419-3.749s-6.545-20.285-4.856-28.334c1.7-8.073,7.153-12.912,13.326-13.579,6.174-.651,11.748,4.256,13.081,8.724s-.059,6.224-.059,6.224l-1.149-1.14s-2.981-8.049-9.695-7.989-10.48,6.055-10.421,14.053c.076,7.989,3.632,16.654,8.487,21.316,4.839,4.67,10.2,7.82,12.82,13.166s.6,11.713-.3,13.216a23.459,23.459,0,0,0-1.681,3.859,15.613,15.613,0,0,1,5.287-.254c3.454.3,5.853,1.368,7.136,2.711a5.537,5.537,0,0,1,1.427,3,13.936,13.936,0,0,0-9.315-1.048c-4.206.752-8.859,6.908-11.714,13.673-2.255,4.805-2.559,9.905-2.694,14.652,2.694-1.588,8.184-5.7,12.845-7.018a17.384,17.384,0,0,1,6.717-.284,17.27,17.27,0,0,0,6.365-.214c4.476-1.208,6.874-12.322,6.841-15.742s-2.179-5.988-3.632-9.442-3.091-12.9.726-18.891,13.766-6.5,13.5-5.819-4.129,1.571-7.271,5.338c-3.15,3.749-4.6,10.176-3.395,13.554s2.905,7.271,5.582,7.271c2.652,0,4.358-8.724,11.858-9.923A10.762,10.762,0,0,1,209.493,73.7c.827,2.474,1.156,2.888.769,3.58s-4.451-2.761-4.451-2.761c-5.261-4.206-12.381,1.976-13.276,7.787-2.356,14.348-2.3,28.223-5.338,35-3.023,6.79-13.748,16.231-21.551,16.231-7.82,0-14.7,5.261-17.608,11.992L142.4,153.4s10.168-7.407,12.829-8.969-1.123,3.015-4.113,6.064-9.695,12.828-9.695,12.828,8.968-4.535,10.675-.971c.726,2.669,22.734-8.285,25.909-11.629a14.906,14.906,0,0,0,4.071-11.308c-.3-3.606-1.148-4.054-.651-4.73s2.576,1.495,4.1,5.135,4.662,14.424-8.724,23.5c-11.7,7.094-15.75,9.45-19.39,13.563s-4.839,12.6-14.281,16.958c-6.829,3.149-12.428,4.913-16.993,4.913A13.723,13.723,0,0,1,121.317,197.96ZM89.834,11.273c-1.8.152-6.772,1.376-9.323,3.091s-4,2.66-5.692,6.545,4.721,2.061,9.079.836a25.62,25.62,0,0,0,12.718-8.107c1.891-2.287.3-2.841-1.851-2.841A47.737,47.737,0,0,0,89.834,11.273Zm.617,91.452a13.58,13.58,0,1,1,13.58,13.579A13.581,13.581,0,0,1,90.451,102.725Z" transform="translate(869 -286)" fill="#1a1d37" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>
+                <rect id="Rectangle_19" data-name="Rectangle 19" width="222" height="222" transform="translate(863 -298)" fill="none"/>
+              </g>
+            </svg>
+
+
+
+        </div>
+        <div class="circle-inner">
+          <svg xmlns="http://www.w3.org/2000/svg" width="191" height="191" viewBox="0 0 191 191">
+                <circle id="c_circle" data-name="Ellipse 3" cx="94" cy="94" r="94" transform="translate(1.5 1.5)" fill="none" stroke="#707070" stroke-linecap="round" stroke-width="3"/>
+              </svg>
+        </div>
+        <div class="circle">
+
+        </div>
+
+
+    </div>
+
+</div>
+<div class="pages" data-scroll-container>
+    <!-- start header.html-->
+    <!--##################---header開始--##################--->
+    <header class="header" id="header">
+        <div class="left btn-nav-toggle" id="btn-nav-toggle">
+            <a href="" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+        <a href="https://yuimomgroup.com/" class="logo real" style="background-image: url('https://yuimomgroup.com/archive/images/slide_logo/logo-tw.svg')" data-logo></a>
+        <a href="https://yuimomgroup.com/" class="logo clone" style="background-image: url('https://yuimomgroup.com/archive/images/top_logo/logo-min.svg')" data-clone></a>
+        <div class="header-right">
+            <!-- start _lang.html-->
+            <div class="lang">
+                <div class="trigger">CN</div>
+                <div class="lang-drop">
+                    <div class="space"></div>
+                    <div class="link">
+                        <a href="https://yuimomgroup.com/brands/restaurant-bar/the-ukai-taipei">CN</a>
+                        <a href="https://yuimomgroup.com/en/brands/restaurant-bar/the-ukai-taipei">EN</a>
+                    </div>
+                </div>
+            </div>
+            <!-- end _lang.html-->
+            <div id="btnSearch" class="btn-search">
+                <i><svg xmlns="http://www.w3.org/2000/svg" width="361.834" height="395" viewBox="0 0 361.834 395">
+                        <g id="noun-magnifier-1770298" transform="translate(-169.063 -82.6)">
+                            <path id="Path_225" data-name="Path 225"
+                                d="M257.5,156.8a115.349,115.349,0,1,0,189,98.5,115.458,115.458,0,0,0-189-98.5ZM207.1,349.6A162.473,162.473,0,1,1,456,140.7c51,60.9,50.3,150.1-.9,210l69.5,82.8a26.776,26.776,0,0,1-3.3,37.8,27.188,27.188,0,0,1-17.2,6.3,26.911,26.911,0,0,1-20.6-9.6L414,385.1a162.442,162.442,0,0,1-206.9-35.5Z" />
+                        </g>
+                    </svg></i>
+            </div>
+        </div>
+    </header>
+    <div class="fn-searchbar">
+        <div class="deco">
+            <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="361.834" height="395" viewBox="0 0 361.834 395">
+                    <g id="noun-magnifier-1770298" transform="translate(-169.063 -82.6)">
+                        <path id="Path_225" data-name="Path 225"
+                            d="M257.5,156.8a115.349,115.349,0,1,0,189,98.5,115.458,115.458,0,0,0-189-98.5ZM207.1,349.6A162.473,162.473,0,1,1,456,140.7c51,60.9,50.3,150.1-.9,210l69.5,82.8a26.776,26.776,0,0,1-3.3,37.8,27.188,27.188,0,0,1-17.2,6.3,26.911,26.911,0,0,1-20.6-9.6L414,385.1a162.442,162.442,0,0,1-206.9-35.5Z" />
+                    </g>
+                </svg>
+            </i>
+        </div>
+        <form action="" id="search_top_form">
+            <input type="search" name="keyword" placeholder="請輸入關鍵字">
+        </form>
+        <div class="btn-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="228.6" height="228.6" viewBox="0 0 228.6 228.6">
+                <path id="noun-close-961416"
+                    d="M365.7,280l98.6,98.6-15.7,15.7L350,295.7l-98.6,98.6-15.7-15.7L334.3,280l-98.6-98.6,15.7-15.7L350,264.3l98.6-98.6,15.7,15.7Z"
+                    transform="translate(-235.7 -165.7)" />
+            </svg>
+        </div>
+    </div>
+    <!-- <div class="scrolldown" data-scroll-section>
+        <span>scroll</span>
+        <i></i>
+
+    </div> -->
+    <!--##################---header結束--##################--->
+    <!-- end header.html-->
+    <!-- start nav.html-->
+    <!--##################---選單開始--##################--->
+    <nav class="nav">
+        <div class="nav-wrap">
+            <div class="nav-item dpa" data-id="0">
+                <a href="https://yuimomgroup.com/about">
+                    <span>GROUP</span>
+                    <span>集團</span>
+                </a>
+                <div class="dropmenu">
+                    <div class="title-area">
+                        <a href="https://yuimomgroup.com/about" class="ov">集團主頁</a>
+                    </div>
+                    <div class="container" id="speedlink">
+                        <div>
+                            <a href="https://yuimomgroup.com/about" class="title">關於御盟</a>
+                            <a href="https://yuimomgroup.com/about/story" class="">緣起</a>
+                            <a href="https://yuimomgroup.com/about/mission" class="">願景</a>
+                            <a href="https://yuimomgroup.com/about/heritage" class="">傳承</a>
+                            <a href="https://yuimomgroup.com/about/blueprint" class="">集團版圖</a>
+                        </div>
+                        <div>
+                            <a href="https://yuimomgroup.com/milestones" class="title">里程碑</a>
+                            <a href="https://yuimomgroup.com/milestones/timeline" class="">大事記</a>
+                            <a href="https://yuimomgroup.com/milestones/awards" class="">國際殊榮</a>
+                        </div>
+                        <div>
+                            <a href="https://yuimomgroup.com/locations" class="title">事業據點</a>
+                            <a href="https://yuimomgroup.com/locations" class="">聯繫我們</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-item dpa" data-id="1">
+                <a href="https://yuimomgroup.com/brands">
+                    <span>BRANDS</span>
+                    <span>品牌</span>
+                </a>
+                <div class="dropmenu">
+                    <div class="title-area">
+                        <a href="https://yuimomgroup.com/brands" class="ov">品牌主頁</a>
+                    </div>
+                    <div class="container" id="speedlink">
+                        <div>
+                            <a href="https://yuimomgroup.com/brands/architecture" class="title">建築與工藝</a>
+                            <a href="https://yuimomgroup.com/brands/architecture/yuimom-construction" class="">御盟建設</a>
+                            <a href="https://yuimomgroup.com/brands/architecture/huang-pin-engineering" class="">皇品營造</a>
+                            <a href="https://yuimomgroup.com/brands/architecture/yuimom-green" class="">御盟長茁</a>
+                        </div>
+                        <div>
+                            <a href="https://yuimomgroup.com/brands/art" class="title">藝術與設計</a>
+                            <a href="https://yuimomgroup.com/brands/art/alien-art" class="">永添藝術</a>
+                            <a href="https://yuimomgroup.com/brands/art/alien-art-centre" class="">金馬賓館當代美術館</a>
+                        </div>
+                        <div>
+                            <a href="https://yuimomgroup.com/brands/hotel-residence" class="title">旅宿與居所</a>
+                            <a href="https://yuimomgroup.com/brands/hotel-residence/yuimom-residence" class="">御盟國際驛館</a>
+                            <a href="https://yuimomgroup.com/brands/hotel-residence/the-amnis" class="">然一酒店</a>
+                        </div>
+                        <div>
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar" class="title">餐廳與酒吧</a>
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar/ssaw" class="">S∙S∙A∙W春生夏 秋藏冬</a>
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar/ukai-tei-kaohsiung" class="">高雄UKAI亭</a>
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar/the-ukai-taipei" class="">The UKAI台北</a>
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar/in-jade-lounge" class="">雲垂樓</a>
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar/alien-all-day-lounge" class="">ALIEN All-Day Lounge</a>
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar/dassai-bar" class="">獺祭吧</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="https://yuimomgroup.com/news">
+                    <span>NEWS</span>
+                    <span>媒體</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="https://yuimomgroup.com/talents">
+                    <span>TALENTS</span>
+                    <span>英雄匯</span>
+                </a>
+            </div>
+            <div class="mobile-show">
+                <!-- start _lang.html-->
+                <div class="lang">
+                    <div class="trigger">CN</div>
+                    <div class="lang-drop">
+                        <div class="space"></div>
+                        <div class="link">
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar/the-ukai-taipei">CN</a>
+                            <a href="https://yuimomgroup.com/en/brands/restaurant-bar/the-ukai-taipei">EN</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- end _lang.html-->
+            </div>
+        </div>
+        <div class="nav-bg"></div>
+        <div class="btn-nav-close" id="btn-nav-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="228.6" height="228.6" viewBox="0 0 228.6 228.6">
+                <path id="noun-close-961416"
+                    d="M365.7,280l98.6,98.6-15.7,15.7L350,295.7l-98.6,98.6-15.7-15.7L334.3,280l-98.6-98.6,15.7-15.7L350,264.3l98.6-98.6,15.7,15.7Z"
+                    transform="translate(-235.7 -165.7)" />
+            </svg>
+        </div>
+        <!--給手機用的-->
+    </nav>
+    <div class="mask"></div>
+    <!--##################---選單結束--##################--->
+    <!-- end nav.html-->
+    <section class="section banner" data-banner data-scroll-section id="banner">
+        <div class="bg-holder">
+            <div class="img for-dsk" style="background-image: url(https://yuimomgroup.com/archive/images/brand-banner3/03.The_Bar-ukai_tpe_thumb_2000_1020.jpg)" data-scroll data-scroll-speed="-3"
+                data-scroll-target="#banner"></div>
+            <div class="img for-mobile" style="background-image: url(https://yuimomgroup.com/archive/images/brand-banner3/03.The_Bar-ukai_tpe_thumb_640_1280.jpg)" data-scroll
+                data-scroll-speed="-3" data-scroll-target="#banner"></div>
+        </div>
+        <div class="text-holder" data-splitting>
+            <h2 data-scroll data-scroll-speed="1" data-scroll-target="#banner" class="fz-B" data-row>款待之心</h2>
+        </div>
+    </section>
+
+    <section class="section brd_spotlight" data-bgchange="#F2F2F2" data-textchange="#ebebeb" data-scroll-section
+        id="brd_spotlight">
+
+        <div class="spotlight_top" data-scroll id="spotlight_top">
+            <div class="container area_top">
+                <div class="text-holder center" data-fade="text">
+                    <h2 class="fz-D" data-row>The UKAI台北</h2>
+                    <h3 class="fz-A en" data-row>The UKAI Taipei</h3>
+                     <div class="deco" data-row></div>
+                    <p data-row>以東京六本木店為雛形，結合備受好評的鐵板料理「Ukai-Tei」以及將日本割烹料理推向全世界的品牌「Kappou Ukai」，以既有品牌名稱延伸出「The Ukai」。在新穎摩登的餐飲空間裡，提供美味細膩料理，傳遞幸福喜悅的時刻給每位來訪人們！</p>
+                </div>
+            </div>
+
+            <div class="container area_bottom">
+                <div class="text-holder" data-fade="text">
+                    <h2 class="fz-D" data-row>獨特餐飲型態</h2>
+                    <h3 class="fz-A" data-row>享用鐵板燒與割烹各自不同美味</h3>
+                    <p data-row>獨家與日本 UKAI 集團攜手，坐落台北時尚地標南山微風廣場 46 樓，面對象山、視野遼闊的自然景緻，宛如城市裡的世外桃源。</p>
+                </div>
+            </div>
+
+            <div class="deco-text" id="fade_text" data-scroll data-scroll-sticky data-scroll-target="#spotlight_top">
+                <div data-dynamic data-scroll data-scroll-direction="horizontal" data-scroll-target="#spotlight_top"
+                    data-scroll-speed="8">YUIMOM</div>
+            </div>
+        </div>
+        <!-- start _slide_mask.html-->
+        <div class="slide-mask" data-scroll data-scroll-call="fade_text" data-scroll-offset="20%">
+            <div class="swiper-container swiper_mask">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="item">
+                            <div class="img-holder">
+                                <div class="img" style="background-image: url(https://yuimomgroup.com/archive/images/brands-banner1/99da2ce58bf56e6a_thumb_1280_799.jpg)"></div>
+                            </div>
+                            <div class="text-holder">
+                                <div class="left" data-row>
+                                    <h3 class="fz-D">Ukai-tei 鐵板燒</h3>
+                                    <p>榮獲2022年台北台中米其林指南推薦</p>
+                                </div>
+                                <div class="right" data-row>
+                                    <div class="btn" data-album="48" data-order="1">
+                                        <span>LEARN MORE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="item">
+                            <div class="img-holder">
+                                <div class="img" style="background-image: url(https://yuimomgroup.com/archive/images/brands-banner1/90aa1c37f1338dc0_thumb_1280_801.jpg)"></div>
+                            </div>
+                            <div class="text-holder">
+                                <div class="left" data-row>
+                                    <h3 class="fz-D">Kappou Ukai 割烹</h3>
+                                    <p>蘊含四季遞嬗的和食料理</p>
+                                </div>
+                                <div class="right" data-row>
+                                    <div class="btn" data-album="48" data-order="2">
+                                        <span>LEARN MORE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="item">
+                            <div class="img-holder">
+                                <div class="img" style="background-image: url(https://yuimomgroup.com/archive/images/brands-banner1/aed147ba54b68b4a_thumb_1280_802.jpg)"></div>
+                            </div>
+                            <div class="text-holder">
+                                <div class="left" data-row>
+                                    <h3 class="fz-D">酒吧</h3>
+                                    <p>寧靜自適一隅</p>
+                                </div>
+                                <div class="right" data-row>
+                                    <div class="btn" data-album="48" data-order="3">
+                                        <span>LEARN MORE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination page_mask"></div>
+            </div>
+            <div class="deco-text back">
+                <div>SENSE</div>
+            </div>
+            <div class="deco-text front">
+                <div>TEXURE</div>
+            </div>
+        </div>
+        <!-- end _slide_mask.html-->
+    </section>
+
+    <section class="section brd_three" data-scroll-section id="brd_three">
+        <div class="container">
+            <div class="text-holder center">
+                <h3 class="fz-A">DISCOVER MORE</h3>
+                <p>The UKAI Taipei</p>
+            </div>
+        </div>
+        <!-- start _slide_center.html-->
+        <div class="slide-center">
+            <div class="swiper-container swiper_center">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a class="item-default" href="javascript:void(0);" target="_self">
+                            <div class="img-holder">
+                                <div class="img" style="background-image: url(https://yuimomgroup.com/archive/images/brands-img4/488f6c4dba7ae250_thumb_960_600.jpg)"></div>
+                            </div>
+                            <div class="text-holder">
+                                <div class="title">
+                                    <h4 class="fz-A en" data-row>吧檯區域</h4>
+                                    <h5 data-row>以宇宙為設計靈感神祕氛圍</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a class="item-default" href="javascript:void(0);" target="_self">
+                            <div class="img-holder">
+                                <div class="img" style="background-image: url(https://yuimomgroup.com/archive/images/brands-img4/a9a97705e274c129_thumb_960_600.jpg)"></div>
+                            </div>
+                            <div class="text-holder">
+                                <div class="title">
+                                    <h4 class="fz-A en" data-row>割烹包廂</h4>
+                                    <h5 data-row>獨立空間享受靜謐用餐體驗</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a class="item-default" href="javascript:void(0);" target="_self">
+                            <div class="img-holder">
+                                <div class="img" style="background-image: url(https://yuimomgroup.com/archive/images/brands-img4/aa143a1f16c3b32d_thumb_960_599.jpg)"></div>
+                            </div>
+                            <div class="text-holder">
+                                <div class="title">
+                                    <h4 class="fz-A en" data-row>割烹區域</h4>
+                                    <h5 data-row>日本傳統內斂與現代優雅</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a class="item-default" href="javascript:void(0);" target="_self">
+                            <div class="img-holder">
+                                <div class="img" style="background-image: url(https://yuimomgroup.com/archive/images/brands-img4/beca006727cb8e39_thumb_960_600.jpg)"></div>
+                            </div>
+                            <div class="text-holder">
+                                <div class="title">
+                                    <h4 class="fz-A en" data-row>鐵板燒包廂</h4>
+                                    <h5 data-row>新穎摩登的獨立用餐空間</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a class="item-default" href="javascript:void(0);" target="_self">
+                            <div class="img-holder">
+                                <div class="img" style="background-image: url(https://yuimomgroup.com/archive/images/brands-img4/_DSC5577-1.jpg)"></div>
+                            </div>
+                            <div class="text-holder">
+                                <div class="title">
+                                    <h4 class="fz-A en" data-row>THE UKAI TAIPEI</h4>
+                                    <h5 data-row>日本知名室內設計大師森田恭通打造</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-pagination page_center"></div>
+                <!-- <div class="swiper-button-prev prev_center"></div>
+        <div class="swiper-button-next next_center"></div> -->
+            </div>
+            <div class="arrows">
+                    <div class="swiper-button-prev prev_center">
+                        <i></i>
+                    </div>
+                    <div class="swiper-button-next next_center">
+                        <i></i>
+                    </div>
+                </div>
+        </div>
+        <!-- end _slide_center.html-->
+    </section>
+
+    <section class="section brd_tab" data-scroll data-scroll-section id="brd_tab">
+        <div class="container">
+            <div class="swiper-container swiper_tab_nav">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <h6 class="fz-C small">THE UKAI台北</h6>
+                    </div>
+                </div>
+                <!-- <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar"></div> -->
+            </div>
+        </div>
+        <div class="container">
+            <div class="swiper-container swiper_tab_content">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="item">
+                            <div class="left">
+                                <ul>
+                                    <li>台北市信義區松智路17號46樓</li>
+                                    <li>+886-2-77301166</li>
+                                    <li>ukai@ukai-tpe.com.tw</li>
+                                </ul>
+                            </div>
+                            <div class="right">
+                                <div class="social">
+                                    <a href="https://www.facebook.com/theukaitaipei" target="_blank">
+                                        <i style="-webkit-mask-image: url(./images/demo/icon-fb.svg);"></i>
+                                    </a>
+                                    <!-- <a href="">
+                                        <i style="-webkit-mask-image: url(./images/demo/icon-yt.svg);"></i>
+                                    </a> -->
+                                    <a href="https://www.instagram.com/theukaitaipei/" target="_blank">
+                                        <i style="-webkit-mask-image: url(./images/demo/icon-ig.svg);"></i>
+                                    </a>
+                                </div>
+                                <a href="https://inline.app/booking/-LWt2Gh7NSS1VtI22NF8:inline-live-2a466?language=zh-tw" target="_blank" class="btn btn-dark">
+                                    <span>線上訂位</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-scrollbar"></div> -->
+            </div>
+        </div>
+        <div class="arrows">
+            <div class="swiper-button-prev prev_tab_content"> <i></i></div>
+            <div class="swiper-button-next next_tab_content"> <i></i></div>
+        </div>
+        <div class="deco-text middle" data-scroll id="decoTextBottom">
+            <div data-scroll data-scroll-direction="horizontal" data-scroll-speed="4" data-scroll-target="#decoTextBottom">
+                <div class="marquee reverse">
+                    <div class="marquee-container">
+                      contact us contact us contact us contact us contact us contact us contact us contact us contact us contact us contact us contact us contact us contact us contact us
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="https://yuimomgroup.com/brands/restaurant-bar" class="btn">
+            <span>回列表</span>
+        </a>
+    </section>
+
+
+    <div class="popup popup-album" id="ajaxcontent"></div>
+
+<!-- start footer.html-->
+<!--##################---footer開始--##################--->
+<footer class="footer" id="footer" data-scroll-section>
+    <div class="container">
+        <div class="logo-ft" style="background-image: url('https://yuimomgroup.com/archive/images/bottom_logo/logo-footer.svg')"></div>
+        <div class="top">
+            <div class="left">
+                <span>關注御盟</span>
+                <div class="social">
+                    <a href="https://www.facebook.com/yuimomgroup/" target="_blank">
+                        <i style="-webkit-mask-image: url(./images/demo/icon-fb.svg);"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/yuimomgroup/" target="_blank">
+                        <i style="-webkit-mask-image: url(./images/demo/icon-ig.svg);"></i>
+
+                    </a>
+
+                    <a href="https://www.youtube.com/channel/UCc-jSn36ttTS4ML-6yXYA5w/videos" target="_blank">
+                        <i style="-webkit-mask-image: url(./images/demo/icon-yt.svg);"></i>
+
+                    </a>
+
+
+                </div>
+            </div>
+            <div class="right">
+                <div class="subscribe" data-newsletter>
+                    <span>訂閱電子報</span>
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="470.4" height="291.199"
+                            viewBox="0 0 470.4 291.199">
+                            <path id="noun-mail-1049046"
+                                d="M120.2,134.4a5.487,5.487,0,0,0-5.4,5.6v16.4L350,322.2,585.2,156.5V140a5.487,5.487,0,0,0-5.4-5.6Zm-5.4,49.5V420a5.487,5.487,0,0,0,5.4,5.6H579.7a5.487,5.487,0,0,0,5.4-5.6V183.9L356.5,345.1a11.445,11.445,0,0,1-13,0Z"
+                                transform="translate(-114.8 -134.4)" />
+                        </svg>
+                    </i>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="left">
+                <a href="https://yuimomgroup.com/pages" target="_self">都市更新計畫</a>
+                <a href="https://yuimomgroup.com/sitemap" target="_self">網站地圖</a>
+                <a href="https://yuimomgroup.com/locations" target="_self">聯絡我們</a>
+                <a href="https://yuimomgroup.com/talents" target="_self">人才招募</a>
+            </div>
+            <div class="right">
+                <div class="copyright">
+                    Copyright © YUIMOM GROUP <br> All Rights Reserved.
+                </div>
+                <!-- start _lang.html-->
+
+                <div class="lang">
+                    <div class="trigger">CN</div>
+                    <div class="lang-drop">
+                        <div class="space"></div>
+                        <div class="link">
+                            <a href="https://yuimomgroup.com/brands/restaurant-bar/the-ukai-taipei">CN</a>
+                            <a href="https://yuimomgroup.com/en/brands/restaurant-bar/the-ukai-taipei">EN</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- end _lang.html-->
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="nav-close"></div>
+<div class="popup popup-newsletter">
+    <div class="popup-content">
+        <div class="text-holder has-border center">
+            <h2 class="fz-A">訂閱電子報</h2>
+            <form class="news-letter-form">
+                <div class="input-bar">
+                    <input type="email" name="email" id="email" placeholder="請輸入電子信箱" required>
+                    <button onclick="subscribe();">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="470.4" height="291.199"
+                                viewBox="0 0 470.4 291.199">
+                                <path id="noun-mail-1049046"
+                                    d="M120.2,134.4a5.487,5.487,0,0,0-5.4,5.6v16.4L350,322.2,585.2,156.5V140a5.487,5.487,0,0,0-5.4-5.6Zm-5.4,49.5V420a5.487,5.487,0,0,0,5.4,5.6H579.7a5.487,5.487,0,0,0,5.4-5.6V183.9L356.5,345.1a11.445,11.445,0,0,1-13,0Z"
+                                    transform="translate(-114.8 -134.4)" />
+                            </svg>
+                        </i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="btn-close"  data-close>
+            <svg xmlns="http://www.w3.org/2000/svg" width="228.6" height="228.6" viewBox="0 0 228.6 228.6">
+                <path id="noun-close-961416"
+                    d="M365.7,280l98.6,98.6-15.7,15.7L350,295.7l-98.6,98.6-15.7-15.7L334.3,280l-98.6-98.6,15.7-15.7L350,264.3l98.6-98.6,15.7,15.7Z"
+                    transform="translate(-235.7 -165.7)" />
+            </svg>
+        </div>
+    </div>
+    <div class="close-area" data-close></div>
+</div>
+
+<script>
+    function subscribe() {
+        $.ajax({
+            url: 'https://yuimomgroup.com/subscribe',
+            type: 'POST',
+            data: {
+                email: $("#email").val(),
+            },
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#email").val('')
+                alert(obj['success']);
+                $(".btn-close").click();
+                $(".popup-newsletter [data-close]").click();
+            }
+        });
+    }
+</script>
+<div id="sorryforie">
+    <div>
+        <p class="fz-B">
+            抱歉，為了您的瀏覽體驗及安全性，本網站不支援IE瀏覽器，請參考下方常用瀏覽器。
+        </p>
+        <div class="browser">
+            <a href="https://www.microsoft.com/zh-tw/windows/microsoft-edge" title="Microsoft edge">
+                <img src="images/layout/edge.png" alt="">
+                <span>Edge</span>
+            </a>
+            <a href="https://www.google.com/intl/zh-TW/chrome/" title="Google Chrome">
+                <img src="images/layout/chrome.png" alt="">
+                <span>Chrome</span>
+            </a>
+            <a href="https://www.mozilla.org/zh-TW/firefox/new/" title="Mozilla Firefox">
+                <img src="images/layout/firefox.png" alt="">
+                <span>Firefox</span>
+            </a>
+            <a href="https://www.opera.com/zh-tw" title="Opera">
+                <img src="images/layout/opera.png" alt="">
+                <span>Opera</span>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    var brwr = navigator.userAgent;
+    if (
+        brwr.match(/rv:11.0/i) ||
+        brwr.match(/MSIE 10.0/i) ||
+        brwr.match(/MSIE 9.0/i) ||
+        brwr.match(/MSIE 8.0/i) ||
+        brwr.match(/MSIE 7.0/i)
+    ) {
+        var element = document.getElementById("sorryforie");
+        element.className += "active";
+
+    }
+</script>
+
+<script>
+    var url_web_lang = 'https://yuimomgroup.com/';
+</script>
+
+<script src="js/vendor.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+   $(function() {
+       $("#search_top_form").on("submit", function(e) {
+           e.preventDefault();
+
+           trstr = $("#search_top_form [name='keyword']").val();
+           trstr = trstr.replace(' ', '-');
+           window.location.href = "https://yuimomgroup.com/search/keyword-" + trstr;
+       })
+   });
+</script>
+
+<!--##################---js / 配角區塊--##################--->
+<!-- end js.html-->
+
+<!-- 後台客製欄位 -->
+ 
+</body>
+
+</html>

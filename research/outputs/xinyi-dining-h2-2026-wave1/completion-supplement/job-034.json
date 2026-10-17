@@ -1,0 +1,17 @@
+{
+  "id": 34,
+  "input_url": "https://www.mala.com.tw/",
+  "store_id": "XY-031",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0057-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0057-response.txt",
+  "sequence": 34,
+  "started_at": "2026-10-15T06:37:35.038Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_18588ce1-2d52-43d5-9c71-f13d6a54fb2a",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:38.041Z"
+}

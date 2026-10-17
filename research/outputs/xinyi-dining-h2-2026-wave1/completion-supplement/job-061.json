@@ -1,0 +1,17 @@
+{
+  "id": 61,
+  "input_url": "https://www.ukai-tpe.com.tw/",
+  "store_id": "XY-064",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0102-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0102-response.txt",
+  "sequence": 61,
+  "started_at": "2026-10-15T06:38:19.240Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_6deb5ed7-9524-4fff-b997-d0a18d8e0e16",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:23.350Z"
+}

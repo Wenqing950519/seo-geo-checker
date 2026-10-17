@@ -1,0 +1,17 @@
+{
+  "id": 3,
+  "input_url": "https://www.apointsteak.com.tw/",
+  "store_id": "XY-003",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0004-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0004-response.txt",
+  "sequence": 3,
+  "started_at": "2026-10-15T06:36:43.638Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_8292ef7b-bb77-4261-a578-a416241ae396",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:48.470Z"
+}

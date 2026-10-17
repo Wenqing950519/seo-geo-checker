@@ -1,0 +1,17 @@
+{
+  "id": 67,
+  "input_url": "https://www.woolloomooloo.tw/",
+  "store_id": "XY-030",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0112-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0112-response.txt",
+  "sequence": 67,
+  "started_at": "2026-10-15T06:38:29.624Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_1d75c1ad-3232-4842-a2cc-a81c96e49ae4",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:32.760Z"
+}

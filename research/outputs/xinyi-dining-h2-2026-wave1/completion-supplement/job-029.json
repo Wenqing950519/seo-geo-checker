@@ -1,0 +1,17 @@
+{
+  "id": 29,
+  "input_url": "https://www.kanpaiclassic.com.tw/",
+  "store_id": "XY-024",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0048-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0048-response.txt",
+  "sequence": 29,
+  "started_at": "2026-10-15T06:37:26.526Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_a7b2caed-6d87-4f45-8060-9ba0fb0f2fbd",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:29.785Z"
+}

@@ -1,0 +1,341 @@
+{
+  "record_version": "october-preparation-v1",
+  "recorded_at": "2026-10-15T03:40:27.447Z",
+  "timezone": "Asia/Taipei",
+  "scope": "Offline Wave 0 audit and October Wave 1 preparation; not October measurements",
+  "october_collection_status": "not_collected_in_this_record",
+  "october_results": null,
+  "baseline": {
+    "path": "research/outputs/xinyi-dining-h2-2026-wave0",
+    "result_rows": 49,
+    "successes": 37,
+    "failed_or_unknown": 12,
+    "failure_stages": {
+      "crawl_quality": 5,
+      "url_dns": 3,
+      "translate_fetch": 4
+    },
+    "result_record_window_utc": [
+      "2026-09-09T06:41:47.952Z",
+      "2026-09-09T06:56:54.230Z"
+    ],
+    "ledger_window_utc": [
+      "2026-09-09T06:12:03.354Z",
+      "2026-09-09T06:57:32.768Z"
+    ],
+    "valid_query_runs": 111,
+    "target_brand_mentioned_runs": 3,
+    "target_first_party_cited_runs": 0,
+    "pooled_answer_adoption_percent": 2.7027027027027026,
+    "pooled_first_party_evidence_percent": 0,
+    "mean_stored_answer_adoption_percent": 2.675675675675676,
+    "mean_stored_ai_trust_index": 1.7432432432432432,
+    "raw_files_referenced_and_checked": 37,
+    "raw_response_models": {
+      "sonar": 111
+    },
+    "parser_excerpts_shorter_than_raw": 0,
+    "semantic_dataset_sha256": "03a0f5eb0053e45e40bbd86ce695e04e35fb0c4d087a132cdc1b689143d84907",
+    "recorded_dataset_sha256": "03a0f5eb0053e45e40bbd86ce695e04e35fb0c4d087a132cdc1b689143d84907",
+    "dataset_hash_verified": true,
+    "usage_semantic_sha256": "1827822294f145aa7b7ec97988e6d3cf327f65734f2d126905ac86c5b98debc5",
+    "usage_hash_verified": true,
+    "per_query": [
+      {
+        "query_id": "dating-celebration-01",
+        "valid_runs": 37,
+        "target_brand_mentioned_runs": 1,
+        "target_first_party_cited_runs": 0,
+        "unique_exact_answer_hashes": 37
+      },
+      {
+        "query_id": "gathering-general-01",
+        "valid_runs": 37,
+        "target_brand_mentioned_runs": 1,
+        "target_first_party_cited_runs": 0,
+        "unique_exact_answer_hashes": 37
+      },
+      {
+        "query_id": "hotpot-bbq-01",
+        "valid_runs": 37,
+        "target_brand_mentioned_runs": 1,
+        "target_first_party_cited_runs": 0,
+        "unique_exact_answer_hashes": 37
+      }
+    ]
+  },
+  "usage": {
+    "events": 337,
+    "by_provider": {
+      "perplexity": 262,
+      "deepseek": 75
+    },
+    "by_operation": {
+      "geo_authority": 75,
+      "geo_discovery_1": 75,
+      "geo_discovery_2": 75,
+      "structured_analysis": 75,
+      "geo_discovery_3": 37
+    },
+    "by_status": {
+      "success": 337
+    },
+    "total_tokens": 299666,
+    "events_without_cost_configuration": 262,
+    "complete_cost_usd": null,
+    "note": "Ledger events are not one-to-one linked to final answers; zero unconfigured cost is not free usage."
+  },
+  "proposed_october_design": {
+    "status": "pending_author_wave_freeze",
+    "sites": 49,
+    "query_set_version": "xinyi-dining-2026h2-v2.0",
+    "discovery_queries_per_site": 3,
+    "planned_perplexity_logical_calls": 196,
+    "planned_deepseek_profile_calls": 49,
+    "query_drafting_calls": 0,
+    "actual_request_cap_verified": false,
+    "monetary_budget_usd": null,
+    "collection_window": null,
+    "models": {
+      "perplexity": "sonar (baseline label; October runtime not verified)",
+      "deepseek": "deepseek-v4-flash (baseline label; October runtime not verified)"
+    }
+  },
+  "source_files": [
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-70.cohort_registry.reviewed.csv",
+      "bytes": 36773,
+      "sha256": "811bb9c9ba205c1ca31e5d9f47691a22a725e8815b3b5dee378e6e19a35ec5f7"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv",
+      "bytes": 19927,
+      "sha256": "7293782a31876806d5c9da6fe45fd26dbf10670d8fbafe2b1cc024d71e8b110a"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv",
+      "bytes": 3236,
+      "sha256": "2a455be2198afb77cd02f8219b054b6268786d69c1be5c5fd4ea3374e20bfd4b"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/query-set.xinyi-dining-h2-2026.approved.json",
+      "bytes": 1010,
+      "sha256": "8b30d91a3a74b46d29338fd4034fe68feb44a338d2c98530b51109b7be3c5954"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/results.jsonl",
+      "bytes": 402653,
+      "sha256": "36ba7f6ae8861f94b79b7571b99708d851df1033145a3756d60a05a29c931e30"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/results.csv",
+      "bytes": 24518,
+      "sha256": "3770983de8a96ba18c7b83bdbd3d87483ad69cbc606f61be46747d7a6cdfcb30"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/methodology.json",
+      "bytes": 2459,
+      "sha256": "cf2d1312c370eb05279f3c79427772894be7333c71f4280cf948b1b336de130c"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/api-usage-events.jsonl",
+      "bytes": 115014,
+      "sha256": "f3e5f2e787784337c040b7c6dd1316bb0e686ffec94dc201e1eabb13a795864f"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/wave0-baseline-report.md",
+      "bytes": 11951,
+      "sha256": "9f259453be245789ec0151daf40d37ff67aea3f4b91d715649b81a1032cea595"
+    },
+    {
+      "path": ".agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs",
+      "bytes": 25968,
+      "sha256": "c9e77ed1acb9eee47e8cceadb8cf7d9f106cc7d37daef07ad87e5f615d6f2fa7"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/apointsteak.com.tw.json",
+      "bytes": 41556,
+      "sha256": "5064174097bc521d2285db03fa7b7233483346ee5e2352e3bde488fcd1c208cc"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/bellavita.com.tw.json",
+      "bytes": 41025,
+      "sha256": "91eaf6f6cc1d67e00231f4ff95d43541ca2524ef27f015d4e99d5cbcba4629d3"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/breeze.com.tw.json",
+      "bytes": 42241,
+      "sha256": "2a3b2eb6825deca81e944871d62fb476d4b68f43851d2a67ca9d6fd64935d1d5"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/tw.celavi.com.json",
+      "bytes": 41195,
+      "sha256": "0d1b40e419e4bc24624b3c7c05c42ae2e004d097ce0792bfae4b7664da19f9b6"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/chunshuitang.com.tw.json",
+      "bytes": 41240,
+      "sha256": "fa9c9230becec0b44bb0ec89f25ab4d84f9dcf87a088a0703ca1942d5870092f"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/dannycompany.com.tw.json",
+      "bytes": 41129,
+      "sha256": "10276dac9e04b45afd2c587a2db19459bd41609aab7e16a5f8fff421575097fc"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/dintaifung.com.tw.json",
+      "bytes": 41323,
+      "sha256": "4ed5f17beace59bad17c416e9a665a6d44faa73607a7fd250b13edaadddd3873"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/eatogether.com.tw.json",
+      "bytes": 41557,
+      "sha256": "b07935cb21daab15d9ebd592720fcc9a49de64fc38ff232df9b88e930c83c6a1"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/dt101.com.tw.json",
+      "bytes": 40640,
+      "sha256": "7600b291ac1d765341c79adf07ed6ffff5d5e4c51fc8903a1892c02dfa0a7ca6"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/elite-concepts.com.json",
+      "bytes": 40889,
+      "sha256": "9dd5dafba6664dea1dd2ca288dc9287f63382fd975e1868b559b2262116c6315"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/gbarestaurants.com.tw.json",
+      "bytes": 42248,
+      "sha256": "3bcb082f2b21daf0a45cc0ba96eb76a669ef36aef5987e7841c742fdb8f41e82"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/hooters.com.tw.json",
+      "bytes": 41211,
+      "sha256": "75f723d939ab9fb9afbfcfd853aa5dbd8f608f5f93130c60c337497d493f5141"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/humblehousehotels.com.json",
+      "bytes": 41950,
+      "sha256": "03006381415a6c93911819140fcc78f1999d2f98c5375d76ca28b064b20635f8"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/hostshabu.com.json",
+      "bytes": 41209,
+      "sha256": "e52816a1ffa4c7e9b98f9eb69ad507bb54dc5039132ad23cdce77787dbf9435c"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/ichiran.com.tw.json",
+      "bytes": 41661,
+      "sha256": "88883a3239f77e9a80282b34fe57722b88de29464571e4937af4a755f6df20ef"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/indianfoodtaiwan.com.json",
+      "bytes": 42111,
+      "sha256": "db38b8352105607e9b5f40ad9935df54205d1b2fc4e80ab916113bdbb0e03516"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/inparadise.com.tw.json",
+      "bytes": 42605,
+      "sha256": "a4d87c266397a40fdce90177960d8300708347890cbeced3b7418147f9f2d24a"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/joycecafetw.com.json",
+      "bytes": 41283,
+      "sha256": "5c7634be628563d77ada1568c0046d13ee9672a1a62b73cefcade88b5cdc797d"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/kanpaiclassic.com.tw.json",
+      "bytes": 41394,
+      "sha256": "c59d862aa0b3692852f7ad5e143cc8e819575767051e9605c7feadd56d93999a"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/lawrys.com.tw.json",
+      "bytes": 41108,
+      "sha256": "19e7885ad68525585cc093ca10782e4005c1264c1204f65385474ddb72ee51ef"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/lemeridien-taipei.com.json",
+      "bytes": 41565,
+      "sha256": "bd369c38df7c5b8130c164c1a10ab8703f1ab5289624a77eab089e9867c002a9"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/mortons.com.json",
+      "bytes": 41258,
+      "sha256": "f1b63be89890ba493d8393a3907ce23b0cddcafb5d5af694e0a818fb5bf9106e"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/orangeshabu.com.json",
+      "bytes": 41475,
+      "sha256": "337e5c25a5d155db05be468794f3082465b7517e0d510c0dbee6693fe6b242cf"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/paradisegp.com.json",
+      "bytes": 40994,
+      "sha256": "d5271fe9ba9dd45358d50bd4fb49e2b4a11def0297713b9ab00331a0598bc39f"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/mala.com.tw.json",
+      "bytes": 41655,
+      "sha256": "631b047a69e4f79d9bb5783a45d2ea07b494366476d8c1e7fb086f7d472c0dd4"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/ricebar.com.tw.json",
+      "bytes": 41376,
+      "sha256": "b74e49313056083c65e66e6b6b7c212d347c57418cd87239b238942fa7a11abf"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/saffron46.com.json",
+      "bytes": 42004,
+      "sha256": "9dd91c6b7fd73b836dd483cb758563ef9d2c5035f507cd7d6ded405a54552ecf"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/shinyeh.com.tw.json",
+      "bytes": 42519,
+      "sha256": "e6f89a6b783455162e7adb3512a88194f8d58ea018fc6fe345f424ee0bf6266f"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/skm.com.tw.json",
+      "bytes": 41963,
+      "sha256": "a8d64ce0fe529c4217c4558d45a3024d2f6d5a060143cda91e9bc76b5fc48357"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/smithandwollensky.com.tw.json",
+      "bytes": 40860,
+      "sha256": "1adfc8974b981d7a9ee4fbd12e352a3f2eecca400a7270b23dde7251ec909e18"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/texasroadhouse.com.tw.json",
+      "bytes": 42418,
+      "sha256": "0577fa88b8c3664acc163afaa897b41e0beb2dd97853b5b96a1d67a0fee66879"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/tgifridays.com.tw.json",
+      "bytes": 41162,
+      "sha256": "ed7a3125c1217350e80f513ff92a6b8d24f4ce12559ae739a9d3464772ac6cad"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/thaitown.com.tw.json",
+      "bytes": 40229,
+      "sha256": "836d10a4d926ae16fb85863550cd7a2ec8a0c0f3b43a4b2493f1bfae2182e37e"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/twgtea.com.json",
+      "bytes": 40820,
+      "sha256": "4f74a0405e159e394718e7bbb7a5090445207256c4fba9868ab8354368989d56"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/yuimomgroup.com.json",
+      "bytes": 41380,
+      "sha256": "78c79c918fb8a4b339b0ac1f0e90c57daa57740cb70f005e6b0b0a2cf14f9b89"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/wildwood.com.tw.json",
+      "bytes": 42512,
+      "sha256": "6dea670d3e9ee7c50c5c6cd96c1d905fdf89e772f3b30ce013d9b0784d222b2b"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/raw/woolloomooloo.tw.json",
+      "bytes": 42449,
+      "sha256": "07ff70ed05328744058dd559aa4589871a889c50709e0a34899fb0c06856d296"
+    }
+  ]
+}

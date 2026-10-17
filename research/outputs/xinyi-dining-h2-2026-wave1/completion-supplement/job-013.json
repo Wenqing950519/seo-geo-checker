@@ -1,0 +1,17 @@
+{
+  "id": 13,
+  "input_url": "https://www.hooters.com.tw/",
+  "store_id": "XY-036",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0022-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0022-response.txt",
+  "sequence": 13,
+  "started_at": "2026-10-15T06:37:01.278Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_258cd4f7-9444-4bd5-aa76-aadc13ed5d94",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:04.660Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 45,
+  "input_url": "https://www.ricebar.com.tw/",
+  "store_id": "XY-061",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0074-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0074-response.txt",
+  "sequence": 45,
+  "started_at": "2026-10-15T06:37:53.285Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_74bf3e06-da57-4b33-9624-7e65f5474d42",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:56.713Z"
+}

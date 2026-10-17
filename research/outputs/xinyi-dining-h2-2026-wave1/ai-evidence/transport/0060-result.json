@@ -1,0 +1,10 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 60,
+  "provider": "deepseek",
+  "completed_at": "2026-10-15T06:23:50.835Z",
+  "http_status": 200,
+  "request_id": null,
+  "content_type": "application/json",
+  "response_file": "0060-response.txt"
+}

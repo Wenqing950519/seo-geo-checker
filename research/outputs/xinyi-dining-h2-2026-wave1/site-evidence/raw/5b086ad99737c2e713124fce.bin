@@ -1,0 +1,2171 @@
+
+
+<!DOCTYPE html>
+
+<html lang="zh-Hant-TW" xml:lang="zh-Hant-TW" xmlns="https://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>台北寒舍艾美酒店 - Le Méridien Taipei </title>
+<meta name="description" content="台北寒舍艾美酒店，巧妙揉合人文藝術與時尚. 探索台北新魅力. 以人文、藝術聞名全球的艾美酒店，起源於時尚之都-巴黎，以其富有前瞻性且引領時尚的內涵，不僅為賓客奉上完美的入住享受，更帶來駕馭自如的探索之旅，台北寒舍艾美酒店將帶來創意生活風尚，讓艾美賓客以嶄新視角，透視世界。">
+<meta name="keywords" content="台北, 廣福菜, 先知鴨, 寒舍, 艾美, 艾美酒店, 寒舍艾美酒店, 台北寒舍艾美, 台北寒舍艾美酒店, Le Méridien, Le Méridien Taipei, 李昱寬, 副主廚, 吳銘儒, 行政主廚, 徐宏耀, 行政主廚">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+
+
+<meta property="og:image" content="https://lemeridien-taipei.com/files/mt_default.jpg" />
+
+
+<!--link rel="icon" href="/style/lemeridien.ico"-->
+
+<link rel="icon" type="image/png" href="/favicon/mt-favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon/mt-favicon.svg" />
+<link rel="shortcut icon" href="/favicon/mt-favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/mt-apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Lemeridien-taipei" />
+<link rel="manifest" href="/favicon/mt-site.webmanifest" />
+
+<link rel="stylesheet" href="/style/datep1.css?v=2512041356">
+<link rel="stylesheet" href="/style/jquery-ui.min.css">
+<link href="/style/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/style/lemeridien.min.css?v=2003131406">
+<link rel="stylesheet" href="/style/font-awesome-4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+
+
+<!--link rel="stylesheet" href="/style/footerStyle.css"-->
+<!--link rel="stylesheet" href="/style/reset.css"-->
+<!--link rel="stylesheet" href="/style/style.min.css"-->
+<!--link rel="stylesheet" href="/style/style_zh-tw.css"-->
+
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script-->
+
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 src="/style/jquery.min.js"></script>
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 src="/style/jquery-dateformat.min.js"></script>
+
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 src="/style/JSpulgIn.min.js"></script>
+
+<!--script src="/style/aos.js"></script>
+<script src="/style/jquery-ui.min.js"></script>
+<script src="/style/fontawesome-markers.min.js"></script-->
+
+
+<!--script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script-->
+
+<!--link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet"-->
+<!--script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script-->
+
+<!-- owl carousel -->
+<!--link rel="stylesheet" href="/style/owl.carousel.css"-->
+<!--link rel="stylesheet" href="/style/owl.theme.css"-->
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 src="/style/owl.carousel.min.js"></script>
+<!--script src="/style/fontawesome-markers.min.js"></script-->
+
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 src="/style/jquery.cookie.js"></script>
+
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 src="/style/achframework.min.js?v=2306161613"></script>
+
+
+<!--script type="application/javascript">(function(w,d,t,r,u){w[u]=w[u]||[];w[u].push({'projectId':'10000','properties':{'pixelId':'10037159'}});var s=d.createElement(t);s.src=r;s.async=true;s.onload=s.onreadystatechange=function(){var y,rs=this.readyState,c=w[u];if(rs&&rs!="complete"&&rs!="loaded"){return}try{y=YAHOO.ywa.I13N.fireBeacon;w[u]=[];w[u].push=function(p){y([p])};y(c)}catch(e){}};var scr=d.getElementsByTagName(t)[0],par=scr.parentNode;par.insertBefore(s,scr)})(window,document,"script","https://s.yimg.com/wi/ytc.js","dotq");</script-->
+
+<style type="text/css">
+
+#datepicker1, #book_datepicker1 {
+    width: 100%;
+    max-width: 550px;
+}
+
+
+button.form_button {
+	line-height: 1.6;
+    font-size: 16px;
+    padding: .4em 1.75em;
+}
+.page_wed_sec {
+    margin: 0 auto;
+    max-width: none;
+    position: relative;
+    width: 90%;
+}
+
+.title2 {
+	line-height: 1.6;
+}
+
+.page_wed img {
+	width:100%;
+	height:300px;
+	height: calc(45vw * 9 / 16);
+	object-fit: cover;
+}
+
+.page_wed .text_page_btn p {
+    font-size: 13px;
+}
+
+.page_wed {
+	margin: 60px auto;
+}
+
+.page_wed .wed_txt {
+	width: 70%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.page_wed .title1,
+.page_wed .title2 {
+	margin: 0 2%;
+	margin-bottom: 20px;
+	display: block;
+	padding-bottom: 0;
+	text-align: center;
+	
+}
+
+.page_wed .wed_content {
+	margin: 60px 0;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.page_wed .wed_content > div {
+	margin: 0 2%;
+}
+
+.page_wed_list {
+	display: flex;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    margin-top: 60px;
+}
+
+.page_wed_item {
+	width: 46%;
+	margin: 0 2%;
+}
+
+.wed_content .btn_book {
+	margin-right: 20px;
+}
+
+.owl-item > div {
+	line-height: 0;
+}
+
+.page_wed .owl-theme .owl-controls {
+	position: absolute;
+    width: 90%;
+    background: #fff;
+    bottom: 0;
+    margin: 0 5%;
+}
+
+.page_wed .owl-theme .owl-pagination {
+	border: solid 1px #e0e0e0;
+    border-bottom: 0;
+    padding-top: 5px;
+}
+
+.page_wed_item_txt {
+	margin: 0 5%;
+    padding: 5%;
+    /*border: solid 1px #e0e0e0;*/
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
+    border-top: 0;
+    text-align: center;
+}
+
+.page_wed .text_mark,
+.page_wed_note {
+	margin: 0 2%;
+}
+
+.page_wed_note {
+	padding-bottom: 60px;
+}
+
+.page_wed .text_mark {
+	margin-top: 120px;
+	border-top: 3px solid #54b2b0;
+}
+
+.wed_img_subtitle {
+	font-size: 18px;
+	margin: 0 2%;
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+input[disabled],
+input:disabled {
+    background-color: #e9e9e9;
+    color: #6c6c6c;             
+    opacity: 1;                 
+    cursor: not-allowed;       
+}
+
+
+/*插入search icon*/
+/* 1. 移除 Select2 預設的向下箭頭圖標 */
+#form_contact .select2-container--default .select2-selection__arrow {
+    display: none !important;
+}
+
+/* 2. 讓 Select2 容器成為定位參考點，並設定額外邊距 */
+#form_contact .select2-container--default .select2-selection--single {
+    /* 讓 SVG 能夠在裡面進行絕對定位 */
+    position: relative; 
+    /* 增加內邊距，為圖標騰出空間 */
+    padding-left: 36px !important; 
+}
+
+/* 3. 定義插入的 SVG 圖標的樣式 */
+#form_contact .select2-icon-search {
+    position: absolute;
+    /*top: 50%;  垂直居中 */
+    left: 8px; /* 距離左邊 8px */
+    /*transform: translateY(-50%); 修正垂直偏移 */
+    width: 20px;
+    height: 20px;
+    color: #888; /* 設定圖標顏色為灰色 */
+    pointer-events: none; /* 讓點擊能穿透圖標到達後面的輸入框 */
+    z-index: 10; /* 確保圖標在最上層 */
+}
+
+/* 4. 修正 Select2 搜尋框內的文字位置 */
+#form_contact .select2-container--default .select2-selection--single .select2-selection__rendered {
+     padding-left: 0 !important; /* 歸零 Select2 預設的 padding */
+     line-height: 1.2em;
+}
+
+#form_contact .select2-container--default .select2-selection--single {
+	border: 0;
+    border-bottom: 1px solid #000;
+    border-radius: 0;
+}
+
+#form_contact .select2-container {
+	padding: 7px 0;
+	width: 100% !important;
+}
+
+#form_contact .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #54b2b0;
+}
+
+/*end*/
+
+.form-group input {
+	width: auto;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+.form-group {
+	margin-bottom: 1em;
+}
+
+.from_end {
+	margin-top: 1em;
+	margin-bottom: 60px;
+}
+
+.sec_form .field.from_end {
+	margin-top: 1em;
+	margin-bottom: 60px;
+}
+
+
+
+.field_title {
+	margin-top: 1.5em;
+}
+
+#form_contact select {
+	font-size: 16px;
+    font-weight: 200;
+    font-family: "Source Sans Pro", 微軟正黑體, "Microsoft JhengHei", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "sans-serif";
+}
+
+.event-type {
+    margin-bottom: 5px; 
+}
+
+#industry-category {
+	width: 100%;
+    max-width: 396px;
+	margin-left: .3em;
+}
+
+
+#event-type {
+	width: 100%;
+    max-width: 330px;
+    margin-left: .3em;
+    font-family: "Source Sans Pro", 微軟正黑體, "Microsoft JhengHei", "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "sans-serif";
+}
+
+.data_in_grab,
+.data_out_grab {
+	display: block;
+	position: relative;
+}
+
+.data_in_d,
+.data_out_d {
+	width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 10px;
+    top: 2px;
+}
+
+.data_in_d svg,
+.data_out_d svg {
+	width:24px;
+	height24px;
+}
+
+.data_in_grab input,
+.data_out_grab input {
+	width: calc(99% - 42px);
+	padding-left: 42px;
+
+	position: relative;
+    z-index: 2;
+    background: transparent;
+}
+
+
+.booking_area {
+	display: none;
+}
+
+.sec_form .field.event_title {
+	margin-bottom: 1em;
+}
+
+.new2c {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1%;
+}
+
+.new3c {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1%;
+}
+
+.new2c div {
+	width: 45%;
+	flex-grow: 1;
+}
+
+.new3c .bgset {
+	width: 43%;
+	flex-grow: 1;
+	padding: .5em 0;
+}
+
+.new3c .bgset_m {
+	display: flex;
+    width: 5%;
+    align-items: center;
+    justify-content: center;
+}
+
+.new2c .col_2:nth-child(even) {
+	margin-left: 0;
+}
+
+
+
+
+#new_form_grab {
+	display:none;
+}
+
+#expo {
+	display:none;
+}
+
+.copyTop {
+    padding-top: 10px;
+    font-size: 12px;
+    color: #888;
+}
+
+.cookie {
+	width: 100%;
+    position: fixed;
+    display: none;
+    bottom: 0px;
+    background: #54b2b0;
+    opacity: .9;
+    color: #11293b;
+    z-index: 9999;
+}
+
+.cookieContent{
+	margin: 0 auto;
+	padding: 3%;
+	display: block;
+	/*width: auto;*/
+	width: fit-content;
+}
+
+.cookieContent > p {
+	display: inline-block;
+	padding-right: 30px;
+	font-size: 12px;
+}
+
+.cookieContent > .bannerBlock_buttons {
+	display: inline-block;
+	background: #666;
+	color: #fff;
+	margin-top: 30px;
+	cursor: pointer;
+}
+
+
+.button_iii{
+	display:inline-block;
+	background: rgba(52, 80, 103, 0);
+	border: solid 1px #fff;
+	color: #fff;
+	padding: 0.5em 2em;
+	-webkit-transition: background .5s ease-in-out;
+	-moz-transition: background .5s ease-in-out;
+	-ms-transition: background .5s ease-in-out;
+	-o-transition: background .5s ease-in-out;
+	transition: background .5s ease-in-out; 
+}
+.button_iii:hover{
+	background: rgba(255, 255, 255, 0.2);
+	color: #fff;
+	text-decoration:none;
+}
+
+.cookieContent > .bannerBlock_buttons > .button_iii {
+	border: 0;
+	font-size: 14px;
+}
+
+.sec_img .news_item .item_text_CBTO p:nth-child(2),
+.sec_img .news_item .item_text_CBTO p:nth-child(3),
+.sec_img .news_item .item_text_CBTO p:nth-child(4){
+	padding-left: 0;
+}
+
+.sec_img .news_item .item_text_CBTO p:nth-child(2) {
+    color: #54b2b0;
+}
+
+
+.sec_img {
+    margin: 0 auto;
+}
+
+#sec_mask_ad {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#alert{
+	position: fixed;
+	width:60%;
+	z-index: 10000;
+	margin: 0 20%;
+	top:50%;
+	transform: translateY(-50%);
+	display:block;
+	color: #fff;
+
+}
+
+#alert .container {
+	position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#alert img{
+	cursor: pointer;
+	text-align: center;
+    height: 50%;
+    width: auto;
+    margin: 0 auto;
+    vertical-align: top;
+    display: block;
+    opacity: 0;
+}
+
+#alert a{
+color:#fff;
+color:#cd8755;
+
+}
+
+#alert_close{
+	position:absolute;
+    top: 0;
+    right: 0;
+}
+
+#alert img{
+	width: 100%;
+}
+
+.close-button {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0px 10 10px 10px rgba(0, 0, 0, 0.25);
+  background: #54b2b0;
+  position: absolute;
+  display: block;
+  z-index: 200;
+  text-indent: -9999px;
+}
+.close-button:before,
+.close-button:after {
+  content: '';
+  width: 55%;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  top: 48%;
+  left: 22%;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.close-button:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+#comm_option {
+	font-size: 16px;
+    font-weight: 200;
+    font-family: "Source Sans Pro",微軟正黑體,"Microsoft JhengHei","Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,"sans-serif";
+    position: relative;
+    top: -2px;
+    left: 5px;
+}
+
+.select .arr {
+    top: 9px;
+    position: absolute;
+    right: -25px;
+}
+
+.select .rightSelect {
+    min-width: 82px;
+}
+
+.select .arr::before { 
+	top: 0;
+    margin-top: 0;
+
+}
+
+.select .arr::after {
+	top: -1px;
+    right: 28px;
+    margin-top: 0;
+    border-top: 4px solid #fff;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+
+}
+
+.adln {
+	line-height:2;
+	vertical-align: text-bottom!important;
+}
+
+body.fixed {
+	position:fixed;
+}
+
+#sec_mask_menu {
+	display:none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.cart {
+	height: 1em;
+	width: auto;
+}
+
+header>.subfunc>.lang {
+	max-width: calc(100% - 172px);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.sec_arts a:hover {
+	text-decoration: none;
+}
+
+.need {
+	color: #f2655a;
+}
+
+.field input {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.field.form-error input {
+  border-bottom-color: #f2655a !important;
+  box-shadow: none;
+}
+
+.field.form-error select {
+  border: 2px solid #f2655a;
+}
+
+@media screen and (max-width: 1400px) {
+
+	.cookieContent > p {
+		padding-right: 0;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	header {
+	    height: auto;
+	}
+
+	#new_form_grab .col_2 {
+		width: 100%;
+	}
+
+	.col_2:nth-child(even) {
+	    margin: 0;
+	}
+
+	#event-type,
+	#industry-category {
+	    margin-left: 0;
+	}
+}
+
+@media screen and (max-width: 600px) {
+
+	.page_wed_sec {
+		margin-top: 0;
+	}
+
+	.select .sri_select_mo {
+		width: 5.5em;
+	}
+
+	.page_wed .wed_txt {
+		width: 100%;
+	}
+
+	.page_wed_item {
+	    width: 100%;
+	    margin: 0;
+	}
+
+	.cookieContent > p {
+	    	padding-right: 0;
+		
+	}
+
+	.owl-carousel .text_mark {
+		height:10px;
+	}
+
+	.sec_img .news_item .item_text_CBTO {
+		padding: 3%;
+		width: 90%;
+		bottom: 2%;
+		left:2%;
+	}
+
+	.sec_img .news_item .item_text_CBTO p:nth-child(2) {
+		padding: 0;
+		font-size: 1em;
+		line-height: 1.5em;
+	    color: #54b2b0;
+	}
+
+	.sec_img .news_item .item_text_CBTO p:nth-child(3){
+		display:none;
+		padding-left: 0;
+		font-size: 16px;
+	}
+
+	.sec_img .news_item .item_text_CBTO p:nth-child(4) {
+		padding-left: 0;
+		font-size: 12px;
+		padding-bottom: .5em;
+	}
+
+	.nbanner.sec_img.index_page .item_text_btn{
+		font-size: 12px;
+	}
+
+	.nbanner.sec_img.index_page .item_text_btn a{
+		font-size: 12px;
+	    line-height: 1em;
+	}
+
+	.page_wed img {
+		height: calc(90vw * 9 / 16);
+	}
+
+	.topLineMobile .lang{
+		overflow-x: auto;
+	    overflow-y: hidden;
+	    width: 100%;
+	    white-space: nowrap;
+	}
+
+
+}
+
+@media screen and (max-width: 767px){
+	.txtInLine_grab {
+		display: flex;
+	    flex-wrap: nowrap;
+	}
+
+	.txtInLine_grab div:nth-child(1) {
+		min-width: 13em;
+	}
+
+	.txtInLine_grab div:nth-child(2) {
+		margin-right: 0;
+	}
+
+	#expo {
+		display:block;
+	}
+
+	.sec_img {
+		padding-top: 0;
+	}
+
+	#alert{
+		width: 80%;
+    	margin: 0 10%;
+	}
+
+	.topLineMobile .subfunc,
+	.topLineMobile .lang{
+		display:block;
+	}
+
+	.topLineMobile .subfunc {
+		padding: 5px 0;
+	}
+
+	/*
+	.topLineMobile .lang .select .arr {
+	    right: -67px!important;
+	}
+
+	.select .arr {
+	    right: -30px;
+	}
+
+	.select select {
+		width:80px;
+	}
+	*/
+
+	header {
+    	height: auto;
+	}
+
+	.l1.adln {
+		margin-left: 5px;
+	}
+
+	.l2.adln {
+		margin-right: 5px;
+		margin-left: 2px;
+	}
+
+
+	.topLineMobile .select {
+		padding-right:10px
+	}
+
+	.topLineMobile .subfunc {
+		text-align: left;
+	}
+
+	#menu_mobile {
+		top: 91px;
+		height: calc(100vh - 200px );
+    	max-height: initial;
+    	overflow-y: auto;
+	}
+
+	body {
+	  min-height: 100vh;
+	  /* mobile viewport bug fix */
+	  min-height: -webkit-fill-available;
+	}
+
+	html {
+	  height: -webkit-fill-available;
+	}
+
+	header>.subfunc>.lang {
+		max-width: 100%;
+	}
+
+}
+</style>
+
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0>
+
+function hideAD() {
+    $('#alert').fadeToggle();
+    $('#sec_mask_ad').fadeToggle();
+}
+
+function isMobile() {
+    return /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 800;
+}
+
+$(document).ready(function() {
+	/////////////
+	// 1. 當使用者在欄位打字時，即時檢查並移除紅線樣式
+	$('#form_contact').on('input', 'input', function() {
+	    var $this = $(this);
+	    
+	    // 如果是 Email 欄位，打字時先清空自訂錯誤訊息
+	    if ($this.attr('id') === 'email') {
+	        this.setCustomValidity("");
+	    }
+	    
+	    // 如果目前這個欄位已經通過驗證，就單獨移除該欄位的錯誤紅線樣式
+	    if (this.checkValidity()) {
+	        $this.closest('.field').removeClass('form-error');
+	    }
+	});
+
+	// 2. 表單 Submit 事件處理
+	//$('#form_contact').on('submit', function(e) {
+	$('#form_contact').on('click', '.form_button.btn', function(e) {
+
+	    e.preventDefault();
+
+	    //var form = this;
+	    //var $form = $(this);
+	    var $form = $('#form_contact'); 
+    	var form = $form[0]; 
+
+	    var emailInput = $('#email')[0];
+	    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	    
+	    $form.find('.field').removeClass('form-error');
+
+	    if (emailInput) {
+	        emailInput.setCustomValidity("");
+	        if (!emailInput.validity.valid || (emailInput.value && !emailRegex.test(emailInput.value))) {
+	            emailInput.setCustomValidity("請輸入正確的電子郵件格式（例如：user@example.com）");
+	        }
+	    }
+
+	    console.log('email check');
+
+	    // 原生 HTML5 驗證
+	    if (!form.checkValidity()) {
+	    	console.log('checkValidity');
+	        $form.find('input, select[required]').filter(function() {
+	        	console.log('checkValidity1111');
+	            return !this.checkValidity(); // 篩選出驗證沒過（不合法）的 input
+	        }).each(function() {
+	        	console.log('checkValidity2222');
+	            $(this).closest('.field').addClass('form-error'); // 順利加上紅色樣式
+	        });
+
+	        form.reportValidity();
+	        return;
+	    }
+
+	    // 驗證成功，準備送出
+	    var formData = $form.serializeArray();
+
+	    $.post('/newwebsendmail', formData)
+	    .done(function(response) {
+	    	console.log('OKKKKYAAAAA!!!!!!!!');
+	        // 成功後的行為
+	        form.reset();
+	        
+	        $form.animate({opacity: 0}, 300, function(){
+	            $form.hide();
+	            $(".form_text").find("h1").html("Thank you for your submissions");
+	            $('html, body').animate({ scrollTop: $form.parent().offset().top }, 600);
+	        });
+
+
+		})
+	    .fail(function() {
+	        alert('送出失敗，請檢查網路連線或稍後再試。');
+	    });
+	});
+
+
+////////////
+
+
+
+	var $divce_type = '_blank';
+
+	if (isMobile()) {
+		$divce_type = '_self';
+	    //console.log("This is a mobile device.");
+	} 
+
+
+	cookieCheck();
+
+	
+
+	$('#menu_switch').click(function() {
+        showHide('#menu_mobile');
+        $(window).scrollTop(0);
+    });
+
+    $('#cookbtn').click(function() {
+        $('.cookie').hide();
+        var CookieSet = $.cookie('lmt_cookie', '1');
+    });
+
+    $('#sec_mask_ad').click(function() {
+        hideAD();
+    });
+
+    $('#alert_close').click(function() {
+        hideAD();
+    });
+
+    $('#share_btn').click(function() {
+        return socialShare();
+    });
+
+    $('#page_book').click(function() {
+        window.open('https://apq.hihotel.asia/zhtw.v3.0.0.60.6ME8X1/page/', $divce_type);
+    });
+
+    $('.online_res').click(function() {
+        //window.open('https://www.tablecheck.com/zh-TW/le-meridien-taipei-my-humble-house/reserve/landing', $divce_type);
+        var url = $(this).data('link');
+		if (url) {
+		  window.open(url, $divce_type);
+		}
+    });
+
+    $('#page_menu').click(function() {
+        //window.open(href='$current{'page_file'}', '_blank');
+        var url = $(this).data('link');
+		if (url) {
+		  window.open(url, $divce_type);
+		}
+    });
+
+    $('#page_map').click(function() {
+        //window.open(href='$current{'page_file'}', '_blank');
+        var url = $(this).data('link');
+		if (url) {
+		  window.open(url, $divce_type);
+		}
+    });
+
+    $('#page_file').click(function() {
+        //window.open(href='$current{'page_file'}', '_blank');
+        var url = $(this).data('link');
+		if (url) {
+		  window.open(url, $divce_type);
+		}
+    });
+
+    $('.page_file_btn').click(function() {
+        //window.open(href='$current{'page_file'}', '_blank');
+        var url = $(this).data('link');
+		if (url) {
+		  window.open(url, $divce_type);
+		}
+    });
+
+    $('.share_button').on('click', function() {
+        var url = $(this).data('url');
+        var windowFeatures = $(this).data('window-features');
+        if (url) {
+            window.open(url, '_blank', windowFeatures);
+        }
+    });
+    
+
+    $('.datalink').on('click', function() {
+        var link = $(this).data('link');
+        if (link) {
+            window.location.href = link;
+        }
+    });
+
+    $('#form_apply').click(function() {
+        formSubmit('#form_contact', 'mail');
+    });
+    
+    $('#phone_btn').click(function() {
+        window.location='tel:+886 2 6622 8000';
+    });  
+
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+	// true for mobile device
+	$('.lang span').addClass('adln');
+}else {
+	var isChromium = window.chrome;
+	var winNav = window.navigator;
+	var vendorName = winNav.vendor;
+	var isOpera = typeof window.opr !== "undefined";
+	var isIEedge = winNav.userAgent.indexOf("Edg") > -1;
+	var isIOSChrome = winNav.userAgent.match("CriOS");
+
+	if (isIOSChrome) {
+	   // is Google Chrome on IOS
+	} else if(
+	  isChromium !== null &&
+	  typeof isChromium !== "undefined" &&
+	  vendorName === "Google Inc." &&
+	  isOpera === false &&
+	  isIEedge === false
+	) {
+	   // is Google Chrome
+	} else { 
+	   // not Google Chrome
+
+	   $('.lang span').addClass('adln');
+	}
+
+}
+
+});
+
+$(document).on('change', '.sri_select', function() {
+		var url = $(this).val();
+		if (url) {
+		  window.open(url, '_blank');
+		  $(this).val('0');
+		}
+	});
+
+	$(document).on('change', '.sri_select_mo', function() {
+		var url = $(this).val();
+		if (url) {
+		  window.open(url, '_self');
+		  $(this).val('0');
+		}
+	});
+
+
+function cookieCheck() {
+	if (!!$.cookie('lmt_cookie')) {
+	 	$('.cookie').hide();
+	} else {
+	 	$('.cookie').show(); 
+	}
+}
+
+
+
+
+
+
+</script>
+<!-- Google tag (gtag.js)  -->
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 async src="https://www.googletagmanager.com/gtag/js?id=G-3L4DPEYM5S"></script>
+
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0>
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3L4DPEYM5S');
+</script>
+
+<!-- Google Tag Manager 260826-->
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0>
+
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5DV44VTD');</script>
+<!-- End Google Tag Manager -->
+
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DV44VTD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="sec_mask_menu"></div>
+
+
+<header>
+<div class="logo" id="logo"><a></a></div>
+<div class="subfunc">
+	<div class="lang"> 
+		<a href="https://apq.hihotel.asia/zhtw.v3.0.0.60.6ME8X1/page/" target="_blank" rel="noopener noreferrer">線上訂房</a>
+		<span style="font-size:0.7em; font-weight:800; vertical-align:top;"> | </span>
+		
+			<div class="select">
+		    	<span class="arr"></span>
+			    <select class="sri_select" id="res_select">
+			      <option value="0" selected hidden disabled>線上訂位</option>
+			      
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latest-recipe/reserve/landing"><a>探索廚房</a></option>
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-my-humble-house/reserve/landing"><a>寒舍食譜</a></option>
+<!--option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-tipsy-sparrow/reserve/landing"><a>TIPSY Sparrow</a></option-->
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latitude25/reserve/landing"><a>北緯二十五</a></option>
+
+			    </select>
+		  	</div>
+		  	<span style="font-size:0.7em; font-weight:800; vertical-align:top;"> | </span>
+		  	<div class="select">
+		    	<span class="arr"></span>
+			    <select class="sri_select" id="take_select">
+			      <option value="0" selected hidden disabled>外帶/外送</option>
+			      
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-my-humble-house/reserve/landing"><a>寒舍食譜</a></option>
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latitude25/reserve/landing"><a>北緯二十五</a></option>
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-drip-and-dough/reserve/landing"><a>DRIP & DOUGH</a></option>
+
+			    </select>
+		  	</div>
+	    	<span style="font-size:0.7em; font-weight:800; vertical-align:top;"> | </span>
+	    	
+    		<div class="select">
+		    	<span class="arr"></span>
+			    <select class="sri_select">
+			      <option value="0" selected hidden disabled>線上購物</option>
+			      
+<option value="https://twanga.mohist.com.tw/LIKEGO/index.php?GetStore=MHH"><a>年節禮品</a></option>
+<option value="https://mhhcar.smp.17life.com/">餐券/住宿券</option>
+
+			    </select>
+		  	</div>
+    		
+	    	<span style="font-size:0.7em; font-weight:800; vertical-align:top;"> | </span>
+			<div class="select">
+		    	<span class="arr"></span>
+			    <select class="sri_select">
+			      <option value="0" selected hidden disabled>寒舍集團</option>
+			      
+<option value="https://www.mhh-group.com"><a>寒舍餐旅</a></option>
+<option value="https://www.sheratongrandtaipei.com"><a>台北喜來登</a></option>
+<option value="https://www.muhotels.com"><a>礁溪寒沐</a></option>
+<option value="https://humbleboutique.com.tw"><a>寒居酒店</a></option>
+<option value="https://www.humblehousehotels.com"><a>台北艾麗</a></option> 
+    
+			    </select>
+		  	</div>
+			<span style="font-size:0.7em; font-weight:800; vertical-align:top;"> | </span>
+			<div class="select">
+	<span class="arr arrRight"></span>
+	<select class="rightSelect sri_select">
+	  <option value="0" selected disabled>Languages</option>
+	  <option value="/websev?lang=zh-tw"><a>中文(繁體)</a></option>
+	  <option value="/websev?lang=kr"><a>한국어</a></option>
+	  <option value="https://www.marriott.com/hotels/hotel-rooms/tpedm-le-meridien-taipei/"><a>English</a></option>
+	  <option value="https://www.marriott.co.jp/hotels/travel/tpedm-le-meridien-taipei/"><a>日本語</a></option>
+	</select>
+</div>
+		  	
+	  	<div class="copyTop">COPYRIGHT &copy; 2026 寒舍餐旅管理顧問股份有限公司 ALL RIGHTS RESERVED.</div>
+	</div>
+
+	<div class="logoIcon">
+		<a href="/websev?lang=zh-tw"><img src="/style/logo_y.png" border="0" alt=""></a>
+	</div>
+
+</div>
+
+
+<div id="menu">
+	<div class="topLine"></div>
+	<ul>
+	<li class="sta_1" id="menu_寒舍線上旅展" name="menu_寒舍線上旅展" ><a href="/websev?lang=zh-tw&ref=pages&id=709">寒舍線上旅展</a></li><li class="sta_" id="menu_最新消息" name="menu_最新消息" ><a href="/websev?lang=zh-tw&ref=pages&cat=0&type=0">最新消息</a>
+					<ul>
+					
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=12&type=0">新訊</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=22&type=0">餐飲優惠</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=23&type=0">住房優惠</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=68&type=0">APP優惠</a></li>
+						
+					</ul>
+				</li><li class="sta_1" id="menu_關於艾美" name="menu_關於艾美" ><a href="javascript: return false;">關於艾美</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=2">品牌哲學</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=65">酒店簡介</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=96">探索之旅</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=94">抵達體驗</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=95">藝術房卡</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=57">人才招募</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_食尚饗宴" name="menu_食尚饗宴" ><a href="javascript: return false;">食尚饗宴</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=807">探索廚房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=7">北緯二十五</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=4">寒舍食譜</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=649">Drip & Dough</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_宴會會議" name="menu_宴會會議" ><a href="javascript: return false;">宴會會議</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=854">場地介紹</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=859">專案介紹</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_經典房型" name="menu_經典房型" ><a href="javascript: return false;">經典房型</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=19">豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=20">純淨豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=21">露臺豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=22">艾美行政客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=23">主管套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=24">露臺主管套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=25">景隅套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=26">卓越套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=27">露臺套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=28">艾美套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=29">總統套房</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_設施服務" name="menu_設施服務" ><a href="javascript: return false;">設施服務</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=30">貴賓管家</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=64">行政貴賓廳</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=17">商務中心</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=16">醫務室</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=18">停車服務</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_艾美會館" name="menu_艾美會館" ><a href="javascript: return false;">艾美會館</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=153">會館簡介</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=31">健身房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=32">有氧教室</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=33">三溫暖</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=34">游泳池</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_寒舍生活App" name="menu_寒舍生活App" ><a href="/websev?lang=zh-tw&ref=pages&id=412">寒舍生活App</a></li><li class="sta_1" id="menu_會員" name="menu_會員" ><a href="/websev?lang=zh-tw&ref=pages&id=62">會員</a></li><li class="sta_1" id="menu_永續行動" name="menu_永續行動" ><a href="/websev?lang=zh-tw&ref=pages&id=755">永續行動</a></li><li class="sta_1" id="menu_鄰近資訊" name="menu_鄰近資訊" ><a href="/websev?lang=zh-tw&ref=neighbor">鄰近資訊</a>
+				<ul>				
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=10">精選一日遊</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=9">精選美食</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=8">精選景點</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=6">人文之旅</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=3">城市景觀</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=2">藝術</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=4">饗宴</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=5">購物</a></li>
+				
+				</ul>
+				</li><li class="sta_1" id="menu_酒店位置" name="menu_酒店位置" ><a href="/websev?lang=zh-tw&ref=pages&id=602">酒店位置</a></li><li class="sta_1" id="menu_線上藝術博物館" name="menu_線上藝術博物館" ><a href="/websev?lang=zh-tw&ref=art">線上藝術博物館</a></li><li class="sta_1" id="menu_條款與政策" name="menu_條款與政策" ><a href="javascript: return false;">條款與政策</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=352">賓客入住及用餐提醒</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=270">身心障礙權益保障</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=75">隱私權保障條款與政策</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=97">性騷擾防治辦法</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_票券規範" name="menu_票券規範" ><a href="javascript: return false;">票券規範</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=881">2026年旅展票券使用規範</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=811">2025年旅展票券使用規範</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_聯絡我們" name="menu_聯絡我們" ><a href="/websev?lang=zh-tw&ref=pages&id=1">聯絡我們</a></li>
+	</ul>
+</div>
+
+<!-- andy add -->
+<div class="topLineMobile">
+
+<div class="subfunc">
+	<div class="lang"> 
+		<a href="https://apq.hihotel.asia/zhtw.v3.0.0.60.6ME8X1/page/" target="_blank" rel="noopener noreferrer">線上訂房</a>
+		<span class="l1" style="font-size:0.7em; font-weight:800; vertical-align:top;"> | </span>
+		
+			<div class="select">
+		    	<span class="arr"></span>
+			    <select class="sri_select_mo">
+			      <option value="0">線上訂位</option>
+			      
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latest-recipe/reserve/landing"><a>探索廚房</a></option>
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-my-humble-house/reserve/landing"><a>寒舍食譜</a></option>
+<!--option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-tipsy-sparrow/reserve/landing"><a>TIPSY Sparrow</a></option-->
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latitude25/reserve/landing"><a>北緯二十五</a></option>
+
+			      
+			    </select>
+		  	</div>
+			<span class="l2" style="font-size:0.7em; font-weight:800; vertical-align:top;"> | </span>
+
+
+			<div class="select">
+		    	<span class="arr"></span>
+			    <select class="sri_select_mo">
+			      <option value="0">外帶/外送</option>
+			      
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-my-humble-house/reserve/landing"><a>寒舍食譜</a></option>
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latitude25/reserve/landing"><a>北緯二十五</a></option>
+<option value="https://www.tablecheck.com/zh-TW/le-meridien-taipei-drip-and-dough/reserve/landing"><a>DRIP & DOUGH</a></option>
+
+			    </select>
+		  	</div>
+
+
+			<span class="l2" style="font-size:0.7em; font-weight:800; vertical-align:top;"> | </span>
+			
+			<div class="select">
+		    	<span class="arr"></span>
+			    <select class="sri_select_mo" id="select_shop_mo">
+			      <option value="0">線上購物</option>
+			      
+<option value="https://twanga.mohist.com.tw/LIKEGO/index.php?GetStore=MHH"><a>年節禮品</a></option>
+<option value="https://mhhcar.smp.17life.com/">餐券/住宿券</option>
+
+			    </select>
+		  	</div>
+		  	
+	</div>
+</div>
+<div class="topLine"></div>
+
+<div id="menu_switch">
+	<span></span>
+	<span></span>
+	<span></span>
+	<a href="javascript:return false;"></a>
+</div>
+
+<div class="logoIcon_mobile">
+	<a href="/websev?lang=zh-tw"><img src="/style/logo_y.png" border="0" alt=""></a>
+</div>
+
+</div>
+<!-- end -->
+
+<ul id="menu_mobile">
+<li class="sta_1" id="menu_寒舍線上旅展" name="menu_寒舍線上旅展" ><a href="/websev?lang=zh-tw&ref=pages&id=709">寒舍線上旅展</a></li><li class="sta_" id="menu_最新消息" name="menu_最新消息" ><a href="/websev?lang=zh-tw&ref=pages&cat=0&type=0">最新消息</a>
+					<ul>
+					
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=12&type=0">新訊</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=22&type=0">餐飲優惠</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=23&type=0">住房優惠</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=68&type=0">APP優惠</a></li>
+						
+					</ul>
+				</li><li class="sta_1" id="menu_關於艾美" name="menu_關於艾美" ><a href="javascript: return false;">關於艾美</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=2">品牌哲學</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=65">酒店簡介</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=96">探索之旅</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=94">抵達體驗</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=95">藝術房卡</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=57">人才招募</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_食尚饗宴" name="menu_食尚饗宴" ><a href="javascript: return false;">食尚饗宴</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=807">探索廚房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=7">北緯二十五</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=4">寒舍食譜</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=649">Drip & Dough</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_宴會會議" name="menu_宴會會議" ><a href="javascript: return false;">宴會會議</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=854">場地介紹</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=859">專案介紹</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_經典房型" name="menu_經典房型" ><a href="javascript: return false;">經典房型</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=19">豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=20">純淨豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=21">露臺豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=22">艾美行政客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=23">主管套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=24">露臺主管套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=25">景隅套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=26">卓越套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=27">露臺套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=28">艾美套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=29">總統套房</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_設施服務" name="menu_設施服務" ><a href="javascript: return false;">設施服務</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=30">貴賓管家</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=64">行政貴賓廳</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=17">商務中心</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=16">醫務室</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=18">停車服務</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_艾美會館" name="menu_艾美會館" ><a href="javascript: return false;">艾美會館</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=153">會館簡介</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=31">健身房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=32">有氧教室</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=33">三溫暖</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=34">游泳池</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_寒舍生活App" name="menu_寒舍生活App" ><a href="/websev?lang=zh-tw&ref=pages&id=412">寒舍生活App</a></li><li class="sta_1" id="menu_會員" name="menu_會員" ><a href="/websev?lang=zh-tw&ref=pages&id=62">會員</a></li><li class="sta_1" id="menu_永續行動" name="menu_永續行動" ><a href="/websev?lang=zh-tw&ref=pages&id=755">永續行動</a></li><li class="sta_1" id="menu_鄰近資訊" name="menu_鄰近資訊" ><a href="/websev?lang=zh-tw&ref=neighbor">鄰近資訊</a>
+				<ul>				
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=10">精選一日遊</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=9">精選美食</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=8">精選景點</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=6">人文之旅</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=3">城市景觀</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=2">藝術</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=4">饗宴</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=5">購物</a></li>
+				
+				</ul>
+				</li><li class="sta_1" id="menu_酒店位置" name="menu_酒店位置" ><a href="/websev?lang=zh-tw&ref=pages&id=602">酒店位置</a></li><li class="sta_1" id="menu_線上藝術博物館" name="menu_線上藝術博物館" ><a href="/websev?lang=zh-tw&ref=art">線上藝術博物館</a></li><li class="sta_1" id="menu_條款與政策" name="menu_條款與政策" ><a href="javascript: return false;">條款與政策</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=352">賓客入住及用餐提醒</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=270">身心障礙權益保障</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=75">隱私權保障條款與政策</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=97">性騷擾防治辦法</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_票券規範" name="menu_票券規範" ><a href="javascript: return false;">票券規範</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=881">2026年旅展票券使用規範</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=811">2025年旅展票券使用規範</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_聯絡我們" name="menu_聯絡我們" ><a href="/websev?lang=zh-tw&ref=pages&id=1">聯絡我們</a></li>
+</ul>
+</header>
+
+
+
+<section class="nbanner sec_img index_page">
+	<div class="owl-carousel owl-theme">
+	
+			<div class="item">   	
+				<div class="group">
+					<div class="news_item pointer">
+						<div class="item_img" style="background-image:url(/files/pages_1514973480xbn0lk34_l.jpg);"></div>
+						<div class="item_mask"></div>
+						
+						
+
+					</div>
+				</div>	
+		    </div>
+			
+			<div class="item">   	
+				<div class="group">
+					<div class="news_item pointer">
+						<div class="item_img" style="background-image:url(/files/pages_1516098920xchm6p78_l.jpg);"></div>
+						<div class="item_mask"></div>
+						
+						
+
+					</div>
+				</div>	
+		    </div>
+			
+			<div class="item">   	
+				<div class="group">
+					<div class="news_item pointer">
+						<div class="item_img" style="background-image:url(/files/pages_1516098871xchm5901_l.jpg);"></div>
+						<div class="item_mask"></div>
+						
+						
+
+					</div>
+				</div>	
+		    </div>
+							
+	</div>
+</section>
+
+<section class="sec_text">
+	<div class="text_mark"></div>
+	<div class="text_title">
+		<span class="title1">巧妙揉合人文藝術與時尚</span>
+		<span class="title2">探索台北新魅力</span>
+	</div>
+	<div class="text_content">
+	<!--
+		<p class="text_page_content_title"></p>
+		<br>
+	-->	
+		<p>以人文、藝術聞名全球的艾美酒店，起源於時尚之都-巴黎，以其富有前瞻性且引領時尚的內涵，不僅為賓客奉上完美的入住享受，更帶來駕馭自如的探索之旅，台北寒舍艾美酒店將帶來創意生活風尚，讓艾美賓客以嶄新視角，透視世界。</p>
+		<p></p>
+	</div>
+</section>
+
+		<div id="sec_mask_ad"></div>
+		<div id="alert">
+			<div class="container" style="background-image:url(/files/set_179096517415e6xsa64.jpg);">
+				<a href="https://mhhcar.smp.17life.com/?utm_source=OOH_SH&utm_source=facebook&utm_medium=post-ads&utm_campaign=p1" target="_blank" rel="noopener noreferrer">
+				<img src="/files/set_179096517415e6xsa64.jpg" border="0" alt="">
+				</a>
+				<div id="alert_close" class="pointer"><div class="close-button"></div></div>
+			</div>
+			
+			
+		</div>
+	
+	<section class="sec_related">
+		<div class="sec_related_title">
+			<div class="text_mark"></div>
+			<span class="title1">找尋專屬於您的優惠方案</span>
+			<span class="title3">立即了解台北寒舍艾美酒店的最新消息</span>
+		</div>
+		<div class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+			
+			<div class="item">
+				<div class="rooms_item pointer datalink" data-link="/websev?lang=zh-tw&ref=pages&cat=&id=806">
+					 <div class="item_img" style="background-image:url(/files/pages_179028343315dnldd78_l.jpg);"></div>
+					
+			<div class="item_text">
+				<div class="text_mark"></div>
+				<span class="title3">新春紅毯闊步 揭開2027耀眼序幕</span>
+				<span class="title1">2027除夕晚宴【新春風尚 璀璨之夜】</span>
+				<p>時尚與鎂光燈的紅毯舞台，今年除夕夜用最富儀式感的方式盛裝登場。台北寒舍艾美酒店以都會時尚為靈感，將當代美學、精緻饗宴與台北101璀璨夜景交織，結合成一場新春時尚盛會，活動期間驚喜抽獎不斷，雞尾酒、氣泡酒、紅白酒、啤酒、果汁與軟性飲料無限暢飲外，每位再獻上ORIGIN風味巧克力，沉浸式感受這場華麗盛宴...</p>
+			</div>
+			
+				</div>
+			</div>
+			
+			<div class="item">
+				<div class="rooms_item pointer datalink" data-link="/websev?lang=zh-tw&ref=pages&cat=&id=805">
+					 <div class="item_img" style="background-image:url(/files/pages_175827779114npat061_l.jpg);"></div>
+					
+			<div class="item_text">
+				<div class="text_mark"></div>
+				<span class="title3">寒舍食譜 秋蟹盛宴</span>
+				<span class="title1">【品茶啖蟹】秋蟹盛宴</span>
+				<p>金風送爽，蟹肥膏黃正當時。持螯對月，饗一場秋意盎然的饕餮盛宴。9月22日至12月31日，寒舍食譜推出多款嚴選的秋蟹料理，每道NT5,280+10%起，搭配精選「蔡昊鳳凰單叢氣泡茶」，在大啖秋蟹的同時，品味茶飲的清新韻味。
+
+時序入秋，正是蟹肥膏黃的最佳品蟹時節，主廚以7種不同料理手法變化出豐富秋...</p>
+			</div>
+			
+				</div>
+			</div>
+			
+			<div class="item">
+				<div class="rooms_item pointer datalink" data-link="/websev?lang=zh-tw&ref=pages&cat=&id=783">
+					 <div class="item_img" style="background-image:url(/files/pages_175017860114hn8m690_l.jpg);"></div>
+					
+			<div class="item_text">
+				<div class="text_mark"></div>
+				<span class="title3">看完球賽／演唱會直接入住！</span>
+				<span class="title1">【2026台北不散場】 台北寒舍艾美假期</span>
+				<p>大巨蛋賽事與演唱會嗨翻全場，不如就此展開一場時尚又精彩的台北都會假期！入住台北寒舍艾美酒店，不僅坐擁絕佳地理位置，輕鬆步行即可前往活動現場，讓您盡情感受現場魅力。演出結束後，不必匆忙返家，回到飯店享受舒適夜宿，延續心動餘韻。
+
+隔日憑房卡還可免費參觀台北當代藝術館（MoCA），在熱血與藝術之間切...</p>
+			</div>
+			
+				</div>
+			</div>
+			
+			<div class="item">
+				<div class="rooms_item pointer datalink" data-link="/websev?lang=zh-tw&ref=pages&cat=&id=879">
+					 <div class="item_img" style="background-image:url(/files/pages_178912699415cs6wb45_l.jpg);"></div>
+					
+			<div class="item_text">
+				<div class="text_mark"></div>
+				<span class="title3">探索廚房10/05開放春節檔期訂位</span>
+				<span class="title1">探索廚房 小年夜、除夕及春節假期 開放預訂</span>
+				<p>闔家團聚喜迎年，台北寒舍艾美酒店探索廚房於2026年10月05日9:00開放農曆新年期間(小年夜2027/02/04-初五2027/02/10)之訂位，其中除夕(2027/02/05)及初二(2027/02/07)全日僅開放電話訂位。探索廚房也將在春節期間悉心呈獻年節豐餚，邀請您與家人朋友共度春節時...</p>
+			</div>
+			
+				</div>
+			</div>
+			
+			<div class="item">
+				<div class="rooms_item pointer datalink" data-link="/websev?lang=zh-tw&ref=pages&cat=&id=878">
+					 <div class="item_img" style="background-image:url(/files/pages_178661426915aw9an15_l.jpg);"></div>
+					
+			<div class="item_text">
+				<div class="text_mark"></div>
+				<span class="title3">台北寒舍艾美酒店</span>
+				<span class="title1">【2027璀璨跨年】住房專案</span>
+				<p>當城市燈火逐漸點亮夜空，歲末的期待也悄然展開。入住台北寒舍艾美酒店，以信義區璀璨天際線為景，迎接一年之中最令人期待的倒數時刻。
+
+無論是在舒適雅緻的客房靜賞城市夜景，或於指定101面景房型欣賞台北101跨年煙火，讓絢爛光影與新年的第一刻，成為旅程中最難忘的回憶。
+
+即日起開放預訂【2027璀...</p>
+			</div>
+			
+				</div>
+			</div>
+			
+			<div class="item">
+				<div class="rooms_item pointer datalink" data-link="/websev?lang=zh-tw&ref=pages&cat=&id=54">
+					 <div class="item_img" style="background-image:url(/files/pages_1514303642xb5x6s95_l.jpg);"></div>
+					
+			<div class="item_text">
+				<div class="text_mark"></div>
+				<span class="title3">台北寒舍艾美酒店</span>
+				<span class="title1">防範詐騙提醒</span>
+				<p>公告提醒
+近日簡訊服務供應商發生資訊安全事件。經初步確認，寒舍集團並無會員個資或機敏資料存放於該服務伺服器。然而仍提醒貴賓留意不明簡訊或可疑連結，切勿點擊或提供個人資訊，以維護資訊安全。
+
+防範詐騙提醒
+台北寒舍艾美酒店特別提醒您，當您使用線上系統完成交易後，本酒店不會因網路分期付款發生設定...</p>
+			</div>
+			
+				</div>
+			</div>
+			
+			<div class="item">
+				<div class="rooms_item pointer datalink" data-link="/websev?lang=zh-tw&ref=pages&cat=&id=871">
+					 <div class="item_img" style="background-image:url(/files/pages_1780421014156ansb57_l.jpg);"></div>
+					
+			<div class="item_text">
+				<div class="text_mark"></div>
+				<span class="title3">宴會廳</span>
+				<span class="title1">「Beyond 2027・比耀未來」尾牙春酒專案</span>
+				<p>今天不談KPI，我們舉杯致敬一年的辛勞，共創佳績，讓每一次相聚，皆成為比肩榮耀、耀向未來的璀璨起點。台北寒舍艾美酒店2026年11月01日至2027年04月30日推出「Beyond 2027・比耀未來」尾牙春酒專案，專案含五星級主廚悉心料理的豪華美饌，與暢飲席間果汁軟飲，以及台灣金牌啤酒或精選紅酒二...</p>
+			</div>
+			
+				</div>
+			</div>
+			
+			<div class="item">
+				<div class="rooms_item pointer datalink" data-link="/websev?lang=zh-tw&ref=pages&cat=&id=842">
+					 <div class="item_img" style="background-image:url(/files/pages_176860821214vg55s58_l.jpg);"></div>
+					
+			<div class="item_text">
+				<div class="text_mark"></div>
+				<span class="title3"> 探索廚房</span>
+				<span class="title1">【2026年延饗午宴】</span>
+				<p>週五就先把週末儀式感開啟，揪團下午一起開吃好料；假日想睡晚一點也沒關係，把「午後時段同步推出午宴規格餐檯」下午時間照樣吃得到超級豐盛的美味。
+為讓更多貴賓體驗升級後的精緻餐檯菜色，台北寒舍艾美酒店探索廚房將於6月1日起，每週五、六、日加開午間第二餐期，週五下午茶餐期將調整為供應平日午餐的完整菜色，...</p>
+			</div>
+			
+				</div>
+			</div>
+			
+		</div>
+	</section>
+	
+
+<div class="terms_container">
+	<div class="terms">
+	<span class="title3">隱私權保障條款與政策</span>
+<p>
+本網站是一個提供安全交易服務的網站，所以我們對網站使用者的個人的隱私權，絕對尊重並予以保護。以下的內容將讓您瞭解我們如何蒐集、應用及保護您所提供的個人資訊。
+<br>
+當您使用「線上訂房系統」完成訂房交易後，本飯店不會以電話或簡訊要求您操作ATM、變更付款方式或補繳金額，亦不會要求您提供信用卡或銀行帳戶相關資料。如接獲不明來電及可疑簡訊提出上述要求，請不予理會，並儘速反映至警政署防詐騙專線165或警政署防詐騙網頁。
+</p>
+
+<p class="terms_more">
+<b>賓客入住規範</b>
+<br>根據中華民國法律，賓客需年滿20歲者方能合法登記入住飯店客房，未滿20歲之賓客須有年滿20歲之成年賓客陪同，且入住時須出示身分證件或護照始得入住。
+<br>
+<b>個人資料之蒐集政策</b>　<br>為確認您在本站所進行的交易服務行為以及方便您取得本網站資訊，我們將會請您提供包括使用者ID（帳號）、密碼、姓名、身分字號、聯絡電話、聯絡傳真、電子信箱、聯絡住址…等個人資料。
+<br>
+<b>蒐集個人資料之運用政策</b>　<br>您在網站上所輸入的資料，本網站將僅用於交易相關作業、寄發活動訊息等電子報或郵寄DM中。
+<br>
+<b>與第三者共用個人資料之政策</b>　<br>1. 在未取得您的同意之前，本網站所蒐集的個人資料絕不會提供給其他團體或個人，或用於上述目的以外之其他用途。<br>2. 若本網站為了提供其他服務或優惠權益，需要與提供該服務或優惠第三者共用使用者資料時（與其他業者共同推出活動或特惠），會在活動時提供充分說明，您可以自由選擇是否接受該項特定服務或優惠。
+<br>
+<b>Cookies的運用與政策</b><br>所謂的Cookies是伺服器端為了區別使用者的不同喜好，經由瀏覽器寫入使用者硬碟的一些簡短資訊。您可以選擇修改您的瀏覽器對Cookies的接受程度，如果您使用IE，這項功能在「Internet選項」的「安全性」中，如果您使用Netscape，則此功能在「功能設定」的「進階」中，在這個地方，有三種層級，包括接受所有cookies、設定cookies時得到通知、拒絕所有cookies等。如果您選擇拒絕所有的cookies，您就可能無法使用部份個人化服務，或是參與網站上部份的活動。<br>而本飯店為了提昇使用者輸入資料的方便性及正確性，以及提供更好的服務，網站上各資料欄位會採用cookies方式來儲存您輸入過的資料。所以本飯店網站會在本政策原則之下，在您瀏覽器中寫入並讀取Cookies。
+<br>
+<b>有關隱私權保障條款之修正權利</b>　<br>本網站的隱私權保護條款，將因應科技發展趨勢、相關法規之修訂或其他環境變遷等因素做適當之修改，以落實保障使用者隱私權之立意。修改過的條款將隨時調整，立即刊登於本網站中。
+<br>
+<b>性騷擾防治辦法</b><br><a href="https://drive.google.com/file/d/0B8Kr1pHTgyJeeUpUNkkyZ3BfNG8/view" target="_blank">性騷擾防治申訴及調查處理要點 </a>
+<br>
+<b>國人訂房規範須知</b><br><a href="https://drive.google.com/file/d/0B8Kr1pHTgyJeRTZtaDVQUlByQ0E/view" target="_blank">國人訂房規範須知 </a>
+
+
+	</p>		
+	</div>
+</div>
+
+<div class="cookie">
+	<div class="cookieContent">
+  	  	<p style="">為了提供更優質的網站體驗，本網站是以Cookies分析技術蒐集最少數量的個人訊息，繼續使用本網站即表示您接受這些cookie的使用。更多內容請閱讀我們的<a href="/websev?lang=zh-tw&ref=pages&id=75">隱私權保障條款與政策</a>。本網站由寒舍餐旅管理顧問股份有限公司管理</p>
+        <div class="bannerBlock_buttons">
+            <div class="button_iii" id="cookbtn">我知道了</div>
+      </div>
+	</div>
+</div>
+
+<footer id="foot">
+	<div class="foot_top_line"></div>
+
+	<div class="container">
+		<div class="col_4">
+			<h3> 台北寒舍艾美酒店 - Le Méridien Taipei </h3>
+			<p>110 台北市信義區松仁路38號</p>
+			<div class="foot_title_t">
+				<p>T</p><p>+886 2 6622 8000</p>
+			</div>
+			<div class="foot_title_f">
+				<p>F</p><p>+886 2 6636 8000<br></p>
+			</div>
+			<div class="foot_title_e">
+				<!-- <p>E</p>-->
+				<p>lemeridien@lemeridien-taipei.com</p>
+			</div>
+			<div class="foot_title_v">
+				<p>統編 28999882</p>
+			</div>
+
+<div class="foot_link">
+<span class="title3">
+<a href="https://apq.hihotel.asia/zhtw.v3.0.0.60.6ME8X1/page/" target="_blank">
+線上訂房
+</a>
+</span>
+</div>
+
+<div class="foot_link">
+<span class="title3">線上訂位</span>
+<p>
+
+<a href="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latest-recipe/reserve/landing" target="_blank">探索廚房</a>
+<a href="https://www.tablecheck.com/zh-TW/le-meridien-taipei-my-humble-house/reserve/landing" target="_blank">寒舍食譜</a>
+<!--a href="https://www.tablecheck.com/zh-TW/le-meridien-taipei-tipsy-sparrow/reserve/landing" target="_blank">TIPSY Sparrow</a-->
+<a href="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latitude25/reserve/landing" target="_blank">北緯二十五</a>
+
+</p>
+</div>
+
+<div class="foot_link">
+<span class="title3">外帶/外送</span>
+<p>
+
+<a href="https://www.tablecheck.com/zh-TW/le-meridien-taipei-my-humble-house/reserve/landing" target="_blank">寒舍食譜</a>
+<a href="https://www.tablecheck.com/zh-TW/le-meridien-taipei-latitude25/reserve/landing" target="_blank">北緯二十五</a>
+<a href="https://www.tablecheck.com/zh-TW/le-meridien-taipei-drip-and-dough/reserve/landing" target="_blank">DRIP & DOUGH</a>
+
+</p>
+</div>
+
+<div class="foot_link">
+<span class="title3">寒舍集團</span>
+<p>
+
+<a href="https://www.mhh-group.com" target="_blank">寒舍餐旅</a>
+<a href="https://www.sheratongrandtaipei.com" target="_blank">台北喜來登</a>
+<a href="https://www.muhotels.com" target="_blank">礁溪寒沐</a>
+<a href="https://humbleboutique.com.tw" target="_blank">寒居酒店</a>
+<a href="https://www.humblehousehotels.com" target="_blank">寒舍艾麗</a>
+
+</p>
+</div>
+
+
+<div class="foot_lang">
+<span class="title3">LANGUAGES</span>
+<p>
+<a href="/websev?lang=zh-tw">中文</a>
+<a href="https://www.marriott.com/hotels/hotel-rooms/tpedm-le-meridien-taipei/" target="_blank">English</a>
+<a href="https://www.marriott.co.jp/hotels/travel/tpedm-le-meridien-taipei/" target="_blank">日本語</a>
+<a href="/websev?lang=kr">한국어</a>
+</p>
+</div>
+
+
+		</div><div class="col_4 footer_menu pfsiteMap">
+	<span class="title3">SITE MAP</span>
+	<div class="menu_map fsiteMap">
+		<ul>
+			<li class="sta_1" id="menu_寒舍線上旅展" name="menu_寒舍線上旅展" ><a href="/websev?lang=zh-tw&ref=pages&id=709">寒舍線上旅展</a></li><li class="sta_" id="menu_最新消息" name="menu_最新消息" ><a href="/websev?lang=zh-tw&ref=pages&cat=0&type=0">最新消息</a>
+					<ul>
+					
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=12&type=0">新訊</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=22&type=0">餐飲優惠</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=23&type=0">住房優惠</a></li>
+						
+						<li><a href="/websev?lang=zh-tw&ref=pages&cat=68&type=0">APP優惠</a></li>
+						
+					</ul>
+				</li><li class="sta_1" id="menu_關於艾美" name="menu_關於艾美" ><a href="javascript: return false;">關於艾美</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=2">品牌哲學</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=65">酒店簡介</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=96">探索之旅</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=94">抵達體驗</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=95">藝術房卡</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=57">人才招募</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_食尚饗宴" name="menu_食尚饗宴" ><a href="javascript: return false;">食尚饗宴</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=807">探索廚房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=7">北緯二十五</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=4">寒舍食譜</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=649">Drip & Dough</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_宴會會議" name="menu_宴會會議" ><a href="javascript: return false;">宴會會議</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=854">場地介紹</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=859">專案介紹</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_經典房型" name="menu_經典房型" ><a href="javascript: return false;">經典房型</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=19">豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=20">純淨豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=21">露臺豪華客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=22">艾美行政客房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=23">主管套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=24">露臺主管套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=25">景隅套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=26">卓越套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=27">露臺套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=28">艾美套房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=29">總統套房</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_設施服務" name="menu_設施服務" ><a href="javascript: return false;">設施服務</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=30">貴賓管家</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=64">行政貴賓廳</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=17">商務中心</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=16">醫務室</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=18">停車服務</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_艾美會館" name="menu_艾美會館" ><a href="javascript: return false;">艾美會館</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=153">會館簡介</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=31">健身房</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=32">有氧教室</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=33">三溫暖</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=34">游泳池</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_寒舍生活App" name="menu_寒舍生活App" ><a href="/websev?lang=zh-tw&ref=pages&id=412">寒舍生活App</a></li><li class="sta_1" id="menu_會員" name="menu_會員" ><a href="/websev?lang=zh-tw&ref=pages&id=62">會員</a></li><li class="sta_1" id="menu_永續行動" name="menu_永續行動" ><a href="/websev?lang=zh-tw&ref=pages&id=755">永續行動</a></li><li class="sta_1" id="menu_鄰近資訊" name="menu_鄰近資訊" ><a href="/websev?lang=zh-tw&ref=neighbor">鄰近資訊</a>
+				<ul>				
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=10">精選一日遊</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=9">精選美食</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=8">精選景點</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=6">人文之旅</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=3">城市景觀</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=2">藝術</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=4">饗宴</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=neighbor&cat=5">購物</a></li>
+				
+				</ul>
+				</li><li class="sta_1" id="menu_酒店位置" name="menu_酒店位置" ><a href="/websev?lang=zh-tw&ref=pages&id=602">酒店位置</a></li><li class="sta_1" id="menu_線上藝術博物館" name="menu_線上藝術博物館" ><a href="/websev?lang=zh-tw&ref=art">線上藝術博物館</a></li><li class="sta_1" id="menu_條款與政策" name="menu_條款與政策" ><a href="javascript: return false;">條款與政策</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=352">賓客入住及用餐提醒</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=270">身心障礙權益保障</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=75">隱私權保障條款與政策</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=97">性騷擾防治辦法</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_票券規範" name="menu_票券規範" ><a href="javascript: return false;">票券規範</a>
+			<ul>
+			
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=881">2026年旅展票券使用規範</a></li>
+				
+				<li><a class="sta_1" href="/websev?lang=zh-tw&ref=pages&id=811">2025年旅展票券使用規範</a></li>
+				
+			</ul>
+			</li><li class="sta_1" id="menu_聯絡我們" name="menu_聯絡我們" ><a href="/websev?lang=zh-tw&ref=pages&id=1">聯絡我們</a></li>
+		</ul>
+	</div>
+	</div>
+	</div>
+	
+	<!-- <div class="spg"><img src="/style/spg_f.png" alt=""></div> -->
+	<!-- footer icon end -->
+	<div class="footIcon" style="display:none;">
+		<div class="spgFoot">
+			<div class="header"><img src="/style/brandBarMarriottIconWhite.png" alt=""></div>
+			<div class="spgContent">
+			
+			</div>	
+		</div>
+	<!-- </div> -->
+	<!-- footer icon end -->
+	
+
+</div>
+
+<div class="copy">COPYRIGHT &copy; 2026 寒舍餐旅管理顧問股份有限公司 ALL RIGHTS RESERVED.<a href="/websev?lang=zh-tw&ref=pages&id=75">隱私權政策 Privacy Policy</a></div>
+
+
+<div class="social">
+		<span><a href="https://www.instagram.com/lemeridientaipei/" target="_blank" rel="noopener noreferrer">
+			<i class="fa fa-instagram" aria-hidden="true"></i></a></span>	
+		<span><a href="https://www.facebook.com/LM.taipei" target="_blank" rel="noopener noreferrer">
+			<i class="fa fa-facebook" aria-hidden="true"></i></a></span>
+
+		<span><a href="https://lin.ee/iPp0GvV" target="_blank" rel="noopener noreferrer">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,256,256">
+<g fill="#888888" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.33333,5.33333)"><path d="M25.12,44.521c-2.114,1.162 -2.024,-0.549 -1.933,-1.076c0.054,-0.314 0.3,-1.787 0.3,-1.787c0.07,-0.534 0.144,-1.36 -0.067,-1.887c-0.235,-0.58 -1.166,-0.882 -1.85,-1.029c-10.09,-1.327 -17.559,-8.342 -17.559,-16.717c0,-9.342 9.42,-16.943 20.995,-16.943c11.575,0 20.994,7.601 20.994,16.943c0,10.492 -11.128,17.134 -20.88,22.496zM18.369,25.845c0,-0.56 -0.459,-1.015 -1.023,-1.015h-2.856v-6.678c0,-0.56 -0.459,-1.015 -1.023,-1.015c-0.565,0 -1.023,0.455 -1.023,1.015v7.694c0,0.561 0.459,1.016 1.023,1.016h3.879c0.564,0.001 1.023,-0.456 1.023,-1.017zM21.357,18.152c0,-0.56 -0.459,-1.015 -1.023,-1.015c-0.565,0 -1.023,0.455 -1.023,1.015v7.694c0,0.561 0.459,1.016 1.023,1.016c0.565,0 1.023,-0.456 1.023,-1.016zM30.697,18.152c0,-0.56 -0.459,-1.015 -1.023,-1.015c-0.565,0 -1.025,0.455 -1.025,1.015v4.761l-3.978,-5.369c-0.192,-0.254 -0.499,-0.406 -0.818,-0.406c-0.11,0 -0.219,0.016 -0.325,0.052c-0.419,0.139 -0.7,0.526 -0.7,0.963v7.694c0,0.561 0.46,1.016 1.025,1.016c0.566,0 1.025,-0.456 1.025,-1.016v-4.759l3.976,5.369c0.192,0.254 0.498,0.406 0.818,0.406c0.109,0 0.219,-0.018 0.325,-0.053c0.42,-0.137 0.7,-0.524 0.7,-0.963zM36.975,20.984h-2.856v-1.817h2.856c0.566,0 1.025,-0.455 1.025,-1.015c0,-0.56 -0.46,-1.015 -1.025,-1.015h-3.879c-0.565,0 -1.023,0.455 -1.023,1.015c0,0.001 0,0.001 0,0.003v3.842v0.001c0,0 0,0 0,0.001v3.845c0,0.561 0.46,1.016 1.023,1.016h3.879c0.565,0 1.025,-0.456 1.025,-1.016c0,-0.56 -0.46,-1.015 -1.025,-1.015h-2.856v-1.817h2.856c0.566,0 1.025,-0.455 1.025,-1.015c0,-0.561 -0.46,-1.016 -1.025,-1.016z"></path></g></g>
+</svg></a></span>
+
+</div>
+
+
+	
+	
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 type="application/ld+json">
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "url": "https://www.facebook.com/LM.taipei"
+  }
+</script>
+
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0 type="application/ld+json">
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "lemeridien-taipei",
+    "url": "https://www.lemeridien-taipei.com/",
+    "sameAs": [
+      "https://www.facebook.com/LM.taipei",
+      "https://plus.google.com/107494408801554291628",
+      "https://twitter.com/LeMeridien"
+    ]
+  }
+</script>
+
+<script nonce=negaCo6rCfU/kxnvGDh+q4xNN+uc/b9BtzH4TzvJkX0>
+
+if ($(".nbanner .page_wed .owl-carousel").length) {
+
+	$(".nbanner .page_wed .owl-carousel").owlCarousel({
+	    items: 1,
+	    itemsDesktop: [1e3, 1],
+	    itemsDesktopSmall: [980, 1],
+	    itemsTablet: [768, 1],
+	    itemsMobile: [479, 1],
+	    lazyLoad: !0,
+	    dots: !0,
+	    navigation: !1,
+	    autoPlay: false,
+	    afterInit: function(el) {
+	        var firstDataSta = el.find(".owl-item").first().find("img").attr("data-sta");
+
+	        if (firstDataSta === "1") {
+	        	el.find(".owl-controls").show();
+	            el.find(".owl-pagination").show();
+	        }
+    	}
+	});
+}
+</script>
+
+	<h1></h1>
+	</body>
+</html>	
+	

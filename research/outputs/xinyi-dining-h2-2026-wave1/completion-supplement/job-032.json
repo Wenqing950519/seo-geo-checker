@@ -1,0 +1,17 @@
+{
+  "id": 32,
+  "input_url": "https://www.lawrys.com.tw/",
+  "store_id": "XY-021",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0053-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0053-response.txt",
+  "sequence": 32,
+  "started_at": "2026-10-15T06:37:32.025Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_db8e863d-90aa-4e4b-a1c3-689357864ee4",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:34.798Z"
+}

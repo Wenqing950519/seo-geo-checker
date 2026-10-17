@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:site_name" content="吉比鮮釀餐廳" />
+    <meta
+      property="og:description"
+      content="吉比鮮釀餐廳堅持使用新鮮天然的原料與食材，提供美好餐飲體驗和獨特餐酒文化，用創意手工料理、在地鮮釀啤酒、親切友善款待精神、全新感受用餐環境，打造一個歡聚的好地方。"
+    />
+    <meta
+      name="description"
+      content="吉比鮮釀餐廳堅持使用新鮮天然的原料與食材，提供美好餐飲體驗和獨特餐酒文化，用創意手工料理、在地鮮釀啤酒、親切友善款待精神、全新感受用餐環境，打造一個歡聚的好地方。"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css"
+    />
+    <script
+      src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit"
+      async
+      defer
+    ></script>
+    <script
+      src="https://cdn.websitepolicies.io/lib/cookieconsent/cookieconsent.min.js"
+      defer
+    ></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-CXG6NW0EQF"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-CXG6NW0EQF");
+      // 監聽圖片點擊事件
+      document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('gtmclickclass-facebook')) {
+          gtag('event', 'social-link', {
+            'event_category': 'Social',
+            'event_label': 'Facebook',
+            'value': 1
+          });
+        }
+        if (event.target.classList.contains('gtmclickclass-instagram')) {
+          gtag('event', 'social-link', {
+            'event_category': 'Social',
+            'event_label': 'Instagram',
+            'value': 1
+          });
+        }
+        if (event.target.classList.contains('gtmclickclass-appStore')) {
+          gtag('event', 'download-link', {
+            'event_category': 'Download',
+            'event_label': 'AppStore',
+            'value': 1
+          });
+        }
+        if (event.target.classList.contains('gtmclickclass-googlePlay')) {
+          gtag('event', 'download-link', {
+            'event_category': 'Download',
+            'event_label': 'GooglePlay',
+            'value': 1
+          });
+        }
+      });
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}
+      )(window,document,'script','dataLayer','GTM-N7CQ9XVP');
+    </script>
+    <!-- End Google Tag Manager -->
+    <title>吉比鮮釀餐廳</title>
+    <script type="module" crossorigin src="/assets/index.45bb1143.js"></script>
+    <link rel="stylesheet" href="/assets/index.de30ed63.css">
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7CQ9XVP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="app"></div>
+    
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  .grecaptcha-badge {
+    display: none !important;
+    visibility: hidden !important;
+  }
+</style>
