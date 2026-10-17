@@ -95,7 +95,7 @@ assert.match(whitepaper, /src="\/assets\/dashboard-banner\.webp"/, "Whitepaper m
 assert.ok(fs.statSync(output("assets", "dashboard-banner.webp")).size < 1_000_000, "Dashboard banner must stay below 1 MB");
 assert.match(
   fs.readFileSync(output("home.html"), "utf8"),
-  /<!--email_off--><a href="mailto:zzz\.lisheng@gmail\.com">聯絡我們<\/a><!--\/email_off-->/,
+  /<!--email_off--><a href="mailto:me@lslabs\.tw">聯絡我們<\/a><!--\/email_off-->/,
   "Cloudflare must not rewrite the public contact link into an email-protection crawl URL"
 );
 

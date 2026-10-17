@@ -1293,6 +1293,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           </div>
         </div>
 
+        <!-- Prepaid points (LSL-D-003): hidden until the API reports the points service is available -->
+        <section id="points-panel" class="meter-card" aria-labelledby="points-panel-title" hidden style="margin-bottom:22px;">
+          <div class="meter-card-header">
+            <span class="meter-card-label" id="points-panel-title">點數儲值</span>
+            <span id="points-mode" style="font-size:0.78rem; color:#F59E0B;"></span>
+          </div>
+          <div class="meter-main-val font-number"><span id="points-balance">0</span> <span style="font-size:1.1rem; font-weight:600; color:var(--gc-text-secondary);">點</span></div>
+          <p id="points-rule" style="font-size:0.86rem; color:#CBD5E1; margin:6px 0 12px;"></p>
+          <div id="points-plans" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+          <p id="points-closed" style="font-size:0.86rem; color:var(--gc-text-secondary); margin-top:10px;" hidden>尚未開放付款。</p>
+          <div class="meter-footnote" style="margin-top:12px;">
+            <span>點數僅限本平台使用，不得轉讓或兌換現金</span>
+            <a href="/terms#points" style="color:#60A5FA; text-decoration:none;">點數規則 ↗</a>
+          </div>
+        </section>
+
         <!-- Action & Filter Strip -->
         <div class="action-strip">
           <div class="action-strip-left">
@@ -1674,7 +1690,7 @@ print("Measurement initiated:", job["measurement_id"])</code></pre>
       如果您在對接 API、量測結果判讀或架構集成上有任何問題，歡迎直接聯絡 LS-Labs 核心團隊：
     </p>
     <div style="background:#0B111F; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--gc-card-border); font-size:0.85rem; color:#CBD5E1; line-height:1.8;">
-      • 技術支援信箱：<a href="mailto:dev@lslabs.tw" style="color:#60A5FA;">dev@lslabs.tw</a><br>
+      • 技術支援信箱：<a href="mailto:me@lslabs.tw" style="color:#60A5FA;">me@lslabs.tw</a><br>
       • 官方網站：<a href="https://lslabs.tw/" target="_blank" rel="noopener" style="color:#60A5FA;">https://lslabs.tw/</a><br>
       • API 技術文件：<a href="/docs" style="color:#60A5FA;">/docs</a>
     </div>
@@ -2152,10 +2168,95 @@ function escapeHtml(str) {
   })[m]);
 }
 
+// Prepaid points. Plan names come from Portaly, so every value is set with
+// textContent; the only navigation target accepted is Portaly's hosted checkout.
+async function loadPointsPanel() {
+  const panel = document.getElementById('points-panel');
+  if (!panel || !STATE.sessionToken || isPreviewMode) return;
+  let balance;
+  try {
+    balance = await consoleRequest('/v1/console/points');
+  } catch (error) {
+    panel.hidden = true;
+    return;
+  }
+  panel.hidden = false;
+  document.getElementById('points-balance').textContent = Number(balance.balance_points || 0).toLocaleString('zh-TW');
+  document.getElementById('points-mode').textContent = balance.mode === 'test' ? '測試模式：不會實際扣款，測試點數不計入正式餘額' : '';
+  document.getElementById('points-rule').textContent = `1 點＝新台幣 1 元；四個引擎全部完成扣 ${Number(balance.points_per_observation || 8)} 點，失敗不扣點。`;
+  const list = document.getElementById('points-plans');
+  list.replaceChildren();
+  document.getElementById('points-closed').hidden = balance.checkout_enabled === true;
+  if (balance.checkout_enabled !== true) return;
+  let plans;
+  try {
+    plans = await consoleRequest('/v1/console/points/plans');
+  } catch (error) {
+    document.getElementById('points-closed').hidden = false;
+    return;
+  }
+  for (const plan of plans.data || []) {
+    const item = document.createElement('div');
+    item.style.cssText = 'display:flex;gap:8px;align-items:center;';
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn btn-primary';
+    let amountInput = null;
+    if (plan.pricing === 'dynamic') {
+      amountInput = document.createElement('input');
+      amountInput.type = 'number';
+      amountInput.min = String(plan.min_amount_twd);
+      amountInput.max = String(plan.max_amount_twd);
+      amountInput.step = '1';
+      amountInput.value = String(plan.min_amount_twd);
+      amountInput.setAttribute('aria-label', `儲值金額（NT$${plan.min_amount_twd}–${plan.max_amount_twd}）`);
+      amountInput.style.cssText = 'width:120px;padding:8px;border-radius:8px;border:1px solid var(--gc-card-border);background:transparent;color:inherit;';
+      button.textContent = `${plan.name}：自訂金額`;
+      item.append(amountInput);
+    } else {
+      button.textContent = `${plan.name}：NT$${Number(plan.amount_twd).toLocaleString('zh-TW')}`;
+    }
+    button.addEventListener('click', () => startTopUp(plan, amountInput, button));
+    item.append(button);
+    list.append(item);
+  }
+}
+
+async function startTopUp(plan, amountInput, button) {
+  const body = { plan_id: plan.plan_id };
+  if (amountInput) {
+    const amount = Number(amountInput.value);
+    if (!Number.isInteger(amount) || amount < plan.min_amount_twd || amount > plan.max_amount_twd) {
+      showToast(`請輸入 NT$${plan.min_amount_twd}–${plan.max_amount_twd} 的整數金額`);
+      return;
+    }
+    body.amount = amount;
+  }
+  button.disabled = true;
+  try {
+    const session = await consoleRequest('/v1/console/points/checkout', { method: 'POST', body: JSON.stringify(body) });
+    if (typeof session.checkout_url !== 'string' || !session.checkout_url.startsWith('https://portaly.ai/')) {
+      throw new Error('unexpected checkout url');
+    }
+    window.location.assign(session.checkout_url);
+  } catch (error) {
+    button.disabled = false;
+    showToast('付款頁暫時無法開啟，請稍後再試');
+  }
+}
+
+function announceTopUpReturn() {
+  const result = new URLSearchParams(window.location.search).get('topup');
+  if (result === 'success') showToast('已收到付款結果。點數會在 Portaly 通知確認後入帳，可能需要幾分鐘。');
+  if (result === 'cancel') showToast('已取消付款，沒有產生扣款。');
+}
+
 // Initialize on Load
 window.addEventListener('DOMContentLoaded', () => {
   renderState();
   loadConsoleData();
+  loadPointsPanel();
+  announceTopUpReturn();
   const initialTab = window.location.hash.replace('#', '') || 'usage';
   switchConsoleTab(initialTab);
 });

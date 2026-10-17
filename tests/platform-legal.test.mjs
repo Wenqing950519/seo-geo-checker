@@ -25,7 +25,7 @@ test('anonymous Platform legal URLs serve Product B content, including old HTML 
     assert.match(html, /LS-Labs Platform/);
     assert.doesNotMatch(html, /330|藍新|GeoCheck Track|每月自動扣款/);
     assert.match(html, new RegExp(`https://platform\\.lslabs\\.tw/${page}`));
-    assert.match(html, /zzz\.lisheng/);
+    assert.match(html, /href="mailto:me@lslabs\.tw">me@lslabs\.tw<\/a>/);
     const head = await worker.fetch(new Request(`https://platform.lslabs.tw${pathname}`, { method: 'HEAD' }), env);
     assert.equal(head.status, 200);
     assert.equal(await head.text(), '');
@@ -70,6 +70,15 @@ test('points rules state own-service use, no transfer or cash-out, refunds and e
   const refund = await (await worker.fetch(new Request('https://platform.lslabs.tw/refund'), env)).text();
   assert.match(refund, /未使用.{0,10}付費點數/);
   assert.match(refund, /十五日/);
+});
+
+test('public pages use me@lslabs.tw as the only contact address', () => {
+  const htmlFiles = fs.readdirSync(publicDir, { recursive: true }).filter((name) => String(name).endsWith('.html'));
+  assert.ok(htmlFiles.length > 10);
+  for (const name of htmlFiles) {
+    const html = fs.readFileSync(new URL(String(name).replaceAll('\\', '/'), publicDir), 'utf8');
+    assert.doesNotMatch(html, /zzz\.lisheng|dev@lslabs\.tw/, `${name} still exposes a retired contact address`);
+  }
 });
 
 test('Product A/shared legal source remains reachable on its existing host', async () => {

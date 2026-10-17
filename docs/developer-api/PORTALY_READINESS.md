@@ -83,7 +83,7 @@ Platform 四頁正本在 `apps/web/public/platform/`：
 
 ### 1. 註冊 Portaly（使用者本人）
 
-- [ ] 到 <https://portaly.cc/signup?registerType=payment> 註冊，Email 建議用與網站客服一致的 `zzz.lisheng@gmail.com`
+- [ ] 到 <https://portaly.cc/signup?registerType=payment> 註冊，Email 用網站公開客服信箱 `me@lslabs.tw`（Cloudflare 轉寄至主 Gmail）
 - [ ] 身分證正反面（清晰、未遮擋、檔名可辨識）
 - [ ] 本人同名新台幣銀行帳戶存摺封面
 - [ ] 基本資料姓名、地址與網站「營運者與聯絡方式」一致（林立勝、新北市新莊區地址）
@@ -154,7 +154,7 @@ Portaly 要求商品公開上架才能送審。依 Email 答覆選一種：
 > 謝謝！
 >
 > 林立勝
-> LS-Labs Platform｜zzz.lisheng@gmail.com
+> LS-Labs Platform｜me@lslabs.tw
 
 信中三個網址已於 2026-10-15 部署，可直接寄出。
 
@@ -172,3 +172,86 @@ Portaly 要求商品公開上架才能送審。依 Email 答覆選一種：
 驗收 15 項通過：四頁各含無斜線、尾斜線、`.html` 的 GET 200 且內文與 `dead736` 正本 SHA-256 一致、HEAD 200 無內文（12 項）；Platform 首頁、`/docs`、`/console` 200（3 項）。正式頁含「扣 8 點」「最低 NT$100」「最高 NT$10,000」「尚未開放付款」、條款含 `#points`「不得轉讓」「兌換現金」，無購買表單、舊 330 月費或藍新字樣。375px 手機寬度無水平溢出（scrollWidth 375，表格右緣 355）。部署前完整 geocheck `npm test` 與 home 124 項測試通過。
 
 home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用者尚未提交的 LSL-D-002 草稿未納入。
+
+## 公開聯絡信箱改為 me@lslabs.tw（2026-10-15）
+
+使用者完成 `me@lslabs.tw` 收寄設定（`work/2026-10-15-email-setup/`），要求網站全面停用 `zzz.lisheng@gmail.com`。geocheck 公開頁共 18 處改為 `me@lslabs.tw`：Platform 四頁、Platform 首頁、Console（原 `dev@lslabs.tw` 未確認可收信，一併改）、GeoCheck 首頁與舊 pricing／terms／refund。home 主站原已使用 `me@lslabs.tw`。`platform-legal` 測試新增全站掃描，任何公開 HTML 出現舊信箱即失敗。寄給 Portaly 的信請從 `me@lslabs.tw` 寄出，或至少在信中留此地址；Gmail 寄件身分尚未加入 `me`，需用 Resend SMTP 設定。
+
+## 信箱更換正式站驗收（2026-10-17）
+
+提交 `25e2ca6` 推送 main 後由 Workers Builds 與 Pages 自動部署。2026-10-17 逐頁檢查 10 頁：Platform `/pricing`、`/terms`、`/privacy`、`/refund`、`/`、`/console`，GeoCheck `/`、`/pricing`、`/terms`、`/refund`，均 HTTP 200，舊信箱與 `dev@lslabs.tw` 出現 0 次，新信箱每頁 1–4 處。
+
+## Test 模式串接（2026-10-17，分支 `platform/portaly-points`，未部署）
+
+使用者選擇「先用 Test Key 開工」。實作在獨立 worktree 分支，未動另一工作階段尚未提交的 MCP 檔案。依 portaly-ai/portaly-skills `portaly-payment-integration` v0.15.0（commit `4c3ef19`）的 API 契約。
+
+| 元件 | 位置 | 行為 |
+|---|---|---|
+| Portaly client | `services/api/payments/portaly-client.js` | 模式由金鑰前綴決定；方案於執行時讀取 `GET /plans?status=active`；建立 checkout session |
+| Callback 驗簽 | `services/api/payments/portaly-callback-signature.js` | 移植官方 WebCrypto adapter（MIT），以官方 7 組 production-derived 向量驗證 |
+| 點數帳本 | migration `0007_portaly_points.sql`、`services/api/storage/developer-points-d1-store.js` | 訂單、帳本、callback 事件三表；餘額＝帳本加總，依 test／live 分開 |
+| 服務 | `services/api/application/developer-points-service.js` | 只提供 active、one-time、TWD 方案；動態方案強制 NT$100–10,000 整數；固定方案不傳自算金額 |
+| 路由 | `developer-api-http.js`、`worker.js` | `GET /v1/console/points`、`GET /v1/console/points/plans`、`POST /v1/console/points/checkout`（需登入）；`POST /v1/payments/portaly/callback`（僅 `platform.lslabs.tw` HTTPS、64 KiB 上限） |
+| Console | `developers-console.html` | 「點數儲值」區塊預設隱藏，API 可用才顯示；測試模式另標示；只導向 `https://portaly.ai/` |
+
+入帳規則：簽章正確、時間戳 ±5 分鐘、header 事件與內文一致，且 callback 的金額、幣別、方案、模式都與本平台建立的訂單相符，才寫入一筆 `purchase`。同一 session 重送只入帳一次；不符者標為 `review` 不入帳；失敗事件標為 `failed`，之後的完成通知不會重新開啟訂單。瀏覽器返回頁不入帳。
+
+開關：Worker 未設 `PORTALY_API_KEY`、`PORTALY_CALLBACK_SECRET` 時整個點數服務不存在（callback 回 503）；另需 `PORTALY_CHECKOUT_ENABLED=true` 才能讀方案與結帳。
+
+驗證：新增 `tests/developer-points.test.js`（以 SQLite 模擬 D1，Portaly 為 stub）與 `tests/platform-points-http.test.mjs`；完整 `npm test` 通過，含 Worker 打包。另以本機 Test Key 唯讀呼叫真實 API：模式判定為 test，`status=active` 方案 0 個，全部方案只有停用中的動態方案 `qywC12Oif0GAOlYbo8o9`。未建立 checkout session、未啟用方案、未部署、未套用遠端 migration。
+
+尚未完成：
+
+- 觀測扣點（每次四引擎全成扣 8 點、失敗不扣）尚未接到工作結算；目前仍是原本的輪數配額。
+- Portaly 發起的退款（`payment.refunded`）只會被忽略，尚未扣回點數。
+- 端到端 Test 付款需要：啟用方案、遠端 D1 套用 migration 0007、Worker 設定三個 secret／變數並部署，再由使用者用結帳頁顯示的測試卡付款。
+
+## Test 模式部署（2026-10-17）
+
+使用者確認沿用已建好的動態金額方案（NT$100–10,000），不另建固定方案，並授權啟用方案、遠端套用 migration、設定 Worker secret 與部署。
+
+| 步驟 | 結果 |
+|---|---|
+| 遠端 D1 | `geocheck-developer-api` 套用 `0007_portaly_points.sql`；讀回 `developer_point_orders`、`developer_point_ledger`、`developer_portaly_events` 三表存在 |
+| Worker secret | `PORTALY_API_KEY`（`pcs_test_` 測試金鑰）、`PORTALY_CALLBACK_SECRET`、`PORTALY_CHECKOUT_ENABLED=true`，由本機 `.env` 以 stdin 上傳，未顯示內容 |
+| 部署 | 分支提交 `3057247` fast-forward 推送 main，Workers Builds 版本 `92ec150b-7a28-43b6-a94c-5e994739d41a`（2026-10-17T05:48:31Z）100% 流量；secret 上傳產生的中間版本為 `b210a8d1`、`34a12a27` |
+| Portaly 方案 | `qywC12Oif0GAOlYbo8o9` 以 `PUT /plans/{id}` 改為 `active`；讀回為 dynamic、one-time、TWD、`collectPhone: false` |
+
+正式站驗收：未簽章 callback 回 401 `invalid_signature`；GET 回 405；`api.geocheck.lisheng.cv` 回 404；70 KB 內文回 413；未登入的 `/v1/console/points` 回 401；`/healthz` 為 ok；Console 頁含預設隱藏的 `points-panel`。以真實 callback secret 簽署一筆不存在 session（`smoke_unknown_20261017`）的完成事件，回 200 `unknown_session`，確認驗簽與 D1 寫入可用且不入帳。
+
+另直接以 API 建立 NT$100 測試 session（`G8WXvjzp3XBMdVvIQxNi`，未付款、30 分鐘過期），確認 Portaly 接受動態金額。**Portaly 也接受 NT$99.5**，所以整數與 NT$100–10,000 限制只靠本平台後端把關（已有測試）。這兩筆 smoke session 沒有本平台訂單，若被付款只會記為 `unknown_session`。
+
+尚未驗證：使用者登入 Console 後的儲值區塊顯示、透過本平台建立的 checkout、測試卡付款、真實 `checkout.completed` 回呼入帳與餘額顯示。方案在 Test／Live 共用，審核通過、換上 Live 金鑰前，正式付款不會發生；換金鑰前須先接上觀測扣點。
+
+## 觀測扣點（2026-10-17，分支提交，未部署）
+
+使用者決定：點數計費開啟後**全部改扣點、取消免費試用額度**（不再先用每天 3 輪）。以獨立開關 `DEVELOPER_API_BILLING=points` 啟用，與 `PORTALY_CHECKOUT_ENABLED`（開放儲值）分開；`wrangler.jsonc` 不設此變數，部署不會自動切換。
+
+| 時點 | 帳本 |
+|---|---|
+| 受理觀測 | 同一個 D1 batch 內，餘額（該模式帳本加總）≥ 8 才建立工作，並寫入 `charge −8`（reference＝job_id）；不足回 402 `points_insufficient`，不建立工作 |
+| 四引擎全成 | 保留扣點 |
+| 部分引擎失敗、執行拋錯、租約逾時 | 工作轉為 `failed` 後寫入 `adjustment +8`；`UNIQUE(kind, reference)` 確保只退一次 |
+
+點數模式不需要 Console 試用開通，也不建立配額視窗或保留；客戶受理總開關與供應商支出上限照常生效。測試點數只能付測試模式的觀測，反之亦然。只有 D1 store 支援；本機 SQLite store 遇到點數模式會拒絕啟動，避免在沒扣點的狀態下照跑。
+
+順帶修正：D1 store 原本沒有匯出 `failJob`，服務在執行中拋錯時會呼叫失敗，工作只能等租約逾時才結束。已補上匯出，扣點測試覆蓋此路徑。
+
+驗證：新增 `tests/developer-points-billing.test.js`（D1 以真實 SQLite 模擬）涵蓋：無試用開通即可扣點、冪等重送不重複扣、成功保留、不足拒絕且不建工作、部分失敗退回、`failJob` 與逾時退回且只退一次、test／live 分離、受理總開關、錯誤設定拒絕啟動。完整 `npm test` 通過。
+
+尚未完成：
+
+- Console 仍顯示試用輪數與「開通方案」視窗；點數模式下應改顯示點數餘額與扣點紀錄。
+- `/v1/usage` 與 `/v1/console/usage` 在點數模式仍讀試用額度。
+- 開啟 `DEVELOPER_API_BILLING=points` 後，沒有點數的帳戶（含受邀測試者）將無法建立觀測；目前正式站用的是 Test 金鑰，因此只有測試點數可用。
+- 贈點活動頁（使用者 2026-10-17 提出）：發放少量有使用期限、不可退款的贈送點數，並先扣贈送點數。目前帳本以加總計算餘額，尚無到期與扣點順序。
+
+## 事故：推送 main 覆蓋 MCP 研究通道（2026-10-17，已修復）
+
+**原因**：MCP 研究通道（LSL-D-004）與 10/16 provider 修補是直接用 wrangler 從工作樹部署（Worker `31584707`），程式從未進入 main。本分支 `3057247` 推上 main 時，Workers Builds 以 main 建置並部署 `92ec150b`（05:48:31Z），`/mcp` 自此回 404，Grok Bot 研究通道中斷約 17 分鐘（至 06:05:10Z）。
+
+**修復**（使用者指示「先嘗試修復，不行再回滾」）：從本機保存的 `31584707` 部署 source map（`tmp/provider-response-repair/worker.mjs.map`）逐字取回第一方模組。與 main 實際差異只有 5 個檔案（MCP 改動與 10/16 修補），加上新增的 `developer-mcp-research.js`、`research-mcp.mjs`、migration `0006`（遠端早已套用）與 MCP 相依套件，提交為 `33fe5e3`（分支 `restore/mcp-31584707`），再合併進點數分支（`d30eaf0`）。worker 與 D1 store 的三處衝突都是雙方各自新增，全部保留。MCP 既有的兩組測試（研究服務、HTTP／協定／Worker 路由）在合併後通過，並加入 `npm test`。推送 main 後 Workers Builds 部署 `24953694-0f2b-44aa-ac8b-600cefb22cfe`（06:05:10Z）。
+
+**驗收**：匿名 `/mcp` 回 401（研究憑證）；以研究 token 唯讀檢查 initialize、`tools/list`（`create_measurement`、`get_measurement`、`get_usage`）、`get_usage` 均 200，歷史 succeeded 9／failed 9 與事故前一致；未提交量測。Portaly callback 未簽章 401、GET 405；未登入點數端點 401；`/healthz` ok；Platform 七頁與 GeoCheck 首頁 200；首頁顯示模型仍為 `claude-haiku-4.5`，未帶上 LSL-D-002 的 Haiku 5.5。未回滾。
+
+**之後必須遵守**：main 現在就是正式 Worker 的原始碼。任何推送都會觸發 Workers Builds 部署 main，所以不要再從工作樹直接部署 Platform Worker；變更先進 main。主 checkout 裡 MCP 工作階段的未提交檔案與 main 內容重疊，提交前要先與 main 合併。

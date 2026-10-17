@@ -1,6 +1,11 @@
 import developerApiModule from "../../../api/developer-api-http.js";
 import d1StoreModule from "../../../api/storage/developer-platform-d1-store.js";
 import oauthModule from "../../../api/google-oauth-http.js";
+import pointsServiceModule from "../../../api/application/developer-points-service.js";
+import pointsStoreModule from "../../../api/storage/developer-points-d1-store.js";
+import portalyClientModule from "../../../api/payments/portaly-client.js";
+import mcpResearchModule from "../../../api/application/developer-mcp-research.js";
+import { handleResearchMcp } from './research-mcp.mjs';
 
 const { createDeveloperApiHttpHandler } = developerApiModule;
 const { createBoundD1DeveloperPlatformStore } = d1StoreModule;
@@ -117,6 +122,64 @@ function sendJson(res, status, body, extraHeaders = {}) {
   res.end(status === 204 ? "" : JSON.stringify(body));
 }
 
+const PORTALY_CALLBACK_URL = "https://platform.lslabs.tw/v1/payments/portaly/callback";
+const MAX_PORTALY_CALLBACK_BYTES = 64 * 1024;
+
+// Prepaid points (LSL-D-003). Absent Portaly secrets mean no points service at
+// all; PORTALY_CHECKOUT_ENABLED must also be "true" before anyone can pay.
+function createPointsService(env) {
+  const apiKey = String(env.PORTALY_API_KEY || "").trim();
+  const callbackSecret = String(env.PORTALY_CALLBACK_SECRET || "").trim();
+  if (!apiKey || !callbackSecret) return null;
+  return pointsServiceModule.createDeveloperPointsService({
+    store: pointsStoreModule.createBoundDeveloperPointsD1Store({ db: env.DEVELOPER_DB }),
+    client: portalyClientModule.createPortalyClient({ apiKey, host: env.PORTALY_API_HOST || undefined }),
+    config: {
+      checkoutEnabled: String(env.PORTALY_CHECKOUT_ENABLED || "").toLowerCase() === "true",
+      callbackSecret,
+      callbackUrl: PORTALY_CALLBACK_URL,
+      successUrl: "https://platform.lslabs.tw/console?topup=success",
+      cancelUrl: "https://platform.lslabs.tw/console?topup=cancel"
+    }
+  });
+}
+
+// Charging measurements in points replaces trial quota (LSL-D-003), so it is a
+// separate, explicit switch from opening checkout. Points are spent only in the
+// mode of the configured Portaly key; test points never pay for live billing.
+function pointsBillingConfig(env) {
+  if (String(env.DEVELOPER_API_BILLING || "").toLowerCase() !== "points") return null;
+  const apiKey = String(env.PORTALY_API_KEY || "").trim();
+  if (!apiKey || !String(env.PORTALY_CALLBACK_SECRET || "").trim()) {
+    throw new Error("Points billing requires the Portaly API key and callback secret");
+  }
+  return { mode: portalyClientModule.createPortalyClient({ apiKey }).mode, costPoints: pointsServiceModule.POINTS_PER_OBSERVATION };
+}
+
+async function handlePortalyCallback(request, env, url) {
+  if (url.hostname !== "platform.lslabs.tw" || url.protocol !== "https:") {
+    return new Response(JSON.stringify({ error: { code: "not_found" } }), { status: 404, headers: JSON_HEADERS });
+  }
+  if (request.method !== "POST") {
+    return new Response(JSON.stringify({ error: { code: "method_not_allowed" } }), { status: 405, headers: { ...JSON_HEADERS, Allow: "POST" } });
+  }
+  const points = createPointsService(env);
+  if (!points) {
+    return new Response(JSON.stringify({ error: { code: "payment_unavailable" } }), { status: 503, headers: JSON_HEADERS });
+  }
+  const rawBody = await request.text();
+  if (new TextEncoder().encode(rawBody).byteLength > MAX_PORTALY_CALLBACK_BYTES) {
+    return new Response(JSON.stringify({ error: { code: "request_too_large" } }), { status: 413, headers: JSON_HEADERS });
+  }
+  try {
+    const result = await points.handleCallback({ headers: request.headers, rawBody });
+    return new Response(JSON.stringify(result.body), { status: result.status, headers: JSON_HEADERS });
+  } catch {
+    // A 5xx lets Portaly redeliver; crediting is idempotent on the payload's event identity.
+    return new Response(JSON.stringify({ error: { code: "service_unavailable" } }), { status: 503, headers: JSON_HEADERS });
+  }
+}
+
 function createRuntime(env) {
   const store = createBoundD1DeveloperPlatformStore({ db: env.DEVELOPER_DB });
   let runtime;
@@ -127,8 +190,12 @@ function createRuntime(env) {
     platformStore: store,
     directD1Binding: true,
     enqueue,
-    recoverOnStartup: false
+    recoverOnStartup: false,
+    points: createPointsService(env),
+    pointsBilling: pointsBillingConfig(env)
   });
+  runtime.mcpResearch = mcpResearchModule.createMcpResearchService({ store, api: runtime.workerApi,
+    tokenPepper: env.MCP_RESEARCH_TOKEN_PEPPER || env.DEVELOPER_API_TOKEN_PEPPER });
   return runtime;
 }
 
@@ -201,6 +268,18 @@ async function handleRequest(request, env) {
   const url = new URL(request.url);
   const pathname = url.pathname;
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
+  if (pathname === "/v1/payments/portaly/callback") return handlePortalyCallback(request, env, url);
+  if (pathname === '/mcp' || pathname.startsWith('/v1/admin/mcp/')) {
+    if (url.hostname !== 'platform.lslabs.tw' || url.protocol !== 'https:') return new Response(null, { status: 404, headers: JSON_HEADERS });
+    if (missingRuntimeSecrets(env).length) return new Response(JSON.stringify({ error: { code: 'configuration_incomplete' } }), { status: 503, headers: JSON_HEADERS });
+    try {
+      const research = createRuntime(env).mcpResearch;
+      if (pathname === '/mcp') return await handleResearchMcp(request, { research, env });
+      return await handleMcpAdmin(request, env, pathname, research);
+    } catch {
+      return new Response(JSON.stringify({ error: { code: 'service_unavailable' } }), { status: 503, headers: JSON_HEADERS });
+    }
+  }
   // platform.lslabs.tw is the entire developer surface: landing, documentation,
   // Console and /v1 share one origin so browser sessions never cross products.
   if ((request.method === "GET" || request.method === "HEAD") && url.hostname === "platform.lslabs.tw") {
@@ -281,6 +360,18 @@ async function handleRequest(request, env) {
 function internalSecret(request) {
   const value = String(request.headers.get("authorization") || "");
   return /^Bearer\s+(.+)$/i.test(value) ? value.replace(/^Bearer\s+/i, "").trim() : "";
+}
+
+async function handleMcpAdmin(request, env, pathname, research) {
+  if (!adminAuthorized(request, env)) return new Response(JSON.stringify({ error: { code: 'auth_required' } }), { status: 401, headers: JSON_HEADERS });
+  if (request.method !== 'POST') return new Response(null, { status: 405, headers: { ...JSON_HEADERS, Allow: 'POST' } });
+  const body = await readJsonRequest(request, 8192).catch(() => null);
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return new Response(JSON.stringify({ error: { code: 'invalid_request' } }), { status: 400, headers: JSON_HEADERS });
+  if (pathname === '/v1/admin/mcp/grants') return internalJson(() => research.createGrant({ name: body.name }), 201);
+  if (pathname === '/v1/admin/mcp/admission') return internalJson(() => research.setAdmission(body), 200);
+  const match = /^\/v1\/admin\/mcp\/grants\/([^/]+)\/(rotate|revoke)$/.exec(pathname);
+  if (match) return internalJson(() => research[match[2] === 'rotate' ? 'rotateGrant' : 'revokeGrant']({ principalId: match[1] }), 200);
+  return new Response(null, { status: 404, headers: JSON_HEADERS });
 }
 
 async function handleInternalRequest(request, env, pathname) {
