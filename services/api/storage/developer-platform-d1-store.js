@@ -239,6 +239,16 @@ function createD1DeveloperPlatformStore(options = {}) {
       const budgetConditionParams = budget
         ? [budgetScope, budget.dailyStart, budget.jobReserveMicros,
           budgetScope, budget.monthlyStart, budget.jobReserveMicros] : [];
+      const research = input.mcpResearch;
+      const researchCondition = research ? ` AND EXISTS (
+        SELECT 1 FROM developer_runtime_controls WHERE control_key = 'mcp_admission_enabled' AND control_value = 'true'
+      ) AND EXISTS (
+        SELECT 1 FROM developer_mcp_research_grants g WHERE principal_id = ? AND token_hash = ? AND status = 'active'
+        AND EXISTS (SELECT 1 FROM json_each(g.scopes_json) WHERE value = 'measurements:write')
+      ) AND NOT EXISTS (
+        SELECT 1 FROM developer_jobs WHERE mcp_principal_id = ? AND status IN ('queued', 'running')
+      )` : ` AND EXISTS (SELECT 1 FROM developer_internal_callers WHERE caller_id = ? AND status = 'active')`;
+      const researchParams = research ? [research.principalId, research.tokenHash, research.principalId] : [input.caller];
       const costReservationStatements = budget ? [
         {
           sql: `INSERT INTO developer_cost_reservations
@@ -267,16 +277,14 @@ function createD1DeveloperPlatformStore(options = {}) {
         internal ? {
           sql: `INSERT INTO developer_jobs (
             job_id, measurement_id, tenant_id, idempotency_key, request_hash, request_json,
-            status, created_at, updated_at, caller
-          ) SELECT ?, ?, ?, ?, ?, ?, 'queued', ?, ?, ? WHERE EXISTS (
+            status, created_at, updated_at, caller, mcp_principal_id, study_id
+          ) SELECT ?, ?, ?, ?, ?, ?, 'queued', ?, ?, ?, ?, ? WHERE EXISTS (
             SELECT 1 FROM developer_runtime_controls
             WHERE control_key = 'internal_admission_enabled' AND control_value = 'true'
-          ) AND EXISTS (
-            SELECT 1 FROM developer_internal_callers WHERE caller_id = ? AND status = 'active'
-          )${budgetCondition}`,
+          )${researchCondition}${budgetCondition}`,
           params: [input.jobId, input.measurementId, input.tenantId, input.idempotencyKey,
             input.requestHash, JSON.stringify(input.request), input.now, input.now, input.caller,
-            input.caller, ...budgetConditionParams]
+            research?.principalId || null, research?.studyId || null, ...researchParams, ...budgetConditionParams]
         } : input.points ? {
           // Points billing (migration 0007): admit only while the balance in this
           // mode covers one observation. The batch is serialized by D1, so two
@@ -338,8 +346,17 @@ function createD1DeveloperPlatformStore(options = {}) {
     const job = await getJob({ tenantId: input.tenantId, jobId: input.jobId });
     if (job) return { created: true, job };
     if (input.caller) {
-      const caller = await query(`SELECT status FROM developer_internal_callers WHERE caller_id = ? LIMIT 1`, [input.caller]);
-      if (caller.results?.[0]?.status !== "active") return { rejected: "internal_caller_revoked" };
+      if (input.mcpResearch) {
+        const grant = await authenticateMcpGrant({ tokenHash: input.mcpResearch.tokenHash, now: input.now });
+        if (!grant || grant.principal_id !== input.mcpResearch.principalId) return { rejected: 'auth_required' };
+        if (!grant.scopes.includes('measurements:write')) return { rejected: 'forbidden' };
+        if (!(await getMcpAdmission()).enabled) return { rejected: 'mcp_admission_closed' };
+        const active = await query("SELECT 1 FROM developer_jobs WHERE mcp_principal_id = ? AND status IN ('queued','running') LIMIT 1", [input.mcpResearch.principalId]);
+        if (active.results?.length) return { rejected: 'mcp_concurrency_limit' };
+      } else {
+        const caller = await query(`SELECT status FROM developer_internal_callers WHERE caller_id = ? LIMIT 1`, [input.caller]);
+        if (caller.results?.[0]?.status !== "active") return { rejected: "internal_caller_revoked" };
+      }
       if (input.costBudget) {
         const internalBudget = await query(`SELECT COUNT(*) AS available FROM developer_cost_budget_windows
           WHERE scope = 'internal' AND (
@@ -691,7 +708,62 @@ function createD1DeveloperPlatformStore(options = {}) {
     };
   }
 
+  async function insertMcpGrant(input) {
+    await query(`INSERT INTO developer_mcp_research_grants
+      (principal_id, name, token_hash, scopes_json, status, created_at) VALUES (?, ?, ?, ?, 'active', ?)`,
+    [input.principalId, input.name, input.tokenHash, JSON.stringify(input.scopes), input.now]);
+  }
+  async function authenticateMcpGrant({ tokenHash, now }) {
+    const result = await query(`UPDATE developer_mcp_research_grants SET last_used_at = ?
+      WHERE token_hash = ? AND status = 'active' RETURNING principal_id, name, scopes_json`, [now, tokenHash]);
+    const row = result.results?.[0];
+    return row ? { principal_id: row.principal_id, name: row.name, scopes: safeParse(row.scopes_json, []) } : null;
+  }
+  async function rotateMcpGrant({ principalId, tokenHash, now }) {
+    const result = await query(`UPDATE developer_mcp_research_grants SET token_hash = ?, rotated_at = ?
+      WHERE principal_id = ? AND status = 'active' RETURNING principal_id`, [tokenHash, now, principalId]);
+    return result.results?.length === 1;
+  }
+  async function revokeMcpGrant({ principalId, now }) {
+    const result = await query(`UPDATE developer_mcp_research_grants SET status = 'revoked', revoked_at = ?
+      WHERE principal_id = ? AND status = 'active' RETURNING principal_id`, [now, principalId]);
+    return result.results?.length === 1;
+  }
+  async function getMcpAdmission() {
+    const result = await query("SELECT control_value, reason FROM developer_runtime_controls WHERE control_key = 'mcp_admission_enabled'");
+    return { enabled: result.results?.[0]?.control_value === 'true', reason: result.results?.[0]?.reason || null };
+  }
+  async function setMcpAdmission({ enabled, reason, now }) {
+    await query(`UPDATE developer_runtime_controls SET control_value = ?, reason = ?, updated_at = ?
+      WHERE control_key = 'mcp_admission_enabled'`, [enabled ? 'true' : 'false', reason, now]);
+    return getMcpAdmission();
+  }
+  async function getMcpUsage({ principalId }) {
+    const counts = await query(`SELECT status, COUNT(*) AS count FROM developer_jobs
+      WHERE mcp_principal_id = ? GROUP BY status`, [principalId]);
+    const costs = await query(`SELECT COALESCE(SUM(COALESCE(c.amount_twd_micros,
+      CASE WHEN r.status IN ('charged','ambiguous') THEN r.actual_twd_micros ELSE 0 END)),0) AS settled,
+      COALESCE(SUM(CASE WHEN c.has_unknown_cost=1 OR r.status='ambiguous' THEN 1 ELSE 0 END),0) AS unknown_events,
+      COALESCE(SUM(CASE WHEN r.status='reserved' THEN r.reserved_twd_micros ELSE 0 END),0) AS reserved
+      FROM developer_jobs j LEFT JOIN developer_cost_events c ON j.job_id=c.job_id
+      LEFT JOIN developer_cost_reservations r ON j.job_id=r.job_id WHERE j.mcp_principal_id = ?`, [principalId]);
+    const jobs = { queued: 0, running: 0, succeeded: 0, failed: 0 };
+    for (const row of counts.results || []) jobs[row.status] = Number(row.count);
+    const row = costs.results?.[0] || {};
+    return { period: 'all_retained_jobs', jobs, cost: { settled_twd: Number(row.settled || 0) / 1e6,
+      has_unknown_cost: Number(row.unknown_events || 0) > 0,
+      reserved_twd: Number(row.reserved || 0) / 1e6 } };
+  }
+  async function getMcpResultMetadata({ principalId, measurementId }) {
+    const result = await query(`SELECT r.expires_at FROM developer_measurement_results r
+      JOIN developer_jobs j ON j.measurement_id=r.measurement_id AND j.tenant_id=r.tenant_id
+      WHERE j.mcp_principal_id = ? AND r.measurement_id = ? LIMIT 1`, [principalId, measurementId]);
+    return result.results?.[0] || null;
+  }
+
   return {
+    insertMcpGrant, authenticateMcpGrant, rotateMcpGrant, revokeMcpGrant,
+    getMcpAdmission, setMcpAdmission, getMcpUsage, getMcpResultMetadata,
     activateEntitlement, admitJob, authenticateApiKey, authenticateInternalCaller, authenticateSession,
     claimJob, createSession, upsertInternalCaller, revokeInternalCaller, getInternalSpend,
     completeJob, consumeAuthToken, deleteMeasurement, expireStaleJobs, failJob,
@@ -779,7 +851,8 @@ function mapJob(row) {
     status: row.status, created_at: row.created_at, completed_at: row.completed_at || null,
     content_deleted_at: row.content_deleted_at || null, error_code: row.error_code || null,
     request_hash: row.request_hash, request: safeParse(row.request_json, null),
-    lease_token: row.lease_token || null
+    lease_token: row.lease_token || null,
+    mcp_principal_id: row.mcp_principal_id || null, study_id: row.study_id || null
   };
 }
 

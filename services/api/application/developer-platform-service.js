@@ -255,7 +255,7 @@ function createDeveloperPlatformService(options = {}) {
   // Products A and C submit here. They are not customers: no tenant quota is
   // drawn, no customer billing event is produced, and the customer admission
   // switch neither blocks nor permits this path.
-  async function createInternalMeasurement({ caller, idempotencyKey, body }) {
+  async function createInternalMeasurement({ caller, idempotencyKey, body, mcpResearch = null }) {
     const callerId = String(caller || "");
     if (!Object.hasOwn(INTERNAL_TENANTS, callerId)) {
       throw new DeveloperApiError("internal_caller_unknown", "Unknown internal caller", 403);
@@ -269,11 +269,11 @@ function createDeveloperPlatformService(options = {}) {
         ? (providerMode === "official" ? "official-four-v1" : "official-four-fixture-v1")
         : (providerMode === "official" ? "official-selected-v1" : "official-selected-fixture-v1")
     };
-    const requestHash = hashRequest(request);
+    const requestHash = hashRequest(mcpResearch ? { ...request, study_id: mcpResearch.studyId } : request);
     const admission = await store.admitJob({
       jobId: `job_${randomUUID()}`, measurementId: `msr_${randomUUID()}`,
       reservationId: `qrs_${randomUUID()}`, tenantId: INTERNAL_TENANTS[callerId],
-      caller: callerId, idempotencyKey: key, requestHash, request,
+      caller: callerId, idempotencyKey: key, requestHash, request, mcpResearch,
       windowStart: null, windowEnd: null,
       costBudget: providerMode === "official" ? costBudgetWindow(config, clock(), "internal") : null,
       now: clock().toISOString()
@@ -347,10 +347,13 @@ function createDeveloperPlatformService(options = {}) {
   async function getInternalSpend() {
     if (typeof store.getInternalSpend !== "function") return { windows: [] };
     const window = costBudgetWindow(config, clock(), "internal");
+    const saved = await store.getInternalSpend({ dailyStart: window.dailyStart, monthlyStart: window.monthlyStart });
     return {
-      windows: await store.getInternalSpend({
-        dailyStart: window.dailyStart, monthlyStart: window.monthlyStart
-      })
+      windows: [
+        { window_kind: 'daily', window_start: window.dailyStart, limit_twd: config.internalDailyBudgetTwd },
+        { window_kind: 'monthly', window_start: window.monthlyStart, limit_twd: config.internalMonthlyBudgetTwd }
+      ].map((defaults) => saved.find((row) => row.window_kind === defaults.window_kind)
+        || { ...defaults, used_twd: 0, reserved_twd: 0 })
     };
   }
 
@@ -591,6 +594,10 @@ function publicEntitlement(entitlement, usage) {
 // looking at these needs to know which switch or which budget stopped the call.
 function internalAdmissionError(code) {
   const errors = {
+    auth_required: ['auth_required', 'A valid research credential is required', 401],
+    forbidden: ['forbidden', 'Research permission is required', 403],
+    mcp_admission_closed: ['mcp_admission_closed', 'Research MCP is temporarily closed', 503],
+    mcp_concurrency_limit: ['mcp_concurrency_limit', 'A research measurement is already queued or running', 429],
     internal_admission_closed: ["internal_admission_closed", "The internal measurement channel is closed", 503],
     internal_caller_revoked: ["internal_caller_revoked", "This internal caller is revoked", 403],
     internal_budget_exhausted: ["internal_budget_exhausted", "The internal spending budget is exhausted", 503]
