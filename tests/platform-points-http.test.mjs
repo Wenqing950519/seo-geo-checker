@@ -98,4 +98,18 @@ const untouchableDb = {
   assert.match(page, /href="\/terms#points"/);
 }
 
+// Points billing is its own explicit switch, separate from opening checkout,
+// and reaches the platform service through the shared HTTP handler.
+{
+  const { readFileSync } = await import("node:fs");
+  const workerSource = readFileSync(new URL("../services/cloudflare/developer-api/src/worker.js", import.meta.url), "utf8");
+  assert.match(workerSource, /env\.DEVELOPER_API_BILLING/);
+  assert.match(workerSource, /pointsBilling: pointsBillingConfig\(env\)/);
+  assert.match(workerSource, /throw new Error\("Points billing requires the Portaly API key and callback secret"\)/);
+  const httpSource = readFileSync(new URL("../services/api/developer-api-http.js", import.meta.url), "utf8");
+  assert.match(httpSource, /pointsBilling: options\.pointsBilling \|\| null/);
+  const wrangler = JSON.parse(readFileSync(new URL("../services/cloudflare/developer-api/wrangler.jsonc", import.meta.url), "utf8"));
+  assert.equal(wrangler.vars.DEVELOPER_API_BILLING, undefined, "points billing is never switched on by a deploy");
+}
+
 console.log("platform points HTTP tests passed");

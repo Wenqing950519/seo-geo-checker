@@ -142,6 +142,18 @@ function createPointsService(env) {
   });
 }
 
+// Charging measurements in points replaces trial quota (LSL-D-003), so it is a
+// separate, explicit switch from opening checkout. Points are spent only in the
+// mode of the configured Portaly key; test points never pay for live billing.
+function pointsBillingConfig(env) {
+  if (String(env.DEVELOPER_API_BILLING || "").toLowerCase() !== "points") return null;
+  const apiKey = String(env.PORTALY_API_KEY || "").trim();
+  if (!apiKey || !String(env.PORTALY_CALLBACK_SECRET || "").trim()) {
+    throw new Error("Points billing requires the Portaly API key and callback secret");
+  }
+  return { mode: portalyClientModule.createPortalyClient({ apiKey }).mode, costPoints: pointsServiceModule.POINTS_PER_OBSERVATION };
+}
+
 async function handlePortalyCallback(request, env, url) {
   if (url.hostname !== "platform.lslabs.tw" || url.protocol !== "https:") {
     return new Response(JSON.stringify({ error: { code: "not_found" } }), { status: 404, headers: JSON_HEADERS });
@@ -177,7 +189,8 @@ function createRuntime(env) {
     directD1Binding: true,
     enqueue,
     recoverOnStartup: false,
-    points: createPointsService(env)
+    points: createPointsService(env),
+    pointsBilling: pointsBillingConfig(env)
   });
   return runtime;
 }

@@ -34,7 +34,8 @@ function createDeveloperApiHttpHandler(options = {}) {
         internalDailyBudgetTwd: config.internalDailyBudgetTwd,
         internalMonthlyBudgetTwd: config.internalMonthlyBudgetTwd,
         schedule,
-        enqueue: options.enqueue
+        enqueue: options.enqueue,
+        pointsBilling: options.pointsBilling || null
       })
     : createDeveloperApiPrototype({
         providers: config.mode === "official" ? providers : undefined,

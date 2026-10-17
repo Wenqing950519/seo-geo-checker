@@ -222,3 +222,26 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 另直接以 API 建立 NT$100 測試 session（`G8WXvjzp3XBMdVvIQxNi`，未付款、30 分鐘過期），確認 Portaly 接受動態金額。**Portaly 也接受 NT$99.5**，所以整數與 NT$100–10,000 限制只靠本平台後端把關（已有測試）。這兩筆 smoke session 沒有本平台訂單，若被付款只會記為 `unknown_session`。
 
 尚未驗證：使用者登入 Console 後的儲值區塊顯示、透過本平台建立的 checkout、測試卡付款、真實 `checkout.completed` 回呼入帳與餘額顯示。方案在 Test／Live 共用，審核通過、換上 Live 金鑰前，正式付款不會發生；換金鑰前須先接上觀測扣點。
+
+## 觀測扣點（2026-10-17，分支提交，未部署）
+
+使用者決定：點數計費開啟後**全部改扣點、取消免費試用額度**（不再先用每天 3 輪）。以獨立開關 `DEVELOPER_API_BILLING=points` 啟用，與 `PORTALY_CHECKOUT_ENABLED`（開放儲值）分開；`wrangler.jsonc` 不設此變數，部署不會自動切換。
+
+| 時點 | 帳本 |
+|---|---|
+| 受理觀測 | 同一個 D1 batch 內，餘額（該模式帳本加總）≥ 8 才建立工作，並寫入 `charge −8`（reference＝job_id）；不足回 402 `points_insufficient`，不建立工作 |
+| 四引擎全成 | 保留扣點 |
+| 部分引擎失敗、執行拋錯、租約逾時 | 工作轉為 `failed` 後寫入 `adjustment +8`；`UNIQUE(kind, reference)` 確保只退一次 |
+
+點數模式不需要 Console 試用開通，也不建立配額視窗或保留；客戶受理總開關與供應商支出上限照常生效。測試點數只能付測試模式的觀測，反之亦然。只有 D1 store 支援；本機 SQLite store 遇到點數模式會拒絕啟動，避免在沒扣點的狀態下照跑。
+
+順帶修正：D1 store 原本沒有匯出 `failJob`，服務在執行中拋錯時會呼叫失敗，工作只能等租約逾時才結束。已補上匯出，扣點測試覆蓋此路徑。
+
+驗證：新增 `tests/developer-points-billing.test.js`（D1 以真實 SQLite 模擬）涵蓋：無試用開通即可扣點、冪等重送不重複扣、成功保留、不足拒絕且不建工作、部分失敗退回、`failJob` 與逾時退回且只退一次、test／live 分離、受理總開關、錯誤設定拒絕啟動。完整 `npm test` 通過。
+
+尚未完成：
+
+- Console 仍顯示試用輪數與「開通方案」視窗；點數模式下應改顯示點數餘額與扣點紀錄。
+- `/v1/usage` 與 `/v1/console/usage` 在點數模式仍讀試用額度。
+- 開啟 `DEVELOPER_API_BILLING=points` 後，沒有點數的帳戶（含受邀測試者）將無法建立觀測；目前正式站用的是 Test 金鑰，因此只有測試點數可用。
+- 贈點活動頁（使用者 2026-10-17 提出）：發放少量有使用期限、不可退款的贈送點數，並先扣贈送點數。目前帳本以加總計算餘額，尚無到期與扣點順序。

@@ -257,7 +257,7 @@ function createD1DeveloperPlatformStore(options = {}) {
       ] : [];
       await batch([
         ...budgetStatements,
-        ...(internal ? [] : [{
+        ...(internal || input.points ? [] : [{
           sql: `INSERT OR IGNORE INTO developer_quota_windows (
             tenant_id, window_start, window_end, round_limit, used_rounds, reserved_rounds
           ) SELECT ?, ?, ?, rounds_per_window, 0, 0 FROM developer_entitlements
@@ -277,6 +277,21 @@ function createD1DeveloperPlatformStore(options = {}) {
           params: [input.jobId, input.measurementId, input.tenantId, input.idempotencyKey,
             input.requestHash, JSON.stringify(input.request), input.now, input.now, input.caller,
             input.caller, ...budgetConditionParams]
+        } : input.points ? {
+          // Points billing (migration 0007): admit only while the balance in this
+          // mode covers one observation. The batch is serialized by D1, so two
+          // concurrent submissions cannot both spend the same points.
+          sql: `INSERT INTO developer_jobs (
+            job_id, measurement_id, tenant_id, idempotency_key, request_hash, request_json,
+            status, created_at, updated_at
+          ) SELECT ?, ?, ?, ?, ?, ?, 'queued', ?, ? WHERE EXISTS (
+            SELECT 1 FROM developer_runtime_controls WHERE control_key = 'admission_enabled' AND control_value = 'true'
+          ) AND (
+            SELECT COALESCE(SUM(points), 0) FROM developer_point_ledger WHERE tenant_id = ? AND mode = ?
+          ) >= CAST(? AS INTEGER)${budgetCondition}`,
+          params: [input.jobId, input.measurementId, input.tenantId, input.idempotencyKey,
+            input.requestHash, JSON.stringify(input.request), input.now, input.now,
+            input.tenantId, input.points.mode, input.points.cost, ...budgetConditionParams]
         } : {
           sql: `INSERT INTO developer_jobs (
             job_id, measurement_id, tenant_id, idempotency_key, request_hash, request_json,
@@ -291,7 +306,12 @@ function createD1DeveloperPlatformStore(options = {}) {
             input.requestHash, JSON.stringify(input.request), input.now, input.now,
             input.tenantId, input.windowStart, ...budgetConditionParams]
         },
-        ...(internal ? [] : [
+        ...(internal ? [] : input.points ? [{
+          sql: `INSERT INTO developer_point_ledger (entry_id, tenant_id, mode, kind, points, reference, created_at)
+            SELECT ?, ?, ?, 'charge', ?, ?, ? WHERE EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ?)`,
+          params: [input.points.entryId, input.tenantId, input.points.mode, -input.points.cost,
+            input.jobId, input.now, input.jobId]
+        }] : [
           {
             sql: `INSERT INTO developer_quota_reservations (
               reservation_id, job_id, tenant_id, window_start, status, created_at
@@ -333,6 +353,17 @@ function createD1DeveloperPlatformStore(options = {}) {
     }
     const admission = await getAdmission();
     if (!admission.enabled) return { rejected: "service_unavailable" };
+    if (input.points) {
+      if (input.costBudget) {
+        const budget = await query(`SELECT COUNT(*) AS available FROM developer_cost_budget_windows WHERE scope = 'customer' AND (
+          (window_kind = 'daily' AND window_start = ? AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros)
+          OR (window_kind = 'monthly' AND window_start = ? AND used_twd_micros + reserved_twd_micros + ? <= limit_twd_micros))`,
+        [input.costBudget.dailyStart, input.costBudget.jobReserveMicros,
+          input.costBudget.monthlyStart, input.costBudget.jobReserveMicros]);
+        if (Number(budget.results?.[0]?.available || 0) < 2) return { rejected: "cost_budget_exhausted" };
+      }
+      return { rejected: "points_insufficient" };
+    }
     const entitlement = await getEntitlement(input.tenantId);
     if (!entitlement) return { rejected: "trial_not_started" };
     if (entitlement.expiresAt && entitlement.expiresAt <= input.now) return { rejected: "trial_expired" };
@@ -464,7 +495,8 @@ function createD1DeveloperPlatformStore(options = {}) {
           AND lease_token = ? AND EXISTS (SELECT 1 FROM developer_measurement_results WHERE measurement_id = ?)`,
         params: [input.measurement.status, input.now, input.now, input.errorCode || null,
           input.jobId, input.leaseToken, input.measurement.measurement_id]
-      }
+      },
+      pointReleaseStatement(input.jobId, input.now)
     ]);
     const finished = await query("SELECT status FROM developer_jobs WHERE job_id = ?", [input.jobId]);
     return ["succeeded", "failed"].includes(finished.results?.[0]?.status);
@@ -520,7 +552,8 @@ function createD1DeveloperPlatformStore(options = {}) {
         sql: `UPDATE developer_jobs SET status = 'failed', completed_at = ?, updated_at = ?, error_code = ?,
           lease_token = NULL, lease_expires_at = NULL WHERE job_id = ? AND status IN ('queued', 'running')${leaseClause}`,
         params: [input.now, input.now, input.errorCode || "internal_error", input.jobId, ...leaseParams]
-      }
+      },
+      pointReleaseStatement(input.jobId, input.now)
     ]);
     const finished = await query("SELECT status FROM developer_jobs WHERE job_id = ?", [input.jobId]);
     return finished.results?.[0]?.status === "failed";
@@ -661,11 +694,12 @@ function createD1DeveloperPlatformStore(options = {}) {
   return {
     activateEntitlement, admitJob, authenticateApiKey, authenticateInternalCaller, authenticateSession,
     claimJob, createSession, upsertInternalCaller, revokeInternalCaller, getInternalSpend,
-    completeJob, consumeAuthToken, deleteMeasurement, expireStaleJobs,
+    completeJob, consumeAuthToken, deleteMeasurement, expireStaleJobs, failJob,
     findVerifiedAccountByEmail, getAdminOverview, getAdmission, getEntitlement,
     getJob, getJobByMeasurement, getMeasurement, getUsage, insertApiKey, insertAuthToken,
     listApiKeys, listAuthOutbox, listJobs, listQueuedJobs, listSecurityEvents,
     recordAttemptFinished, recordAttemptStarted, recordSecurityEvent, revokeApiKey, setAdmission,
+    supportsPointsBilling: true,
     state: () => ({ kind: config.kind, enabled: true, maxResultBytes: MAX_RESULT_BYTES })
   };
 }
@@ -707,6 +741,18 @@ function normalizeConfig(source) {
     endpoint: gatewayEnabled
       ? `${gatewayUrl}/v1/query`
       : `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(accountId)}/d1/database/${encodeURIComponent(databaseId)}/query`
+  };
+}
+
+// A job that ends without all four engines gives its 8-point charge back.
+// UNIQUE(kind, reference) on the ledger makes a repeated settlement a no-op.
+function pointReleaseStatement(jobId, now) {
+  return {
+    sql: `INSERT OR IGNORE INTO developer_point_ledger (entry_id, tenant_id, mode, kind, points, reference, created_at)
+      SELECT ?, tenant_id, mode, 'adjustment', -points, reference, ? FROM developer_point_ledger
+      WHERE kind = 'charge' AND reference = ?
+      AND EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ? AND status = 'failed')`,
+    params: [`ptr_${jobId}`, now, jobId, jobId]
   };
 }
 
