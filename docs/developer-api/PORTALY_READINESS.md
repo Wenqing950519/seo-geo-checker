@@ -244,7 +244,31 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 - Console 仍顯示試用輪數與「開通方案」視窗；點數模式下應改顯示點數餘額與扣點紀錄。
 - `/v1/usage` 與 `/v1/console/usage` 在點數模式仍讀試用額度。
 - 開啟 `DEVELOPER_API_BILLING=points` 後，沒有點數的帳戶（含受邀測試者）將無法建立觀測；目前正式站用的是 Test 金鑰，因此只有測試點數可用。
-- 贈點活動頁（使用者 2026-10-17 提出）：發放少量有使用期限、不可退款的贈送點數，並先扣贈送點數。目前帳本以加總計算餘額，尚無到期與扣點順序。
+- 贈點活動頁（使用者 2026-10-17 提出）：已於分支 `platform/promo-points` 實作，見下節。
+
+## 贈送點數活動（2026-10-17，分支 `platform/promo-points`，未部署）
+
+依 `/terms#points` 既有規則：贈點在發放時標示使用期限、到期失效、不得退款；扣點先扣即將到期的贈點，再扣付費點數。
+
+| 項目 | 位置 | 說明 |
+|---|---|---|
+| 資料表 | migration `0008_promotional_points.sql` | `developer_point_grants`（每筆領取一列，含 `remaining_points`、`expires_at`；`UNIQUE(tenant_id, mode, promotion_id)` 保證每帳戶每活動一次）與 `developer_point_grant_uses`（每個工作從每筆贈點扣了多少、是否已退回）。0007 未改 |
+| 帳本語意 | `developer_point_ledger` | 仍只記付費點數，帳本加總＝可退款餘額；贈點不寫入帳本 |
+| 受理扣點 | `developer-platform-d1-store.js` 的 `pointChargeStatements` | 同一 batch：付費＋未到期贈點 ≥ 8 才建工作；依 `expires_at` 先後逐筆扣贈點，不足部分才寫 `charge`（只記付費部分，為 0 時不寫） |
+| 失敗退回 | `pointReleaseStatements` | 付費部分照舊寫 `adjustment`；贈點部分退回原贈點並標 `released_at`，只退一次。已到期的贈點退回後仍然失效 |
+| 餘額 | `GET /v1/console/points` | `balance_points`＝付費＋未到期贈點；另有 `paid_points`、`promo_points`、`refundable_points`（只含付費）、`promo_grants`（標題、剩餘、到期日） |
+| 活動設定 | Worker 變數 `DEVELOPER_POINT_PROMOTIONS`（JSON 陣列） | 每個活動：`id`、`title`、`points`、`valid_days`（自領取起算）、`capacity`（名額，依 test／live 分開計）、`starts_at`、`ends_at`。設定格式錯誤時記錄 `point_promotions_invalid` 並關閉所有活動，不影響其他功能。未設定＝沒有活動 |
+| 領取 API | `GET /v1/console/points/promotions`、`POST /v1/console/points/promotions/{id}/claim` | 需 Console 管理 session；tenant 只取自 session。錯誤碼：`promotion_not_found` 404、`promotion_not_started`／`promotion_ended`／`promotion_full`／`promotion_already_claimed` 409 |
+| 活動頁 | `apps/web/public/platform/promotions.html`，Worker 以 `/promotions` 提供 | `noindex,nofollow`，不加入 sitemap；Console 點數區塊有連結 |
+
+活動點數、期限、名額與日期**未設定**，由使用者決定。贈點只在 `DEVELOPER_API_BILLING=points` 開啟後才能用來付觀測。
+
+驗證：新增 `tests/developer-points-promotions.test.js`（兩個 D1 store 共用真實 SQLite）：領取一次、重複領取 409（含並發）、資料庫唯一鍵、名額、未開始／已結束／不存在、設定驗證、先扣最早到期贈點再扣付費、失敗依來源退回且只退一次、到期不可用且不列入餘額、退款不含贈點、test／live 分離。`tests/platform-points-http.test.mjs` 加上路由（需 session、tenant 取自 session）、活動頁與 Console 區塊檢查。完整 `npm test` 通過。本機以 scratchpad 預覽伺服器（真實點數服務＋SQLite）確認活動頁可領取、重複領取被拒、Console 顯示付費／贈點與到期日。
+
+部署前必須：
+
+1. 遠端 D1 `geocheck-developer-api` 先套用 `0008_promotional_points.sql`，再讓程式進 main。未套用就部署，Console 點數查詢會因缺表失敗（點數區塊隱藏）。
+2. `/terms#points` 第 4 點寫「本平台目前不發放免費或贈送點數」，開辦活動前需更新條款文字（本分支未改法律文字）。
 
 ## 事故：推送 main 覆蓋 MCP 研究通道（2026-10-17，已修復）
 

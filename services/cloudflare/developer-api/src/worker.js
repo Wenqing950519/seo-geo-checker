@@ -139,9 +139,24 @@ function createPointsService(env) {
       callbackSecret,
       callbackUrl: PORTALY_CALLBACK_URL,
       successUrl: "https://platform.lslabs.tw/console?topup=success",
-      cancelUrl: "https://platform.lslabs.tw/console?topup=cancel"
+      cancelUrl: "https://platform.lslabs.tw/console?topup=cancel",
+      promotions: pointPromotions(env)
     }
   });
+}
+
+// Gift campaigns are a Worker setting (JSON list), so their size, expiry,
+// capacity and dates are the operator's choice and never hard-coded here. A
+// malformed setting closes every campaign rather than the whole Worker.
+function pointPromotions(env) {
+  const raw = String(env.DEVELOPER_POINT_PROMOTIONS || "").trim();
+  if (!raw) return [];
+  try {
+    return pointsServiceModule.normalizePromotions(JSON.parse(raw));
+  } catch {
+    console.error(JSON.stringify({ event: "point_promotions_invalid" }));
+    return [];
+  }
 }
 
 // Charging measurements in points replaces trial quota (LSL-D-003), so it is a
@@ -243,6 +258,7 @@ function platformAssetPath(pathname) {
   // Product B must not inherit Product A's subscription contract from ASSETS.
   const legalPage = /^\/(pricing|terms|privacy|refund)(?:\/|\.html)?$/.exec(pathname);
   if (legalPage) return `/platform/${legalPage[1]}`;
+  if (/^\/promotions(?:\/|\.html)?$/.test(pathname)) return "/platform/promotions";
   // Keep crawler metadata on the Platform origin while Console/API paths stay isolated.
   if (pathname === "/" || pathname === "/developers" || pathname === "/developers/" || pathname === "/developers.html") return "/developers";
   if (pathname === "/docs" || pathname === "/docs/" || pathname === "/developers/docs" || pathname === "/developers/docs/" || pathname === "/docs.html" || pathname === "/developers/docs.html") return "/developers/docs";

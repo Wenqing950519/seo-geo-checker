@@ -12,6 +12,7 @@ const { verifyPortalyCallback } = require("../payments/portaly-callback-signatur
 
 const POINTS_PER_OBSERVATION = 8;
 const CALLBACK_SKEW_MS = 5 * 60 * 1000;
+const DAY_MS = 24 * 60 * 60 * 1000;
 const EVENTS = {
   completed: "creator_subscription.checkout.completed",
   failed: "creator_subscription.checkout.failed"
@@ -159,19 +160,116 @@ function createDeveloperPointsService({ store, client, config = {}, clock = () =
     return respond(credited ? "credited" : "duplicate");
   }
 
+  // Paid points (the ledger) are refundable; gifts are not, and count only
+  // until they expire. balance_points is what a measurement can spend now.
   async function getBalance({ tenantId }) {
     const mode = client.mode;
-    const [balance, ledger] = await Promise.all([
+    const now = clock().toISOString();
+    const [paid, ledger, grants] = await Promise.all([
       store.getBalance({ tenantId, mode }),
-      store.listLedger({ tenantId, mode, limit: 50 })
+      store.listLedger({ tenantId, mode, limit: 50 }),
+      store.listGrants({ tenantId, mode })
     ]);
+    const usable = grants.filter((item) => item.expires_at > now && item.remaining_points > 0);
+    const promo = usable.reduce((sum, item) => sum + item.remaining_points, 0);
     return {
-      mode, balance_points: balance, points_per_observation: POINTS_PER_OBSERVATION,
-      checkout_enabled: settings.checkoutEnabled, ledger
+      mode, balance_points: paid + promo, paid_points: paid, promo_points: promo,
+      refundable_points: Math.max(0, paid), points_per_observation: POINTS_PER_OBSERVATION,
+      checkout_enabled: settings.checkoutEnabled, ledger,
+      promo_grants: usable.map((item) => ({
+        promotion_id: item.promotion_id, title: promotionTitle(item.promotion_id),
+        points: item.points, remaining_points: item.remaining_points,
+        granted_at: item.granted_at, expires_at: item.expires_at
+      }))
     };
   }
 
-  return { createTopUpCheckout, getBalance, handleCallback, listTopUpPlans };
+  function promotionTitle(id) {
+    return settings.promotions.find((item) => item.id === id)?.title || "贈送點數";
+  }
+
+  function promotionStatus(promotion, claims, now) {
+    if (now < promotion.startsAt) return "upcoming";
+    if (now >= promotion.endsAt) return "ended";
+    if (claims >= promotion.capacity) return "full";
+    return "open";
+  }
+
+  async function listPromotions({ tenantId }) {
+    const mode = client.mode;
+    const now = clock().toISOString();
+    const [claims, grants] = await Promise.all([
+      store.countClaims({ mode }),
+      tenantId ? store.listGrants({ tenantId, mode }) : []
+    ]);
+    return {
+      mode,
+      data: settings.promotions.map((promotion) => {
+        const count = claims[promotion.id] || 0;
+        const own = grants.find((item) => item.promotion_id === promotion.id);
+        return {
+          promotion_id: promotion.id, title: promotion.title, points: promotion.points,
+          valid_days: promotion.validDays, starts_at: promotion.startsAt, ends_at: promotion.endsAt,
+          capacity: promotion.capacity, remaining_slots: Math.max(0, promotion.capacity - count),
+          status: promotionStatus(promotion, count, now),
+          claimed: Boolean(own), claimed_at: own?.granted_at || null, expires_at: own?.expires_at || null
+        };
+      })
+    };
+  }
+
+  async function claimPromotion({ tenantId, promotionId }) {
+    if (!tenantId) throw new DeveloperApiError("auth_required", "A valid management session is required", 401);
+    const promotion = settings.promotions.find((item) => item.id === promotionId);
+    if (!promotion) throw new DeveloperApiError("promotion_not_found", "This promotion does not exist", 404);
+    const granted = clock();
+    const now = granted.toISOString();
+    if (now < promotion.startsAt) throw new DeveloperApiError("promotion_not_started", "This promotion has not started yet", 409);
+    if (now >= promotion.endsAt) throw new DeveloperApiError("promotion_ended", "This promotion has ended", 409);
+    const expiresAt = new Date(granted.getTime() + promotion.validDays * DAY_MS).toISOString();
+    const result = await store.claimGrant({
+      grantId: `ptg_${randomId()}`, tenantId, mode: client.mode, promotionId: promotion.id,
+      points: promotion.points, capacity: promotion.capacity, grantedAt: now, expiresAt
+    });
+    if (!result.claimed && result.reason === "already_claimed") {
+      throw new DeveloperApiError("promotion_already_claimed", "This account has already claimed this promotion", 409);
+    }
+    if (!result.claimed) throw new DeveloperApiError("promotion_full", "This promotion has no places left", 409);
+    return { promotion_id: promotion.id, points: promotion.points, granted_at: now, expires_at: expiresAt, mode: client.mode };
+  }
+
+  return { claimPromotion, createTopUpCheckout, getBalance, handleCallback, listPromotions, listTopUpPlans };
+}
+
+// Campaigns are operator settings, not code: id, title, points, validDays
+// (counted from the claim), capacity (total claims per mode) and the open
+// window [startsAt, endsAt). Anything malformed refuses to start.
+function normalizePromotions(list) {
+  if (list == null) return [];
+  if (!Array.isArray(list)) throw new Error("Point promotions must be a list");
+  const seen = new Set();
+  return list.map((raw) => {
+    const item = {
+      id: String(raw?.id ?? ""), title: String(raw?.title ?? "").trim(),
+      points: raw?.points, validDays: raw?.validDays ?? raw?.valid_days,
+      capacity: raw?.capacity, startsAt: raw?.startsAt ?? raw?.starts_at, endsAt: raw?.endsAt ?? raw?.ends_at
+    };
+    const fail = (reason) => { throw new Error(`Point promotion "${item.id}" ${reason}`); };
+    if (!/^[a-z0-9][a-z0-9-]{0,63}$/.test(item.id)) fail("needs an id of lowercase letters, digits and hyphens");
+    if (seen.has(item.id)) fail("is a duplicate id");
+    seen.add(item.id);
+    if (!item.title) fail("needs a title");
+    for (const key of ["points", "validDays", "capacity"]) {
+      if (!Number.isInteger(item[key]) || item[key] <= 0) fail(`needs a positive whole number for ${key}`);
+    }
+    for (const key of ["startsAt", "endsAt"]) {
+      const time = Date.parse(item[key]);
+      if (typeof item[key] !== "string" || !Number.isFinite(time)) fail(`needs an ISO time for ${key}`);
+      item[key] = new Date(time).toISOString();
+    }
+    if (item.endsAt <= item.startsAt) fail("must end after it starts");
+    return item;
+  });
 }
 
 function normalizeConfig(config) {
@@ -186,8 +284,9 @@ function normalizeConfig(config) {
     successUrl: config.successUrl || "",
     cancelUrl: config.cancelUrl || "",
     minAmountTwd: Number(config.minAmountTwd || 100),
-    maxAmountTwd: Number(config.maxAmountTwd || 10_000)
+    maxAmountTwd: Number(config.maxAmountTwd || 10_000),
+    promotions: normalizePromotions(config.promotions)
   };
 }
 
-module.exports = { POINTS_PER_OBSERVATION, createDeveloperPointsService };
+module.exports = { POINTS_PER_OBSERVATION, createDeveloperPointsService, normalizePromotions };
