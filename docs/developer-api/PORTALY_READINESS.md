@@ -288,10 +288,20 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 
 驗證：新增 `tests/developer-points-promotions.test.js`（兩個 D1 store 共用真實 SQLite）：領取一次、重複領取 409（含並發）、資料庫唯一鍵、名額、未開始／已結束／不存在、設定驗證、先扣最早到期贈點再扣付費、失敗依來源退回且只退一次、到期不可用且不列入餘額、退款不含贈點、test／live 分離。`tests/platform-points-http.test.mjs` 加上路由（需 session、tenant 取自 session）、活動頁與 Console 區塊檢查。完整 `npm test` 通過。本機以 scratchpad 預覽伺服器（真實點數服務＋SQLite）確認活動頁可領取、重複領取被拒、Console 顯示付費／贈點與到期日。
 
-部署前必須：
+### 部署（2026-10-17）
 
-1. 遠端 D1 `geocheck-developer-api` 先套用 `0008_promotional_points.sql`，再讓程式進 main。未套用就部署，Console 點數查詢會因缺表失敗（點數區塊隱藏）。
-2. `/terms#points` 第 4 點寫「本平台目前不發放免費或贈送點數」，開辦活動前需更新條款文字（本分支未改法律文字）。
+| 步驟 | 結果 |
+|---|---|
+| 條款 | `/terms#points` 第 4 點改為可能以活動發放贈送點數（每帳戶每活動一次、發放時標示期限、到期失效、不得退款且不列入退款金額），第 5 點去掉「日後」；草案日期 2026-10-17（`59d349f`） |
+| 遠端 D1 | 使用者於 07:57:08Z 套用 `0008_promotional_points.sql`；讀回 `d1_migrations` id 8、`developer_point_grants` 與 `developer_point_grant_uses` 存在且為空，原有帳本與訂單表未動 |
+| 推送 | 合併 origin/main（`f13ec77`、`09d5171`，皆非 Worker 程式）後，使用者推送 `849c5e2` 至 main；Workers Builds 版本 `07d5d97d-7c9c-495c-8341-fc02dcaacf2b`（08:03:47Z）100% 流量 |
+| 支出上限 | 隨此部署生效：客戶每日 NT$200、每月 NT$2,500 |
+
+正式站驗收：`/promotions` 200、`noindex,nofollow`，不在 sitemap；`/terms` 含新條文與活動頁連結，舊句「目前不發放」已不存在；`/console` 含 `points-promo` 區塊；未登入 `GET /v1/console/points/promotions` 與 `POST …/claim` 皆 401；`/v1/console/points` 401；`/healthz` ok；匿名 `/mcp` 401（研究憑證），MCP 通道仍在。
+
+尚未驗證：登入後的領取與 Console 贈點顯示（正式站尚未設定活動，清單為空）。
+
+**刻意未做**：`DEVELOPER_POINT_PROMOTIONS` 與 `DEVELOPER_API_BILLING=points` 都未設定。正式站仍用 Portaly test 金鑰、金流審核中，且儲值結帳已開放：此時開點數計費，任何人可用測試卡無限儲值測試點數換真實觀測（僅受支出上限限制）；此時領的贈點也是 test 模式，換 live 金鑰後不能用（帳本依模式分開）。建議 Portaly 審核通過、換上 live 金鑰後，再依序設定活動、開點數計費。
 
 ## 事故：推送 main 覆蓋 MCP 研究通道（2026-10-17，已修復）
 
