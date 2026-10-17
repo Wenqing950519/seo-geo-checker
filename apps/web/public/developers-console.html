@@ -2197,7 +2197,8 @@ async function loadPointsPanel() {
     `其中付費點數 ${Number(balance.paid_points || 0).toLocaleString('zh-TW')} 點（可退款），贈送點數 ${Number(balance.promo_points || 0).toLocaleString('zh-TW')} 點（不可退款，先扣即將到期者）：`;
   document.getElementById('points-promo-list').replaceChildren(...grants.map((grant) => {
     const item = document.createElement('li');
-    const expires = new Date(grant.expires_at).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', dateStyle: 'medium', timeStyle: 'short' });
+    // Expiry is exclusive; show the last minute that still counts.
+    const expires = new Date(Date.parse(grant.expires_at) - 60 * 1000).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', dateStyle: 'medium', timeStyle: 'short' });
     item.textContent = `${grant.title}：剩 ${Number(grant.remaining_points).toLocaleString('zh-TW')} 點，${expires} 到期`;
     return item;
   }));

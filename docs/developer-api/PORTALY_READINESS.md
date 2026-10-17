@@ -257,11 +257,23 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 | 受理扣點 | `developer-platform-d1-store.js` 的 `pointChargeStatements` | 同一 batch：付費＋未到期贈點 ≥ 8 才建工作；依 `expires_at` 先後逐筆扣贈點，不足部分才寫 `charge`（只記付費部分，為 0 時不寫） |
 | 失敗退回 | `pointReleaseStatements` | 付費部分照舊寫 `adjustment`；贈點部分退回原贈點並標 `released_at`，只退一次。已到期的贈點退回後仍然失效 |
 | 餘額 | `GET /v1/console/points` | `balance_points`＝付費＋未到期贈點；另有 `paid_points`、`promo_points`、`refundable_points`（只含付費）、`promo_grants`（標題、剩餘、到期日） |
-| 活動設定 | Worker 變數 `DEVELOPER_POINT_PROMOTIONS`（JSON 陣列） | 每個活動：`id`、`title`、`points`、`valid_days`（自領取起算）、`capacity`（名額，依 test／live 分開計）、`starts_at`、`ends_at`。設定格式錯誤時記錄 `point_promotions_invalid` 並關閉所有活動，不影響其他功能。未設定＝沒有活動 |
+| 活動設定 | Worker 變數 `DEVELOPER_POINT_PROMOTIONS`（JSON 陣列） | 每個活動：`id`、`title`、`points`、`starts_at`、`ends_at`（領取期間），到期用 `valid_days`（自領取起算）或 `points_expire_at`（固定日期），兩者都設取較早者；`capacity`（實際名額上限，依 test／live 分開計）可不設；`display_limit` 只是頁面顯示「限量 N 份」，不會擋領取。設定格式錯誤時記錄 `point_promotions_invalid` 並關閉所有活動，不影響其他功能。未設定＝沒有活動 |
 | 領取 API | `GET /v1/console/points/promotions`、`POST /v1/console/points/promotions/{id}/claim` | 需 Console 管理 session；tenant 只取自 session。錯誤碼：`promotion_not_found` 404、`promotion_not_started`／`promotion_ended`／`promotion_full`／`promotion_already_claimed` 409 |
 | 活動頁 | `apps/web/public/platform/promotions.html`，Worker 以 `/promotions` 提供 | `noindex,nofollow`，不加入 sitemap；Console 點數區塊有連結 |
 
-活動點數、期限、名額與日期**未設定**，由使用者決定。贈點只在 `DEVELOPER_API_BILLING=points` 開啟後才能用來付觀測。
+使用者 2026-10-17 決定：贈點使用期限暫訂到 2027-01-31（台北時間）結束；名額不設上限，頁面寫「限量 100 份」。點數由 Agent 評估，**建議**如下，尚未寫入 `wrangler.jsonc`（寫入並合併 main 就等於開辦活動）：
+
+```json
+[{"id":"launch-2026","title":"上線體驗贈點","points":40,"points_expire_at":"2027-01-31T16:00:00Z","display_limit":100,"starts_at":"<開辦時間>","ends_at":"2026-12-31T16:00:00Z"}]
+```
+
+**建議 40 點的依據（Inference，來自上方成本重估）**：40 點＝5 次完整觀測，約一組題目跨四引擎試 5 題；低於最低儲值 NT$100（12 次），不會取代購買。成本以一般估 NT$3.3、最壞 NT$4.0／次計，每位領取者約 NT$17–20；100 人全用完約 NT$1,650–2,000。領取期間建議到 2026-12-31，讓最後領取的人仍有一個月可用。
+
+**要注意**：
+
+- 名額不設上限時，實際領取可能超過 100，「限量 100 份」就與實況不符。`GET /v1/console/points/promotions` 回傳 `claimed_count` 可隨時查；接近 100 時可改設 `capacity: 100`。
+- 客戶端供應商支出上限是每日 NT$60、每月 NT$600（`wrangler.jsonc`），贈點觀測與付費觀測共用。100 人用完贈點約 NT$1,650 以上，會先撞到月上限，付費客戶也會被擋（`cost_budget_exhausted`）。開辦前需決定是否調高上限。
+- 贈點只在 `DEVELOPER_API_BILLING=points` 開啟後才能用來付觀測；開啟後免費試用輪數同時取消。
 
 驗證：新增 `tests/developer-points-promotions.test.js`（兩個 D1 store 共用真實 SQLite）：領取一次、重複領取 409（含並發）、資料庫唯一鍵、名額、未開始／已結束／不存在、設定驗證、先扣最早到期贈點再扣付費、失敗依來源退回且只退一次、到期不可用且不列入餘額、退款不含贈點、test／live 分離。`tests/platform-points-http.test.mjs` 加上路由（需 session、tenant 取自 session）、活動頁與 Console 區塊檢查。完整 `npm test` 通過。本機以 scratchpad 預覽伺服器（真實點數服務＋SQLite）確認活動頁可領取、重複領取被拒、Console 顯示付費／贈點與到期日。
 

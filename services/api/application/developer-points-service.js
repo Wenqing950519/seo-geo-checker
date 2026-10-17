@@ -191,8 +191,16 @@ function createDeveloperPointsService({ store, client, config = {}, clock = () =
   function promotionStatus(promotion, claims, now) {
     if (now < promotion.startsAt) return "upcoming";
     if (now >= promotion.endsAt) return "ended";
-    if (claims >= promotion.capacity) return "full";
+    if (promotion.capacity != null && claims >= promotion.capacity) return "full";
     return "open";
+  }
+
+  // The earlier of "validDays after the claim" and the fixed pointsExpireAt.
+  function grantExpiry(promotion, granted) {
+    const options = [];
+    if (promotion.validDays != null) options.push(new Date(granted.getTime() + promotion.validDays * DAY_MS).toISOString());
+    if (promotion.pointsExpireAt != null) options.push(promotion.pointsExpireAt);
+    return options.sort()[0];
   }
 
   async function listPromotions({ tenantId }) {
@@ -209,8 +217,10 @@ function createDeveloperPointsService({ store, client, config = {}, clock = () =
         const own = grants.find((item) => item.promotion_id === promotion.id);
         return {
           promotion_id: promotion.id, title: promotion.title, points: promotion.points,
-          valid_days: promotion.validDays, starts_at: promotion.startsAt, ends_at: promotion.endsAt,
-          capacity: promotion.capacity, remaining_slots: Math.max(0, promotion.capacity - count),
+          valid_days: promotion.validDays, points_expire_at: promotion.pointsExpireAt,
+          starts_at: promotion.startsAt, ends_at: promotion.endsAt,
+          capacity: promotion.capacity, display_limit: promotion.displayLimit, claimed_count: count,
+          remaining_slots: promotion.capacity == null ? null : Math.max(0, promotion.capacity - count),
           status: promotionStatus(promotion, count, now),
           claimed: Boolean(own), claimed_at: own?.granted_at || null, expires_at: own?.expires_at || null
         };
@@ -226,10 +236,10 @@ function createDeveloperPointsService({ store, client, config = {}, clock = () =
     const now = granted.toISOString();
     if (now < promotion.startsAt) throw new DeveloperApiError("promotion_not_started", "This promotion has not started yet", 409);
     if (now >= promotion.endsAt) throw new DeveloperApiError("promotion_ended", "This promotion has ended", 409);
-    const expiresAt = new Date(granted.getTime() + promotion.validDays * DAY_MS).toISOString();
+    const expiresAt = grantExpiry(promotion, granted);
     const result = await store.claimGrant({
       grantId: `ptg_${randomId()}`, tenantId, mode: client.mode, promotionId: promotion.id,
-      points: promotion.points, capacity: promotion.capacity, grantedAt: now, expiresAt
+      points: promotion.points, capacity: promotion.capacity ?? Number.MAX_SAFE_INTEGER, grantedAt: now, expiresAt
     });
     if (!result.claimed && result.reason === "already_claimed") {
       throw new DeveloperApiError("promotion_already_claimed", "This account has already claimed this promotion", 409);
@@ -241,9 +251,11 @@ function createDeveloperPointsService({ store, client, config = {}, clock = () =
   return { claimPromotion, createTopUpCheckout, getBalance, handleCallback, listPromotions, listTopUpPlans };
 }
 
-// Campaigns are operator settings, not code: id, title, points, validDays
-// (counted from the claim), capacity (total claims per mode) and the open
-// window [startsAt, endsAt). Anything malformed refuses to start.
+// Campaigns are operator settings, not code: id, title, points, the open
+// window [startsAt, endsAt), and when gifts expire: validDays after the claim,
+// a fixed pointsExpireAt, or both (earlier wins). capacity (total claims per
+// mode) is optional; displayLimit is only the number the page advertises and
+// enforces nothing. Anything malformed refuses to start.
 function normalizePromotions(list) {
   if (list == null) return [];
   if (!Array.isArray(list)) throw new Error("Point promotions must be a list");
@@ -251,23 +263,29 @@ function normalizePromotions(list) {
   return list.map((raw) => {
     const item = {
       id: String(raw?.id ?? ""), title: String(raw?.title ?? "").trim(),
-      points: raw?.points, validDays: raw?.validDays ?? raw?.valid_days,
-      capacity: raw?.capacity, startsAt: raw?.startsAt ?? raw?.starts_at, endsAt: raw?.endsAt ?? raw?.ends_at
+      points: raw?.points, validDays: raw?.validDays ?? raw?.valid_days ?? null,
+      pointsExpireAt: raw?.pointsExpireAt ?? raw?.points_expire_at ?? null,
+      capacity: raw?.capacity ?? null, displayLimit: raw?.displayLimit ?? raw?.display_limit ?? null,
+      startsAt: raw?.startsAt ?? raw?.starts_at, endsAt: raw?.endsAt ?? raw?.ends_at
     };
     const fail = (reason) => { throw new Error(`Point promotion "${item.id}" ${reason}`); };
     if (!/^[a-z0-9][a-z0-9-]{0,63}$/.test(item.id)) fail("needs an id of lowercase letters, digits and hyphens");
     if (seen.has(item.id)) fail("is a duplicate id");
     seen.add(item.id);
     if (!item.title) fail("needs a title");
-    for (const key of ["points", "validDays", "capacity"]) {
+    for (const key of ["points", "validDays", "capacity", "displayLimit"]) {
+      if (key !== "points" && item[key] == null) continue;
       if (!Number.isInteger(item[key]) || item[key] <= 0) fail(`needs a positive whole number for ${key}`);
     }
-    for (const key of ["startsAt", "endsAt"]) {
+    for (const key of ["startsAt", "endsAt", "pointsExpireAt"]) {
+      if (key === "pointsExpireAt" && item[key] == null) continue;
       const time = Date.parse(item[key]);
       if (typeof item[key] !== "string" || !Number.isFinite(time)) fail(`needs an ISO time for ${key}`);
       item[key] = new Date(time).toISOString();
     }
     if (item.endsAt <= item.startsAt) fail("must end after it starts");
+    if (item.validDays == null && item.pointsExpireAt == null) fail("needs validDays or pointsExpireAt");
+    if (item.pointsExpireAt != null && item.pointsExpireAt < item.endsAt) fail("must not expire gifts before claiming ends");
     return item;
   });
 }

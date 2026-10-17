@@ -38,6 +38,12 @@ function formatDate(value) {
   return new Date(value).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', dateStyle: 'medium', timeStyle: 'short' });
 }
 
+// Deadlines are exclusive instants (00:00 the next day); show the last minute
+// that still counts so "2027-02-01 00:00" reads as 1月31日 23:59.
+function formatDeadline(value) {
+  return formatDate(Date.parse(value) - 60 * 1000);
+}
+
 async function request(path, options = {}) {
   const response = await fetch(path, { ...options, headers: { Authorization: 'Bearer ' + session, 'Content-Type': 'application/json' } });
   const body = await response.json().catch(() => ({}));
@@ -61,8 +67,13 @@ function render(promotion) {
   const card = element('section', 'card');
   card.append(element('h2', null, promotion.title));
   card.append(element('div', 'points', `${Number(promotion.points).toLocaleString('zh-TW')} 點`));
+  const validity = promotion.points_expire_at
+    ? (promotion.valid_days ? `領取後 ${promotion.valid_days} 天內有效，最晚 ${formatDeadline(promotion.points_expire_at)} 到期` : `點數使用期限至 ${formatDeadline(promotion.points_expire_at)}`)
+    : `領取後 ${promotion.valid_days} 天內有效`;
+  const limit = promotion.display_limit ? `限量 ${promotion.display_limit} 份`
+    : promotion.remaining_slots != null ? `剩餘名額 ${promotion.remaining_slots}` : '';
   card.append(element('p', 'meta',
-    `領取後 ${promotion.valid_days} 天內有效 · 活動期間 ${formatDate(promotion.starts_at)} 至 ${formatDate(promotion.ends_at)} · 剩餘名額 ${promotion.remaining_slots}`));
+    [validity, `領取期間 ${formatDate(promotion.starts_at)} 至 ${formatDeadline(promotion.ends_at)}`, limit].filter(Boolean).join(' · ')));
   const status = element('p', 'status');
   const button = element('button', null, '領取');
   button.type = 'button';
@@ -70,7 +81,7 @@ function render(promotion) {
     button.disabled = true;
     button.textContent = '已領取';
     status.className = 'status ok';
-    status.textContent = `已於 ${formatDate(promotion.claimed_at)} 領取，${formatDate(promotion.expires_at)} 到期。`;
+    status.textContent = `已於 ${formatDate(promotion.claimed_at)} 領取，${formatDeadline(promotion.expires_at)} 到期。`;
   } else if (promotion.status !== 'open') {
     button.disabled = true;
     button.textContent = STATUS_TEXT[promotion.status] || '目前不開放';
@@ -81,7 +92,7 @@ function render(promotion) {
       const claim = await request('/v1/console/points/promotions/' + encodeURIComponent(promotion.promotion_id) + '/claim', { method: 'POST', body: '{}' });
       button.textContent = '已領取';
       status.className = 'status ok';
-      status.textContent = `已領取 ${claim.points} 點，${formatDate(claim.expires_at)} 到期。可到控制台查看餘額。`;
+      status.textContent = `已領取 ${claim.points} 點，${formatDeadline(claim.expires_at)} 到期。可到控制台查看餘額。`;
     } catch (error) {
       status.className = 'status error';
       if (error.status === 401) {

@@ -183,6 +183,48 @@ async function main() {
     await rejectsWith(late.claimPromotion({ tenantId: "", promotionId: "launch-test" }), "auth_required", 401);
   }
 
+  // ---- a campaign may fix one expiry date for every gift instead of days after claim ----
+  {
+    const { pointsStore } = createDatabase();
+    const fixed = { ...CAMPAIGN, validDays: undefined, pointsExpireAt: "2027-01-31T16:00:00.000Z", endsAt: "2026-12-31T16:00:00.000Z" };
+    const points = createPoints(pointsStore, { promotions: [fixed] });
+    const listed = await points.listPromotions({ tenantId: TENANT });
+    assert.equal(listed.data[0].points_expire_at, "2027-01-31T16:00:00.000Z");
+    assert.equal(listed.data[0].valid_days, null);
+    const claim = await points.claimPromotion({ tenantId: TENANT, promotionId: "launch-test" });
+    assert.equal(claim.expires_at, "2027-01-31T16:00:00.000Z", "every claimant gets the same fixed expiry");
+
+    const { pointsStore: other } = createDatabase();
+    const both = createPoints(other, { promotions: [{ ...fixed, validDays: 30 }] });
+    assert.equal((await both.claimPromotion({ tenantId: TENANT, promotionId: "launch-test" })).expires_at,
+      new Date(NOW.getTime() + 30 * DAY).toISOString(), "with both settings the earlier expiry wins");
+
+    for (const bad of [
+      { ...fixed, pointsExpireAt: "2026-12-01T00:00:00.000Z" },
+      { ...fixed, pointsExpireAt: "later" },
+      { ...CAMPAIGN, validDays: undefined }
+    ]) {
+      assert.throws(() => createPoints(pointsStore, { promotions: [bad] }), /promotion/i, JSON.stringify(bad));
+    }
+  }
+
+  // ---- capacity may be left open; an advertised limit is display text only ----
+  {
+    const { pointsStore } = createDatabase();
+    const open = { ...CAMPAIGN, capacity: undefined, displayLimit: 100 };
+    const points = createPoints(pointsStore, { promotions: [open] });
+    for (const tenant of [TENANT, OTHER, "tnt_promo_third"]) {
+      await points.claimPromotion({ tenantId: tenant, promotionId: "launch-test" });
+    }
+    const listed = await points.listPromotions({ tenantId: TENANT });
+    assert.equal(listed.data[0].status, "open", "an uncapped campaign never reports full");
+    assert.equal(listed.data[0].capacity, null);
+    assert.equal(listed.data[0].remaining_slots, null);
+    assert.equal(listed.data[0].display_limit, 100);
+    assert.equal(listed.data[0].claimed_count, 3);
+    assert.throws(() => createPoints(pointsStore, { promotions: [{ ...open, displayLimit: 0 }] }), /promotion/i);
+  }
+
   // ---- campaign settings are validated; a bad setting refuses to start ----
   {
     const { pointsStore } = createDatabase();
