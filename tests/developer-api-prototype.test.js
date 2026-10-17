@@ -1,7 +1,8 @@
 const assert = require("node:assert/strict");
 const {
   createDeveloperApiPrototype,
-  createFixtureProviders
+  createFixtureProviders,
+  normalizeEngineResult
 } = require("../services/api/application/developer-api-prototype.js");
 const { createInMemoryMeasurementResultStore } = require("../services/api/storage/developer-measurement-result-store.js");
 
@@ -15,6 +16,26 @@ async function waitForTerminal(api, tenantId, jobId) {
 }
 
 async function main() {
+  const profile = require('../services/api/application/official-engine-profiles.js').listOfficialEngineProfiles()[0];
+  const unsearched = normalizeEngineResult(profile, {
+    answer: 'GA4 is Google Analytics 4.', citations: [],
+    searchEvidence: { mode: 'openai_web_search', executed: false },
+    usage: { total_tokens: 4687, search_requests: 0 },
+    cost: { status: 'estimated_list_price', estimated_usd: 0.0005647 },
+    nativeEvidence: { response_id: 'resp_no_search' }
+  });
+  assert.equal(unsearched.status, 'failed');
+  assert.equal(unsearched.error.code, 'provider_search_not_executed');
+  assert.equal(unsearched.answer, null, 'Ungrounded observations must not become a successful grounded answer');
+  assert.deepEqual(unsearched.response_observation, {
+    answer: 'GA4 is Google Analytics 4.', answer_status: 'answered',
+    search_executed: false, search_mode: 'openai_web_search'
+  });
+  assert.equal(unsearched.usage.total_tokens, 4687);
+  assert.equal(unsearched.cost.estimated_usd, 0.0005647);
+  assert.equal(unsearched.native_evidence.response_id, 'resp_no_search');
+  assert.equal(normalizeEngineResult(profile, { answer: '', searchEvidence: { mode: 'openai_web_search', executed: false } }).error.code,
+    'provider_invalid_response', 'A genuinely empty answer must remain distinguishable');
   const tenantId = "tenant_fixture";
   const api = createDeveloperApiPrototype({
     providers: createFixtureProviders(),

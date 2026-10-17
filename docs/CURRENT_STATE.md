@@ -12,6 +12,18 @@ tags:
 
 # GeoCheck 當前運作狀態
 
+## 2026-10-16 Platform MCP provider 回應排錯
+
+正式維護版本 `31584707-658c-402e-bffb-6a5b2c394f93` 已取代下方 10/15 初版，100% 流量。Grok 抽測兩筆指定失敗量測共五個引擎均記錄搜尋 0 次，舊驗證器卻標 `provider_invalid_response`；現改為 `provider_search_not_executed` 並保存未成功的 `response_observation`，保持失敗／扣量與成本規則。Claude 解析器另修正只保存搜尋前開場白的問題。修補未改模型、提示詞、搜尋選擇、輸出上限或預算；正式仍為 Haiku 4.5。歷史沒有完整上游 raw，不能補回丟棄的回答或把舊 Claude 成功視為完整答案。操作及受控驗收見 [MCP 排錯紀錄](developer-api/MCP_RESEARCH.md#2026-10-16-未搜尋誤分類與-claude-答案解析修補) 與其證據。使用者已回報 Grok Bot 實際提交研究量測，10/15「尚未設定」僅為當時狀態。
+
+## 2026-10-15 Platform 研究 MCP（已部署、研究通道已啟用）
+
+依本次使用者授權與 LSL-D-004，現有 Developer Worker 新增 `/mcp`、專用研究 token 的管理端、D1 研究授權與工作歸屬、預設關閉的 MCP 開關及每研究身分一筆 active job 的原子限制。研究工作走 `agent` 內部通道，不建立客戶額度預留，仍記錄供應商成本並受內部預算限制；一般使用者的 MCP 執行尚未開放。
+
+正式版本 `d3976e10-3245-4d0d-83a7-62b7505fb36e` 為 100% 流量；`0006` 已套用，MCP 已啟用。部署包取正式 source map 的 provider 程式，保留 Haiku 4.5、所有公開資產及既有 bindings／預算，未發布本機 Haiku 5.5 或定價草稿。Cloudflare 擁有者以獨立研究 pepper 建立專用 token，憑證只存本機忽略的 `.env`，沒有讀取／輪替既有應用程式管理員 key。內部預算仍為日 NT$500、月 NT$3,000、單工作預留 NT$12。
+
+真實量測 `msr_1c4f6ad6-42c9-451d-a53a-bba074cc3628` 四引擎均成功、有回答及引用，成本記錄 NT$3.329724、未知成本 false、客戶扣量 0。標準 MCP client 驗證三項工具、去重重送不新增請求（總計 4 provider attempts）、匿名／錯誤／客戶 key 拒絕、唯讀權限、跨研究身分隔離及撤銷。前後客戶額度與成本彙總一致，公開頁及客戶 API 回應雜湊一致。證據見 [部署驗收](developer-api/evidence/mcp-release-2026-10-15.json) 與 [真實量測](developer-api/evidence/mcp-research-smoke-2026-10-15.json)。服務與標準 client 已驗證；使用者 Grok Bot 連接器尚未設定，不得稱 Grok 已接通。操作與可直接交付的接入 prompt 見 [研究 MCP](developer-api/MCP_RESEARCH.md)。
+
 ## 2026-10-02 公開 SEO 修復（已部署，三個 LS-Labs Ahrefs 新掃描驗收通過）
 
 Geo 原始修復 `358265367607492e5cd06986dbb199af98a9af7f` 與 demo 內鏈 `4e0ab9c82f10eb11249cd81565f6034b3acb640b` 已推送正式 main，GitHub Cloudflare Pages／Workers Builds success。最新 Platform Worker `6204b967-2b1d-48d0-8a14-4ea96f8bc9f1` 為 100% 流量；Geo Pages `6fb0936e-10ff-4981-8c2f-97dd9c51f9c3` success，精確來源為 `4e0ab9c`。

@@ -41,6 +41,12 @@ async function main() {
   assert.equal(results[1].cost.status, "estimated_range_free_allowance_unknown");
   assert.equal(results[2].cost.status, "provider_reported");
   assert.equal(results[3].cost.status, "estimated_list_price");
+  const preambleOnly = createOfficialProvidersFromEnv({ config, fetch: async () => Response.json({
+    content: [{ type: 'text', text: 'Let me search.' }, { type: 'web_search_tool_result', content: [] }],
+    stop_reason: 'max_tokens', usage: { server_tool_use: { web_search_requests: 1 } }
+  }) });
+  assert.equal((await preambleOnly.find((p) => p.id === 'anthropic-web').execute({ prompt: 'test' })).answer,
+    '', 'A pre-search preamble must never substitute for the missing final answer');
   assert.equal(results[0].nativeEvidence.response_id, "resp_openai");
   assert.equal(results[1].nativeEvidence.response_id, "int_google");
   assert.equal(results[3].nativeEvidence.response_id, "msg_anthropic");
