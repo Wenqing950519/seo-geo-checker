@@ -126,7 +126,7 @@ async function executeAnthropic(profile, apiKey, fetchImpl, request) {
     messages: [{ role: "user", content: request.prompt }],
     tools: [{ type: "web_search_20250305", name: "web_search", max_uses: maxSearchRequests }]
   }, timeoutMs);
-  const answer = String(firstText(response.content) || "").trim();
+  const answer = anthropicAnswer(response.content);
   const citations = citationsFromAnthropic(response.content);
   const searchRequests = finiteCount(response.usage?.server_tool_use?.web_search_requests) ?? countSuccessfulAnthropicSearches(response.content);
   const usage = normalizeUsage(response.usage, { input: "input_tokens", output: "output_tokens", searchRequests });
@@ -240,6 +240,17 @@ function providerError(code, message) {
   const error = new Error(message);
   error.code = code;
   return error;
+}
+
+function anthropicAnswer(content) {
+  if (!Array.isArray(content)) return "";
+  let start = 0;
+  content.forEach((block, index) => { if (block?.type === "web_search_tool_result") start = index + 1; });
+  return content.slice(start)
+    .filter((block) => block?.type === "text" && typeof block.text === "string")
+    .map((block) => block.text)
+    .join("")
+    .trim();
 }
 
 function firstText(value) {

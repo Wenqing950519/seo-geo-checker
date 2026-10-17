@@ -267,8 +267,11 @@ function buildMeasurement(job, engines, succeeded, completedAt, providerMode) {
 
 function normalizeEngineResult(profile, response) {
   const answer = String(response?.answer || "").trim();
-  if (classifyAnswerStatus(answer) !== "answered" || !response?.searchEvidence?.mode || response.searchEvidence.executed !== true) {
+  if (classifyAnswerStatus(answer) !== "answered" || !response?.searchEvidence?.mode) {
     return failedEngineResult(profile, new DeveloperApiError("provider_invalid_response", "Provider response was incomplete", 502), response);
+  }
+  if (response.searchEvidence.executed !== true) {
+    return failedEngineResult(profile, new DeveloperApiError("provider_search_not_executed", "Provider answered without executing search", 502), response);
   }
   const citations = Array.isArray(response.citations) ? response.citations.flatMap((citation) => {
     try {
@@ -340,6 +343,12 @@ function failedEngineResult(profile, error, response = null) {
     usage: response?.usage || null,
     cost: response?.cost || null,
     native_evidence: response?.nativeEvidence || null,
+    ...(response ? { response_observation: {
+      answer: String(response.answer || "").trim() || null,
+      answer_status: classifyAnswerStatus(String(response.answer || "").trim()),
+      search_executed: typeof response.searchEvidence?.executed === "boolean" ? response.searchEvidence.executed : null,
+      search_mode: response.searchEvidence?.mode || null
+    } } : {}),
     error: { code: error?.code || "provider_error" }
   };
 }

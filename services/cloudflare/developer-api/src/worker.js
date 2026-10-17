@@ -1,6 +1,8 @@
 import developerApiModule from "../../../api/developer-api-http.js";
 import d1StoreModule from "../../../api/storage/developer-platform-d1-store.js";
 import oauthModule from "../../../api/google-oauth-http.js";
+import mcpResearchModule from "../../../api/application/developer-mcp-research.js";
+import { handleResearchMcp } from './research-mcp.mjs';
 
 const { createDeveloperApiHttpHandler } = developerApiModule;
 const { createBoundD1DeveloperPlatformStore } = d1StoreModule;
@@ -129,6 +131,8 @@ function createRuntime(env) {
     enqueue,
     recoverOnStartup: false
   });
+  runtime.mcpResearch = mcpResearchModule.createMcpResearchService({ store, api: runtime.workerApi,
+    tokenPepper: env.MCP_RESEARCH_TOKEN_PEPPER || env.DEVELOPER_API_TOKEN_PEPPER });
   return runtime;
 }
 
@@ -201,6 +205,17 @@ async function handleRequest(request, env) {
   const url = new URL(request.url);
   const pathname = url.pathname;
   if (request.method === "GET" && pathname === "/healthz") return healthResponse(env);
+  if (pathname === '/mcp' || pathname.startsWith('/v1/admin/mcp/')) {
+    if (url.hostname !== 'platform.lslabs.tw' || url.protocol !== 'https:') return new Response(null, { status: 404, headers: JSON_HEADERS });
+    if (missingRuntimeSecrets(env).length) return new Response(JSON.stringify({ error: { code: 'configuration_incomplete' } }), { status: 503, headers: JSON_HEADERS });
+    try {
+      const research = createRuntime(env).mcpResearch;
+      if (pathname === '/mcp') return await handleResearchMcp(request, { research, env });
+      return await handleMcpAdmin(request, env, pathname, research);
+    } catch {
+      return new Response(JSON.stringify({ error: { code: 'service_unavailable' } }), { status: 503, headers: JSON_HEADERS });
+    }
+  }
   // platform.lslabs.tw is the entire developer surface: landing, documentation,
   // Console and /v1 share one origin so browser sessions never cross products.
   if ((request.method === "GET" || request.method === "HEAD") && url.hostname === "platform.lslabs.tw") {
@@ -281,6 +296,18 @@ async function handleRequest(request, env) {
 function internalSecret(request) {
   const value = String(request.headers.get("authorization") || "");
   return /^Bearer\s+(.+)$/i.test(value) ? value.replace(/^Bearer\s+/i, "").trim() : "";
+}
+
+async function handleMcpAdmin(request, env, pathname, research) {
+  if (!adminAuthorized(request, env)) return new Response(JSON.stringify({ error: { code: 'auth_required' } }), { status: 401, headers: JSON_HEADERS });
+  if (request.method !== 'POST') return new Response(null, { status: 405, headers: { ...JSON_HEADERS, Allow: 'POST' } });
+  const body = await readJsonRequest(request, 8192).catch(() => null);
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return new Response(JSON.stringify({ error: { code: 'invalid_request' } }), { status: 400, headers: JSON_HEADERS });
+  if (pathname === '/v1/admin/mcp/grants') return internalJson(() => research.createGrant({ name: body.name }), 201);
+  if (pathname === '/v1/admin/mcp/admission') return internalJson(() => research.setAdmission(body), 200);
+  const match = /^\/v1\/admin\/mcp\/grants\/([^/]+)\/(rotate|revoke)$/.exec(pathname);
+  if (match) return internalJson(() => research[match[2] === 'rotate' ? 'rotateGrant' : 'revokeGrant']({ principalId: match[1] }), 200);
+  return new Response(null, { status: 404, headers: JSON_HEADERS });
 }
 
 async function handleInternalRequest(request, env, pathname) {

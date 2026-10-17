@@ -37,11 +37,16 @@
     "test:geocheck-seo": "node --test tests/geocheck-seo.test.cjs"
   },
   "dependencies": {
-    "playwright": "^1.60.0"
+    "@modelcontextprotocol/server": "2.3.1",
+    "agents": "0.28.1",
+    "playwright": "^1.60.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@cloudflare/containers": "^0.3.7",
     "@cloudflare/puppeteer": "^1.4.0",
+    "@modelcontextprotocol/client": "2.3.1",
+    "esbuild": "0.28.2",
     "typescript": "^7.0.2"
   }
 }
