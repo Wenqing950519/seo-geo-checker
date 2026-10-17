@@ -1,0 +1,27 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 26,
+  "provider": "perplexity",
+  "endpoint": "https://api.perplexity.ai/chat/completions",
+  "reserved_at": "2026-10-15T06:19:12.409Z",
+  "payload": {
+    "model": "sonar",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+      },
+      {
+        "role": "user",
+        "content": "Verify the exact entity represented by website ichiran.com.tw (title: 一蘭拉麵| 一蘭台灣官方購物網 - 一蘭、一蘭拉麵、拉麵、一蘭台灣購物網、一蘭購物、一蘭伴手禮、台灣一蘭、日本食品、博多細麵、捲麵、豚骨拉麵、一蘭商品、伴手禮、拉麵商品、即食麵、釜醬汁豚骨拉麵、博多拉麵、日本泡麵、日本進口、福岡、九州、日本). Find only public sources that clearly refer to this exact website or brand. Exclude similarly named but unrelated entities. Return unknown if entity alignment cannot be verified. Cite every retained source. Start with exactly ALIASES: name1 | name2 using only names supported by the official site or corroborating sources; otherwise write ALIASES: UNKNOWN."
+      }
+    ],
+    "max_tokens": 260,
+    "temperature": 0,
+    "search_language_filter": [
+      "zh",
+      "en"
+    ],
+    "return_related_questions": false
+  }
+}

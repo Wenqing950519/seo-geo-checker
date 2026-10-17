@@ -1,0 +1,17 @@
+{
+  "id": 30,
+  "input_url": "https://www.kanpaiclassic.com.tw/",
+  "store_id": "XY-024",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0049-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0049-response.txt",
+  "sequence": 30,
+  "started_at": "2026-10-15T06:37:28.037Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_d830fffe-6d00-4625-92ac-d0e5ecf1656e",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:31.549Z"
+}

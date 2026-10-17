@@ -1,0 +1,11 @@
+{
+  "completed_at": "2026-10-15T03:52:26.232Z",
+  "planned_urls": 103,
+  "recorded_urls": 103,
+  "unique_urls": 103,
+  "saved_responses": 87,
+  "http_2xx": 63,
+  "fetch_failures": 16,
+  "paid_ai_calls": 0,
+  "events_file_sha256": "f2d8fc4053dc1c4a751ef7ec9160f9622b9490be16c98129a68daf8bc01c9673"
+}

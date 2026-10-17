@@ -1,0 +1,17 @@
+{
+  "id": 48,
+  "input_url": "https://www.saffron46.com/",
+  "store_id": "XY-028",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0079-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0079-response.txt",
+  "sequence": 48,
+  "started_at": "2026-10-15T06:37:58.218Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_9edd36c1-2089-42ec-ae11-c9118b87b1d0",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:01.233Z"
+}

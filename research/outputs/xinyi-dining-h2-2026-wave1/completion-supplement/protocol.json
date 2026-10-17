@@ -1,0 +1,1955 @@
+{
+  "frozen_at": "2026-10-15T06:36:32.591Z",
+  "frozen": {
+    "run_id": "whitepaper-xinyi-wave1-2026-10-15-completion-supplement",
+    "kind": "completion_quality_supplement_not_primary_score",
+    "query_set_version": "xinyi-dining-2026h2-v2.0",
+    "authorization": "User requested continuing verification and completing the data; retains the approved questions and existing 23-site observed subset.",
+    "selection": "All 69 discovery slots from the 23 successfully measured sites, including originally complete answers. The other 26 original cohort inputs remain unknown.",
+    "only_payload_change": "max_tokens: 260 -> 4096",
+    "model": "sonar",
+    "actual_request_cap": 69,
+    "retries": 0,
+    "concurrency": 3,
+    "min_start_interval_ms": 1500,
+    "no_profile_calls": true,
+    "no_new_scores": true,
+    "no_replacement_of_original_evidence": true,
+    "interpretation": "Later repeated observations, not recovered missing tails. Cannot identify a causal token-limit effect because answers may vary over time. Do not merge with September primary scores.",
+    "jobs": [
+      {
+        "id": 1,
+        "input_url": "https://www.apointsteak.com.tw/",
+        "store_id": "XY-003",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0002-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0002-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 2,
+        "input_url": "https://www.apointsteak.com.tw/",
+        "store_id": "XY-003",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0003-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0003-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 3,
+        "input_url": "https://www.apointsteak.com.tw/",
+        "store_id": "XY-003",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0004-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0004-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 4,
+        "input_url": "https://www.celavi.com/",
+        "store_id": "XY-022",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0007-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0007-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 5,
+        "input_url": "https://www.celavi.com/",
+        "store_id": "XY-022",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0008-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0008-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 6,
+        "input_url": "https://www.celavi.com/",
+        "store_id": "XY-022",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0009-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0009-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 7,
+        "input_url": "https://www.eatogether.com.tw/",
+        "store_id": "XY-032",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0012-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0012-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 8,
+        "input_url": "https://www.eatogether.com.tw/",
+        "store_id": "XY-032",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0013-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0013-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 9,
+        "input_url": "https://www.eatogether.com.tw/",
+        "store_id": "XY-032",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0014-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0014-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 10,
+        "input_url": "https://www.gbarestaurants.com.tw/",
+        "store_id": "XY-045",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0017-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0017-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 11,
+        "input_url": "https://www.gbarestaurants.com.tw/",
+        "store_id": "XY-045",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0018-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0018-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 12,
+        "input_url": "https://www.gbarestaurants.com.tw/",
+        "store_id": "XY-045",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0019-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0019-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 13,
+        "input_url": "https://www.hooters.com.tw/",
+        "store_id": "XY-036",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0022-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0022-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 14,
+        "input_url": "https://www.hooters.com.tw/",
+        "store_id": "XY-036",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0023-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0023-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 15,
+        "input_url": "https://www.hooters.com.tw/",
+        "store_id": "XY-036",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0024-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0024-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 16,
+        "input_url": "https://www.ichiran.com.tw/",
+        "store_id": "XY-012",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0027-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0027-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 17,
+        "input_url": "https://www.ichiran.com.tw/",
+        "store_id": "XY-012",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0028-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0028-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 18,
+        "input_url": "https://www.ichiran.com.tw/",
+        "store_id": "XY-012",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0029-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0029-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 19,
+        "input_url": "https://www.indianfoodtaiwan.com/",
+        "store_id": "XY-009",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0032-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0032-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 20,
+        "input_url": "https://www.indianfoodtaiwan.com/",
+        "store_id": "XY-009",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0033-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0033-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 21,
+        "input_url": "https://www.indianfoodtaiwan.com/",
+        "store_id": "XY-009",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0034-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0034-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 22,
+        "input_url": "https://www.inparadise.com.tw/",
+        "store_id": "XY-015",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0037-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0037-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 23,
+        "input_url": "https://www.inparadise.com.tw/",
+        "store_id": "XY-015",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0038-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0038-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 24,
+        "input_url": "https://www.inparadise.com.tw/",
+        "store_id": "XY-015",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0039-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0039-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 25,
+        "input_url": "https://www.joycecafetw.com/",
+        "store_id": "XY-054",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0042-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0042-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 26,
+        "input_url": "https://www.joycecafetw.com/",
+        "store_id": "XY-054",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0043-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0043-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 27,
+        "input_url": "https://www.joycecafetw.com/",
+        "store_id": "XY-054",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0044-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0044-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 28,
+        "input_url": "https://www.kanpaiclassic.com.tw/",
+        "store_id": "XY-024",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0047-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0047-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 29,
+        "input_url": "https://www.kanpaiclassic.com.tw/",
+        "store_id": "XY-024",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0048-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0048-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 30,
+        "input_url": "https://www.kanpaiclassic.com.tw/",
+        "store_id": "XY-024",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0049-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0049-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 31,
+        "input_url": "https://www.lawrys.com.tw/",
+        "store_id": "XY-021",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0052-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0052-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 32,
+        "input_url": "https://www.lawrys.com.tw/",
+        "store_id": "XY-021",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0053-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0053-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 33,
+        "input_url": "https://www.lawrys.com.tw/",
+        "store_id": "XY-021",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0054-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0054-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 34,
+        "input_url": "https://www.mala.com.tw/",
+        "store_id": "XY-031",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0057-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0057-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 35,
+        "input_url": "https://www.mala.com.tw/",
+        "store_id": "XY-031",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0058-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0058-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 36,
+        "input_url": "https://www.mala.com.tw/",
+        "store_id": "XY-031",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0059-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0059-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 37,
+        "input_url": "https://www.mortons.com/",
+        "store_id": "XY-042",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0062-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0062-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 38,
+        "input_url": "https://www.mortons.com/",
+        "store_id": "XY-042",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0063-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0063-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 39,
+        "input_url": "https://www.mortons.com/",
+        "store_id": "XY-042",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0064-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0064-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 40,
+        "input_url": "https://www.orangeshabu.com/",
+        "store_id": "XY-060",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0067-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0067-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 41,
+        "input_url": "https://www.orangeshabu.com/",
+        "store_id": "XY-060",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0068-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0068-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 42,
+        "input_url": "https://www.orangeshabu.com/",
+        "store_id": "XY-060",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0069-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0069-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 43,
+        "input_url": "https://www.ricebar.com.tw/",
+        "store_id": "XY-061",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0072-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0072-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 44,
+        "input_url": "https://www.ricebar.com.tw/",
+        "store_id": "XY-061",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0073-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0073-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 45,
+        "input_url": "https://www.ricebar.com.tw/",
+        "store_id": "XY-061",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0074-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0074-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 46,
+        "input_url": "https://www.saffron46.com/",
+        "store_id": "XY-028",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0077-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0077-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 47,
+        "input_url": "https://www.saffron46.com/",
+        "store_id": "XY-028",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0078-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0078-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 48,
+        "input_url": "https://www.saffron46.com/",
+        "store_id": "XY-028",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0079-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0079-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 49,
+        "input_url": "https://www.smithandwollensky.com.tw/",
+        "store_id": "XY-033",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0082-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0082-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 50,
+        "input_url": "https://www.smithandwollensky.com.tw/",
+        "store_id": "XY-033",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0083-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0083-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 51,
+        "input_url": "https://www.smithandwollensky.com.tw/",
+        "store_id": "XY-033",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0084-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0084-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 52,
+        "input_url": "https://www.texasroadhouse.com.tw/",
+        "store_id": "XY-013",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0087-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0087-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 53,
+        "input_url": "https://www.texasroadhouse.com.tw/",
+        "store_id": "XY-013",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0088-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0088-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 54,
+        "input_url": "https://www.texasroadhouse.com.tw/",
+        "store_id": "XY-013",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0089-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0089-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 55,
+        "input_url": "https://www.tgifridays.com.tw/",
+        "store_id": "XY-040",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0092-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0092-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 56,
+        "input_url": "https://www.tgifridays.com.tw/",
+        "store_id": "XY-040",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0093-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0093-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 57,
+        "input_url": "https://www.tgifridays.com.tw/",
+        "store_id": "XY-040",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0094-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0094-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 58,
+        "input_url": "https://www.twgtea.com/",
+        "store_id": "XY-070",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0097-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0097-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 59,
+        "input_url": "https://www.twgtea.com/",
+        "store_id": "XY-070",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0098-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0098-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 60,
+        "input_url": "https://www.twgtea.com/",
+        "store_id": "XY-070",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0099-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0099-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 61,
+        "input_url": "https://www.ukai-tpe.com.tw/",
+        "store_id": "XY-064",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0102-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0102-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 62,
+        "input_url": "https://www.ukai-tpe.com.tw/",
+        "store_id": "XY-064",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0103-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0103-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 63,
+        "input_url": "https://www.ukai-tpe.com.tw/",
+        "store_id": "XY-064",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0104-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0104-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 64,
+        "input_url": "https://www.wildwood.com.tw/",
+        "store_id": "XY-057",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0107-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0107-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 65,
+        "input_url": "https://www.wildwood.com.tw/",
+        "store_id": "XY-057",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0108-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0108-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 66,
+        "input_url": "https://www.wildwood.com.tw/",
+        "store_id": "XY-057",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0109-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0109-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 67,
+        "input_url": "https://www.woolloomooloo.tw/",
+        "store_id": "XY-030",
+        "query_id": "dating-celebration-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0112-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0112-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區有推薦適合約會或慶祝生日的高級餐廳嗎？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 68,
+        "input_url": "https://www.woolloomooloo.tw/",
+        "store_id": "XY-030",
+        "query_id": "gathering-general-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0113-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0113-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "台北信義區聚餐推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      },
+      {
+        "id": 69,
+        "input_url": "https://www.woolloomooloo.tw/",
+        "store_id": "XY-030",
+        "query_id": "hotpot-bbq-01",
+        "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0114-request.json",
+        "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0114-response.txt",
+        "payload": {
+          "model": "sonar",
+          "messages": [
+            {
+              "role": "system",
+              "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+            },
+            {
+              "role": "user",
+              "content": "信義區想吃高評價的火鍋或燒肉推薦？"
+            }
+          ],
+          "max_tokens": 4096,
+          "temperature": 0,
+          "search_language_filter": [
+            "zh",
+            "en"
+          ],
+          "return_related_questions": false
+        }
+      }
+    ],
+    "script_sha256": "4c9961fffcb3733af9ffd8e4084be4eda8ffdfeec6f1b8bf124939d884482309"
+  }
+}

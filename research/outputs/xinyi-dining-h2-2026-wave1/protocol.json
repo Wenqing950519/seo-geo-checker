@@ -1,0 +1,89 @@
+{
+  "frozen_at": "2026-10-15T06:14:47.925Z",
+  "frozen": {
+    "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+    "timezone": "Asia/Taipei",
+    "collection_date": "2026-10-15",
+    "authorization": "User requested continuing derivation, verification and completing the dataset in this chat; existing approved cohort and query text retained.",
+    "cohort_size": 49,
+    "passing_existing_entity_coverage": 33,
+    "preflight_unknown": 16,
+    "cohort_policy": "All 49 original inputs remain in final denominators. Ambiguous rows have no provider calls and remain unknown; no new entities or approval records.",
+    "query_set_version": "xinyi-dining-2026h2-v2.0",
+    "models": {
+      "perplexity": "sonar",
+      "deepseek": "deepseek-v4-flash",
+      "deepseek_release": "0731"
+    },
+    "actual_http_request_caps_including_retries": {
+      "perplexity": 132,
+      "deepseek": 33
+    },
+    "drafting_calls": 0,
+    "provider_fallback": false,
+    "prompt_policy": "Canonical batch request bodies are captured verbatim without authentication headers; same system/user prompts and 260-token Perplexity setting as baseline code.",
+    "concurrency": 1,
+    "delay_ms": 500,
+    "representative_pages": 3,
+    "interpretation": "One monthly snapshot; unknown is not zero; HTTP truncation/finish reasons and cohort mapping require separate quality review.",
+    "source_head": "6d3dae319e3457bc8595da0811957d5b3e58650f",
+    "source_files": [
+      {
+        "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv",
+        "sha256": "2a455be2198afb77cd02f8219b054b6268786d69c1be5c5fd4ea3374e20bfd4b"
+      },
+      {
+        "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv",
+        "sha256": "7293782a31876806d5c9da6fe45fd26dbf10670d8fbafe2b1cc024d71e8b110a"
+      },
+      {
+        "path": "research/inputs/xinyi-restaurants-h2-2026/query-set.xinyi-dining-h2-2026.approved.json",
+        "sha256": "8b30d91a3a74b46d29338fd4034fe68feb44a338d2c98530b51109b7be3c5954"
+      },
+      {
+        "path": "research/outputs/xinyi-dining-h2-2026-wave1/preparation/sites-passing-existing-approval.csv",
+        "sha256": "12af8ca1e4ef01b5f3a5f66464c4a66278e300d8a36b797e2bae2c6746061575"
+      },
+      {
+        "path": ".agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs",
+        "sha256": "8615d6842ec7410fb8120533e9a45471381c0d27c12953abbd56e18c137a19f8"
+      },
+      {
+        "path": "research/lib/entity-master.js",
+        "sha256": "b31d2d4689a67228cfb06e2782062027aee27548be7399e16a031f949ee6a92b"
+      },
+      {
+        "path": "research/lib/transport-recorder.js",
+        "sha256": "75bd1b436cf902b19936e0bf82476ddc6512153d59c06265adc197f4253ce4e3"
+      },
+      {
+        "path": "research/work/run-october-wave1.mjs",
+        "sha256": "b5e56d30ba9256353efab3c124b4d006f07d74c96166908a96cf3e35bb498a0b"
+      },
+      {
+        "path": "services/api/application/geo-measurement.js",
+        "sha256": "878efb0c59fdb7ee75b0a866ee69522ecaa4ab581ee2003352cb4b349e45d0fe"
+      },
+      {
+        "path": "packages/ai-providers/perplexity.js",
+        "sha256": "766d721255f44afd4efd8015087d817a6112b59c0032356b64e8de438f3cbe48"
+      },
+      {
+        "path": "packages/ai-providers/deepseek.js",
+        "sha256": "ef7a3b2019be3a8e4ee1b3fdd75b04d129ea28c6991746ae89abca651997ed97"
+      },
+      {
+        "path": "packages/geo-core/evidence/brand-match.js",
+        "sha256": "2aee99b435f578f332f6a8b5b6b6be4c2298a26adace835a536a2eac7310875b"
+      },
+      {
+        "path": "packages/geo-core/evidence/perplexity-visibility.js",
+        "sha256": "4978b264513ff753d11ffa10a7d4000cd4dc973372a4863a29b35ea7e148f066"
+      },
+      {
+        "path": "packages/geo-core/scoring/ai-trust-index.js",
+        "sha256": "0a073e721d22250d13bd2b09758c3674061e011ceed5a9758fd29a923808a991"
+      }
+    ]
+  }
+}

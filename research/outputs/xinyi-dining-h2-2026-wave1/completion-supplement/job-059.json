@@ -1,0 +1,17 @@
+{
+  "id": 59,
+  "input_url": "https://www.twgtea.com/",
+  "store_id": "XY-070",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0098-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0098-response.txt",
+  "sequence": 59,
+  "started_at": "2026-10-15T06:38:16.230Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_17bacc59-0a44-4686-be90-dc57c3fb63cb",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:19.075Z"
+}

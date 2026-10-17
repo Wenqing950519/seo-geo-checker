@@ -1,0 +1,17 @@
+{
+  "id": 65,
+  "input_url": "https://www.wildwood.com.tw/",
+  "store_id": "XY-057",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0108-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0108-response.txt",
+  "sequence": 65,
+  "started_at": "2026-10-15T06:38:26.360Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_d7e47e57-a9e2-409f-a16e-c8a2494b97a0",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:29.324Z"
+}

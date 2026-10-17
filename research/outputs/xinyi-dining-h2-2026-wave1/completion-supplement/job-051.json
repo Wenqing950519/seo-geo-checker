@@ -1,0 +1,17 @@
+{
+  "id": 51,
+  "input_url": "https://www.smithandwollensky.com.tw/",
+  "store_id": "XY-033",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0084-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0084-response.txt",
+  "sequence": 51,
+  "started_at": "2026-10-15T06:38:02.921Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_054c89ae-3fc1-4918-bd0f-aedf9454567f",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:05.830Z"
+}

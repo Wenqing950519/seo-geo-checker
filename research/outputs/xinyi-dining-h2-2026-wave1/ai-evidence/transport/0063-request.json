@@ -1,0 +1,27 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 63,
+  "provider": "perplexity",
+  "endpoint": "https://api.perplexity.ai/chat/completions",
+  "reserved_at": "2026-10-15T06:24:34.402Z",
+  "payload": {
+    "model": "sonar",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Answer only with factual, concise information. Cite available sources. Mark missing evidence as unknown and never infer facts from the domain name alone."
+      },
+      {
+        "role": "user",
+        "content": "台北信義區聚餐推薦？"
+      }
+    ],
+    "max_tokens": 260,
+    "temperature": 0,
+    "search_language_filter": [
+      "zh",
+      "en"
+    ],
+    "return_related_questions": false
+  }
+}

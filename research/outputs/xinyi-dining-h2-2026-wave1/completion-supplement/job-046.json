@@ -1,0 +1,17 @@
+{
+  "id": 46,
+  "input_url": "https://www.saffron46.com/",
+  "store_id": "XY-028",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0077-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0077-response.txt",
+  "sequence": 46,
+  "started_at": "2026-10-15T06:37:54.978Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_a646bb15-335d-42fc-abc4-b0a66f0cae56",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:58.312Z"
+}

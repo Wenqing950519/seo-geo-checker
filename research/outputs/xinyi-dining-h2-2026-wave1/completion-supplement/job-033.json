@@ -1,0 +1,17 @@
+{
+  "id": 33,
+  "input_url": "https://www.lawrys.com.tw/",
+  "store_id": "XY-021",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0054-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0054-response.txt",
+  "sequence": 33,
+  "started_at": "2026-10-15T06:37:33.533Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_dd93a9a3-984b-470b-8a78-2ae2f24b8b90",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:36.546Z"
+}

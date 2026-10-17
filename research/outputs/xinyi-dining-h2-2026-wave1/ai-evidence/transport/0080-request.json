@@ -1,0 +1,28 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 80,
+  "provider": "deepseek",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "reserved_at": "2026-10-15T06:26:19.655Z",
+  "payload": {
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You must output valid JSON only. Do not output Markdown or explanatory text."
+      },
+      {
+        "role": "user",
+        "content": "你是研究資料標註員，只能根據提供的網站證據輸出 JSON。\n任務是標準化基本資訊、產業分類、網站結構與內容特徵；不是提出優化建議。\n不得產出 recommendation、action、improvement、rewrite、expected impact 或任何行銷建議。\n證據不足時填 unknown，並降低 confidence；不得從網域名稱猜測。\n輸出格式：\n{\"entity_name\":\"string | unknown\",\"industry\":\"string | unknown\",\"business_scope\":\"string | unknown\",\"geography\":[\"string\"],\"primary_language\":\"string | unknown\",\"page_purpose\":\"string | unknown\",\"structure_summary\":{\"information_architecture\":\"string | unknown\",\"content_format\":[\"string\"],\"schema_types\":[\"string\"],\"js_dependency\":\"low | medium | high | unknown\"},\"observed_content_topics\":[\"string\"],\"evidence_basis\":[\"string\"],\"confidence\":\"low | medium | high\"}\n網站證據：\n{\"url\":\"https://www.saffron46.com/\",\"detected_site_type\":\"restaurant\",\"title\":\"SAFFRON 46 番紅花四十六｜台北信義區高空景觀印度餐廳\",\"description\":\"SAFFRON 46 番紅花四十六位於台北微風南山46樓，以現代手法演繹精緻印度料理、特色調酒與高空景觀。\",\"h1\":\"\",\"language\":\"\",\"text_excerpt\":\"SAFFRON 46 番紅花四十六｜台北信義區高空景觀印度餐廳 首頁 關於我們 空間與料理 菜單 ⌄ 完整菜單 前菜 印度市集小食 傳統印度窯烤 肉類主菜 海鮮類主菜 蔬食料理 沙拉 印度香料飯 印度麵包 套餐 午餐套餐 A 午餐套餐 B 素食套餐 晚餐套餐 線上訂位 最新活動 聯絡我們 ENGLISH ☰ ‹ ›\",\"representative_pages\":[{\"url\":\"https://www.saffron46.com/about/\",\"title\":\"關於番紅花 &#8211; SAFFRON 46 番紅花四十六｜台北信義區高空景觀印度餐廳\",\"h1\":\"關於番紅花\",\"text_excerpt\":\"關於番紅花 &#8211; SAFFRON 46 番紅花四十六｜台北信義區高空景觀印度餐廳 首頁 關於我們 空間與料理 菜單 ⌄ 完整菜單 午餐 素食套餐 雙人分享 開胃菜專頁 泥窯料理專頁 主菜專頁 線上訂位 最新活動 聯絡我們 ENGLISH ☰ 關於番紅花 SPICES / SAVOUR / SHARE 關於番紅花四十六 以珍饈香料「番紅花」為名的 SAFFRON 46 番紅花四十六，位於台北信義區微風南山 46 樓。 透過傳統料理手法結合現代視覺的印度菜餚，呈獻文化多變的色彩，以及正宗而細緻的風味。 Saffron 46 Bar 以大氣挑高酒牆與寬敞舒適的客席區迎賓。調酒師由香草、色彩與香料延伸發展雞尾酒單，譜出協調的味蕾饗宴。 我們用心串連每一處細節，從餐點、酒水、服務、氛圍到空間，讓五感深刻體驗傳統與現代交織的印度飲食文化。 立即訂位 SAFFRON 46 · TAIPEI\"},{\"url\":\"https://www.saffron46.com/menu/\",\"title\":\"菜單 &#8211; SAFFRON 46 番紅花四十六｜台北信義區高空景觀印度餐廳\",\"h1\":\"菜單\",\"text_excerpt\":\"菜單 &#8211; SAFFRON 46 番紅花四十六｜台北信義區高空景觀印度餐廳 首頁 關於我們 空間與料理 菜單 ⌄ 完整菜單 午餐 素食套餐 雙人分享 開胃菜專頁 泥窯料理專頁 主菜專頁 線上訂位 最新活動 聯絡我們 ENGLISH ☰ 菜單 SAFFRON 46 MENU Modern Indian Cuisine · Taipei 午間套餐 SET LUNCH 雙人分享晚餐 DINNER SHARING MENU APPETIZERS CHAATS TRADITIONAL CLAY OVEN POULTRY &#038; LAMB ENTREES SEAFOOD ENTREES VEGETARIAN ENTREES SALADS BASMATI RICE INDIAN BREADS 01 APPETIZERS 酸奶多重奏 hang curd patty, chilled yogurt, pineapple, tamarind, mint chutney 450 香酥蝦 bay prawn, tomato chutney, mint chutney 580 香料羊肉餃 lamb, green pea, mint chutney, mixed spice 480 酥炸軟殼蟹 citrus mustard sauce, mint chutney, tomato onion masala, mixed salad 580 酥皮時蔬餃 potato, green pea, mint chutney, mixed spice 450 酥炸鮮蠔 oyster, tomato chutney 580 迷你黃金球 potato, nut, dry fruit, cumin 420 02 CHAATS 香料優格多重奏 crushed vegetable samosa, yogurt, crunchy noodle, tamarind, mint chutney 480 薯餅堅果多重奏 potato tikki, yogurt, tamarind, mint chutney 480 翠綠瓊漿多重奏 crisp fried hollow puri, mashed potato, flavoured water 450 香料優格脆麵餅 crispy shell, potato masala, yogurt, tamarind, mint chutney 480 黃金脆餅多重奏 crispy cumin wafer, seasoned potato, crunchy noodle, yogurt, tamarind, mint chutney 480 03 TRADITIONAL CLAY OVEN 傳統香料窯烤雞腿 chicken thigh, yogurt, garli\"},{\"url\":\"https://www.saffron46.com/news/\",\"title\":\"Events &#8211; SAFFRON 46 番紅花四十六｜台北信義區高空景觀印度餐廳\",\"h1\":\"Events\",\"text_excerpt\":\"Events &#8211; SAFFRON 46 番紅花四十六｜台北信義區高空景觀印度餐廳 首頁 關於我們 空間與料理 菜單 ⌄ 完整菜單 午餐 素食套餐 雙人分享 開胃菜專頁 泥窯料理專頁 主菜專頁 線上訂位 最新活動 聯絡我們 ENGLISH ☰ Events SAFFRON 46 · TAIPEI 最新活動與餐廳消息 探索 SAFFRON 46 番紅花四十六的節慶套餐、期間限定菜單、餐酒搭配與台北印度料理活動。我們位於信義區微風南山 46 樓，以現代手法演繹印度香料與精緻餐飲體驗。 NEWS &#038; EVENTS 最新消息 最新活動即將公布。歡迎追蹤我們的社群平台，或透過線上訂位了解近期菜單。 線上訂位 PAST EVENTS 歷年活動影像 回顧 SAFFRON 46 過往的餐飲活動與期間限定企劃。 SAFFRON 46 · TAIPEI\"}],\"observed_structure\":{\"title_present\":true,\"h1_present\":false,\"description_present\":true,\"readable_text_length\":3440,\"schema_types\":[],\"sitemap_status\":404,\"crawl_method\":\"browser\"}}"
+      }
+    ],
+    "response_format": {
+      "type": "json_object"
+    },
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "disabled"
+    },
+    "temperature": 0
+  }
+}

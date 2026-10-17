@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-10-15T06:33:29.397Z",
+  "timezone": "Asia/Taipei",
+  "ledger_reconciliation": {
+    "exact_archive_prefix_verified": true,
+    "archive_query_version": "xinyi-dining-2026h2-v1.0",
+    "archive_events": 152,
+    "final_query_version": "xinyi-dining-2026h2-v2.0",
+    "final_phase_events": 185,
+    "final_phase_provider_counts": {
+      "perplexity": 148,
+      "deepseek": 37
+    },
+    "final_phase_operation_counts": {
+      "geo_authority": 37,
+      "geo_discovery_1": 37,
+      "geo_discovery_2": 37,
+      "geo_discovery_3": 37,
+      "structured_analysis": 37
+    },
+    "raw_perplexity_responses": 148,
+    "unique_fingerprint_matches": 148,
+    "distinct_joined_ledger_ids": 148,
+    "unlinked_final_phase_events": [
+      "1788936143008-10d8a0b8",
+      "1788936165738-2935fc42",
+      "1788936185842-5094eefd",
+      "1788936204202-ab28c8fd",
+      "1788936223648-0f3e0c1c",
+      "1788936252839-ddaeab3d",
+      "1788936263481-6154758e",
+      "1788936294918-e3dba6e8",
+      "1788936305883-0f82e798",
+      "1788936336159-6d580f53",
+      "1788936345595-c3683bce",
+      "1788936388933-ac51eb34",
+      "1788936443498-8f34a5d6",
+      "1788936453223-b92b18e1",
+      "1788936489450-a290333e",
+      "1788936494118-cdec0a2a",
+      "1788936520169-a07ad954",
+      "1788936540561-0559a4ba",
+      "1788936556741-dc1f1424",
+      "1788936590356-28a8e817",
+      "1788936618082-28eca651",
+      "1788936679883-db5e1a8b",
+      "1788936711824-af2a7fe1",
+      "1788936744224-7de48931",
+      "1788936760137-ff8ddc1f",
+      "1788936779763-8c62ef2b",
+      "1788936809570-ed8a2968",
+      "1788936820131-879f1a33",
+      "1788936843468-a3fbd433",
+      "1788936880150-59128cf8",
+      "1788936883659-9db5d2c4",
+      "1788936924156-4d350051",
+      "1788936935150-194a9b97",
+      "1788936961304-b9c7c4d5",
+      "1788936988855-6d1dd494",
+      "1788937018573-be7b8ef2",
+      "1788937052768-3e0b8fa5"
+    ],
+    "note": "Archive membership is exact by event bytes/IDs. Raw-answer joins use usage+latency fingerprints; profile events have no row-level original usage linkage. Unrecorded HTTP retries cannot be reconstructed."
+  },
+  "replay": {
+    "query_rows": 111,
+    "matching_stored_observations": 111,
+    "stored_score_matches": 37,
+    "measured_sites": 37,
+    "master_only_disagreements": 0,
+    "limitation": "Replaying deterministic code confirms reproducibility, not semantic validity of restaurant/branch identity, recommendation, or citation support."
+  },
+  "historical_report_claim_check": {
+    "claims_checked": 11,
+    "numeric_agreement": 6,
+    "numeric_disagreement": 5,
+    "interpretation": "Bounded check; does not validate the whole historical report."
+  },
+  "mapping": {
+    "root_inputs": 49,
+    "pass": 33,
+    "blocked": 16,
+    "blocked_baseline_successes": 13,
+    "included_store_rows": 63,
+    "root_input_mapped_store_count": 60,
+    "stores_without_root_mapping": [
+      "XY-059",
+      "XY-062",
+      "XY-069"
+    ],
+    "store_owned_url_pass": 58,
+    "store_owned_url_blocked": 5
+  },
+  "public_site_evidence": {
+    "urls_recorded": 103,
+    "raw_files_verified": 87,
+    "http_status_counts": {
+      "200": 63,
+      "403": 2,
+      "404": 11,
+      "429": 8,
+      "500": 3,
+      "unknown": 16
+    },
+    "store_rows": 63,
+    "stores_with_at_least_one_http_2xx": 36,
+    "human_review": "pending"
+  },
+  "october_ai_collection": "batch_finished_requires_quality_review",
+  "source_files": [
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv",
+      "sha256": "7293782a31876806d5c9da6fe45fd26dbf10670d8fbafe2b1cc024d71e8b110a"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv",
+      "sha256": "2a455be2198afb77cd02f8219b054b6268786d69c1be5c5fd4ea3374e20bfd4b"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/results.jsonl",
+      "sha256": "36ba7f6ae8861f94b79b7571b99708d851df1033145a3756d60a05a29c931e30"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0/api-usage-events.jsonl",
+      "sha256": "f3e5f2e787784337c040b7c6dd1316bb0e686ffec94dc201e1eabb13a795864f"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0-v1-archive/api-usage-events.jsonl",
+      "sha256": "e1c22ef3ca52b3f7914ab64c11a410fd7b931a51c60e45dd39e8a32304eadc00"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0-v1-archive/methodology.json",
+      "sha256": "49de6893efe83ab0f50198d0bb9c343fa6ffbdafe3fb7f4d2345eb388cebfbec"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave0-v1-archive/summary.json",
+      "sha256": "52234d323928de16b47fbeb9ba2a6758c7eeeb4b02a968c3f3ac64812dfea6b8"
+    }
+  ]
+}

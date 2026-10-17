@@ -1,0 +1,2717 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta name="viewport"     content="width=device-width, initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no"/>
+<meta name="contextbase"  content="/" />	
+<meta name="requestURL"   content="https://www.skm.com.tw/" />
+<meta name="twitter:card" content="summary" />
+<meta name="keywords" content="MATSUZAKA TEI 樂軒松阪亭"/>
+<meta name="isFromWebView" content="0" />
+<meta name="onLoginType" content="" />
+<meta name="onLoginMemberID" content="-1" />
+<meta name="S3_SOLDOUT_IMG" content="" />
+<meta name="ec.version" content="3.31.71076"/>
+
+<meta name="onLoginMemberGTMID" content="" />
+<meta name="onLoginCompanyID"   content="727" />
+<meta name="photo_search_enabled" content="0" />
+<meta name="int_member_class"   content=""/>
+<link rel="shortcut icon" href="https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/0d7340c6-3201-47f6-8f01-38164eb7d544.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Noto+Serif+TC:wght@200..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu&display=swap" rel="stylesheet">
+<link rel="preload" as="script" href="/assets/js/vendor/vendor2.min.js"><link rel="stylesheet" href="/assets/css/vendor/vendor.min.css"/>
+<script>
+	const GTM_code 		 = 'GTM-WBZ3M7F';
+	const GTM_company_id = '727';
+
+
+	let GTM_member_id 	  = '';//encryped
+	let GTM_member_id_int = 0;
+	let GTM_member_muid = "";
+
+	let is_draft  = 0;
+	let is_sdraft = 0;
+	let ui_custom_list = [];
+	const ui_version   = "4";
+	const global_ec_base_url 	= "https://www.skm.com.tw/";
+	const global_shop_base_url  = "https://online.skm.com.tw/";
+	const social_share_activate = "";
+	const social_share_muid = "";
+	const company_engname  = "SKM";
+	const company_chtname  = "新光三越";
+    const company_engtitle = "SKM";
+
+	
+		window.dataLayer = window.dataLayer || [];
+		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;if(!w['_hasgtmscript'])f.parentNode.insertBefore(j,f);w['_hasgtmscript']=true;
+		})(window,document,'script','dataLayer',GTM_code);
+	
+
+	var browser = '';
+	</script>
+<script type="application/javascript" src="//anymind360.com/js/9049/ats.js"></script><meta name="facebook-domain-verification" content="wgqrjpdyd7n92raspgi7tuni68yatt" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7598290187838759" crossorigin="anonymous"></script></script><meta name="google-site-verification" content="Z4DuvEAFXTVoFSpOXZ0e4MBVGia5MX14uRS7dcRWGV4" /><link rel="stylesheet" type="text/css" href="/assets/css/uicons-regular-rounded.css" /><link rel="stylesheet" type="text/css" href="/assets/css/plugin/plugins.min.css"/><link rel="stylesheet" type="text/css" href="/assets/css/product-card.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/swiper/swiper-3.2.7.min.css" /><link rel="stylesheet" type="text/css" href="/assets/css/swiper_custom.css?v=278687" />
+<link rel="stylesheet" type="text/css" href="/assets/css/v4/main_v4.css?v=278687"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/v4/main_v4.css?v=278687"/>
+	<link rel="stylesheet" type="text/css" href="/assets/css/v4/v4_icon.css?v=278687"/>
+	<link rel="stylesheet" type="text/css" href="/assets/css/slick_center_mode.css?v=278687"/>
+	<link rel="stylesheet" type="text/css" href="/assets/css/v4/vpon.css?v=278687"/> <link rel="stylesheet" type="text/css" href="/assets/css/v4/skm-group-new-side.css?v=278687"/>
+	<link rel="stylesheet" type="text/css" href="/assets/css/v4/group-component.css?v=278687"/>
+	<link rel="stylesheet" type="text/css" href="/assets/css/v4/header2.css?v=278687"/>
+	<link rel="stylesheet" type="text/css" href="/assets/css/v4/header_member_v4.css?v=278687"/>
+	<link rel="stylesheet" href="/assets/css/v4/skm-group-new-dark.css?v=278687">
+		<link rel="stylesheet" type="text/css" href="/assets/css/swiper/swiper-3.2.7.min.css" /><link rel="stylesheet" type="text/css" href="/assets/css/swiper_custom.css?v=278687" />
+<link rel="stylesheet" type="text/css" href="/assets/css/sweetalert/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/toast/jquery.toast.min.css" /><link rel="stylesheet" type="text/css" href="/assets/css/general.css?v=278687"><link rel="stylesheet" type="text/css" href="/assets/css/margin.css?v=278687">
+<link rel="stylesheet" type="text/css" href="/assets/css/padding.css?v=278687">
+
+<script type='text/javascript' src='/dwr/engine.js'></script>
+ <script type="text/javascript" src="/dwr/interface/HeaderWorker.js?v=278687"></script>
+<script type="text/javascript" src="/dwr/interface/StaticData_10M.js?v=278687"></script>
+<script type="text/javascript" src="/dwr/interface/CartWorker.js?v=278687"></script>
+<script type="text/javascript" src="/dwr/interface/AccountWorker.js?v=278687"></script>
+<script defer type='text/javascript' src='/js/iotec_statistics.js?v=278687'></script>
+<script type="text/javascript" src="/dwr/interface/PageViewWorker.js?v=278687"></script>
+<script type="text/javascript" src="/dwr/interface/ShareWorker.js?v=278687"></script>
+<script type="text/javascript" src="/dwr/interface/ClioWorker.js?v=278687"></script>
+<script type="text/javascript" src="/dwr/interface/FormSubmitWorker.js?v=278687"></script>
+<script type="text/javascript" src="/dwr/interface/SearchWorker.js?v=278687"></script>
+
+<script type="text/javascript" src="/js/qrcode.js"></script>
+<script type="text/javascript">dwr.engine.setErrorHandler(function(msg, e){console.log("dwr error: msg=" + msg);});</script>
+
+<script type="text/javascript" src="/dwr/interface/CustomWorker_V4.js?v=278687"></script>
+	<script type="text/javascript" src="/dwr/interface/BridgeWellWorker.js?v=278687"></script>
+	<meta name="iotec_name"  	  content=""/>
+	<meta name="iotec_member_id"  content=""/>
+	<meta name="貴賓卡貴賓_text"    content="\u8CB4\u8CD3\u5361\u8CB4\u8CD3"/>
+	<meta name="銀卡會員_text"  	  content="\u8CB4\u8CD3\u5361\u9280\u7D1A\u8CB4\u8CD3"/>
+	<meta name="尊榮級貴賓_text"    content="\u5C0A\u69AE\u7D1A\u8CB4\u8CD3"/>
+	<meta name="int_member_class" content=""/>
+<script src="/assets/js/vendor/vendor2.min.js"></script><script>
+	function sanitizeUrl(url){
+		if(!url || typeof(url)==='undefined')return "";
+		url = url.trim();
+		
+		var ret = url.replace(/[^-A-Za-z0-9+&@#/%?=~_|!:,.;\(\)]/g, "");
+		if(ret.indexOf('http://') == 0 || ret.indexOf('https://') == 0
+	
+				
+				|| ret.indexOf("skmapp://") == 0
+				
+	
+				|| ret.indexOf("line://") ==0
+				|| ret.charAt(0)=='/' || ret.charAt(0)=='.')return ret;
+	    return "";
+	}
+	function isSameSiteURL(url){
+		if(!url)return false;
+		if(global_ec_base_url){
+			try{
+				let target_url = new URL(url, global_ec_base_url);
+				let base_url = new URL(global_ec_base_url);
+				
+				return target_url.hostname === base_url.hostname;
+			}catch(e){}
+		}
+		return false;
+	}
+	function ImgErrorReset(element, input_img_url, type){
+		$(element).off("error");
+	
+		var img_url = sanitizeUrl( encodeURI(input_img_url) );
+		if(img_url != null && img_url.trim().length > 0){
+			$(element).attr("src", img_url);
+			$(element).attr("srcset", img_url+" 480w");
+			$(element).trigger("load");
+			
+			if(type != null && type === "product"){
+				// 2021.11.24 Freya
+				$(element).on('error', function(){
+					$(element).off("error");
+					if (Number.isSafeInteger(+ui_version) && (+ui_version === 6 || +ui_version === 14)) {
+						$(element).attr('src', global_ec_base_url+"assets/img/v"+ui_version+"/no_img.webp");
+						$(element).attr("srcset", global_ec_base_url+"assets/img/v"+ui_version+"/no_img.webp");
+					}else{
+						$(element).attr('src', global_ec_base_url+"assets/img/no_img.webp");
+						$(element).attr("srcset", global_ec_base_url+"assets/img/no_img.webp");
+					}
+			  	});
+			}else{
+				$(element).attr('src', input_img_url);
+                $(element).on('error', function() {
+                    $(element).off("error");
+                    $(element).hide();
+                });
+			}
+		}else{
+			$(element).hide();
+		}
+	}
+</script><title>MATSUZAKA TEI 樂軒松阪亭 專櫃/門市｜新光三越 | 新光百貨首頁 | 最新優惠 | SKM官方網站</title>
+	<meta name="description"  content="樂軒全新品牌 「松阪亭 」五月強勢登場！
+台灣和牛燒肉の王者「樂軒」首度進軍信義區！
+
+世界的盡頭，演繹日本三大和牛之首～松阪伊藤牛極致美味；
+A5和牛關西風壽喜燒，遵循道地工序，呈現台灣一；
+A5飛驒牛涮涮鍋，身處京都庭園品享究極肉品。"/>
+	<meta property="og:title" content="MATSUZAKA TEI 樂軒松阪亭 專櫃/門市｜新光三越 | 新光百貨首頁 | 最新優惠 | SKM官方網站" />
+	<meta property="og:type"  content="website" />
+	<meta property="og:description" content="樂軒全新品牌 「松阪亭 」五月強勢登場！
+台灣和牛燒肉の王者「樂軒」首度進軍信義區！
+
+世界的盡頭，演繹日本三大和牛之首～松阪伊藤牛極致美味；
+A5和牛關西風壽喜燒，遵循道地工序，呈現台灣一；
+A5飛驒牛涮涮鍋，身處京都庭園品享究極肉品。" />
+	<meta property="og:url"   content="https://www.skm.com.tw/brand/11129" />
+	<meta property="og:image" content="https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg" />
+    <link rel="canonical" href="https://www.skm.com.tw/brand/11129" />    
+	<script type="application/ld+json">
+{"@context":"https://schema.org/","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":"1","name":"首頁","item":"https://www.skm.com.tw/"},{"@type":"ListItem","position":"2","item":"https://www.skm.com.tw/brand_list/","name":"品牌/樓層"},{"@type":"ListItem","position":"3","item":"https://www.skm.com.tw/brand/11129","name":"MATSUZAKA TEI 樂軒松阪亭"}]}</script>
+</head>
+<body>
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBZ3M7F"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<div id="page-preloader"><span class="spinner border-t_second_b border-t_prim_a"></span></div>
+	<div class="wrap">		
+	    <input type="hidden" name="rec_header" value="{&quot;logo_m&quot;:&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/6aa32577-69bd-412f-ae38-918f6976c91d.svg&quot;,&quot;max_page_web&quot;:5,&quot;type&quot;:&quot;header&quot;,&quot;logo_m_thumbnail&quot;:&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/6aa32577-69bd-412f-ae38-918f6976c91d.svg&quot;,&quot;btn_top_f_color&quot;:&quot;#ffffff&quot;,&quot;logo_w_thumbnail&quot;:&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/e50d5bdb-05c7-4e84-be83-400c3255494d.svg&quot;,&quot;updateBy&quot;:&quot;admin@skm.com&quot;,&quot;model&quot;:4,&quot;X2&quot;:&quot;新光三越 | 新光百貨首頁 | 最新優惠 | SKM官方網站&quot;,&quot;id&quot;:17,&quot;X3&quot;:&quot;新光三越百貨提供最新品牌資訊、人氣活動、精選美食，整合最多流行選擇，並配合多項福利，包含SKM會員優惠、集點回饋、刷卡優惠，好康享受無上限！&quot;,&quot;main_bg_color&quot;:&quot;#ffffff&quot;,&quot;X4&quot;:&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/0d7340c6-3201-47f6-8f01-38164eb7d544.thumb.png&quot;,&quot;X5&quot;:&quot;新光三越,新光百貨,skm,新光三越百貨,新光&quot;,&quot;is_defaule&quot;:1,&quot;page_count&quot;:10,&quot;RTKCODE&quot;:&quot;JW_ST_dQHUS1&quot;,&quot;btn_top_bg_color&quot;:&quot;#d0343d&quot;,&quot;btn_main_f_color_f&quot;:&quot;#000000&quot;,&quot;favicon_icon&quot;:&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/0d7340c6-3201-47f6-8f01-38164eb7d544.png&quot;,&quot;btn_main_hover_color_s&quot;:&quot;#000000&quot;,&quot;company_id&quot;:727,&quot;main_f_color&quot;:&quot;#383838&quot;,&quot;sub_bg_color&quot;:&quot;#d0343d&quot;,&quot;link_hover_color&quot;:&quot;#d0343d&quot;,&quot;updateTime&quot;:1756520593973,&quot;btn_main_color_f&quot;:&quot;#000000&quot;,&quot;seo_img&quot;:&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0925/ccd37979-d743-4ae2-8e2e-1b1cf8988372.jpg&quot;,&quot;wall_module_id&quot;:47,&quot;link_f_color&quot;:&quot;#383838&quot;,&quot;btn_main_hover_color_f&quot;:&quot;#000000&quot;,&quot;btn_main_f_color_s&quot;:&quot;#000000&quot;,&quot;name&quot;:&quot;新光三越百貨-官網-Retail&quot;,&quot;X12&quot;:&quot;#000000&quot;,&quot;X11&quot;:&quot;#000000&quot;,&quot;X14&quot;:&quot;#000000&quot;,&quot;logo_w&quot;:&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/e50d5bdb-05c7-4e84-be83-400c3255494d.svg&quot;,&quot;X13&quot;:&quot;#000000&quot;,&quot;X16&quot;:&quot;#000000&quot;,&quot;btn_main_color_s&quot;:&quot;#000000&quot;,&quot;X15&quot;:&quot;#000000&quot;,&quot;max_page_mobile&quot;:3}" id="rec_header"/><input type="hidden" name="rec_c_header" value="" id="rec_c_header"/><input type="hidden" name="rec_footer" value="{&quot;logo_m&quot;:&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2022/1101/fbc79ba4-60ef-422c-8f3e-6c5589915f23.svg&quot;,&quot;max_page_web&quot;:5,&quot;qrcode&quot;:&quot;\u003ch4 class\u003d\&quot;footer__nav-title\&quot;\u003e新光三越 APP\u003c/h4\u003e\n\t                        \u003cp class\u003d\&quot;footer__des\&quot;\u003e\n\t                            立即下載新光三越 APP 註冊會員，優惠不漏接消費累積 skm points 回饋無上限！\n\t                        \u003c/p\u003e \n\n\n\u003cimg class\u003d\&quot;barcode cursor-opinter\&quot; data-href\u003d\&quot;https://www.skm.com.tw/dl_qcode/\&quot; src\u003d\&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2022/1222/3946609d-e911-4b1b-acea-1b36333fb15c.jpg\&quot; alt\u003d\&quot;新光三越 APP\&quot; onclick\u003d\&quot;location.href\u003d\u0027https://www.skm.com.tw/dl_qcode/\u0027\&quot;\u003e&quot;,&quot;type&quot;:&quot;footer&quot;,&quot;logo_w_thumbnail&quot;:&quot;https://imgiot.skmbuy.com.tw/App_Images/727/BaseUI/2022/20221216/3798b134-9811-475f-99bb-f3ccf63661cf.svg&quot;,&quot;updateBy&quot;:&quot;admin@skm.com&quot;,&quot;model&quot;:8,&quot;id&quot;:11,&quot;X3&quot;:&quot;SHIN KONG MITSUKOSHI.&quot;,&quot;main_bg_color&quot;:&quot;#eeeeee&quot;,&quot;X5&quot;:&quot;\u003ch4 class\u003d\&quot;footer__nav-title\&quot;\u003e新光三越 APP\u003c/h4\u003e\n\t                        \u003cp class\u003d\&quot;footer__des\&quot;\u003e\n\t                            立即下載新光三越 APP 註冊會員，優惠不漏接消費累積 skm points 回饋無上限！\n\t                        \u003c/li\u003e \n\n\n\u003cimg class\u003d\&quot;barcode cursor-opinter\&quot; data-href\u003d\&quot;https://www.skm.com.tw/dl_qcode/\&quot; src\u003d\&quot;https://img.skmbuy.com.tw/App_Images/727/BaseUI/2022/1222/3946609d-e911-4b1b-acea-1b36333fb15c.jpg\&quot; alt\u003d\&quot;新光三越 APP\&quot; onclick\u003d\&quot;location.href\u003d\u0027https://www.skm.com.tw/dl_qcode/\u0027\&quot;\u003e&quot;,&quot;is_defaule&quot;:0,&quot;X6&quot;:1,&quot;page_count&quot;:10,&quot;X7&quot;:1,&quot;RTKCODE&quot;:&quot;JW_ST_dQFUS1&quot;,&quot;X8&quot;:0,&quot;X9&quot;:0,&quot;company_id&quot;:727,&quot;main_f_color&quot;:&quot;#d0343d&quot;,&quot;sub_bg_color&quot;:&quot;#d00000&quot;,&quot;link_hover_color&quot;:&quot;#d00000&quot;,&quot;updateTime&quot;:1673930698913,&quot;wall_module_id&quot;:54,&quot;link_f_color&quot;:&quot;#383838&quot;,&quot;X10&quot;:1,&quot;name&quot;:&quot;官網-版型八&quot;,&quot;X12&quot;:&quot;0&quot;,&quot;X11&quot;:&quot;1&quot;,&quot;logo_w&quot;:&quot;https://imgiot.skmbuy.com.tw/App_Images/727/BaseUI/2022/20221216/3798b134-9811-475f-99bb-f3ccf63661cf.svg&quot;,&quot;max_page_mobile&quot;:3}" id="rec_footer"/><input type="hidden" name="rec_c_footer" value="" id="rec_c_footer"/><script type="text/javascript">
+let company_id = '727';
+var header_base_ui_obj = {};
+let header_base_ui_str = document.getElementById("rec_header")?document.getElementById("rec_header").value:"";
+let header_customer_ui_str = document.getElementById("rec_c_header")?document.getElementById("rec_c_header").value:"";
+var footer_base_ui_obj = {};
+let footer_base_ui_str = document.getElementById("rec_footer")?document.getElementById("rec_footer").value:"";
+let footer_customer_ui_str = document.getElementById("rec_c_footer")?document.getElementById("rec_c_footer").value:"";
+
+//JW 2026/02/27 避免 Header 首屏先閃預設紅色：先同步套用主色，別等 defer 的 custom_theme.js 才改
+try {
+	let headerThemeRaw = header_customer_ui_str && header_customer_ui_str.trim() !== "" ? header_customer_ui_str : header_base_ui_str;
+	if (headerThemeRaw && headerThemeRaw.trim() !== "") {
+		let headerThemeObj = JSON.parse(headerThemeRaw);
+		if (headerThemeObj && headerThemeObj.main_bg_color) {
+			document.documentElement.style.setProperty("--header_main_bg_color", headerThemeObj.main_bg_color);
+		}
+	}
+} catch (e) {
+	//JW 2026/02/27 若客製 JSON 異常就維持舊行為，避免影響頁面可用性
+}
+
+var ini_cart_header_cart_items = [[]];
+let ini_sid = '1863D87FDCF48A60CCD83E95D1DCB226';//
+function checkLSInit(){
+	if(typeof clearLS =='function' && typeof isCartPage !=='undefined' && typeof isCheckoutPage !=='undefined'){
+		if(isCartPage ===false && isCheckoutPage===false){
+		clearLS();
+		rendorHeaderCart('initCart');	
+		}
+	}else{
+		setTimeout(function(){
+			checkLSInit();		
+		},500);
+	}
+}
+
+
+//
+if (ini_cart_header_cart_items.length>0){
+	ini_cart_header_cart_items = ini_cart_header_cart_items[0];
+}
+let enable_share_fb = 'true';
+let enable_share_twitter = 'true';
+let enable_share_email = 'true';
+let enable_share_whatsapp = 'true';
+let enable_share_line = 'true';
+let enable_share_copy = 'false';
+let product_share_prefix = '';
+let enable_gift_visitor = '';
+
+/* AL 25.06.13 +landing 事件 [Clio] */
+// target_id
+let current_url = document.URL;
+// platform_type
+let current_url_utm_source = "";
+const current_url_param = new URLSearchParams(window.location.search);
+if(current_url_param != null){
+	if(current_url_param.has('utm_source') 	 === true) current_url_utm_source = current_url_param.get('utm_source');
+}
+// creative_slot
+let current_url_action = "";
+var current_url_path = window.location.pathname;
+if(current_url === global_ec_base_url){
+	current_url_action = "index";
+
+}else {
+	current_url_path = current_url_path.replace("/IOTEC", "");
+	current_url_path = current_url_path.split("/");
+	current_url_action = current_url_path[1];
+}
+
+</script>
+<script>
+		function onIOTEC_LoginCheck(url, user_id){
+			console.log("onIOTEC_LoginCheck in 使用者登入，頁面是 " + url + "，使用者id是 " + user_id);
+			try {
+				clio_login("EC", "登入成功", "login", user_id, url)
+			} catch (e) {}
+		}
+	</script>
+<script defer type="text/javascript" src="/js/custom_theme.js?v=278687"></script>
+<header class="clickLog_header btn-header_clickLog">
+	<div class="header-black-top">
+		<div class="swiper_area header-black-menu">
+			<div class="swiper-container swiper_navigation tab-menu-swiper02 swiper_href" data-is_navigation="1" data-tab_class="swiper_navigation" data-navigation_class="header_navigation">
+				<div class="swiper-wrapper">																
+					<div class="swiper-slide w-auto">
+							<a href="https://online.skm.com.tw/?utm_source=skm&amp;utm_medium=bar&amp;utm_campaign=skm.com" class="clio_header_navigation"
+								   data-code="160" data-target_type="header_bar_nav" data-to_url="https://online.skm.com.tw/?utm_source=skm&amp;utm_medium=bar&amp;utm_campaign=skm.com">skm online 購物</a>
+							</div>
+					<div class="swiper-slide w-auto">
+							<a href="https://rsv.skm.com.tw/" class="clio_header_navigation"
+								   data-code="161" data-target_type="header_bar_nav" data-to_url="https://rsv.skm.com.tw/">skm eats美食地圖</a>
+							</div>
+					<div class="swiper-slide w-auto">
+							<a href="https://www.skm.com.tw/skmmedia/" class="clio_header_navigation"
+								   data-code="162" data-target_type="header_bar_nav" data-to_url="https://www.skm.com.tw/skmmedia/">SKM Media</a>
+							</div>
+					<div class="swiper-slide w-auto">
+							<a href="https://www.skm.com.tw/" class="clio_header_navigation"
+								   data-code="159" data-target_type="header_bar_nav" data-to_url="https://www.skm.com.tw/">新光三越官網</a>
+							</div>
+					</div>
+			</div>
+			<div class="swiper-button-next header_navigation d-none hide"><div class="mask mask-default"></div></div>
+			<div class="swiper-button-prev header_navigation d-none hide"><div class="mask mask-default"></div></div>
+			<a role="button" aria-label="語系" id="a_language_open"><i class="icon-globe"></i></a>
+	            <ul id="ul_drop_downmenu" class="dropdown__menu pos-absolute page-multi-lingual">
+					<li class="dropdown__list"><a role="button" href="https://www.skm.com.tw/ForeignerIndex?request_locale=zh_TW" class="dropdown__link" data-code="zh_TW">繁中</a></li>
+	                <li class="dropdown__list"><a role="button" href="https://www.skm.com.tw/ForeignerIndex?request_locale=zh_CN" class="dropdown__link" data-code="zh_CN">簡中</a></li>
+	                <li class="dropdown__list"><a role="button" href="https://www.skm.com.tw/ForeignerIndex?request_locale=en_US" class="dropdown__link" data-code="en_US">English</a></li>
+	                <li class="dropdown__list"><a role="button" href="https://www.skm.com.tw/ForeignerIndex?request_locale=ja_JP" class="dropdown__link" data-code="ja_JP">日本語</a></li>
+	                <li class="dropdown__list"><a role="button" href="https://www.skm.com.tw/ForeignerIndex?request_locale=ko_KR" class="dropdown__link" data-code="ko_KR">한국어</a></li>
+				</ul>
+			</div>
+	</div>
+<div class="header header--1 d-none div_header d-md-block">
+	<div class="header__middle sticky-header header__color--red">
+		<div class="header-main-block">
+				<div class="header-main-menu">
+					<ul>
+						<li>
+							<a role="button" aria-label="展開側選單" id="div_bo_side_menu_4" data-device="web" class="icon-style">
+								<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" alt="開啟側選單">
+									<g clip-path="url(#clip0_27_2066)">
+										<path d="M7.67 10H25C25.37 10 25.67 10.3 25.67 10.67C25.67 11.04 25.37 11.34 25 11.34H7.67C7.3 11.34 7 11.04 7 10.67C7 10.3 7.3 10 7.67 10Z" fill="#212121"/>
+										<path d="M7.67 15.33H25C25.37 15.33 25.67 15.63 25.67 16C25.67 16.37 25.37 16.67 25 16.67H7.67C7.3 16.67 7 16.37 7 16C7 15.63 7.3 15.33 7.67 15.33Z" fill="#212121"/>
+										<path d="M7.67 20.67H25C25.37 20.67 25.67 20.97 25.67 21.34C25.67 21.71 25.37 22.01 25 22.01H7.67C7.3 22.01 7 21.71 7 21.34C7 20.97 7.3 20.67 7.67 20.67Z" fill="#212121"/>
+									</g>
+									<defs>
+										<clipPath id="clip0_27_2066">
+											<rect width="18.67" height="12" fill="white" transform="translate(7 10)"/>
+										</clipPath>
+									</defs>
+								</svg>
+							</a>
+							<a role="button" aria-label="關閉側選單" id="div_bc_side_menu_4" class="d_none icon-style" data-device="web"><i class="icon-close"></i></a>
+						</li>
+						<li class="d-md-none d-xl-block"><a href="https://www.skm.com.tw/page_list/0/New" class="clio_quick_url" data-code="153" data-target_type="quick_url" data-to_url="https://www.skm.com.tw/page_list/0/New">最新活動</a></li>
+							<li class="d-md-none d-xl-block"><a href="https://www.skm.com.tw/exploreskm/" class="clio_quick_url" data-code="154" data-target_type="quick_url" data-to_url="https://www.skm.com.tw/exploreskm/">探索分館</a></li>
+							<li class="d-md-none d-xl-block"><a href="https://www.skm.com.tw/dmall/" class="clio_quick_url" data-code="155" data-target_type="quick_url" data-to_url="https://www.skm.com.tw/dmall/">線上DM</a></li>
+							<li class="d-md-none d-xl-block"><a href="https://www.skm.com.tw/eventandexhibition/" class="clio_quick_url" data-code="156" data-target_type="quick_url" data-to_url="https://www.skm.com.tw/eventandexhibition/">文藝＆展售</a></li>
+							</ul>
+					<a href="/" aria-label="新光三越 | 新光百貨首頁 | 最新優惠 | SKM官方網站">
+						<img src="https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/e50d5bdb-05c7-4e84-be83-400c3255494d.svg" alt="新光三越 | 新光百貨首頁 | 最新優惠 | SKM官方網站" />
+					</a>
+					<div class="menu-right">
+						<a id="a_member_redirect_header_web" data-m_r_url="https://www.skm.com.tw" data-type="header_func" data-page_code=""
+							   class="" role="button">加入會員</a>
+						<span>
+		                	<a role="button" aria-label="搜尋" id="a_header_bars" class="icon-style">
+							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" alt="搜尋">
+								<path d="M16 8C11.59 8 8 11.59 8 16C8 20.41 11.59 24 16 24C18.01 24 19.85 23.25 21.26 22.01L22.97 23.72C23.07 23.82 23.21 23.88 23.35 23.88C23.49 23.88 23.62 23.83 23.73 23.72C23.94 23.51 23.94 23.17 23.73 22.97L22.02 21.26C23.25 19.85 24.01 18.01 24.01 16C24.01 11.59 20.42 8 16.01 8H16ZM9.07 16C9.07 12.18 12.18 9.07 16 9.07C19.82 9.07 22.93 12.18 22.93 16C22.93 19.82 19.82 22.93 16 22.93C12.18 22.93 9.07 19.83 9.07 16Z" fill="#212121"/>
+							</svg>
+						</a>
+						</span>
+						<div class="v4-member-dropdown-wrapper pos-relative">
+							<a role="button" aria-label="會員選單" class="icon-style v4-member-trigger" id="v4_member_trigger_web">
+									<span class="v4-member-icon">
+										<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" alt="會員專區">
+											<path d="M19.18 15.7C20.4 14.83 21.2 13.41 21.2 11.8C21.2 9.15 19.05 7 16.4 7C13.75 7 11.6 9.15 11.6 11.8C11.6 13.41 12.4 14.83 13.62 15.7C11.55 16.23 10 18.1 10 20.34V24.07C10 24.95 10.72 25.67 11.6 25.67H21.2C22.08 25.67 22.8 24.95 22.8 24.07V20.34C22.8 18.1 21.25 16.23 19.18 15.7ZM12.67 11.8C12.67 9.74 14.34 8.07 16.4 8.07C18.46 8.07 20.13 9.74 20.13 11.8C20.13 13.86 18.46 15.53 16.4 15.53C14.34 15.53 12.67 13.86 12.67 11.8ZM21.73 24.07C21.73 24.36 21.49 24.6 21.2 24.6H11.6C11.31 24.6 11.07 24.36 11.07 24.07V20.34C11.07 18.28 12.75 16.61 14.8 16.61H18C20.06 16.61 21.73 18.28 21.73 20.34V24.07Z" fill="#212121"/>
+										</svg>
+									</span>
+								</a>
+								<ul class="v4-member-dropdown" id="v4_member_dropdown_web">
+									<li><a href="https://www.skm.com.tw/page_list/0/Member">會員專區</a></li>
+									<li><a role="button" id="v4_login_btn_web">登入</a></li>
+								</ul>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<div class="header__mobile mobile-header--1 d-block d-md-none">
+	<div class="header-main-block">
+			<div class="header-main-menu">
+				<ul>
+					<li>
+						<a role="button" aria-label="展開側選單" id="div_bo_side_menu_4" data-device="mobile" class="icon-style">
+							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" alt="開啟側選單">
+								<g clip-path="url(#clip0_27_2066)">
+									<path d="M7.67 10H25C25.37 10 25.67 10.3 25.67 10.67C25.67 11.04 25.37 11.34 25 11.34H7.67C7.3 11.34 7 11.04 7 10.67C7 10.3 7.3 10 7.67 10Z" fill="#212121"/>
+									<path d="M7.67 15.33H25C25.37 15.33 25.67 15.63 25.67 16C25.67 16.37 25.37 16.67 25 16.67H7.67C7.3 16.67 7 16.37 7 16C7 15.63 7.3 15.33 7.67 15.33Z" fill="#212121"/>
+									<path d="M7.67 20.67H25C25.37 20.67 25.67 20.97 25.67 21.34C25.67 21.71 25.37 22.01 25 22.01H7.67C7.3 22.01 7 21.71 7 21.34C7 20.97 7.3 20.67 7.67 20.67Z" fill="#212121"/>
+								</g>
+								<defs>
+									<clipPath id="clip0_27_2066">
+										<rect width="18.67" height="12" fill="white" transform="translate(7 10)"/>
+									</clipPath>
+								</defs>
+							</svg>
+						</a>
+						<a role="button" aria-label="關閉側選單" id="div_bc_side_menu_4" class="d_none icon-style" data-device="mobile"><i class="icon-close"></i></a>
+					</li>
+					<li>
+						<a href="/" aria-label="新光三越 | 新光百貨首頁 | 最新優惠 | SKM官方網站">
+							<img src="https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/e50d5bdb-05c7-4e84-be83-400c3255494d.svg" alt="新光三越 | 新光百貨首頁 | 最新優惠 | SKM官方網站" />
+						</a>
+					</li>
+				</ul>
+				<div class="menu-right">
+					<a role="button" id="a_member_redirect_header_mobile" data-m_r_url="https://www.skm.com.tw" data-type="header_func" data-page_code="">加入會員</a>
+					<span>
+						<a role="button" class="icon-style" aria-label="搜尋" id="a_header_bars">
+							<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" alt="搜尋">
+								<path d="M16 8C11.59 8 8 11.59 8 16C8 20.41 11.59 24 16 24C18.01 24 19.85 23.25 21.26 22.01L22.97 23.72C23.07 23.82 23.21 23.88 23.35 23.88C23.49 23.88 23.62 23.83 23.73 23.72C23.94 23.51 23.94 23.17 23.73 22.97L22.02 21.26C23.25 19.85 24.01 18.01 24.01 16C24.01 11.59 20.42 8 16.01 8H16ZM9.07 16C9.07 12.18 12.18 9.07 16 9.07C19.82 9.07 22.93 12.18 22.93 16C22.93 19.82 19.82 22.93 16 22.93C12.18 22.93 9.07 19.83 9.07 16Z" fill="#212121"/>
+							</svg>
+						</a>
+						<div class="v4-member-dropdown-wrapper pos-relative">
+							<a role="button" aria-label="會員選單" class="icon-style v4-member-trigger" id="v4_member_trigger_mobile">
+									<span class="v4-member-icon">
+										<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" alt="會員專區">
+											<path d="M19.18 15.7C20.4 14.83 21.2 13.41 21.2 11.8C21.2 9.15 19.05 7 16.4 7C13.75 7 11.6 9.15 11.6 11.8C11.6 13.41 12.4 14.83 13.62 15.7C11.55 16.23 10 18.1 10 20.34V24.07C10 24.95 10.72 25.67 11.6 25.67H21.2C22.08 25.67 22.8 24.95 22.8 24.07V20.34C22.8 18.1 21.25 16.23 19.18 15.7ZM12.67 11.8C12.67 9.74 14.34 8.07 16.4 8.07C18.46 8.07 20.13 9.74 20.13 11.8C20.13 13.86 18.46 15.53 16.4 15.53C14.34 15.53 12.67 13.86 12.67 11.8ZM21.73 24.07C21.73 24.36 21.49 24.6 21.2 24.6H11.6C11.31 24.6 11.07 24.36 11.07 24.07V20.34C11.07 18.28 12.75 16.61 14.8 16.61H18C20.06 16.61 21.73 18.28 21.73 20.34V24.07Z" fill="#212121"/>
+										</svg>
+									</span>
+								</a>
+								<ul class="v4-member-dropdown v4-member-dropdown-mobile" id="v4_member_dropdown_mobile">
+									<li><a href="https://www.skm.com.tw/page_list/0/Member">會員專區</a></li>
+									<li><a role="button" id="v4_login_btn_mobile">登入</a></li>
+								</ul>
+							</div>
+                </span>
+				</div>
+			</div>
+		</div>
+	</div><div id="offcanvas-categlory" class="offcanvas offcanvas-user">
+    <div class="offcanvas__top">
+        <span class="offcanvas__top-text"></span>
+        <button class="offcanvas-close" aria-label="關閉"><i class="fal fa-times"></i></button>
+    </div>    
+    <div class="offcanvas__block">
+        <div class="header__search-form">
+            <div class="header__search-input offcanvas_ns">
+                <button type="submit" aria-label="送出"><i class="ion-ios-search-strong"></i></button>
+                <input type="text" placeholder="搜尋..." id="header_side_menu_input" maxlength="128" autocomplete="off"  搜尋.../>
+                <input type="hidden" />
+            </div>           
+            <div class="skey_auto_box d_none">
+               <table class="img-responsive" id="table_skey_auto"></table>
+            </div>	             
+            <div class="sidebar__tag list-space--small row" name="header_side_menu_normal">
+                    <ul class="sidebar_tag list-space--small m-t-25" name="header_side_menu_normal" >                    		                	                        	
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="台中中港">台中中港</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="寶可夢">寶可夢</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="美食">美食</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="週年慶">週年慶</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="分店">分店</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="台南新天地 週年慶">台南新天地 週年慶</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="品牌">品牌</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="滿額贈">滿額贈</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="活動">活動</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="信用卡">信用卡</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="寶可夢卡牌">寶可夢卡牌</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="相機">相機</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="新天地">新天地</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="刷卡回饋">刷卡回饋</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="高雄左營 週年慶">高雄左營 週年慶</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="皮卡丘">皮卡丘</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="Apple">Apple</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="金卡會員">金卡會員</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="停車">停車</a>	                     		
+		                        </li>
+		                    <li>	                     	
+		                        	<a class="btn btn--box search-block btn--border-white radius" role="button" id="header_side_menu_key_-1" data-id="-1" data-title="寶可夢30週年">寶可夢30週年</a>	                     		
+		                        </li>
+		                    </ul>
+                    </div>
+            <div class="search_btn m-t-5" name="header_side_menu_normal">           
+                <button class="btn btn--block  btn--radius btn--box btn--red btn--red-hover-red btn--small btn--uppercase font--bold" type="button" id="header_side_menu_key_send">
+                    送 出
+                </button>
+            </div>
+            </div>
+        <div name="header_side_menu_result">
+    <div class="row">
+        <div class="col-12">
+            <ul class="tablist tablist--style-black tablist--style-gap-70 nav s1 m-t-20">
+                <li>
+                    <a class="nav-link active p-b-10 m-0 m-r-10" data-toggle="tab" href="#side_search_result_product" id="a_side_search_result_product">
+                        商品(<span name="search_result_product_cnt">0</span>)
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link p-b-10" data-toggle="tab" href="#side_search_result_curation" id="a_side_search_result_curation">
+                        策展(<span name="search_result_curation_cnt">0</span>)
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12">
+            <div class="product-details-tab-box p-0 p-r-20 p-l-20 p-b-20 b0">
+                <div class="tab-content search_area">
+                    <div class="tab-pane show active" id="side_search_result_product">
+                        <div class="row" id="side_search_result_product_append">
+                            <div class="col-12 t_right m-b-10">
+                                <a role="button" id="side_search_result_product_all" class="side_alllink p-r-5">
+                                    全商品(<span name="search_result_product_cnt">0</span>)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane show" id="side_search_result_curation">
+                        <div class="row">
+                            <div class="col-12 t_right m-b-10">
+                                <a role="button" id="side_search_result_curation_all" class="side_alllink">
+                                    全策展(<span name="search_result_curation_cnt">0</span>)
+                                </a>
+                            </div>
+                            <div class="block_list">
+                                <ul id="side_search_result_curation_append"></ul>
+                            </div>
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>         </div>
+	<div id="insert_search_here_top"></div>
+
+    <div class="offcanvas__block">
+	    	<div class="row" name="header_side_menu_normal">
+				<div class="col-12">
+		    		<div class="section-content_m-b-10 m-t-20">
+		        		<div><h2 class="h2_title_bdl">New&nbsp;<span class="font_normal">最新活動</span></h2></div>
+		    		</div>
+					<div class="div_menu_2_grid">						
+	                   	<div>
+               						<a class="btn-clickLog" data-code="wh260224plus01" href="https://www.skm.com.tw/page/wh260224plus01" aria-label="新光三越使用運動幣「添裝備」、「做運動」最高可抵500元">
+               							<div class="page__img-block"><img class="page__img" src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/0525/ac7848f8-8bd2-4c0c-bffe-d13d572b2e64.jpg.webp"  onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/0525/ed7c316b-ddfe-4983-a319-65f7973eb4be.jpg.webp')" alt="新光三越使用運動幣「添裝備」、「做運動」最高可抵500元"/></div>               							
+               						</a> 
+               					</div>
+	                   		<div>
+               						<a class="btn-clickLog" data-code="wh250120plus01-o" href="https://www.skm.com.tw/page/wh250120plus01" aria-label="銀行點數兌換skm points">
+               							<div class="page__img-block"><img class="page__img" src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/0429/b82a8df2-a391-4ea6-aa60-e26931c0ad70.jpg.webp"  onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/0429/30fbdee6-a5b7-4496-9762-362a7ede1c5a.jpg.webp')" alt="銀行點數兌換skm points"/></div>               							
+               						</a> 
+               					</div>
+	                   		<div>
+               						<a class="btn-clickLog" data-code="the-gold-lounge" href="https://www.skm.com.tw/page/the-gold-lounge" aria-label="The Gold Lounge 只為金卡會員開啟的專屬空間">
+               							<div class="page__img-block"><img class="page__img" src="https://img.skmbuy.com.tw/App_Images/727/Page/2025/1007/3813f33e-0d4c-4b64-b2f6-3c28441a659a.jpg"  onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2025/1007/b976d79a-10ae-47b9-837c-662bf913b4f3.jpg')" alt="The Gold Lounge 只為金卡會員開啟的專屬空間"/></div>               							
+               						</a> 
+               					</div>
+	                   		<div>
+               						<a class="btn-clickLog" data-code="anniversary-specialevent-meet" href="https://www.skm.com.tw/page/anniversary-specialevent#skm-pokemon30th-special-tab-meet" aria-label="新光三越週年慶寶可夢大量發生中">
+               							<div class="page__img-block"><img class="page__img" src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1002/d9f15f4d-e1ce-46be-b130-86546941447d.jpg.webp"  onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1005/0e48ae9e-e6d1-44e1-9c7f-1cf78b486568.jpg.webp')" alt="新光三越週年慶寶可夢大量發生中"/></div>               							
+               						</a> 
+               					</div>
+	                   		<div>
+               						<a class="btn-clickLog" data-code="anniversary-specialevent-new" href="https://www.skm.com.tw/page/anniversary-specialevent" aria-label="新光三越週年慶開跑！蒐集你的寶可夢百寶箱">
+               							<div class="page__img-block"><img class="page__img" src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1015/7613a646-725e-4ad2-a94c-0494d0c31bbc.jpg.webp"  onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1015/13cdebf0-3742-4dcf-8378-c38170d2dce1.jpg.webp')" alt="新光三越週年慶開跑！蒐集你的寶可夢百寶箱"/></div>               							
+               						</a> 
+               					</div>
+	                   		<div>
+               						<a class="btn-clickLog" data-code="P1732765924195" href="https://www.skm.com.tw/eventandexhibition/" aria-label="新光三越全台各店每月快閃活動">
+               							<div class="page__img-block"><img class="page__img" src="https://img.skmbuy.com.tw/App_Images/727/Page/2024/1128/68450ecf-be74-46e7-a06d-e247fd9ce298.jpg.webp"  onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2024/1128/3e774a05-4c95-4217-8dbe-99a417f21540.jpg.webp')" alt="新光三越全台各店每月快閃活動"/></div>               							
+               						</a> 
+               					</div>
+	                   		</div>
+				</div>    
+			</div>
+		</div>
+	    <div class="offcanvas__block">
+	    	<div class="row" name="header_side_menu_normal">
+				<div class="col-12">
+		    		<div class="section-content_m-b-10 m-t-20">
+		        		<div><h2 class="h2_title_bdl">Hot&nbsp;<span class="font_normal">熱銷商品</span></h2></div>
+		    		</div>
+					<div class="div_menu_2_grid">
+						<div><div class="product__box product__box--default bg-white" name="pcard_ver_567413"
+	data-category1="保養" data-category2="" data-category3="乳霜/凝霜" data-category4=""
+	data-name="(全台獨家)Dr Reju-All PDRN 修護禮盒組" data-bname="Rejuall" data-code="2224530015336" data-product_id="567413"
+	data-price="1399" data-discounted_price="" data-original_pric_desc="1570"
+	data-classify1="" data-classify2="" data-classify3="" data-classify4="" data-classify5=""
+>
+    <div class="clio_observe product__img-area pos-relative p-10">
+        <a class="product__img--link btn_product_ gtm-click-track clio_Prod" href="https://online.skm.com.tw/product/2224530015336"
+			data-from_medium="側選單-熱銷商品" data-code="2224530015336" data-to_url="https://online.skm.com.tw/product/2224530015336" data-target_type="product"
+			data-product_id="567413" data-product_code="2224530015336" data-supplier_code="">
+			<div class="product-image--large">
+				<div class="square-block ">
+                    <img  name="product__" class="product__img " onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/5b7a2d72-5c35-4b67-a8d6-6de7aa72700e_11462677.webp', 'product')"
+                            src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/5b7a2d72-5c35-4b67-a8d6-6de7aa72700e_11462677.webp"
+                            srcset="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/s_5b7a2d72-5c35-4b67-a8d6-6de7aa72700e_11462677.webp 480w,https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/m_5b7a2d72-5c35-4b67-a8d6-6de7aa72700e_11462677.webp 768w"
+                            sizes="(max-width: 400px) 150px, (max-width: 800px) 200px"  alt="(全台獨家)Dr Reju-All PDRN 修護禮盒組"/>
+                        </div>
+			</div>
+            <img  class="img_product_outline img-fluid lazy"  src="" data-display_size="m" data-img="" data-src=""
+                    onerror="this.onerror=null; ImgErrorReset(this, '', 'product')"
+                    alt="(全台獨家)Dr Reju-All PDRN 修護禮盒組" sizes="(max-width: 1566px) 260px"/>
+            </a>
+		<span class="tag_area ">
+    <img  src="https://www.skm.com.tw/assets/img/icon_sale.webp" alt="(全台獨家)Dr Reju-All PDRN 修護禮盒組"/></span></div>
+	<div class="product__content pos-relative product__content pos-relative ">
+        <div class="v14_pcard-top">
+            <div class="v14_discount-info">
+                <span class="info-badge-list">
+                    </span>
+                </div>
+        </div>
+		<div class="branch-block ">
+			</div>
+		<a class="btn-productTitleClickLog product__link product__link--weight-light m-t-5  gtm-click-track clio_Prod" href="https://online.skm.com.tw/product/2224530015336"
+           data-from_medium="側選單-熱銷商品" data-code="2224530015336" data-to_url="https://online.skm.com.tw/product/2224530015336" data-target_type="product"
+           data-product_id="567413" data-product_code="2224530015336" data-supplier_code="">
+			<h3 class="product-title row2-title ">
+				(全台獨家)Dr Reju-All PDRN 修護禮盒組</h3>
+		</a>
+		<div class="product__price__block">
+				<div class="product__price" name="div_product_price_" data-brand_name="Rejuall"> 
+					<span class="product__price-reg">
+				            	<span class="small-font">NT$&nbsp;</span><b><span class="numFormat">1399</span></b></span>
+						</div>
+		        <div class="div_kit_h20">
+                    </div>
+	        </div>    
+        <div class="tag-area">
+				</div>
+		<ul class="product__content--bottom product__content--bottom-white pos-absolute p-l-15 p-r-15" 
+				id="ul_product_btn__2224530015336">
+				</ul>
+		</div>
+	</div>
+</div><div><div class="product__box product__box--default bg-white" name="pcard_ver_518547"
+	data-category1="保養" data-category2="" data-category3="修護滋潤" data-category4=""
+	data-name="Torriden 桃瑞丹 5D微分子玻尿酸保濕安瓶精華限量套裝(50ML+50ML+20ML)" data-bname="Torriden" data-code="2224210197277" data-product_id="518547"
+	data-price="990" data-discounted_price="" data-original_pric_desc="2120"
+	data-classify1="彩妝保養" data-classify2="臉部保養" data-classify3="精華液" data-classify4="" data-classify5=""
+>
+    <div class="clio_observe product__img-area pos-relative p-10">
+        <a class="product__img--link btn_product_ gtm-click-track clio_Prod" href="https://online.skm.com.tw/product/2224210197277"
+			data-from_medium="側選單-熱銷商品" data-code="2224210197277" data-to_url="https://online.skm.com.tw/product/2224210197277" data-target_type="product"
+			data-product_id="518547" data-product_code="2224210197277" data-supplier_code="">
+			<div class="product-image--large">
+				<div class="square-block ">
+                    <img  name="product__" class="product__img " onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2025/1231/9be9fa33-6bf2-48a0-ab6f-69d5f51fdbbb_7773380.webp', 'product')"
+                            src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2025/1231/9be9fa33-6bf2-48a0-ab6f-69d5f51fdbbb_7773380.webp"
+                            srcset="https://img.skmonline.com.tw/App_Images/727/ERPItem/2025/1231/s_9be9fa33-6bf2-48a0-ab6f-69d5f51fdbbb_7773380.webp 480w,https://img.skmonline.com.tw/App_Images/727/ERPItem/2025/1231/m_9be9fa33-6bf2-48a0-ab6f-69d5f51fdbbb_7773380.webp 768w"
+                            sizes="(max-width: 400px) 150px, (max-width: 800px) 200px"  alt="Torriden 桃瑞丹 5D微分子玻尿酸保濕安瓶精華限量套裝(50ML+50ML+20ML)"/>
+                        <img  name="product__" class="product__img " onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2025/1231/6f33ebb8-4d05-4365-8359-8fc3959a52cc_7773381.webp', 'product')" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2025/1231/6f33ebb8-4d05-4365-8359-8fc3959a52cc_7773381.webp" alt="Torriden 桃瑞丹 5D微分子玻尿酸保濕安瓶精華限量套裝(50ML+50ML+20ML)"/>
+                            </div>
+			</div>
+            <img  class="img_product_outline img-fluid lazy"  src="" data-display_size="m" data-img="" data-src=""
+                    onerror="this.onerror=null; ImgErrorReset(this, '', 'product')"
+                    alt="Torriden 桃瑞丹 5D微分子玻尿酸保濕安瓶精華限量套裝(50ML+50ML+20ML)" sizes="(max-width: 1566px) 260px"/>
+            </a>
+		<span class="tag_area ">
+    <img  src="https://www.skm.com.tw/assets/img/icon_sale.webp" alt="Torriden 桃瑞丹 5D微分子玻尿酸保濕安瓶精華限量套裝(50ML+50ML+20ML)"/></span></div>
+	<div class="product__content pos-relative product__content pos-relative ">
+        <div class="v14_pcard-top">
+            <div class="v14_discount-info">
+                <span class="info-badge-list">
+                    </span>
+                </div>
+        </div>
+		<div class="branch-block ">
+			</div>
+		<a class="btn-productTitleClickLog product__link product__link--weight-light m-t-5  gtm-click-track clio_Prod" href="https://online.skm.com.tw/product/2224210197277"
+           data-from_medium="側選單-熱銷商品" data-code="2224210197277" data-to_url="https://online.skm.com.tw/product/2224210197277" data-target_type="product"
+           data-product_id="518547" data-product_code="2224210197277" data-supplier_code="">
+			<h3 class="product-title row2-title ">
+				Torriden 桃瑞丹 5D微分子玻尿酸保濕安瓶精華限量套裝(50ML+50ML+20ML)</h3>
+		</a>
+		<div class="product__price__block">
+				<div class="product__price" name="div_product_price_" data-brand_name="Torriden"> 
+					<span class="product__price-reg">
+				            	<span class="small-font">NT$&nbsp;</span><b><span class="numFormat">990</span></b></span>
+						</div>
+		        <div class="div_kit_h20">
+                    </div>
+	        </div>    
+        <div class="tag-area">
+				</div>
+		<ul class="product__content--bottom product__content--bottom-white pos-absolute p-l-15 p-r-15" 
+				id="ul_product_btn__2224210197277">
+				</ul>
+		</div>
+	</div>
+</div><div><div class="product__box product__box--default bg-white" name="pcard_ver_486824"
+	data-category1="美食及生活超市" data-category2="" data-category3="" data-category4=""
+	data-name="【任2件85折】UNICHI 海鹽風味淺藍小熊軟糖60顆" data-bname="Unichi" data-code="2224530004279" data-product_id="486824"
+	data-price="950" data-discounted_price="" data-original_pric_desc="950"
+	data-classify1="美食超市" data-classify2="保健食品" data-classify3="" data-classify4="" data-classify5=""
+>
+    <div class="clio_observe product__img-area pos-relative p-10">
+        <a class="product__img--link btn_product_ gtm-click-track clio_Prod" href="https://online.skm.com.tw/product/2224530004279"
+			data-from_medium="側選單-熱銷商品" data-code="2224530004279" data-to_url="https://online.skm.com.tw/product/2224530004279" data-target_type="product"
+			data-product_id="486824" data-product_code="2224530004279" data-supplier_code="">
+			<div class="product-image--large">
+				<div class="square-block ">
+                    <img  name="product__" class="product__img " onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ChannelProduct/2025/0822/3278342a-e5f6-4916-a0d2-1128c3aae439.png', 'product')"
+                            src="https://img.skmonline.com.tw/App_Images/727/ChannelProduct/2025/0822/3278342a-e5f6-4916-a0d2-1128c3aae439.png"
+                            srcset="https://img.skmonline.com.tw/App_Images/727/ChannelProduct/2025/0822/s_3278342a-e5f6-4916-a0d2-1128c3aae439.png 480w,https://img.skmonline.com.tw/App_Images/727/ChannelProduct/2025/0822/m_3278342a-e5f6-4916-a0d2-1128c3aae439.png 768w"
+                            sizes="(max-width: 400px) 150px, (max-width: 800px) 200px"  alt="【任2件85折】UNICHI 海鹽風味淺藍小熊軟糖60顆"/>
+                        <img  name="product__" class="product__img " onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ChannelProduct/2026/0525/34587ed6-e911-47d9-9c14-4d536a11c7cc.jpg', 'product')" src="https://img.skmonline.com.tw/App_Images/727/ChannelProduct/2026/0525/34587ed6-e911-47d9-9c14-4d536a11c7cc.jpg" alt="【任2件85折】UNICHI 海鹽風味淺藍小熊軟糖60顆"/>
+                            </div>
+			</div>
+            <img  class="img_product_outline img-fluid lazy"  src="" data-display_size="m" data-img="" data-src=""
+                    onerror="this.onerror=null; ImgErrorReset(this, '', 'product')"
+                    alt="【任2件85折】UNICHI 海鹽風味淺藍小熊軟糖60顆" sizes="(max-width: 1566px) 260px"/>
+            </a>
+		<span class="tag_area tag_full">
+    <img  src="https://www.skm.com.tw/assets/img/icon_soldout.webp" alt="【任2件85折】UNICHI 海鹽風味淺藍小熊軟糖60顆"/></span></div>
+	<div class="product__content pos-relative product__content pos-relative ">
+        <div class="v14_pcard-top">
+            <div class="v14_discount-info">
+                <span class="info-badge-list">
+                    </span>
+                </div>
+        </div>
+		<div class="branch-block ">
+			</div>
+		<a class="btn-productTitleClickLog product__link product__link--weight-light m-t-5  gtm-click-track clio_Prod" href="https://online.skm.com.tw/product/2224530004279"
+           data-from_medium="側選單-熱銷商品" data-code="2224530004279" data-to_url="https://online.skm.com.tw/product/2224530004279" data-target_type="product"
+           data-product_id="486824" data-product_code="2224530004279" data-supplier_code="">
+			<h3 class="product-title row2-title ">
+				【任2件85折】UNICHI 海鹽風味淺藍小熊軟糖60顆</h3>
+		</a>
+		<div class="product__price__block">
+				<div class="product__price" name="div_product_price_" data-brand_name="Unichi"> 
+					<span class="product__price-reg">
+				            	<span class="small-font">NT$&nbsp;</span><b><span class="numFormat">950</span></b></span>
+						</div>
+		        <div class="div_kit_h20">
+                    </div>
+	        </div>    
+        <div class="tag-area">
+				</div>
+		<ul class="product__content--bottom product__content--bottom-white pos-absolute p-l-15 p-r-15 product__content--bottom_1r" 
+				id="ul_product_btn__2224530004279">
+				</ul>
+		</div>
+	</div>
+</div><div><div class="product__box product__box--default bg-white" name="pcard_ver_548069"
+	data-category1="保養" data-category2="" data-category3="特效護理" data-category4=""
+	data-name="BBLAB 橄欖油檸檬汁 20gX10ea" data-bname="BB LAB" data-code="2224530014216" data-product_id="548069"
+	data-price="630" data-discounted_price="" data-original_pric_desc="630"
+	data-classify1="彩妝保養" data-classify2="臉部保養" data-classify3="其他" data-classify4="" data-classify5=""
+>
+    <div class="clio_observe product__img-area pos-relative p-10">
+        <a class="product__img--link btn_product_ gtm-click-track clio_Prod" href="https://online.skm.com.tw/product/2224530014216"
+			data-from_medium="側選單-熱銷商品" data-code="2224530014216" data-to_url="https://online.skm.com.tw/product/2224530014216" data-target_type="product"
+			data-product_id="548069" data-product_code="2224530014216" data-supplier_code="">
+			<div class="product-image--large">
+				<div class="square-block ">
+                    <img  name="product__" class="product__img " onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0527/52751544-ee7d-40bd-8c3b-540ca28a1eb3_9138379.webp', 'product')"
+                            src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0527/52751544-ee7d-40bd-8c3b-540ca28a1eb3_9138379.webp"
+                            srcset="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0527/s_52751544-ee7d-40bd-8c3b-540ca28a1eb3_9138379.webp 480w,https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0527/m_52751544-ee7d-40bd-8c3b-540ca28a1eb3_9138379.webp 768w"
+                            sizes="(max-width: 400px) 150px, (max-width: 800px) 200px"  alt="BBLAB 橄欖油檸檬汁 20gX10ea"/>
+                        <img  name="product__" class="product__img " onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0527/1636e6ba-86dc-44f2-ac60-f2b3c8689a39_9138380.webp', 'product')" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0527/1636e6ba-86dc-44f2-ac60-f2b3c8689a39_9138380.webp" alt="BBLAB 橄欖油檸檬汁 20gX10ea"/>
+                            </div>
+			</div>
+            <img  class="img_product_outline img-fluid lazy"  src="" data-display_size="m" data-img="" data-src=""
+                    onerror="this.onerror=null; ImgErrorReset(this, '', 'product')"
+                    alt="BBLAB 橄欖油檸檬汁 20gX10ea" sizes="(max-width: 1566px) 260px"/>
+            </a>
+		<span class="tag_area tag_full">
+    <img  src="https://www.skm.com.tw/assets/img/icon_soldout.webp" alt="BBLAB 橄欖油檸檬汁 20gX10ea"/></span></div>
+	<div class="product__content pos-relative product__content pos-relative ">
+        <div class="v14_pcard-top">
+            <div class="v14_discount-info">
+                <span class="info-badge-list">
+                    </span>
+                </div>
+        </div>
+		<div class="branch-block ">
+			</div>
+		<a class="btn-productTitleClickLog product__link product__link--weight-light m-t-5  gtm-click-track clio_Prod" href="https://online.skm.com.tw/product/2224530014216"
+           data-from_medium="側選單-熱銷商品" data-code="2224530014216" data-to_url="https://online.skm.com.tw/product/2224530014216" data-target_type="product"
+           data-product_id="548069" data-product_code="2224530014216" data-supplier_code="">
+			<h3 class="product-title row2-title ">
+				BBLAB 橄欖油檸檬汁 20gX10ea</h3>
+		</a>
+		<div class="product__price__block">
+				<div class="product__price" name="div_product_price_" data-brand_name="BB LAB"> 
+					<span class="product__price-reg">
+				            	<span class="small-font">NT$&nbsp;</span><b><span class="numFormat">630</span></b></span>
+						</div>
+		        <div class="div_kit_h20">
+                    </div>
+	        </div>    
+        <div class="tag-area">
+				</div>
+		<ul class="product__content--bottom product__content--bottom-white pos-absolute p-l-15 p-r-15 product__content--bottom_1r" 
+				id="ul_product_btn__2224530014216">
+				</ul>
+		</div>
+	</div>
+</div></div>
+				</div>    
+			</div>
+		</div>
+	    <div id="insert_search_here_bottom"></div>
+</div>         <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu black_bg">
+	<div class="offcanvas__top">
+		<span class="offcanvas__top-text"></span>
+		<button class="offcanvas-close" id="btn_close_mobile_head_menu" aria-label="關閉"><i class="fal fa-times"></i></button>
+	</div>
+	<div class="offcanvas-inner">
+		<div class="offcanvas-menu">
+			<ul>
+				<li class="">
+								<a href="https://www.skm.com.tw/page_list/0/Member"
+										   data-from_medium="會員專區"><span>會員專區</span></a>
+									</li>
+						<li class="">
+								<a role="button" data-from_medium="繁中"><span>繁中</span></a>
+									<ul class="sub-menu">
+												<li>
+															<a href="https://www.skm.com.tw/ForeignerIndex?request_locale=zh_CN" class="dropdown__link" data-from_medium="繁中-簡中">簡中</a>
+															</li>
+													<li>
+															<a href="https://www.skm.com.tw/ForeignerIndex?request_locale=en_US" class="dropdown__link" data-from_medium="繁中-English">English</a>
+															</li>
+													<li>
+															<a href="https://www.skm.com.tw/ForeignerIndex?request_locale=ja_JP" class="dropdown__link" data-from_medium="繁中-日本語">日本語</a>
+															</li>
+													<li>
+															<a href="https://www.skm.com.tw/ForeignerIndex?request_locale=ko_KR" class="dropdown__link" data-from_medium="繁中-한국어">한국어</a>
+															</li>
+													</ul>
+									</li>
+						<li>
+							<span><a id="a_header_login" href="https://www.skm.com.tw/Login.action" class="a_href_menu_click"  data-from_medium="登入">登入</a></span>
+						</li>
+						</ul>
+		</div>
+	</div>
+</div>
+<link href="/assets/css/operation_product.css" rel="stylesheet">
+<script defer src="/js/operation_product.js?v=278687"></script>
+<script defer type="text/javascript" src="/dwr/interface/ProductWorker.js"></script>
+<script defer type="text/javascript" src="/dwr/interface/MemberWorker.js"></script>
+<div id="offcanvas-add-cart__box" class="offcanvas offcanvas-cart offcanvas-add-cart">
+	<div class="offcanvas__top">
+    	<span class="offcanvas__top-text"><i class="ion-bag"></i>購物車</span>
+        <button id="btn_side_cart_area_close" class="offcanvas-close" aria-label="關閉"><i class="fal fa-times"></i></button>
+        <input type="hidden" name="" value="" id="s_member_cart_id"/><input type="hidden" name="" value="" id="s_pay_mid"/></div>
+    
+    <ul class="offcanvas-add-cart__menu" id="heder_ul_cart_list">
+    	<li class="offcanvas-add-cart__list pos-relative align-items-center justify-content-between d-none cartitem-template">
+        	<div class="offcanvas-add-cart__content d-flex align-items-start p-r-10">
+            	<div class="offcanvas-add-cart__img-box pos-relative">
+                	<a role="button" class="offcanvas-add-cart__img-link img-responsive"><img alt="" class="add-cart__img lazy"  data-display_size="s"/></a>
+                    <span class="offcanvas-add-cart__item-count pos-absolute">{item_qty}x</span>
+				</div>
+                <div class="offcanvas-add-cart__detail">
+                	<a role="button" class="offcanvas-add-cart__link ">{item_product_name}</a>
+                	<div class="product__price-reg addition-tag">加價購</div>
+                    <span class="offcanvas-add-cart__price">NT$&nbsp;{item_subtotal}</span>
+                </div>
+                <span class="m-l-20">
+                	<button class="offcanvas-add-cart__item-dismiss" data-product_code=""><i class="fal fa-times"></i></button>
+                </span>
+			</div>
+		</li>
+
+		</ul>
+	
+    <input type="hidden" name="" id="hidden_cartitems" data-img_name=""/><div class="offcanvas-add-cart__checkout-box-bottom">
+    	<ul class="offcanvas-add-cart__checkout-info">
+        	<li class="offcanvas-add-cart__checkout-list">
+            	<span class="offcanvas-add-cart__checkout-left-info">小計</span>
+                <span class="offcanvas-add-cart__checkout-right-info header-cart-total">NT$&nbsp;0</span>
+                </li>
+		</ul>
+		<div class="offcanvas-add-cart__btn-checkout">
+			<a role="button" id="header_view_cart" class="btn btn--block btn--radius btn--box btn--red btn--red-hover-red btn--small btn--uppercase font--bold">查看購物車</a>
+       		</div>
+	</div>
+	<div id="page-preloader" style="display: none;"><span class="spinner border-t_second_b border-t_prim_a"></span></div>
+</div>
+<div class="offcanvas-overlay"></div>
+</header>
+
+<div class="modal fade" id="V4_Modal_Login_Area" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document" id="V4_Modal_Login_Area_inner">
+			<div class="modal-content" id="V4_Modal_Login_Area_Content">
+				<div class="modal-header s5" id="V4_Modal_Login_Area_Header">
+					<button id="btn_close_modal_login_v4" type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<iframe id="V4_iframe_login" src="about:blank" width="100%" height="100%" style="border: 0px;" class="border_r10">Browser not compatible.</iframe>
+				<div id="v4-dialog-log-preloader">
+					<span class="spinner"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+</script><div class="main">	    	
+		    <div class="d-none d-lg-block cursor-opinter menu-right-fixed" id="div_bo_side_menu_4">
+	            <div class="hero-menu-right height-s">
+	                <div>
+	                    <i class="icon-menu"></i>
+	                    <span class="m-t-15">Menu</span>
+	                </div>
+	            </div>
+	        </div>	        
+<input type="hidden" name="isIndex" value="" id="isIndex"/><div id="div_side_menu_4_v2" class="group gray-bg d_none">
+	<div class="search-key block-content-first">
+		<div class="container mx-width745p">
+			<div class="form-box__single-group">
+				<div class="search__toggle mx-width688p">
+					<span name="header_side_menu_key_send" class="search__toggle--btn icon-search cursor-opinter"></span>
+					<form action="." onsubmit="return false;" class="w-100">
+						<input class="large" type="text" placeholder="請輸入您想搜尋的館別、品牌或活動訊息" id="header_side_menu_input" maxlength="128" autocomplete="off">
+						<span id="span_side_clear"  class="close__toggle--btn icon-close cursor-opinter"></span>
+					</form>
+				</div>
+				<div class="skey_auto_box d_none">
+					<table class="img-responsive" id="table_skey_auto"></table>
+				</div>
+			</div>
+			<div class="menu-slider">
+					<div id="div_menu_4">
+						<div class="swiper_area swiper_mevent_area">
+							<div class="swiper-container swiper_menu_key tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_key">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="台中中港">
+												台中中港</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="寶可夢">
+												寶可夢</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="美食">
+												美食</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="週年慶">
+												週年慶</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="分店">
+												分店</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="台南新天地 週年慶">
+												台南新天地 週年慶</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="品牌">
+												品牌</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="滿額贈">
+												滿額贈</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="活動">
+												活動</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="信用卡">
+												信用卡</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="寶可夢卡牌">
+												寶可夢卡牌</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="相機">
+												相機</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="新天地">
+												新天地</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="刷卡回饋">
+												刷卡回饋</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="高雄左營 週年慶">
+												高雄左營 週年慶</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="皮卡丘">
+												皮卡丘</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="Apple">
+												Apple</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="金卡會員">
+												金卡會員</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="停車">
+												停車</a>
+										</div>
+									<div class="swiper-slide w-auto" name="header_side_menu_normal">
+											<a role="button" id="header_side_menu_key_-1" data-id="-1" data-title="寶可夢30週年">
+												寶可夢30週年</a>
+										</div>
+									</div>
+								<div class="swiper-scrollbar"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+    <section class="search block-content clickLog_ExploreSKM" data-click_area="sideMenu_ExploreSKM">
+        <div id="div_menu_4_outer">
+            <div class="container">
+                <div class="menu-title-area">
+                    <div class="title-block">
+                        <a href="https://www.skm.com.tw/exploreskm/">
+                            <h2 class="main-title">探索分館&品牌樓層</h2>
+                            <div class="sub-title">Explore</div>
+                        </a>
+                    </div>
+                    <div class="hot-store-list">
+                        <ul>
+                            <li><a id="a_filter_store_Northern" role="button" class="active" data-id="Northern" data-title="北部">北部</a></li>
+                            <li><a id="a_filter_store_Central" role="button" data-id="Central" data-title="中部">中部</a></li>
+                            <li><a id="a_filter_store_Southern" role="button" data-id="Southern" data-title="南部">南部</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="swiper_area swiper_mevent_area" id="a_menu_store_block_Northern">
+                    <div id="div_swiper_online_store_content_menu" class="swiper-container swiper_menu_store_Northern tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_store_Northern" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_store_Northern">
+                        <div class="swiper-wrapper">
+                            <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="1" data-code="1" href="https://www.skm.com.tw/store_branch/1" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/f3667d28-8f56-4503-8929-da3f66cc54b8.jpeg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/f3667d28-8f56-4503-8929-da3f66cc54b8.jpeg', 'product')" alt="台北信義新天地"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">台北信義新天地</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="16" data-code="16" href="https://www.skm.com.tw/store_branch/16" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/B2CStore/2026/0803/90c0a5d5-a7a6-4bbd-9c5a-1b9538f4a5fc.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/B2CStore/2026/0803/90c0a5d5-a7a6-4bbd-9c5a-1b9538f4a5fc.jpg.webp', 'product')" alt="臺北車站"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">臺北車站</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="13" data-code="13" href="https://www.skm.com.tw/store_branch/13" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/B2CStore/2023/1003/eaec6fcb-022d-4dbe-ae22-bd23170a7733.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/B2CStore/2023/1003/eaec6fcb-022d-4dbe-ae22-bd23170a7733.jpg', 'product')" alt="DIAMOND TOWERS"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">DIAMOND TOWERS</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="2" data-code="2" href="https://www.skm.com.tw/store_branch/2" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/a42146f7-441f-449e-8852-a19417f8bfd6.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/a42146f7-441f-449e-8852-a19417f8bfd6.jpg', 'product')" alt="台北站前店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">台北站前店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="3" data-code="3" href="https://www.skm.com.tw/store_branch/3" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/36bfabee-8188-4e5e-b609-da495daf4693.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/36bfabee-8188-4e5e-b609-da495daf4693.jpg', 'product')" alt="台北南西店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">台北南西店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="4" data-code="4" href="https://www.skm.com.tw/store_branch/4" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/fc5aef16-3eb0-4bb9-9be1-5c367e4fc8dd.jpeg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/fc5aef16-3eb0-4bb9-9be1-5c367e4fc8dd.jpeg', 'product')" alt="台北天母店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">台北天母店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="6" data-code="6" href="https://www.skm.com.tw/store_branch/6" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/ebcbf780-913e-4942-893a-782691f5cec7.jpeg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/ebcbf780-913e-4942-893a-782691f5cec7.jpeg', 'product')" alt="桃園站前店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">桃園站前店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                        <div class="swiper-scrollbar swiper_menu_scrollbar_store_Northern"></div>
+                    </div>
+                </div>
+                <div class="swiper_area swiper_mevent_area d-none" id="a_menu_store_block_Central">
+                    <div id="div_swiper_online_store_content_menu" class="swiper-container swiper_menu_store_Central tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_store_Central" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_store_Central">
+                        <div class="swiper-wrapper">
+                            <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="7" data-code="7" href="https://www.skm.com.tw/store_branch/7" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/b0669d1d-8b95-41a8-a817-14005caa1681.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/b0669d1d-8b95-41a8-a817-14005caa1681.jpg', 'product')" alt="台中中港店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">台中中港店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="8" data-code="8" href="https://www.skm.com.tw/store_branch/8" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/2c9c9fc8-fb54-4197-b8b4-67d1f8f4cb9e.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/2c9c9fc8-fb54-4197-b8b4-67d1f8f4cb9e.jpg', 'product')" alt="嘉義垂楊店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">嘉義垂楊店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                        <div class="swiper-scrollbar swiper_menu_scrollbar_store_Central"></div>
+                    </div>
+                </div>
+                <div class="swiper_area swiper_mevent_area d-none" id="a_menu_store_block_Southern">
+                    <div id="div_swiper_online_store_content_menu" class="swiper-container swiper_menu_store_Southern tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_store_Southern" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_store_Southern">
+                        <div class="swiper-wrapper">
+                            <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="9" data-code="9" href="https://www.skm.com.tw/store_branch/9" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/667d9c41-0779-4d97-be9e-b5b43e750f3f.jpeg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/667d9c41-0779-4d97-be9e-b5b43e750f3f.jpeg', 'product')" alt="台南中山店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">台南中山店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="10" data-code="10" href="https://www.skm.com.tw/store_branch/10" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/ea78ced2-1405-40eb-bebc-00e959a961dd.jpeg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/ea78ced2-1405-40eb-bebc-00e959a961dd.jpeg', 'product')" alt="台南新天地"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">台南新天地</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="15" data-code="15" href="https://www.skm.com.tw/store_branch/15" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0904/ab64c87d-0cf8-4c13-b5ca-05f531682f12.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0904/ab64c87d-0cf8-4c13-b5ca-05f531682f12.jpg', 'product')" alt="台南小北門"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">台南小北門</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="11" data-code="11" href="https://www.skm.com.tw/store_branch/11" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/3d96cddb-b0b9-4435-ad06-187a81fca9ca.jpeg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/3d96cddb-b0b9-4435-ad06-187a81fca9ca.jpeg', 'product')" alt="高雄三多店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">高雄三多店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="12" data-code="12" href="https://www.skm.com.tw/store_branch/12" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/ca55671e-3fa6-427c-afd8-a4d8c89c65fe.jpeg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2022/1128/ca55671e-3fa6-427c-afd8-a4d8c89c65fe.jpeg', 'product')" alt="高雄左營店"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">高雄左營店</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <div class="menu_online_store_div article-card article-card-size swiper-slide">
+                                        <a class="btn-clickLog banner__link" data-id="14" data-code="14" href="https://www.skm.com.tw/store_branch/14" name="a_expand_trigger_area">
+                                            <div class="article-pic">
+                                                <img class="img-responsive swiper-lazy" src="https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/071d0400-89ce-45c5-8e03-13d86eb46c8f.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/B2CStore/2025/0826/071d0400-89ce-45c5-8e03-13d86eb46c8f.jpg', 'product')" alt="SKM Park Outlets"/>
+                                                </div>
+                                            <div class="common-card-content">
+                                                <div class="card-title">SKM Park Outlets</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                        <div class="swiper-scrollbar swiper_menu_scrollbar_store_Southern"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	<section class="new block-content clickLog_sideMenu_WhatsNew" data-click_area="sideMenu_OnlineNEW" id="menu_section_new">
+		<div class="container">
+			<div class="hot-news-block">
+				<div class="gap20">
+					<a href="https://www.skm.com.tw/page_list/0/New">
+						<div class="title-block">
+							<h2 class="main-title">最新消息</h2>
+							<div class="sub-title"><span>WHAT’S&nbsp;NEW</span></div>
+						</div>
+					</a>
+					<div class="gap40 m-b-32">
+						<div class="hot-news-list">
+							<ul>
+								<li class="d-none"><a id="a_filter_new_6" role="button" class="active" data-id="6">贈獎</a></li>
+								<li class="d-none"><a id="a_filter_new_7" role="button" class="" data-id="7">卡友</a></li>
+								<li class="d-none"><a id="a_filter_new_8" role="button" class="" data-id="8">品牌</a></li>
+								<li class="d-none"><a id="a_filter_new_9" role="button" class="" data-id="9">文藝</a></li>
+								<li class="d-none"><a id="a_filter_new_10" role="button" class="" data-id="10">嚴選</a></li>
+								<li class="d-none"><a id="a_filter_new_11" role="button" class="" data-id="11">親子</a></li>
+								<li class="d-none"><a id="a_filter_new_12" role="button" class="" data-id="12">展售</a></li>
+								<li class="d-none"><a id="a_filter_new_15" role="button" class="" data-id="15">時尚</a></li>
+								<li class="d-none"><a id="a_filter_new_16" role="button" class="" data-id="16">美妝</a></li>
+								<li class="d-none"><a id="a_filter_new_17" role="button" class="" data-id="17">美食</a></li>
+								<li class="d-none"><a id="a_filter_new_18" role="button" class="" data-id="18">生活</a></li>
+								<li class="d-none"><a id="a_filter_new_19" role="button" class="" data-id="19">點數</a></li>
+								</ul>
+						</div>
+						<a id="menu_new_more" type="button" class="btn-clickLog-more btn btn--medium btn--border-black02 maxw-200p" aria-label="探索更多" href="https://www.skm.com.tw/page_list/0/New?category_id=6&page_query_cond=&page=1">探索更多</a>
+					</div>
+				</div>
+				<input type="hidden" id="firstCategory_id">
+					<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_6" data-sort_id="6">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_6 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_6" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_6">
+							<div class="swiper-wrapper">
+								<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_wh260224plus01" data-id="311108" data-code="wh260224plus01" href="https://www.skm.com.tw/page/wh260224plus01?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/wh260224plus01?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/0525/m_ed7c316b-ddfe-4983-a319-65f7973eb4be.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/0525/ed7c316b-ddfe-4983-a319-65f7973eb4be.jpg.webp', 'product')" alt="新光三越使用運動幣「添裝備」、「做運動」最高可抵500元"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>贈獎</li>
+															</ul>
+														</div>
+														<div class="card-title">新光三越使用運動幣「添裝備」、「做運動」最高可抵500元</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_6"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_7" data-sort_id="7">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_7 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_7" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_7">
+							<div class="swiper-wrapper">
+								<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_wh250120plus01-o" data-id="327321" data-code="wh250120plus01-o" href="https://www.skm.com.tw/page/wh250120plus01?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/wh250120plus01?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/0429/m_30fbdee6-a5b7-4496-9762-362a7ede1c5a.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/0429/30fbdee6-a5b7-4496-9762-362a7ede1c5a.jpg.webp', 'product')" alt="銀行點數兌換skm points"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>卡友</li>
+															</ul>
+														</div>
+														<div class="card-title">銀行點數兌換skm points</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_the-gold-lounge" data-id="277896" data-code="the-gold-lounge" href="https://www.skm.com.tw/page/the-gold-lounge?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/the-gold-lounge?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2025/1007/m_b976d79a-10ae-47b9-837c-662bf913b4f3.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2025/1007/b976d79a-10ae-47b9-837c-662bf913b4f3.jpg', 'product')" alt="The Gold Lounge 只為金卡會員開啟的專屬空間"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>卡友</li>
+															</ul>
+														</div>
+														<div class="card-title">The Gold Lounge 只為金卡會員開啟的專屬空間</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_anniversary-specialevent-meet" data-id="357938" data-code="anniversary-specialevent-meet" href="https://www.skm.com.tw/page/anniversary-specialevent#skm-pokemon30th-special-tab-meet"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/anniversary-specialevent#skm-pokemon30th-special-tab-meet" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1005/m_0e48ae9e-e6d1-44e1-9c7f-1cf78b486568.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1005/0e48ae9e-e6d1-44e1-9c7f-1cf78b486568.jpg.webp', 'product')" alt="新光三越週年慶寶可夢大量發生中"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>卡友</li>
+															</ul>
+														</div>
+														<div class="card-title">新光三越週年慶寶可夢大量發生中</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_anniversary-specialevent-new" data-id="354838" data-code="anniversary-specialevent-new" href="https://www.skm.com.tw/page/anniversary-specialevent?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/anniversary-specialevent?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1015/m_13cdebf0-3742-4dcf-8378-c38170d2dce1.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1015/13cdebf0-3742-4dcf-8378-c38170d2dce1.jpg.webp', 'product')" alt="新光三越週年慶開跑！蒐集你的寶可夢百寶箱"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>卡友</li>
+															</ul>
+														</div>
+														<div class="card-title">新光三越週年慶開跑！蒐集你的寶可夢百寶箱</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_P1732765924195" data-id="204144" data-code="P1732765924195" href="https://www.skm.com.tw/eventandexhibition/"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/eventandexhibition/" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2024/1128/m_3e774a05-4c95-4217-8dbe-99a417f21540.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2024/1128/3e774a05-4c95-4217-8dbe-99a417f21540.jpg.webp', 'product')" alt="新光三越全台各店每月快閃活動"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>卡友</li>
+															</ul>
+														</div>
+														<div class="card-title">新光三越全台各店每月快閃活動</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_7"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_8" data-sort_id="8">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_8 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_8" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_8">
+							<div class="swiper-wrapper">
+								</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_8"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_9" data-sort_id="9">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_9 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_9" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_9">
+							<div class="swiper-wrapper">
+								</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_9"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_10" data-sort_id="10">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_10 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_10" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_10">
+							<div class="swiper-wrapper">
+								</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_10"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_11" data-sort_id="11">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_11 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_11" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_11">
+							<div class="swiper-wrapper">
+								</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_11"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_12" data-sort_id="12">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_12 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_12" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_12">
+							<div class="swiper-wrapper">
+								</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_12"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_15" data-sort_id="15">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_15 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_15" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_15">
+							<div class="swiper-wrapper">
+								</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_15"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_16" data-sort_id="16">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_16 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_16" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_16">
+							<div class="swiper-wrapper">
+								<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_lifestyleBodyBalm" data-id="70238" data-code="lifestyleBodyBalm" href="https://www.skm.com.tw/page/lifestyleBodyBalm?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/lifestyleBodyBalm?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2023/0711/m_6c449368-1ea5-465d-b595-71709edf47e9.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2023/0711/6c449368-1ea5-465d-b595-71709edf47e9.jpg', 'product')" alt="2025網推TOP8高質感體香膏：拒當夏日臭臭人！這幾款不僅能抑汗告別體味，木質調、草本香氣聞起來都超舒服&hellip;"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>美妝</li>
+															</ul>
+														</div>
+														<div class="card-title">2025網推TOP8高質感體香膏：拒當夏日臭臭人！這幾款不僅能抑汗告別體味，木質調、草本香氣聞起來都超舒服&hellip;</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_Cream0318op" data-id="226018" data-code="Cream0318op" href="https://www.skm.com.tw/page/cream2025?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/cream2025?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2025/0410/m_1b1547ca-ada5-4914-b716-9ad9eabce31b.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2025/0410/1b1547ca-ada5-4914-b716-9ad9eabce31b.jpg.webp', 'product')" alt="2025專櫃乳霜新品推薦 逆齡抗老、美白淡斑、修復維穩&hellip;保養最重要步驟養出仙女彈潤肌"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>美妝</li>
+															</ul>
+														</div>
+														<div class="card-title">2025專櫃乳霜新品推薦 逆齡抗老、美白淡斑、修復維穩&hellip;保養最重要步驟養出仙女彈潤肌</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_MxBCZHZBxC" data-id="77195" data-code="MxBCZHZBxC" href="https://www.skm.com.tw/page/diorcosmetic?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/diorcosmetic?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2023/0802/m_c2cf0a41-395d-4b95-8523-43543dab4fb4.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2023/0802/c2cf0a41-395d-4b95-8523-43543dab4fb4.jpg', 'product')" alt="DIOR最熱銷化妝品推薦 10大彩妝控必收經典款大公開"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>美妝</li>
+															</ul>
+														</div>
+														<div class="card-title">DIOR最熱銷化妝品推薦 10大彩妝控必收經典款大公開</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_16"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_17" data-sort_id="17">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_17 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_17" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_17">
+							<div class="swiper-wrapper">
+								<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_chinhuajiao" data-id="273312" data-code="chinhuajiao" href="https://www.skm.com.tw/page/chinhuajiao?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/chinhuajiao?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2025/1231/m_ab6bafb7-2c48-40c5-b882-cb5fbc8bd719.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2025/1231/ab6bafb7-2c48-40c5-b882-cb5fbc8bd719.jpg', 'product')" alt="青花驕進駐百貨！極奢海陸驕宴每人千元爽嗑鮑魚、日本F1國產牛，攜手大摩威士忌跨界新吃法！"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>美食</li>
+															</ul>
+														</div>
+														<div class="card-title">青花驕進駐百貨！極奢海陸驕宴每人千元爽嗑鮑魚、日本F1國產牛，攜手大摩威士忌跨界新吃法！</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_WagyuClubshabushabu" data-id="289195" data-code="WagyuClubshabushabu" href="https://www.skm.com.tw/page/WagyuClubshabushabu?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/WagyuClubshabushabu?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2025/1113/m_606b8158-934f-4375-9b0e-e44a5f904bdf.jpg" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2025/1113/606b8158-934f-4375-9b0e-e44a5f904bdf.jpg', 'product')" alt="牛排教父「Wagyu Club shabushabu」和牛俱樂部進駐信義A4！千元初吃日本F1和牛火鍋、壽喜燒，一個人也能吃！"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>美食</li>
+															</ul>
+														</div>
+														<div class="card-title">牛排教父「Wagyu Club shabushabu」和牛俱樂部進駐信義A4！千元初吃日本F1和牛火鍋、壽喜燒，一個人也能吃！</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_17"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_18" data-sort_id="18">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_18 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_18" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_18">
+							<div class="swiper-wrapper">
+								<div class="menu_online_new_div article-card article-card-size common-card default-part swiper-slide">
+											<a class="btn-clickLog banner__link" id="whats_new_MxBEZFBFxA" data-id="250865" data-code="MxBEZFBFxA" href="https://www.skm.com.tw/page/xinyifood?page_crumb=New"
+											   name="whats_new" data-from_medium="menu-最新消息" data-to_url="https://www.skm.com.tw/page/xinyifood?page_crumb=New" data-target_type="article">
+												<div class="article-pic article-card-gap">
+													<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2025/0626/m_d117fb24-33e0-4bf3-9f3e-b95f407cfb67.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2025/0626/d117fb24-33e0-4bf3-9f3e-b95f407cfb67.jpg.webp', 'product')" alt="信義區美食推薦！新光三越內6間餐廳&amp;新菜：早午餐、創意台菜、港點、居酒屋、炭火牛排到龍蝦料理一篇整理"/>
+													</div>
+												<div class="common-card-content p-16">
+													<div class="gap4">
+														<div class="s-text-list">
+															<ul>
+																<li>新光三越</li>
+																<li>生活</li>
+															</ul>
+														</div>
+														<div class="card-title">信義區美食推薦！新光三越內6間餐廳&amp;新菜：早午餐、創意台菜、港點、居酒屋、炭火牛排到龍蝦料理一篇整理</div>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_18"></div>
+						</div>
+					</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new_articleCard_19" data-sort_id="19">
+						<div id="div_swiper_online_new_content_menu" class="swiper-container swiper_menu_new_19 tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_new_19" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_new_19">
+							<div class="swiper-wrapper">
+								</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_new_19"></div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</section>
+	<div class="layout-gap80">
+		<section class="news clickLog_sideMenu_Media" data-click_area="sideMenu_Media">
+			<div class="container">
+				<div class="sidepage-block-gap">
+					<div class="title-block-img">
+						<a name="a_media_category_link" data-page="skmedia_menu_title" data-position="media_title" data-id="0" href="https://www.skm.com.tw/skmmedia/">
+							<img src="https://www.skm.com.tw/assets/img/v4/media_logo_dark.webp" alt="時尚潮流" />
+							<h2 class="main-title">時尚潮流</h2>
+						</a>
+					</div>
+					<div class="swiper_area swiper_mevent_area">
+						<div id="div_menu_media_info" class="swiper-container swiper_menu_media tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_media" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_media">
+							<div class="swiper-wrapper">
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_anniversarybeauty2026" name="menu_media_card" data-id="357483" data-code="anniversarybeauty2026" href="https://www.skm.com.tw/skmmedia/beauty/beautynews/anniversarybeauty2026?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/beauty/beautynews/anniversarybeauty2026?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/0930/m_4e7f17c3-8ed7-4bcf-b287-a150ddc76cfa.png.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/0930/4e7f17c3-8ed7-4bcf-b287-a150ddc76cfa.png.webp', 'product')" alt="2026新光三越週年慶美妝攻略！從爆紅香氛、科技保養到韓系女團妝，秋冬值得投資的美妝一次看"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">2026新光三越週年慶美妝攻略！從爆紅香氛、科技保養到韓系女團妝，秋冬值得投資的美妝一次看</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Phoebe Chiu</li>
+															<li>2026/09/30</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_anniversarylifestyle" name="menu_media_card" data-id="357365" data-code="anniversarylifestyle" href="https://www.skm.com.tw/skmmedia/lifestyleandfood/living/anniversarylifestyle?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/lifestyleandfood/living/anniversarylifestyle?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1001/m_e263d47b-dfa9-40a7-870e-66804e86ccab.png.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1001/e263d47b-dfa9-40a7-870e-66804e86ccab.png.webp', 'product')" alt="【2026週年慶攻略】日本展必吃美食、話題新櫃、換家電趁這波...新光三越必看清單一次收藏！(持續更新)"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">【2026週年慶攻略】日本展必吃美食、話題新櫃、換家電趁這波...新光三越必看清單一次收藏！(持續更新)</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Yawen</li>
+															<li>2026/09/30</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_GEmma2026mom" name="menu_media_card" data-id="326185" data-code="GEmma2026mom" href="https://www.skm.com.tw/skmmedia/ecover/GEmma2026mom?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/ecover/GEmma2026mom?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/0423/m_4e98d644-0244-4b9f-bf14-259ea4bb041a.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/0423/4e98d644-0244-4b9f-bf14-259ea4bb041a.jpg.webp', 'product')" alt="有一種甜，叫女兒的奶音告白！吳映潔：我想陪她當一輩子的好閨密"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">有一種甜，叫女兒的奶音告白！吳映潔：我想陪她當一輩子的好閨密</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Blair Tien</li>
+															<li>2026/04/23</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_dior-xmas2026" name="menu_media_card" data-id="360060" data-code="dior-xmas2026" href="https://www.skm.com.tw/skmmedia/beauty/cosmetics/dior-xmas2026?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/beauty/cosmetics/dior-xmas2026?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1014/m_d98f29a7-0226-4792-9ad9-fc8d60936670.png.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1014/d98f29a7-0226-4792-9ad9-fc8d60936670.png.webp', 'product')" alt="2026 Dior聖誕彩妝登場！金色高訂橢圓勳章包裝，糖霜粉唇膏、奶茶裸金打亮與限量唇釉登場，焦糖肉桂眼影美到想收藏"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">2026 Dior聖誕彩妝登場！金色高訂橢圓勳章包裝，糖霜粉唇膏、奶茶裸金打亮與限量唇釉登場，焦糖肉桂眼影美到想收藏</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Phoebe Chiu</li>
+															<li>2026/10/14</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_HalloweenStyle" name="menu_media_card" data-id="359581" data-code="HalloweenStyle" href="https://www.skm.com.tw/skmmedia/lifestyleandfood/living/HalloweenStyle?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/lifestyleandfood/living/HalloweenStyle?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1014/m_ca4b8a32-2290-4f28-8047-6251ec5fa117.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1014/ca4b8a32-2290-4f28-8047-6251ec5fa117.jpg.webp', 'product')" alt="萬聖節不走恐怖風！2026 萬聖節萌系公仔毛絨玩偶特輯：Jellycat、POP MART、noodoll 怪誕馬鈴薯登場"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">萬聖節不走恐怖風！2026 萬聖節萌系公仔毛絨玩偶特輯：Jellycat、POP MART、noodoll 怪誕馬鈴薯登場</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Victoria</li>
+															<li>2026/10/14</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_luxury-cosmetics1014" name="menu_media_card" data-id="359973" data-code="luxury-cosmetics1014" href="https://www.skm.com.tw/skmmedia/beauty/cosmetics/luxury-cosmetics1014?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/beauty/cosmetics/luxury-cosmetics1014?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1014/m_643594bb-99d7-48a9-af44-787abc97752a.png.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1014/643594bb-99d7-48a9-af44-787abc97752a.png.webp', 'product')" alt="第一個精品彩妝怎麼買？2026小資女孩必看精品彩妝TOP10清單，從氣墊、唇膏到蜜粉一次挑對"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">第一個精品彩妝怎麼買？2026小資女孩必看精品彩妝TOP10清單，從氣墊、唇膏到蜜粉一次挑對</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Phoebe Chiu</li>
+															<li>2026/10/14</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_lartisanparfumeur2026" name="menu_media_card" data-id="358737" data-code="lartisanparfumeur2026" href="https://www.skm.com.tw/skmmedia/beauty/parfum/lartisanparfumeur2026?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/beauty/parfum/lartisanparfumeur2026?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1008/m_861d6b52-2b08-4fff-b4f8-ef710a718234.png.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1008/861d6b52-2b08-4fff-b4f8-ef710a718234.png.webp', 'product')" alt="小眾香水迷必收藏！阿蒂仙之香台中新櫃開幕，走進1970年代巴黎寓所，5款經典必買香氛一次收藏"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">小眾香水迷必收藏！阿蒂仙之香台中新櫃開幕，走進1970年代巴黎寓所，5款經典必買香氛一次收藏</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Phoebe Chiu</li>
+															<li>2026/10/08</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_anniversaryad" name="menu_media_card" data-id="358252" data-code="anniversaryad" href="https://www.skm.com.tw/skmmedia/fashion/bagcollection/anniversaryad?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/fashion/bagcollection/anniversaryad?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1005/m_a0746ee7-d175-411a-95d6-45da7dff49c2.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1005/a0746ee7-d175-411a-95d6-45da7dff49c2.jpg.webp', 'product')" alt="2026秋冬輕奢美包盤點！PORTER INTERNATIONAL、TORY BURCH、TOD&rsquo;S&hellip;有的不用萬元就可入手"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">2026秋冬輕奢美包盤點！PORTER INTERNATIONAL、TORY BURCH、TOD&rsquo;S&hellip;有的不用萬元就可入手</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Jhen</li>
+															<li>2026/10/08</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_c9a751955bc54eb39da075353abf9661" name="menu_media_card" data-id="358552" data-code="c9a751955bc54eb39da075353abf9661" href="https://www.skm.com.tw/skmmedia/lifestyleandfood/living/2026chiikawa?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/lifestyleandfood/living/2026chiikawa?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1007/m_600c19af-8f8b-48ad-aa0f-ce767a8b119e.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1007/600c19af-8f8b-48ad-aa0f-ce767a8b119e.jpg.webp', 'product')" alt="2026吉伊卡哇台北快閃店新光三越A9登場！萬聖節變裝超萌周邊必收，買就送貼紙、滿額加1元購物袋帶回家！"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">2026吉伊卡哇台北快閃店新光三越A9登場！萬聖節變裝超萌周邊必收，買就送貼紙、滿額加1元購物袋帶回家！</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Blair Tien</li>
+															<li>2026/10/07</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_luxury-perfume1006" name="menu_media_card" data-id="358519" data-code="luxury-perfume1006" href="https://www.skm.com.tw/skmmedia/beauty/parfum/luxury-perfume1006?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/beauty/parfum/luxury-perfume1006?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1006/m_790a2e0f-ca18-418a-bd68-6040d691898d.png.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1006/790a2e0f-ca18-418a-bd68-6040d691898d.png.webp', 'product')" alt="為什麼越來越多人願意買貴香水？從療癒感消費到悅己經濟，信義新光三越新櫃集結3大高級香氛，MFK、ADP、蘆丹氏帶你享受香氛儀式"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">為什麼越來越多人願意買貴香水？從療癒感消費到悅己經濟，信義新光三越新櫃集結3大高級香氛，MFK、ADP、蘆丹氏帶你享受香氛儀式</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Phoebe Chiu</li>
+															<li>2026/10/07</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_wh261001plus01" name="menu_media_card" data-id="357755" data-code="wh261001plus01" href="https://www.skm.com.tw/skmmedia/fashion/luxury/wh261001plus01?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/fashion/luxury/wh261001plus01?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1002/m_702c93a7-e21c-4b36-a0ac-6fbc470f6689.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1002/702c93a7-e21c-4b36-a0ac-6fbc470f6689.jpg.webp', 'product')" alt="2026週年慶攻略：彩色珠寶新趨勢！Tiffany &amp; Co.HardWear 綠松石、Van Cleef &amp; Arpels 氣泡桃粉四葉草、BVLGARI 雙色蛋面戒指..."/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">2026週年慶攻略：彩色珠寶新趨勢！Tiffany &amp; Co.HardWear 綠松石、Van Cleef &amp; Arpels 氣泡桃粉四葉草、BVLGARI 雙色蛋面戒指...</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li></li>
+															<li>2026/10/07</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								<div class="article-card article-card-size swiper-slide">
+										<a class="btn-clickLog banner__link " id="a_menu_media_block_yitong1007" name="menu_media_card" data-id="358647" data-code="yitong1007" href="https://www.skm.com.tw/skmmedia/beauty/beautytips/yitong1007?page_crumb=Media"
+										   data-from_medium="menu-media" data-to_url="https://www.skm.com.tw/skmmedia/beauty/beautytips/yitong1007?page_crumb=Media" data-target_type="article">
+											<div class="article-pic">
+												<img class="img-responsive swiper-lazy" data-src="https://img.skmbuy.com.tw/App_Images/727/Page/2026/1007/m_98864262-e52e-4d2d-b851-0795287a3bb1.png.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmbuy.com.tw/App_Images/727/Page/2026/1007/98864262-e52e-4d2d-b851-0795287a3bb1.png.webp', 'product')" alt="李一桐《我不是大師》演技獲好評！女神維持好狀態靠什麼？防曬、護膚、健身秘訣一次看"/>
+												</div>
+											<div class="article-skmedia-s">
+												<div class="card-title">李一桐《我不是大師》演技獲好評！女神維持好狀態靠什麼？防曬、護膚、健身秘訣一次看</div>
+												<div class="gap4">
+													<div class="s-text-list">
+														<ul>
+															<li>BY&nbsp;Phoebe Chiu</li>
+															<li>2026/10/07</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+							<div class="swiper-scrollbar swiper_menu_scrollbar_media"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="menu_section_online" class="online clickLog_V4Online" data-click_area="sideMenu_V4Online">
+			<div class="container">
+				<div class="menu-title-area">
+					<div class="title-block">
+						<a href="https://online.skm.com.tw/">
+							<h2 class="main-title">線上購物</h2>
+							<div class="sub-title">ONLINE</div>
+						</a>
+					</div>
+					<div class="swiper_area swiper_mevent_area">
+						<div id="div_swiper_online_product_tab_menu" class="swiper-container swiper_productMenu tab-menu-swiper nav swiper_tab" data-tab_class="swiper_productMenu">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="hot-product-list">
+										<ul>
+											<li><a id="a_filter_product_must" role="button" class="active" data-id="must" data-title="限時搶購">限時搶購</a></li>
+											<li><a id="a_filter_product_brand" role="button"  data-id="brand" data-title="品牌專區">品牌專區</a></li>
+											<li><a id="a_filter_product_hot" role="button"  data-id="hot" data-title="熱銷商品">熱銷商品</a></li>
+											<li><a id="a_filter_product_new" role="button"  data-id="new" data-title="最新商品">最新商品</a></li>
+											</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="swiper_area swiper_mevent_area" id="menu_must" name="div_clio_ItemList">
+					<div class="div_swiper_online_product_content_menu swiper-container swiper_menu_product_must tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_product_must" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_product_must">
+						<div class="swiper-wrapper">
+							<div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="862012222070017490"
+		data-from_medium="側選單-限時搶購" data-target_type="product"
+		href="https://online.skm.com.tw/product/862012222070017490?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/862012222070017490?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1013/561460a8-9d5c-41a2-b371-c27869b47a2a_12297702.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1013/561460a8-9d5c-41a2-b371-c27869b47a2a_12297702.jpg.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Cl&eacute; de Peau Beaut&eacute;</div>
+							<div class="product-title">【Cl&eacute; de Peau Beaut&eacute; 肌膚之鑰】星願奇蹟倒數月曆｜週年慶</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">14100</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="862012222100058790"
+		data-from_medium="側選單-限時搶購" data-target_type="product"
+		href="https://online.skm.com.tw/product/862012222100058790?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/862012222100058790?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1014/8cefe289-1aca-4d71-8558-3b3d96ea51ca_12321051.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1014/8cefe289-1aca-4d71-8558-3b3d96ea51ca_12321051.jpg.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">ESTEE LAUDER</div>
+							<div class="product-title">【ESTEE LAUDER】日夜年輕膠原精選組｜週年慶</div>
+						</div>
+						<div class="mix-price">
+							<div class="original-price">10480</div><div class="card-price">6288</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="862012222100061141"
+		data-from_medium="側選單-限時搶購" data-target_type="product"
+		href="https://online.skm.com.tw/product/862012222100061141?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/862012222100061141?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1006/66871582-87ed-4847-9d37-a47fd5b87694_12087206.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1006/66871582-87ed-4847-9d37-a47fd5b87694_12087206.jpg.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">ESTEE LAUDER</div>
+							<div class="product-title">【ESTEE LAUDER】特潤修護明星組｜週年慶</div>
+						</div>
+						<div class="mix-price">
+							<div class="original-price">8455</div><div class="card-price">4450</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="110000108329383"
+		data-from_medium="側選單-限時搶購" data-target_type="product"
+		href="https://online.skm.com.tw/product/110000108329383?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/110000108329383?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0914/2aa3c73e-6f2f-42df-8969-bbf6f0b0b2b0_11534990.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0914/2aa3c73e-6f2f-42df-8969-bbf6f0b0b2b0_11534990.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">SK-II</div>
+							<div class="product-title">SK-II 活膚彈潤人氣組</div>
+						</div>
+						<div class="mix-price">
+							<div class="original-price">10262</div><div class="card-price">5580</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="862012222170074867"
+		data-from_medium="側選單-限時搶購" data-target_type="product"
+		href="https://online.skm.com.tw/product/862012222170074867?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/862012222170074867?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1014/8591a07e-7d62-4444-bae1-6bd8895fac66_12314801.png.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1014/8591a07e-7d62-4444-bae1-6bd8895fac66_12314801.png.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">LANCOME</div>
+							<div class="product-title">頂級醫學凝時精華組｜週年慶</div>
+						</div>
+						<div class="mix-price">
+							<div class="original-price">10276</div><div class="card-price">6750</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div></div>
+						<div class="swiper-scrollbar swiper_menu_scrollbar_product_must"></div>
+					</div>
+				</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_brand" name="div_clio_ItemList" data-test="5">
+					<div class="div_swiper_online_product_content_menu swiper-container swiper_menu_product_brand tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_product_brand" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_product_brand">
+						<div class="swiper-wrapper">
+							<div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="V110000109219194"
+		data-from_medium="側選單-品牌專區" data-target_type="product"
+		href="https://online.skm.com.tw/product/V110000109219194?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/V110000109219194?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/193bef5c-e09b-4ca0-8fe9-36847826e4a3.jpg_11462817.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/193bef5c-e09b-4ca0-8fe9-36847826e4a3.jpg_11462817.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Apple 官方直送</div>
+							<div class="product-title">【官方直送】Apple iPhone 18 Pro 512GB【預購】</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">51900</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="V110000109218151"
+		data-from_medium="側選單-品牌專區" data-target_type="product"
+		href="https://online.skm.com.tw/product/V110000109218151?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/V110000109218151?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/cb50923d-7c83-45b4-b225-e88148686bcd.jpg_11462716.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/cb50923d-7c83-45b4-b225-e88148686bcd.jpg_11462716.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Apple 官方直送</div>
+							<div class="product-title">【官方直送】Apple iPhone 18 Pro Max 512GB【預購】</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">56900</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="2239190153373"
+		data-from_medium="側選單-品牌專區" data-target_type="product"
+		href="https://online.skm.com.tw/product/2239190153373?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/2239190153373?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/2df9e207-2fba-414a-b5da-b01566672c09.jpg_11462682.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/2df9e207-2fba-414a-b5da-b01566672c09.jpg_11462682.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Apple 官方直送</div>
+							<div class="product-title">【官方直送】Apple AirPods 5 主動式降噪款_配備無線充電盒【預購】</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">5190</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="V110000109224323"
+		data-from_medium="側選單-品牌專區" data-target_type="product"
+		href="https://online.skm.com.tw/product/V110000109224323?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/V110000109224323?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0912/a6f071dd-af9d-4275-94a2-27e45d857862_11482740.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0912/a6f071dd-af9d-4275-94a2-27e45d857862_11482740.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Apple 官方直送</div>
+							<div class="product-title">【官方直送】Apple Watch Series 12 42mm GPS 鋁金屬錶殼+運動型錶帶_深古銅色_橄欖色【預購】</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">13900</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="V110000109224333"
+		data-from_medium="側選單-品牌專區" data-target_type="product"
+		href="https://online.skm.com.tw/product/V110000109224333?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/V110000109224333?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0912/dae0e0eb-a088-4d76-a5f0-019aec52b473_11482871.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0912/dae0e0eb-a088-4d76-a5f0-019aec52b473_11482871.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Apple 官方直送</div>
+							<div class="product-title">【官方直送】Apple Watch Ultra 4 鈦金屬錶殼搭配越野錶環 GPS行動網路【預購】_黑色_勃根地</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">27900</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div></div>
+						<div class="swiper-scrollbar swiper_menu_scrollbar_product_brand"></div>
+					</div>
+				</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_hot" name="div_clio_ItemList">
+					<div class="div_swiper_online_product_content_menu swiper-container swiper_menu_product_hot tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_product_hot" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_product_hot">
+						<div class="swiper-wrapper">
+							<div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="2224530015336"
+		data-from_medium="側選單-熱銷商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/2224530015336?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/2224530015336?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/5b7a2d72-5c35-4b67-a8d6-6de7aa72700e_11462677.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0910/5b7a2d72-5c35-4b67-a8d6-6de7aa72700e_11462677.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Rejuall</div>
+							<div class="product-title">(全台獨家)Dr Reju-All PDRN 修護禮盒組</div>
+						</div>
+						<div class="mix-price">
+							<div class="original-price">1570</div><div class="card-price">1399</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="2224210197277"
+		data-from_medium="側選單-熱銷商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/2224210197277?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/2224210197277?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2025/1231/9be9fa33-6bf2-48a0-ab6f-69d5f51fdbbb_7773380.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2025/1231/9be9fa33-6bf2-48a0-ab6f-69d5f51fdbbb_7773380.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Torriden</div>
+							<div class="product-title">Torriden 桃瑞丹 5D微分子玻尿酸保濕安瓶精華限量套裝(50ML+50ML+20ML)</div>
+						</div>
+						<div class="mix-price">
+							<div class="original-price">2120</div><div class="card-price">990</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="2224530004279"
+		data-from_medium="側選單-熱銷商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/2224530004279?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/2224530004279?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ChannelProduct/2025/0822/3278342a-e5f6-4916-a0d2-1128c3aae439.png" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ChannelProduct/2025/0822/3278342a-e5f6-4916-a0d2-1128c3aae439.png', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Unichi</div>
+							<div class="product-title">【任2件85折】UNICHI 海鹽風味淺藍小熊軟糖60顆</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">950</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="2224530014216"
+		data-from_medium="側選單-熱銷商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/2224530014216?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/2224530014216?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0527/52751544-ee7d-40bd-8c3b-540ca28a1eb3_9138379.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0527/52751544-ee7d-40bd-8c3b-540ca28a1eb3_9138379.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">BB LAB</div>
+							<div class="product-title">BBLAB 橄欖油檸檬汁 20gX10ea</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">630</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="2224530013424"
+		data-from_medium="側選單-熱銷商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/2224530013424?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/2224530013424?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0316/4c1cb24a-dd0f-4fe9-901f-316cf62920a3_8130544.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0316/4c1cb24a-dd0f-4fe9-901f-316cf62920a3_8130544.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">Meditherapy</div>
+							<div class="product-title">Meditherapy 彈潤煥亮精華1+1組</div>
+						</div>
+						<div class="mix-price">
+							<div class="original-price">2300</div><div class="card-price">1199</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div></div>
+						<div class="swiper-scrollbar swiper_menu_scrollbar_product_hot"></div>
+					</div>
+				</div>
+				<div class="swiper_area swiper_mevent_area d-none" id="menu_new" name="div_clio_ItemList">
+					<div class="div_swiper_online_product_content_menu swiper-container swiper_menu_product_new tab-menu-swiper02 swiper_href_lazy" data-tab_class="swiper_menu_product_new" data-is_scrollbar="1" data-scrollbar_class="swiper_menu_scrollbar_product_new">
+						<div class="swiper-wrapper">
+							<div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="V86123110000109342456"
+		data-from_medium="側選單-最新商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/V86123110000109342456?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/V86123110000109342456?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1014/9beb5445-1b78-4197-86c5-a628e577eb6b_12314611.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1014/9beb5445-1b78-4197-86c5-a628e577eb6b_12314611.jpg.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">SKM MEN'S</div>
+							<div class="product-title">週年慶限量福袋－SELECT 選貨款（含 WIND AND SEA / BoTT / White Mountaineering｜最高價值 $14,290）</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">2990</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="V86123110000109342455"
+		data-from_medium="側選單-最新商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/V86123110000109342455?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/V86123110000109342455?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1014/ec2f8e62-ef27-4e79-bc97-4c3c2a6e9550_12314870.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1014/ec2f8e62-ef27-4e79-bc97-4c3c2a6e9550_12314870.jpg.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">SKM MEN'S</div>
+							<div class="product-title">週年慶限量福袋－DAILY 日常穿搭款（含 WIND AND SEA / BoTT / White Mountaineering｜最高價值 $11,890）</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">2990</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="V86123110000109333136"
+		data-from_medium="側選單-最新商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/V86123110000109333136?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/V86123110000109333136?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1012/00f87b1c-5c86-449f-960b-52320fe9ef5c_12257043.jpg.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/1012/00f87b1c-5c86-449f-960b-52320fe9ef5c_12257043.jpg.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">AVIREX</div>
+							<div class="product-title">AVIREX《TOP GUN》MA-1飛行夾克 BLACK｜SKM MEN'S 週年慶</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">10500</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="V86123110000109231639"
+		data-from_medium="側選單-最新商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/V86123110000109231639?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/V86123110000109231639?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0914/5a435286-b524-4cb4-9f06-ec731112dc14_11524390.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0914/5a435286-b524-4cb4-9f06-ec731112dc14_11524390.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">nanamica</div>
+							<div class="product-title">nanamica Micro Plaid Wind Shirt Navy // 格紋防風襯衫（海軍藍）</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">10500</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div><div class="menu_online_product_div article-card article-card-size common-card swiper-slide clio_observe">
+	<a class="btn-clickLog banner__link clio_Prod" data-code="861232300004293513"
+		data-from_medium="側選單-最新商品" data-target_type="product"
+		href="https://online.skm.com.tw/product/861232300004293513?utm_source=skmweb&utm_medium=sidemenu" data-to_url="https://online.skm.com.tw/product/861232300004293513?utm_source=skmweb&utm_medium=sidemenu" >
+		<div class="new-online">
+			<div class="product-card-block">
+				<div class="product-card no-max-width no-min-width">
+					<div class="product-pic"><img class="img-responsive" src="https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0916/f838300a-13ee-4309-aff6-cfb6096a967e_11567690.webp" onerror="this.onerror=null; ImgErrorReset(this, 'https://img.skmonline.com.tw/App_Images/727/ERPItem/2026/0916/f838300a-13ee-4309-aff6-cfb6096a967e_11567690.webp', 'product')" alt=""/>
+						</div>
+					<div class="product-card-content">
+						<div class="gap4">
+							<div class="card-brand">BRIEFING</div>
+							<div class="product-title">SOLID LIGHT 後背包-灰色</div>
+						</div>
+						<div class="mix-price">
+							<div class="card-price">6580</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</a>
+</div></div>
+						<div class="swiper-scrollbar swiper_menu_scrollbar_product_new"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div><main id="main-container" class="menu-container-right">
+            	<section class="first-page-content">
+					<div class="container shop-banner-mobile">
+	                    <div class="section-content">
+	                        <h1 class="section-left-title">MATSUZAKA TEI 樂軒松阪亭</h1>
+	                    </div>
+	                </div>
+				</section>				
+	        	<section>
+	        		<div class="container">
+	                    <div class="breadcrumb d-none d-md-block m-tb-0">
+	                        <ul>
+	                            <li class="square"></li>
+	                            <li>
+	                            	<a href="https://www.skm.com.tw/">
+					        			首頁&nbsp;>
+					        		</a>
+	                            </li>       
+	                            <li>
+	                            	<a href="https://www.skm.com.tw/brand_list/">
+					        			品牌/樓層&nbsp;>
+					        		</a>
+	                            </li>          
+	                            <li class="active">
+	                            	<a role="button">
+	                            		<h2>MATSUZAKA TEI 樂軒松阪亭</h2>								
+	                            	</a>
+	                            </li>
+	                        </ul>
+	                    </div>
+	           		</div>         
+	           	</section>	
+	           	
+	           	<section class="d-none d-md-block container">
+		    		<img class="img-responsive"
+									src="https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg" srcset="https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/m_64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg 480w, https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/m_64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg 768w, https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg 1280w"
+									fetchpriority="high" sizes="(max-width: 1566px) 1410px" alt="MATSUZAKA TEI 樂軒松阪亭"/>	            
+					<div class="shop-banner-info m-0">
+		                    <div class="row">
+		                        <div class="col-lg-2 col-3 black-bg pos-relative">
+		                            <div class="shop-banner-title">
+		                                <div class="shop-title-linner m-r-10"></div>
+		                                <ul>
+		                                    <li>品牌</li>
+		                                    <li>介紹</li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                        <div class="col-lg-10 col-9 gray-bg">
+		                            <div class="banner-list v2">
+		                                <a role="button" id="brand_sintro">
+		                                  樂軒全新品牌 「松阪亭 」五月強勢登場！
+台灣和牛燒肉の王者「樂軒」首度進軍信義區！
+
+世界的盡頭，演繹日本三大和牛之首～松阪伊藤牛極致美味；
+A5和牛關西風壽喜燒，遵循道地工序，呈現台灣一；
+A5飛驒牛涮涮鍋，身處京都庭園品享究極肉品。</a>
+		                            </div>
+		                        </div>
+		                    </div>
+		            	</div>
+		        	</section>
+		        <section class="d-block d-md-none  pos-relative">
+		    		<img class="img-responsive shop-banner-mobile"
+									src="https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg" srcset="https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/m_64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg 480w, https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/m_64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg 768w, https://img.skmbuy.com.tw/App_Images/727/Brand/2022/1221/64fe3f5e-f19c-417c-be4b-1e8e2582de87.jpg 1280w"
+									fetchpriority="high" sizes="(max-width: 1566px) 1410px" alt="MATSUZAKA TEI 樂軒松阪亭"/>	              
+					<div class="shop-mobile-content">
+							<div class="shop-banner-title">品牌介紹</div>
+		                    <div class="banner-list v2">
+		                        <a role="button">
+		                        	樂軒全新品牌 「松阪亭 」五月強勢登場！
+台灣和牛燒肉の王者「樂軒」首度進軍信義區！
+
+世界的盡頭，演繹日本三大和牛之首～松阪伊藤牛極致美味；
+A5和牛關西風壽喜燒，遵循道地工序，呈現台灣一；
+A5飛驒牛涮涮鍋，身處京都庭園品享究極肉品。</a>
+		                	</div>
+		            	</div>
+		        	</section>
+	            <section class="block-content">
+		                <div class="container">
+		                    <div class="grid-container grid-md-3 grid-xxs-1">
+		                    	<div class="brand-info">
+			                            <div class="brand-title">
+			                            	台北信義新天地A4&nbsp;
+                                    		6F</div>
+			                            <table class="w-100">
+			                                <tr>
+			                                    <td>
+			                                        <div class="brand-phone">
+			                                            <ul>
+			                                                <li>(02)2345-8833</li>
+			                                            </ul>
+			                                        </div>
+			                                    </td>
+			                                   	<td class="vertical-bottom">
+				                                        <div class="t_right">
+				                                            <a href="https://rsv.skm.com.tw/groups/skm-xinyi/companies/-LBxVrv_kWPlyvtmgr0z:inline-live-2a466/restaurants/-LBxVry_IOznqGTuvwud/booking?utm_source=skmweb&amp;utm_medium=樂軒&amp;utm_term=11129&amp;utm_content=124">
+				                                                線上訂候位 > <span class="m-l-10"><img class="w_40" src="/assets/img/v4/icon_eats.webp" alt=""/></span>
+				                                            </a>
+				                                        </div>
+				                                    </td>
+			                                    </tr>
+			                            </table>
+			                        </div>
+								</div>
+		                </div>
+		            </section>
+	            </main>
+         </div>
+	</div>
+
+
+    <footer class="footer clickLog_footer" data-click_area="footer">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 app-area">
+            <div class="container">
+                <div class="footer__top">
+                    <div class="footer__menu text-center" id="footer__qrcode">
+                    	<h4 class="footer__nav-title">新光三越 APP</h4>
+	                        <p class="footer__des">
+	                            立即下載新光三越 APP 註冊會員，優惠不漏接消費累積 skm points 回饋無上限！
+	                        </p> 
+
+
+<img class="barcode cursor-opinter" data-href="https://www.skm.com.tw/dl_qcode/" src="https://img.skmbuy.com.tw/App_Images/727/BaseUI/2022/1222/3946609d-e911-4b1b-acea-1b36333fb15c.jpg" alt="新光三越 APP" onclick="location.href='https://www.skm.com.tw/dl_qcode/'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-12">
+        	<div class="container md-p0">
+				<div class="col-xl-3 col-md-4 col-6 footer__top float-left">
+									<div class="footer__menu">
+										<h4 class="footer__nav-title">
+											關於我們</h4>
+										<ul class="footer__nav">
+											<li class="footer__list"><a role="button" href="https://www.skm.com.tw/page/aboutUs"    class="footer__link width-content">關於新光三越</a></li>
+												<li class="footer__list"><a role="button" href="https://www.skm.com.tw/page/HR2022"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">人才招募</a></li>
+												<li class="footer__list"><a role="button" href="https://www.skm.com.tw/PrivacyStatement"    class="footer__link width-content">隱私權政策</a></li>
+												<li class="footer__list"><a role="button" href="https://esg.skm.com.tw/"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">永續專區</a></li>
+												<li class="footer__list"><a role="button" href="https://www.skm.com.tw/VenderPropose"    class="footer__link width-content">廠商合作提案</a></li>
+												<li class="footer__list"><a role="button" href="https://vendor.skm.com.tw/"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">供應商服務專區</a></li>
+												<li class="footer__list"><a role="button" href="https://www.skm.com.tw/page/fraud-prevention-action"    class="footer__link width-content">防詐騙提醒</a></li>
+												<li class="footer__list"><a role="button" href="https://www.telligentcrm.com/communication/index?tenantId=d11c916b-a809-11f0-862c-00ffaf2156c9&amp;corporationId=d6e0c203-a809-11f0-862c-00ffaf2156c9&amp;companyId=a6678f7a-a80a-11f0-862c-00ffaf2156c9&amp;companyCode=skm&amp;channelId=fdd2ac90-e074-11f0-b5d9-42010a29f0c3"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">智能客服</a></li>
+												<li class="footer__list"><a role="button" href="https://www.skm.com.tw/tokyo_office"    class="footer__link width-content">東京辦事處 (東京オフィス)</a></li>
+												<li class="footer__list"><a role="button" href="https://online.skm.com.tw/Contact_us?issueCategory=%E5%BB%A0%E5%95%86%E5%90%88%E4%BD%9C%E6%8F%90%E6%A1%88?"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">skm online合作提案</a></li>
+												<li class="footer__list"><a role="button" href="http://www.skm.com.tw/luxury_omo_retail_media"    class="footer__link width-content">零售媒體合作</a></li>
+												</ul>
+								   </div>
+								</div>
+							<div class="col-xl-3 col-md-4 col-6 footer__top float-left">
+									<div class="footer__menu">
+										<h4 class="footer__nav-title">
+											相關投資事項</h4>
+										<ul class="footer__nav">
+											<li class="footer__list"><a role="button" href="https://www.shinkong-place.com/"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">新光天地</a></li>
+												<li class="footer__list"><a role="button" href="https://culture.skm.com.tw/"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">新光三越文教基金會</a></li>
+												<li class="footer__list"><a role="button" href="https://www.fayaque.com.tw/"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">法雅客</a></li>
+												<li class="footer__list"><a role="button" href="https://www.skcinemas.com/"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">新光影城</a></li>
+												<li class="footer__list"><a role="button" href="https://ishop.istore.com.tw"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">[i]Store</a></li>
+												<li class="footer__list"><a role="button" href="https://www.ggds.com.tw/"  target="_blank" rel="noopener noreferrer"  class="footer__link width-content">好好集 goodgoods</a></li>
+												</ul>
+								   </div>
+								</div>
+							<div class="col-xl-3 col-md-4 col-6 footer__top d-none d-md-block float-left">
+				       			<div class="footer__menu">
+									<h4 class="footer__nav-title">
+										Follow Us</h4>
+									<ul class="footer__nav">
+										<li class="footer__form">
+												<div class="row">
+													<div class="col-2"><a role="button" href="https://redirect-line.accunix.net/redirect.html?liffId=1656407656-Kglg4XWj&amp;lineId=L17bce3ec6ce4n1&amp;lineBasicId=@259ewmzq&amp;linkId=184317ec8c4Tum" target="_blank" rel="noopener noreferrer" ><i class="icon-line"></i></a></div>
+				                                	<div class="col-10 p-l-0"><a role="button" class="btn btn--box btn--border-black btn--uppercase btn--weight text-left w-100" href="https://redirect-line.accunix.net/redirect.html?liffId=1656407656-Kglg4XWj&amp;lineId=L17bce3ec6ce4n1&amp;lineBasicId=@259ewmzq&amp;linkId=184317ec8c4Tum"  target="_blank" rel="noopener noreferrer" >新光三越LINE帳號</a></div>
+				                                </div>
+			                                </li>
+										<li class="footer__form">
+												<div class="row">
+													<div class="col-2"><i class="icon-facebook"></i></div>
+													<div class="col-10 p-l-0">
+	                                                     <select id="faceBookUrl" class="w-100 footer-select2-single" data-placeholder="探索新光三越">
+	                                                     	<option value="">探索新光三越</option>
+	                                                        <option value="https://www.facebook.com/profile.php?id=100089421166081" data-new_tab="1" >新光三越skm online</option>
+	                                                        <option value="https://www.facebook.com/beautystagetw" data-new_tab="1" >beauty STAGE美麗台</option>
+	                                                        <option value="https://www.facebook.com/skm120" data-new_tab="1" >台北信義新天地</option>
+	                                                        <option value="https://www.facebook.com/skmxinyi" data-new_tab="1" >台北信義新天地 A11</option>
+	                                                        <option value="https://www.facebook.com/skm132" data-new_tab="1" >DIAMOND TOWERS</option>
+	                                                        <option value="https://www.facebook.com/skm100" data-new_tab="1" >台北南西店</option>
+	                                                        <option value="https://www.facebook.com/skm110" data-new_tab="1" >台北站前店</option>
+	                                                        <option value="https://www.facebook.com/skm150" data-new_tab="1" >台北天母店</option>
+	                                                        <option value="https://www.facebook.com/skm17" data-new_tab="1" >桃園站前店</option>
+	                                                        <option value="https://www.facebook.com/skm200" data-new_tab="1" >台中中港店</option>
+	                                                        <option value="https://www.facebook.com/skm330" data-new_tab="1" >嘉義垂楊店</option>
+	                                                        <option value="https://www.facebook.com/skm320" data-new_tab="1" >台南西門店</option>
+	                                                        <option value="https://www.facebook.com/skm322" data-new_tab="1" >台南小西門</option>
+	                                                        <option value="https://www.facebook.com/skm361/" data-new_tab="1" >台南小北門店</option>
+	                                                        <option value="https://www.facebook.com/skm310" data-new_tab="1" >台南中山店</option>
+	                                                        <option value="https://www.facebook.com/skm350" data-new_tab="1" >高雄左營店</option>
+	                                                        <option value="https://www.facebook.com/skm300" data-new_tab="1" >高雄三多店</option>
+	                                                        <option value="https://www.facebook.com/skmpark.outlets.kh/?locale=zh_TW" data-new_tab="1" >SKM Park Outlets</option>
+	                                                        </select>
+	                                                 </div>
+	                                             </div>
+	                                         </li>
+										<li class="footer__form">
+												<div class="row">
+													<div class="col-2"><i class="icon-instagram"></i></div>
+													<div class="col-10 p-l-0">
+	                                                     <select id="instagramUrl" class="w-100 footer-select2-single" data-placeholder="探索新光三越">
+	                                                     	<option value="">探索新光三越</option>
+	                                                        <option value="https://www.instagram.com/skmlive/" data-new_tab="1" >新光三越潮生活</option>
+	                                                        <option value="https://www.instagram.com/skmmode/" data-new_tab="1" >新光三越潮時尚</option>
+	                                                        <option value="https://www.instagram.com/skmyummy/" data-new_tab="1" >新光三越潮吃貨</option>
+	                                                        <option value="https://www.instagram.com/skmpretty/" data-new_tab="1" >新光三越潮女神</option>
+	                                                        </select>
+	                                                 </div>
+	                                             </div>
+	                                         </li>
+										</ul> 
+				         		</div>
+				         	</div>
+				         </div>
+        </div>
+        <div class="d-none d-md-block">
+        		<div class="copyright-area ">
+	        		<div class="copyright-text">
+	        			© Copyright&nbsp;<span class="append_current_year"></span>SHIN KONG MITSUKOSHI.</div>
+        		</div>
+        	</div>
+         </div>
+</div><div class="d-block d-md-none">
+			<div class="container">
+				<div class="row items-center">
+					<div class="col-md-3 col-4">
+						<h5 class="footer__nav-title">Follow Us</h5>
+		          	</div>
+		          	<div class="col-md-9 col-8">
+		          		<div class="footer__social">
+		          			<ul>
+		          				<li>
+			          					<a role="button"  href="https://redirect-line.accunix.net/redirect.html?liffId=1656407656-Kglg4XWj&amp;lineId=L17bce3ec6ce4n1&amp;lineBasicId=@259ewmzq&amp;linkId=184317ec8c4Tum" target="_blank" >
+			          					<i class="icon-line goPageUrl" data-type="line"></i>
+									</a>
+		                            </li>
+		          				<li>
+			                      		<a role="button"  href="#div_footer__social">
+			                      			<i class="icon-facebook goPageUrl" data-type="facebook"></i>
+			                      		</a>
+			                      	</li>
+								<li>
+			                      		<a role="button"  href="#div_footer__social">
+			                      			<i class="icon-instagram goPageUrl" data-type="instagram"></i>
+			                      		</a>
+			                      	</li>
+								</ul>
+		                </div>
+					</div>
+				</div>
+			</div>
+			<div class="footer__social__bar d-none" id="div_footer__social">
+				<div class="row">
+					<div class="col-md-8 col-9 mobileSelectInstagram">
+						<select id="m_instagramUrl" class="footer-select2-single">
+								<option value="https://www.instagram.com/skmlive/" data-new_tab="1" >新光三越潮生活</option>
+                             	<option value="https://www.instagram.com/skmmode/" data-new_tab="1" >新光三越潮時尚</option>
+                             	<option value="https://www.instagram.com/skmyummy/" data-new_tab="1" >新光三越潮吃貨</option>
+                             	<option value="https://www.instagram.com/skmpretty/" data-new_tab="1" >新光三越潮女神</option>
+                             	</select>
+						</div>
+		            <div class="col-md-8 col-9 mobileSelectUrlFacebook">
+						<select id="m_faceBookUrl" class="footer-select2-single">
+								<option value="https://www.facebook.com/profile.php?id=100089421166081" data-new_tab="1" >新光三越skm online</option>
+                             	<option value="https://www.facebook.com/beautystagetw" data-new_tab="1" >beauty STAGE美麗台</option>
+                             	<option value="https://www.facebook.com/skm120" data-new_tab="1" >台北信義新天地</option>
+                             	<option value="https://www.facebook.com/skmxinyi" data-new_tab="1" >台北信義新天地 A11</option>
+                             	<option value="https://www.facebook.com/skm132" data-new_tab="1" >DIAMOND TOWERS</option>
+                             	<option value="https://www.facebook.com/skm100" data-new_tab="1" >台北南西店</option>
+                             	<option value="https://www.facebook.com/skm110" data-new_tab="1" >台北站前店</option>
+                             	<option value="https://www.facebook.com/skm150" data-new_tab="1" >台北天母店</option>
+                             	<option value="https://www.facebook.com/skm17" data-new_tab="1" >桃園站前店</option>
+                             	<option value="https://www.facebook.com/skm200" data-new_tab="1" >台中中港店</option>
+                             	<option value="https://www.facebook.com/skm330" data-new_tab="1" >嘉義垂楊店</option>
+                             	<option value="https://www.facebook.com/skm320" data-new_tab="1" >台南西門店</option>
+                             	<option value="https://www.facebook.com/skm322" data-new_tab="1" >台南小西門</option>
+                             	<option value="https://www.facebook.com/skm361/" data-new_tab="1" >台南小北門店</option>
+                             	<option value="https://www.facebook.com/skm310" data-new_tab="1" >台南中山店</option>
+                             	<option value="https://www.facebook.com/skm350" data-new_tab="1" >高雄左營店</option>
+                             	<option value="https://www.facebook.com/skm300" data-new_tab="1" >高雄三多店</option>
+                             	<option value="https://www.facebook.com/skmpark.outlets.kh/?locale=zh_TW" data-new_tab="1" >SKM Park Outlets</option>
+                             	</select>
+						</div>
+		            <div class="col-md-4 col-3">
+		            	<a role="button" id="goUrlPage" href="javascript:void(0);" class="btn btn--box btn--small btn--red btn--uppercase font--semi-bold float-right" target="_blank">GO</a>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="copyright-area ">
+		    		<div class="container">
+		    			<div class="copyright-text">© Copyright&nbsp;<span class="append_current_year"></span>SHIN KONG MITSUKOSHI.</div>
+		    		</div>
+				</div>
+			</div>
+	</footer><button class="material-scrolltop" type="button" id="btn_scroll_top" aria-label="向上捲軸"></button>   
+	<script defer src="/assets/js/vendor/bootstrap.bundle.min.js"></script><link rel="preload" as="script" href="/assets/js/plugin/plugins.min.js">
+    <script defer src="/assets/js/plugin/plugins.min.js"></script>
+    <script defer type="text/javascript" src="/js/clio/clio_init.js?V=2026061700001&?v=278687"></script>
+<script defer src="/js/func.js?v=278687"></script>
+    <script defer src="/assets/js/main.js?v=278687"></script>
+<script defer src="/assets/js/purify.min.js"></script>
+	<script defer src="/assets/js/js.cookie.min.js"></script>
+	<script defer src="/assets/js/jquery.lazy.min.js"></script>
+	<script defer src="/assets/js/select2/select2.js"></script>
+	<script defer src="/assets/js/sweetalert/sweetalert2.min.js"></script>
+	<script defer src="/assets/js/toast/jquery.toast.min.js"></script>
+	<script defer src="/assets/js/moment/moment.min.js"></script>
+<script defer src="/js/header.js?v=278687"></script>
+<script defer type="text/javascript" src="/js/share_log.js?v=278687"></script>
+<script>
+	var referer_url 	  = "";
+	var page_product_code = "";
+	var is_visitor_purchase = "0";
+	var isShareCartEnabled  = "0";
+	var isShareCartIntroEnabled		   = "0";
+	var product_variation_display_type = "3";
+	var headerDropdownHoverTimerRaw = '500';
+	var headerDropdownHoverTimer = Number(headerDropdownHoverTimerRaw);
+    var ENABLED_AI_SEARCH = false;
+    var AI_SEARCH_QUERY_MIN_LENGTH = 2;
+    var AI_SEARCH_QUERY_MAX_LENGTH = 22;
+	if (headerDropdownHoverTimerRaw === '' || isNaN(headerDropdownHoverTimer)) headerDropdownHoverTimer = 500;
+	if (headerDropdownHoverTimer < 0) headerDropdownHoverTimer = 0;
+	//JW 2026/04/30 Header 類別 menu 要統一尊重後台 hover delay 設定，且允許設定為 0。
+    if (typeof hover_timer_ss === "undefined") {
+        var hover_timer_ss = headerDropdownHoverTimer;
+    }else{
+        hover_timer_ss = headerDropdownHoverTimer;
+    }
+	let is_debug_enabled = "";
+
+	if (typeof(debug_consolelog) !== "function") 
+		window["debug_consolelog"] = function(str){
+			
+		}
+
+	window.addEventListener("message", async function(event) {
+		if (typeof event.data === 'string' && event.data.trim() == "iframe_ask_href") {
+			if (typeof(debug_consolelog) === "function") debug_consolelog("收到 iframe_ask_href 的request " + event.data);
+			
+			let host = location.href.substring(0, location.href.indexOf('/', 8));
+
+			
+			
+
+			let callbackurl = host + "/";
+
+			//console.log("response callbackurl: " + callbackurl);
+
+			//從哪邊 postMessage 過來的，就回傳給哪邊，修正
+			event.source.postMessage(callbackurl, event.origin);
+		}else{
+			//console.log("收到 iframe_ask_href 的request " + JSON.stringify(event.data) + " from " + event.origin);
+		}
+	}, false);
+</script>
+<script defer src="/assets/js/macy.js"></script><script defer type="text/javascript" src="/js/clio/clio.js?v=278687"></script>
+<script defer type="text/javascript" src="/js/v4/login_once.js?v=278687"></script>
+	<script>let flag_V4_phase2_enabled = true;</script>
+	<script>let v4_login_url = "https://vip.skm.com.tw/OAuthWeb/RegisterMemberCard.aspx";</script>
+	<script>let v4_logout_url = "/V4Logout.action";</script>
+	<script>let v4_generate_auth_url = "/generateAuthenticationUrl.action?T1103=V4";</script>
+	<script defer src="/js/v4/global2.js?V=202608070001&?v=278687"></script>
+	<script defer src="/js/v4/header_member_v4.js?V=202606250001&?v=278687"></script>
+	<script defer src="/js/v4/member_center_v4.js?V202604010001&?v=278687"></script>
+	<input type="hidden" id="surl" name="surl" value="/" />
+	<input type="hidden" id="color_event_main" value="#d02c25"/><script defer src="/assets/js/js.js"></script>
+	<script defer src="/assets/js/scroll/iscroll.js"></script>
+		<script defer src="/assets/js/scroll/navbarscroll.js"></script>
+	<script type="text/javascript" src="https://m.vpon.com/sdk/vpadn-sdk.js"></script>
+		<script src="/js/v4/vpon.js?v=278687"></script>
+	<script defer type="text/javascript" src="/assets/js/swiper/swiper-bundle-8.4.4.min.js?v=278687"></script><script defer type="text/javascript" src="/js/init_swiper.js?V=2026061700001?v=278687"></script>
+<script src="/js/Components/crumb.js?v=278687"></script>
+
+<div class="d-none"><img id="loading_preload" src="https://www.skm.com.tw//assets/img/loading_s.gif"/></div>
+<input type="hidden" id="CLIO_URL"  value="https://iot2.skmbuy.com.tw/ClioWS/"/>
+<input type="hidden" id="CLIO_CODE" value="cs_h3iQM7D512VYOeGO9yIziE"/>
+<input type="hidden" id="CLIO_GTM" value="1"/>
+<input type="hidden" id="CLIO_RECMD" value=""/>
+<input type="hidden" id="CLIO_ENABLE_INSERT_LOG" value="0"/>
+<input type="hidden" id="CLIO_ENABLE_VPON" value="1"/>
+<input type="hidden" id="CLIO_platform_type" value="WWW"/>
+<input type="hidden" id="img_header_logo_w" value="https://img.skmbuy.com.tw/App_Images/727/BaseUI/2025/0812/e50d5bdb-05c7-4e84-be83-400c3255494d.svg"/>
+
+<input type="hidden" name="brand_id" value="11129" id="brand_id"/><input type="hidden" id="page_query_cond"/>
+	<script>
+		let page_code = "";
+		let page_search_key = "";		
+		let page_total_rcnt = "0";
+		let page_rcnt   = "0";
+		page_total_rcnt = parseInt(page_total_rcnt);
+		page_rcnt	    = parseInt(page_rcnt);		
+	</script>
+    <script src="/js/website/brand_info.js?v=278687"></script>
+    <script src="/js/page/operation_pagination.js?v=278687"></script>
+</body>

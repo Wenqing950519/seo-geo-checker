@@ -1,0 +1,28 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 70,
+  "provider": "deepseek",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "reserved_at": "2026-10-15T06:25:12.009Z",
+  "payload": {
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You must output valid JSON only. Do not output Markdown or explanatory text."
+      },
+      {
+        "role": "user",
+        "content": "你是研究資料標註員，只能根據提供的網站證據輸出 JSON。\n任務是標準化基本資訊、產業分類、網站結構與內容特徵；不是提出優化建議。\n不得產出 recommendation、action、improvement、rewrite、expected impact 或任何行銷建議。\n證據不足時填 unknown，並降低 confidence；不得從網域名稱猜測。\n輸出格式：\n{\"entity_name\":\"string | unknown\",\"industry\":\"string | unknown\",\"business_scope\":\"string | unknown\",\"geography\":[\"string\"],\"primary_language\":\"string | unknown\",\"page_purpose\":\"string | unknown\",\"structure_summary\":{\"information_architecture\":\"string | unknown\",\"content_format\":[\"string\"],\"schema_types\":[\"string\"],\"js_dependency\":\"low | medium | high | unknown\"},\"observed_content_topics\":[\"string\"],\"evidence_basis\":[\"string\"],\"confidence\":\"low | medium | high\"}\n網站證據：\n{\"url\":\"https://orangeshabu.com/zh-TW\",\"detected_site_type\":\"restaurant\",\"title\":\"橘色集團\",\"description\":\"橘色涮涮屋是一家由長期旅居美國並從事專業餐飲的『SCOTT袁』歷經多年規劃， 斥資仟萬的頂級涮涮鍋餐廳，老闆本身即是對用餐方面的視覺、味覺、聽覺、心情享受極為講究之人。因為對涮涮鍋的偏好，再加上台灣找不到要求的水平，老闆即產生開站的念頭。並以顧客導向、優雅空間、鮮活食材、專業客服等四大理念籌劃『橘色』，打造出一個頂級的涮涮鍋餐廳，以饗同好。\",\"h1\":\"\",\"language\":\"\",\"text_excerpt\":\"橘色集團 關於 新訊 品牌 咖啡餐食 M One Cafe 日式鍋品 橘色涮涮屋 Extension 1 by 橘色 舒活芳療 SAKURA SPA M One SPA 團隊 聯繫 SPA Shabu Café 橘色集團 ｜ orangeshabu@gmail.com Copyright © 2019 Orange Co. All rights reserved\",\"representative_pages\":[{\"url\":\"https://orangeshabu.com/zh-TW/about\",\"title\":\"橘色餐飲集團\",\"h1\":\"\",\"text_excerpt\":\"橘色餐飲集團\"},{\"url\":\"https://orangeshabu.com/zh-TW/brand/m-one-cafe\",\"title\":\"橘色餐飲集團\",\"h1\":\"\",\"text_excerpt\":\"橘色餐飲集團\"},{\"url\":\"https://orangeshabu.com/zh-TW/brand/orange-shabu\",\"title\":\"橘色餐飲集團\",\"h1\":\"\",\"text_excerpt\":\"橘色餐飲集團\"}],\"observed_structure\":{\"title_present\":true,\"h1_present\":false,\"description_present\":true,\"readable_text_length\":182,\"schema_types\":[],\"sitemap_status\":200,\"crawl_method\":\"browser\"}}"
+      }
+    ],
+    "response_format": {
+      "type": "json_object"
+    },
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "disabled"
+    },
+    "temperature": 0
+  }
+}

@@ -1,0 +1,1096 @@
+
+
+
+<!doctype html>
+<html >
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        捌伍添第 85TD-HOME
+    </title>
+    <meta http-equiv="Content-Language" content="zh-tw" />
+<meta name="author" content="捌伍添第 85TD" >
+<meta name="description" content="捌伍添第 85TD位居台灣地標-TAIPEI 101 85樓，行政總主廚謝文師傅，過往主理的餐廳多次獲得米其林指南評星榮譽，將中華料理各菜系精通融貫，以其50年的深厚廚藝，結合台灣飲食，創作出跨越菜系的「當代中華料理」" >
+<meta name="keywords" content="85TD 捌伍添第, 台北粵菜, 台北高端粵菜餐廳, 粵式料理, 廣東菜,信義區粵菜, 台北101中餐廳, 米其林粵菜推薦, 台北 fine dining 中餐, 燒鵝, 叉燒, 港點, 佛跳牆, 燕窩, XO醬, 楊枝甘露,商務聚餐餐廳, 家庭聚餐推薦, 高級景觀餐廳, 台北宴客中餐廳, 台北米其林餐廳推薦" >
+<meta property="og:title" content="捌伍添第 85TD-HOME" />
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://www.85td-101.com/home.php"/>
+<meta property="og:description" tag='1' content="捌伍添第 85TD位居台灣地標-TAIPEI 101 85樓，行政總主廚謝文師傅，過往主理的餐廳多次獲得米其林指南評星榮譽，將中華料理各菜系精通融貫，以其50年的深厚廚藝，結合台灣飲食，創作出跨越菜系的「當代中華料理」"/>
+<meta property="og:site_name" content="捌伍添第 85TD"/>
+<link rel="Shortcut Icon" href="https://x.miniwork.cc/manager_admin/upload_file/85TD/667/17600796671.png?v=1767606716" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="google-site-verification" content="nLL-yoYIrzvTDiM9RhUsV6A_ArxzQemhr7IkNCVhrYc" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "85TD 捌伍添第",
+  "servesCuisine": ["Cantonese"],
+  "priceRange": "$$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Taipei City",
+    "addressRegion": "Taiwan",
+    "streetAddress": "台北市信義區信義路五段7號 85樓"
+  },
+  "telephone": "+886-2-8101-0085",
+  "url": "https://www.85td-101.com",
+  "sameAs": [
+    "https://www.facebook.com/85td.tw",
+    "https://www.instagram.com/85td.tw",
+    "https://guide.michelin.com/tw/taipei-region/taipei/restaurant/85td"
+  ],
+  "acceptsReservations": true,
+  "openingHours": "Mo-Su 11:30-22:00"
+}
+</script>
+<meta property="og:image" content="https://x.miniwork.cc/manager_admin/upload_file/85TD/266/17602592661.png"> <!-- line分享圖 -->
+<link rel="image_src" type="image/jpeg" href="https://x.miniwork.cc/manager_admin/upload_file/85TD/266/17602592661.png" />
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-MVR560EPYE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MVR560EPYE');
+</script>
+
+    <!-- 以下是程式需要的js -->
+    <script src="date_time/My97DatePicker/WdatePicker.js"></script> <!-- 日期選擇 -->
+
+<script src="https://x.miniwork.cc/js/jquery-1.11.0.min.js" type="text/javascript" ></script>
+
+<script type="text/javascript" src="https://x.miniwork.cc/js/slick-1.8.1/slick.min.js" ></script> <!-- 商品大圖 -->
+
+<script type="text/javascript" src="https://x.miniwork.cc/js/venobox2/venobox.min.js"></script>
+<!--<script type="text/javascript" src="https://x.miniwork.cc/js/venobox2/venobox.js"></script>-->
+
+
+<!--<script type="text/javascript" src="https://x.miniwork.cc/js/jquery.tools.min.js" ></script>-->
+
+
+
+
+<!--<script src="gzip_js.php?v=20170730" type="text/javascript" ></script>-->
+
+<script src="https://x.miniwork.cc/manager_admin/js/copy_url.js" type="text/javascript" async></script>  <!-- copy 網址 -->
+
+<script type="text/javascript" charset="utf-8" src="https://x.miniwork.cc/manager_admin/echarts/echarts.min.js"></script>
+<!--<script src="https://x.miniwork.cc/manager_admin/js/ymPrompt.js" type="text/javascript" async></script>-->
+<script src="https://x.miniwork.cc/js/page_amount.js" type="text/javascript" async></script>
+
+
+<script src="https://x.miniwork.cc/js/show_son_menu.js" type="text/javascript" async></script>
+
+
+<!--<script src="https://x.miniwork.cc/js/swfobject.js" type="text/javascript" async></script>-->
+<!--<script src="https://x.miniwork.cc/js/ad.js" type="text/javascript" async></script> -->   <!-- 首頁廣告輪播 -->
+<!--<script src="https://x.miniwork.cc/js/figureimg.js" type="text/javascript" async></script> -->  <!-- 首頁形象圖片 -->
+<script src="https://x.miniwork.cc/js/jquery.qtip-1.0.0-rc3.min.js" type="text/javascript" async></script>  <!-- 提示框 -->
+<!--<script src="https://x.miniwork.cc/js/jquery.corner.js" type="text/javascript" ></script>-->  <!-- 圓角 -->
+<!--<script src="https://x.miniwork.cc/js/thickbox.js" type="text/javascript" async></script>-->  <!-- 頁面壓黑小視窗 -->
+<!--<script src="https://x.miniwork.cc/js/banner_pic.js" type="text/javascript" async></script>-->   <!-- 主圖輪播js(淡入淡出) -->
+
+<script src="https://x.miniwork.cc/js/thumbs.js" type="text/javascript" ></script> <!--縮圖js -->
+<!--<script src="https://x.miniwork.cc/js/jquery-impromptu.4.0.min.js" type="text/javascript" async></script>-->   <!-- div提示頁面 -->
+<script src="https://x.miniwork.cc/js/side_car.js" type="text/javascript" async></script>  <!-- 滑動購物選單 -->
+<script src="https://x.miniwork.cc/js/grayscale.js" type="text/javascript" ></script>  <!-- 滑動購物選單(新版的) -->
+<script src="https://x.miniwork.cc/js/jyoutube.js" type="text/javascript" ></script>  <!-- Youtubejs -->
+
+
+<script src="https://x.miniwork.cc/js/jq_cookie.js" type="text/javascript" ></script>   <!-- 寫入cookie套件 -->
+<script src="https://x.miniwork.cc/js/jquery.lightbox-0.5.js?v=1" type="text/javascript" ></script>
+<!--<script src="https://x.miniwork.cc/js/jquery.jcarousel.min_v.js" type="text/javascript" ></script>-->
+<!--<script src="https://x.miniwork.cc/js/slideshow_buttontitle.js" type="text/javascript" async></script>-->
+
+
+<script src="https://x.miniwork.cc/js/jquery.colorbox-min.js" type="text/javascript" ></script>
+
+<!--<script src="https://x.miniwork.cc/js/jquery.loupe.min.js" type="text/javascript" async></script>-->
+<script src="https://x.miniwork.cc/js/vtip-min.js" type="text/javascript" async></script>   <!-- 提示框 -->
+<!--<script src="https://x.miniwork.cc/js/jquery.timers-1.1.2.js" type="text/javascript" async></script>-->    <!-- 倒數計時 -->
+
+<!--<script src="https://x.miniwork.cc/js/bootstrap-waterfall.js" type="text/javascript" async></script>-->
+
+
+
+<script src="https://x.miniwork.cc/js/swiper/swiper-bundle6.min.js"></script>
+<!--<script src="https://x.miniwork.cc/js/swiper/swiper-bundle.min.js.map"></script>-->
+<script src="https://x.miniwork.cc/js/swiper/swiper.animate.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="https://x.miniwork.cc/js/jquery.aniview.js"></script> <!--  滾動動畫 -->
+
+
+<script src="https://x.miniwork.cc/js/jquery.sliderPro.js" type="text/javascript" ></script>   <!--滿版的主圖輪播-->
+
+<script src="https://x.miniwork.cc/js/sliderPro_add_title.js" type="text/javascript" ></script>   <!--滿版的主圖輪播加title文字-->
+
+<!--<script src="https://x.miniwork.cc/manager_admin/js/jquery.tipsy.js" type="text/javascript" ></script>-->   <!--jq提示框-->
+
+<script src="https://x.miniwork.cc/js/fancybox/jquery.fancybox.min.js" type="text/javascript" ></script>   <!--fancybox-->
+
+<script src="https://x.miniwork.cc/js/supersized.2.0.js" type="text/javascript" ></script>  <!--jq滿版背景圖-->
+
+
+
+    <script src="https://x.miniwork.cc/js/right_float_top.js" type="text/javascript"></script><!--右邊下面top按鈕-->
+
+
+
+
+
+
+
+
+
+   <script src="https://x.miniwork.cc/webdox_style/style_3142/template.js" type="text/javascript"></script>  <!-- 系統樣式js-->
+
+<script src="https://x.miniwork.cc/js/ad_float.js" type="text/javascript"></script><!--右側浮動廣告js-->
+
+
+
+
+
+<script src="https://x.miniwork.cc/js/notyf.js" type="text/javascript"></script>  <!--右下提示框-->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+
+
+
+<!--<script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>-->
+
+<script src="https://x.miniwork.cc/js/jquery_lazyload_min_191.js"></script>
+
+
+
+
+
+
+
+
+<script>
+/****************
+  出現會員公告黑幕
+****************/
+
+
+
+    var PosX = (screen.width )/2 -400;
+    var PosY = (screen.height )/2 -300 -50;
+
+
+    var PosX2 = (screen.width )/2 -400 ;
+    var PosY2 = (screen.height )/2 -300 -50;
+
+
+    function show_member_black()
+    {
+
+          $("body").append("<a class='inline' href=\"#member_publish_content\"></a>");
+          $(".inline").colorbox({inline:true, maxWidth:"90%", maxHeight:"90%"});
+          $(".inline").click();
+
+//        document.getElementById("xie").style.display = "";
+//        document.getElementById("content1").style.display = "";
+//        document.getElementById("content1").style.top = PosY+"px";
+//        document.getElementById("content1").style.left = PosX+"px";
+//        document.getElementById("close_img").style.top= PosY2+"px";
+//        document.getElementById("close_img").style.left= PosX2+"px";
+
+    }
+
+
+    function hide_member_black(s_now_url)
+    {
+
+        document.getElementById("xie").style.display = "none";
+        document.getElementById("content1").style.display = "none";
+        document.getElementById("close_img").style.top = "-100px";
+        document.getElementById("close_img").style.left = "-100px";
+
+        if(s_now_url != "")
+           location.href=s_now_url;
+        else
+           location.href="index.php";
+    }
+
+
+
+
+</script>
+
+<script type="text/javascript">
+    $(function() {
+
+
+
+
+
+
+
+//        $('#gallery a').lightBox();
+//
+//        $('.gallery p a').lightBox();
+//        $('.gallery a').lightBox();
+
+
+
+
+
+
+
+        $(window).resize(function(){
+
+            var sp_image_count=0;
+            sp_image_count=$(".sp-image").size();
+
+            if(sp_image_count > 0)
+            {
+
+                $(".sp-mask").css("height",$(".sp-image").height());
+            }
+        });
+
+
+
+
+
+    });
+    </script>
+
+<!--<script type="text/javascript" src="https://x.miniwork.cc/manager_admin/js/jquery.jcarousel.min.js"></script>-->
+
+<script type="text/javascript">
+
+jQuery(document).ready(function() {
+
+
+
+  // $(".img_trans")
+  // .mouseenter(function(){
+  //   var object = $(this).children('img');
+  //   var trans_img = $(this).attr("img-trans");
+
+  //   if(trans_img!=''){
+
+  //     $(this).attr("img-ori",object.attr("src")); //原圖記錄
+
+  //     now_ani = $(this).parents('.col-4');
+
+  //     now_ani.fadeOut(500, function() {
+  //       object.attr("src",trans_img);
+  //       now_ani.fadeIn(500);
+  //     });
+
+  //   }
+  // }).mouseleave(function(){
+  //   var object = $(this).children('img');
+  //   var trans_img = $(this).attr("img-trans");
+
+  //   if(trans_img!=''){
+  //     object.attr("src",$(this).attr("img-ori"));
+  //   }
+  // });
+
+
+  $(".img_trans").hover(function(event){
+
+    var object = $(this).children('img');
+    var trans_img = $(this).attr("img-trans");
+
+    $(this).attr("img-ori",object.attr("src")); //原圖記錄
+
+    if(trans_img!=''){
+//      now_ani = $(this).parents('.aos-animate');
+      now_ani = $(this).parents('.x5p');
+
+
+
+
+//        now_ani.fadeOut(200, function(){
+          object.attr("src",trans_img);
+//          now_ani.fadeIn(200);
+//        });
+
+
+    }
+  },function(event){
+    var object = $(this).children('img');
+    var trans_img = $(this).attr("img-trans");
+
+    if(trans_img!=''){
+      object.attr("src",$(this).attr("img-ori"));
+    }
+  });
+
+
+
+
+
+
+});
+
+
+
+
+
+
+</script>
+
+
+<!--<script src="https://plus.webdo.com.tw/js/PNG_IE6-min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  DD_belatedPNG.fix('*');
+</script>
+-->
+
+<script>
+// 照片放大js是程式預設的功能
+function all_start()
+{
+//    setupZoom();        // 啟動照片放大js
+    //ScrollBluezz();
+}
+
+//window.onload=all_start;
+
+
+function openwindow(url,name,iWidth,iHeight)
+{
+  var url;     //網頁位置;
+  var name;    //網頁名稱;
+  var iWidth;  //視窗的寬度;
+  var iHeight; //視窗的高度;
+  var iTop = (window.screen.availHeight-30-iHeight)/2;  //視窗的垂直位置;
+  var iLeft = (window.screen.availWidth-10-iWidth)/2;   //視窗的水平位置;
+  window.open(url,name,'height='+iHeight+',,innerHeight='+iHeight+',width='+iWidth+',innerWidth='+iWidth+',top='+iTop+',left='+iLeft+',status=no,location=no,status=no,menubar=no,toolbar=no,resizable=no,scrollbars=yes');
+}
+
+
+
+// 加入我的最愛
+// function addBookmarkForBrowser(webname,url) {
+//     if (document.all){
+//         window.external.AddFavorite(url, webname);
+//     } else {
+//         window.sidebar.addPanel(webname, url, "");
+//     }
+// }
+
+function addBookmarkForBrowser(sTitle, sUrl)
+{
+
+    if (window.sidebar && window.sidebar.addPanel) {
+        addBookmarkForBrowser = function(sTitle, sUrl) {
+            window.sidebar.addPanel(sTitle, sUrl, "");
+        }
+    } else if (window.external) {
+        addBookmarkForBrowser = function(sTitle, sUrl) {
+            window.external.AddFavorite(sUrl, sTitle);
+        }
+    } else {
+        addBookmarkForBrowser = function() {
+            alert("do it yourself");
+        }
+    }
+
+    return addBookmarkForBrowser(sTitle, sUrl);
+}
+
+
+$(function(){
+
+
+
+})
+
+</script>
+
+<script type="text/javascript">
+  window.Clipboard = (function(window, document, navigator) {
+    var textArea,
+    copy;
+
+    function isOS() {
+      return navigator.userAgent.match(/ipad|iphone/i);
+    }
+
+    function createTextArea(text) {
+      textArea = document.createElement('textArea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+    }
+
+    function selectText(){
+      var range,
+      selection;
+
+      if (isOS()) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+      } else {
+        textArea.select();
+      }
+    }
+
+    function copyToClipboard() {
+      document.execCommand("Copy");
+      document.body.removeChild(textArea);
+    }
+
+    copy = function(text) {
+      createTextArea(text);
+      selectText();
+      copyToClipboard();
+    };
+
+    return {
+      copy: copy
+    };
+    })(window, document, navigator);
+
+
+
+    function copy_text(value){
+      window.Clipboard.copy(value);
+      alert("已複製");
+    }
+</script>
+
+
+
+<script>
+$(function(){
+  // 先取得 div#abgne_marquee ul
+  // 接著把 ul 中的 li 項目再重覆加入 ul 中(等於有兩組內容)
+  // 再來取得 div#abgne_marquee 的高來決定每次跑馬燈移動的距離
+  // 設定跑馬燈移動的速度及輪播的速度
+
+  if(document.getElementById("abgne_marquee"))
+  {
+
+  var $marqueeUl = $('div#abgne_marquee ul'),
+    $marqueeli = $marqueeUl.append($marqueeUl.html()).children(),
+    _height = $('div#abgne_marquee').height() * -1,
+    scrollSpeed = 600,
+    timer,
+    speed = 3000 + scrollSpeed;
+
+//alert($("#abgne_marquee ul li").size());
+
+  // 總共幾組
+  var all_team_li=$("#abgne_marquee ul li").size();
+  var k=1;
+
+  // 幫左邊 $marqueeli 加上 hover 事件
+  // 當滑鼠移入時停止計時器；反之則啟動
+  $marqueeli.hover(function(){
+    clearTimeout(timer);
+  }, function(){
+    timer = setTimeout(showad, speed);
+  });
+
+  // 控制跑馬燈移動的處理函式
+  function showad(){
+
+
+    var _now = $marqueeUl.position().top / _height;
+    _now = (_now + 1) % $marqueeli.length;
+//alert(_now);
+//alert($marqueeli.length / 2);
+    // $marqueeUl 移動
+    $marqueeUl.animate({
+      top: _now * _height
+    }, scrollSpeed, function(){
+      // 如果已經移動到第二組時...則馬上把 top 設 0 來回到第一組
+      // 藉此產生不間斷的輪播
+//      if(_now  == $marqueeli.length / 2){
+      if( k  == all_team_li / 2){
+        $marqueeUl.css('top', 0);
+      }
+
+      k++;
+    });
+
+    // 再啟動計時器
+    timer = setTimeout(showad, speed);
+  }
+
+  // 啟動計時器
+  timer = setTimeout(showad, speed);
+
+  $('a').focus(function(){
+    this.blur();
+  });
+
+  }
+
+});
+</script>
+
+<script>
+
+$(function(){
+   // 首頁生活花絮  影片的縮圖
+   if(document.getElementById("hidden_youtubeurl_id_index"))
+   {
+      var a=document.getElementById("hidden_youtubeurl_id_index").value;
+
+      if(a != "")
+      {
+         var id_arr=new Array();
+         id_arr=a.split(",");
+
+         for(var i=0;i<id_arr.length;i++)
+         {
+            var youtube_url=document.getElementById("youtubeurl_index_"+id_arr[i]).value;
+
+            $("<img />").attr("src", $.jYoutube(youtube_url, "big")).appendTo("#youtubeimg_index_"+id_arr[i]);
+         }
+      }
+   }
+
+
+             if(!$("#wrap-box").hasClass("thinBox"));
+             $("#wrap-box").addClass("thinBox");
+
+
+
+   var now_url_filename=location.pathname;
+//   alert(now_url_filename);
+   if(now_url_filename.indexOf('member_')!= -1)
+   {
+       $("body").addClass("member-body");
+   }
+
+});
+
+</script>
+
+
+
+
+
+
+<script>
+
+$(document).ready(function() {
+
+
+//    var vboxOptions2 = {
+//        selector:'.venobox',
+//        maxWidth:'900px'
+//    };
+//    new VenoBox(vboxOptions2);
+    new VenoBox();
+        var vboxOptions = {
+        selector:'.venobox_login',
+        maxWidth:'600px',
+        ratio:'1x1',
+        height:'900px'
+
+    };
+    new VenoBox(vboxOptions);
+
+
+    var vboxOptions2 = {
+        selector:'.venobox_custom1',
+        maxWidth:'900px'
+    };
+    new VenoBox(vboxOptions2);
+
+    var vboxOptions3 = {
+        selector:'.venobox_custom2',
+        maxWidth:'900px'
+    };
+    new VenoBox(vboxOptions3);
+
+
+    var vboxOptions5 = {
+        selector:'.venobox_custom5',
+        maxWidth:'1040px'
+    };
+    new VenoBox(vboxOptions5);
+
+
+    new VenoBox({
+        selector: '.my-video-links',
+    });
+
+    var vboxOptions2 = {
+        selector:'.venobox',
+        maxWidth:'900px'
+    };
+    new VenoBox(vboxOptions2);
+
+//    var vboxOptions = {
+//        selector:'.vbox-item',
+////        maxWidth:'900px',
+//
+//
+//    };
+//    new VenoBox(vboxOptions);
+
+
+
+    new VenoBox({
+    selector: '.my-image-links',
+    numeration: true,
+    infinigall: true,
+    share: true,
+    spinner: 'rotating-plane',
+//    navigation:false,
+//    navTouch:false
+    });
+
+
+
+
+    // Clone defaults
+    var imgOpts = $.extend(true, {}, $.fancybox.defaults, {
+
+        caption : function( instance, item ) {
+            return $(this).next('figcaption').html();
+        },
+
+        thumbs: {
+          autoStart: false, // Display thumbnails on opening
+          hideOnClose: true, // Hide thumbnail grid when closing animation starts
+          parentEl: ".fancybox-container", // Container is injected into this element
+          axis: "y" // Vertical (y) or horizontal (x) scrolling
+        },
+
+
+
+    });
+
+
+    // Shortcut to apply options to image gallery
+    function applyImgOpts() {
+        $('[data-fancybox="gallery"]').fancybox(imgOpts);
+
+    }
+
+
+
+    applyImgOpts();
+
+
+    // 拿掉主圖的框 class
+    setTimeout(function(){
+       if($("div.bannerborder").size() > 0)
+       {
+           $("div.bannerborder").remove();
+       }
+    },1700);
+
+
+    // 啟動lazyload
+    $("img.lazy").lazyload({effect: 'fadeIn'});
+
+
+});
+</script>
+
+
+
+
+
+<script src="https://x.miniwork.cc/js/sweetalert.min.js"></script>
+
+
+   <script src="add_js.js" type="text/javascript"></script>  <!--依案子自行增加的js-->
+
+
+
+  <script type="text/javascript">
+    function add_to_collect(num){
+
+      if($.cookie("member_userid")=="" || $.cookie("member_userid")==null){
+        alert("請先登入");
+        return;
+      }else{
+        // console.log($.cookie("member_userid"));
+//alert($("#favo_"+num).size());
+        $("#favo_"+num).removeClass('x5p-favorite');
+        $("#favo_"+num).addClass('x5p-favorite-on');
+//        alert($("#favo_"+num).size());
+        $("#favo_"+num).html("已收藏");
+        $.get("ajax_member_save_collect.php",{
+            cnt_id:num,
+            userid:"85TD",
+            website_language_id:"1",
+            member_userid: $.cookie("member_userid"),
+        },
+        function(data, status){
+            if(data!=''){
+              console.log(data);
+              $("#favo_"+num).attr('onclick',"del_collect("+num+")");
+              $("#favo_"+num).attr('href',"javascript:void(1)");
+            }
+        });
+
+
+      }
+
+      // sys_portal_c1_cnt_collect_log
+    }
+
+    // 首頁使用
+    function add_to_collect_index(num,index_num){
+
+      if($.cookie("member_userid")=="" || $.cookie("member_userid")==null){
+        alert("請先登入");
+        return;
+      }else{
+        // console.log($.cookie("member_userid"));
+//alert($("#favo_"+num).size());
+        $("#favo_"+num+"_"+index_num).removeClass('x5p-favorite');
+        $("#favo_"+num+"_"+index_num).addClass('x5p-favorite-on');
+
+//        alert($("#favo_"+num).size());
+        $("#favo_"+num).html("已收藏");
+        $.get("ajax_member_save_collect.php",{
+            cnt_id:num,
+            userid:"85TD",
+            website_language_id:"1",
+            member_userid: $.cookie("member_userid"),
+        },
+        function(data, status){
+            if(data!=''){
+              console.log(data);
+              $("#favo_"+num).attr('onclick',"del_collect("+num+")");
+            }
+        });
+
+
+      }
+
+      // sys_portal_c1_cnt_collect_log
+    }
+
+
+    function del_collect(num){
+
+      if($.cookie("member_userid")=="" || $.cookie("member_userid")==null){
+        alert("請先登入");
+        return;
+      }else{
+        $("#favo_"+num).addClass('x5p-favorite');
+        $("#favo_"+num).removeClass('x5p-favorite-on');
+
+        $("#favo_"+num).html("收藏");
+
+        $.get("ajax_member_del_collect.php",{
+          product_id:num,
+          userid:"85TD",
+          member_userid: $.cookie("member_userid"),
+        },
+        function(data, status){
+          // console.log(data);
+          if(data!=''){
+            $("#favo_"+num).attr('onclick',"add_to_collect("+num+")");
+          }
+        });
+      }
+
+    }
+
+
+  </script>
+
+
+
+<script>
+$(function(){
+   window.addEventListener('message', function(event) {
+    // 建議先檢查來源以避免安全風險
+    // if (event.origin !== 'https://你的iframe來源網址') return;
+
+    if (event.data.action === 'closeVbox') {
+        var btn = document.querySelector('.vbox-close');
+        if (btn) btn.click();
+    }
+   });
+
+
+
+        $("body").addClass("a1_91971");
+
+
+
+   // 同意cookie使用
+   var cookie_agree="";
+   cookie_agree+="<div id=\"cookie-box\">\n";
+   cookie_agree+="<div class=\"cookie-box-c\">我們將使用cookie等資訊來優化您的體驗，繼續瀏覽即表示您同意我們使用。</div><i class=\"fal fa-times close-m\"></i>\n";
+   cookie_agree+="</div>\n";
+
+
+
+   var cookie_agree_sn= $.cookie("cookie_agree_sn");
+//   alert(cookie_agree);
+   if(cookie_agree_sn != "OK")
+   $("body").append(cookie_agree);
+
+
+
+   $("body").on("click","#cookie-box > i",function(){
+
+       $("#cookie-box").remove();
+   });
+
+
+   $.cookie("cookie_agree_sn", "OK");
+
+
+
+
+
+
+   $('.cs-tt').click(function() {
+
+       var cstt = $(this);
+       var content = cstt.next('.cs-con');
+
+       content.slideToggle(300, function() {
+           if (content.is(':visible')) {
+               cstt.addClass('open');
+           } else {
+               cstt.removeClass('open');
+           }
+       });
+   });
+
+
+});
+</script>
+     <link rel="stylesheet" type="text/css" href="https://x.webdo.cc/js/aos/aos.css">
+    <link href="https://x.miniwork.cc/webdox_style/style_3142/style_3142_into.css?v=20240201" rel="stylesheet" type="text/css">
+    <style>
+    div#m-header,
+    #bar {
+        display: flex;
+    }
+
+    #m-header {
+        display: flex;
+        width: 55px;
+        left: 0;
+    }
+
+    .triggered#nav-area {
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1#home-logo {
+        position: fixed;
+        z-index: 100;
+        top: 15%;
+        left: 16%;
+        max-height: 450px !important;
+        height: 70%;
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    h1#home-logo img {
+        max-height: 88% !important;
+    }
+
+    span.d_button {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        font-size: 1rem;
+        gap: 0.5rem;
+    }
+
+    span.d_button a {
+        color: #e7d8bc;
+    }
+
+    span.d_button a:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        /* 底線變細 */
+        text-underline-offset: 4px;
+        color: #fff;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /* 調整縮放與位移 → 把標題與右下角LOGO藏出畫面 */
+        transform: translate(-50%, -50%) scale(1.25) translateY(-4%) translateX(2%);
+        width: 100vw;
+        height: 56.25vw;
+        /* 16:9 比例 */
+        min-width: 100%;
+        min-height: 100vh;
+        pointer-events: none;
+        /* 防止使用者點擊影片 */
+    }
+
+    @media (max-aspect-ratio: 16/9) {
+        .video-container iframe {
+            width: 177.78vh;
+            height: 100vh;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="m-header">
+            <div id="bar"><span class="bar-line"></span></div>
+            <div id="nav-area">
+                <!--###主選單區塊_new###-->
+                <script>
+function c1_menu2_change(obj,img_str)
+{
+
+    $(obj).attr("src",img_str);
+
+}
+
+</script>
+
+   <nav id="nav-menu" >
+    <ul class="nav-ul"><!--li最前面-->
+<li class=""><a href="portal_a1.php?owner_num=a1_91233&button_num=a1"  class="parent" data-ownernum="" ><span>品牌故事</span></a>
+
+                </li>
+
+        <li class=""><a href="portal_d800.php?owner_num=d800_92128&button_num=d800"  class="parent" data-ownernum="" ><span>特色菜餚</span></a>
+
+                </li>
+
+        <li class=""><a href="index.php"  class="parent" data-ownernum="" ><span><img src="https://x.miniwork.cc/webdox_style/style_3142/images/logo.svg" alt="捌伍添第 85TD"></span></a>
+
+                </li>
+
+        <li class=""><a href="portal_d800.php?owner_num=d800_92129&button_num=d800"  class="parent" data-ownernum="" ><span>空間環境</span></a>
+
+                </li>
+
+        <li class=""><a href="portal_b1.php?owner_num=b1_91234&button_num=b1"  class="parent" data-ownernum="" ><span>最新消息</span></a>
+
+                </li>
+
+        <li class=""><a href="portal_d3.php?owner_num=d3_91238&button_num=d3"  class="parent" data-ownernum="" ><span>常見問題</span></a>
+
+                </li>
+
+        <li class=""><a href="portal_d2.php?owner_num=d2_91242&button_num=d2"  class="parent" data-ownernum="" ><span>聯繫我們</span></a>
+
+                </li>
+
+
+</ul>
+</nav>
+
+
+
+
+
+
+
+
+                <!--###導覽列區塊###-->
+                <div id="nav-tt">
+
+<!--|-->
+
+                            <a href="index.php?website_language_id=1"  class=" lan-on">
+                 <span style="">中</span>
+              </a>
+
+
+
+                            <a href="index.php?website_language_id=3"  class=" ">
+                 <span style="">英</span>
+              </a>
+
+
+
+                            <a href="index.php?website_language_id=4"  class=" ">
+                 <span style="">日</span>
+              </a>
+
+
+
+                            <a href="index.php?website_language_id=13"  class=" ">
+                 <span style="">韓</span>
+              </a>
+
+
+
+
+
+</div>
+            </div>
+            <div class="side-bg"></div>
+        </div>
+        </div>
+    </header>
+    <h1 id="home-logo" data-aos="fade-in" data-aos-offset="300">
+        <img src="https://x.miniwork.cc/webdox_style/style_3142/images/index-logo.svg">
+        <span class="d_button">
+            <a href="index.php?website_language_id=1">繁體中文</a>
+            <a href="index.php?website_language_id=3">ENGLISH</a>
+            <a href="index.php?website_language_id=4">日本語</a>
+            <a href="index.php?website_language_id=13">한국인</a>
+        </span>
+    </h1>
+    </div>
+    <div class="video-container" data-aos="fade-in">
+        <iframe src="https://www.youtube.com/embed/Df7p4O3Kjig?autoplay=1&mute=1&loop=1&playlist=MbOeg1UnWPY&controls=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+        </iframe>
+    </div>
+    <script src="https://x.miniwork.cc/js/aos/aos.js"></script>
+
+    <script type="text/javascript">
+   // new WOW().init();
+    window.addEventListener("load", () => {
+        AOS.init({
+            duration: 1000,
+            //offset: 0,
+        });
+    });
+
+    let scrollRef = 0;
+    $(window).on("resize scroll", function() {
+        // increase value up to 10, then refresh AOS
+        scrollRef <= 10 ? scrollRef++ : AOS.refresh();
+    });
+</script>
+</body>
+
+</html>

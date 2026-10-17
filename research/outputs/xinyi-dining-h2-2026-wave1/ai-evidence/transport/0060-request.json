@@ -1,0 +1,28 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 60,
+  "provider": "deepseek",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "reserved_at": "2026-10-15T06:23:47.643Z",
+  "payload": {
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You must output valid JSON only. Do not output Markdown or explanatory text."
+      },
+      {
+        "role": "user",
+        "content": "你是研究資料標註員，只能根據提供的網站證據輸出 JSON。\n任務是標準化基本資訊、產業分類、網站結構與內容特徵；不是提出優化建議。\n不得產出 recommendation、action、improvement、rewrite、expected impact 或任何行銷建議。\n證據不足時填 unknown，並降低 confidence；不得從網域名稱猜測。\n輸出格式：\n{\"entity_name\":\"string | unknown\",\"industry\":\"string | unknown\",\"business_scope\":\"string | unknown\",\"geography\":[\"string\"],\"primary_language\":\"string | unknown\",\"page_purpose\":\"string | unknown\",\"structure_summary\":{\"information_architecture\":\"string | unknown\",\"content_format\":[\"string\"],\"schema_types\":[\"string\"],\"js_dependency\":\"low | medium | high | unknown\"},\"observed_content_topics\":[\"string\"],\"evidence_basis\":[\"string\"],\"confidence\":\"low | medium | high\"}\n網站證據：\n{\"url\":\"https://www.mala.com.tw/\",\"detected_site_type\":\"restaurant\",\"title\":\"馬辣國際餐飲集團\",\"description\":\"\",\"h1\":\"\",\"language\":\"\",\"text_excerpt\":\"馬辣國際餐飲集團 × 優惠訊息 線上訂位 熊一燒肉 馬辣 問鼎 新馬辣 狗一下 涮樂和牛 夯下去 肉之間 燒肉ChaCha 椒朋友 初海和牛鐵板燒 菊花盛開 集團品牌 熊一燒肉 馬辣 問鼎 新馬辣 狗一下 涮樂和牛 夯下去 肉之間 燒肉ChaCha 椒朋友 初海和牛鐵板燒 菊花盛開 集團優惠 01 10月 菊花盛開 10月菊內人，限定優惠 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 熊一燒肉 ✨爽吃燒肉熊Chill 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 馬辣 ✦ 馬辣歡聚，優惠限定 ✦ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 問鼎 ✦ 極上宮廷鍋物 ✦ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 新馬辣 ✦ 火鍋優惠全攻略 ✦ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 狗一下 ✦ 日料極饗，限定優惠 ✦ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 涮樂和牛 ✦ 吃鍋限定優惠指南 ✦ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 夯下去 ✦ 天使紅蝦吃到飽 ✦ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 肉之間 優惠大解密✨ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 燒肉ChaCha ✦ 極上燒烤，無肉不歡 ✦ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 椒朋友 ✦辛潮鍋物 X 限定優惠✦ 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 01 10月 初海和牛鐵板燒 ✨一場味覺與藝術的共鳴 公告日期：2026/10/01 ~ 2026/11/30止 了解更多 馬辣國際官網 ｜ Top\",\"representative_pages\":[{\"url\":\"https://www.mala.com.tw/Home/RemindInformation\",\"title\":\"\",\"h1\":\"\",\"text_excerpt\":\"\"},{\"url\":\"https://www.mala.com.tw/Home/BrandIndex?verificationCode=2E07D5C6BC66E4B01B3E254E8245FF89\",\"title\":\"\",\"h1\":\"\",\"text_excerpt\":\"\"},{\"url\":\"https://www.mala.com.tw/Home/BrandIndex?verificationCode=5F3863B104D33FAF3A27B2A7F4E7183D\",\"title\":\"\",\"h1\":\"\",\"text_excerpt\":\"\"}],\"observed_structure\":{\"title_present\":true,\"h1_present\":false,\"description_present\":false,\"readable_text_length\":868,\"schema_types\":[],\"sitemap_status\":403,\"crawl_method\":\"browser\"}}"
+      }
+    ],
+    "response_format": {
+      "type": "json_object"
+    },
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "disabled"
+    },
+    "temperature": 0
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": 39,
+  "input_url": "https://www.mortons.com/",
+  "store_id": "XY-042",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0064-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0064-response.txt",
+  "sequence": 39,
+  "started_at": "2026-10-15T06:37:43.888Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_310d2d47-e686-445f-af9c-3f2a2de2ca90",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:47.069Z"
+}

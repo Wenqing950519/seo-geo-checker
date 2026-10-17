@@ -1,0 +1,11 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-completion-supplement",
+  "generated_at": "2026-10-15T06:38:36.470Z",
+  "slots": 69,
+  "counts": {
+    "complete_answer": 69
+  },
+  "actual_requests": 69,
+  "publication_ready": false,
+  "review_status": "pending"
+}

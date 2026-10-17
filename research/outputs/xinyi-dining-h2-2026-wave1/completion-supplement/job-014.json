@@ -1,0 +1,17 @@
+{
+  "id": 14,
+  "input_url": "https://www.hooters.com.tw/",
+  "store_id": "XY-036",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0023-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0023-response.txt",
+  "sequence": 14,
+  "started_at": "2026-10-15T06:37:02.784Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_e02d11c1-eb9b-4b3f-b85c-536611139605",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:05.926Z"
+}

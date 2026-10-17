@@ -1,0 +1,17 @@
+{
+  "id": 2,
+  "input_url": "https://www.apointsteak.com.tw/",
+  "store_id": "XY-003",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0003-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0003-response.txt",
+  "sequence": 2,
+  "started_at": "2026-10-15T06:36:42.126Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_96f2a630-9e0f-4fa0-8430-b78d869483b9",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:45.139Z"
+}

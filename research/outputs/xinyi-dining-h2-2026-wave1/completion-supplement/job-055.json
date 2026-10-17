@@ -1,0 +1,17 @@
+{
+  "id": 55,
+  "input_url": "https://www.tgifridays.com.tw/",
+  "store_id": "XY-040",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0092-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0092-response.txt",
+  "sequence": 55,
+  "started_at": "2026-10-15T06:38:09.714Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_df56b42f-ef05-42df-8c17-1dbe22a1b951",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:12.744Z"
+}

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import { loadEntityMaster, assertReviewedEntityCoverage } from '../research/lib/entity-master.js';
 
 const rootDir = process.cwd();
 
@@ -98,7 +99,7 @@ for (const r of master70.rows) {
     assert(r.exclusion_reason_code, `exclusion_reason_code missing for excluded store ${r.store_id}`);
   }
 }
-console.log(`   [PASS] Shared domain entities (${sharedDomainCount}) all have exact owned_urls.`);
+console.log(`   [PASS] Shared domain entities (${sharedDomainCount}) declare non-empty owned_urls; exact coverage checked below.`);
 console.log(`   [PASS] Entity Master schema verified.\n`);
 
 // 3. Verify 49 Deduplicated Root Domains for 63 Eligible Candidates
@@ -137,4 +138,7 @@ for (const q of qs.queries) {
 }
 console.log(`   [PASS] Query set is unbranded, approved, and properly versioned.\n`);
 
-console.log('=== ALL 4 WHITEPAPER VERIFICATION CHECKS PASSED ===');
+console.log('=== ALL 4 SCHEMA / REVIEW-METADATA CHECKS PASSED ===');
+console.log('5. Checking exact entity-to-owned-URL coverage (schema approval alone is insufficient)');
+assertReviewedEntityCoverage(sites.rows.map(row => row.url), loadEntityMaster(master70Path));
+console.log('=== WHITEPAPER INPUTS PASSED EXACT ENTITY COVERAGE ===');
