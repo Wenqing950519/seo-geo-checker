@@ -1,0 +1,28 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 95,
+  "provider": "deepseek",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "reserved_at": "2026-10-15T06:27:53.624Z",
+  "payload": {
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You must output valid JSON only. Do not output Markdown or explanatory text."
+      },
+      {
+        "role": "user",
+        "content": "你是研究資料標註員，只能根據提供的網站證據輸出 JSON。\n任務是標準化基本資訊、產業分類、網站結構與內容特徵；不是提出優化建議。\n不得產出 recommendation、action、improvement、rewrite、expected impact 或任何行銷建議。\n證據不足時填 unknown，並降低 confidence；不得從網域名稱猜測。\n輸出格式：\n{\"entity_name\":\"string | unknown\",\"industry\":\"string | unknown\",\"business_scope\":\"string | unknown\",\"geography\":[\"string\"],\"primary_language\":\"string | unknown\",\"page_purpose\":\"string | unknown\",\"structure_summary\":{\"information_architecture\":\"string | unknown\",\"content_format\":[\"string\"],\"schema_types\":[\"string\"],\"js_dependency\":\"low | medium | high | unknown\"},\"observed_content_topics\":[\"string\"],\"evidence_basis\":[\"string\"],\"confidence\":\"low | medium | high\"}\n網站證據：\n{\"url\":\"https://www.tgifridays.com.tw/\",\"detected_site_type\":\"restaurant\",\"title\":\"TGI FRIDAYS 星期五美式餐廳\",\"description\":\"TGI FRIDAYS 星期五餐廳提供道地的美式食物、特色調酒飲品與真正的個性化服務。不論你是與家人朋友聯繫感情；還是尋求週末般的解放，FRIDAYS 提供最完美的休閒場所。\",\"h1\":\"\",\"language\":\"\",\"text_excerpt\":\"TGI FRIDAYS 星期五美式餐廳 線上訂位 餐廳店址 線上菜單 加入會員 聯絡我們 最新消息 徵人訊息 English In here, It's always Friday ® 線上訂位 動動手指，網路訂位最方便 美味菜單 聚餐首選，道地餐點任你挑 加入會員 搶先獲得會員禮與專屬優惠 最新消息 歡慶來台35週年！PARTY LIKE IT'S FRIDAY！ 2026/10/13~11/30期間限定派對拼盤狂歡開吃！一起共享派對拼盤、一起熱鬧慶祝！ FRIDAYS超值商業午餐｜主餐$290起 平日一至五17:00前限定午間優惠，輕鬆享受！ 天天都是HAPPY HOUR TGI FRIDAYS 招牌飲品天天買一送一 【FRIDAYS美式餐盒】隨時隨地享受美味 一個人輕鬆享用，道地美式餐點帶著走 禮券購買 品牌介紹 隱私權宣告 © 2025 TGI Fridays Taiwan. All rights reserved.\",\"representative_pages\":[{\"url\":\"https://www.tgifridays.com.tw/about\",\"title\":\"TGI FRIDAYS 星期五美式餐廳\",\"h1\":\"\",\"text_excerpt\":\"TGI FRIDAYS 星期五美式餐廳 線上訂位 餐廳店址 線上菜單 加入會員 聯絡我們 最新消息 徵人訊息 English About TGI FRIDAYS&trade; 1965年，香水商人艾倫．史提曼（Alan Stillman），在紐約第一大道與63街口開了第一間TGI FRIDAYS&trade;（Thank Goodness It&rsquo;s Friday），意思是感謝上帝終於到了星期五。這間擁有藍色外牆和紅白相間雨棚的酒吧，一開幕就轟動，是單身貴族最愛聚會的場所。 TGI FRIDAYS&trade;創造出獨特的餐廳風格，也研發美味食物和飲料，像是令人著迷的烤馬鈴薯皮、獨創的傑克丹尼爾&reg;威士忌甜酒醬系列餐點、因應1984年奧運創造的健康凍飲、經典調酒長島冰茶等招牌飲品。而在每間TGI FRIDAYS&trade;的吧檯區域，都會擺放一隻螺旋槳，這螺旋槳上會貼著一張鈔票，那是開店第一天的第一位客人給的第一筆小費，時時刻刻提醒FRIDAYS每位夥伴，要提供更好的服務給消費者。 TGI FRIDAYS&trade;世界盃花式調酒比賽舉辦至今已有20多年的歷史，是融合了專業知識、娛樂及慶典的傳統活動。花式調酒比賽起源於1985年，一群來自加州瑪麗安德爾灣（Marina del Rey）的餐廳管理團隊發現，餐廳內吧檯調酒師John Mescall，總是在服務客人時，夾雜著酒瓶拋轉的花式表演來吸引客人目光。因此，他們決定在店內舉辦一場花式調酒比賽，沒多久這項比賽就得到熱烈的迴響，並進而擴大到全國舉辦。1991年第一屆TGI FRIDAYS&trade;世界盃花式調酒大賽，就在世界各國的引領期盼中誕生了。 至今，TGI FRIDAYS&trade;在全美47州、全球60個國家，總共超過900家餐廳。在這裡你可以享受到星期五餐廳所提供道地的美國食物、特色飲料、與真正的個人化服務。不論你是想找個地方和朋友聯繫感情；還是渴望在工作中的任何一天，尋求週末般的解放，星期五餐廳提供最完美的休閒場所，詮釋了「在這裡，天天歡樂星期五 （IN HERE, IT&rsquo;S ALWAYS FRIDAY.）」的品牌承諾。與全世界各地分享星期五餐廳獨特舒適、親切貼心的用餐與服務。 禮券購買 品牌介紹 隱私權宣告 © 2025 TGI Fridays Taiwan. All rights reserved.\"},{\"url\":\"https://www.tgifridays.com.tw/locations\",\"title\":\"TGI FRIDAYS 星期五美式餐廳\",\"h1\":\"\",\"text_excerpt\":\"TGI FRIDAYS 星期五美式餐廳 線上訂位 餐廳店址 線上菜單 加入會員 聯絡我們 最新消息 徵人訊息 English 大台北 美麗華餐廳 台北市中山區敬業三路22號2樓 （美麗華百樂園購物中心本館2樓） (02) 2175-3358 營業時間 星期日~星期四 11:00~23:00 星期五~星期六 11:00~24:00 營業結束前一小時停止供餐 交通資訊 捷運一劍南路站3號出口，沿著敬業三路往樂群三路方向走，美麗華百樂園購物中心本館2樓。 停車資訊 附設美麗華百樂園停車場，店內消費門票，可折抵停車3小時。 地圖開啟 電話預約 線上訂位 西門餐廳 台北市武昌街二段72號2樓 (02) 2388-0679 營業時間 星期日～星期四 11:30～23:00 星期五、星期六11:30～24:00 營業結束前一小時停止供餐 交通資訊 捷運一西門站6號出口，往北走漢中街朝峨嵋街6巷前進，於武昌街二段看到屈臣氏時左轉走約150公尺，過西寧南路後西門餐廳即在您的左手邊。 停車資訊 周邊付費停車場－峨嵋停車場、洛陽停車場。 地圖開啟 電話預約 線上訂位 古亭餐廳 台北市羅斯福路二段60號 （02）2351-3579 營業時間 星期日~星期四 11:30~21:00 星期五~星期六 11:30~22:00 營業結束前一小時停止供餐 交通資訊 捷運一古亭站7號出口，出站後向左迴轉，古亭餐廳即在您的右手邊。 停車資訊 周邊付費停車場－師範大學運動場停車場。 地圖開啟 電話預約 線上訂位 信義餐廳 台北市忠孝東路五段8號2樓（統一時代百貨2樓） （02）2720-3579 營業時間 星期一～星期四 11:00～23:00 星期五～星期日(含國定假日) 11:00～24:00 營業結束前一小時停止供餐 交通資訊 捷運一市政府站2號出口，統一時代百貨2樓。 客運一市府轉運站2樓。 停車資訊 附設一小時百貨北店停車場，店內消費者$500元可折抵汽車半小時，$1000元可折抵1小時，最多可折抵4小時。 地圖開啟 電話預約 線上訂位 林森餐廳 台北市中山區林森北路247號 （欣欣百貨1&2樓） （02）2511-8579 營業時間 星期日~星期四 11:00~23:00 星期五~星期六 11:00~23:30 營業結束前一小時停止供餐 交通資訊 捷運 一 中山站3號出口，沿著南京西路直走到林森北路左轉，穿越林森公園及康樂公園，林森餐廳即在您的右手邊。(欣欣百貨內) 停車資訊 附設欣欣百貨後館停車場，店內消費$1000元可折抵1小時，最多可折抵3小時。 地圖開啟 電話預約 線上訂位 松高餐廳 台北市信義區松高路16號3樓（微風松高百貨3樓） （02）2722-7126 營業時間 星期日~星期三 11:00~21:30 星期四~星期六 11:00~22:00 營業結束前半小時停供餐 交通\"},{\"url\":\"https://www.tgifridays.com.tw/news\",\"title\":\"TGI FRIDAYS 星期五美式餐廳\",\"h1\":\"\",\"text_excerpt\":\"TGI FRIDAYS 星期五美式餐廳 線上訂位 餐廳店址 線上菜單 加入會員 聯絡我們 最新消息 徵人訊息 English 最新消息 歡慶來台35週年！PARTY LIKE IT'S FRIDAY！ 2026/10/13~11/30期間限定派對拼盤狂歡開吃！一起共享派對拼盤、一起熱鬧慶祝！ FRIDAYS超值商業午餐｜主餐$290起 平日一至五17:00前限定午間優惠，輕鬆享受！ 天天都是HAPPY HOUR TGI FRIDAYS 招牌飲品天天買一送一 【FRIDAYS美式餐盒】隨時隨地享受美味 一個人輕鬆享用，道地美式餐點帶著走 熱情招募中，歡迎您的加入 正職/兼職夥伴招募! 【FRIDAYS 90年代復刻店】松高餐廳店型介紹 【區域限定】FRIDAYS兒童體驗營 來TGI FRIDAYS當小小店長，好吃又好玩！ ​【環保地球】一起當不塑之客 自備環保吸管，內用點飲品現折10元！ 聖誕新年派對首選！歡聚美味都在TGI FRIDAYS！ 2024/12/3~2025/1/6，雙人/四人套餐邀你來歡聚 閱讀全文... 跨年派對餐券熱賣中！獨家套餐搭配近距離煙火，邀你一起狂歡！ 信義、松高餐廳限定｜12/2前預售享早鳥優惠！ 閱讀全文... 【FRIDAYS美式餐盒】隨時隨地享受美味 一個人輕鬆享用，道地美式餐點帶著走 閱讀全文... 熱情招募中，歡迎你的加入 正職/兼職夥伴招募！如果你對餐飲服務懷抱熱情、熱愛歡樂的工作環境，歡迎加入我們的行列！ 閱讀全文... 【FRIDAYS 90年代復刻店】松高餐廳 店型介紹 閱讀全文... --> 禮券購買 品牌介紹 隱私權宣告 © 2025 TGI Fridays Taiwan. All rights reserved.\"}],\"observed_structure\":{\"title_present\":true,\"h1_present\":false,\"description_present\":true,\"readable_text_length\":4682,\"schema_types\":[],\"sitemap_status\":404,\"crawl_method\":\"http\"}}"
+      }
+    ],
+    "response_format": {
+      "type": "json_object"
+    },
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "disabled"
+    },
+    "temperature": 0
+  }
+}

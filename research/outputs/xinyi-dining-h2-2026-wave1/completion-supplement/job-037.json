@@ -1,0 +1,17 @@
+{
+  "id": 37,
+  "input_url": "https://www.mortons.com/",
+  "store_id": "XY-042",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0062-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0062-response.txt",
+  "sequence": 37,
+  "started_at": "2026-10-15T06:37:39.556Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_a713babf-34c0-4aa0-91c7-bfe146c749e9",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:43.376Z"
+}

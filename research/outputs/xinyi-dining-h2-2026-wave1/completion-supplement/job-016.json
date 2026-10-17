@@ -1,0 +1,17 @@
+{
+  "id": 16,
+  "input_url": "https://www.ichiran.com.tw/",
+  "store_id": "XY-012",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0027-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0027-response.txt",
+  "sequence": 16,
+  "started_at": "2026-10-15T06:37:06.169Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_ca574fc2-b5c1-48c6-99a5-8593af627ab9",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:09.170Z"
+}

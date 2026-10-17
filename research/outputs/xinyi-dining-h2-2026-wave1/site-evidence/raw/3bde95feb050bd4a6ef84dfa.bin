@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="author" content="艾傑網頁設計">
+<link rel="icon" href="image/favicon.png?v=2" type="image/png">
+
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- PNG 格式的 favicon，適用於現代瀏覽器 -->
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="image/app/144x144.jpg">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="image/app/114x114.jpg">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="image/app/72x72.jpg">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="image/app/57x57.jpg">
+
+<meta name="description" content="​Lawry's 勞瑞斯牛肋排餐廳創立於1938年美國比佛利山莊，提供頂級熟成牛肋排與桌邊服務，特色包括銀色餐車現切牛排、冰旋翡翠沙拉秀及專屬酒標葡萄酒，致力於打造高雅用餐體驗。">
+<title>首頁 | Lawry&#039;s Taipei 勞瑞斯餐廳</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap-grid.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+<link href="css/style.css" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131000608-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131000608-1');
+</script>
+
+<script src="https://cdn.holmesmind.com/js/rtid.js"></script>
+<script src="https://cdn.holmesmind.com/dmp/cft/triggerTracker.js"></script>
+<script async src="https://cdn.holmesmind.com/dmp/cft/tracker.js"></script>
+<script>
+    clickforce_rtid("10242001");
+    /* Website track (tracker.js) - B.I.DMP By ClickForce */
+    window.cft=window.cft||function(){(cft.q=cft.q||[]).push([].slice.call(arguments))};
+    function clickForceMyyCFT(){
+        cft("setSiteId", "CF-251100165824");
+        cft("setViewPercentage");
+    };
+    clickForceDelayLoading();
+</script>
+<!-- <link href="css/animate.css" rel="stylesheet"> --></head>
+
+<body>
+
+  <nav class="navbar-default">
+
+  <div class="logo">
+    <a href="index.php">
+      <img src="image/logo.svg" class="img-fluid" alt="勞瑞斯">
+    </a>
+  </div>
+
+  <div class="nav_box">
+    <i></i>
+    <dl>
+      <dd>
+        <a href="about.php">
+          品牌故事 <span>Our Story</span>
+        </a>
+      </dd>
+      <dd>
+        <a href="menu.php">
+          極品美饌 <span>Menu</span>
+        </a>
+      </dd>
+      <dd>
+        <a href="news.php">
+          最新消息 <span>News</span>
+        </a>
+      </dd>
+
+      <dd>
+        <a href="https://iwhispering.com/pt_module2/public/meals2/1656819204/home?outside=1" target="_blank">
+          線上訂餐 <span>Order Online</span>
+        </a>
+      </dd> 
+      <dd>
+        <a href="https://inline.app/booking/-L-V29Yyw_H_XuPoeSre/-L-V29bpr2xsg-AH0kJz?language=zh-tw" target="_blank">
+          線上訂位 <span>Online Booking</span>
+        </a>
+      </dd>
+      <dd>
+        <a href="environment.php">
+          餐廳實景 <span>Environment</span>
+        </a>
+      </dd>
+      <dd>
+        <a href="contact.php">
+          聯絡我們 <span>Contact</span>
+        </a>
+      </dd>
+    </dl>    
+  </div>
+
+  <div class="togglebar">
+    <i></i><i></i><i></i>
+  </div>
+
+</nav>  <header>
+    <div class="index_banner">
+            <a href="###"  title="形象圖3">
+        <picture>
+          <source data-srcset="upload/adv/2112011252230000002.jpg" media="(max-width: 991px)" />
+          <img src="image/index_noimg.svg" data-src="upload/adv/2112011244070000001.jpg" width="100%" class="lazyload" alt="形象圖3" />
+        </picture>
+      </a>
+          
+    </div>
+  </header>
+
+  <div class="wrapper">
+    <section class="in_n_bg">
+      <div class="container-lg">
+        <div class="row gx-0">
+                  <div class="col-sm-4">
+            <div class="in_n_box">
+                                  <a href="news_detail.php?Key=350">
+                                <h3>感恩火雞禮籃(即將推出)</h3>
+                <em>Lawry&#039;s Turkey Baskets(Coming Soon)</em>
+                <span>MORE INFO</span>
+                <img src="image/in_noimg.svg" data-src="includes/timthumb.php?src=upload/news/2610101250160000001.jpg&w=353&zc=2" width="100%" class="img-fluid lazyload" alt="感恩火雞禮籃(即將推出)">                
+              </a>
+            </div>
+          </div>
+                  <div class="col-sm-4">
+            <div class="in_n_box">
+                                  <a href="news_detail.php?Key=335">
+                                <h3>尾牙春酒熱烈訂席中</h3>
+                <em>Year-end Party</em>
+                <span>MORE INFO</span>
+                <img src="image/in_noimg.svg" data-src="includes/timthumb.php?src=upload/news/2512311337580000001.png&w=353&zc=2" width="100%" class="img-fluid lazyload" alt="尾牙春酒熱烈訂席中">                
+              </a>
+            </div>
+          </div>
+                  <div class="col-sm-4">
+            <div class="in_n_box">
+                                  <a href="news_detail.php?Key=349">
+                                <h3>感恩節火雞內用套餐</h3>
+                <em>Thanksgiving Dinner Menu</em>
+                <span>MORE INFO</span>
+                <img src="image/in_noimg.svg" data-src="includes/timthumb.php?src=upload/news/2610051549440000001.jpg&w=353&zc=2" width="100%" class="img-fluid lazyload" alt="感恩節火雞內用套餐">                
+              </a>
+            </div>
+          </div>
+                </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-9 col-md-8 order-1 order-md-1">
+				<div class="footer_box">
+					<ul>
+						<li>
+							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="29.157" viewBox="0 0 31.361 29.157">
+								<path d="M83.824,1571.024c1.329-.8,3.06-1.685,4.627-1.042,1.2.492,1.969,2.374,2.748,3.334a1.153,1.153,0,0,0,1.492.325,20.964,20.964,0,0,0,10.461-8.962,1.286,1.286,0,0,0-.161-1.754,7.062,7.062,0,0,1-1.9-3.085,6.744,6.744,0,0,1,.849-3.65c.632-1.361,1.337-3.295,2.7-4.064a3.691,3.691,0,0,1,4.011.6,8.148,8.148,0,0,1,2.824,6.453,9.277,9.277,0,0,1-.252,2.048,16.939,16.939,0,0,1-1.966,4.526,35.209,35.209,0,0,1-2.051,3.118,31.657,31.657,0,0,1-8.895,8.26,26.791,26.791,0,0,1-5.546,2.638c-2.174.719-4.111,1.466-6.458,1.021a7.815,7.815,0,0,1-5.855-4.355,3.772,3.772,0,0,1-.272-2.221C80.511,1572.676,82.583,1571.765,83.824,1571.024Z" transform="translate(-80.11 -1551.762)" fill="#fff" fill-rule="evenodd" />
+							</svg>
+							<a href="tel:02-27298555">(02) 2729-8555</a>
+						</li>
+						<li>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="29.314" viewBox="0 0 22.305 29.314">
+								<path d="M656.174,1551.668a11.152,11.152,0,0,0-11.153,11.153c0,6.157,11.153,18.162,11.153,18.162s11.152-12,11.152-18.162A11.152,11.152,0,0,0,656.174,1551.668Zm0,15.035a4.418,4.418,0,1,1,4.418-4.418A4.418,4.418,0,0,1,656.174,1566.7Z" transform="translate(-645.021 -1551.668)" fill="#fff" />
+							</svg>
+							<a href="https://goo.gl/maps/JAywcgyHap1YUNe2A" target="_blank">台北市信義區松仁路28號6樓(BELLAVITA百貨)</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 order-2 order-md-1">
+				<div class="footer_box">
+					<ol>
+					    						<li>
+							<a href="https://www.facebook.com/LawrysTaiwan/" target="_blank">
+								<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 46.33 46.331">
+									<g transform="translate(-1614.103 -1539.43)">
+										<path d="M1643.768,1564.893l.774-5.055h-4.85v-3.28a2.529,2.529,0,0,1,2.85-2.733h2.2v-4.3a26.755,26.755,0,0,0-3.914-.343c-3.994,0-6.6,2.422-6.6,6.8v3.854h-4.441v5.055h4.441v12.217h5.464v-12.217Z" fill="#fff" />
+										<path d="M1659.655,1562.6a22.387,22.387,0,1,1-22.386-22.387A22.389,22.389,0,0,1,1659.655,1562.6Z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.557" />
+									</g>
+								</svg>
+							</a>
+						</li>
+																		<li>
+							<a href="https://www.instagram.com/lawrystaipei/" target="_blank">
+								<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 46.321 46.331">
+									<g transform="translate(-1706.069 -1539.43)">
+										<path d="M1736.62,1553.618a1.638,1.638,0,1,0,1.638,1.639A1.639,1.639,0,0,0,1736.62,1553.618Z" fill="#fff" />
+										<path d="M1729.342,1555.718a6.878,6.878,0,1,0,6.876,6.878A6.886,6.886,0,0,0,1729.342,1555.718Zm0,11.284a4.406,4.406,0,1,1,4.4-4.406A4.411,4.411,0,0,1,1729.342,1567Z" fill="#fff" />
+										<path d="M1734.8,1576.562h-11.149a8.4,8.4,0,0,1-8.385-8.389V1557.02a8.4,8.4,0,0,1,8.385-8.39H1734.8a8.4,8.4,0,0,1,8.389,8.39v11.153A8.4,8.4,0,0,1,1734.8,1576.562Zm-11.149-25.3a5.767,5.767,0,0,0-5.759,5.761v11.153a5.767,5.767,0,0,0,5.759,5.762H1734.8a5.77,5.77,0,0,0,5.763-5.762V1557.02a5.77,5.77,0,0,0-5.763-5.761Z" fill="#fff" />
+										<path d="M1751.612,1562.6a22.382,22.382,0,1,1-22.384-22.387A22.385,22.385,0,0,1,1751.612,1562.6Z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.557" />
+									</g>
+								</svg>
+							</a>
+						</li>
+												<li>
+							<a href="contact.php">
+								<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 46.33 46.331">
+									<g transform="translate(-1798.024 -1539.43)">
+										<path d="M1843.576,1562.6a22.387,22.387,0,1,1-22.387-22.387A22.388,22.388,0,0,1,1843.576,1562.6Z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.557" />
+										<path d="M1808.439,1553.493v20.18h25.508v-20.18Zm21.29,2.376-8.536,9.732-8.535-9.732Zm-18.915,15.429v-13.93l10.379,11.833,10.379-11.833v13.93Z" fill="#fff" />
+									</g>
+								</svg>
+							</a>
+						</li>
+					</ol>
+				</div>
+			</div>
+			<div class="col-12 d-md-block d-none order-md-1">
+				<div class="f_line"></div>
+			</div>
+			<div class="col-lg-9 col-md-8 order-1 order-md-1">
+				<div class="footer_box2">
+					<p>Business Hour 營業時間：午間時段 11:30~15:00, 晚間時段 17:30~21:30</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-4 order-2 order-md-1">
+				<div class="footer_box2">
+					<a href="deposit.php">
+						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 35.527 35.527">
+							<g transform="translate(-1542.092 -1664.759)">
+								<g transform="translate(1555.452 1672.62)">
+									<path d="M1563.975,1694.2H1562.3v-2.4a7.346,7.346,0,0,1-3.493-.984l.586-1.841a6.413,6.413,0,0,0,3.284.983,2.237,2.237,0,0,0,2.53-2.217c0-1.254-.773-2.028-2.678-2.865-2.07-.941-3.554-2.029-3.554-4.1a3.979,3.979,0,0,1,3.471-3.974v-2.4h1.673v2.279a6.31,6.31,0,0,1,2.969.8l-.584,1.777a5.949,5.949,0,0,0-2.846-.774,2.092,2.092,0,0,0-2.321,1.966c0,1.171.941,1.8,2.7,2.656,2.384,1.067,3.576,2.217,3.576,4.392a4.155,4.155,0,0,1-3.639,4.182Z" transform="translate(-1558.81 -1674.391)" fill="#fff" />
+								</g>
+								<circle cx="13.983" cy="13.983" r="13.983" transform="matrix(0.16, -0.987, 0.987, 0.16, 1543.813, 1694.085)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="3" />
+							</g>
+						</svg>
+						Deposit 預付訂金
+					</a>
+				</div>
+			</div>
+			<div class="col-12 order-2 order-md-1">
+				<div class="copyright">
+					<p>© 2021 Lawry's The Prime Rib Taipei. All rights reserved.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</footer>
+  <script src="js/bootstrap.min.js?=1.01"></script>
+<script src="js/jquery-3.7.0.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/lazysizes.min.js"></script>
+
+<script>
+  $('.togglebar').click(function(){
+    $('.nav_box').toggleClass('active');
+    $(this).toggleClass('active');
+  });
+
+  $('.nav_box i').click(function(){
+    $('.nav_box').removeClass('active');
+    $('.togglebar').removeClass('active');
+  });
+
+</script>
+
+
+  <script>
+    $('.index_banner').slick({
+      dots: false,
+      arrows:false,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear',
+      autoplay: true,
+      autoplaySpeed: 3000
+    });
+  </script>
+
+</body>
+</html>

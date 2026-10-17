@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>鼎泰豐・Din Tai Fung・ディンタイフォン・딘타이펑</title>
+<meta name="keywords" content="鼎泰豐 Din Tai Fung ディンタイフォン 딘타이펑,鼎泰豐 Din Tai Fung ディンタイフォン 딘타이펑 鼎泰豐菜單 Din Tai Fung Menu">
+<meta name="description" content="台灣鼎泰豐背負總店品牌使命，每一環節都透露出一絲不茍的嚴謹，期待透過師父精湛的廚藝和服務人員的用心，讓客人不僅止於用餐，更是一種享受，也為台灣餐飲服務業樹立新典範。Din Tai Fung Taiwan is the standard bearer for the brand, carrying out our mission with care and precision every step of the way. From the superior technique of our chefs to attentiveness of our servers, we aim to provide not just a good meal, but an enjoyable experience. In doing so, we hope to become a model for the restaurant industry in Taiwan. 台湾鼎泰豐は老舗ブランドの使命を背負いながら、細部のひとつひとつが慎重かつきめ細かく取り組んでおります。 料理人のすばらしい技と接客スタッフのおもてなしを通じ、ご来店のお客様に単なる食事できるだけではなく、快適さや安心感等が与えられる場所として、また、台湾飲食産業のために新しい学習モデルの模範としても確立したいと望んでおります。타이완 딘타이펑은 본사의 사명감을 지니고, 뛰어난 요리솜씨와 정성을 담은 서비스를 통해고객님께 단지 식사를 제공하는 것이 아닌, 일종의 즐거움을 느낄 수 있도록 저희가 한 땀 한 땀으로엄격하게 음식을 만듭니다. 때문에 딘타이펑은 타이완 음식업의 모범이 될 수밖에 없습니다.
+
+ 鼎泰豐 Din Tai Fung ディンタイフォン 딘타이펑 鼎泰豐菜單 Din Tai Fung Menu">
+
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/loaders.css">
+<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery-ui_select.css" rel="stylesheet" type="text/css" />
+<script src="js/modernizr.js"></script>
+
+
+
+
+<meta property="fb:app_id" content="">
+<meta property="fb:admins" content=""/>
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="鼎泰豐・Din Tai Fung・ディンタイフォン・딘타이펑"/>
+<meta property="og:description" content="台灣鼎泰豐背負總店品牌使命，每一環節都透露出一絲不茍的嚴謹，期待透過師父精湛的廚藝和服務人員的用心，讓客人不僅止於用餐，更是一種享受，也為台灣餐飲服務業樹立新典範。Din Tai Fung Taiwan is the standard bearer for the brand, carrying out our mission with care and precision every step of the way. From the superior technique of our chefs to attentiveness of our servers, we aim to provide not just a good meal, but an enjoyable experience. In doing so, we hope to become a model for the restaurant industry in Taiwan. 台湾鼎泰豐は老舗ブランドの使命を背負いながら、細部のひとつひとつが慎重かつきめ細かく取り組んでおります。 料理人のすばらしい技と接客スタッフのおもてなしを通じ、ご来店のお客様に単なる食事できるだけではなく、快適さや安心感等が与えられる場所として、また、台湾飲食産業のために新しい学習モデルの模範としても確立したいと望んでおります。타이완 딘타이펑은 본사의 사명감을 지니고, 뛰어난 요리솜씨와 정성을 담은 서비스를 통해고객님께 단지 식사를 제공하는 것이 아닌, 일종의 즐거움을 느낄 수 있도록 저희가 한 땀 한 땀으로엄격하게 음식을 만듭니다. 때문에 딘타이펑은 타이완 음식업의 모범이 될 수밖에 없습니다.
+
+ 鼎泰豐 Din Tai Fung ディンタイフォン 딘타이펑 鼎泰豐菜單 Din Tai Fung Menu"/>
+<meta property="og:url" content="http://www.dintaifung.com.tw/" />
+<meta property="og:site_name" content="鼎泰豐・Din Tai Fung・ディンタイフォン・딘타이펑" />
+<meta property="og:image" content="images/logo.png" />
+<link href="images/logo.png" rel="image_src" type="image/jpeg" />
+
+    <link rel="stylesheet" type="text/css"
+          href="css/jquery.mb.YTPlayer.min.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="css/web_home.css">
+    <link rel="stylesheet" type="text/css" href="css/_btn-new-index.css">
+</head>
+
+<body>
+
+<header>
+    <a href="index.php" class="logo"><img src="images/logo.png" alt="logo"></a>
+    <div id="nav_btn">
+        <div></div>
+    </div>
+    <div id="menubox_box">
+        <div id="menubox" class="">
+            <nav id="menu">
+                <a href="about.php" class="link active03 "><span>關於鼎泰豐</span></a>
+                <a href="news.php" class="link active03 "><span>最新消息</span></a>
+                <a href="store.php" class="link active03 "><span>門市據點</span></a>
+                <a href="food.php" class="link active03 "><span>絕頂美味</span></a>
+                <a href="care.php" class="link active03 "><span>安心宣言</span></a>
+                <a href="contact.php" class="link active03 "><span>聯絡我們</span></a>
+                <a href="http://www.dintaifung.tw" target="_blank" class="link active03 "><span>線上購物</span></a>
+                <a href="https://www.104.com.tw/jobbank/custjob/index.php?r=cust&j=4c70436d485c3e6848323c1d1d1d1d5f2443a363189j99" class="link active03 " target="_blank"><span>人才招募</span></a>
+            </nav>
+            <div class="language select_box ">
+                <select name="language" id="language">
+                  <option selected value="tw">繁體中文</option>
+                  <option  value="eng">ENGLISH</option>
+                  <option  value="jp">日本語</option>
+                  <option  value="kr">한국어</option>
+                </select>
+            </div>
+            <a href="http://www.dintaifung.tw/Queue/?type=3" class="number_s" target="_blank">現場到號查詢</a>
+        </div>
+    </div>
+
+    <!-- <div class="language select_box">
+        <select name="language" id="language">
+          <option selected="selected">繁體中文</option>
+          <option>English</option>
+        </select>
+    </div> -->
+    <div class="close"></div>
+</header>
+
+    <div id="video">
+        <div class=" video_play" class="video_play">
+            <iframe width="100%" height="100%"
+                    src="https://www.youtube.com/embed/w_YF7jXwNh8?rel=0&amp;showinfo=0;vq=hd720"
+                    frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="bg01">
+            <div class="bg1">
+            </div>
+            <div class="bg2">
+            </div>
+            <div class="fly fly01">
+                <img src="images/home/bird01.png" alt="">
+            </div>
+            <div class="fly fly02">
+                <img src="images/home/bird02.png" alt="">
+            </div>
+        </div>
+
+
+        <div class="video">
+            <div class="bg">
+                <div class="black">
+                    <div class="cd-transition-layer visible ">
+                        <div class="bg-layer"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="site">
+                <div id="customElement">
+                    <div class="mobile_video"></div>
+                </div>
+                <div id="site"
+                     data-property="{ videoURL:'w_YF7jXwNh8',quality:'highres',containment:'#customElement', showControls:false, autoPlay:1, loop:true, mute:true, startAt:0, opacity:1, addRaster:true, quality:'default' }">
+                    My video</div>
+            </div>
+        </div>
+        <a href="http://www.dintaifung.tw/Queue/?type=3" class="number_s" target="_blank">現場到號查詢</a>
+
+        <div class="go_down">
+            <img src="images/home/down.png" alt="">
+        </div>
+    </div>
+
+    <div id="believe">
+        <div class="left_box">
+            <div class="title_img"><img alt=""  data-ow="273" data-oh="92" src="https://www.dintaifung.com.tw/archive/images/indexset/Our_Philosophy_title_20220309.png"   border='0'/></div>
+            <div class="icon">
+                <img src="images/icon.png" alt="">
+            </div>
+            <div class="memo_block">
+                <div class="memo_box memo_box1" style="">
+                    <div class="title">細節是最完美的服務</div>
+                    <div class="memo">餐飲服務，講究的是服務的溫度與彈性。鼎泰豐的服務是發自內心的真誠，以客戶需求為第一優先，主動提供服務，期許每一個細節都能累積出鼎泰豐的服務理念與品牌價值。</div>
+                    <a href="about.php" class="link link_style">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="memo_box memo_box2" style="display:none">
+                    <div class="title">不創造一日的業績</div>
+                    <div class="memo">楊紀華先生從父親鼎泰豐創辦人楊秉彝先生手中接管後，將原本小吃店的經營模式，轉型為企業經營管理，達到飲食國際化與世界接軌的目標，以提供最佳品質與完善服務為第一項目...</div>
+                    <a href="about.php" class="link link_style">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="memo_box memo_box3" style="display:none">
+                    <div class="title">品質是生命</div>
+                    <div class="memo">原料的嚴選堅持、食材的細膩處理、烹飪的嚴謹調味、上桌的品質服務，每一個環節都謹慎面對，層層把關，才能將這份信念送到客戶的餐桌上。</div>
+                    <a href="about.php" class="link link_style">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="memo_box memo_box4" style="display:none">
+                    <div class="title">品牌是責任</div>
+                    <div class="memo">對美食的堅持，是對客人的一種責任，每一刻都是真正打動消費者的關鍵時刻，每一個細節都是累積鼎泰豐金字塔的砂礫，鼎泰豐的用心，可以讓每一個人嚐到安心。</div>
+                    <a href="about.php" class="link link_style">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="right_box">
+            <ul class="bx_home">
+                <li>
+                    <div class="imgs" data-id="1"
+                         style="background-image:url('https://www.dintaifung.com.tw/archive/images/indexset/1732765512.jpg')">
+                        <!-- <img src="https://www.dintaifung.com.tw/archive/images/indexset/1732765512.jpg" alt=""> -->
+                    </div>
+                </li>
+                <li>
+                    <div class="imgs" data-id="2"
+                         style="background-image:url('https://www.dintaifung.com.tw/archive/images/indexset/1732765529.jpg')">
+                        <!-- <img src="https://www.dintaifung.com.tw/archive/images/indexset/1732765529.jpg" alt=""> -->
+                    </div>
+                </li>
+                <li>
+                    <div class="imgs" data-id="3"
+                         style="background-image:url('https://www.dintaifung.com.tw/archive/images/indexset/pic03.jpg')">
+                        <!-- <img src="https://www.dintaifung.com.tw/archive/images/indexset/pic03.jpg" alt=""> -->
+                    </div>
+                </li>
+                <li>
+                    <div class="imgs" data-id="4"
+                         style="background-image:url('https://www.dintaifung.com.tw/archive/images/indexset/pic04.jpg')">
+                        <!-- <img src="https://www.dintaifung.com.tw/archive/images/indexset/pic04.jpg" alt=""> -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="home_food">
+        <div class="downbg">
+            <!-- <div class="cd-transition-layer visible opening">
+        	<div class="bg-layer"></div>
+        </div> -->
+            <div class="b01"></div>
+            <div class="b02"></div>
+        </div>
+        <div class="title_img"><img alt=""  data-ow="273" data-oh="92" src="https://www.dintaifung.com.tw/archive/images/indexset/Top_Recommendations_title_20220309.png"   border='0'/></div>
+        <div class="food_slider">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=151"><img alt="鳳梨酥禮盒<br>(10入)"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/giftset/pic/pinapplecake.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=28"><img alt="小菜"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/BN057.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=62"><img alt="元盅雞湯"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/BN039.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=30"><img alt="紹興醉雞"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/BN068.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=90"><img alt="紅燒牛肉麵"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/BN0511.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=44"><img alt="小籠包"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/BN011.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=9"><img alt="絲瓜蝦仁小籠包"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/BN014.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=105"><img alt="紅油抄手<br>( 蝦肉 )"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/BN0961.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=10"><img alt="松露小籠包"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/xiaolongbao/BN013.png"   border='0'/></a></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="imgs"><a
+                               href="food_show.php?id=87"><img alt="排骨蛋炒飯"  data-ow="942" data-oh="504" src="https://www.dintaifung.com.tw/archive/images/food/BN020.png"   border='0'/></a></div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <!-- <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> -->
+            </div>
+            <div class="text">
+                <div class="memo">
+                    鼎泰豐十大人氣推薦料理，極致的手藝，如臻藝術，從皮薄餡鮮的小籠包，到粒粒清香分明的蛋炒飯、清潤養顏的甜湯，道道令人垂涎的好味道，描繪出大家共同的美食記憶。
+
+                </div>
+                <div class="box_info box_info1" data-id="1"
+                     style="display:block">
+                    <div class="name">
+                        鳳梨酥禮盒<br>(10入)
+                    </div>
+                    <a href="food_show.php?id=151" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info2" data-id="2"
+                     style="">
+                    <div class="name">
+                        小菜
+                    </div>
+                    <a href="food_show.php?id=28" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info3" data-id="3"
+                     style="">
+                    <div class="name">
+                        元盅雞湯
+                    </div>
+                    <a href="food_show.php?id=62" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info4" data-id="4"
+                     style="">
+                    <div class="name">
+                        紹興醉雞
+                    </div>
+                    <a href="food_show.php?id=30" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info5" data-id="5"
+                     style="">
+                    <div class="name">
+                        紅燒牛肉麵
+                    </div>
+                    <a href="food_show.php?id=90" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info6" data-id="6"
+                     style="">
+                    <div class="name">
+                        小籠包
+                    </div>
+                    <a href="food_show.php?id=44" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info7" data-id="7"
+                     style="">
+                    <div class="name">
+                        絲瓜蝦仁小籠包
+                    </div>
+                    <a href="food_show.php?id=9" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info8" data-id="8"
+                     style="">
+                    <div class="name">
+                        紅油抄手<br>( 蝦肉 )
+                    </div>
+                    <a href="food_show.php?id=105" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info9" data-id="9"
+                     style="">
+                    <div class="name">
+                        松露小籠包
+                    </div>
+                    <a href="food_show.php?id=10" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+                <div class="box_info box_info10" data-id="10"
+                     style="">
+                    <div class="name">
+                        排骨蛋炒飯
+                    </div>
+                    <a href="food_show.php?id=87" class="link_style link">
+                        <div>詳細內容</div><span>詳細內容</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="home_news">
+        <div class="downbg">
+            <div class="b01"></div>
+            <div class="b02"></div>
+        </div>
+        <div class="title_img"><img alt=""  data-ow="273" data-oh="92" src="https://www.dintaifung.com.tw/archive/images/indexset/Latest_News_title_20220309.png"   border='0'/></div>
+
+        <div class="newsblock clear">
+            <a href="news.php" class="more_news link_style ">更多消息</a>
+            <div class="main_news ">
+                <div class="date">
+                    <div class="year">2026</div>
+                    <div class='day_box'>
+                        <div class='m'>9</div>
+                        <div class="day">21</div>
+                    </div>
+                </div>
+                <a  href="news_show.php?id=357" class="imgs"
+                   style="background-image:url('https://www.dintaifung.com.tw/archive/images/news/1789955920.jpg')"></a>
+                <a  href="news_show.php?id=357" class="title">【新品上市】袖珍磁鐵扭蛋</a>
+                <div class="memo"></div>
+                <a  href="news_show.php?id=357" class="link">詳細內容</a>
+            </div>
+            <div class="right">
+                <div class="news_box">
+                    <div class="date">2026-7-7</div>
+                    <a  href="news_show.php?id=349" class="title">【新品上市】龍膽石斑蒸餃</a>
+                    <a  href="news_show.php?id=349" class="link">詳細內容</a>
+                </div>
+                <div class="news_box">
+                    <div class="date">2026-5-15</div>
+                    <a  href="news_show.php?id=347" class="title">【新品上市】絨毛娃娃吊飾</a>
+                    <a  href="news_show.php?id=347" class="link">詳細內容</a>
+                </div>
+            </div>
+        </div>
+        <div class='flower'></div>
+    </div>
+
+
+    <div id="globo">
+        <div class="title_img"><img alt=""  data-ow="273" data-oh="92" src="https://www.dintaifung.com.tw/archive/images/indexset/Worldwide_title_20220309.png"   border='0'/></div>
+        <div class="mainmemo">1958年創立於台灣的鼎泰豐，從原本的巷口小吃店發展成全球餐飲品牌，在躋身世界美食舞台之際，始終不忘「食材要天然、擀麵要手工、內餡要實在」的堅持。
+一份執著與堅持，讓鼎泰豐的小籠包舉世聞名，於世界各地陸續展店，征服世界味蕾。
+
+            <div class="new__btns">
+                <a class="btn__set taiwan__btn" href="store.php">台 灣 門 市</a>
+                <a class="btn__set world__btn" href="store_world.php">海 外 門
+                    市</a>
+            </div>
+        </div>
+        <div class="map">
+            <div class="world">
+                <div class="type">
+                    <div class="world-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="worldname" data-id="1"
+                                     dtop="44.3%" dleft="75.3%"
+                                     dname="台灣鼎泰豐背負總店品牌使命，每一環節都透露出一絲不茍的嚴謹，期待透過師父精湛的廚藝和服務人員的用心，讓客人不僅止於用餐，更是一種享受，也為台灣餐飲服務業樹立新典範。
+">台灣</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <div class="c_select">
+                <select id="world_select">
+                    <option value="" selected disabled>請選擇國家</option>
+                    <option value="1" memo="台灣鼎泰豐背負總店品牌使命，每一環節都透露出一絲不茍的嚴謹，期待透過師父精湛的廚藝和服務人員的用心，讓客人不僅止於用餐，更是一種享受，也為台灣餐飲服務業樹立新典範。
+">台灣</option>
+                </select>
+            </div>
+            <div class="map_box">
+                <div class="worldmap"></div>
+                <div class="box">
+                    <div class="title"></div>
+                    <div class="small"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="album_show"></div>
+
+    <div id="people">
+        <figure class="p1" d-id="1">
+            <img alt=""  data-ow="400" data-oh="392" src="https://www.dintaifung.com.tw/archive/images/indexset/p01.jpg"   border='0'/>
+        </figure>
+        <figure class="p2" d-id="2">
+            <img alt=""  data-ow="400" data-oh="392" src="https://www.dintaifung.com.tw/archive/images/indexset/p02.jpg"   border='0'/>
+        </figure>
+        <figure class="p3" d-id="3">
+            <img alt=""  data-ow="400" data-oh="392" src="https://www.dintaifung.com.tw/archive/images/indexset/p03.jpg"   border='0'/>
+        </figure>
+        <figure class="p4" d-id="4">
+            <img alt=""  data-ow="400" data-oh="392" src="https://www.dintaifung.com.tw/archive/images/indexset/p04.jpg"   border='0'/>
+        </figure>
+        <figure class="p5" d-id="5">
+            <img alt=""  data-ow="400" data-oh="392" src="https://www.dintaifung.com.tw/archive/images/indexset/p05.jpg"   border='0'/>
+        </figure>
+    </div>
+
+    <!--START 固定 footer-->
+    <footer>
+        <div class="link_box">
+            <a href="http://www.dintaifung.tw/Queue/?type=3" target="_blank" class="custom a_link timer">
+                <span class="title">網頁版</span>
+                <span class="name">現場到號查詢</span>
+            </a>
+            <a href="#app" target="_blank" class="custom a_link download app_show">
+                <span class="title">APP版</span>
+                <span class="name">鼎泰豐候位APP下載</span>
+            </a>
+			<!-- 20240430 STOP
+            <div class="cloud">
+                <a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));">
+                    <img class="i0" src="images/i_fb.png" alt="">
+                    <img class="i1" src="images/i_fb.png" alt="">
+                </a>
+                <a  href="javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent(location.href))));">
+                    <img class="i0" src="images/i_tw.png" alt="">
+                    <img class="i1" src="images/i_tw.png" alt="">
+                </a>
+                <a href="javascript:(function(){window.open('http://v.t.sina.com.cn/share/share.php?title='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href)+'&source=bookmark','_blank','width=450,height=400');
+                    })()">
+                    <img class="i0" src="images/i_wb.png" alt="">
+                    <img class="i1" src="images/i_wb.png" alt="">
+                </a>
+            </div>
+			-->
+        </div>
+        <div id='gotop'></div>
+    </footer>
+
+
+
+
+    <div id="app" style="display:none">
+        <div class="title">
+            <div class="t01">APP版 / </div><div class="t02">鼎泰豐候位APP下載</div>
+        </div>
+        <div class="button">
+            <a href="https://itunes.apple.com/tw/app/%E9%BC%8E%E6%B3%B0%E8%B1%90/id1108359809?mt=8" target="_blank" class="link" style="background-image:url('https://www.dintaifung.com.tw/archive/images/appico/app01.png')"></a>
+            <a href="https://play.google.com/store/apps/details?id=com.dtf.orderapp&hl=zh_TW" target="_blank" class="link" style="background-image:url('https://www.dintaifung.com.tw/archive/images/appico/app02.png')"></a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div id="load">
+        <div class="bow" style="background-image:url(images/load_bg.png)">
+            <img src="images/load_h.png" alt="">
+            <div class="percent">
+                <span></span>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!--END 固定 footer-->
+
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/pace.min.js"></script>
+<script src="js/waypoints.js"></script>
+<script src="js/jquery.fancybox.js"></script>
+<script src="js/jquery.bxslider.js"></script>
+
+
+
+
+<script>
+var lang=new Object();
+lang["eng"]="";
+lang["jp"]="";//まもなく日本語のホームページが完成致します
+lang["kr"]="";//출시 예정
+lang["tw"]="";
+
+var path='';
+/*載入訊息檔案*/
+var sysMsg=Array();
+var mainWebPath="./";
+var mainAdmPath="./";
+var domain='https://www.dintaifung.com.tw/';
+var page='index.php';
+$(document).ready(function(){
+    $.ajax({
+        url: mainWebPath+"js/langs/tw.json",
+        type: "GET",
+        dataType: "json",
+        success: function(Jdata){
+            sysMsg=Jdata;
+        },
+        error: function() {
+            alert("Failed To Load Language File.");
+        }
+    });
+   
+    $("#language").change(function(){
+        var vv=$(this).val();
+        var msg=lang[vv];
+        if(msg){
+            alert(msg);
+        }else{
+            if(vv==="tw")window.location.href=domain+page; else
+            window.location.href=domain+vv+"/"+page;
+        }
+    });
+});
+</script>
+<script src="js/pic.js"></script>
+<script src="js/public.js"></script>
+
+
+    <script type="text/javascript" src="js/jquery.mb.YTPlayer.min.js"></script>
+    <script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="js/CSSPlugin.min.js"></script>
+    <script type="text/javascript" src="js/TweenLite.min.js"></script>
+    <script type="text/javascript" src="js/TweenMax.min.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
+    <script type="text/javascript" src="js/new-btn.js"></script>
+</body>
+
+</html>

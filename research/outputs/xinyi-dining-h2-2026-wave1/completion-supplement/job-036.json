@@ -1,0 +1,17 @@
+{
+  "id": 36,
+  "input_url": "https://www.mala.com.tw/",
+  "store_id": "XY-031",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0059-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0059-response.txt",
+  "sequence": 36,
+  "started_at": "2026-10-15T06:37:38.052Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_3be569fa-54b7-40a2-bbb0-0c5dbf77fec9",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:40.874Z"
+}

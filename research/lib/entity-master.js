@@ -56,12 +56,42 @@ function findEntityForUrl(master, url) {
   const candidates = master?.byDomain?.get(registrable) || [];
   if (!candidates.length) return null;
   const included = candidates.filter((row) => row.include_status === "included");
-  const chosen = included[0] || candidates[0];
+  const eligible = included.length ? included : candidates;
+  const exact = eligible.filter((row) => row.owned_urls.some((owned) => normalizeComparableUrl(owned) === normalizeComparableUrl(url)));
+  const chosen = exact[0] || included[0] || candidates[0];
   return {
     row: chosen,
     sharedDomain: candidates.length > 1 || chosen.shared_domain_flag === "true" || chosen.shared_domain_flag === "1",
-    candidateCount: candidates.length
+    candidateCount: candidates.length,
+    exactOwnedUrlMatch: exact.length === 1,
+    ambiguousOwnedUrl: exact.length > 1
   };
+}
+
+// Query parameters can identify a restaurant or branch; never reduce owned URLs to the domain root.
+function normalizeComparableUrl(value) {
+  try {
+    const parsed = new URL(value);
+    if (!["http:", "https:"].includes(parsed.protocol)) return "";
+    parsed.hash = "";
+    return parsed.toString();
+  } catch { return ""; }
+}
+
+function assertReviewedEntityCoverage(urls, master) {
+  const failures = [];
+  for (const url of urls) {
+    const entity = findEntityForUrl(master, url);
+    if (!entity) { failures.push(`${url}: entity master has no matching official domain`); continue; }
+    const row = entity.row;
+    if (row.include_status === "pending") failures.push(`${url}: matched entity ${row.store_id} is still pending review`);
+    if (![row.official_name_zh, row.official_name_en, ...(row.aliases || [])].some(Boolean)) failures.push(`${url}: matched entity ${row.store_id} has no canonical brand term`);
+    if (!(row.official_domains || []).length) failures.push(`${url}: matched entity ${row.store_id} has no official domain`);
+    if (!row.reviewed_by || !row.reviewed_at || !row.truth_source) failures.push(`${url}: matched entity ${row.store_id} lacks review provenance`);
+    if (entity.ambiguousOwnedUrl) failures.push(`${url}: ambiguous owned_urls match across multiple entities`);
+    else if (entity.sharedDomain && !entity.exactOwnedUrlMatch) failures.push(`${url}: shared official domain requires an exact owned_urls match`);
+  }
+  if (failures.length) throw new Error(`Entity master preflight failed before provider configuration or paid calls:\n- ${failures.join("\n- ")}`);
 }
 
 function buildEntityProfile(row, datasetVersion) {
@@ -103,4 +133,4 @@ function parseCsvLine(line) {
   return values;
 }
 
-module.exports = { REQUIRED_COLUMNS, buildEntityProfile, findEntityForUrl, loadEntityMaster, parseCsvLine };
+module.exports = { REQUIRED_COLUMNS, assertReviewedEntityCoverage, normalizeComparableUrl, buildEntityProfile, findEntityForUrl, loadEntityMaster, parseCsvLine };

@@ -1,0 +1,221 @@
+<!doctype html>
+<html class="no-js" lang="zh-Hant-TW">
+
+<head>
+    <!-- load head css js -->
+    <meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Texas Roadhouse 德州鮮切牛排</title>
+<meta property="og:title" content="Texas Roadhouse 德州鮮切牛排" />
+
+<meta name="description" content="Texas Roadhouse 德州鮮切牛排提供美國牛肉 USDA Choice 手工鮮切牛排、火烤冠軍豬肋排、經典瑪格麗特調酒，帶給您正宗美式料理、親切服務及歡樂的用餐經驗。">
+<meta property="og:description" content="Texas Roadhouse 德州鮮切牛排提供美國牛肉 USDA Choice 手工鮮切牛排、火烤冠軍豬肋排、經典瑪格麗特調酒，帶給您正宗美式料理、親切服務及歡樂的用餐經驗。" />
+<meta property="og:keyword" content="Texas Roadhouse, TEXAS, ROADHOUSE, 德州, 路德斯, 德州鮮切牛排, 鮮切牛排, 美式餐廳, 牛排餐廳, 運動酒吧, 牛排館, 美式料理, 豬肋排, 漢堡, 牛排, 沙拉, 餐酒館, 義大利麵, 啤酒, 調酒, 酒吧, steak, American-styled restaurant, American food, Ribs, Cocktail, Beer, Hamburger" />
+
+
+<meta property="og:image" content="https://www.texasroadhouse.com.tw/asset/types/main/img/logo.svg" />
+
+<base href="https://www.texasroadhouse.com.tw/" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicons -->
+<link rel="shortcut icon" href="https://www.texasroadhouse.com.tw/asset/types/main/images/favicon.ico">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link media="screen" rel="stylesheet" href="https://www.texasroadhouse.com.tw/asset/types/main/css/plugin.css?v2.2">
+<link media="screen" rel="stylesheet" href="https://www.texasroadhouse.com.tw/asset/types/main/css/MainStyle.css?v2.2">
+<link media="screen" rel="stylesheet" href="https://www.texasroadhouse.com.tw/asset/types/main/css/patch.css?v2.2">
+<script  src="https://www.texasroadhouse.com.tw/asset/types/main/js/jquery-3.5.1.min.js?v2.2"></script>
+<script src="https://www.texasroadhouse.com.tw/asset/types/main/js/plugin.min.js?v2.2"></script>
+<script src="https://www.texasroadhouse.com.tw/asset/types/main/js/main.js?v2.2"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CX9Q62RVBN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CX9Q62RVBN');
+</script>
+</head>
+
+<body>
+    <div class="header sticker">
+        <div class="top-header">
+            <div class="container pd_style">
+                <div class="header_nav   align-items-center ">
+                    <a href="https://www.texasroadhouse.com.tw/" class="logo navbar-brand">
+                        <img src="https://www.texasroadhouse.com.tw/asset/types/main/images/logo.svg" alt="">
+                    </a>
+                    <div class="top-menu">
+                        <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler" data-target="#navigation" data-control="navigation"
+                                data-toggle="collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navigation">
+                                    <ul class="nav navbar-nav justify-content-center">
+                                        <!-- <li class=""><a href="https://inline.app/booking/-KzvYo7DTgcAy5Kb4khD" target="_blank" >線上訂位</a></li> -->
+                                        <li class=""><a href="https://www.texasroadhouse.com.tw/locations" class="" >餐廳店址</a></li>
+                                        <li class=""><a href="https://www.texasroadhouse.com.tw/food"  class="">線上菜單</a></li>
+                                        <li class=""><a href="https://www.texasroadhouse.com.tw/about" >關於我們</a></li>
+                                        <!-- <li class=""><a href="https://www.casualrestaurants.com/member" >加入會員</a></li> -->
+                                        <li class=""><a href="https://www.texasroadhouse.com.tw/contactus" class="" >聯絡我們</a></li>
+                                        <li class=""><a href="https://www.texasroadhouse.com.tw/news" class="" >最新消息</a></li>
+                                        <li class=""><a href="https://www.104.com.tw/company/1a2x6biwj2" target="_blank">徵人訊息</a></li>
+                                        <li class=""><a href="https://www.texasroadhouse.com.tw/en" >English</a></li>
+                                    </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    <div class="kv">
+        <!-- <video  loop="" poster="https://www.texasroadhouse.com.tw/asset/types/main/images/poster.jpg"><source src="https://www.texasroadhouse.com.tw/asset/types/main/images/grill.mp4" type="video/mp4"></video> -->
+        <video autoplay loop muted poster="https://www.texasroadhouse.com.tw/asset/types/main/images/poster.jpg">
+            <source src="https://www.texasroadhouse.com.tw/asset/types/main/images/grill.mp4" type="video/mp4">
+        </video>
+        
+
+        <div class="kv-text">
+             <h2>
+               <span>Welcome to</span> <br>
+                     Legendary!
+             </h2>
+             <div class="kv-btn">
+                
+                <a href="https://inline.app/booking/-L_Kqc65tPNs1Q570HOK:inline-live-2a466" target="_blank"><mat-icon class="mat-icon material-icons"  aria-hidden="true">book_online</mat-icon><span>線上訂位</span></a>
+                <a href="https://www.casualrestaurants.com/member"><mat-icon  class="mat-icon  material-icons " aria-hidden="true">account_circle</mat-icon><span>加入會員</span></a>
+             </div>
+        </div>
+   
+    </div>
+
+            <div class="section1">
+            <div class="container pd_style">
+                <div class="section1-title">
+                    最新消息
+                </div>
+                <div class="row">
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="section1-item">
+                                <a href="https://www.texasroadhouse.com.tw/news/display/6">
+                                    <div class="section1-img">
+                                        <img src="./uploads/news/6/2e7bd4fb40d40365f52ad09e3041afd8.png" alt="">
+                                    </div>
+                                    <div class="section1-text">
+                                        <h3>【Texas Roadhouse午間限定優惠】平日小確幸，超值登場！</h3>
+                                        <p>每週一至週五，【午間限定優惠】讓您享受美食無負擔！</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="section1-item">
+                                <a href="https://www.texasroadhouse.com.tw/news/display/9">
+                                    <div class="section1-img">
+                                        <img src="./uploads/news/9/ed199b58d3a82b6719549aa6ef7bc599.jpg" alt="">
+                                    </div>
+                                    <div class="section1-text">
+                                        <h3>Texas Roadhouse瘋狂星期三 飲品買一送一</h3>
+                                        <p>每週三全天供應(國定假日不適用)，指定生啤酒、瑪格麗特及精選葡萄酒買一送一！</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="section1-item">
+                                <a href="https://www.texasroadhouse.com.tw/news/display/10">
+                                    <div class="section1-img">
+                                        <img src="./uploads/news/10/925b7796430ed6cc3e303414748b2f99.png" alt="">
+                                    </div>
+                                    <div class="section1-text">
+                                        <h3>Happy Hour平日第二杯半價</h3>
+                                        <p>平日週一至週五15:00-20:00(國定假日不適用)，揪好友喝杯生啤酒、瑪格麗特及精選葡萄酒，Happy Hour第二杯半價！</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-md-4 col-sm-6">
+                            <div class="section1-item">
+                                <a href="https://www.texasroadhouse.com.tw/news/display/8">
+                                    <div class="section1-img">
+                                        <img src="./uploads/news/8/15825f6b0145f8a8abdbc8960d9ebb37.png" alt="">
+                                    </div>
+                                    <div class="section1-text">
+                                        <h3>【期間限定】Kids Eat Free！Texas Roadhouse免費招待兒童餐！</h3>
+                                        <p>每週五到每週日攜家帶眷到Texas Roadhouse開心吃美食、享優惠！Texas Roadhouse招待孩子們最愛的兒童餐免費吃！！</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+        </div>
+        
+    
+    <!-- load foot js -->
+    <div class="footer">
+    <div class="container ">
+        <div class="footer-body">
+                <ul>
+                    <li>
+                        <a href="https://www.texasroadhouse.com.tw/steak" class="">
+                            牛排小教室
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="https://www.texasroadhouse.com.tw/certificates" class="">
+                            禮券購買
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.texasroadhouse.com.tw/about" class="">
+                            品牌介紹
+                        </a>
+                    </li> -->
+                    <li>
+                        <a href="https://www.texasroadhouse.com.tw/privacy" class="">
+                            隱私權宣告
+                        </a>
+                    </li>
+                </ul>
+                <div class="footer-icon">
+                    <ul>
+                        <li>
+                            <a href="https://www.facebook.com/TexasRoadhouseTWN" target="_blank">
+                                <img src="https://www.texasroadhouse.com.tw/asset/types/main/images/icon_facebook.png"  alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/texasroadhouse.tw" target="_blank">
+                                <img src="https://www.texasroadhouse.com.tw/asset/types/main/images/icon_instagram.png"  alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCXDnwhWRaWpaKsKlaQBXj3A" target="_blank">
+                                <img src="https://www.texasroadhouse.com.tw/asset/types/main/images/icon_youtube.png"  alt="">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.ubereats.com/search/?q=texas+roadhouse&utm_source=texasroadhouse_taiwan&utm_medium=website&utm_campaign=referral" target="_blank">
+                                <img src="https://www.texasroadhouse.com.tw/asset/types/main/images/icon_ubereats.png"  alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+    <div class="text-center cpyright">
+        <p>© 2024 TGI Fridays Taiwan. All rights reserved.</p>
+    </div>
+</div>    </body>
+
+</html>

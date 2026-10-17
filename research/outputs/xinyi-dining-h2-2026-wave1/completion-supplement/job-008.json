@@ -1,0 +1,17 @@
+{
+  "id": 8,
+  "input_url": "https://www.eatogether.com.tw/",
+  "store_id": "XY-032",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0013-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0013-response.txt",
+  "sequence": 8,
+  "started_at": "2026-10-15T06:36:52.985Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_3101d1e8-f772-4702-9bc0-c5a848b6d897",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:56.149Z"
+}

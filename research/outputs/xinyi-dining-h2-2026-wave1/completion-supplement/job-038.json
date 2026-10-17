@@ -1,0 +1,17 @@
+{
+  "id": 38,
+  "input_url": "https://www.mortons.com/",
+  "store_id": "XY-042",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0063-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0063-response.txt",
+  "sequence": 38,
+  "started_at": "2026-10-15T06:37:42.379Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_42e3854f-51aa-476d-b0e1-f9fe4813545a",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:45.398Z"
+}

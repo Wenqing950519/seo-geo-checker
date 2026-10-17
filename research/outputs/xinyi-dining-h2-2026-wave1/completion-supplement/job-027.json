@@ -1,0 +1,17 @@
+{
+  "id": 27,
+  "input_url": "https://www.joycecafetw.com/",
+  "store_id": "XY-054",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0044-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0044-response.txt",
+  "sequence": 27,
+  "started_at": "2026-10-15T06:37:23.362Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_e3885b8f-48f5-4745-a504-68d9b82e14ed",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:26.535Z"
+}

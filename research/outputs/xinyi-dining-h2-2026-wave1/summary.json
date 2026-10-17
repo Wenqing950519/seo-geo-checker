@@ -1,0 +1,166 @@
+{
+  "generated_at": "2026-10-15T06:34:50.554Z",
+  "timezone": "Asia/Taipei",
+  "wave": "2026-10-wave1",
+  "cohort_rows": 49,
+  "pipeline_status_counts": {
+    "failed": 10,
+    "success": 23,
+    "unknown": 16
+  },
+  "unknown_and_failure_stages": {
+    "crawl_quality": 3,
+    "entity_mapping_preflight": 16,
+    "url_dns": 3,
+    "translate_fetch": 4
+  },
+  "pipeline_successful_sites": 23,
+  "expected_discovery_rows": 147,
+  "quality_counts": {
+    "unknown_unavailable": 30,
+    "truncated": 55,
+    "complete_answer": 14,
+    "unknown_entity_mapping": 48
+  },
+  "preserved_pipeline_results": {
+    "valid_answer_rows": 69,
+    "brand_mentioned_rows": 3,
+    "first_party_evidence_rows": 0,
+    "caveat": "Includes truncated answers accepted by the historical parser; not validated complete-answer visibility rates."
+  },
+  "completion_quality_diagnostic": {
+    "complete_answers": 14,
+    "brand_mentioned_in_complete_answers": 0,
+    "caveat": "Completion-based filtering may be selective; this is a quality diagnostic, not a newly approved primary metric."
+  },
+  "cross_wave_panel": {
+    "same_input_rows": 49,
+    "both_pipeline_success": 23,
+    "identity_mismatches": 0,
+    "september_finish_reason": "unknown"
+  },
+  "api_transport": {
+    "actual_requests": 115,
+    "by_provider": {
+      "perplexity": 92,
+      "deepseek": 23
+    },
+    "returned_models": {
+      "sonar": 92,
+      "deepseek-flash": 23
+    },
+    "reported_cost_usd_partial": 0.3258999999999998,
+    "responses_without_reported_cost": 23,
+    "complete_cost_usd": null,
+    "transport_all_terminal": true,
+    "caps_verified": true
+  },
+  "collection_window_utc": [
+    "2026-10-15T06:16:35.817Z",
+    "2026-10-15T06:31:28.154Z"
+  ],
+  "public_http_evidence": {
+    "completed_at": "2026-10-15T03:52:26.232Z",
+    "planned_urls": 103,
+    "recorded_urls": 103,
+    "unique_urls": 103,
+    "saved_responses": 87,
+    "http_2xx": 63,
+    "fetch_failures": 16,
+    "paid_ai_calls": 0,
+    "events_file_sha256": "f2d8fc4053dc1c4a751ef7ec9160f9622b9490be16c98129a68daf8bc01c9673"
+  },
+  "readiness": {
+    "technical_record_complete": true,
+    "all_cohort_visibility_observed": false,
+    "human_review_complete": false,
+    "publication_ready": false,
+    "reason": "Ambiguous entity rows, website failures, truncated answers, historical completion uncertainty and human review remain explicit."
+  },
+  "source_verification": [
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv",
+      "sha256": "2a455be2198afb77cd02f8219b054b6268786d69c1be5c5fd4ea3374e20bfd4b",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/inputs/xinyi-restaurants-h2-2026/xinyi-49.sites.approved.csv"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv",
+      "sha256": "7293782a31876806d5c9da6fe45fd26dbf10670d8fbafe2b1cc024d71e8b110a",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/inputs/xinyi-restaurants-h2-2026/xinyi-70.entity_master.reviewed.csv"
+    },
+    {
+      "path": "research/inputs/xinyi-restaurants-h2-2026/query-set.xinyi-dining-h2-2026.approved.json",
+      "sha256": "8b30d91a3a74b46d29338fd4034fe68feb44a338d2c98530b51109b7be3c5954",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/inputs/xinyi-restaurants-h2-2026/query-set.xinyi-dining-h2-2026.approved.json"
+    },
+    {
+      "path": "research/outputs/xinyi-dining-h2-2026-wave1/preparation/sites-passing-existing-approval.csv",
+      "sha256": "12af8ca1e4ef01b5f3a5f66464c4a66278e300d8a36b797e2bae2c6746061575",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/outputs/xinyi-dining-h2-2026-wave1/preparation/sites-passing-existing-approval.csv"
+    },
+    {
+      "path": ".agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs",
+      "sha256": "8615d6842ec7410fb8120533e9a45471381c0d27c12953abbd56e18c137a19f8",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/.agents/skills/geo-whitepaper-research/scripts/run-ai-evidence-batch.mjs"
+    },
+    {
+      "path": "research/lib/entity-master.js",
+      "sha256": "b31d2d4689a67228cfb06e2782062027aee27548be7399e16a031f949ee6a92b",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/lib/entity-master.js"
+    },
+    {
+      "path": "research/lib/transport-recorder.js",
+      "sha256": "75bd1b436cf902b19936e0bf82476ddc6512153d59c06265adc197f4253ce4e3",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/lib/transport-recorder.js"
+    },
+    {
+      "path": "research/work/run-october-wave1.mjs",
+      "sha256": "b5e56d30ba9256353efab3c124b4d006f07d74c96166908a96cf3e35bb498a0b",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/research/work/run-october-wave1.mjs"
+    },
+    {
+      "path": "services/api/application/geo-measurement.js",
+      "sha256": "878efb0c59fdb7ee75b0a866ee69522ecaa4ab581ee2003352cb4b349e45d0fe",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/services/api/application/geo-measurement.js"
+    },
+    {
+      "path": "packages/ai-providers/perplexity.js",
+      "sha256": "766d721255f44afd4efd8015087d817a6112b59c0032356b64e8de438f3cbe48",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/ai-providers/perplexity.js"
+    },
+    {
+      "path": "packages/ai-providers/deepseek.js",
+      "sha256": "ef7a3b2019be3a8e4ee1b3fdd75b04d129ea28c6991746ae89abca651997ed97",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/ai-providers/deepseek.js"
+    },
+    {
+      "path": "packages/geo-core/evidence/brand-match.js",
+      "sha256": "2aee99b435f578f332f6a8b5b6b6be4c2298a26adace835a536a2eac7310875b",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/geo-core/evidence/brand-match.js"
+    },
+    {
+      "path": "packages/geo-core/evidence/perplexity-visibility.js",
+      "sha256": "4978b264513ff753d11ffa10a7d4000cd4dc973372a4863a29b35ea7e148f066",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/geo-core/evidence/perplexity-visibility.js"
+    },
+    {
+      "path": "packages/geo-core/scoring/ai-trust-index.js",
+      "sha256": "0a073e721d22250d13bd2b09758c3674061e011ceed5a9758fd29a923808a991",
+      "matches_frozen_source": true,
+      "snapshot_ref": "research/outputs/xinyi-dining-h2-2026-wave1/provenance/source/packages/geo-core/scoring/ai-trust-index.js"
+    }
+  ]
+}

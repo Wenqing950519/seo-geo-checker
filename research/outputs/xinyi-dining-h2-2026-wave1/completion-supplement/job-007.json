@@ -1,0 +1,17 @@
+{
+  "id": 7,
+  "input_url": "https://www.eatogether.com.tw/",
+  "store_id": "XY-032",
+  "query_id": "dating-celebration-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0012-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0012-response.txt",
+  "sequence": 7,
+  "started_at": "2026-10-15T06:36:51.479Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_1eea1cd0-66d1-4ca9-a3f3-8503546c283b",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:36:54.789Z"
+}

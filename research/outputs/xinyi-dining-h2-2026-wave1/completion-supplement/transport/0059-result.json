@@ -1,0 +1,10 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-completion-supplement",
+  "sequence": 59,
+  "provider": "perplexity",
+  "completed_at": "2026-10-15T06:38:19.074Z",
+  "http_status": 200,
+  "request_id": "63f436e8-8e7d-4dbe-80ee-e688124673cb",
+  "content_type": "application/json",
+  "response_file": "0059-response.txt"
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>值不能為 null。<br>參數名稱: value</title>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+         body {font-family:"Verdana";font-weight:normal;font-size: .7em;color:black;} 
+         p {font-family:"Verdana";font-weight:normal;color:black;margin-top: -5px}
+         b {font-family:"Verdana";font-weight:bold;color:black;margin-top: -5px}
+         H1 { font-family:"Verdana";font-weight:normal;font-size:18pt;color:red }
+         H2 { font-family:"Verdana";font-weight:normal;font-size:14pt;color:maroon }
+         pre {font-family:"Consolas","Lucida Console",Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}
+         .marker {font-weight: bold; color: black;text-decoration: none;}
+         .version {color: gray;}
+         .error {margin-bottom: 10px;}
+         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:pointer; }
+         @media screen and (max-width: 639px) {
+          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+         }
+         @media screen and (max-width: 479px) {
+          pre { width: 280px; }
+         }
+        </style>
+    </head>
+
+    <body bgcolor="white">
+
+            <span><H1>'/' 應用程式中發生伺服器錯誤。<hr width=100% size=1 color=silver></H1>
+
+            <h2> <i>值不能為 null。<br>參數名稱: value</i> </h2></span>
+
+            <font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+
+            <b> 描述: </b>在執行目前 Web 要求的過程中發生未處理的例外狀況。請檢閱堆疊追蹤以取得錯誤的詳細資訊，以及在程式碼中產生的位置。
+
+            <br><br>
+
+            <b> 例外狀況詳細資訊: </b>System.ArgumentNullException: 值不能為 null。<br>參數名稱: value<br><br>
+
+            <b>原始程式錯誤:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+行 118:            }
+行 119:
+<font color=red>行 120:            System.Threading.Thread.CurrentThread.CurrentUICulture = sHelper.MyCulture;
+</font>行 121:            System.Threading.Thread.CurrentThread.CurrentCulture = sHelper.MyCulture;
+行 122:</pre>                      </code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <b> 原始程式檔: </b> d:\inetpub\vhosts\shinyeh.com.tw\httpdocs\App_Code\com\ap\web\auth\CultureModule.cs<b> &nbsp;&nbsp; 行: </b> 120
+            <br><br>
+
+            <b>堆疊追蹤:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+[ArgumentNullException: 值不能為 null。
+參數名稱: value]
+   System.Threading.Thread.set_CurrentUICulture(CultureInfo value) +12841611
+   com.ap.web.auth.CultureModule.setCulture(Object sender, EventArgs e) in d:\inetpub\vhosts\shinyeh.com.tw\httpdocs\App_Code\com\ap\web\auth\CultureModule.cs:120
+   System.Web.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +201
+   System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step) +132
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +73
+</pre>                      </code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <hr width=100% size=1 color=silver>
+
+            <b>版本資訊:</b>&nbsp;Microsoft .NET Framework 版本:4.0.30319; ASP.NET 版本:4.8.4805.0
+
+            </font>
+
+    </body>
+</html>
+<!-- 
+[ArgumentNullException]: 值不能為 null。
+參數名稱: value
+   於 System.Threading.Thread.set_CurrentUICulture(CultureInfo value)
+   於 com.ap.web.auth.CultureModule.setCulture(Object sender, EventArgs e) 於 d:\inetpub\vhosts\shinyeh.com.tw\httpdocs\App_Code\com\ap\web\auth\CultureModule.cs: 行 120
+   於 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   於 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   於 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+--><!-- 
+此錯誤頁面可能包含敏感性資料，因為 ASP.NET 是設定成使用 &lt;customErrors mode="Off"/&gt; 顯示詳細資訊錯誤訊息。請考慮在實際執行環境中使用 &lt;customErrors mode="On"/&gt; 或 &lt;customErrors mode="RemoteOnly"/&gt;。-->

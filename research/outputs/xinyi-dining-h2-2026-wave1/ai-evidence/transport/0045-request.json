@@ -1,0 +1,28 @@
+{
+  "run_id": "whitepaper-xinyi-wave1-2026-10-15-v2q",
+  "sequence": 45,
+  "provider": "deepseek",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "reserved_at": "2026-10-15T06:20:57.048Z",
+  "payload": {
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You must output valid JSON only. Do not output Markdown or explanatory text."
+      },
+      {
+        "role": "user",
+        "content": "你是研究資料標註員，只能根據提供的網站證據輸出 JSON。\n任務是標準化基本資訊、產業分類、網站結構與內容特徵；不是提出優化建議。\n不得產出 recommendation、action、improvement、rewrite、expected impact 或任何行銷建議。\n證據不足時填 unknown，並降低 confidence；不得從網域名稱猜測。\n輸出格式：\n{\"entity_name\":\"string | unknown\",\"industry\":\"string | unknown\",\"business_scope\":\"string | unknown\",\"geography\":[\"string\"],\"primary_language\":\"string | unknown\",\"page_purpose\":\"string | unknown\",\"structure_summary\":{\"information_architecture\":\"string | unknown\",\"content_format\":[\"string\"],\"schema_types\":[\"string\"],\"js_dependency\":\"low | medium | high | unknown\"},\"observed_content_topics\":[\"string\"],\"evidence_basis\":[\"string\"],\"confidence\":\"low | medium | high\"}\n網站證據：\n{\"url\":\"https://www.joycecafetw.com/\",\"detected_site_type\":\"restaurant\",\"title\":\"紅石國際股份有限公司 /JOYCE WEST cafe / 紅廚Pasta West East / JOYCE EAST\",\"description\":\"\",\"h1\":\"\",\"language\":\"\",\"text_excerpt\":\"紅石國際股份有限公司 /JOYCE WEST cafe / 紅廚Pasta West East / JOYCE EAST Copyright © 紅石國際股份有限公司 All rights reserved. │ Design by YUANPU Copyright © 紅石國際股份有限公司 All rights reserved. Design by YUANPU - J O Y C E 餐 飲 外 燴 服 務 - 許 您 每 一 回 的 貼 心 與 感 動 - 當 西 方 遇 見 東 方 - 1988 的 幸 福 美 食 - 與 信 義 區 美 食 的 紫 色 邂 逅 - < > $(function() { $('#dg-container').gallery({ autoplay : true }); });\",\"representative_pages\":[{\"url\":\"https://www.joycecafetw.com/JOYCEWESTcafe/?action=index\",\"title\":\"JOYCE 餐飲外燴\",\"h1\":\"\",\"text_excerpt\":\"JOYCE 餐飲外燴 節慶/團體聚餐 Festive / group dinner 公關活動與商務型態 Activities and Business --> --> JOYCE 餐飲外燴 JOYCE EAST │ PASTA WEST EAST紅廚 │ Copyright © JOYCE 餐飲外燴 All rights reserved. │ Design by YUANPU Copyright © JOYCE 餐飲外燴 All rights reserved. │ Design by YUANPU -->\"},{\"url\":\"https://www.joycecafetw.com/PastaWestEast/?action=index\",\"title\":\"紅廚PastaWestEast\",\"h1\":\"\",\"text_excerpt\":\"紅廚PastaWestEast Business Lunch Menu 商業午餐 Chef Special Dinner Menu 主廚晚間菜單 Luncheon Set Menu 特選午間套餐 Vegetarian Set Menu 主廚特選蔬食套餐 CHEF’S SUGGESTION 主廚精選龍蝦料理 PWE Classic Dishes 紅廚經典系列 Banquet 私人宴席 PWE Drip Bag Coffee 紅廚經典掛耳咖啡 紅廚PastaWestEast JOYCE 餐飲外燴 JOYCE EAST Copyright © Pasta West East All rights reserved. Design by YUANPU\"},{\"url\":\"https://www.joycecafetw.com/JOYCEEAST/?action=index\",\"title\":\"JOYCE EAST\",\"h1\":\"\",\"text_excerpt\":\"JOYCE EAST Luncheon menu 商業午餐 Light Luncheon Set Menu 輕食午餐 VIP Room Luncheon Menu 包廂午間套餐 Special Dinner Set Menu 晚間套餐 VEGETARIAN MENU 蔬食精選套餐 Drip Bag Coffee JOYCE濾掛咖啡禮盒 Joyce East 義式餐廳 PASTA WEST EAST 紅廚 JOYCE 餐飲外燴 Copyright © JOYCE EAST All rights reserved. Design by YUANPU\"}],\"observed_structure\":{\"title_present\":true,\"h1_present\":false,\"description_present\":false,\"readable_text_length\":1223,\"schema_types\":[],\"sitemap_status\":404,\"crawl_method\":\"http\"}}"
+      }
+    ],
+    "response_format": {
+      "type": "json_object"
+    },
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "disabled"
+    },
+    "temperature": 0
+  }
+}

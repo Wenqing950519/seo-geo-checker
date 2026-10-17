@@ -1,0 +1,17 @@
+{
+  "id": 23,
+  "input_url": "https://www.inparadise.com.tw/",
+  "store_id": "XY-015",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0038-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0038-response.txt",
+  "sequence": 23,
+  "started_at": "2026-10-15T06:37:16.978Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_32b4566f-d8d4-4857-b77f-e5f17c7af9d5",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:19.897Z"
+}

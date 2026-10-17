@@ -1,0 +1,17 @@
+{
+  "id": 11,
+  "input_url": "https://www.gbarestaurants.com.tw/",
+  "store_id": "XY-045",
+  "query_id": "gathering-general-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0018-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0018-response.txt",
+  "sequence": 11,
+  "started_at": "2026-10-15T06:36:58.093Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_15f78822-83f2-498e-a68f-efd8a3df2f32",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:37:00.868Z"
+}

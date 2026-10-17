@@ -1,0 +1,17 @@
+{
+  "id": 63,
+  "input_url": "https://www.ukai-tpe.com.tw/",
+  "store_id": "XY-064",
+  "query_id": "hotpot-bbq-01",
+  "original_request": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0104-request.json",
+  "original_response": "research/outputs/xinyi-dining-h2-2026-wave1/ai-evidence/transport/0104-response.txt",
+  "sequence": 63,
+  "started_at": "2026-10-15T06:38:22.247Z",
+  "status": "complete_answer",
+  "human_review_status": "pending",
+  "http_status": 200,
+  "response_id": "resp_9b80978e-dd3f-4d58-8034-33f753dbad22",
+  "finish_reason": "stop",
+  "returned_model": "sonar",
+  "completed_at": "2026-10-15T06:38:25.503Z"
+}
