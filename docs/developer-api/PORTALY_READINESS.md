@@ -205,3 +205,20 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 - 觀測扣點（每次四引擎全成扣 8 點、失敗不扣）尚未接到工作結算；目前仍是原本的輪數配額。
 - Portaly 發起的退款（`payment.refunded`）只會被忽略，尚未扣回點數。
 - 端到端 Test 付款需要：啟用方案、遠端 D1 套用 migration 0007、Worker 設定三個 secret／變數並部署，再由使用者用結帳頁顯示的測試卡付款。
+
+## Test 模式部署（2026-10-17）
+
+使用者確認沿用已建好的動態金額方案（NT$100–10,000），不另建固定方案，並授權啟用方案、遠端套用 migration、設定 Worker secret 與部署。
+
+| 步驟 | 結果 |
+|---|---|
+| 遠端 D1 | `geocheck-developer-api` 套用 `0007_portaly_points.sql`；讀回 `developer_point_orders`、`developer_point_ledger`、`developer_portaly_events` 三表存在 |
+| Worker secret | `PORTALY_API_KEY`（`pcs_test_` 測試金鑰）、`PORTALY_CALLBACK_SECRET`、`PORTALY_CHECKOUT_ENABLED=true`，由本機 `.env` 以 stdin 上傳，未顯示內容 |
+| 部署 | 分支提交 `3057247` fast-forward 推送 main，Workers Builds 版本 `92ec150b-7a28-43b6-a94c-5e994739d41a`（2026-10-17T05:48:31Z）100% 流量；secret 上傳產生的中間版本為 `b210a8d1`、`34a12a27` |
+| Portaly 方案 | `qywC12Oif0GAOlYbo8o9` 以 `PUT /plans/{id}` 改為 `active`；讀回為 dynamic、one-time、TWD、`collectPhone: false` |
+
+正式站驗收：未簽章 callback 回 401 `invalid_signature`；GET 回 405；`api.geocheck.lisheng.cv` 回 404；70 KB 內文回 413；未登入的 `/v1/console/points` 回 401；`/healthz` 為 ok；Console 頁含預設隱藏的 `points-panel`。以真實 callback secret 簽署一筆不存在 session（`smoke_unknown_20261017`）的完成事件，回 200 `unknown_session`，確認驗簽與 D1 寫入可用且不入帳。
+
+另直接以 API 建立 NT$100 測試 session（`G8WXvjzp3XBMdVvIQxNi`，未付款、30 分鐘過期），確認 Portaly 接受動態金額。**Portaly 也接受 NT$99.5**，所以整數與 NT$100–10,000 限制只靠本平台後端把關（已有測試）。這兩筆 smoke session 沒有本平台訂單，若被付款只會記為 `unknown_session`。
+
+尚未驗證：使用者登入 Console 後的儲值區塊顯示、透過本平台建立的 checkout、測試卡付款、真實 `checkout.completed` 回呼入帳與餘額顯示。方案在 Test／Live 共用，審核通過、換上 Live 金鑰前，正式付款不會發生；換金鑰前須先接上觀測扣點。
