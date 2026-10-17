@@ -245,3 +245,13 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 - `/v1/usage` 與 `/v1/console/usage` 在點數模式仍讀試用額度。
 - 開啟 `DEVELOPER_API_BILLING=points` 後，沒有點數的帳戶（含受邀測試者）將無法建立觀測；目前正式站用的是 Test 金鑰，因此只有測試點數可用。
 - 贈點活動頁（使用者 2026-10-17 提出）：發放少量有使用期限、不可退款的贈送點數，並先扣贈送點數。目前帳本以加總計算餘額，尚無到期與扣點順序。
+
+## 事故：推送 main 覆蓋 MCP 研究通道（2026-10-17，已修復）
+
+**原因**：MCP 研究通道（LSL-D-004）與 10/16 provider 修補是直接用 wrangler 從工作樹部署（Worker `31584707`），程式從未進入 main。本分支 `3057247` 推上 main 時，Workers Builds 以 main 建置並部署 `92ec150b`（05:48:31Z），`/mcp` 自此回 404，Grok Bot 研究通道中斷約 17 分鐘（至 06:05:10Z）。
+
+**修復**（使用者指示「先嘗試修復，不行再回滾」）：從本機保存的 `31584707` 部署 source map（`tmp/provider-response-repair/worker.mjs.map`）逐字取回第一方模組。與 main 實際差異只有 5 個檔案（MCP 改動與 10/16 修補），加上新增的 `developer-mcp-research.js`、`research-mcp.mjs`、migration `0006`（遠端早已套用）與 MCP 相依套件，提交為 `33fe5e3`（分支 `restore/mcp-31584707`），再合併進點數分支（`d30eaf0`）。worker 與 D1 store 的三處衝突都是雙方各自新增，全部保留。MCP 既有的兩組測試（研究服務、HTTP／協定／Worker 路由）在合併後通過，並加入 `npm test`。推送 main 後 Workers Builds 部署 `24953694-0f2b-44aa-ac8b-600cefb22cfe`（06:05:10Z）。
+
+**驗收**：匿名 `/mcp` 回 401（研究憑證）；以研究 token 唯讀檢查 initialize、`tools/list`（`create_measurement`、`get_measurement`、`get_usage`）、`get_usage` 均 200，歷史 succeeded 9／failed 9 與事故前一致；未提交量測。Portaly callback 未簽章 401、GET 405；未登入點數端點 401；`/healthz` ok；Platform 七頁與 GeoCheck 首頁 200；首頁顯示模型仍為 `claude-haiku-4.5`，未帶上 LSL-D-002 的 Haiku 5.5。未回滾。
+
+**之後必須遵守**：main 現在就是正式 Worker 的原始碼。任何推送都會觸發 Workers Builds 部署 main，所以不要再從工作樹直接部署 Platform Worker；變更先進 main。主 checkout 裡 MCP 工作階段的未提交檔案與 main 內容重疊，提交前要先與 main 合併。
