@@ -272,7 +272,7 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 **要注意**：
 
 - 名額不設上限時，實際領取可能超過 100，「限量 100 份」就與實況不符。`GET /v1/console/points/promotions` 回傳 `claimed_count` 可隨時查；接近 100 時可改設 `capacity: 100`。
-- 客戶端供應商支出上限是每日 NT$60、每月 NT$600（`wrangler.jsonc`），贈點觀測與付費觀測共用。100 人用完贈點約 NT$1,650 以上，會先撞到月上限，付費客戶也會被擋（`cost_budget_exhausted`）。開辦前需決定是否調高上限。
+- 客戶端供應商支出上限由贈點觀測與付費觀測共用。原本每日 NT$60、每月 NT$600，100 人用完贈點約 NT$1,650 以上會先撞到月上限並擋到付費客戶（`cost_budget_exhausted`）。使用者 2026-10-17 同意調為**每日 NT$200、每月 NT$2,500**（`wrangler.jsonc`，本分支），合併 main 並部署後生效。內部通道上限（日 500／月 3,000）不變。
 - 贈點只在 `DEVELOPER_API_BILLING=points` 開啟後才能用來付觀測；開啟後免費試用輪數同時取消。
 
 驗證：新增 `tests/developer-points-promotions.test.js`（兩個 D1 store 共用真實 SQLite）：領取一次、重複領取 409（含並發）、資料庫唯一鍵、名額、未開始／已結束／不存在、設定驗證、先扣最早到期贈點再扣付費、失敗依來源退回且只退一次、到期不可用且不列入餘額、退款不含贈點、test／live 分離。`tests/platform-points-http.test.mjs` 加上路由（需 session、tenant 取自 session）、活動頁與 Console 區塊檢查。完整 `npm test` 通過。本機以 scratchpad 預覽伺服器（真實點數服務＋SQLite）確認活動頁可領取、重複領取被拒、Console 顯示付費／贈點與到期日。
