@@ -274,8 +274,8 @@ function platformContentRedirect(url) {
   const destination = {
     "/brand": "https://lslabs.tw/brand/",
     "/brand/": "https://lslabs.tw/brand/",
-    "/whitepaper": "https://lslabs.tw/research/geo-whitepaper/",
-    "/whitepaper/": "https://lslabs.tw/research/geo-whitepaper/"
+    "/whitepaper": "https://geocheck.lslabs.tw/whitepaper",
+    "/whitepaper/": "https://geocheck.lslabs.tw/whitepaper"
   }[url.pathname];
   return destination ? Response.redirect(destination, 302) : null;
 }

@@ -69,7 +69,7 @@ try {
   );
   assert.match(developerWorker, /url\.hostname === "platform\.lslabs\.tw"/, "Platform host must own its landing, docs, and Console");
   assert.match(developerWorker, /https:\/\/lslabs\.tw\/brand\//, "Platform brand links must resolve to the LS Labs brand source");
-  assert.match(developerWorker, /https:\/\/lslabs\.tw\/research\/geo-whitepaper\//, "Platform research links must resolve to the LS Labs research source");
+  assert.match(developerWorker, /https:\/\/geocheck\.lslabs\.tw\/whitepaper/, "Platform whitepaper alias must resolve directly to the GeoCheck source");
   // Internal channel (D-047): separate switch, separate budget, own auth.
   assert.match(
     developerWorker, /pathname\.startsWith\("\/internal\/v1\/"\)/,

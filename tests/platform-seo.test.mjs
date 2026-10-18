@@ -53,6 +53,21 @@ test('public sitemap lists only indexable canonical homepage and docs', async ()
   }
 });
 
+test('public research links and whitepaper alias reach their final pages directly', async () => {
+  const home = fs.readFileSync(new URL('home.html', publicDir), 'utf8');
+  const whitepaper = fs.readFileSync(new URL('whitepaper.html', publicDir), 'utf8');
+  const platform = fs.readFileSync(new URL('developers.html', publicDir), 'utf8');
+  assert.doesNotMatch(home, /href="https:\/\/lslabs\.tw\/research\/"/);
+  assert.match(home, /href="https:\/\/lslabs\.tw\/blog\/category\/research\/"/);
+  assert.doesNotMatch(whitepaper, /href="\/brand"/);
+  assert.match(whitepaper, /href="https:\/\/lslabs\.tw\/brand\/"/);
+  assert.doesNotMatch(platform, /href="https:\/\/lslabs\.tw\/research\/geo-whitepaper\/"/);
+  assert.match(platform, /href="https:\/\/geocheck\.lslabs\.tw\/whitepaper"/);
+  const response = await worker.fetch(new Request('https://platform.lslabs.tw/whitepaper'), env);
+  assert.equal(response.status, 302);
+  assert.equal(response.headers.get('location'), 'https://geocheck.lslabs.tw/whitepaper');
+});
+
 test('HTTP API POST and OAuth keep their existing fail-closed behavior', async () => {
   for (const [path, method] of [['/v1/measurements', 'POST'], ['/v1/auth/google/start', 'GET'], ['/internal/v1/measurements', 'POST']]) {
     const response = await worker.fetch(new Request(`http://platform.lslabs.tw${path}`, {method}), env);
