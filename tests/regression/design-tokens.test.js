@@ -87,7 +87,7 @@ for (const engine of ["openai", "gemini", "anthropic", "perplexity"]) {
 
 const pages = [
   "home.html", "demo.html", "whitepaper.html", "developers.html",
-  "developers-console.html", "pricing.html", "brand.html"
+  "developers-console.html", "brand.html"
 ];
 
 for (const page of pages) {

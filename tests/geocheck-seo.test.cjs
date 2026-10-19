@@ -16,7 +16,7 @@ test('indexable demo and historical whitepaper have truthful, complete metadata'
   }
 });
 test('legal pages retain deliberate noindex, follow and matching HTTPS canonical',()=>{
-  for(const name of ['privacy','terms','refund']) {
+  for(const name of ['privacy','terms']) {
     const html=fs.readFileSync(path.join(publicDir,`${name}.html`),'utf8');
     assert.match(html,/name="robots" content="noindex,follow"/);
     assert.ok(html.includes(`rel="canonical" href="https://geocheck.lslabs.tw/${name}"`));

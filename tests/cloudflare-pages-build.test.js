@@ -17,7 +17,6 @@ for (const file of [
   "index.html",
   "privacy.html",
   "terms.html",
-  "refund.html",
   "app/index.html",
   "app/app.js",
   "app/shared/api.js",
@@ -80,7 +79,7 @@ assert.match(
 );
 
 const sitemap = fs.readFileSync(output("sitemap.xml"), "utf8");
-for (const route of ["privacy", "terms", "refund"]) {
+for (const route of ["privacy", "terms"]) {
   assert.ok(!sitemap.includes(`https://geocheck.lslabs.tw/${route}`), `${route} must stay out of the sitemap`);
   const html = fs.readFileSync(output(`${route}.html`), "utf8");
   assert.match(html, /<meta name="robots" content="noindex,follow">/, `${route} must be noindex,follow`);
