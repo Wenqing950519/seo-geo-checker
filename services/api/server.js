@@ -954,9 +954,6 @@ async function handleRequest(req, res) {
   if (req.method === "GET" && url.pathname === "/terms") {
     return sendHtml(res, 200, fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/terms.html"), "utf8"));
   }
-  if (req.method === "GET" && url.pathname === "/refund") {
-    return sendHtml(res, 200, fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/refund.html"), "utf8"));
-  }
 
   if (req.method === "GET" && url.pathname === "/llms.txt") {
     return sendText(res, 200, llmsTxt(), "text/plain; charset=utf-8");
