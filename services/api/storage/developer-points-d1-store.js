@@ -1,4 +1,4 @@
-// Prepaid points store on the Developer API D1 database (migration 0007).
+// Prepaid points store on the Developer API D1 database (migrations 0007, 0008).
 // Separate from developer-platform-d1-store so quota/job admission stays
 // untouched; crediting is one conditional batch so a redelivered callback can
 // never add a second purchase entry.
@@ -64,6 +64,8 @@ function createDeveloperPointsD1Store({ execute } = {}) {
     return Number(result.meta?.changes || 0) > 0;
   }
 
+  // Paid points only: the ledger never holds gifts, so this is also the
+  // refundable balance. Gifts are read with listGrants.
   async function getBalance({ tenantId, mode }) {
     const row = (await query(`SELECT COALESCE(SUM(points), 0) AS balance FROM developer_point_ledger
       WHERE tenant_id = ? AND mode = ?`, [tenantId, mode])).results?.[0];
@@ -80,7 +82,41 @@ function createDeveloperPointsD1Store({ execute } = {}) {
     }));
   }
 
-  return { createOrder, creditOrder, getBalance, getOrder, listLedger, markOrder, recordEvent };
+  // One claim per tenant, mode and campaign (UNIQUE key), and never more claims
+  // than the campaign's capacity: both are decided inside this single write.
+  async function claimGrant(input) {
+    const result = await query(`INSERT INTO developer_point_grants
+      (grant_id, tenant_id, mode, promotion_id, points, remaining_points, granted_at, expires_at)
+      SELECT ?, ?, ?, ?, ?, ?, ?, ?
+      WHERE (SELECT COUNT(*) FROM developer_point_grants WHERE promotion_id = ? AND mode = ?) < CAST(? AS INTEGER)
+      ON CONFLICT (tenant_id, mode, promotion_id) DO NOTHING`, [
+      input.grantId, input.tenantId, input.mode, input.promotionId, input.points, input.points,
+      input.grantedAt, input.expiresAt, input.promotionId, input.mode, input.capacity
+    ]);
+    if (Number(result.meta?.changes || 0) > 0) return { claimed: true };
+    const existing = await query(`SELECT 1 FROM developer_point_grants
+      WHERE tenant_id = ? AND mode = ? AND promotion_id = ? LIMIT 1`, [input.tenantId, input.mode, input.promotionId]);
+    return { claimed: false, reason: existing.results?.length ? "already_claimed" : "full" };
+  }
+
+  async function listGrants({ tenantId, mode }) {
+    const result = await query(`SELECT grant_id, promotion_id, points, remaining_points, granted_at, expires_at
+      FROM developer_point_grants WHERE tenant_id = ? AND mode = ? ORDER BY expires_at, grant_id`, [tenantId, mode]);
+    return (result.results || []).map((row) => ({
+      grant_id: row.grant_id, promotion_id: row.promotion_id, points: Number(row.points),
+      remaining_points: Number(row.remaining_points), granted_at: row.granted_at, expires_at: row.expires_at
+    }));
+  }
+
+  async function countClaims({ mode }) {
+    const result = await query(`SELECT promotion_id, COUNT(*) AS claims FROM developer_point_grants
+      WHERE mode = ? GROUP BY promotion_id`, [mode]);
+    return Object.fromEntries((result.results || []).map((row) => [row.promotion_id, Number(row.claims)]));
+  }
+
+  return {
+    claimGrant, countClaims, createOrder, creditOrder, getBalance, getOrder, listGrants, listLedger, markOrder, recordEvent
+  };
 }
 
 function createBoundDeveloperPointsD1Store({ db } = {}) {

@@ -176,6 +176,17 @@ function createDeveloperApiHttpHandler(options = {}) {
           }));
           return true;
         }
+        if (req.method === "GET" && url.pathname === "/v1/console/points/promotions") {
+          sendPrivateJson(200, await points.listPromotions({ tenantId: session.tenantId }));
+          return true;
+        }
+        const claimMatch = url.pathname.match(/^\/v1\/console\/points\/promotions\/([^/]+)\/claim$/);
+        if (req.method === "POST" && claimMatch) {
+          sendPrivateJson(201, await points.claimPromotion({
+            tenantId: session.tenantId, promotionId: decodeURIComponent(claimMatch[1])
+          }));
+          return true;
+        }
       }
       if (req.method === "GET" && url.pathname === "/v1/console/usage") {
         sendPrivateJson(200, await api.getUsage({ tenantId: session.tenantId }));

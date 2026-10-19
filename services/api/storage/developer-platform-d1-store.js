@@ -286,9 +286,10 @@ function createD1DeveloperPlatformStore(options = {}) {
             input.requestHash, JSON.stringify(input.request), input.now, input.now, input.caller,
             research?.principalId || null, research?.studyId || null, ...researchParams, ...budgetConditionParams]
         } : input.points ? {
-          // Points billing (migration 0007): admit only while the balance in this
-          // mode covers one observation. The batch is serialized by D1, so two
-          // concurrent submissions cannot both spend the same points.
+          // Points billing (migrations 0007, 0008): admit only while paid points
+          // plus unexpired gifts in this mode cover one observation. The batch
+          // is serialized by D1, so two concurrent submissions cannot both
+          // spend the same points.
           sql: `INSERT INTO developer_jobs (
             job_id, measurement_id, tenant_id, idempotency_key, request_hash, request_json,
             status, created_at, updated_at
@@ -296,10 +297,14 @@ function createD1DeveloperPlatformStore(options = {}) {
             SELECT 1 FROM developer_runtime_controls WHERE control_key = 'admission_enabled' AND control_value = 'true'
           ) AND (
             SELECT COALESCE(SUM(points), 0) FROM developer_point_ledger WHERE tenant_id = ? AND mode = ?
+          ) + (
+            SELECT COALESCE(SUM(remaining_points), 0) FROM developer_point_grants
+            WHERE tenant_id = ? AND mode = ? AND expires_at > ?
           ) >= CAST(? AS INTEGER)${budgetCondition}`,
           params: [input.jobId, input.measurementId, input.tenantId, input.idempotencyKey,
             input.requestHash, JSON.stringify(input.request), input.now, input.now,
-            input.tenantId, input.points.mode, input.points.cost, ...budgetConditionParams]
+            input.tenantId, input.points.mode, input.tenantId, input.points.mode, input.now,
+            input.points.cost, ...budgetConditionParams]
         } : {
           sql: `INSERT INTO developer_jobs (
             job_id, measurement_id, tenant_id, idempotency_key, request_hash, request_json,
@@ -314,12 +319,7 @@ function createD1DeveloperPlatformStore(options = {}) {
             input.requestHash, JSON.stringify(input.request), input.now, input.now,
             input.tenantId, input.windowStart, ...budgetConditionParams]
         },
-        ...(internal ? [] : input.points ? [{
-          sql: `INSERT INTO developer_point_ledger (entry_id, tenant_id, mode, kind, points, reference, created_at)
-            SELECT ?, ?, ?, 'charge', ?, ?, ? WHERE EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ?)`,
-          params: [input.points.entryId, input.tenantId, input.points.mode, -input.points.cost,
-            input.jobId, input.now, input.jobId]
-        }] : [
+        ...(internal ? [] : input.points ? pointChargeStatements(input) : [
           {
             sql: `INSERT INTO developer_quota_reservations (
               reservation_id, job_id, tenant_id, window_start, status, created_at
@@ -513,7 +513,7 @@ function createD1DeveloperPlatformStore(options = {}) {
         params: [input.measurement.status, input.now, input.now, input.errorCode || null,
           input.jobId, input.leaseToken, input.measurement.measurement_id]
       },
-      pointReleaseStatement(input.jobId, input.now)
+      ...pointReleaseStatements(input.jobId, input.now)
     ]);
     const finished = await query("SELECT status FROM developer_jobs WHERE job_id = ?", [input.jobId]);
     return ["succeeded", "failed"].includes(finished.results?.[0]?.status);
@@ -570,7 +570,7 @@ function createD1DeveloperPlatformStore(options = {}) {
           lease_token = NULL, lease_expires_at = NULL WHERE job_id = ? AND status IN ('queued', 'running')${leaseClause}`,
         params: [input.now, input.now, input.errorCode || "internal_error", input.jobId, ...leaseParams]
       },
-      pointReleaseStatement(input.jobId, input.now)
+      ...pointReleaseStatements(input.jobId, input.now)
     ]);
     const finished = await query("SELECT status FROM developer_jobs WHERE job_id = ?", [input.jobId]);
     return finished.results?.[0]?.status === "failed";
@@ -816,16 +816,70 @@ function normalizeConfig(source) {
   };
 }
 
-// A job that ends without all four engines gives its 8-point charge back.
-// UNIQUE(kind, reference) on the ledger makes a repeated settlement a no-op.
-function pointReleaseStatement(jobId, now) {
-  return {
-    sql: `INSERT OR IGNORE INTO developer_point_ledger (entry_id, tenant_id, mode, kind, points, reference, created_at)
-      SELECT ?, tenant_id, mode, 'adjustment', -points, reference, ? FROM developer_point_ledger
-      WHERE kind = 'charge' AND reference = ?
-      AND EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ? AND status = 'failed')`,
-    params: [`ptr_${jobId}`, now, jobId, jobId]
-  };
+// Spending order from /terms#points: unexpired gifts first, soonest expiry
+// first, then paid points for whatever the gifts do not cover. Each gift's share
+// is recorded per job so a release returns it to the same gift; the paid share
+// is a 'charge' ledger entry, written only when it is above zero.
+function pointChargeStatements(input) {
+  const { cost, mode, entryId } = input.points;
+  const jobExists = "EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ?)";
+  return [
+    {
+      sql: `INSERT INTO developer_point_grant_uses (job_id, grant_id, points, created_at)
+        SELECT ?, grant_id, MIN(remaining_points, CAST(? AS INTEGER) - spent_before), ? FROM (
+          SELECT grant_id, remaining_points, COALESCE(SUM(remaining_points) OVER (
+            ORDER BY expires_at, grant_id ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING
+          ), 0) AS spent_before
+          FROM developer_point_grants
+          WHERE tenant_id = ? AND mode = ? AND expires_at > ? AND remaining_points > 0
+        ) WHERE spent_before < CAST(? AS INTEGER) AND ${jobExists}`,
+      params: [input.jobId, cost, input.now, input.tenantId, mode, input.now, cost, input.jobId]
+    },
+    {
+      sql: `UPDATE developer_point_grants SET remaining_points = remaining_points - (
+          SELECT points FROM developer_point_grant_uses u
+          WHERE u.job_id = ? AND u.grant_id = developer_point_grants.grant_id
+        ) WHERE grant_id IN (SELECT grant_id FROM developer_point_grant_uses WHERE job_id = ?)`,
+      params: [input.jobId, input.jobId]
+    },
+    {
+      sql: `INSERT INTO developer_point_ledger (entry_id, tenant_id, mode, kind, points, reference, created_at)
+        SELECT ?, ?, ?, 'charge', used - CAST(? AS INTEGER), ?, ? FROM (
+          SELECT COALESCE(SUM(points), 0) AS used FROM developer_point_grant_uses WHERE job_id = ?
+        ) WHERE used < CAST(? AS INTEGER) AND ${jobExists}`,
+      params: [entryId, input.tenantId, mode, cost, input.jobId, input.now, input.jobId, cost, input.jobId]
+    }
+  ];
+}
+
+// A job that ends without all four engines gives its 8-point charge back:
+// the paid share as a ledger adjustment, each gift's share to that gift (even
+// one that has since expired, where it simply lapses). UNIQUE(kind, reference)
+// and released_at make a repeated settlement a no-op.
+function pointReleaseStatements(jobId, now) {
+  const jobFailed = "EXISTS (SELECT 1 FROM developer_jobs WHERE job_id = ? AND status = 'failed')";
+  return [
+    {
+      sql: `INSERT OR IGNORE INTO developer_point_ledger (entry_id, tenant_id, mode, kind, points, reference, created_at)
+        SELECT ?, tenant_id, mode, 'adjustment', -points, reference, ? FROM developer_point_ledger
+        WHERE kind = 'charge' AND reference = ? AND ${jobFailed}`,
+      params: [`ptr_${jobId}`, now, jobId, jobId]
+    },
+    {
+      sql: `UPDATE developer_point_grants SET remaining_points = remaining_points + (
+          SELECT points FROM developer_point_grant_uses u
+          WHERE u.job_id = ? AND u.grant_id = developer_point_grants.grant_id AND u.released_at IS NULL
+        ) WHERE grant_id IN (
+          SELECT grant_id FROM developer_point_grant_uses WHERE job_id = ? AND released_at IS NULL
+        ) AND ${jobFailed}`,
+      params: [jobId, jobId, jobId]
+    },
+    {
+      sql: `UPDATE developer_point_grant_uses SET released_at = ?
+        WHERE job_id = ? AND released_at IS NULL AND ${jobFailed}`,
+      params: [now, jobId, jobId]
+    }
+  ];
 }
 
 function mapEntitlement(row) {

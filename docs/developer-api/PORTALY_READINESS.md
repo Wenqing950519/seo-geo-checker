@@ -255,7 +255,53 @@ home 的 LSL-D-003 決策紀錄只在本機提交 `5ddc421`，未推送；使用
 - Console 仍顯示試用輪數與「開通方案」視窗；點數模式下應改顯示點數餘額與扣點紀錄。
 - `/v1/usage` 與 `/v1/console/usage` 在點數模式仍讀試用額度。
 - 開啟 `DEVELOPER_API_BILLING=points` 後，沒有點數的帳戶（含受邀測試者）將無法建立觀測；目前正式站用的是 Test 金鑰，因此只有測試點數可用。
-- 贈點活動頁（使用者 2026-10-17 提出）：發放少量有使用期限、不可退款的贈送點數，並先扣贈送點數。目前帳本以加總計算餘額，尚無到期與扣點順序。
+- 贈點活動頁（使用者 2026-10-17 提出）：已於分支 `platform/promo-points` 實作，見下節。
+
+## 贈送點數活動（2026-10-17，分支 `platform/promo-points`，未部署）
+
+依 `/terms#points` 既有規則：贈點在發放時標示使用期限、到期失效、不得退款；扣點先扣即將到期的贈點，再扣付費點數。
+
+| 項目 | 位置 | 說明 |
+|---|---|---|
+| 資料表 | migration `0008_promotional_points.sql` | `developer_point_grants`（每筆領取一列，含 `remaining_points`、`expires_at`；`UNIQUE(tenant_id, mode, promotion_id)` 保證每帳戶每活動一次）與 `developer_point_grant_uses`（每個工作從每筆贈點扣了多少、是否已退回）。0007 未改 |
+| 帳本語意 | `developer_point_ledger` | 仍只記付費點數，帳本加總＝可退款餘額；贈點不寫入帳本 |
+| 受理扣點 | `developer-platform-d1-store.js` 的 `pointChargeStatements` | 同一 batch：付費＋未到期贈點 ≥ 8 才建工作；依 `expires_at` 先後逐筆扣贈點，不足部分才寫 `charge`（只記付費部分，為 0 時不寫） |
+| 失敗退回 | `pointReleaseStatements` | 付費部分照舊寫 `adjustment`；贈點部分退回原贈點並標 `released_at`，只退一次。已到期的贈點退回後仍然失效 |
+| 餘額 | `GET /v1/console/points` | `balance_points`＝付費＋未到期贈點；另有 `paid_points`、`promo_points`、`refundable_points`（只含付費）、`promo_grants`（標題、剩餘、到期日） |
+| 活動設定 | Worker 變數 `DEVELOPER_POINT_PROMOTIONS`（JSON 陣列） | 每個活動：`id`、`title`、`points`、`starts_at`、`ends_at`（領取期間），到期用 `valid_days`（自領取起算）或 `points_expire_at`（固定日期），兩者都設取較早者；`capacity`（實際名額上限，依 test／live 分開計）可不設；`display_limit` 只是頁面顯示「限量 N 份」，不會擋領取。設定格式錯誤時記錄 `point_promotions_invalid` 並關閉所有活動，不影響其他功能。未設定＝沒有活動 |
+| 領取 API | `GET /v1/console/points/promotions`、`POST /v1/console/points/promotions/{id}/claim` | 需 Console 管理 session；tenant 只取自 session。錯誤碼：`promotion_not_found` 404、`promotion_not_started`／`promotion_ended`／`promotion_full`／`promotion_already_claimed` 409 |
+| 活動頁 | `apps/web/public/platform/promotions.html`，Worker 以 `/promotions` 提供 | `noindex,nofollow`，不加入 sitemap；Console 點數區塊有連結 |
+
+使用者 2026-10-17 決定：贈點使用期限暫訂到 2027-01-31（台北時間）結束；名額不設上限，頁面寫「限量 100 份」。點數由 Agent 評估，**建議**如下，尚未寫入 `wrangler.jsonc`（寫入並合併 main 就等於開辦活動）：
+
+```json
+[{"id":"launch-2026","title":"上線體驗贈點","points":40,"points_expire_at":"2027-01-31T16:00:00Z","display_limit":100,"starts_at":"<開辦時間>","ends_at":"2026-12-31T16:00:00Z"}]
+```
+
+**建議 40 點的依據（Inference，來自上方成本重估）**：40 點＝5 次完整觀測，約一組題目跨四引擎試 5 題；低於最低儲值 NT$100（12 次），不會取代購買。成本以一般估 NT$3.3、最壞 NT$4.0／次計，每位領取者約 NT$17–20；100 人全用完約 NT$1,650–2,000。領取期間建議到 2026-12-31，讓最後領取的人仍有一個月可用。
+
+**要注意**：
+
+- 名額不設上限時，實際領取可能超過 100，「限量 100 份」就與實況不符。`GET /v1/console/points/promotions` 回傳 `claimed_count` 可隨時查；接近 100 時可改設 `capacity: 100`。
+- 客戶端供應商支出上限由贈點觀測與付費觀測共用。原本每日 NT$60、每月 NT$600，100 人用完贈點約 NT$1,650 以上會先撞到月上限並擋到付費客戶（`cost_budget_exhausted`）。使用者 2026-10-17 同意調為**每日 NT$200、每月 NT$2,500**（`wrangler.jsonc`，本分支），合併 main 並部署後生效。內部通道上限（日 500／月 3,000）不變。
+- 贈點只在 `DEVELOPER_API_BILLING=points` 開啟後才能用來付觀測；開啟後免費試用輪數同時取消。
+
+驗證：新增 `tests/developer-points-promotions.test.js`（兩個 D1 store 共用真實 SQLite）：領取一次、重複領取 409（含並發）、資料庫唯一鍵、名額、未開始／已結束／不存在、設定驗證、先扣最早到期贈點再扣付費、失敗依來源退回且只退一次、到期不可用且不列入餘額、退款不含贈點、test／live 分離。`tests/platform-points-http.test.mjs` 加上路由（需 session、tenant 取自 session）、活動頁與 Console 區塊檢查。完整 `npm test` 通過。本機以 scratchpad 預覽伺服器（真實點數服務＋SQLite）確認活動頁可領取、重複領取被拒、Console 顯示付費／贈點與到期日。
+
+### 部署（2026-10-17）
+
+| 步驟 | 結果 |
+|---|---|
+| 條款 | `/terms#points` 第 4 點改為可能以活動發放贈送點數（每帳戶每活動一次、發放時標示期限、到期失效、不得退款且不列入退款金額），第 5 點去掉「日後」；草案日期 2026-10-17（`59d349f`） |
+| 遠端 D1 | 使用者於 07:57:08Z 套用 `0008_promotional_points.sql`；讀回 `d1_migrations` id 8、`developer_point_grants` 與 `developer_point_grant_uses` 存在且為空，原有帳本與訂單表未動 |
+| 推送 | 合併 origin/main（`f13ec77`、`09d5171`，皆非 Worker 程式）後，使用者推送 `849c5e2` 至 main；Workers Builds 版本 `07d5d97d-7c9c-495c-8341-fc02dcaacf2b`（08:03:47Z）100% 流量 |
+| 支出上限 | 隨此部署生效：客戶每日 NT$200、每月 NT$2,500 |
+
+正式站驗收：`/promotions` 200、`noindex,nofollow`，不在 sitemap；`/terms` 含新條文與活動頁連結，舊句「目前不發放」已不存在；`/console` 含 `points-promo` 區塊；未登入 `GET /v1/console/points/promotions` 與 `POST …/claim` 皆 401；`/v1/console/points` 401；`/healthz` ok；匿名 `/mcp` 401（研究憑證），MCP 通道仍在。
+
+尚未驗證：登入後的領取與 Console 贈點顯示（正式站尚未設定活動，清單為空）。
+
+**刻意未做**：`DEVELOPER_POINT_PROMOTIONS` 與 `DEVELOPER_API_BILLING=points` 都未設定。正式站仍用 Portaly test 金鑰、金流審核中，且儲值結帳已開放：此時開點數計費，任何人可用測試卡無限儲值測試點數換真實觀測（僅受支出上限限制）；此時領的贈點也是 test 模式，換 live 金鑰後不能用（帳本依模式分開）。建議 Portaly 審核通過、換上 live 金鑰後，再依序設定活動、開點數計費。
 
 ## 事故：推送 main 覆蓋 MCP 研究通道（2026-10-17，已修復）
 

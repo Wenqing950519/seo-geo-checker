@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>領取贈送點數｜LS-Labs Platform</title>
+<meta name="description" content="LS-Labs Platform 贈送點數領取頁：登入控制台後查看可領取活動、使用期限與扣點順序。每個活動僅可領取一次；贈送點數到期未使用即失效，不能退款。">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://platform.lslabs.tw/promotions">
+<style>body{max-width:760px;margin:48px auto;padding:0 20px;font:16px/1.7 system-ui,sans-serif;color:#1E293B;background:#F8FAFC}h1,h2{color:#0B1F3B}h2{margin:0 0 .25rem;font-size:1.2rem}a{color:#1D4ED8}a:focus-visible,button:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px}.notice{padding:16px;border-left:4px solid #1D4ED8;background:#EFF6FF}nav{line-height:2.2}.skip-link{position:absolute;top:8px;left:8px;transform:translateY(-160%)}.skip-link:focus-visible{transform:translateY(0)}.card{margin:16px 0;padding:18px 20px;border:1px solid #CBD5E1;border-radius:12px;background:#fff}.meta{margin:.25rem 0 .75rem;color:#475569;font-size:.92rem}.points{font-size:1.6rem;font-weight:700;color:#0B1F3B;font-variant-numeric:tabular-nums}button{padding:10px 18px;border:0;border-radius:8px;background:#1D4ED8;color:#fff;font:inherit;font-weight:600;cursor:pointer}button:disabled{background:#94A3B8;cursor:not-allowed}.status{margin-top:.5rem;font-size:.92rem}.status.ok{color:#047857}.status.error{color:#B91C1C}</style>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<nav aria-label="平台"><a href="/">Platform 首頁</a> · <a href="/console">控制台</a> · <a href="/pricing">計費說明</a> · <a href="/terms#points">點數規則</a></nav>
+<main id="main">
+<h1>領取贈送點數</h1>
+<p>登入控制台的帳戶，每個活動可領取一次。贈送點數在領取時標示使用期限，到期未使用即失效，且不得退款；觀測扣點時會先扣即將到期的贈送點數，再扣付費點數。完整規則見<a href="/terms#points">服務條款的點數規則</a>。</p>
+<p id="login" class="notice" hidden>請先<a href="/console">登入控制台</a>，再回到本頁領取。</p>
+<p id="mode" class="notice" hidden>測試模式：測試點數只能用於測試環境，不計入正式餘額。</p>
+<p id="empty" hidden>目前沒有進行中的活動。</p>
+<p id="failed" class="status error" hidden role="alert">活動資料暫時無法載入，請稍後再試。</p>
+<div id="list" aria-live="polite"></div>
+</main>
+<script>
+// Campaign titles come from Worker settings, so every value is set with textContent.
+const session = (() => {
+  try { return localStorage.getItem('gc_developer_session') || localStorage.getItem('gc_dev_session') || ''; } catch { return ''; }
+})();
+const STATUS_TEXT = { upcoming: '尚未開始', ended: '活動已結束', full: '名額已滿' };
+const ERROR_TEXT = {
+  promotion_already_claimed: '這個帳戶已領取過本活動。',
+  promotion_full: '名額已滿。',
+  promotion_ended: '活動已結束。',
+  promotion_not_started: '活動尚未開始。',
+  promotion_not_found: '找不到這個活動。'
+};
+
+function formatDate(value) {
+  return new Date(value).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', dateStyle: 'medium', timeStyle: 'short' });
+}
+
+// Deadlines are exclusive instants (00:00 the next day); show the last minute
+// that still counts so "2027-02-01 00:00" reads as 1月31日 23:59.
+function formatDeadline(value) {
+  return formatDate(Date.parse(value) - 60 * 1000);
+}
+
+async function request(path, options = {}) {
+  const response = await fetch(path, { ...options, headers: { Authorization: 'Bearer ' + session, 'Content-Type': 'application/json' } });
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const error = new Error(body?.error?.message || 'request failed');
+    error.status = response.status;
+    error.code = body?.error?.code;
+    throw error;
+  }
+  return body;
+}
+
+function element(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text != null) node.textContent = text;
+  return node;
+}
+
+function render(promotion) {
+  const card = element('section', 'card');
+  card.append(element('h2', null, promotion.title));
+  card.append(element('div', 'points', `${Number(promotion.points).toLocaleString('zh-TW')} 點`));
+  const validity = promotion.points_expire_at
+    ? (promotion.valid_days ? `領取後 ${promotion.valid_days} 天內有效，最晚 ${formatDeadline(promotion.points_expire_at)} 到期` : `點數使用期限至 ${formatDeadline(promotion.points_expire_at)}`)
+    : `領取後 ${promotion.valid_days} 天內有效`;
+  const limit = promotion.display_limit ? `限量 ${promotion.display_limit} 份`
+    : promotion.remaining_slots != null ? `剩餘名額 ${promotion.remaining_slots}` : '';
+  card.append(element('p', 'meta',
+    [validity, `領取期間 ${formatDate(promotion.starts_at)} 至 ${formatDeadline(promotion.ends_at)}`, limit].filter(Boolean).join(' · ')));
+  const status = element('p', 'status');
+  const button = element('button', null, '領取');
+  button.type = 'button';
+  if (promotion.claimed) {
+    button.disabled = true;
+    button.textContent = '已領取';
+    status.className = 'status ok';
+    status.textContent = `已於 ${formatDate(promotion.claimed_at)} 領取，${formatDeadline(promotion.expires_at)} 到期。`;
+  } else if (promotion.status !== 'open') {
+    button.disabled = true;
+    button.textContent = STATUS_TEXT[promotion.status] || '目前不開放';
+  }
+  button.addEventListener('click', async () => {
+    button.disabled = true;
+    try {
+      const claim = await request('/v1/console/points/promotions/' + encodeURIComponent(promotion.promotion_id) + '/claim', { method: 'POST', body: '{}' });
+      button.textContent = '已領取';
+      status.className = 'status ok';
+      status.textContent = `已領取 ${claim.points} 點，${formatDeadline(claim.expires_at)} 到期。可到控制台查看餘額。`;
+    } catch (error) {
+      status.className = 'status error';
+      if (error.status === 401) {
+        document.getElementById('login').hidden = false;
+        status.textContent = '登入已失效，請重新登入控制台。';
+        button.disabled = false;
+        return;
+      }
+      status.textContent = ERROR_TEXT[error.code] || '暫時無法領取，請稍後再試。';
+      if (!ERROR_TEXT[error.code]) button.disabled = false;
+    }
+  });
+  card.append(button, status);
+  return card;
+}
+
+async function load() {
+  if (!session) {
+    document.getElementById('login').hidden = false;
+    return;
+  }
+  let promotions;
+  try {
+    promotions = await request('/v1/console/points/promotions');
+  } catch (error) {
+    if (error.status === 401) document.getElementById('login').hidden = false;
+    else document.getElementById('failed').hidden = false;
+    return;
+  }
+  document.getElementById('mode').hidden = promotions.mode !== 'test';
+  const list = document.getElementById('list');
+  list.replaceChildren(...(promotions.data || []).map(render));
+  document.getElementById('empty').hidden = (promotions.data || []).length > 0;
+}
+
+load();
+</script>
+</body>
+</html>

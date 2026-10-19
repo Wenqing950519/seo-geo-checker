@@ -1301,6 +1301,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           </div>
           <div class="meter-main-val font-number"><span id="points-balance">0</span> <span style="font-size:1.1rem; font-weight:600; color:var(--gc-text-secondary);">點</span></div>
           <p id="points-rule" style="font-size:0.86rem; color:#CBD5E1; margin:6px 0 12px;"></p>
+          <!-- Gifted points (migration 0008): shown only while a usable gift exists -->
+          <div id="points-promo" style="font-size:0.86rem; color:#CBD5E1; margin:0 0 12px;" hidden>
+            <p id="points-promo-summary" style="margin:0 0 4px;"></p>
+            <ul id="points-promo-list" style="margin:0; padding-left:18px;"></ul>
+          </div>
+          <p style="font-size:0.86rem; margin:0 0 12px;"><a href="/promotions" style="color:#60A5FA; text-decoration:none;">領取活動贈送點數 →</a></p>
           <div id="points-plans" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
           <p id="points-closed" style="font-size:0.86rem; color:var(--gc-text-secondary); margin-top:10px;" hidden>尚未開放付款。</p>
           <div class="meter-footnote" style="margin-top:12px;">
@@ -2184,6 +2190,18 @@ async function loadPointsPanel() {
   document.getElementById('points-balance').textContent = Number(balance.balance_points || 0).toLocaleString('zh-TW');
   document.getElementById('points-mode').textContent = balance.mode === 'test' ? '測試模式：不會實際扣款，測試點數不計入正式餘額' : '';
   document.getElementById('points-rule').textContent = `1 點＝新台幣 1 元；四個引擎全部完成扣 ${Number(balance.points_per_observation || 8)} 點，失敗不扣點。`;
+  const grants = Array.isArray(balance.promo_grants) ? balance.promo_grants : [];
+  const promo = document.getElementById('points-promo');
+  promo.hidden = grants.length === 0;
+  document.getElementById('points-promo-summary').textContent =
+    `其中付費點數 ${Number(balance.paid_points || 0).toLocaleString('zh-TW')} 點（可退款），贈送點數 ${Number(balance.promo_points || 0).toLocaleString('zh-TW')} 點（不可退款，先扣即將到期者）：`;
+  document.getElementById('points-promo-list').replaceChildren(...grants.map((grant) => {
+    const item = document.createElement('li');
+    // Expiry is exclusive; show the last minute that still counts.
+    const expires = new Date(Date.parse(grant.expires_at) - 60 * 1000).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', dateStyle: 'medium', timeStyle: 'short' });
+    item.textContent = `${grant.title}：剩 ${Number(grant.remaining_points).toLocaleString('zh-TW')} 點，${expires} 到期`;
+    return item;
+  }));
   const list = document.getElementById('points-plans');
   list.replaceChildren();
   document.getElementById('points-closed').hidden = balance.checkout_enabled === true;

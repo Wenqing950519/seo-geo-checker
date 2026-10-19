@@ -23,6 +23,7 @@ test('anonymous Platform legal URLs serve Product B content, including old HTML 
     assert.equal(response.status, 200, pathname);
     const html = await response.text();
     assert.match(html, /LS-Labs Platform/);
+    assert.match(html, /<meta name="description" content="[^"<>]+">/, `${pathname}: description is required`);
     assert.doesNotMatch(html, /330|藍新|GeoCheck Track|每月自動扣款/);
     assert.match(html, new RegExp(`https://platform\\.lslabs\\.tw/${page}`));
     assert.match(html, /href="mailto:me@lslabs\.tw">me@lslabs\.tw<\/a>/);
@@ -79,6 +80,12 @@ test('public pages use me@lslabs.tw as the only contact address', () => {
     const html = fs.readFileSync(new URL(String(name).replaceAll('\\', '/'), publicDir), 'utf8');
     assert.doesNotMatch(html, /zzz\.lisheng|dev@lslabs\.tw/, `${name} still exposes a retired contact address`);
   }
+});
+
+test('promotional points page describes its purpose while remaining nonindexable', () => {
+  const html = fs.readFileSync(new URL('platform/promotions.html', publicDir), 'utf8');
+  assert.match(html, /<meta name="description" content="[^"<>]+">/);
+  assert.match(html, /<meta name="robots" content="noindex,nofollow">/);
 });
 
 test('Product A/shared legal source remains reachable on its existing host', async () => {
