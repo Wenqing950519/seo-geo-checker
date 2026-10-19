@@ -8,7 +8,7 @@
 | 現況／操作 | [CURRENT_STATE](CURRENT_STATE.md)、[部署驗收](DEPLOYMENT_RELEASE_CHECKLIST.md)、[服務操作](../services/api/OPERATIONS.md) | 區分本機與線上驗證日期 |
 | 架構／契約 | [ARCHITECTURE](ARCHITECTURE.md)、[PRODUCT_BOUNDARY](PRODUCT_BOUNDARY.md)、[API_CONTRACT](API_CONTRACT.md)、[TASKS](TASKS.md) | 目前架構與尚未完成的平台提案 |
 | 產品規則 | [AI_TRUST_INDEX_V1](AI_TRUST_INDEX_V1.md)、[ANALYTICS_TRACKING](ANALYTICS_TRACKING.md) | 現行計分與事件定義 |
-| Platform 金流 | [綠界送審準備](developer-api/ECPAY_READINESS.md) | 2026-09-20 官方查核、按用量方案待決事項、法務草案與金流驗收；尚未送件或開通 |
+| Platform 金流 | [Portaly 準備與驗收](developer-api/PORTALY_READINESS.md) | 依 LSL-D-003，區分點數、Test 模式與正式收款；以該文件各日期驗收為準。[綠界舊紀錄](developer-api/ECPAY_READINESS.md) 保留供來源、法規查核與歷史追溯 |
 | Platform 研究 MCP | [操作、接入 prompt 與驗收](developer-api/MCP_RESEARCH.md) | 授權研究免儲值通道已部署並通過真實四引擎與標準 MCP client 驗證；一般付費入口未開放 |
 | 專題資料 | [路線對照](strategy/ROADMAP_ALIGNMENT.md)、[整理紀錄](maintenance/REPOSITORY_CLEANUP.md) | strategy 是提案；research／whitepaper 是研究；archive 是歷史 |
 
