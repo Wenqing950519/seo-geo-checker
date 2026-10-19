@@ -21,10 +21,16 @@ function withSecurityHeaders(response) {
 export class AuditFallbackContainer extends Container {
   defaultPort = 8080;
   sleepAfter = "2m";
+  // GeoCheck runs DeepSeek planning with exactly one answer engine: Perplexity Sonar or
+  // Gemini Flash (GEOCHECK_MCAC_ENGINE). No other provider key reaches the container.
   envVars = {
     DEEPSEEK_API_KEY: workerEnv.DEEPSEEK_API_KEY,
     DEEPSEEK_MODEL: workerEnv.DEEPSEEK_MODEL,
-    PERPLEXITY_API_KEY: workerEnv.PERPLEXITY_API_KEY
+    PERPLEXITY_API_KEY: workerEnv.PERPLEXITY_API_KEY,
+    GEMINI_API_KEY: workerEnv.GEMINI_API_KEY,
+    GEOCHECK_METHOD: workerEnv.GEOCHECK_METHOD,
+    GEOCHECK_MCAC_ENGINE: workerEnv.GEOCHECK_MCAC_ENGINE,
+    GEOCHECK_MCAC_GEMINI_MODEL: workerEnv.GEOCHECK_MCAC_GEMINI_MODEL
   };
 }
 
@@ -72,6 +78,21 @@ async function readBody(request, maxBytes = 16 * 1024) {
   const text = await request.text();
   if (new TextEncoder().encode(text).byteLength > maxBytes) throw Object.assign(new Error("request_too_large"), { status: 413 });
   return JSON.parse(text || "{}");
+}
+
+// Daily ceiling on fresh (non-cached) audits, counted per Asia/Taipei day. Cached
+// results cost nothing and are never refused.
+async function dailyLimitState(env, now = Date.now()) {
+  const limit = Number(env.AUDIT_DAILY_LIMIT ?? 50);
+  if (!Number.isFinite(limit) || limit < 0) return { reached: false };
+  const offset = 8 * 60 * 60_000;
+  const local = new Date(now + offset);
+  local.setUTCHours(0, 0, 0, 0);
+  const dayStart = local.getTime() - offset;
+  const row = await env.REPORTS_DB.prepare(
+    "SELECT COUNT(*) AS n FROM audit_jobs WHERE created_at >= ? AND COALESCE(json_extract(diagnostics_json, '$.cache_hit'), 0) = 0"
+  ).bind(new Date(dayStart).toISOString()).first();
+  return { reached: Number(row?.n || 0) >= limit, retryAfterSeconds: Math.max(60, Math.ceil((dayStart + 24 * 60 * 60_000 - now) / 1000)) };
 }
 
 async function getJob(db, jobId) {
@@ -134,7 +155,7 @@ async function processAudit(message, env) {
   const report = payload.report;
   const reportJson = JSON.stringify(report);
   const completedAt = new Date().toISOString();
-  const limited = report?.model === "fetch-limited" || report?.homepage?.fetchBlocked === true;
+  const limited = report?.model === "fetch-limited" || report?.homepage?.fetchBlocked === true || report?.limited === true;
   await env.REPORTS_DB.batch([
     env.REPORTS_DB.prepare(`INSERT INTO audit_reports (
       report_id, cache_key, site_origin, query_mode, query_set_version, pipeline_version, algorithm_version,
@@ -143,9 +164,9 @@ async function processAudit(message, env) {
     ON CONFLICT(report_id) DO UPDATE SET stored_at = excluded.stored_at, expires_at = excluded.expires_at,
       report_hash = excluded.report_hash, report_json = excluded.report_json`).bind(
       job.report_id, job.cache_key, new URL(job.site_url).origin.toLowerCase(), queries.length ? "custom" : "automatic",
-      String(report.queryPlanning?.queryPlan?.query_set_version || "unknown"), String(report.pipelineVersion || workerEnv.AUDIT_PIPELINE_VERSION || "unknown"),
+      String(report.queryPlanning?.queryPlan?.query_set_version || report.probeSetVersion || "unknown"), String(report.pipelineVersion || workerEnv.AUDIT_PIPELINE_VERSION || "unknown"),
       String(report.audit?.score?.algorithm_version || report.algorithmVersion || "unknown"),
-      String(report.audit?.query_planning?.entity_name || "unknown"), String(report.createdAt || completedAt), completedAt,
+      String(report.audit?.query_planning?.entity_name || report.entity?.name || "unknown"), String(report.createdAt || completedAt), completedAt,
       new Date(Date.now() + 7 * 24 * 60 * 60_000).toISOString(), await sha256(reportJson), reportJson
     ),
     env.REPORTS_DB.prepare(`UPDATE audit_jobs SET status = ?, completed_at = ?, updated_at = ?, diagnostics_json = ?, error_code = NULL
@@ -189,6 +210,12 @@ export default {
         const key = await cacheKey(siteUrl, customQueries, env.AUDIT_PIPELINE_VERSION);
         const cached = await env.REPORTS_DB.prepare("SELECT report_id FROM audit_reports WHERE cache_key = ? AND expires_at > ? ORDER BY created_at DESC LIMIT 1")
           .bind(key, new Date().toISOString()).first();
+        if (!cached) {
+          const daily = await dailyLimitState(env);
+          if (daily.reached) {
+            return json(429, { error: "今日免費檢測額度已滿，請明天再試。", code: "daily_limit_reached" }, { "Retry-After": String(daily.retryAfterSeconds) });
+          }
+        }
         const jobId = `aud_${crypto.randomUUID()}`;
         const reportId = cached?.report_id || `real_lite_${crypto.randomUUID()}`;
         const now = new Date().toISOString();

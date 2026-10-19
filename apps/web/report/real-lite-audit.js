@@ -1,8 +1,19 @@
 const core = require("./real-lite-audit-v2-core.js");
+const { runMcacAudit } = require("./mcac-audit.js");
 const { fetchHomepage, fetchRepresentativePages } = require("../../../packages/crawler/html-v2.js");
 const { fetchTechnicalSignals } = require("../../../packages/crawler/technical-signals.js");
 
+// GEOCHECK_METHOD selects the public quick check: "mcac" (four separate results) or
+// "classic" (AI Trust Index v1, kept for research). Neither falls back to the other.
+function resolveAuditMethod(value = process.env.GEOCHECK_METHOD) {
+  const method = String(value ?? "").trim().toLowerCase();
+  if (!method || method === "classic") return "classic";
+  if (method === "mcac") return "mcac";
+  throw new Error(`GEOCHECK_METHOD must be "mcac" or "classic", got "${method}"`);
+}
+
 async function runRealLiteAudit(siteUrl, options = {}) {
+  if (resolveAuditMethod(options.method ?? process.env.GEOCHECK_METHOD) === "mcac") return runMcacAudit(siteUrl, options);
   try {
     return await core.runRealLiteAudit(siteUrl, options);
   } catch (error) {
@@ -85,5 +96,6 @@ function safeProviderMessage(error) {
 
 module.exports = {
   ...core,
+  resolveAuditMethod,
   runRealLiteAudit
 };

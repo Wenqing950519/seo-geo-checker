@@ -10,7 +10,10 @@ const {
   recordAuditEnd,
   recordAuditStart
 } = require("./guards/rate-limit.js");
-const { runRealLiteAudit } = require("../../apps/web/report/real-lite-audit.js");
+const { resolveAuditMethod, runRealLiteAudit } = require("../../apps/web/report/real-lite-audit.js");
+const { mcacReportHtml, mcacReportMarkdown } = require("../../apps/web/report/mcac-report-html.js");
+const { MCAC_PIPELINE_VERSION } = require("./application/mcac-measurement.js");
+const { resolveMcacEngine } = require("./application/mcac-engines.js");
 const { createAuditCache } = require("./storage/audit-cache.js");
 const { GEO_PIPELINE_VERSION } = require("./application/geo-measurement.js");
 const { buildAuditCacheKey, createD1ReportStore } = require("./storage/d1-report-store.js");
@@ -353,7 +356,15 @@ function formatReportTime(value) {
 }
 
 function reportHtml(report) {
-  return realLiteReportHtml(report);
+  return report?.method === "mcac" ? mcacReportHtml(report) : realLiteReportHtml(report);
+}
+
+// The cache key must change with the method and engine, or a Classic report could be
+// served as an MCAC result.
+function currentPipelineVersion() {
+  return resolveAuditMethod() === "mcac"
+    ? `${MCAC_PIPELINE_VERSION}-${resolveMcacEngine(process.env.GEOCHECK_MCAC_ENGINE).id}`
+    : GEO_PIPELINE_VERSION;
 }
 
 function realLiteReportHtml(report) {
@@ -847,7 +858,7 @@ function normalizeReportForClient(report) {
 }
 
 function reportMarkdown(report) {
-  return realLiteReportMarkdown(report);
+  return report?.method === "mcac" ? mcacReportMarkdown(report) : realLiteReportMarkdown(report);
 }
 
 function realLiteReportMarkdown(report) {
@@ -1214,7 +1225,7 @@ async function handleRequest(req, res) {
       if (customQueries?.length && (customQueries.length > 4 || new Set(customQueries.map((query) => query.replace(/\s+/g, " ").toLowerCase())).size !== customQueries.length)) {
         return sendJson(res, 400, { error: "自訂觀測題最多 4 題，且每題都必須不同；未填的題目會由系統依網站內容補足。", code: "invalid_custom_queries" });
       }
-      const cacheKey = buildAuditCacheKey({ siteUrl, customQueries, pipelineVersion: GEO_PIPELINE_VERSION });
+      const cacheKey = buildAuditCacheKey({ siteUrl, customQueries, pipelineVersion: currentPipelineVersion() });
       const memoryCacheKey = `audit:${cacheKey}`;
       let cached = auditCache.get(memoryCacheKey);
       if (!cached) {
