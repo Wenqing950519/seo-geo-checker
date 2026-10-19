@@ -13,7 +13,7 @@
 </script>
 <script src="/analytics.js"></script>
 <title>GeoCheck by LS-Labs — 免費 AI 能見度快速檢測</title>
-<meta name="description" content="GeoCheck by LS-Labs：輸入網站網址，快速確認品牌是否在 AI 回答中被提及或引用；免費、不用註冊。">
+<meta name="description" content="GeoCheck by LS-Labs：輸入網站網址，實際問 AI 三種題目，分開檢查提及、引用來源、資訊正確性與行動資訊，不合成總分；免費、不用註冊。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://geocheck.lslabs.tw/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
@@ -23,15 +23,15 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://geocheck.lslabs.tw/">
 <meta property="og:title" content="GeoCheck by LS-Labs — 免費 AI 能見度快速檢測">
-<meta property="og:description" content="免費檢查：顧客問 AI 的時候，AI 有沒有提到你的店、有沒有引用你的官網。">
+<meta property="og:description" content="免費檢查：顧客問 AI 的時候，AI 有沒有提到你的店、有沒有引用你的官網、電話地址和你的頁面一不一致，以及有沒有給出下一步。">
 <meta property="og:image" content="https://geocheck.lslabs.tw/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI 信任值 — 顧客問 AI 的時候，AI 有沒有提到你？">
-<meta name="twitter:description" content="免費檢查：顧客問 AI 的時候，AI 有沒有提到你的店、有沒有引用你的官網。">
+<meta name="twitter:title" content="GeoCheck by LS-Labs — 顧客問 AI 的時候，AI 有沒有提到你？">
+<meta name="twitter:description" content="免費檢查：顧客問 AI 的時候，AI 有沒有提到你的店、有沒有引用你的官網、電話地址和你的頁面一不一致，以及有沒有給出下一步。">
 <meta name="twitter:image" content="https://geocheck.lslabs.tw/og-image.png">
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
@@ -63,26 +63,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "為什麼顧客問 AI 的時候，AI 都沒有提到我的店？",
+          "name": "這份檢測看哪四件事？為什麼不給總分？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "多半不是運氣問題。常見原因有三個：網站沒有清楚寫出你做什麼、服務誰、在哪裡；內容太籠統，AI 找不到可以直接引用的段落；網路上缺少可以佐證你的資料。這個工具會用你這一行顧客真正會問的問題，實際去問 AI，看它會不會講到你。"
+            "text": "看四件事：提及（顧客沒說店名時，AI 有沒有主動講到你）、引用來源（回答列出的來源裡有沒有你的官網）、資訊正確性（AI 給的地址、電話和你的頁面一不一致），以及行動資訊（AI 有沒有給出電話、網址、地圖或訂位等下一步）。四件事反映不同的缺口，合成一個分數就看不出問題出在哪，所以分開判讀、不合成總分。沒拿到回答的項目標「未知」，未知不等於 0。網站被 Google 收錄，也不代表 AI 會主動把你列為答案。"
           }
         },
         {
           "@type": "Question",
-          "name": "AI 信任值是什麼？和 Google 排名有什麼不同？",
+          "name": "「和你的頁面不一致」和「無法核對」是什麼意思？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Google 排名比的是誰排在搜尋結果前面；AI 信任值看的是另一件事：當顧客直接問 AI「有沒有推薦的店」，AI 的答案裡有沒有你、有沒有引用你的官網。網站被 Google 收錄，不代表 AI 會提到你。"
+            "text": "資訊正確性以你自己的頁面為準。AI 給的電話或地址出現在你的頁面上，算「正確」；沒有出現，標「和你的頁面不一致」。我們不稱它為錯誤，因為可能是頁面資料過時，也可能是 Google 地圖等平台列的資料不同，本工具無法判斷哪一方才對。你的頁面沒寫電話或地址時，該項標「無法核對」。看到不一致時，請先確認哪一個正確，再把官網、粉專、Google 商家等各平台的資料統一。營業時間目前只記錄、不判定。"
           }
         },
         {
           "@type": "Question",
-          "name": "我的網站要準備什麼，AI 才比較容易讀懂？",
+          "name": "為什麼 AI 都沒提到我的店？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "把最基本的事寫清楚就有幫助：你提供什麼服務、服務誰、服務哪些地區、價格或怎麼詢價、怎麼聯絡你。再加上常見問題、真實案例與可以查證的評價或資格。這些比任何單一技術設定的影響都大。"
+            "text": "可能的原因包括：網路上關於你的公開資料（地圖、評論、媒體、社群）太少或彼此不一致；網站沒有清楚寫出服務內容與地區；也可能只是這兩題推薦題的問法沒問到你。沒有官網的店也可能被 AI 提到，官網不是唯一的管道。報告附上每一題的原始回答與來源，你可以自己核對。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "網站要準備什麼，AI 才容易讀懂？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "清楚寫出提供什麼服務、服務誰、價格範圍，以及地址、電話等聯絡方式，並和粉專、Google 商家上的資料保持一致。結構化資料可以協助表達這些資訊，但不保證被搜尋系統或 AI 採用，Google 也說明它的 AI 搜尋功能不需要特殊標記；地圖、評論與媒體報導同樣會影響 AI 怎麼描述你。報告的「網站條件」段落會列出讀取上的問題，例如找不到網站地圖、首頁沒有商家資料標記；這部分不計分。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "有沒有可能是網站把 AI 擋住了？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "有些網站的設定會把 AI 的搜尋程式擋在門外，或是內容要等特定腳本執行完才出現，導致讀到一片空白。這種問題肉眼看不出來，報告的網站條件段落會列出是否有這類阻礙。如果連檢測程式都讀不到你的網站，這次就不會詢問 AI，四項都標「未知」，不代表 0。"
           }
         },
         {
@@ -90,7 +106,7 @@
           "name": "檢查要錢嗎？需要註冊嗎？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "完全免費，也不用註冊。貼上網址後約 90 秒會產出一份報告，告訴你目前 AI 會不會提到你，以及建議先修哪三件事。"
+            "text": "免費，也不用註冊。貼上網址後約 90 秒會產出一份報告，列出四項結果與每一題的原始回答。每天的新檢測有名額上限，額滿時請隔天再試。"
           }
         }
       ]
@@ -435,8 +451,6 @@ footer a:hover{color:var(--accent)}
   .hero h1{font-size:1.92rem}
   .card,.score-card,.ptable,.module{padding:22px 16px}
   .btn{font-size:.95rem}
-  .compact-gauge-row{flex-direction:column;gap:12px;text-align:center}
-  .compact-dual-bars{width:100%}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -834,194 +848,42 @@ footer a:hover{color:var(--accent)}
   gap: 10px;
 }
 
-/* User Prompt Bubble */
-.chat-user-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 8px;
+/* MCAC report sheet: the same rows, flag words and fact check as
+   apps/web/report/mcac-report-html.js, drawn with the page's own tokens. */
+.mcac-sheet{flex:1;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:4px;padding:14px 16px;box-shadow:0 4px 14px rgba(11,59,111,.04)}
+.mcac-sheet__head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding-bottom:8px;border-bottom:2px solid var(--navy)}
+.mcac-sheet__title{font-size:.95rem;font-weight:900;color:var(--navy)}
+.mcac-sheet__meta{font:500 .68rem/1.5 'JetBrains Mono',monospace;color:var(--muted);overflow-wrap:anywhere}
+.mcac-sheet__note{margin:8px 0 2px;font-size:.74rem;color:var(--muted);line-height:1.55}
+.mcac-rows{width:100%;border-collapse:collapse;font-size:.8rem;line-height:1.5}
+.mcac-rows th,.mcac-rows td{padding:8px 4px;border-bottom:1px solid #EDF2F7;text-align:left;vertical-align:top}
+.mcac-rows thead th{padding-top:6px;font-size:.66rem;font-weight:600;letter-spacing:.06em;color:var(--muted)}
+.mcac-rows tbody th{width:44%;color:var(--navy);font-weight:800}
+.mcac-rows small{display:block;font-weight:400;font-size:.68rem;color:var(--muted);line-height:1.45}
+.mcac-rows td:last-child,.mcac-rows thead th:last-child{text-align:right;white-space:nowrap}
+.mcac-flag{display:inline-flex;align-items:center;gap:5px;padding:1px 8px;border-radius:4px;font-size:.72rem;font-weight:800}
+.mcac-flag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.mcac-flag--yes{color:var(--ls-success-on-light);background:var(--ls-success-tint)}
+.mcac-flag--part{color:var(--ls-warning-on-light);background:var(--ls-warning-tint)}
+.mcac-flag--no{color:var(--ls-danger-on-light);background:var(--ls-danger-tint)}
+.mcac-flag--unknown{color:var(--ls-unknown-on-light);background:var(--ls-unknown-tint)}
+.mcac-facts{margin-top:12px}
+.mcac-facts__title{margin:0 0 2px;font-size:.78rem;font-weight:800;color:var(--navy)}
+.mcac-fact{display:grid;grid-template-columns:2.6em minmax(0,1fr) auto;gap:0 10px;padding:7px 0;border-bottom:1px solid #EDF2F7;font-size:.76rem;line-height:1.55}
+.mcac-fact>b{grid-row:1 / span 2;color:var(--navy)}
+.mcac-fact>span{grid-column:2;color:var(--text);overflow-wrap:anywhere}
+.mcac-fact>em{grid-column:3;grid-row:1 / span 2;font-style:normal;font-weight:800;color:var(--navy);text-align:right;white-space:nowrap}
+.mcac-advice{margin:12px 0 0;padding:9px 11px;border-radius:4px;background:var(--ls-warning-tint);color:var(--ls-warning-on-light);font-size:.74rem;font-weight:700;line-height:1.6}
+/* Phones: each result reads as a label line, then the result and its flag. */
+@media(max-width:600px){
+  .mcac-sheet{padding:12px}
+  .mcac-rows thead{display:none}
+  .mcac-rows tr{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;padding:9px 0;border-bottom:1px solid #EDF2F7}
+  .mcac-rows tbody th{grid-column:1 / -1;width:auto;padding:0 0 4px;border:0}
+  .mcac-rows td{padding:0;border:0}
 }
-.chat-user-bubble {
-  background: #0B1F3B;
-  color: #FFFFFF;
-  padding: 8px 14px;
-  border-radius: 14px 14px 2px 14px;
-  box-shadow: 0 2px 8px rgba(11, 59, 111, 0.15);
-  max-width: 85%;
-  text-align: right;
-}
-.chat-user-label {
-  font-size: 0.62rem;
-  font-weight: 700;
-  color: #93C5FD;
-  display: block;
-  margin-bottom: 2px;
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 0.03em;
-}
-.chat-user-text {
-  font-size: 0.83rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.35;
-}
-.chat-user-avatar {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #E2E8F0;
-  color: #475569;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 2px;
-}
-
-/* AI Response & Assessment */
-.chat-ai-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  flex: 1;
-}
-.chat-ai-avatar {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #3B82F6, #0B1F3B);
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
-  margin-top: 2px;
-}
-.chat-ai-body {
-  flex: 1;
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 2px 14px 14px 14px;
-  padding: 12px 14px;
-  box-shadow: 0 4px 14px rgba(11, 59, 111, 0.04);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.chat-ai-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 6px;
-  border-bottom: 1px solid #F1F5F9;
-  padding-bottom: 6px;
-}
-.chat-ai-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  /* #0284C7 was off-palette and 4.10:1 on white */
-  color: var(--accent-on-light);
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 0.02em;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.compact-gauge-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 14px;
-  padding: 12px 14px;
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 4px;
-}
-.compact-gauge {
-  width: 120px;
-  height: 72px;
-  position: relative;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.compact-gauge svg {
-  width: 100%;
-  height: auto;
-}
-.compact-gauge .val {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 1.55rem;
-  font-weight: 900;
-  color: var(--navy);
-  text-align: center;
-}
-.compact-gauge .val small {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-.compact-dual-bars {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.compact-bar-item {
-  font-size: 0.78rem;
-}
-.compact-bar-label {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 3px;
-}
-.compact-bar-track {
-  height: 6px;
-  background: #E2E8F0;
-  border-radius: 2px;
-  overflow: hidden;
-}
-.compact-bar-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-}
-.compact-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.compact-act-item {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  padding: 9px 12px;
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 3px;
-  font-size: 0.82rem;
-  line-height: 1.45;
-}
-.compact-act-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 800;
-  background: #E6F8F6;
-  color: var(--accent-on-light);
-  padding: 2px 6px;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
+.sample-site__contact{margin:-8px 0 16px;font-size:.78rem;color:rgba(255,255,255,.72)}
+.measured-card-en{display:block;margin-top:2px;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.02em;color:var(--muted)}
 
 /* ===== Method Dual Marketing Pillars ===== */
 #method {
@@ -1463,15 +1325,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   <div class="hero-visual" aria-hidden="true">
     <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
     <div class="sweep"></div>
-    <div class="node n1"><b>Google</b> 搜得到你嗎？</div>
-    <div class="node n2"><b>ChatGPT</b> 有提到你嗎？</div>
-    <div class="node n3">AI 有沒有<b>連到你的官網</b></div>
-    <div class="node n4">AI 知道<b>你在賣什麼</b>嗎</div>
+    <div class="node n1"><b>AI</b> 有提到你嗎？</div>
+    <div class="node n2">有沒有<b>引用你的官網</b></div>
+    <div class="node n3">電話地址<b>對得上</b>嗎</div>
+    <div class="node n4">有沒有給出<b>下一步</b></div>
     <div class="node n5"><b>AI</b> 怎麼形容你</div>
   </div>
   <div class="hero-content">
     <h1 class="fade-item d1"><span class="title-lock">你現在的網站<br><em>AI 看得見</em>嗎？</span></h1>
-    <p class="lead fade-item d2">LS-Labs 的免費快速檢測：確認你的網站是否在 AI 回答中被提及或引用，並取得下一步可檢查的證據。</p>
+    <p class="lead fade-item d2">LS-Labs 的免費快速檢測：實際問 AI 三種題目，分開看它有沒有提到你、有沒有引用你的官網、電話地址和你的頁面一不一致，以及有沒有給出下一步。</p>
     <form id="audit-form" class="url-box fade-item d3">
       <input type="url" placeholder="https://your-website.com" required aria-label="網站網址">
       <button class="btn" type="submit" data-track-cta="hero_start_audit">開始檢查</button>
@@ -1491,7 +1353,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <!-- Social proof strip (Seamless connection from Hero to Measured) -->
 <div class="proof-strip" style="background:linear-gradient(180deg,#FFFFFF 0%,#F4FAF8 100%);border:none;padding:36px 24px 16px">
   <div class="proof-inner" style="max-width:720px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:center;text-align:center">
-    <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">4 題</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">每次實際詢問 AI 的題數</span></div>
+    <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">4 題</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">每次實際詢問 AI：推薦 2、事實 1、行動 1</span></div>
     <div class="proof-divider" style="width:1px;height:36px;background:rgba(11,59,111,.12)" aria-hidden="true"></div>
     <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">約 90 秒</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">免費、不用註冊就能拿到報告</span></div>
   </div>
@@ -1501,96 +1363,101 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="modules" class="semrush-section">
   <div class="wrap">
     <h2 class="semrush-title">量測指標</h2>
-    <p class="semrush-subtitle">每次用 4 題實際詢問 AI，分開記錄有沒有提到你、有沒有引用你的官網，再另外檢查網站條件。結果是一次快照，換題目、順序或時間都可能不同。</p>
-    <p class="semrush-note" style="margin-top:8px;font-size:.82rem;color:var(--muted)">下方圖卡為<strong>介面示意，非即時資料</strong>；實際數字只會出現在你自己的檢測報告中，並附上觀測時間與題組。</p>
+    <p class="semrush-subtitle">每次檢測問 AI 三種題目共 4 題（推薦 2、事實 1、行動 1），四項結果分開判讀，不合成總分；網站條件另外列出，不計分。結果是一次快照，換題目、順序或時間都可能不同。</p>
+    <p class="semrush-note" style="margin-top:8px;font-size:.82rem;color:var(--muted)">下方圖卡為<strong>介面示意，非即時資料</strong>；實際結果只會出現在你自己的檢測報告中，並附上每一題的原始回答與來源。</p>
 
     <div class="measured-grid">
-      <!-- Card 1: AI Visibility Score -->
+      <!-- Card 1: Mention (discovery questions) -->
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">AI 信任值（摘要）</text>
-            <path d="M 38 95 A 62 62 0 0 1 162 95" stroke="#F1F5F9" stroke-width="14" stroke-linecap="round" />
-            <path d="M 38 95 A 62 62 0 0 1 100 33" stroke="#3B82F6" stroke-width="14" stroke-linecap="round" />
-            <text x="100" y="90" font-family="'Noto Sans TC', sans-serif" font-size="26" font-weight="900" fill="#0B1F3B" text-anchor="middle">50</text>
-          </svg>
-        </div>
-        <h3 class="measured-card-title">AI 信任值</h3>
-        <p class="measured-card-desc">把提及率與官網引用率按 65／35 加權的摘要分數。分數只是摘要；要知道問題出在哪，請看兩個分項與每一題的原始回答。</p>
-      </article>
-
-      <!-- Card 2: AI Mentions -->
-      <article class="measured-col">
-        <div class="measured-mockup-frame">
-          <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">4 題裡有沒有提到你</text>
+            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">推薦題裡有沒有提到你</text>
             <line x1="16" y1="32" x2="184" y2="32" stroke="#F1F5F9" stroke-width="1"/>
-            <text x="16" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#64748B">Q1</text>
-            <rect x="38" y="42" width="96" height="5" rx="1" fill="#CBD5E1"/>
-            <text x="184" y="48" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="end">提到</text>
-            <text x="16" y="66" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#64748B">Q2</text>
-            <rect x="38" y="60" width="84" height="5" rx="1" fill="#CBD5E1"/>
-            <text x="184" y="66" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="end">提到</text>
-            <text x="16" y="84" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#64748B">Q3</text>
-            <rect x="38" y="78" width="104" height="5" rx="1" fill="#CBD5E1"/>
-            <text x="184" y="84" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#94A3B8" text-anchor="end">沒提到</text>
-            <text x="16" y="102" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#64748B">Q4</text>
-            <rect x="38" y="96" width="72" height="5" rx="1" fill="#CBD5E1"/>
-            <text x="184" y="102" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#94A3B8" text-anchor="end">沒提到</text>
+            <text x="16" y="52" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">推薦 1</text>
+            <rect x="50" y="46" width="90" height="5" rx="1" fill="#CBD5E1"/>
+            <text x="184" y="52" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#047857" text-anchor="end">提到</text>
+            <text x="16" y="74" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">推薦 2</text>
+            <rect x="50" y="68" width="76" height="5" rx="1" fill="#CBD5E1"/>
+            <text x="184" y="74" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B" text-anchor="end">沒提到</text>
+            <line x1="16" y1="88" x2="184" y2="88" stroke="#F1F5F9" stroke-width="1"/>
+            <text x="16" y="106" font-family="'Noto Sans TC', sans-serif" font-size="9" font-weight="800" fill="#0B1F3B">1 / 2 題推薦題提到你</text>
+            <text x="184" y="106" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#B45309" text-anchor="end">部分</text>
           </svg>
         </div>
-        <h3 class="measured-card-title">提及率（占 65%）</h3>
-        <p class="measured-card-desc">用不含你店名的問題（如「推薦大安區約會餐酒館」）實際問 AI，記錄幾題的回答正文提到你。被提到可能是推薦，也可能是比較或批評。</p>
+        <h3 class="measured-card-title">提及<small class="measured-card-en">Mention</small></h3>
+        <p class="measured-card-desc">用不含你店名的推薦題（如「推薦大安區約會餐酒館」）實際問 AI，記錄幾題的回答正文提到你。被提到可能是推薦，也可能是比較或批評，報告會附上原文。</p>
       </article>
 
-      <!-- Card 3: Citations -->
+      <!-- Card 2: Citation (all four questions) -->
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="14" y="20" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">提問</text>
-            <text x="106" y="20" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">回答</text>
-            <text x="138" y="20" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">引用來源</text>
+            <text x="14" y="20" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">題目</text>
+            <text x="76" y="20" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">回答</text>
+            <text x="104" y="20" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">引用來源</text>
             <line x1="14" y1="26" x2="186" y2="26" stroke="#E2E8F0" stroke-width="1"/>
             <!-- Row 1 -->
-            <rect x="14" y="32" width="76" height="5" rx="1" fill="#CBD5E1"/>
-            <circle cx="112" cy="35" r="3.5" fill="#3B82F6"/>
-            <text x="138" y="37" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/menu</text>
+            <text x="14" y="38" font-family="'Noto Sans TC', sans-serif" font-size="7.5" fill="#334155">推薦 1</text>
+            <circle cx="82" cy="35" r="3.5" fill="#3B82F6"/>
+            <text x="104" y="37" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#64748B">food-blog.tw</text>
             <!-- Row 2 -->
-            <rect x="14" y="50" width="68" height="5" rx="1" fill="#CBD5E1"/>
-            <circle cx="112" cy="53" r="3.5" fill="#3B82F6"/>
-            <text x="138" y="55" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#64748B">food-blog.tw</text>
+            <text x="14" y="56" font-family="'Noto Sans TC', sans-serif" font-size="7.5" fill="#334155">推薦 2</text>
+            <circle cx="82" cy="53" r="3.5" fill="#3B82F6"/>
+            <text x="104" y="55" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#64748B">maps 評論</text>
             <!-- Row 3 -->
-            <rect x="14" y="68" width="82" height="5" rx="1" fill="#CBD5E1"/>
-            <circle cx="112" cy="71" r="3.5" fill="#3B82F6"/>
-            <text x="138" y="73" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#64748B">maps 評論</text>
+            <text x="14" y="74" font-family="'Noto Sans TC', sans-serif" font-size="7.5" fill="#334155">事實</text>
+            <circle cx="82" cy="71" r="3.5" fill="#3B82F6"/>
+            <text x="104" y="73" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">example-bistro.tw</text>
             <!-- Row 4 -->
-            <rect x="14" y="86" width="58" height="5" rx="1" fill="#CBD5E1"/>
-            <circle cx="112" cy="89" r="3.5" fill="#3B82F6"/>
-            <text x="138" y="91" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/book</text>
+            <text x="14" y="92" font-family="'Noto Sans TC', sans-serif" font-size="7.5" fill="#334155">行動</text>
+            <circle cx="82" cy="89" r="3.5" fill="#3B82F6"/>
+            <text x="104" y="91" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">example-bistro.tw/book</text>
+            <text x="14" y="110" font-family="'Noto Sans TC', sans-serif" font-size="8" font-weight="700" fill="#0B1F3B">官網出現在 2 / 4 題</text>
           </svg>
         </div>
-        <h3 class="measured-card-title">官網引用率（占 35%）</h3>
-        <p class="measured-card-desc">AI 回答列出的來源裡有沒有你的官網，還是都來自食記、地圖與評論。被列為來源和被提到是兩回事，來源清單出現的次數也不是 AI 的信任權重。</p>
+        <h3 class="measured-card-title">引用來源<small class="measured-card-en">Citation</small></h3>
+        <p class="measured-card-desc">四題的回答各列出哪些來源，有沒有你的官網，還是都來自食記、地圖與評論。被列為來源和被提到是兩回事，來源出現的次數也不是 AI 的信任權重。</p>
       </article>
 
-      <!-- Card 4: Diagnostics & Volume -->
+      <!-- Card 3: Accuracy (fact question vs the owner's page) -->
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">網站條件檢查</text>
+            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">你的頁面 vs AI 回答</text>
             <line x1="16" y1="32" x2="184" y2="32" stroke="#F1F5F9" stroke-width="1"/>
-            <text x="16" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#334155">robots.txt</text>
-            <text x="184" y="48" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="end">通過</text>
-            <text x="16" y="66" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#334155">sitemap.xml</text>
-            <text x="184" y="66" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="end">通過</text>
-            <text x="16" y="84" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#334155">LocalBusiness</text>
-            <text x="184" y="84" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#F59E0B" text-anchor="end">待補</text>
-            <text x="16" y="102" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#334155">FAQ 文字</text>
-            <text x="184" y="102" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#F59E0B" text-anchor="end">待補</text>
+            <text x="16" y="52" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">電話</text>
+            <text x="60" y="52" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#334155">同一支號碼</text>
+            <text x="184" y="52" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#047857" text-anchor="end">正確</text>
+            <text x="16" y="74" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">地址</text>
+            <text x="60" y="74" font-family="'Noto Sans TC', sans-serif" font-size="7.5" fill="#334155">1 號 ↔ 3 號</text>
+            <text x="184" y="74" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#B45309" text-anchor="end">和你的頁面不一致</text>
+            <text x="16" y="96" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#64748B">營業時間</text>
+            <text x="60" y="96" font-family="'Noto Sans TC', sans-serif" font-size="7.5" fill="#334155">只記錄</text>
+            <text x="184" y="96" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#475569" text-anchor="end">未判定</text>
           </svg>
         </div>
-        <h3 class="measured-card-title">網站條件（不計分）</h3>
-        <p class="measured-card-desc">檢查 robots、sitemap、結構化資料等網站條件。這些有助搜尋系統讀取，但不保證被 AI 採用，所以不計入分數。題目沒拿到回答會標示未知，不會當成 0 分。</p>
+        <h3 class="measured-card-title">資訊正確性<small class="measured-card-en">Accuracy</small></h3>
+        <p class="measured-card-desc">用事實題請 AI 查你的地址與電話，再和你自己的頁面比對。出現在頁面上算「正確」；沒有出現稱「和你的頁面不一致」，本工具無法判斷哪一方才對；頁面沒寫的項目標「無法核對」。</p>
+      </article>
+
+      <!-- Card 4: Conversion-readiness (action question) -->
+      <article class="measured-col">
+        <div class="measured-mockup-frame">
+          <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
+            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">AI 給的下一步</text>
+            <line x1="16" y1="32" x2="184" y2="32" stroke="#F1F5F9" stroke-width="1"/>
+            <text x="16" y="50" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#334155">ACTION: 電話</text>
+            <text x="184" y="50" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#047857" text-anchor="end">有</text>
+            <text x="16" y="68" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#334155">ACTION: 地圖</text>
+            <text x="184" y="68" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#047857" text-anchor="end">有</text>
+            <text x="16" y="86" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#334155">ACTION: 訂位（第三方平台）</text>
+            <text x="184" y="86" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#047857" text-anchor="end">有</text>
+            <line x1="16" y1="96" x2="184" y2="96" stroke="#F1F5F9" stroke-width="1"/>
+            <text x="16" y="110" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#0B1F3B">官網入口：沒有</text>
+          </svg>
+        </div>
+        <h3 class="measured-card-title">行動資訊<small class="measured-card-en">Conversion-readiness</small></h3>
+        <p class="measured-card-desc">用行動題問 AI 想去或聯絡你時下一步怎麼做，記錄回答有沒有給出電話、網址、地圖或訂位，以及有沒有你的官網入口。本工具沒有量測後續來客或轉換。</p>
       </article>
     </div>
   </div>
@@ -1600,7 +1467,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="pain">
   <div class="wrap">
     <h2 class="reveal">從「被搜尋到」到「直接被 AI 推薦」</h2>
-    <p class="sub reveal">傳統搜尋把選擇交給顧客逐頁點擊篩選；生成式搜尋則會先替顧客閱讀完幾十個網站，直接產出一份推薦名單。</p>
+    <p class="sub reveal">傳統搜尋把選擇交給顧客逐頁點擊篩選；生成式搜尋則會先查找多個來源，直接整理出一份推薦名單。</p>
 
     <!-- 傳統搜尋 vs AI 生成回答對比卡片 -->
     <div class="search-compare__grid reveal delay-1">
@@ -1731,12 +1598,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="report" style="padding: 84px 24px; background: #FAFDFE; border-top: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0;">
   <div class="wrap">
     <h2 class="reveal">報告摘要</h2>
-    <p class="sub reveal">報告分開列出 AI 有沒有提到你、有沒有引用你的官網，附上每一題的原始回答與先修清單；總分只是摘要。下方為<strong>範例</strong>，店家與數字皆為示意。</p>
+    <p class="sub reveal">報告分開列出四項判讀，附上每一題的原始回答與來源，並把 AI 給的電話地址和你的頁面並排核對；不合成總分。下方為<strong>範例</strong>，店家與資料皆為虛構。</p>
 
     <div class="report-preview-box reveal delay-1">
-      <!-- 2-Column Split: Left Site Visual | Right AI Dialog Panel -->
+      <!-- 2-Column Split: Left sample site | Right MCAC report sheet (mirrors apps/web/report/mcac-report-html.js) -->
       <div class="preview-grid">
-        <!-- Left: 受測官網實景展示 -->
+        <!-- Left: the fictional site the sample report checks -->
         <div class="report-site-visual sample-site" role="img" aria-label="範例網站示意：範例餐酒館">
           <div class="sample-site__bar"><span></span><span></span><span></span><em>example-bistro.tw</em></div>
           <div class="sample-site__hero">
@@ -1744,73 +1611,34 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             <p class="sample-site__kicker">BISTRO · 信義安和</p>
             <p class="sample-site__name">範例餐酒館</p>
             <p class="sample-site__line">熟成牛排、自然酒與季節菜單</p>
+            <p class="sample-site__contact">台北市信義區範例路 1 號 · 02-1234-5678</p>
             <div class="sample-site__nav"><span>菜單</span><span>訂位</span><span>交通</span><span>常見問題</span></div>
           </div>
         </div>
 
-        <!-- Right: AI 對話與診斷報告 UI -->
+        <!-- Right: MCAC report sheet -->
         <div class="compact-report">
-          <!-- User Query Bubble -->
-          <div class="chat-user-row">
-            <div class="chat-user-bubble">
-              <span class="chat-user-label">範例提問</span>
-              <div class="chat-user-text">「台北約會牛排餐酒館推薦？」</div>
+          <div class="mcac-sheet">
+            <div class="mcac-sheet__head">
+              <span class="mcac-sheet__title">AI 能見度檢測單<span class="sample-flag">範例</span></span>
+              <span class="mcac-sheet__meta">example-bistro.tw · MCAC v0.2.0 · Perplexity Sonar</span>
             </div>
-            <div class="chat-user-avatar" title="顧客提問">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
+            <p class="mcac-sheet__note">四項分開判讀，不合成總分。共問 4 題：推薦題 2、事實題 1、行動題 1。</p>
+            <table class="mcac-rows">
+              <thead><tr><th scope="col">項目</th><th scope="col">結果</th><th scope="col">判讀</th></tr></thead>
+              <tbody>
+                <tr data-mcac-row="mention" data-hits="1" data-n="2" data-flag="part"><th scope="row">提及（Mention）<small>顧客沒說店名時，AI 有沒有主動講到你</small></th><td>1 / 2 題推薦題提到你</td><td><span class="mcac-flag mcac-flag--part">部分</span></td></tr>
+                <tr data-mcac-row="citation" data-hits="2" data-n="4" data-flag="yes"><th scope="row">引用來源（Citation）<small>回答列出的來源裡，有沒有你的官網</small></th><td>官網出現在 2 / 4 題<small>評論論壇 9・其他 7・地圖 5・官網 2</small></td><td><span class="mcac-flag mcac-flag--yes">有</span></td></tr>
+                <tr data-mcac-row="accuracy" data-phone="correct" data-address="mismatch" data-flag="mismatch"><th scope="row">資訊正確性（Accuracy）<small>AI 給的地址、電話跟你的頁面一不一致</small></th><td>電話：正確・地址：和你的頁面不一致</td><td><span class="mcac-flag mcac-flag--part">不一致</span></td></tr>
+                <tr data-mcac-row="conversion" data-flag="yes" data-official="no"><th scope="row">行動資訊（Conversion-readiness）<small>AI 有沒有給出電話、網址、地圖或訂位等下一步</small></th><td>電話、地圖、訂位<small>官網入口：沒有</small></td><td><span class="mcac-flag mcac-flag--yes">有</span></td></tr>
+              </tbody>
+            </table>
+            <div class="mcac-facts">
+              <p class="mcac-facts__title">資訊正確性：你的頁面寫的與 AI 說的</p>
+              <div class="mcac-fact" data-field="phone" data-status="correct"><b>電話</b><span>你的頁面：<span data-side="page">02-1234-5678</span></span><span>AI 回答：<span data-side="ai">02-1234-5678</span></span><em>正確</em></div>
+              <div class="mcac-fact" data-field="address" data-status="mismatch"><b>地址</b><span>你的頁面：<span data-side="page">台北市信義區範例路 1 號</span></span><span>AI 回答：<span data-side="ai">台北市信義區範例路 3 號</span></span><em>和你的頁面不一致</em></div>
             </div>
-          </div>
-
-          <!-- AI Response & Assessment -->
-          <div class="chat-ai-row">
-            <div class="chat-ai-avatar" title="AI 搜尋引擎診斷">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
-              </svg>
-            </div>
-            <div class="chat-ai-body">
-              <div class="chat-ai-top">
-                <span class="chat-ai-title">AI 搜尋檢測回答<span class="sample-flag">範例</span></span>
-                <span class="badge" style="margin:0;">AI 偶爾才提到你</span>
-              </div>
-
-              <!-- Score Gauge + Breakdown Bars -->
-              <div class="compact-gauge-row">
-                <div class="compact-gauge">
-                  <svg viewBox="0 0 200 110" aria-hidden="true">
-                    <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#EAF0F6" stroke-width="16" stroke-linecap="round"/>
-                    <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#3B82F6" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="126" class="arc" id="arc"/>
-                  </svg>
-                  <div class="val"><span id="scoreVal">50</span><small>/100</small></div>
-                </div>
-
-                <div class="compact-dual-bars">
-                  <div class="compact-bar-item">
-                    <div class="compact-bar-label"><span>提及率（占 65%）</span><span data-sample-metric="mention" data-hits="2" data-n="4" style="color:var(--accent-on-light)">2 / 4 題 · 50%</span></div>
-                    <div class="compact-bar-track"><div class="compact-bar-fill" style="width:50%"></div></div>
-                  </div>
-                  <div class="compact-bar-item">
-                    <div class="compact-bar-label"><span>官網引用率（占 35%）</span><span data-sample-metric="citation" data-hits="2" data-n="4" style="color:var(--accent-on-light)">2 / 4 題 · 50%</span></div>
-                    <div class="compact-bar-track"><div class="compact-bar-fill" style="width:50%"></div></div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Top Priority Action Recommendations -->
-              <div class="compact-actions">
-                <div class="compact-act-item">
-                  <span class="compact-act-tag">優先 P1</span>
-                  <div><b>補齊 LocalBusiness 結構化資料</b>：讓搜尋系統更容易讀到店名、營業時間與訂位連結。</div>
-                </div>
-                <div class="compact-act-item">
-                  <span class="compact-act-tag">優先 P2</span>
-                  <div><b>在網頁中增加文字常見問答</b>：把招牌牛排、低消與停車規範寫成可讀文字，方便被摘錄。</div>
-                </div>
-              </div>
-            </div>
+            <p class="mcac-advice">AI 給的電話或地址和你的頁面不同。可能是頁面資料過時，也可能是 Google 地圖等其他平台列的資料不一樣；請確認哪一個正確，並把官網、粉專、Google 商家等各平台的資料統一。</p>
           </div>
 
           <div class="center" style="margin-top:2px;">
@@ -1826,21 +1654,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="method" class="alt">
   <div class="wrap">
     <h2 class="reveal">計算方法</h2>
-    <p class="sub reveal">這套分數是怎麼算的？AI 信任值是快檢的摘要分數：提及率 × 65% ＋ 官網引用率 × 35%，公式公開。兩個分項代表不同的事，判讀時請分開看，不要只看總分。</p>
+    <p class="sub reveal">這份檢測怎麼判讀？方法是 MCAC 0.2.0：每次問 AI 三種題目共 4 題，四項結果分開判讀，不合成總分。題目由 DeepSeek 依你的網站內容規劃，再交給 Perplexity Sonar（預設）或 Gemini Flash 搭配 Google 搜尋回答，每次只用其中一個。</p>
 
-    <!-- Dual Marketing Pillars -->
+    <!-- Two pillars: the question set and the four separate results -->
     <div class="method-dual-grid reveal delay-1">
       <!-- Pillar 1 -->
       <article class="method-pillar">
         <div>
           <div class="pillar-header-meta">
-            <span class="pillar-signal-label">提及</span>
-            <span class="pillar-weight-badge">65% 權重</span>
+            <span class="pillar-signal-label">三種題型</span>
+            <span class="pillar-weight-badge">共 4 題</span>
           </div>
-          <h3 class="pillar-headline">AI 有沒有提到你（占 65%）</h3>
+          <h3 class="pillar-headline">推薦題、事實題、行動題</h3>
           <p class="pillar-copy">
-            當顧客在 ChatGPT 或 Perplexity 詢問不帶店名的問題時（例如「大安區約會推薦哪間法餐」），AI 的回答正文有沒有提到你？
-            提到可能是推薦，也可能是比較或批評；報告會附上原文讓你判斷。
+            推薦題 2 題：不帶店名，請 AI 推薦這類店家（例如「大安區約會推薦哪間法餐」），看 AI 有沒有提到你，報告附原文讓你判斷是推薦還是比較。事實題 1 題：請 AI 查你的地址與電話。行動題 1 題：問 AI 想去或聯絡你時，下一步該怎麼做。題目都不放你的網址，避免把 AI 引向官網；你也可以自訂推薦題。
           </p>
         </div>
         <div class="pillar-insight">
@@ -1848,7 +1675,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
             <span>判讀限制</span>
           </div>
-          <p class="pillar-insight-text">每次只有 4 題、跑一次。換問法、換順序或換時間，結果都可能不同；這裡也沒有量測後續的來客或轉換。</p>
+          <p class="pillar-insight-text">不問比較題：檢索機制報告的 6 次比較題中，排第二的店都缺地址或電話，順序對調後缺漏也跟著換。每項只有 1 到 2 題、跑一次，換問法或時間結果都可能不同。</p>
         </div>
       </article>
 
@@ -1856,13 +1683,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <article class="method-pillar">
         <div>
           <div class="pillar-header-meta">
-            <span class="pillar-signal-label">官網引用</span>
-            <span class="pillar-weight-badge">35% 權重</span>
+            <span class="pillar-signal-label">四項分開判讀</span>
+            <span class="pillar-weight-badge">不合成總分</span>
           </div>
-          <h3 class="pillar-headline">AI 有沒有引用你的官網（占 35%）</h3>
+          <h3 class="pillar-headline">提及、引用來源、資訊正確性、行動資訊</h3>
           <p class="pillar-copy">
-            AI 回答列出的參考來源裡，有沒有你的官方網址或訂位頁？還是都來自食記、地圖與評論？
-            沒有官網的店也可能被提到；官網的價值在於提供一個你能自己維護的官方版本。
+            提及與引用來源標「有」「部分」「無」，行動資訊標「有」「無」；沒拿到回答的標「未知」，未知不等於 0。網站讀不到時，這次就不詢問 AI，四項都標未知。資訊正確性以你的頁面為準：AI 給的電話或地址出現在頁面上算「正確」；沒有出現稱「和你的頁面不一致」，本工具無法判斷哪一方才對；頁面沒寫的項目標「無法核對」。
           </p>
         </div>
         <div class="pillar-insight">
@@ -1870,7 +1696,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
             <span>判讀限制</span>
           </div>
-          <p class="pillar-insight-text">被列為來源和被提到是兩回事，來源清單出現的次數也不是 AI 的信任權重。GeoCheck 記錄的是引用是否出現，不預測後續的流量或轉換。</p>
+          <p class="pillar-insight-text">被提到不等於被推薦，來源出現的次數也不是 AI 的信任權重。判讀門檻是 v0 暫定；本工具沒有量測後續的來客或轉換。</p>
         </div>
       </article>
     </div>
@@ -1881,7 +1707,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <span>閱讀完整白皮書方法論</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <br><a class="method-report-link" href="https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/">為什麼不只看總分：AI 搜尋時代的檢索機制報告 →</a>
+      <br><a class="method-report-link" href="https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/">為什麼要分開判讀：AI 搜尋時代的檢索機制報告 →</a>
     </div>
   </div>
 </section>
@@ -1894,20 +1720,28 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <p class="sub reveal">先搞懂幾件事，再動手改網站。用清晰白話解析生成式搜尋的底層邏輯，點擊即可展開閱讀。</p>
     <div class="faq reveal delay-1">
       <details>
-        <summary>AI 信任值是什麼？和 Google 排名有什麼不同？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="faq-body"><p>Google 排名比的是誰排在搜尋結果前面；AI 信任值看的是另一件事：當顧客直接問 AI「有沒有推薦的店」，AI 的答案裡有沒有提到你、有沒有引用你的官方網址。若搜尋引擎暫時無法連線或未取得回答，系統會標記為未知，絕不會當成 0 分。網站被 Google 收錄，不代表 AI 會主動把你列為答案。</p><p>報告裡會直接列出實際問到的結果與依據，你可以自己核對。</p></div>
+        <summary>這份檢測看哪四件事？為什麼不給總分？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-body"><p>看四件事：提及（顧客沒說店名時，AI 有沒有主動講到你）、引用來源（回答列出的來源裡有沒有你的官網）、資訊正確性（AI 給的地址、電話和你的頁面一不一致），以及行動資訊（AI 有沒有給出電話、網址、地圖或訂位等下一步）。四件事反映不同的缺口，合成一個分數就看不出問題出在哪，所以分開判讀、不合成總分。</p><p>沒拿到回答的項目標「未知」，未知不等於 0。網站被 Google 收錄，也不代表 AI 會主動把你列為答案。</p></div>
+      </details>
+      <details>
+        <summary>「和你的頁面不一致」和「無法核對」是什麼意思？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-body"><p>資訊正確性以你自己的頁面為準。AI 給的電話或地址出現在你的頁面上，算「正確」；沒有出現，標「和你的頁面不一致」。我們不稱它為錯誤，因為可能是頁面資料過時，也可能是 Google 地圖等平台列的資料不同，本工具無法判斷哪一方才對。你的頁面沒寫電話或地址時，該項標「無法核對」。</p><p>看到不一致時，請先確認哪一個正確，再把官網、粉專、Google 商家等各平台的資料統一。營業時間目前只記錄、不判定。</p></div>
       </details>
       <details>
         <summary>為什麼 AI 都沒提到我的店？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="faq-body"><p>可能的原因包括：網路上關於你的公開資料（地圖、評論、媒體、社群）太少或彼此不一致；網站沒有清楚寫出服務內容與地區；也可能只是這幾題的問法沒問到你。沒有官網的店也可能被 AI 提到，官網不是唯一的管道。</p><p>報告裡會直接列出實際問到的結果與依據，你可以自己核對。</p></div>
+        <div class="faq-body"><p>可能的原因包括：網路上關於你的公開資料（地圖、評論、媒體、社群）太少或彼此不一致；網站沒有清楚寫出服務內容與地區；也可能只是這兩題推薦題的問法沒問到你。沒有官網的店也可能被 AI 提到，官網不是唯一的管道。</p><p>報告附上每一題的原始回答與來源，你可以自己核對。</p></div>
       </details>
       <details>
         <summary>網站要準備什麼，AI 才容易讀懂？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="faq-body"><p>清楚寫出提供什麼服務、服務誰、價格範圍與聯絡方式，並加入 Schema 結構化資料，讓搜尋系統更容易解析。這能提高被讀懂的機會，但不保證被 AI 採用；地圖、評論與媒體報導同樣會影響 AI 怎麼描述你。</p><p>報告裡會直接列出具體程式碼範例。</p></div>
+        <div class="faq-body"><p>清楚寫出提供什麼服務、服務誰、價格範圍，以及地址、電話等聯絡方式，並和粉專、Google 商家上的資料保持一致。結構化資料可以協助表達這些資訊，但不保證被搜尋系統或 AI 採用，Google 也說明它的 AI 搜尋功能不需要特殊標記；地圖、評論與媒體報導同樣會影響 AI 怎麼描述你。</p><p>報告的「網站條件」段落會列出讀取上的問題，例如找不到網站地圖、首頁沒有商家資料標記；這部分不計分。</p></div>
       </details>
       <details>
         <summary>有沒有可能是網站把 AI 擋住了？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="faq-body"><p>有些網站的設定會直接把 AI 爬蟲擋在門外，或是內容要等特定腳本執行完才出現，導致 AI 讀到一片空白。這種問題肉眼看不出來，健檢報告會直接指出是否有此阻礙。</p><p>報告裡會直接列出具體程式碼範例。</p></div>
+        <div class="faq-body"><p>有些網站的設定會把 AI 的搜尋程式擋在門外，或是內容要等特定腳本執行完才出現，導致讀到一片空白。這種問題肉眼看不出來，報告的網站條件段落會列出是否有這類阻礙。</p><p>如果連檢測程式都讀不到你的網站，這次就不會詢問 AI，四項都標「未知」，不代表 0。</p></div>
+      </details>
+      <details>
+        <summary>檢查要錢嗎？需要註冊嗎？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-body"><p>免費，也不用註冊。貼上網址後約 90 秒會產出一份報告，列出四項結果與每一題的原始回答。</p><p>每天的新檢測有名額上限，額滿時請隔天再試。</p></div>
       </details>
     </div>
   </div>
@@ -1946,7 +1780,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     
     <div class="setup-modal-body">
       <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:4px;">
-        <span class="tag" style="margin-bottom:0;padding:2px 10px;font-size:0.75rem;">第一步 · 目標與題庫確認</span>
+        <span class="tag" style="margin-bottom:0;padding:2px 10px;font-size:0.75rem;">第一步 · 確認網站與推薦題</span>
         <span style="font-size:0.8rem;color:var(--muted);">準備進入 AI 搜尋能見度觀測</span>
       </div>
       <h2 id="audit-confirm-title" style="font-size:1.28rem;color:var(--navy);text-align:left;margin-top:4px;margin-bottom:8px;">確認檢測目標與觀測問題</h2>
@@ -1963,48 +1797,34 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
       </div>
 
-      <!-- 折疊手風琴：自訂觀測題目（選填） -->
+      <!-- 折疊手風琴：自訂推薦題（選填；MCAC 最多問 2 題推薦題） -->
       <div class="setup-accordion-wrap" id="setup-accordion-wrap">
         <button type="button" class="setup-accordion-toggle" onclick="toggleCustomQueries()" aria-expanded="false" aria-controls="setup-q-collapsible">
           <div class="setup-accordion-title">
-            <span>⚙️ 自訂觀測題目（選填 · 留空會依網站內容規劃）</span>
+            <span>⚙️ 自訂推薦題（選填 · 留空會依網站內容規劃）</span>
             <span class="setup-badge-count" id="setup-queries-count">已自訂 0 題</span>
           </div>
           <span class="setup-toggle-arrow" id="setup-toggle-arrow">▾</span>
         </button>
 
         <div class="setup-q-collapsible" id="setup-q-collapsible">
-          <!-- 四個問題的欄位 (各自選填；未填名額由 AI 補足) -->
+          <!-- 兩題推薦題的欄位（各自選填；沒填的由系統依網站內容規劃） -->
           <div class="setup-q-block">
             <div class="setup-q-header">
-              <label for="setup-q1">題目一（選填 · 留空會依網站內容規劃）：</label>
+              <label for="setup-q1">推薦題一（選填 · 留空會依網站內容規劃）：</label>
             </div>
-            <input type="text" class="setup-q-input" id="setup-q1" placeholder="例如：顧客通常會怎麼找這類服務？" autocomplete="off" oninput="updateQueriesCount()">
+            <input type="text" class="setup-q-input" id="setup-q1" placeholder="例如：顧客會怎麼請 AI 推薦這類店家？" autocomplete="off" oninput="updateQueriesCount()">
           </div>
 
           <div class="setup-q-block">
             <div class="setup-q-header">
-              <label for="setup-q2">題目二（選填 · 留空會依網站內容規劃）：</label>
+              <label for="setup-q2">推薦題二（選填 · 留空會依網站內容規劃）：</label>
             </div>
-            <input type="text" class="setup-q-input" id="setup-q2" placeholder="例如：顧客在比較或決定前會問什麼？" autocomplete="off" oninput="updateQueriesCount()">
-          </div>
-
-          <div class="setup-q-block">
-            <div class="setup-q-header">
-              <label for="setup-q3">題目三（選填）：</label>
-            </div>
-            <input type="text" class="setup-q-input" id="setup-q3" placeholder="例如：不同選項之間通常怎麼比較？" autocomplete="off" oninput="updateQueriesCount()">
-          </div>
-
-          <div class="setup-q-block">
-            <div class="setup-q-header">
-              <label for="setup-q4">題目四（選填）：</label>
-            </div>
-            <input type="text" class="setup-q-input" id="setup-q4" placeholder="例如：下決定前還會確認什麼？" autocomplete="off" oninput="updateQueriesCount()">
+            <input type="text" class="setup-q-input" id="setup-q2" placeholder="例如：顧客找推薦名單時還會怎麼問？" autocomplete="off" oninput="updateQueriesCount()">
           </div>
 
           <div style="font-size:0.76rem;color:var(--muted);margin-top:6px;line-height:1.45;">
-            💡 <b>小提示</b>：你填的題目會優先採用，未填的名額由系統依網站內容補成四題。請不要包含自己的店名，才能模擬顧客還不認識你時會怎麼問。
+            💡 <b>小提示</b>：推薦題最多 2 題，你填的會優先採用，沒填的由系統依網站內容規劃。請不要包含自己的店名或網址，才能模擬顧客還不認識你時會怎麼問。事實題（地址與電話）和行動題（下一步）會用網站上的店名自動提問。
           </div>
         </div>
       </div>
@@ -2210,9 +2030,7 @@ function toggleCustomQueries(forceOpen) {
 function updateQueriesCount() {
   const q1 = document.getElementById('setup-q1')?.value.trim();
   const q2 = document.getElementById('setup-q2')?.value.trim();
-  const q3 = document.getElementById('setup-q3')?.value.trim();
-  const q4 = document.getElementById('setup-q4')?.value.trim();
-  const count = [q1, q2, q3, q4].filter(Boolean).length;
+  const count = [q1, q2].filter(Boolean).length;
   const countBadge = document.getElementById('setup-queries-count');
   if (countBadge) {
     if (count > 0) {
@@ -2228,18 +2046,52 @@ function startConfirmedAudit() {
   closeModal('audit-confirm-modal');
   const q1Input = document.getElementById('setup-q1');
   const q2Input = document.getElementById('setup-q2');
-  const q3Input = document.getElementById('setup-q3');
-  const q4Input = document.getElementById('setup-q4');
   const q1 = q1Input ? q1Input.value.trim() : '';
   const q2 = q2Input ? q2Input.value.trim() : '';
-  const q3 = q3Input ? q3Input.value.trim() : '';
-  const q4 = q4Input ? q4Input.value.trim() : '';
-  const customQueries = [q1, q2, q3, q4].filter(Boolean);
+  // MCAC asks at most two discovery questions and takes the user's first.
+  const customQueries = [q1, q2].filter(Boolean);
 
   // An empty list deliberately leaves query planning to the evidence-backed
   // server flow, which reads the submitted site before selecting questions.
   executeAudit(customQueries.length ? customQueries : undefined);
 }
+
+// <audit-flow>
+// Submit, poll the job and hand back the id the report is stored under. The audit Worker
+// stores each report under the job's report_id; the report body keeps the id the
+// container gave it, so the page opens the id the job reports, not report.id.
+async function waitForAuditReport(targetUrl, customQueries, onStatus) {
+  const accepted = await postJson('/api/audit-real-lite', {
+    url: targetUrl,
+    customQueries,
+    source: 'website_home'
+  }, { timeoutMs: 30000 });
+  const jobId = accepted.job_id || accepted.id;
+  const reportId = accepted.report_id || accepted.reportId;
+  if (!jobId || !reportId) throw new Error('檢查服務沒有回傳可追蹤的工作編號');
+  const startedAt = Date.now();
+  while (Date.now() - startedAt < 180000) {
+    const job = await getJson(`/api/status/${encodeURIComponent(jobId)}`);
+    if (job.status === 'completed' || job.status === 'completed_with_limitations') {
+      return { reportId: job.reportId || reportId, cacheHit: Boolean(job.diagnostics?.cache_hit) };
+    }
+    if (job.status === 'failed') throw new Error('檢查服務回報這次工作失敗');
+    onStatus(job.status === 'running' ? '正在讀網站、問 AI，並整理四項結果...' : '已排入檢查，正在準備執行...');
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  }
+  // The job may have stopped for good; do not promise that the report will appear.
+  throw Object.assign(new Error('等待時間超過預期'), { stage: 'timeout' });
+}
+
+// The Worker refuses with a daily ceiling (429) or while new audits are paused (503).
+function auditErrorMessage(err) {
+  if (err.code === 'daily_limit_reached') return '今日免費檢測額度已滿，請明天再試。';
+  if (err.code === 'service_unavailable') return '目前暫停受理新的檢測，請稍後再試。';
+  if (err.stage === 'timeout') return '這次等待時間超過預期，請稍後再試一次。';
+  const reason = String(err.message || '').replace(/[。.]+$/, '');
+  return `這次檢查沒有完成：${reason}。請確認網址是否正確，或稍後再試一次。`;
+}
+// </audit-flow>
 
 async function executeAudit(customQueries) {
   const form = document.getElementById('audit-form');
@@ -2258,10 +2110,10 @@ async function executeAudit(customQueries) {
 
   const loadingMessages = [
     '正在讀取你的網站...',
-    '正在依網站內容規劃觀測問題...',
-    '正在看 AI 怎麼理解你...',
+    '正在依網站內容規劃推薦題...',
+    '正在問 AI 推薦題、事實題與行動題...',
     '正在檢查網站的基本設定...',
-    '正在實際問 AI 搜尋引擎...',
+    '正在比對 AI 給的電話地址和你的頁面...',
     '報告產生中，這一步可能需要 30-90 秒...'
   ];
   let messageIndex = 0;
@@ -2286,7 +2138,7 @@ async function executeAudit(customQueries) {
       const elapsed = (Date.now() - progressStartedAt) / 1000;
       if (elapsed < 8) setProgress(8 + elapsed * 1.8, '正在讀取網站內容');
       else if (elapsed < 22) setProgress(24 + (elapsed - 8) * 1.25, '正在檢查網站的基本設定');
-      else if (elapsed < 40) setProgress(42 + (elapsed - 22) * 1.05, '正在進行觀測題庫檢驗');
+      else if (elapsed < 40) setProgress(42 + (elapsed - 22) * 1.05, '正在規劃要問 AI 的題目');
       else if (elapsed < 65) setProgress(61 + (elapsed - 40) * 0.72, '正在實際問 AI');
       else setProgress(Math.min(94, 79 + (elapsed - 65) * 0.25), '正在整理成報告');
     }, 900);
@@ -2314,28 +2166,6 @@ async function executeAudit(customQueries) {
     if (messageTimer) clearInterval(messageTimer);
   }
 
-  async function runAuditUntilSuccess() {
-    const accepted = await postJson('/api/audit-real-lite', {
-      url: targetUrl,
-      customQueries,
-      source: 'website_home'
-    }, { timeoutMs: 30000 });
-    const jobId = accepted.job_id || accepted.id;
-    const reportId = accepted.report_id || accepted.reportId;
-    if (!jobId || !reportId) throw new Error('檢查服務沒有回傳可追蹤的工作編號，請稍後再試');
-    const startedAt = Date.now();
-    while (Date.now() - startedAt < 180000) {
-      const job = await getJson(`/api/status/${encodeURIComponent(jobId)}`);
-      if (job.status === 'completed' || job.status === 'completed_with_limitations') {
-        return getJson(`/api/report/${encodeURIComponent(job.reportId || reportId)}`);
-      }
-      if (job.status === 'failed') throw new Error('這次檢查沒有完成，請稍後再試。');
-      if (status) status.textContent = job.status === 'running' ? '正在分析網站與整理證據...' : '已排入檢查，正在準備執行...';
-      await new Promise(resolve => setTimeout(resolve, 2000));
-    }
-    throw new Error('這次等待時間超過預期，工作仍會在背景完成；請稍後重新開啟同一份報告。');
-  }
-
   try {
     if (button) {
       button.disabled = true;
@@ -2348,19 +2178,21 @@ async function executeAudit(customQueries) {
     startProgress();
     startLoadingMessages();
 
-    const report = await runAuditUntilSuccess();
+    const result = await waitForAuditReport(targetUrl, customQueries, message => {
+      if (status) status.textContent = message;
+    });
     window.GeoCheckAnalytics?.track('analysis_completed', {
-      analysis_id: report.id,
+      analysis_id: result.reportId,
       analysis_sequence: analysisSequence,
       analysis_stage: 'analysis_completed',
       analysis_status: 'completed',
-      cache_hit: Boolean(report.cache?.hit)
+      cache_hit: result.cacheHit
     });
     stopLoadingMessages();
     finishProgress('success');
     if (status) status.textContent = '報告完成，正在幫你開啟...';
     await new Promise(resolve => setTimeout(resolve, 450));
-    window.location.href = `${API_BASE}/report/${report.id}`;
+    window.location.href = `${API_BASE}/report/${encodeURIComponent(result.reportId)}`;
   } catch (err) {
     window.GeoCheckAnalytics?.track('analysis_failed', {
       analysis_stage: err.stage || 'analysis_failed',
@@ -2369,7 +2201,7 @@ async function executeAudit(customQueries) {
     });
     stopLoadingMessages();
     finishProgress('error');
-    if (status) status.textContent = `這次檢查沒有完成：${err.message}。請確認網址是否正確，或稍後再試一次。`;
+    if (status) status.textContent = auditErrorMessage(err);
     if (button) {
       button.disabled = false;
       button.textContent = originalText;
@@ -2378,25 +2210,6 @@ async function executeAudit(customQueries) {
 }
 
 // footer legal links
-
-// score gauge animation
-const scoreIO = new IntersectionObserver(es => es.forEach(e => {
-  if (!e.isIntersecting) return;
-  scoreIO.disconnect();
-  const target = 50, arc = document.getElementById('arc'), val = document.getElementById('scoreVal');
-  if (!arc || !val) return;
-  const full = 251; let t0 = null;
-  function step(ts) {
-    if (!t0) t0 = ts;
-    const p = Math.min((ts - t0) / 1200, 1), ease = 1 - Math.pow(1 - p, 3);
-    val.textContent = Math.round(target * ease);
-    arc.style.strokeDashoffset = full - (full * target / 100) * ease;
-    if (p < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}), { threshold: .2 });
-const gaugeEl = document.querySelector('.compact-gauge');
-if (gaugeEl) scoreIO.observe(gaugeEl);
 </script>
 </body>
 </html>

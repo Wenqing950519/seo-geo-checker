@@ -97,9 +97,9 @@ async function main() {
   assert.equal(homePage.includes("app.lslabs.tw"), false);
   assert.equal(homePage.includes("GeoCheck Track"), false);
   assert.equal(/id="lead-form"|\/api\/leads/.test(homePage), false);
-  assert.equal(homePage.includes("這套分數是怎麼算的"), true);
+  assert.equal(homePage.includes("這份檢測怎麼判讀"), true);
   assert.equal(homePage.includes('id="method"'), true);
-  assert.equal(homePage.includes("不會當成 0 分"), true);
+  assert.equal(homePage.includes("未知不等於 0"), true);
   assert.equal(homePage.includes("目前的 50 / 30 / 20"), false);
   assert.equal(homePage.includes("暫定模型 · 未經校準"), false);
   assert.equal(homePage.includes('src="/analytics.js"'), true);
