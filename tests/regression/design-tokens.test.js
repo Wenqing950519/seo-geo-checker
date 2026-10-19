@@ -86,7 +86,7 @@ for (const engine of ["openai", "gemini", "anthropic", "perplexity"]) {
 // --- 2. one owner for the values -------------------------------------------
 
 const pages = [
-  "home.html", "demo.html", "whitepaper.html", "developers.html",
+  "home.html", "whitepaper.html", "developers.html",
   "developers-console.html", "brand.html"
 ];
 

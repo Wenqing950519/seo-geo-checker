@@ -94,10 +94,10 @@ for (const id of new Set(sidebarHrefs)) {
 // 13. GeoCheck Track is paused (D-051) and nothing is sold on geocheck.lslabs.tw, so the
 //     Track plans, prices, checkout and refund pages are gone (2026-10-19). Platform's
 //     own pricing and legal pages live under /platform/ and are not affected.
-for (const page of ["pricing.html", "refund.html"]) {
+for (const page of ["pricing.html", "refund.html", "demo.html"]) {
   assert.ok(!fs.existsSync(path.join(publicDir, page)), `${page} must not be published on GeoCheck`);
 }
-const geocheckPages = ["home.html", "terms.html", "privacy.html", "whitepaper.html", "demo.html", "404.html"];
+const geocheckPages = ["home.html", "terms.html", "privacy.html", "whitepaper.html", "404.html"];
 for (const page of geocheckPages) {
   const html = read(page);
   assert.doesNotMatch(html, /href="(?:https:\/\/geocheck\.lslabs\.tw)?\/(?:pricing|refund)"/, `${page} must not link to removed sales pages`);

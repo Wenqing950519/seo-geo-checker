@@ -85,7 +85,7 @@ for (const route of ["privacy", "terms"]) {
   assert.match(html, /<meta name="robots" content="noindex,follow">/, `${route} must be noindex,follow`);
   assert.match(html, new RegExp(`<link rel="canonical" href="https://geocheck\\.lslabs\\.tw/${route}">`));
 }
-for (const route of ["demo", "whitepaper"]) {
+for (const route of ["whitepaper"]) {
   const html = fs.readFileSync(output(`${route}.html`), "utf8");
   assert.match(html, new RegExp(`<link rel="canonical" href="https://geocheck\\.lslabs\\.tw/${route}">`));
 }

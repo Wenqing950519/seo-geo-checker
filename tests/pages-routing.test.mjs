@@ -31,6 +31,15 @@ test('public Pages includes a noindex 404 document',()=>{
   const html=fs.readFileSync(new URL('../apps/web/public/404.html',import.meta.url),'utf8');
   assert.match(html,/noindex/);
 });
+test('retired demo and sales pages answer 410 Gone on the public host',async()=>{
+  for(const pathname of ['/demo','/demo/','/demo.html','/pricing','/pricing/','/pricing.html','/refund','/refund/','/refund.html']){
+    for(const method of ['GET','HEAD']){
+      const response=await worker.fetch(request('geocheck.lslabs.tw',pathname,method),env);
+      assert.equal(response.status,410,pathname);
+      assert.equal(response.headers.get('x-robots-tag'),'noindex');
+    }
+  }
+});
 test('outdated brand pages resolve to the maintained brand guide',async()=>{
   for(const pathname of ['/brand','/brand/','/brand.html']){
     assert.equal((await worker.fetch(request('geocheck.lslabs.tw',pathname),env)).headers.get('location'),'https://lslabs.tw/brand/');

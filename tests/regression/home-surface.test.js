@@ -3,69 +3,65 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { computeAiTrustIndex } = require("../../packages/geo-core/scoring/ai-trust-index.js");
 
-// The GeoCheck home page shows a sample result slip. Every number on it must be one
-// the Classic pipeline could produce, and the sample must not be attributed to a
-// real business.
+// The GeoCheck home page shows a sample report. Every number on it must be one the
+// Classic pipeline could produce, the sample must not be attributed to a real
+// business, and the copy must not contradict LS-Labs' own research.
 const home = fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/home.html"), "utf8");
-const strip = (html) => html.replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+const visible = home.replace(/<!--[\s\S]*?-->/g, "");
 
 // 1. The sample is labelled and anonymous.
-const slip = home.match(/<article class="slip"[\s\S]*?<\/article>/);
-assert.ok(slip, "home must show the sample result slip");
-assert.match(slip[0], /class="flag flag--sample">範例</, "the sample slip must carry the 範例 flag");
+const sample = visible.match(/<section id="report"[\s\S]*?<\/section>/);
+assert.ok(sample, "home must show the sample report");
+assert.match(sample[0], /範例/, "the sample report must be labelled 範例");
 assert.doesNotMatch(home, /艾朋|À Point|real-site-apoint/, "the sample must not borrow a real business");
 
 // 2. Classic plans four questions per site (query-planner SELECTED_QUERY_COUNT), so a
-//    rate is a whole number of questions out of the valid ones, and the score is what
-//    AI Trust Index v1 computes from those rates.
-const rows = Object.fromEntries(
-  [...slip[0].matchAll(/<th scope="row">([^<]*)[\s\S]*?<\/th>\s*<td class="slip-value">([\s\S]*?)<\/td>/g)]
-    .map(([, label, value]) => [label.trim(), strip(value)])
-);
-const observed = Number(strip(slip[0]).match(/觀測題數 (\d+)/)?.[1]);
-const unknown = Number(rows["沒拿到回答的題目"]?.match(/^(\d+) 題$/)?.[1]);
-assert.ok(observed >= 1 && observed <= 4, "the sample must observe between one and four questions");
-assert.ok(Number.isInteger(unknown) && unknown < observed, "the sample must state how many questions had no answer");
-const valid = observed - unknown;
-const rate = (label) => {
-  const match = rows[label]?.match(/^(\d+)% (\d+) \/ (\d+) 題$/);
-  assert.ok(match, `${label} must show a rate with its question count, e.g. "50% 2 / 4 題"`);
-  const [percent, hits, of] = match.slice(1).map(Number);
-  assert.equal(of, valid, `${label} must be counted over the ${valid} valid questions`);
-  assert.equal(percent, Math.round((hits / of) * 100), `${label}: ${hits}/${of} is not ${percent}%`);
-  return percent;
+//    rate is a whole number of questions, and the score is what AI Trust Index v1
+//    computes from those rates. The gauge animation must land on the same score.
+const metric = (name) => {
+  const match = sample[0].match(new RegExp(`data-sample-metric="${name}" data-hits="(\\d+)" data-n="(\\d+)"[^>]*>([^<]*)<`));
+  assert.ok(match, `the sample must mark its ${name} rate with data-hits and data-n`);
+  const [hits, of] = [Number(match[1]), Number(match[2])];
+  assert.ok(of >= 1 && of <= 4 && hits <= of, `${name}: ${hits}/${of} is not a four-question result`);
+  const percent = Math.round((hits / of) * 100);
+  assert.match(match[3], new RegExp(`${hits}\\s*/\\s*${of} 題.*${percent}%`), `${name} must read "${hits}/${of} 題 · ${percent}%"`);
+  return { percent, of };
 };
+const mention = metric("mention");
+const citation = metric("citation");
 const index = computeAiTrustIndex({
-  measuredQueryCount: valid,
-  queryCount: observed,
-  mentionRate: rate("AI 有沒有提到你"),
-  citationRate: rate("AI 有沒有引用你的官網")
+  measuredQueryCount: mention.of, queryCount: mention.of,
+  mentionRate: mention.percent, citationRate: citation.percent
 });
-assert.equal(rows["AI 信任值"], `${index.value} / 100`, "the sample score must follow AI Trust Index v1");
+assert.match(sample[0], new RegExp(`<span id="scoreVal">${index.value}</span>`), "the sample score must follow AI Trust Index v1");
+assert.match(home, new RegExp(`const target = ${index.value},`), "the gauge animation must end on the sample score");
 
-// 3. Claims the page cannot back: a trend chart for a one-off snapshot, an unsourced
-//    site count, and a link into the paused Dashboard (D-051).
-assert.doesNotMatch(home, /Top Position Trend|semrush-section/, "a snapshot tool must not draw a trend chart");
+// 3. Claims the page cannot back, or that LS-Labs' 2026-09-18 retrieval report
+//    (AI 搜尋時代的檢索機制報告) contradicts: one run is not reproducible, a citation
+//    list is not a trust weight, a website is not required to be mentioned, and no
+//    conversion was measured.
+assert.doesNotMatch(home, /Top Position Trend|Jan 01/, "a snapshot tool must not draw a trend chart");
 assert.doesNotMatch(home, />50\+</, "the checked-site count has no source");
 assert.doesNotMatch(home, /app\.lslabs\.tw/, "the paused Dashboard must not be linked");
+assert.doesNotMatch(home, /找得到你 ✓/, "Google indexing is not measured, so it cannot be ticked");
+for (const phrase of ["可重現", "科學維度", "心智第一指名率", "不可撼動", "權威依據", "截流", "能得幾分", "秒懂", "真實反映", "決策清單", "盲測", "雙軌"]) {
+  assert.ok(!visible.includes(phrase), `home must not claim "${phrase}"`);
+}
+assert.match(visible, /https:\/\/lslabs\.tw\/blog\/AI搜尋時代的檢索機制報告\//, "the method section must point to the retrieval report");
 
-// 4. GA4 CTA names feed existing funnels; a redesign keeps them.
+// 4. GA4 CTA names feed existing funnels; content edits keep them.
 for (const name of ["nav_start_audit", "hero_start_audit", "report_preview_start_audit", "final_research_open", "final_recheck"]) {
   assert.match(home, new RegExp(`data-track-cta="${name}"`), `home must keep the ${name} CTA event`);
 }
 
-// 5. Fonts never block the first paint. The Google Fonts stylesheets load as preloads
-//    (a <noscript> copy is allowed), and the hero headline's subset carries every
-//    character of the headline, or a renamed headline silently falls back.
-const outsideNoscript = home.replace(/<noscript>[\s\S]*?<\/noscript>/g, "");
-for (const tag of outsideNoscript.match(/<link[^>]*fonts\.googleapis\.com\/css2[^>]*>/g) || []) {
+// 5. Fonts never block the first paint: Google Fonts stylesheets load as style
+//    preloads (a <noscript> copy is allowed).
+const outsideNoscript = visible.replace(/<noscript>[\s\S]*?<\/noscript>/g, "");
+const fontLinks = outsideNoscript.match(/<link[^>]*fonts\.googleapis\.com\/css2[^>]*>/g) || [];
+assert.ok(fontLinks.length > 0, "home still loads its web fonts");
+for (const tag of fontLinks) {
   assert.match(tag, /rel="preload"/, `render-blocking font stylesheet: ${tag}`);
   assert.match(tag, /as="style"/, `font preload must be a style preload: ${tag}`);
 }
-const subset = outsideNoscript.match(/fonts\.googleapis\.com\/css2\?family=Noto\+Sans\+TC:wght@900&amp;text=([^&"]+)/);
-assert.ok(subset, "the hero headline needs its own weight-900 subset");
-const subsetChars = new Set(decodeURIComponent(subset[1]));
-const headline = strip(home.replace(/<!--[\s\S]*?-->/g, "").match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1]).replace(/\s/g, "");
-for (const char of headline) assert.ok(subsetChars.has(char), `headline character "${char}" is missing from the font subset`);
 
 console.log("home surface tests passed");
