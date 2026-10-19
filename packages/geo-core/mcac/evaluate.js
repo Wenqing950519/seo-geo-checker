@@ -99,8 +99,8 @@ function accuracy(probe, truth = {}) {
   if (probe.answerStatus !== "answered") return { flag: "unknown", reason: `fact_${probe.answerStatus}`, fields: unknownFields(), truth: truthSummary, claimed: null };
   const claimed = parseFactAnswer(probe.answer);
   const fields = {
-    phone: judgeFact("phone", truth?.phone?.value, claimed.phone),
-    address: judgeFact("address", truth?.address?.value, claimed.address),
+    phone: judgeFact("phone", truth?.phone?.values || truth?.phone?.value, claimed.phone),
+    address: judgeFact("address", truth?.address?.values || truth?.address?.value, claimed.address),
     hours: "not_judged"
   };
   const judged = [fields.phone, fields.address];

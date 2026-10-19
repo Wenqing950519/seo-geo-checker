@@ -4,6 +4,7 @@ const {
   MCAC_VERSION,
   buildMcacProbes,
   extractSiteFacts,
+  extractSiteIdentity,
   normalizePhone,
   normalizeAddress,
   parseFactAnswer,
@@ -90,6 +91,28 @@ const {
   assert.equal(judgeFact("phone", null, parsed.phone), "unverifiable", "no truth on the official site means unverifiable, never wrong");
   const free = parseFactAnswer("這家店位於臺北市大安區仁愛路四段27巷3號，電話是(02)2700-1234，另有分店電話02-2700-5678。");
   assert.equal(judgeFact("phone", "02-2700-1234", free.phone), "correct", "unformatted answers are still read");
+}
+
+// ---------------------------------------------------------------------------
+// 3b. Chains list several official numbers (a store line, a customer-service line).
+//     Every value the official site publishes is a correct answer; anything else is not.
+//     (chefhungfoods.com: homepage 客服電話 +886-2-22432853, store page 建北店 02-2500-6850.)
+// ---------------------------------------------------------------------------
+{
+  const chain = extractSiteFacts({
+    html: "<p>客服電話 / +886-2-22432853</p><p>建北總店：台北市中山區建國北路二段72號</p>",
+    texts: ["建北店 電話 +886 (2) 2500-6850 地址 台北市中山區建國北路二段72號", "台中店 電話 04-2255-9111 台中市西屯區範例路100號"]
+  });
+  assert.equal(chain.phone.value, "+886-2-22432853", "the first official number stays the displayed one");
+  assert.deepEqual(chain.phone.values.map(normalizePhone), ["0222432853", "0225006850", "0422559111"]);
+  assert.equal(chain.address.values.length, 2);
+  assert.equal(judgeFact("phone", chain.phone.values, parseFactAnswer("ADDRESS: UNKNOWN；PHONE: 02-2500-6850").phone), "correct",
+    "a branch number the official site lists is correct");
+  assert.equal(judgeFact("phone", chain.phone.values, parseFactAnswer("ADDRESS: UNKNOWN；PHONE: 02-2222-0000").phone), "incorrect");
+  assert.equal(judgeFact("address", chain.address.values, parseFactAnswer("ADDRESS: 台中市西屯區範例路100號；PHONE: UNKNOWN").address), "correct");
+
+  const identity = extractSiteIdentity('<script type="application/ld+json">{"@type":"Organization","name":"洪師父官方網站"}</script>');
+  assert.equal(identity.name, "洪師父", "「官方網站」 is a page label, not part of the business name");
 }
 
 // ---------------------------------------------------------------------------

@@ -5,36 +5,55 @@
 
 const PHONE_PATTERN = /(?:\+886[\s-]?\(?0?\d{1,3}\)?|\(0\d{1,3}\)|0\d{1,3})[\s-]?\d{3,4}[\s-]?\d{3,4}/g;
 const ADDRESS_PATTERN = /(?:\d{3,6}\s*)?(?:台灣|臺灣)?\s*[一-鿿]{2}(?:市|縣)\s*[一-鿿]{1,3}(?:區|鄉|鎮|市)[一-鿿A-Za-z0-9\s\-之]{1,40}?號/g;
-const LABELLED_PHONE = /(?:電話|聯絡電話|訂位專線|專線|TEL|Tel|Phone)\s*[:：]?\s*([+\d()（）\s-]{8,24})/;
-const LABELLED_ADDRESS = /(?:地址|店址|門市地址|Address)\s*[:：]?\s*([^\n]{4,80}?號)/;
+const LABELLED_ADDRESS = /(?:地址|店址|門市地址|Address)\s*[:：/]?\s*([^\n]{4,80}?號)/;
 const LABELLED_HOURS = /(?:營業時間|Opening Hours|Business Hours)\s*[:：]?\s*([^\n]{4,80})/;
 const UNKNOWN_VALUE = /^\s*(?:(?:unknown|n\/?a|none)\b|未知|不詳|無)/i;
 const CHINESE_DIGITS = { 一: "1", 二: "2", 三: "3", 四: "4", 五: "5", 六: "6", 七: "7", 八: "8", 九: "9", 十: "10" };
 
-function extractSiteFacts({ html = "", texts = [] } = {}) {
-  const facts = { phone: null, address: null, hours: null };
-  for (const node of jsonLdNodes(html)) {
-    if (!facts.phone && node.telephone) facts.phone = fact(firstString(node.telephone), "json_ld");
-    if (!facts.address && node.address) facts.address = fact(addressFromJsonLd(node.address), "json_ld");
-    if (!facts.hours && (node.openingHoursSpecification || node.openingHours)) {
-      facts.hours = fact(hoursFromJsonLd(node.openingHoursSpecification || node.openingHours), "json_ld");
+// Every phone and address the official site publishes is a reference value: chains
+// list a customer-service line on the homepage and store lines on a store page, and
+// an answer giving any of them is correct. The first value found is the one displayed.
+// Order: the homepage's JSON-LD, its visible text, extra pages (html), then plain texts.
+function extractSiteFacts({ html = "", extraHtml = [], texts = [] } = {}) {
+  const phones = [];
+  const addresses = [];
+  const hours = [];
+  const pages = [html, ...(Array.isArray(extraHtml) ? extraHtml : [])].filter(Boolean);
+  for (const page of pages) {
+    for (const node of jsonLdNodes(page)) {
+      if (node.telephone) phones.push(fact(firstString(node.telephone), "json_ld"));
+      if (node.address) addresses.push(fact(addressFromJsonLd(node.address), "json_ld"));
+      if (node.openingHoursSpecification || node.openingHours) hours.push(fact(hoursFromJsonLd(node.openingHoursSpecification || node.openingHours), "json_ld"));
     }
   }
-  const visible = [visibleText(html), ...(Array.isArray(texts) ? texts : [])].filter(Boolean).join("\n");
-  if (!facts.phone) {
-    const labelled = visible.match(LABELLED_PHONE)?.[1];
-    const phone = labelled?.match(new RegExp(PHONE_PATTERN.source))?.[0] || visible.match(new RegExp(PHONE_PATTERN.source))?.[0];
-    if (phone) facts.phone = fact(phone, "visible_text");
+  const visible = [...pages.map(visibleText), ...(Array.isArray(texts) ? texts : [])].filter(Boolean).join("\n");
+  for (const match of visible.matchAll(PHONE_PATTERN)) {
+    if (!/(?:傳真|fax)\s*[:：/]?\s*$/i.test(visible.slice(Math.max(0, match.index - 8), match.index))) phones.push(fact(match[0], "visible_text"));
   }
-  if (!facts.address) {
-    const address = visible.match(LABELLED_ADDRESS)?.[1] || visible.match(new RegExp(ADDRESS_PATTERN.source))?.[0];
-    if (address) facts.address = fact(address, "visible_text");
+  const visibleAddresses = [
+    ...[...visible.matchAll(new RegExp(LABELLED_ADDRESS.source, "g"))].map((match) => ({ value: match[1], index: match.index })),
+    ...[...visible.matchAll(ADDRESS_PATTERN)].map((match) => ({ value: match[0], index: match.index }))
+  ].sort((a, b) => a.index - b.index);
+  for (const item of visibleAddresses) addresses.push(fact(item.value, "visible_text"));
+  const labelledHours = visible.match(LABELLED_HOURS)?.[1];
+  if (labelledHours) hours.push(fact(labelledHours, "visible_text"));
+  return {
+    phone: collect(phones, (value) => (normalizePhone(value).length >= 8 ? normalizePhone(value) : null)),
+    address: collect(addresses, (value) => addressCore(value) || normalizeAddress(value) || null),
+    hours: hours.find(Boolean) || null
+  };
+}
+
+function collect(items, keyOf) {
+  const seen = new Set();
+  const kept = [];
+  for (const item of items) {
+    const key = item && keyOf(item.value);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    kept.push(item);
   }
-  if (!facts.hours) {
-    const hours = visible.match(LABELLED_HOURS)?.[1];
-    if (hours) facts.hours = fact(hours, "visible_text");
-  }
-  return facts;
+  return kept.length ? { value: kept[0].value, source: kept[0].source, values: kept.slice(0, 12).map((item) => item.value) } : null;
 }
 
 // The site's own name and place, used when the planner cannot name the business.
@@ -43,7 +62,7 @@ function extractSiteIdentity(html) {
   const business = nodes.find((node) => node.address || node.telephone) || nodes[0] || null;
   const address = Array.isArray(business?.address) ? business.address[0] : business?.address;
   return {
-    name: business ? firstString(business.name) : null,
+    name: business ? stripPageLabel(firstString(business.name)) : null,
     alternateNames: [].concat(business?.alternateName || []).map((value) => String(value).trim()).filter(Boolean).slice(0, 4),
     region: typeof address === "object" ? String(address?.addressRegion || "").trim() || null : null,
     locality: typeof address === "object" ? String(address?.addressLocality || "").trim() || null : null
@@ -63,24 +82,26 @@ function parseFactAnswer(answer) {
   return { address, phone, structured: Boolean(addressLine || phoneLine) };
 }
 
-// correct | incorrect | not_provided | unverifiable. Missing reference data is never
-// counted against the answer.
+// correct | incorrect | not_provided | unverifiable. The reference may be one value or
+// every value the official site lists. Missing reference data is never counted
+// against the answer.
 function judgeFact(field, truthValue, claimed = []) {
-  if (!truthValue) return "unverifiable";
+  const truths = (Array.isArray(truthValue) ? truthValue : [truthValue]).filter(Boolean);
+  if (!truths.length) return "unverifiable";
   const values = (Array.isArray(claimed) ? claimed : [claimed]).filter(Boolean);
   if (field === "phone") {
-    const truth = normalizePhone(truthValue);
-    if (truth.length < 8) return "unverifiable";
+    const references = truths.map(normalizePhone).filter((value) => value.length >= 8);
+    if (!references.length) return "unverifiable";
     const phones = values.map(normalizePhone).filter((value) => value.length >= 8);
     if (!phones.length) return "not_provided";
-    return phones.some((value) => value === truth || value.includes(truth)) ? "correct" : "incorrect";
+    return phones.some((value) => references.some((reference) => value === reference || value.includes(reference))) ? "correct" : "incorrect";
   }
   if (field === "address") {
-    const truth = addressCore(truthValue);
-    if (!truth) return "unverifiable";
+    const references = truths.map(addressCore).filter(Boolean);
+    if (!references.length) return "unverifiable";
     const cores = values.map(addressCore).filter(Boolean);
     if (!cores.length) return "not_provided";
-    return cores.includes(truth) ? "correct" : "incorrect";
+    return cores.some((core) => references.includes(core)) ? "correct" : "incorrect";
   }
   return "not_judged";
 }
@@ -161,6 +182,12 @@ function visibleText(html) {
     .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/[ \t]+/g, " ");
+}
+
+// 「洪師父官方網站」 names the page, not the business.
+function stripPageLabel(value) {
+  const stripped = String(value || "").replace(/\s*[-|｜–—:：]?\s*(?:官方網站|官方網頁|官網|official\s*(?:web\s*)?site)\s*$/i, "").trim();
+  return stripped || (value ? String(value).trim() : null);
 }
 
 function firstString(value) {

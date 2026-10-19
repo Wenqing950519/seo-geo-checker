@@ -35,7 +35,8 @@ async function measureMcacSite(siteUrl, options = {}) {
     fetchTechnicalSignals: options.fetchTechnicalSignals || fetchTechnicalSignals,
     fetchRepresentativePages: options.fetchRepresentativePages || fetchRepresentativePages,
     resolveCitations: options.resolveCitations || resolveCitationRedirects,
-    queryPlanner: options.queryPlanner || buildGeoQueryPlanResolved
+    queryPlanner: options.queryPlanner || buildGeoQueryPlanResolved,
+    fetchTruthPage: options.fetchTruthPage || fetchHomepage
   };
   const engine = options.engineClient
     ? { id: options.engineClient.id, profileId: options.engineClient.profileId }
@@ -85,7 +86,15 @@ async function measureMcacSite(siteUrl, options = {}) {
     metadata: homepage.metadata || {},
     aliases: [brandName, identity.name, ...identity.alternateNames].filter(Boolean)
   });
-  const truth = extractSiteFacts({ html: homepage.html, texts: representativePages.map((page) => page?.text).filter(Boolean) });
+  // Store, location and contact pages carry the numbers a chain's homepage leaves out.
+  const truthUrls = pickTruthPages(homepage.internalLinks || [], finalUrl, representativePages.map((page) => page?.url));
+  const truthPages = (await Promise.all(truthUrls.map((url) => safelyAsync(() => deps.fetchTruthPage(url), null)))).filter(Boolean);
+  const truth = extractSiteFacts({
+    html: homepage.html,
+    extraHtml: truthPages.map((page) => page.html).filter(Boolean),
+    texts: representativePages.map((page) => page?.text).filter(Boolean)
+  });
+  truth.pages = [finalUrl, ...truthPages.map((page) => page.finalUrl || page.url).filter(Boolean)];
 
   let probes;
   try {
@@ -192,6 +201,35 @@ function limitedResult(siteUrl, engine, pipelineVersion, error, started) {
   };
 }
 
+const TRUTH_PAGE_PATTERNS = [
+  /\/(?:pages\/)?(?:stores?|shops?|locations?|branch(?:es)?|access|門市(?:資訊)?|分店|據點)(?:[/?#.]|$)/i,
+  /\/(?:pages\/)?(?:contact(?:-?us)?|聯絡(?:我們)?)(?:[/?#.]|$)/i
+];
+
+function pickTruthPages(links, baseUrl, exclude = []) {
+  let base;
+  try { base = new URL(baseUrl); } catch { return []; }
+  const host = base.hostname.replace(/^www\./, "");
+  const seen = new Set(exclude.filter(Boolean).map((url) => String(url).replace(/[#?].*$/, "").replace(/\/$/, "")));
+  const picked = [];
+  for (const pattern of TRUTH_PAGE_PATTERNS) {
+    for (const link of Array.isArray(links) ? links : []) {
+      let url;
+      try { url = new URL(String(link), base); } catch { continue; }
+      if (url.hostname.replace(/^www\./, "") !== host) continue;
+      let path = url.pathname;
+      try { path = decodeURIComponent(path); } catch { /* keep the raw path */ }
+      if (!pattern.test(path)) continue;
+      const key = url.href.replace(/[#?].*$/, "").replace(/\/$/, "");
+      if (seen.has(key)) continue;
+      seen.add(key);
+      picked.push(url.href);
+      if (picked.length >= 2) return picked;
+    }
+  }
+  return picked;
+}
+
 function recordUsage(engine, response, probe, status, latencyMs, error) {
   try {
     const usage = response?.usage || {};
@@ -243,4 +281,4 @@ function sleep(ms) {
   return ms > 0 ? new Promise((resolve) => setTimeout(resolve, ms)) : Promise.resolve();
 }
 
-module.exports = { MAX_ATTEMPTS_PER_QUESTION, MCAC_PIPELINE_VERSION, measureMcacSite };
+module.exports = { MAX_ATTEMPTS_PER_QUESTION, MCAC_PIPELINE_VERSION, measureMcacSite, pickTruthPages };

@@ -138,7 +138,8 @@ function summaryRows(report) {
 
 function factRow(label, truth, claimed, status) {
   const claimedText = Array.isArray(claimed) && claimed.length ? claimed.join("、") : (status === "not_judged" ? "—" : "沒有提供");
-  const truthText = truth?.value ? `${truth.value}（${TRUTH_SOURCE[truth.source] || "官網"}）` : "官網沒有寫";
+  const listed = Array.isArray(truth?.values) && truth.values.length ? truth.values : (truth?.value ? [truth.value] : []);
+  const truthText = listed.length ? `${listed.join("、")}（${TRUTH_SOURCE[truth.source] || "官網"}${listed.length > 1 ? `等，共 ${listed.length} 組` : ""}）` : "官網沒有寫";
   return `<tr><th scope="row">${esc(label)}</th><td>${esc(truthText)}</td><td>${esc(claimedText)}</td><td class="flag">${esc(FIELD[status] || "未知")}</td></tr>`;
 }
 

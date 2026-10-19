@@ -1,6 +1,6 @@
 const assert = require("node:assert/strict");
 const { MCAC_ENGINES, resolveMcacEngine, createMcacEngineClient } = require("../../services/api/application/mcac-engines.js");
-const { measureMcacSite, MCAC_PIPELINE_VERSION } = require("../../services/api/application/mcac-measurement.js");
+const { measureMcacSite, MCAC_PIPELINE_VERSION, pickTruthPages } = require("../../services/api/application/mcac-measurement.js");
 const { runMcacAudit } = require("../../apps/web/report/mcac-audit.js");
 const { resolveAuditMethod } = require("../../apps/web/report/real-lite-audit.js");
 const { mcacReportHtml } = require("../../apps/web/report/mcac-report-html.js");
@@ -114,6 +114,27 @@ const { reportHtml } = require("../../services/api/server.js");
   assert.equal(result.truth.phone.source, "json_ld");
   assert.equal(result.usage.engine_calls, 5);
   assert.match(MCAC_PIPELINE_VERSION, /^mcac-0\.1\.0/);
+
+  // Store and contact pages extend the official reference values (chains list store
+  // lines away from the homepage); other hosts and unrelated pages are not fetched.
+  assert.deepEqual(pickTruthPages([
+    "https://example-noodle.tw/about",
+    "https://example-noodle.tw/pages/contact-us",
+    "https://example-noodle.tw/pages/store",
+    "https://example-noodle.tw/%E9%96%80%E5%B8%82",
+    "https://other.example/store"
+  ], "https://example-noodle.tw/"), ["https://example-noodle.tw/pages/store", "https://example-noodle.tw/%E9%96%80%E5%B8%82"],
+  "store pages first, at most two, same host only");
+  const fetchedTruth = [];
+  const chain = deps({
+    fetchHomepage: async (url) => ({ url, finalUrl: url, html: siteHtml.replace(/"telephone":"02-2700-1234",/, ""), text: "範例牛肉麵", metadata: { title: "範例牛肉麵", h1: "範例牛肉麵" },
+      internalLinks: ["https://example-noodle.tw/pages/store", "https://example-noodle.tw/blog/1"], statusCode: 200, crawlQuality: { status: "good", scorable: true } }),
+    fetchTruthPage: async (url) => { fetchedTruth.push(url); return { url, finalUrl: url, html: "<p>大安店 電話 02-2700-1234</p><p>信義店 電話 02-2700-9876</p>" }; }
+  });
+  const chainResult = await measureMcacSite("https://example-noodle.tw/", chain.options);
+  assert.deepEqual(fetchedTruth, ["https://example-noodle.tw/pages/store"]);
+  assert.equal(chainResult.truth.phone.values.length, 2, "both store lines are official reference values");
+  assert.equal(chainResult.evaluation.accuracy.fields.phone, "correct");
 
   // Custom questions replace planned discovery questions (two at most).
   const custom = deps();
