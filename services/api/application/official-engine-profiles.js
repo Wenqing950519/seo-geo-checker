@@ -47,12 +47,13 @@ const OFFICIAL_ENGINE_PROFILES = Object.freeze({
     apiFamily: "messages",
     searchSurface: "anthropic_web_search",
     existingAdapter: true,
-    // LSL-D-002: 2026-10-14 benchmarks v1 and v2 both 17/20 (max_tokens, then missing citations).
-    developerApiStatus: "controlled_benchmark_failed",
+    // LSL-D-002: 2026-10-14 benchmarks v1 and v2 both 17/20 (max_tokens, then missing
+    // citations); 2026-10-19 v3 with a 4,096-token limit passed 19/20.
+    developerApiStatus: "prototype_benchmark_verified",
     modelStatus: "account_smoke_verified",
-    searchCapabilityStatus: "account_smoke_verified",
-    lastSmokeDate: "2026-10-14",
-    lastBenchmarkDate: "2026-10-14"
+    searchCapabilityStatus: "controlled_benchmark_verified",
+    lastSmokeDate: "2026-10-19",
+    lastBenchmarkDate: "2026-10-19"
   })
 });
 

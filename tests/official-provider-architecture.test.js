@@ -23,11 +23,11 @@ assert.deepEqual(
 for (const profile of listOfficialEngineProfiles()) {
   assert.equal(profile.routing, "official_direct");
   if (profile.id === "anthropic-web") {
-    assert.equal(profile.developerApiStatus, "controlled_benchmark_failed");
+    assert.equal(profile.developerApiStatus, "prototype_benchmark_verified");
     assert.equal(profile.modelStatus, "account_smoke_verified");
-    assert.equal(profile.searchCapabilityStatus, "account_smoke_verified");
-    assert.equal(profile.lastSmokeDate, "2026-10-14");
-    assert.equal(profile.lastBenchmarkDate, "2026-10-14");
+    assert.equal(profile.searchCapabilityStatus, "controlled_benchmark_verified");
+    assert.equal(profile.lastSmokeDate, "2026-10-19");
+    assert.equal(profile.lastBenchmarkDate, "2026-10-19");
   } else if (profile.id === "openai-web") {
     assert.equal(profile.developerApiStatus, "pending_live_smoke");
     assert.equal(profile.modelStatus, "official_documentation_verified");
