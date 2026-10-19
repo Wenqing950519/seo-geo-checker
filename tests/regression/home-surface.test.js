@@ -139,3 +139,7 @@ for (const tag of fontLinks) {
 }
 
 console.log("home surface tests passed");
+
+// The submit-and-open flow is tested on its own; it runs from here so the npm test line,
+// which PR #4 and PR #5 both edit, needs no third change.
+require("./home-audit-flow.test.js");
