@@ -5,10 +5,10 @@
 const {
   classifyAnswerStatus,
   classifySourceType,
-  extractMentionRank,
   isPlatformRootInput,
   matchTermsInText,
-  safeHostname
+  safeHostname,
+  textMatchesAnyTerm
 } = require("../evidence/brand-match.js");
 const { judgeFact, parseFactAnswer } = require("./facts.js");
 const { parseActions } = require("./actions.js");
@@ -64,7 +64,7 @@ function mention(discovery, brandTerms) {
   if (!n) return { flag: "unknown", hits: null, n: 0, ranks: [], matched_terms: [] };
   const rows = discovery.map((probe) => {
     const matched = matchTermsInText(probe.answer, brandTerms).map((term) => term.value);
-    const rank = matched.length ? extractMentionRank(probe.answer, brandTerms).rank : null;
+    const rank = matched.length ? optionRank(probe.answer, brandTerms) : null;
     return { matched, rank };
   });
   const hits = rows.filter((row) => row.matched.length).length;
@@ -75,6 +75,31 @@ function mention(discovery, brandTerms) {
     ranks: rows.map((row) => row.rank),
     matched_terms: [...new Set(rows.flatMap((row) => row.matched))]
   };
+}
+
+// A rank counts the options themselves. Numbered options win when there are at least two;
+// otherwise the outermost bullets, then table rows. Reasons and sources nested under an
+// option are not options (2026-10-20 smoke; the research parser counted every list line).
+const NUMBERED_LINE = /^\s*(?:\d{1,2}\s*[.)、]|[①②③④⑤⑥⑦⑧⑨⑩]|[一二三四五六七八九十]\s*[、.])/;
+const BULLET_LINE = /^\s*[-*•]/;
+
+function optionRank(answer, terms) {
+  const lines = String(answer || "").split(/\r?\n/);
+  const numbered = outermost(lines.filter((line) => NUMBERED_LINE.test(line)));
+  let options = numbered.length >= 2 ? numbered : outermost(lines.filter((line) => BULLET_LINE.test(line)));
+  if (!options.length) {
+    const rows = lines.filter((line) => /^\s*\|.*\|\s*$/.test(line) && !/^[\s|:\-]+$/.test(line));
+    options = rows.length >= 2 ? rows.slice(1) : [];
+  }
+  const index = options.findIndex((line) => textMatchesAnyTerm(line, terms));
+  return index >= 0 ? index + 1 : null;
+}
+
+function outermost(lines) {
+  if (!lines.length) return [];
+  const indent = (line) => line.match(/^\s*/)[0].length;
+  const top = Math.min(...lines.map(indent));
+  return lines.filter((line) => indent(line) === top);
 }
 
 function citation(valid, platformRoot) {

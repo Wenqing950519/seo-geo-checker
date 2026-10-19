@@ -148,14 +148,15 @@ async function measureMcacSite(siteUrl, options = {}) {
   }
 
   const urls = results.flatMap((result) => result.citations.map((citation) => (typeof citation === "string" ? citation : citation?.url))).filter(Boolean);
-  const redirects = urls.length ? await safelyAsync(() => deps.resolveCitations(urls), {}) : {};
+  const redirects = urls.length ? await safelyAsync(() => deps.resolveCitations(urls, { limit: 40 }), {}) : {};
+  const titleDomains = groundingTitleDomains(results);
   const evaluation = evaluateMcac({
     probes: results,
     brandTerms,
     siteHost: host,
     officialDomains: [],
     truth,
-    resolveUrl: (url) => redirects?.[url] || url
+    resolveUrl: (url) => redirects?.[url] || titleDomains[url] || url
   });
 
   return {
@@ -241,6 +242,23 @@ function pickTruthPages(links, baseUrl, exclude = []) {
     }
   }
   return picked;
+}
+
+// Gemini's grounding redirects carry the source domain as the citation title. When a redirect
+// cannot be followed, that domain still separates the official site from other sources.
+const GROUNDING_REDIRECT = /^https:\/\/vertexaisearch\.cloud\.google\.com\//i;
+const DOMAIN_TITLE = /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/;
+
+function groundingTitleDomains(results) {
+  const domains = {};
+  for (const result of results) {
+    for (const citation of Array.isArray(result.citations) ? result.citations : []) {
+      const title = String(citation?.title || "").trim().toLowerCase();
+      if (!citation?.url || !GROUNDING_REDIRECT.test(citation.url) || !DOMAIN_TITLE.test(title)) continue;
+      domains[citation.url] = `https://${title}/`;
+    }
+  }
+  return domains;
 }
 
 function recordUsage(engine, response, probe, status, latencyMs, error) {

@@ -8,6 +8,7 @@ const ADDRESS_PATTERN = /(?:\d{3,6}\s*)?(?:台灣|臺灣)?\s*[一-鿿]{2}(?:市|
 const LABELLED_ADDRESS = /(?:地址|店址|門市地址|Address)\s*[:：/]?\s*([^\n]{4,80}?號)/;
 const LABELLED_HOURS = /(?:營業時間|Opening Hours|Business Hours)\s*[:：]?\s*([^\n]{4,80})/;
 const UNKNOWN_VALUE = /^\s*(?:(?:unknown|n\/?a|none)\b|未知|不詳|無)/i;
+const CITATION_MARKER = /\s*(?:\[\d{1,3}(?:\s*[,，、]\s*\d{1,3})*\]|【\d{1,3}】)/g;
 const CHINESE_DIGITS = { 一: "1", 二: "2", 三: "3", 四: "4", 五: "5", 六: "6", 七: "7", 八: "8", 九: "9", 十: "10" };
 
 // Every phone and address the official site publishes is a reference value: chains
@@ -71,15 +72,20 @@ function extractSiteIdentity(html) {
 
 function parseFactAnswer(answer) {
   const text = String(answer || "");
-  const addressLine = text.match(/ADDRESS\s*[:：]\s*([^\n；;]*)/i);
-  const phoneLine = text.match(/PHONE\s*[:：]\s*([^\n；;]*)/i);
-  const address = addressLine
-    ? (UNKNOWN_VALUE.test(addressLine[1]) ? [] : [addressLine[1].trim()].filter(Boolean))
+  const addressLine = lineValue(text.match(/ADDRESS\s*[:：]\s*([^\n；;]*)/i));
+  const phoneLine = lineValue(text.match(/PHONE\s*[:：]\s*([^\n；;]*)/i));
+  const address = addressLine != null
+    ? (UNKNOWN_VALUE.test(addressLine) ? [] : [addressLine].filter(Boolean))
     : [...text.matchAll(ADDRESS_PATTERN)].map((match) => match[0].trim());
-  const phone = phoneLine
-    ? (UNKNOWN_VALUE.test(phoneLine[1]) ? [] : [...phoneLine[1].matchAll(PHONE_PATTERN)].map((match) => match[0]))
+  const phone = phoneLine != null
+    ? (UNKNOWN_VALUE.test(phoneLine) ? [] : [...phoneLine.matchAll(PHONE_PATTERN)].map((match) => match[0]))
     : [...text.matchAll(PHONE_PATTERN)].map((match) => match[0]);
-  return { address, phone, structured: Boolean(addressLine || phoneLine) };
+  return { address, phone, structured: addressLine != null || phoneLine != null };
+}
+
+// Engines append citation markers ([1][6], 【2】) to each line; they are not part of the value.
+function lineValue(match) {
+  return match ? match[1].replace(CITATION_MARKER, "").trim() : null;
 }
 
 // correct | incorrect | not_provided | unverifiable. The reference may be one value or

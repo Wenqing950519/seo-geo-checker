@@ -91,6 +91,10 @@ const {
   assert.equal(judgeFact("phone", null, parsed.phone), "unverifiable", "no truth on the official site means unverifiable, never wrong");
   const free = parseFactAnswer("這家店位於臺北市大安區仁愛路四段27巷3號，電話是(02)2700-1234，另有分店電話02-2700-5678。");
   assert.equal(judgeFact("phone", "02-2700-1234", free.phone), "correct", "unformatted answers are still read");
+  // Engines append citation markers to each line (2026-10-20 smoke); the report shows the value without them.
+  const marked = parseFactAnswer("ADDRESS: 台北市中山區建國北路二段72號[1][6]  \nPHONE: 02-2500-6850[4][7]");
+  assert.deepEqual([marked.address, marked.phone], [["台北市中山區建國北路二段72號"], ["02-2500-6850"]]);
+  assert.deepEqual(parseFactAnswer("ADDRESS: 106台北市大安區仁愛路四段27巷3號 [1]\nPHONE: 02 2741 6299 [1]").address, ["106台北市大安區仁愛路四段27巷3號"]);
 }
 
 // ---------------------------------------------------------------------------
@@ -197,6 +201,21 @@ const truth = { phone: { value: "02-2700-1234", source: "json_ld" }, address: { 
   assert.equal(result.conversion.flag, "unknown", "a failed action question is unknown");
   assert.equal(result.citation.n, 1, "only answered questions count toward citations");
   assert.equal(result.total, null);
+}
+// A rank counts the options themselves (2026-10-20 smoke): reasons and sources nested under
+// each option are not options, so a shop listed fourth is fourth, and one listed sixth is not lost.
+{
+  const option = (name) => [`${name}`, "   - 理由：湯頭濃郁。", "   * **來源**：部落格。"];
+  const nested = (count) => ["林東芳牛肉麵", "劉山東小吃店", "富宏牛肉麵", "老山東牛肉麵", "清真黃牛肉麵館"].slice(0, count - 1)
+    .map((name, index) => option(`${index + 1}. **${name}**`)).flat()
+    .concat(option(`${count}. **範例牛肉麵**`), ["", "- 想吃老字號：林東芳、範例牛肉麵"]).join("\n");
+  const rankOf = (answer) => evaluateMcac({ siteHost: "example-noodle.tw", brandTerms, truth,
+    probes: [{ id: "d1", type: "discovery", query: "q", status: "answered", answer, citations: [] }] }).mention.ranks[0];
+  assert.equal(rankOf(nested(4)), 4, "nested reasons and sources are not options");
+  assert.equal(rankOf(nested(6)), 6, "an option past the tenth list line still has its rank");
+  assert.equal(rankOf("- **林東芳牛肉麵** — 湯頭濃郁\n- **範例牛肉麵** — 紅燒"), 2, "a bullet list counts its top-level bullets");
+  assert.equal(rankOf("| 選項 | 理由 |\n|---|---|\n| 林東芳牛肉麵 | 濃郁 |\n| 富宏牛肉麵 | 24 小時 |\n| 範例牛肉麵 | 紅燒 |"), 3, "a table counts its rows");
+  assert.equal(rankOf("推薦範例牛肉麵，湯頭濃郁。"), null, "prose without a list has no rank");
 }
 {
   // A brand mentioned only in the fact or action answer is not a discovery mention.

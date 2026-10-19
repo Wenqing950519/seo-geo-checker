@@ -5,6 +5,7 @@ const { runMcacAudit } = require("../../apps/web/report/mcac-audit.js");
 const { resolveAuditMethod } = require("../../apps/web/report/real-lite-audit.js");
 const { mcacReportHtml } = require("../../apps/web/report/mcac-report-html.js");
 const { reportHtml } = require("../../services/api/server.js");
+const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.js");
 
 // GeoCheck runs exactly two engine combinations: DeepSeek planning with either
 // Perplexity Sonar or Gemini Flash answering. Nothing else may be switched on.
@@ -184,6 +185,33 @@ const { reportHtml } = require("../../services/api/server.js");
   assert.ok(fanResult.entity.terms.includes("舊名牛肉麵"), "the page's own names still count");
   assert.equal(fanResult.evaluation.mention.flag, "no", "naming Facebook is not mentioning the shop");
   assert.equal(fanResult.evaluation.citation.flag, "unknown", "a platform page cannot be credited as the official source");
+
+  // Gemini cites through Google's grounding redirector and names the source domain in the
+  // title (2026-10-20 smoke). Redirects are followed; when one cannot be, the title still
+  // tells the official site apart, so Citation is not stuck at "no" on Gemini.
+  assert.ok(KNOWN_REDIRECTORS.has("vertexaisearch.cloud.google.com"));
+  const redirectUrl = (id) => `https://vertexaisearch.cloud.google.com/grounding-api-redirect/${id}`;
+  let resolverOptions = null;
+  const grounded = deps({
+    resolveCitations: async (urls, options) => {
+      resolverOptions = options;
+      return { [redirectUrl("followed")]: "https://example-noodle.tw/menu" };
+    },
+    engineClient: { id: "gemini", profileId: "google-web", model: "gemini-3.5-flash-lite",
+      ask: async (prompt) => {
+        if (/ADDRESS:/.test(prompt)) return { answer: "ADDRESS: 台北市大安區仁愛路四段27巷3號；PHONE: 02-2700-1234", citations: [{ url: redirectUrl("title-only"), title: "example-noodle.tw" }], usage: {}, cost: null };
+        if (/ACTION:/.test(prompt)) return { answer: "ACTION: 電話 | 02-2700-1234 | 品牌自有", citations: [{ url: redirectUrl("followed"), title: "example-noodle.tw" }], usage: {}, cost: null };
+        return { answer: "1. 範例牛肉麵", citations: [{ url: redirectUrl("blog"), title: "food-blog.example" }, { url: redirectUrl("not-a-domain"), title: "美食部落格" }], usage: {}, cost: null };
+      } }
+  });
+  const groundedResult = await measureMcacSite("https://example-noodle.tw/", grounded.options);
+  assert.ok(resolverOptions?.limit >= 40, "every grounding redirect of the four questions is followed, not just the first eight");
+  const groundedSources = groundedResult.evaluation.probes.flatMap((probe) => probe.sources);
+  assert.ok(groundedSources.some((source) => source.url === "https://example-noodle.tw/menu" && source.type === "official"), "a followed redirect is classified by its target");
+  assert.ok(groundedSources.some((source) => source.url === "https://example-noodle.tw/" && source.type === "official"), "an unfollowed redirect falls back to the domain in its title");
+  assert.ok(groundedSources.some((source) => source.url === redirectUrl("not-a-domain") && source.type === "other"), "a title that is not a domain is not trusted");
+  assert.equal(groundedResult.evaluation.citation.flag, "yes");
+  assert.equal(groundedResult.evaluation.citation.official_probes, 2);
 
   // ---------------------------------------------------------------------------
   // 3. Report: method mcac, no blended score, no AI Trust Index
