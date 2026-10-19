@@ -29,7 +29,7 @@ function evaluateMcac({ probes = [], brandTerms = [], siteHost = "", officialDom
     mention: mention(valid.filter((probe) => probe.type === "discovery"), brandTerms),
     citation: citation(valid, platformRoot),
     accuracy: accuracy(annotated.find((probe) => probe.type === "fact"), truth),
-    conversion: conversion(annotated.find((probe) => probe.type === "action"), host, officialDomains),
+    conversion: conversion(annotated.find((probe) => probe.type === "action"), host, officialDomains, resolveUrl),
     total: null
   };
 }
@@ -136,10 +136,10 @@ function accuracy(probe, truth = {}) {
   return { flag, fields, truth: truthSummary, claimed: { phone: claimed.phone, address: claimed.address } };
 }
 
-function conversion(probe, host, officialDomains) {
+function conversion(probe, host, officialDomains, resolveUrl) {
   if (!probe) return { flag: "unknown", reason: "no_action_question", entries: [], official_entry: null, actions: [] };
   if (probe.answerStatus !== "answered") return { flag: "unknown", reason: `action_${probe.answerStatus}`, entries: [], official_entry: null, actions: [] };
-  const parsed = parseActions(probe.answer, { siteHost: host, officialDomains });
+  const parsed = parseActions(probe.answer, { siteHost: host, officialDomains, resolveUrl });
   return {
     flag: parsed.hasActionable ? "yes" : "no",
     entries: [...new Set(parsed.entries.map((entry) => entry.type))],

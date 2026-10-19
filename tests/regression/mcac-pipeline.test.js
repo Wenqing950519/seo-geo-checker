@@ -192,15 +192,18 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.ok(KNOWN_REDIRECTORS.has("vertexaisearch.cloud.google.com"));
   const redirectUrl = (id) => `https://vertexaisearch.cloud.google.com/grounding-api-redirect/${id}`;
   let resolverOptions = null;
+  let resolverUrls = [];
   const grounded = deps({
     resolveCitations: async (urls, options) => {
       resolverOptions = options;
-      return { [redirectUrl("followed")]: "https://example-noodle.tw/menu" };
+      resolverUrls = urls;
+      return { [redirectUrl("followed")]: "https://example-noodle.tw/menu", [redirectUrl("site-link")]: "https://www.example-noodle.tw/" };
     },
     engineClient: { id: "gemini", profileId: "google-web", model: "gemini-3.5-flash-lite",
       ask: async (prompt) => {
         if (/ADDRESS:/.test(prompt)) return { answer: "ADDRESS: 台北市大安區仁愛路四段27巷3號；PHONE: 02-2700-1234", citations: [{ url: redirectUrl("title-only"), title: "example-noodle.tw" }], usage: {}, cost: null };
-        if (/ACTION:/.test(prompt)) return { answer: "ACTION: 電話 | 02-2700-1234 | 品牌自有", citations: [{ url: redirectUrl("followed"), title: "example-noodle.tw" }], usage: {}, cost: null };
+        // Gemini sometimes writes a grounding redirect, not the site, as the official website.
+        if (/ACTION:/.test(prompt)) return { answer: `ACTION: 電話 | 02-2700-1234 | 品牌自有\nACTION: 官方網站 | ${redirectUrl("site-link")} | 品牌自有`, citations: [{ url: redirectUrl("followed"), title: "example-noodle.tw" }], usage: {}, cost: null };
         return { answer: "1. 範例牛肉麵", citations: [{ url: redirectUrl("blog"), title: "food-blog.example" }, { url: redirectUrl("not-a-domain"), title: "美食部落格" }], usage: {}, cost: null };
       } }
   });
@@ -212,6 +215,10 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.ok(groundedSources.some((source) => source.url === redirectUrl("not-a-domain") && source.type === "other"), "a title that is not a domain is not trusted");
   assert.equal(groundedResult.evaluation.citation.flag, "yes");
   assert.equal(groundedResult.evaluation.citation.official_probes, 2);
+  assert.ok(resolverUrls.includes(redirectUrl("site-link")), "redirects written into an answer are followed too");
+  const website = groundedResult.evaluation.conversion.actions.find((action) => action.type === "website");
+  assert.deepEqual([website.target, website.official], ["https://www.example-noodle.tw/", true], "the action shows and credits where the redirect leads");
+  assert.equal(groundedResult.evaluation.conversion.official_entry, true);
 
   // ---------------------------------------------------------------------------
   // 3. Report: method mcac, no blended score, no AI Trust Index

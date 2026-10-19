@@ -15,6 +15,7 @@ const {
   isSharedPlatformHost
 } = require("../../../packages/geo-core/evidence/brand-match.js");
 const {
+  ANSWER_URL_PATTERN,
   MAX_DISCOVERY_PROBES,
   MCAC_FLAG_RULES_VERSION,
   MCAC_PROBE_SET_VERSION,
@@ -147,7 +148,10 @@ async function measureMcacSite(siteUrl, options = {}) {
       : { id: probe.id, type: probe.type, query: probe.query, status: "failed", answer: "", citations: [], attempts, error: { code: safeCode(lastError?.code || lastError?.stage) } });
   }
 
-  const urls = results.flatMap((result) => result.citations.map((citation) => (typeof citation === "string" ? citation : citation?.url))).filter(Boolean);
+  const citedUrls = results.flatMap((result) => result.citations.map((citation) => (typeof citation === "string" ? citation : citation?.url))).filter(Boolean);
+  // Gemini sometimes writes a grounding redirect into the answer itself (an ACTION line).
+  const writtenUrls = results.flatMap((result) => String(result.answer || "").match(ANSWER_URL_PATTERN) || []);
+  const urls = [...new Set([...citedUrls, ...writtenUrls])];
   const redirects = urls.length ? await safelyAsync(() => deps.resolveCitations(urls, { limit: 40 }), {}) : {};
   const titleDomains = groundingTitleDomains(results);
   const evaluation = evaluateMcac({

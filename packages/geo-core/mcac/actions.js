@@ -17,12 +17,15 @@ const TYPE_KEYWORDS = [
   ["website", /官網|官方網站|網站|網頁|website|official/i]
 ];
 
-function parseActions(answer, { siteHost = "", officialDomains = [] } = {}) {
+// resolveUrl maps a redirect written into the answer (a Gemini grounding link, a short URL)
+// to where it leads; the entry shows and is credited by that target.
+function parseActions(answer, { siteHost = "", officialDomains = [], resolveUrl = (url) => url } = {}) {
   const text = String(answer || "");
+  const resolve = (url) => resolveUrl(url) || url;
   const lines = text.split(/\r?\n/).filter((line) => /ACTION\s*[:：]/i.test(line));
-  const entries = lines.length ? lines.map((line) => fromActionLine(line, siteHost, officialDomains)).filter(Boolean)
-    : fromFreeText(text, siteHost, officialDomains);
-  const urls = [...text.matchAll(URL_PATTERN)].map((match) => match[0]);
+  const entries = lines.length ? lines.map((line) => fromActionLine(line, siteHost, officialDomains, resolve)).filter(Boolean)
+    : fromFreeText(text, siteHost, officialDomains, resolve);
+  const urls = [...text.matchAll(URL_PATTERN)].map((match) => resolve(match[0]));
   return {
     entries,
     hasActionable: entries.some((entry) => ACTIONABLE_TYPES.has(entry.type)),
@@ -30,10 +33,12 @@ function parseActions(answer, { siteHost = "", officialDomains = [] } = {}) {
   };
 }
 
-function fromActionLine(line, siteHost, officialDomains) {
-  const [typeText = "", target = "", owner = ""] = line.replace(/^.*?ACTION\s*[:：]\s*/i, "").split("|").map((part) => part.trim());
-  if (!target || /^unknown$/i.test(target) || /^unknown$/i.test(typeText)) return null;
-  const url = target.match(URL_PATTERN)?.[0] || null;
+function fromActionLine(line, siteHost, officialDomains, resolve) {
+  const [typeText = "", written = "", owner = ""] = line.replace(/^.*?ACTION\s*[:：]\s*/i, "").split("|").map((part) => part.trim());
+  if (!written || /^unknown$/i.test(written) || /^unknown$/i.test(typeText)) return null;
+  const writtenUrl = written.match(URL_PATTERN)?.[0] || null;
+  const url = writtenUrl ? resolve(writtenUrl) : null;
+  const target = writtenUrl ? written.replace(writtenUrl, url) : written;
   return {
     type: classify(typeText, target, url),
     target: target.slice(0, 200),
@@ -42,10 +47,11 @@ function fromActionLine(line, siteHost, officialDomains) {
   };
 }
 
-function fromFreeText(text, siteHost, officialDomains) {
+function fromFreeText(text, siteHost, officialDomains, resolve) {
   const entries = [];
   for (const match of text.matchAll(URL_PATTERN)) {
-    entries.push({ type: classify("", match[0], match[0]), target: match[0], owner: null, official: isFirstParty(match[0], siteHost, officialDomains) });
+    const url = resolve(match[0]);
+    entries.push({ type: classify("", url, url), target: url, owner: null, official: isFirstParty(url, siteHost, officialDomains) });
   }
   for (const match of text.matchAll(PHONE_PATTERN)) entries.push({ type: "phone", target: match[0], owner: null, official: false });
   for (const match of text.matchAll(ADDRESS_PATTERN)) entries.push({ type: "address", target: match[0].trim(), owner: null, official: false });
@@ -71,4 +77,4 @@ function classify(typeText, target, url) {
   return "other";
 }
 
-module.exports = { ACTIONABLE_TYPES, parseActions };
+module.exports = { ACTIONABLE_TYPES, ANSWER_URL_PATTERN: URL_PATTERN, parseActions };
