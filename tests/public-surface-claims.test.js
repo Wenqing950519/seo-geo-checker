@@ -91,4 +91,13 @@ for (const id of new Set(sidebarHrefs)) {
   assert.ok(docs.includes(`id="${id}"`), `docs sidebar links to #${id}, which has no section`);
 }
 
+// 13. GeoCheck Track is paused (D-051) and its NewebPay notify path is hard-closed,
+//     so the retained pricing page discloses the original plan without claiming
+//     that anything can be bought today.
+const pricing = read("pricing.html");
+assert.match(pricing, /目前不販售、未開放付款/, "pricing must state that Track is not on sale and payment is closed");
+assert.doesNotMatch(pricing, /本網站線上販售之付費服務|唯一可線上刷卡購買/,
+  "pricing must not claim that Track can be bought online");
+assert.match(pricing, /交易流程（尚未開放）/, "the checkout steps must be marked as not open");
+
 console.log("public surface claim tests passed");
