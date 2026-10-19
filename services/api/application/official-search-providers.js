@@ -114,8 +114,9 @@ async function executeGemini(profile, apiKey, fetchImpl, request) {
 }
 
 async function executeAnthropic(profile, apiKey, fetchImpl, request) {
-  // Haiku 5.5 thinks by default; 1,024 left no room for an answer (LSL-D-002).
-  const maxOutputTokens = optionalPositiveInteger(request.maxOutputTokens, 4_096) || 2_048;
+  // Haiku 5.5 thinks by default and thinking counts toward max_tokens: 1,024 and
+  // then 2,048 still cut answers off (LSL-D-002), so leave room for both.
+  const maxOutputTokens = optionalPositiveInteger(request.maxOutputTokens, 4_096) || 4_096;
   const maxSearchRequests = optionalPositiveInteger(request.maxSearchRequests, 10) || 1;
   const timeoutMs = optionalPositiveInteger(request.timeoutMs, PROVIDER_TIMEOUT_MS) || PROVIDER_TIMEOUT_MS;
   const { body: response, requestId } = await postJson(fetchImpl, "https://api.anthropic.com/v1/messages", {

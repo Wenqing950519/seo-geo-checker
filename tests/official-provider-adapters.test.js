@@ -33,7 +33,7 @@ async function main() {
   assert.equal(perplexity.body.model, "sonar"); assert.equal(perplexity.body.messages[0].role, "user"); assert.equal(perplexity.body.max_tokens, 1024);
   assert.equal(anthropic.body.model, "claude-haiku-5-5"); assert.equal(anthropic.body.max_tokens, 1024); assert.equal(anthropic.body.output_config.effort, "low"); assert.equal(anthropic.body.thinking, undefined); assert.equal(anthropic.body.temperature, undefined); assert.equal(anthropic.body.tools[0].type, "web_search_20250305"); assert.equal(anthropic.body.tools[0].max_uses, 2);
   await providers.find((provider) => provider.id === "anthropic-web").execute({ prompt: "Default budget?" });
-  assert.equal(calls.at(-1).body.max_tokens, 2048);
+  assert.equal(calls.at(-1).body.max_tokens, 4096);
   calls.pop();
   assert.deepEqual(results.map((result) => result.usage.input_tokens), [100, 80, 70, 90]);
   assert.deepEqual(results.map((result) => result.usage.search_requests), [1, 1, 1, 1]);
