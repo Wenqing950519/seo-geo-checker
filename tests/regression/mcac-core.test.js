@@ -216,6 +216,12 @@ const truth = { phone: { value: "02-2700-1234", source: "json_ld" }, address: { 
   assert.equal(rankOf("- **林東芳牛肉麵** — 湯頭濃郁\n- **範例牛肉麵** — 紅燒"), 2, "a bullet list counts its top-level bullets");
   assert.equal(rankOf("| 選項 | 理由 |\n|---|---|\n| 林東芳牛肉麵 | 濃郁 |\n| 富宏牛肉麵 | 24 小時 |\n| 範例牛肉麵 | 紅燒 |"), 3, "a table counts its rows");
   assert.equal(rankOf("推薦範例牛肉麵，湯頭濃郁。"), null, "prose without a list has no rank");
+  // Gemini numbers its options as headings and separates them with rules and italic notes.
+  const headed = ["*註：價格以店家公告為準。*", "", "---", "", "### 1. 範例牛肉麵", "* **推薦理由**：湯頭濃郁。", "  * **環境**：明亮。",
+    "* **地址**：台北市大安區", "", "### 2. 林東芳牛肉麵", "* **推薦理由**：老店。"].join("\n");
+  assert.equal(rankOf(headed), 1, "a numbered heading is an option; a rule or an italic note is not");
+  assert.equal(rankOf("以下是選項：\n\n1. **範例牛肉麵**\n   * **理由**：紅酒套餐。\n   * **來源**：[範例牛肉麵介紹](https://x.example)"), 1,
+    "a single numbered option is still the option, not its nested reasons");
 }
 {
   // A brand mentioned only in the fact or action answer is not a discovery mention.
