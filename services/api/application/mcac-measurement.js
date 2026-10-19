@@ -8,7 +8,12 @@ const { fetchTechnicalSignals } = require("../../../packages/crawler/technical-s
 const { resolveCitationRedirects } = require("../../../packages/crawler/citation-resolve.js");
 const { collectScoringSignals, computeScoreV2 } = require("../../../packages/geo-core/scoring/scoring-v2.js");
 const { classifySite } = require("../../../packages/geo-core/site-analyzer/site-type.js");
-const { PARSER_VERSION, buildBrandTermSet } = require("../../../packages/geo-core/evidence/brand-match.js");
+const {
+  PARSER_VERSION,
+  buildBrandTermSet,
+  getRegistrableDomain,
+  isSharedPlatformHost
+} = require("../../../packages/geo-core/evidence/brand-match.js");
 const {
   MAX_DISCOVERY_PROBES,
   MCAC_FLAG_RULES_VERSION,
@@ -25,7 +30,12 @@ const { createMcacEngineClient, resolveMcacEngine } = require("./mcac-engines.js
 
 const MCAC_PIPELINE_VERSION = `mcac-${MCAC_VERSION}-${MCAC_PROBE_SET_VERSION}-${MCAC_FLAG_RULES_VERSION}-planner${QUERY_PLANNER_VERSION}-p${PARSER_VERSION}`;
 const MAX_ATTEMPTS_PER_QUESTION = 2;
-const FETCH_LIMITED_STAGES = new Set(["fetch_homepage", "browser_fetch", "browser_challenge", "crawl_quality"]);
+// The fetcher throws the last fallback's error when every method fails, so Scrapling and
+// Google Translate stages mean an unreadable site too (a Facebook page, 2026-10-20 smoke).
+const FETCH_LIMITED_STAGES = new Set([
+  "fetch_homepage", "browser_fetch", "browser_challenge", "crawl_quality",
+  "scrapling_fetch", "translate_fetch", "translate_challenge"
+]);
 const RETRYABLE_CODES = new Set(["provider_rate_limited", "provider_unavailable", "provider_timeout"]);
 
 async function measureMcacSite(siteUrl, options = {}) {
@@ -81,11 +91,14 @@ async function measureMcacSite(siteUrl, options = {}) {
   const brandName = plannedName || identity.name || titleName(homepage.metadata);
   const location = (plan?.geography || []).find((place) => place && !/^(?:unknown|台灣|臺灣)$/i.test(place))
     || identity.locality || identity.region || "台灣";
+  // A fan page lives on a shared platform: the platform's own name (the host, a "| Facebook"
+  // title suffix) is not the brand, and an answer that names it is not a mention.
+  const platformName = isSharedPlatformHost(host) ? getRegistrableDomain(host).split(".")[0] : "";
   const brandTerms = buildBrandTermSet({
     host,
     metadata: homepage.metadata || {},
     aliases: [brandName, identity.name, ...identity.alternateNames].filter(Boolean)
-  });
+  }).filter((term) => platformName.length < 3 || !term.compact.includes(platformName));
   // Store, location and contact pages carry the numbers a chain's homepage leaves out.
   const truthUrls = pickTruthPages(homepage.internalLinks || [], finalUrl, representativePages.map((page) => page?.url));
   const truthPages = (await Promise.all(truthUrls.map((url) => safelyAsync(() => deps.fetchTruthPage(url), null)))).filter(Boolean);

@@ -155,6 +155,36 @@ const { reportHtml } = require("../../services/api/server.js");
   assert.equal(blockedResult.limited, true);
   assert.equal(blockedResult.evaluation.accuracy.flag, "unknown");
 
+  // When every fetch method fails, the error comes from the last fallback (Google Translate or
+  // Scrapling). A Facebook fan page did this in the 2026-10-20 smoke; it is still an unreadable
+  // site, not a failed audit.
+  for (const stage of ["translate_fetch", "translate_challenge", "scrapling_fetch"]) {
+    const fallback = deps({ fetchHomepage: async () => { throw Object.assign(new Error("fallback failed"), { stage }); } });
+    const fallbackResult = await measureMcacSite("https://www.facebook.com/pages/example/1", fallback.options);
+    assert.equal(fallback.log.attempts, 0, `${stage} costs no engine call`);
+    assert.equal(fallbackResult.limited, true, `${stage} returns the limited result`);
+    assert.equal(fallbackResult.limitedReason, stage);
+  }
+
+  // A fan page lives on a shared platform: the platform's name (host, "| Facebook" title
+  // suffix) is not the brand, so an answer that names Facebook does not mention the shop.
+  const fanTitle = "範例牛肉麵 - 舊名牛肉麵 | Facebook";
+  const fanPage = deps({
+    fetchHomepage: async (url) => ({ url, finalUrl: url, html: `<html><head><title>${fanTitle}</title></head><body>範例牛肉麵 電話 02 2700 1234</body></html>`,
+      text: "範例牛肉麵 電話 02 2700 1234", metadata: { title: fanTitle, h1: "" }, internalLinks: [], statusCode: 200, crawlQuality: { status: "complete", scorable: true } }),
+    queryPlanner: async () => ({ status: "ready", entity_name: "範例牛肉麵", geography: ["台北"],
+      queryPlan: { queries: [{ text: "台北牛肉麵推薦？" }, { text: "台北牛肉麵怎麼挑？" }] } }),
+    engineClient: { id: "perplexity", profileId: "perplexity-sonar", model: "sonar",
+      ask: async (prompt) => (/ADDRESS:|ACTION:/.test(prompt)
+        ? { answer: "UNKNOWN", citations: [], usage: {}, cost: null }
+        : { answer: "1. 林東芳牛肉麵（營業時間可到 Facebook 粉專查看）", citations: [], usage: {}, cost: null }) }
+  });
+  const fanResult = await measureMcacSite("https://www.facebook.com/example-noodle", fanPage.options);
+  assert.ok(!fanResult.entity.terms.some((term) => /facebook/i.test(term)), "the platform is not a brand term");
+  assert.ok(fanResult.entity.terms.includes("舊名牛肉麵"), "the page's own names still count");
+  assert.equal(fanResult.evaluation.mention.flag, "no", "naming Facebook is not mentioning the shop");
+  assert.equal(fanResult.evaluation.citation.flag, "unknown", "a platform page cannot be credited as the official source");
+
   // ---------------------------------------------------------------------------
   // 3. Report: method mcac, no blended score, no AI Trust Index
   // ---------------------------------------------------------------------------
