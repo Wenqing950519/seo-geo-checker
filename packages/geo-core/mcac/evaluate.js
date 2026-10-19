@@ -13,7 +13,7 @@ const {
 const { judgeFact, parseFactAnswer } = require("./facts.js");
 const { parseActions } = require("./actions.js");
 
-const MCAC_VERSION = "0.1.0";
+const MCAC_VERSION = "0.2.0";
 const MCAC_FLAG_RULES_VERSION = "mcac-flags-v0";
 
 function evaluateMcac({ probes = [], brandTerms = [], siteHost = "", officialDomains = [], truth = {}, resolveUrl = (url) => url } = {}) {
@@ -129,7 +129,7 @@ function accuracy(probe, truth = {}) {
     hours: "not_judged"
   };
   const judged = [fields.phone, fields.address];
-  const flag = judged.includes("incorrect") ? "incorrect"
+  const flag = judged.includes("mismatch") ? "mismatch"
     : judged.includes("correct") ? "correct"
       : judged.every((value) => value === "unverifiable") ? "unverifiable"
         : "not_provided";

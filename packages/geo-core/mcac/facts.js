@@ -88,9 +88,10 @@ function lineValue(match) {
   return match ? match[1].replace(CITATION_MARKER, "").trim() : null;
 }
 
-// correct | incorrect | not_provided | unverifiable. The reference may be one value or
-// every value the official site lists. Missing reference data is never counted
-// against the answer.
+// correct | mismatch | not_provided | unverifiable. The reference may be one value or
+// every value the owner's page lists. A value missing from the page is a mismatch, not an
+// error: the page may be out of date, or another platform may list another number
+// (2026-10-20 smoke). Missing reference data is never counted against the answer.
 function judgeFact(field, truthValue, claimed = []) {
   const truths = (Array.isArray(truthValue) ? truthValue : [truthValue]).filter(Boolean);
   if (!truths.length) return "unverifiable";
@@ -100,14 +101,14 @@ function judgeFact(field, truthValue, claimed = []) {
     if (!references.length) return "unverifiable";
     const phones = values.map(normalizePhone).filter((value) => value.length >= 8);
     if (!phones.length) return "not_provided";
-    return phones.some((value) => references.some((reference) => value === reference || value.includes(reference))) ? "correct" : "incorrect";
+    return phones.some((value) => references.some((reference) => value === reference || value.includes(reference))) ? "correct" : "mismatch";
   }
   if (field === "address") {
     const references = truths.map(addressCore).filter(Boolean);
     if (!references.length) return "unverifiable";
     const cores = values.map(addressCore).filter(Boolean);
     if (!cores.length) return "not_provided";
-    return cores.some((core) => references.includes(core)) ? "correct" : "incorrect";
+    return cores.some((core) => references.includes(core)) ? "correct" : "mismatch";
   }
   return "not_judged";
 }

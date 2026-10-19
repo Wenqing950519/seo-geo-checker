@@ -32,7 +32,7 @@
   "durable_objects": { "bindings": [{ "name": "AUDIT_FALLBACK", "class_name": "AuditFallbackContainer" }] },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["AuditFallbackContainer"] }],
   "vars": {
-    "AUDIT_PIPELINE_VERSION": "mcac-0.1.0-mcac-probes-0.1.0-mcac-flags-v0-planner1.5.0-p2.1.0-perplexity",
+    "AUDIT_PIPELINE_VERSION": "mcac-0.2.0-mcac-probes-0.2.0-mcac-flags-v0-planner1.5.0-p2.1.0-perplexity",
     "AUDIT_ADMISSION_ENABLED": "false",
     "AUDIT_DAILY_LIMIT": "50",
     "GEOCHECK_METHOD": "mcac",

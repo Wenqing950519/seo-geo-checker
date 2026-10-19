@@ -3,7 +3,7 @@ const { MCAC_ENGINES, resolveMcacEngine, createMcacEngineClient } = require("../
 const { measureMcacSite, MCAC_PIPELINE_VERSION, pickTruthPages } = require("../../services/api/application/mcac-measurement.js");
 const { runMcacAudit } = require("../../apps/web/report/mcac-audit.js");
 const { resolveAuditMethod } = require("../../apps/web/report/real-lite-audit.js");
-const { mcacReportHtml } = require("../../apps/web/report/mcac-report-html.js");
+const { mcacReportHtml, mcacReportMarkdown } = require("../../apps/web/report/mcac-report-html.js");
 const { reportHtml } = require("../../services/api/server.js");
 const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.js");
 
@@ -60,7 +60,7 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
     "address":{"addressRegion":"台北市","addressLocality":"大安區","streetAddress":"仁愛路四段27巷3號"}}</script></head>
     <body><h1>範例牛肉麵</h1><p>紅燒牛肉麵專賣</p></body></html>`;
   const deps = (overrides = {}) => {
-    const log = { plannerOptions: null, prompts: [], attempts: 0 };
+    const log = { plannerOptions: null, prompts: [], askOptions: [], attempts: 0 };
     let failedOnce = false;
     return {
       log,
@@ -81,15 +81,16 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
               { id: "q1", text: "台北市有哪些值得專程吃的牛肉麵店？", intent: "recommendation" },
               { id: "q2", text: "台北牛肉麵要怎麼挑？", intent: "decision" },
               { id: "q3", text: "台北牛肉麵哪家湯頭最好？", intent: "comparison" },
-              { id: "q4", text: "第四題", intent: "recommendation" }
+              { id: "q4", text: "台北有哪些牛肉麵老店推薦？", intent: "recommendation" }
             ] }
           };
         },
         engineClient: {
           id: "perplexity", profileId: "perplexity-sonar", model: "sonar",
-          ask: async (prompt) => {
+          ask: async (prompt, options) => {
             log.attempts += 1;
             log.prompts.push(prompt);
+            log.askOptions.push(options || {});
             if (!failedOnce && /台北市有哪些/.test(prompt)) { failedOnce = true; throw Object.assign(new Error("rate limited"), { code: "provider_rate_limited" }); }
             if (/ADDRESS:/.test(prompt)) return { answer: "ADDRESS: 台北市大安區仁愛路四段27巷3號；PHONE: 02-2700-1234", citations: [{ url: "https://example-noodle.tw/contact" }], usage: { total_tokens: 50 }, cost: { estimated_usd: 0.006 } };
             if (/ACTION:/.test(prompt)) return { answer: "ACTION: 電話 | 02-2700-1234 | 品牌自有", citations: [], usage: { total_tokens: 40 }, cost: { estimated_usd: 0.006 } };
@@ -114,7 +115,35 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.equal(result.evaluation.conversion.flag, "yes");
   assert.equal(result.truth.phone.source, "json_ld");
   assert.equal(result.usage.engine_calls, 5);
-  assert.match(MCAC_PIPELINE_VERSION, /^mcac-0\.1\.0/);
+  assert.match(MCAC_PIPELINE_VERSION, /^mcac-0\.2\.0-mcac-probes-0\.2\.0/);
+
+  // Discovery asks "which ones would you recommend" (report appendix A): the planner mixes
+  // intents for Classic, so recommendation questions come first (2026-10-20 decision).
+  assert.deepEqual(result.probes.filter((p) => p.type === "discovery").map((p) => p.query),
+    ["台北市有哪些值得專程吃的牛肉麵店？", "台北有哪些牛肉麵老店推薦？"]);
+  // Ten options with reasons and sources ran past 1,024 output tokens in 10 of 16 smoke
+  // answers, so discovery answers get 2,048; fact and action answers stay short.
+  run.log.prompts.forEach((prompt, index) => {
+    const limit = run.log.askOptions[index].maxOutputTokens;
+    if (/請列出最多 10 個選項/.test(prompt)) assert.equal(limit, 2048, "a discovery answer has room for ten options");
+    else assert.equal(limit ?? 1024, 1024, "fact and action answers keep the default limit");
+  });
+  const rated = deps({
+    queryPlanner: async () => ({
+      status: "ready", entity_name: "範例牛肉麵", geography: ["台北"],
+      candidates: [
+        { text: "台北牛肉麵和拉麵哪個適合宵夜？", intent: "comparison", consumer_relevance: 5, evidence_fit: 5 },
+        { text: "台北有哪些值得專程吃的牛肉麵店？", intent: "recommendation", consumer_relevance: 5, evidence_fit: 5 },
+        { text: "台北有哪些值得專程去吃的牛肉麵店？", intent: "recommendation", consumer_relevance: 5, evidence_fit: 4 },
+        { text: "台北米其林推薦的牛肉麵有哪些？", intent: "recommendation", consumer_relevance: 4, evidence_fit: 4 }
+      ],
+      queryPlan: { queries: [{ text: "台北有哪些值得專程吃的牛肉麵店？", intent: "recommendation" }, { text: "台北牛肉麵和拉麵哪個適合宵夜？", intent: "comparison" }] }
+    })
+  });
+  const ratedResult = await measureMcacSite("https://example-noodle.tw/", rated.options);
+  assert.deepEqual(ratedResult.probes.filter((p) => p.type === "discovery").map((p) => p.query),
+    ["台北有哪些值得專程吃的牛肉麵店？", "台北米其林推薦的牛肉麵有哪些？"],
+    "best-rated recommendation candidates first, near-duplicates skipped, other intents only to fill a gap");
 
   // Store and contact pages extend the official reference values (chains list store
   // lines away from the homepage); other hosts and unrelated pages are not fetched.
@@ -226,7 +255,7 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   const report = await runMcacAudit("https://example-noodle.tw/", deps().options);
   assert.match(report.id, /^real_lite_/);
   assert.equal(report.method, "mcac");
-  assert.equal(report.algorithmVersion, "mcac-0.1.0");
+  assert.equal(report.algorithmVersion, "mcac-0.2.0");
   assert.equal(report.mcac.total, null);
   assert.match(report.pipelineVersion, /perplexity/);
   assert.ok(!JSON.stringify(report).includes("ai_trust"), "an MCAC report carries no AI Trust Index fields");
@@ -248,6 +277,21 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.doesNotMatch(html, /<script>alert/, "AI answers are escaped");
   assert.match(html, /&lt;script&gt;/);
   assert.equal(reportHtml(report), html, "the shared renderer dispatches MCAC reports to the MCAC page");
+
+  // A value that is not on the owner's page is a mismatch, not an error: the page may be out
+  // of date, or another platform (Google Maps) may list something else (2026-10-20 decision).
+  const differing = deps({ engineClient: { id: "perplexity", profileId: "perplexity-sonar", model: "sonar",
+    ask: async (prompt) => (/ADDRESS:/.test(prompt)
+      ? { answer: "ADDRESS: 台北市大安區仁愛路四段27巷3號；PHONE: 02-2700-9999", citations: [], usage: {}, cost: null }
+      : { answer: "1. 範例牛肉麵", citations: [], usage: {}, cost: null }) } });
+  const differingReport = await runMcacAudit("https://example-noodle.tw/", differing.options);
+  assert.deepEqual([differingReport.mcac.accuracy.fields.phone, differingReport.mcac.accuracy.flag], ["mismatch", "mismatch"]);
+  const differingHtml = mcacReportHtml(differingReport);
+  assert.match(differingHtml, /和你的頁面不一致/);
+  assert.match(differingHtml, /02-2700-9999/, "the report lists the value the AI gave");
+  assert.match(differingHtml, /統一/, "a mismatch asks the owner to make every platform say the same");
+  assert.doesNotMatch(differingHtml, /有錯誤|>錯誤</, "the product cannot tell which value is wrong, so it never says wrong");
+  assert.match(mcacReportMarkdown(differingReport), /和你的頁面不一致/);
 
   // ---------------------------------------------------------------------------
   // 5. Deployment config: MCAC with one allowlisted engine, a cache key that changes

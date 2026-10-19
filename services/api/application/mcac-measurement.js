@@ -26,11 +26,14 @@ const {
   extractSiteIdentity
 } = require("../../../packages/geo-core/mcac/index.js");
 const { recordAiUsage } = require("../../../packages/ai-providers/usage-meter.js");
-const { QUERY_PLANNER_VERSION, buildGeoQueryPlanResolved } = require("./query-planner.js");
+const { QUERY_PLANNER_VERSION, buildGeoQueryPlanResolved, querySimilarity } = require("./query-planner.js");
 const { createMcacEngineClient, resolveMcacEngine } = require("./mcac-engines.js");
 
 const MCAC_PIPELINE_VERSION = `mcac-${MCAC_VERSION}-${MCAC_PROBE_SET_VERSION}-${MCAC_FLAG_RULES_VERSION}-planner${QUERY_PLANNER_VERSION}-p${PARSER_VERSION}`;
 const MAX_ATTEMPTS_PER_QUESTION = 2;
+// Ten options with reasons and sources ran past 1,024 output tokens in 10 of 16 discovery
+// answers in the 2026-10-20 smoke; fact and action answers stay at the engine default.
+const DISCOVERY_MAX_OUTPUT_TOKENS = 2_048;
 // The fetcher throws the last fallback's error when every method fails, so Scrapling and
 // Google Translate stages mean an unreadable site too (a Facebook page, 2026-10-20 smoke).
 const FETCH_LIMITED_STAGES = new Set([
@@ -84,7 +87,7 @@ async function measureMcacSite(siteUrl, options = {}) {
   } catch (error) {
     plannerError = error;
   }
-  const planned = plan?.status === "ready" ? cleanQuestions((plan.queryPlan?.queries || []).map((query) => query?.text ?? query)) : [];
+  const planned = plan?.status === "ready" ? discoveryFromPlan(plan) : [];
   const discoveryQuestions = [...custom, ...planned.filter((question) => !custom.includes(question))].slice(0, MAX_DISCOVERY_PROBES);
 
   const identity = extractSiteIdentity(homepage.html);
@@ -132,7 +135,10 @@ async function measureMcacSite(siteUrl, options = {}) {
       engineCalls += 1;
       const callStarted = Date.now();
       try {
-        response = await client.ask(probe.prompt, { timeoutMs: options.timeoutMs || 45_000 });
+        response = await client.ask(probe.prompt, {
+          timeoutMs: options.timeoutMs || 45_000,
+          maxOutputTokens: probe.type === "discovery" ? DISCOVERY_MAX_OUTPUT_TOKENS : undefined
+        });
         recordUsage(engine, response, probe, "success", Date.now() - callStarted);
         break;
       } catch (error) {
@@ -217,6 +223,23 @@ function limitedResult(siteUrl, engine, pipelineVersion, error, started) {
     usage: { engine_calls: 0, estimated_usd: 0 },
     latencyMs: Date.now() - started
   };
+}
+
+// MCAC discovery asks "which ones would you recommend" (report appendix A). The planner picks
+// four questions of mixed intent for Classic, so its recommendation candidates come first here,
+// best rated first and near-duplicates skipped; its own picks only fill a gap (2026-10-20).
+function discoveryFromPlan(plan) {
+  const selected = Array.isArray(plan.queryPlan?.queries) ? plan.queryPlan.queries : [];
+  const candidates = Array.isArray(plan.candidates) ? plan.candidates : [];
+  const rating = (query) => Number(query?.consumer_relevance || 0) + Number(query?.evidence_fit || 0);
+  const recommendations = [...candidates, ...selected]
+    .filter((query) => query?.intent === "recommendation")
+    .sort((a, b) => rating(b) - rating(a));
+  const picked = [];
+  for (const question of cleanQuestions([...recommendations, ...selected].map((query) => query?.text ?? query))) {
+    if (!picked.some((other) => querySimilarity(other, question) >= 0.72)) picked.push(question);
+  }
+  return picked;
 }
 
 const TRUTH_PAGE_PATTERNS = [

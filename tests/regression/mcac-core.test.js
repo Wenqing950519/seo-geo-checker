@@ -74,7 +74,7 @@ const {
 }
 
 // ---------------------------------------------------------------------------
-// 3. Fact answers: correct, incorrect, not provided, unverifiable are different.
+// 3. Fact answers: correct, mismatch (not on the owner's page), not provided, unverifiable.
 // ---------------------------------------------------------------------------
 {
   const parsed = parseFactAnswer("ADDRESS: 台北市大安區仁愛路四段27巷3號1樓；PHONE: 02-2700-1234");
@@ -83,8 +83,8 @@ const {
   assert.equal(judgeFact("address", "台北市大安區仁愛路4段27巷3號", parsed.address), "correct", "floor suffix and 四段/4段 do not make it wrong");
   assert.equal(judgeFact("address", "台北市大安區仁愛路4段27巷3號", parseFactAnswer("ADDRESS: 大安區仁愛路四段27巷3號\nPHONE: UNKNOWN").address), "correct",
     "a missing city is still the same street address");
-  assert.equal(judgeFact("phone", "02-2700-1234", parseFactAnswer("ADDRESS: UNKNOWN\nPHONE: 02-2700-9999").phone), "incorrect");
-  assert.equal(judgeFact("address", "台北市大安區仁愛路4段27巷3號", parseFactAnswer("ADDRESS: 台北市中山區南京東路一段10號\nPHONE: UNKNOWN").address), "incorrect");
+  assert.equal(judgeFact("phone", "02-2700-1234", parseFactAnswer("ADDRESS: UNKNOWN\nPHONE: 02-2700-9999").phone), "mismatch");
+  assert.equal(judgeFact("address", "台北市大安區仁愛路4段27巷3號", parseFactAnswer("ADDRESS: 台北市中山區南京東路一段10號\nPHONE: UNKNOWN").address), "mismatch");
   assert.equal(judgeFact("phone", "02-2700-1234", parseFactAnswer("ADDRESS: UNKNOWN\nPHONE: UNKNOWN").phone), "not_provided");
   assert.equal(judgeFact("address", "台北市大安區仁愛路4段27巷3號", parseFactAnswer("ADDRESS: 台北市大安區\nPHONE: UNKNOWN").address), "not_provided",
     "an address without a street number cannot be checked");
@@ -112,7 +112,7 @@ const {
   assert.equal(chain.address.values.length, 2);
   assert.equal(judgeFact("phone", chain.phone.values, parseFactAnswer("ADDRESS: UNKNOWN；PHONE: 02-2500-6850").phone), "correct",
     "a branch number the official site lists is correct");
-  assert.equal(judgeFact("phone", chain.phone.values, parseFactAnswer("ADDRESS: UNKNOWN；PHONE: 02-2222-0000").phone), "incorrect");
+  assert.equal(judgeFact("phone", chain.phone.values, parseFactAnswer("ADDRESS: UNKNOWN；PHONE: 02-2222-0000").phone), "mismatch");
   assert.equal(judgeFact("address", chain.address.values, parseFactAnswer("ADDRESS: 台中市西屯區範例路100號；PHONE: UNKNOWN").address), "correct");
 
   const identity = extractSiteIdentity('<script type="application/ld+json">{"@type":"Organization","name":"洪師父官方網站"}</script>');
@@ -176,8 +176,8 @@ const truth = { phone: { value: "02-2700-1234", source: "json_ld" }, address: { 
   assert.deepEqual([result.citation.official_probes, result.citation.n, result.citation.flag], [1, 4, "part"]);
   assert.equal(result.citation.by_type.official, 1);
   assert.equal(result.citation.by_type.maps, 2);
-  assert.deepEqual(result.accuracy.fields, { phone: "correct", address: "incorrect", hours: "not_judged" });
-  assert.equal(result.accuracy.flag, "incorrect", "any wrong fact marks accuracy as incorrect");
+  assert.deepEqual(result.accuracy.fields, { phone: "correct", address: "mismatch", hours: "not_judged" });
+  assert.equal(result.accuracy.flag, "mismatch", "any value that differs from the owner's page marks accuracy as mismatch");
   assert.equal(result.conversion.flag, "yes");
   assert.equal(result.conversion.official_entry, false);
   assert.deepEqual(result.conversion.entries, ["phone", "map"]);

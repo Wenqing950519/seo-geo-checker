@@ -2,7 +2,7 @@
 // Prompt wording follows the published research (AI 搜尋時代的檢索機制報告, appendix A),
 // generalised from Taipei beef-noodle shops to any business with a name and a place.
 
-const MCAC_PROBE_SET_VERSION = "mcac-probes-0.1.0";
+const MCAC_PROBE_SET_VERSION = "mcac-probes-0.2.0";
 const MAX_DISCOVERY_PROBES = 2;
 
 const MCAC_SYSTEM_PROMPT = "你是台灣商家與品牌研究助理。只使用公開網頁搜尋所得資料，保留不確定性，不把搜尋摘要當作無條件真實。";

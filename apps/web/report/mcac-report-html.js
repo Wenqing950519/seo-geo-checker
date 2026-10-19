@@ -4,14 +4,14 @@
 
 const FLAG = {
   yes: ["有", "yes"], part: ["部分", "part"], no: ["無", "no"], unknown: ["未知", "unknown"],
-  correct: ["正確", "yes"], incorrect: ["有錯誤", "no"], not_provided: ["未提供", "absent"], unverifiable: ["無法核對", "unknown"]
+  correct: ["正確", "yes"], mismatch: ["不一致", "part"], not_provided: ["未提供", "absent"], unverifiable: ["無法核對", "unknown"]
 };
-const FIELD = { correct: "正確", incorrect: "錯誤", not_provided: "未提供", unverifiable: "無法核對", unknown: "未知", not_judged: "未判定（v0）" };
+const FIELD = { correct: "正確", mismatch: "和你的頁面不一致", not_provided: "未提供", unverifiable: "無法核對", unknown: "未知", not_judged: "未判定（v0）" };
 const SOURCE = { official: "官網", maps: "地圖", social: "社群", booking: "訂位平台", ugc: "評論論壇", wiki: "維基", gov_edu: "政府學校", other: "其他", unattributable: "無法歸屬" };
 const ENTRY = { website: "網站", map: "地圖", phone: "電話", booking: "訂位", order: "訂購", line: "LINE", address: "地址", other: "其他" };
 const PROBE = { discovery: "推薦題（不帶店名）", fact: "事實題", action: "行動題" };
 const ENGINE = { perplexity: "Perplexity Sonar", gemini: "Gemini Flash（Google 搜尋）" };
-const TRUTH_SOURCE = { json_ld: "官網結構化資料", visible_text: "官網頁面文字" };
+const TRUTH_SOURCE = { json_ld: "結構化資料", visible_text: "頁面文字" };
 
 function mcacReportHtml(report) {
   const m = report.mcac || {};
@@ -71,16 +71,17 @@ ${report.limited ? `<p class="limited">這次讀不到網站，所以沒有詢�
 ${rows.map((row) => `<tr><th scope="row">${esc(row.label)}<small>${esc(row.hint)}</small></th><td>${row.resultHtml}</td><td class="flag">${flag(row.flag)}</td></tr>`).join("\n")}
 </tbody>
 </table>
-<h2>資訊正確性：官網寫的與 AI 說的</h2>
+<h2>資訊正確性：你的頁面寫的與 AI 說的</h2>
 <table>
-<thead><tr><th scope="col">欄位</th><th scope="col">官網</th><th scope="col">AI 回答</th><th scope="col" class="flag">判定</th></tr></thead>
+<thead><tr><th scope="col">欄位</th><th scope="col">你的頁面</th><th scope="col">AI 回答</th><th scope="col" class="flag">判定</th></tr></thead>
 <tbody>
 ${factRow("電話", report.truth?.phone, m.accuracy?.claimed?.phone, m.accuracy?.fields?.phone)}
 ${factRow("地址", report.truth?.address, m.accuracy?.claimed?.address, m.accuracy?.fields?.address)}
 ${factRow("營業時間", report.truth?.hours, null, "not_judged")}
 </tbody>
 </table>
-<p class="note">正確答案以官網公開資料為準；官網沒寫的項目標「無法核對」，不算錯。</p>
+<p class="note">以你的頁面公開的資料為準：AI 給的值出現在頁面上算「正確」；沒有出現標「和你的頁面不一致」，本工具無法判斷哪一方才對；頁面沒寫的項目標「無法核對」。</p>
+${hasMismatch(m) ? `<p class="limited">${esc(MISMATCH_ADVICE)}</p>` : ""}
 <h2>每一題的原始回答與來源</h2>
 ${probes.length ? probes.map((probe, index) => probeBlock(probe, index)).join("\n") : `<p class="note">這次沒有可顯示的回答。</p>`}
 <h2>網站條件（不計分）</h2>
@@ -121,7 +122,7 @@ function summaryRows(report) {
     },
     {
       label: "資訊正確性（Accuracy）",
-      hint: "AI 給的地址、電話跟官網一不一致",
+      hint: "AI 給的地址、電話跟你的頁面一不一致",
       flag: accuracy.flag,
       resultHtml: `電話：${esc(FIELD[accuracy.fields?.phone] || "未知")}・地址：${esc(FIELD[accuracy.fields?.address] || "未知")}`
     },
@@ -139,7 +140,7 @@ function summaryRows(report) {
 function factRow(label, truth, claimed, status) {
   const claimedText = Array.isArray(claimed) && claimed.length ? claimed.join("、") : (status === "not_judged" ? "—" : "沒有提供");
   const listed = Array.isArray(truth?.values) && truth.values.length ? truth.values : (truth?.value ? [truth.value] : []);
-  const truthText = listed.length ? `${listed.join("、")}（${TRUTH_SOURCE[truth.source] || "官網"}${listed.length > 1 ? `等，共 ${listed.length} 組` : ""}）` : "官網沒有寫";
+  const truthText = listed.length ? `${listed.join("、")}（${TRUTH_SOURCE[truth.source] || "頁面"}${listed.length > 1 ? `等，共 ${listed.length} 組` : ""}）` : "頁面沒有寫";
   return `<tr><th scope="row">${esc(label)}</th><td>${esc(truthText)}</td><td>${esc(claimedText)}</td><td class="flag">${esc(FIELD[status] || "未知")}</td></tr>`;
 }
 
@@ -170,9 +171,17 @@ function mcacReportMarkdown(report) {
     `## 每一題的原始回答`,
     ...(m.probes || []).flatMap((probe) => [``, `### ${PROBE[probe.type] || probe.type}：${probe.query || ""}`, ``, probe.answer || "（沒有回答）", ``, ...(probe.sources || []).map((source) => `- ${SOURCE[source.type] || source.type}：${source.url}`)]),
     ``,
+    ...(hasMismatch(m) ? [`> ${MISMATCH_ADVICE}`, ``] : []),
     `判讀限制：每項只有 1 到 2 題；被提到不等於被推薦；來源出現次數不是 AI 的信任權重；規則為 v0 暫定。`
   ];
   return lines.join("\n");
+}
+
+// The page and the answer disagree; the tool cannot tell which is right (2026-10-20 decision).
+const MISMATCH_ADVICE = "AI 給的電話或地址和你的頁面不同。可能是頁面資料過時，也可能是 Google 地圖等其他平台列的資料不一樣；請確認哪一個正確，並把官網、粉專、Google 商家等各平台的資料統一。";
+
+function hasMismatch(m) {
+  return m?.accuracy?.fields?.phone === "mismatch" || m?.accuracy?.fields?.address === "mismatch";
 }
 
 function flag(value) {
