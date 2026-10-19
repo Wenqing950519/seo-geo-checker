@@ -51,7 +51,7 @@ details{border-bottom:1px solid var(--rule)}summary{cursor:pointer;padding:12px 
 .src{font:400 .78rem/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);margin:0 0 14px;padding-left:18px;word-break:break-all}
 ul.plain{margin:6px 0 0;padding-left:18px}.foot{margin-top:28px;font:400 .76rem/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}
 @media print{.top{display:none}body{background:#fff}.sheet{box-shadow:none;border:0;margin:0}details{display:block}details>*{display:block}}
-@media (max-width:600px){.sheet{margin:0;border-radius:0;padding:20px 16px}tbody th{width:auto}}
+@media (max-width:600px){.sheet{margin:0;border-radius:0;padding:20px 16px}tbody th{width:auto}.facts tbody th{white-space:nowrap}.facts td.flag{white-space:normal;min-width:5em}}
 </style>
 </head>
 <body>
@@ -72,7 +72,7 @@ ${rows.map((row) => `<tr><th scope="row">${esc(row.label)}<small>${esc(row.hint)
 </tbody>
 </table>
 <h2>資訊正確性：你的頁面寫的與 AI 說的</h2>
-<table>
+<table class="facts">
 <thead><tr><th scope="col">欄位</th><th scope="col">你的頁面</th><th scope="col">AI 回答</th><th scope="col" class="flag">判定</th></tr></thead>
 <tbody>
 ${factRow("電話", report.truth?.phone, m.accuracy?.claimed?.phone, m.accuracy?.fields?.phone)}
