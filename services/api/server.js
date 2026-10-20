@@ -239,14 +239,13 @@ function sitemapXml() {
 function llmsTxt() {
   return `# GEOCheck — AI 信任值（AI Trust Index）
 
-> GEOCheck(${SITE_ORIGIN}) 是台灣的網站健檢與方法研究計畫。它在指定的 Perplexity Sonar
+> GEOCheck(${SITE_ORIGIN}) 是台灣的網站健檢與方法研究計畫。它在指定的 AI 搜尋
 > 查詢下，量測可見答案是否採用品牌，以及是否引用已驗證的第一方官方 URL；站內準備度另行呈現。
 
 ## 量測範圍
 
-- Perplexity Sonar 是目前實際搜尋觀測的唯一來源；GEOCheck 不會將結果外推為
-  ChatGPT、Gemini 或其他生成式系統的可見度。
-- DeepSeek V4 Flash 只負責根據網站公開內容產生候選查詢與結構化描述；它不參與
+- 每次檢測只問一個 AI 搜尋；GEOCheck 不會將結果外推為其他生成式系統的可見度。
+- 出題模型只負責根據網站公開內容產生候選查詢與結構化描述；它不參與
   AI Trust Index、不改寫搜尋觀測，也不作為搜尋證據。
 - AI Trust Index = 可見答案採用率 65% + 已驗證第一方 URL 來源證據 35%。直接品牌查詢僅用於實體對齊，不進入總分分母。
 - 本地確定性規則檢查網站抓取、必要技術存取與內容可引用性。這些是站內準備訊號，不是 AI Trust Index 的替代品。
@@ -261,8 +260,8 @@ function llmsTxt() {
 ## 主要頁面
 
 - [首頁與健檢](${SITE_ORIGIN}/): 輸入網址並取得單站報告
-- [健檢模組](${SITE_ORIGIN}/#modules): 技術、內容與 Perplexity 觀測的範圍
-- [研究與方法](${SITE_ORIGIN}/#method): 資料流程、當前模型與限制
+- [健檢模組](${SITE_ORIGIN}/#modules): 技術、內容與 AI 搜尋觀測的範圍
+- [研究與方法](${SITE_ORIGIN}/#method): 資料流程與限制
 - [專案內容](${SITE_ORIGIN}/#project): 公開研究脈絡與交流方式
 - [學習資源](${SITE_ORIGIN}/#resources): GEO、AI 搜尋能見度、llms.txt 與 schema 說明
 `;

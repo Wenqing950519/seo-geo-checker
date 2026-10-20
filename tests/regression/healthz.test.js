@@ -41,7 +41,8 @@ const ledger = path.resolve(__dirname, "../../mock-api/usage-events.jsonl");
     const llmsText = await llmsResponse.text();
     assert.equal(llmsResponse.status, 200);
     assert.match(llmsText, /AI Trust Index = 可見答案採用率 65%/);
-    assert.match(llmsText, /DeepSeek V4 Flash/);
+    // GeoCheck does not say which models or engines run the check (2026-10-21 decision).
+    assert.doesNotMatch(llmsText, /DeepSeek|Perplexity|Sonar|Gemini/i);
     assert.doesNotMatch(llmsText, /Brave Search/);
     assert.doesNotMatch(llmsText, /Google 與 AI 搜尋引擎/);
     const demoResponse = await fetch(`http://127.0.0.1:${port}/demo`);

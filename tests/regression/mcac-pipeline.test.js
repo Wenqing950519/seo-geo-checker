@@ -290,6 +290,12 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.match(servedHtml, /googletagmanager\.com\/gtag\/js/);
   assert.match(servedHtml, /trackResultViewed/);
   assert.match(reportMarkdown(report), /AI 能見度檢測單/);
+  // The site does not say which models or engines run the check (2026-10-21 decision): not in
+  // the page header, the footer's pipeline version or the Markdown download.
+  for (const [name, page] of [["page", servedHtml], ["download", reportMarkdown(report)]]) {
+    assert.doesNotMatch(page, /DeepSeek|Perplexity|Sonar|Gemini/i, `the report ${name} must not name the models behind the check`);
+  }
+  assert.match(servedHtml, /mcac-0.2.0-/, "the footer still carries the pipeline version");
 
   // The stored report carries the id the Worker stored it under, so the page and its download
   // link use the URL's id (PR #6 finding 1).
