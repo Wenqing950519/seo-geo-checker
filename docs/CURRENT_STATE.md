@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-10-02
+last_updated: 2026-10-21
 tags:
   - geocheck
   - current-state
@@ -11,6 +11,22 @@ tags:
 > 內容未經改動。此檔為營運現況的共同事實來源；狀態變更時必須更新此處，不得只寫在對話或記憶中。
 
 # GeoCheck 當前運作狀態
+
+## 2026-10-21 公開快檢改用 MCAC（已上線）
+
+依使用者授權與 LSL-D-006（ls-labs repo），公開快檢從 Classic（AI Trust Index v1）改為 MCAC 0.2.0：每次問 AI 推薦題 2、事實題 1、行動題 1，四項分開判讀，不合成總分，未知不等於 0。規格正本為 `docs/MCAC_V0.md`。
+
+- **合併**：#9（報告頁與 llms.txt 不寫模型名稱）、#10（`AUDIT_ADMISSION_ENABLED=true`）、#6（MCAC 版首頁與白皮書，拿掉「檢測改版中」提示）、#11（檢測共用一個容器）。
+- **部署**：audit Worker 版本 `bda73130-2048-47e0-a600-f4dcd680fa10`，100% 流量，`/healthz` 的 `admission_enabled`、`limits_configured` 都是 true。
+  - 回復：`npx wrangler rollback 55470fbd-4019-4d7e-a405-117e0d20b23a`（同一套程式，開關關閉）。
+- **實測發現**：
+  - 每份檢測原本各開一個容器，結束後不會馬上釋放，連續檢測會碰到容器上限而失敗。#11 改為共用一個容器，上限調為 3。
+  - 天下三絕在正式環境讀不到網站，四項都是未知、沒有問 AI。雲端瀏覽器回 422，容器的其他抓取方式也都失敗，可能是網站擋雲端 IP。
+  - 失敗的檢測也算入單一 IP 的次數。
+- **新版入口**：ls-labs `products/geocheck` 的 `geocheck-public` Worker 會用 zone 路由擋在 geocheck-web Pages 前面。
+  - 白皮書、法務頁與 `/assets` 仍由本 repo 的 Pages 提供。
+  - 切換狀態以 ls-labs 的 `products/geocheck/README.md` 為準。
+- Classic 程式與 AI Trust Index v1 保留給研究批次與舊報告；以下 2026-09-02 起的 AI Trust Index 段落是歷史紀錄。
 
 ## 2026-10-16 Platform MCP provider 回應排錯
 
