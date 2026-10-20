@@ -26,7 +26,7 @@
     "class_name": "AuditFallbackContainer",
     "image": "./Dockerfile",
     "image_build_context": "../../..",
-    "max_instances": 2,
+    "max_instances": 3,
     "instance_type": "basic"
   }],
   "durable_objects": { "bindings": [{ "name": "AUDIT_FALLBACK", "class_name": "AuditFallbackContainer" }] },
