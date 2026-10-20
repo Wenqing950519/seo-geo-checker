@@ -48,8 +48,9 @@ try {
   assert.deepEqual(auditConfig.routes, [
     { pattern: "geocheck.lslabs.tw/api/*", zone_name: "lslabs.tw" },
     { pattern: "geocheck.lslabs.tw/report/*", zone_name: "lslabs.tw" },
-    { pattern: "geocheck.lisheng.cv/api/*", zone_name: "lisheng.cv" },
-    { pattern: "geocheck.lisheng.cv/report/*", zone_name: "lisheng.cv" }
+    // The old host keeps only its API route (D-048). Its report links reach the geocheck-public
+    // Worker (ls-labs products/geocheck), which sends them to geocheck.lslabs.tw (2026-10-21).
+    { pattern: "geocheck.lisheng.cv/api/*", zone_name: "lisheng.cv" }
   ]);
   assert.match(auditWorker, /AUDIT_ADMISSION_ENABLED/, "Audit Worker must guard new paid jobs with an admission switch");
   assert.match(auditWorker, /Strict-Transport-Security/, "Audit Worker responses must enable HSTS");
