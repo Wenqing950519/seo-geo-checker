@@ -19,3 +19,7 @@ for (const source of sources) {
 }
 
 console.log("favicon version tests passed");
+
+// The pre-MCAC paused notice is checked from here so the one-line npm test script,
+// which other open PRs edit, stays untouched; remove both when MCAC opens.
+require("./audit-paused-notice.test.js");

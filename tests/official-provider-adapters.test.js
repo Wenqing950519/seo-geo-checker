@@ -15,7 +15,7 @@ async function main() {
       calls.push({ url, body: JSON.parse(options.body) });
       if (url.includes("openai.com")) return Response.json({ id: "resp_openai", model: "gpt-6-luna", output_text: "OpenAI answer", output: [{ type: "web_search_call" }, { type: "message", content: [{ type: "output_text", text: "OpenAI answer", annotations: [{ type: "url_citation", url: "https://openai.example/source", title: "OpenAI source" }] }] }], usage: { input_tokens: 100, output_tokens: 20, total_tokens: 120 } });
       if (url.includes("googleapis.com")) return Response.json({ id: "int_google", model: "gemini-3.5-flash-lite", output_text: "Gemini answer", steps: [{ type: "google_search_call" }, { type: "model_output", content: [{ type: "text", text: "Gemini answer", annotations: [{ type: "url_citation", url: "https://gemini.example/source", title: "Gemini source" }] }] }], usage: { input_tokens: 80, output_tokens: 25, total_tokens: 105, grounding_tool_count: [{ type: "google_search", count: 1 }] } });
-      if (url.includes("anthropic.com")) return Response.json({ id: "msg_anthropic", model: "claude-haiku-4-5-20251001", stop_reason: "end_turn", content: [{ type: "web_search_tool_result", content: [] }, { type: "text", text: "Claude answer", citations: [{ type: "web_search_result_location", url: "https://claude.example/source", title: "Claude source" }] }], usage: { input_tokens: 90, output_tokens: 30, server_tool_use: { web_search_requests: 1 } } });
+      if (url.includes("anthropic.com")) return Response.json({ id: "msg_anthropic", model: "claude-haiku-5-5", stop_reason: "end_turn", content: [{ type: "text", text: "Let me search." }, { type: "server_tool_use", name: "web_search" }, { type: "web_search_tool_result", content: [] }, { type: "thinking", thinking: "", signature: "sig" }, { type: "text", text: "Claude answer (source: " }, { type: "text", text: "Claude source", citations: [{ type: "web_search_result_location", url: "https://claude.example/source", title: "Claude source" }] }, { type: "text", text: ")." }], usage: { input_tokens: 90, output_tokens: 30, server_tool_use: { web_search_requests: 1 } } });
       return Response.json({ id: "pplx_result", model: "sonar", choices: [{ message: { content: "Perplexity answer" } }], citations: ["https://perplexity.example/source"], search_results: [{ url: "https://perplexity.example/source", title: "Perplexity source" }], usage: { prompt_tokens: 70, completion_tokens: 35, total_tokens: 105, num_search_queries: 1, cost: { total_cost: 0.005105 } } });
     }
   });
@@ -31,7 +31,10 @@ async function main() {
   assert.equal(openai.body.model, "gpt-6-luna"); assert.equal(openai.body.tools[0].type, "web_search"); assert.equal(openai.body.store, false); assert.equal(openai.body.max_output_tokens, 1024); assert.equal(openai.body.max_tool_calls, 2);
   assert.equal(gemini.body.model, "gemini-3.5-flash-lite"); assert.equal(gemini.body.tools[0].type, "google_search"); assert.equal(gemini.body.store, false); assert.equal(gemini.body.generation_config.max_output_tokens, 1024);
   assert.equal(perplexity.body.model, "sonar"); assert.equal(perplexity.body.messages[0].role, "user"); assert.equal(perplexity.body.max_tokens, 1024);
-  assert.equal(anthropic.body.model, "claude-haiku-4-5-20251001"); assert.equal(anthropic.body.max_tokens, 1024); assert.equal(anthropic.body.tools[0].type, "web_search_20250305"); assert.equal(anthropic.body.tools[0].max_uses, 2);
+  assert.equal(anthropic.body.model, "claude-haiku-5-5"); assert.equal(anthropic.body.max_tokens, 1024); assert.equal(anthropic.body.output_config.effort, "low"); assert.equal(anthropic.body.thinking, undefined); assert.equal(anthropic.body.temperature, undefined); assert.equal(anthropic.body.tools[0].type, "web_search_20250305"); assert.equal(anthropic.body.tools[0].max_uses, 2);
+  await providers.find((provider) => provider.id === "anthropic-web").execute({ prompt: "Default budget?" });
+  assert.equal(calls.at(-1).body.max_tokens, 4096);
+  calls.pop();
   assert.deepEqual(results.map((result) => result.usage.input_tokens), [100, 80, 70, 90]);
   assert.deepEqual(results.map((result) => result.usage.search_requests), [1, 1, 1, 1]);
   assert.equal(results[2].usage.provider_reported_cost_usd, 0.005105);
@@ -41,12 +44,23 @@ async function main() {
   assert.equal(results[1].cost.status, "estimated_range_free_allowance_unknown");
   assert.equal(results[2].cost.status, "provider_reported");
   assert.equal(results[3].cost.status, "estimated_list_price");
+  assert.equal(results[3].answer, "Claude answer (source: Claude source).");
   const preambleOnly = createOfficialProvidersFromEnv({ config, fetch: async () => Response.json({
     content: [{ type: 'text', text: 'Let me search.' }, { type: 'web_search_tool_result', content: [] }],
     stop_reason: 'max_tokens', usage: { server_tool_use: { web_search_requests: 1 } }
   }) });
   assert.equal((await preambleOnly.find((p) => p.id === 'anthropic-web').execute({ prompt: 'test' })).answer,
     '', 'A pre-search preamble must never substitute for the missing final answer');
+  assert.equal(results[3].cost.pricing_version, "2026-10-14");
+  assert.equal(results[3].cost.estimated_usd, 0.010024);
+  assert.deepEqual(
+    estimateProviderCost("anthropic-web", { input_tokens: 100_000, output_tokens: 1_000, search_requests: 1 }).estimated_usd,
+    0.0205
+  );
+  assert.deepEqual(
+    estimateProviderCost("anthropic-web", { input_tokens: 150_000, output_tokens: 1_000, search_requests: 2 }).estimated_usd,
+    0.0975
+  );
   assert.equal(results[0].nativeEvidence.response_id, "resp_openai");
   assert.equal(results[1].nativeEvidence.response_id, "int_google");
   assert.equal(results[3].nativeEvidence.response_id, "msg_anthropic");

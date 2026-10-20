@@ -43,10 +43,17 @@ const OFFICIAL_ENGINE_PROFILES = Object.freeze({
   "anthropic-web": profile({
     id: "anthropic-web",
     provider: "anthropic",
-    model: "claude-haiku-4-5-20251001",
+    model: "claude-haiku-5-5",
     apiFamily: "messages",
     searchSurface: "anthropic_web_search",
-    existingAdapter: true
+    existingAdapter: true,
+    // LSL-D-002: 2026-10-14 benchmarks v1 and v2 both 17/20 (max_tokens, then missing
+    // citations); 2026-10-19 v3 with a 4,096-token limit passed 19/20.
+    developerApiStatus: "prototype_benchmark_verified",
+    modelStatus: "account_smoke_verified",
+    searchCapabilityStatus: "controlled_benchmark_verified",
+    lastSmokeDate: "2026-10-19",
+    lastBenchmarkDate: "2026-10-19"
   })
 });
 

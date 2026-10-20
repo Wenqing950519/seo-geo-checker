@@ -59,7 +59,7 @@ MCP 不提供管理、刪除、改模型參數、任意 SQL 或 shell。結果�
 
 執行 `npm.cmd run test:mcp`、`npm.cmd run test:developer-api`、`npm.cmd run test:sdk` 與 `node tests/cloudflare-developer-worker-bundle.test.mjs`。包含真實 SQLite migration、20 請求競爭、權限與跨身分隔離、成本與開關，以及 MCP 協定的 fixture 整合驗證。
 
-2026-10-15 本機測試已通過上述檢查，另有 `node tests/mcp-release.test.cjs` 驗證部署來源選擇。正式 Worker 內部日／月預算仍為 NT$500／3,000、單工作預留 NT$12。正式 Worker 仍使用 `claude-haiku-4-5-20251001`；本機 LSL-D-002 尚未驗收的 Haiku 5.5 與其他公開資產修改均未帶上線，禁止直接部署目前整個工作樹。
+2026-10-15 本機測試已通過上述檢查，另有 `node tests/mcp-release.test.cjs` 驗證部署來源選擇。正式 Worker 內部日／月預算仍為 NT$500／3,000、單工作預留 NT$12。正式 Worker 仍使用 `claude-haiku-4-5-20251001`；本機 LSL-D-002 尚未驗收的 Haiku 5.5 與其他公開資產修改均未帶上線，禁止直接部署目前整個工作樹。2026-10-19 起 Haiku 5.5 已通過 LSL-D-002 第三輪驗收（plan v3，輸出上限 4,096），但仍未部署；部署需另行授權，上述禁令不變。
 
 正式部署已完成：從正式 source map 取得原 provider 模組，在記憶體套入 MCP 差異；部署包經本機啟動與完整 Worker 路由測試，再上傳未部署版本。Cloudflare metadata 以 `keep_assets` 保留原公開資產、`inherit` 保留原 bindings；驗證資產設定一致後先套用 `0006`，再部署 MCP 關閉版本，建立研究授權並開啟 MCP。準備與操作命令為 `scripts/developer-api/mcp-release.cjs` 的 `prepare`、`upload`、`migrate`、`deploy`、`verify`、`activate`；修改操作須明確帶 `--allow-deploy`。`prepare` 是一次部署的基線產物，不可在已部署後覆寫仍需用於回復的 manifest；本次 manifest 位於 Git 忽略的 `tmp/mcp-release/manifest.json`，非機密驗收正本在下方 evidence。
 

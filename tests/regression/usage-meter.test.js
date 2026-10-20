@@ -14,4 +14,17 @@ const summary = getUsageSummary({ runId: "research-test-run" });
 assert.equal(summary.totals.requests, 1); assert.equal(summary.totals.totalTokens, 1500); assert.equal(summary.totals.successRate, 100); assert.equal(summary.totals.costConfigured, true); assert(summary.totals.estimatedCostUsd > 0);
 fs.rmSync(ledger, { force: true }); if (backup) fs.writeFileSync(ledger, backup);
 delete process.env.AI_USAGE_RUN_ID;
+
+// The audit container has no mock-api folder (2026-10-20 container check): the ledger must create
+// its folder, and a ledger that cannot be written must never break the call that uses the model.
+const os = require("os");
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "usage-meter-"));
+process.env.AI_USAGE_LEDGER_FILE = path.join(tmp, "missing", "dir", "usage.jsonl");
+assert.doesNotThrow(() => recordAiUsage({ provider: "deepseek", model: "test", operation: "audit", status: "success" }));
+assert.ok(fs.existsSync(process.env.AI_USAGE_LEDGER_FILE), "the ledger folder is created");
+fs.writeFileSync(path.join(tmp, "a-file"), "");
+process.env.AI_USAGE_LEDGER_FILE = path.join(tmp, "a-file", "usage.jsonl");
+assert.doesNotThrow(() => recordAiUsage({ provider: "deepseek", model: "test", operation: "audit", status: "success" }), "an unwritable ledger is skipped");
+delete process.env.AI_USAGE_LEDGER_FILE;
+fs.rmSync(tmp, { recursive: true, force: true });
 console.log("usage meter tests passed");

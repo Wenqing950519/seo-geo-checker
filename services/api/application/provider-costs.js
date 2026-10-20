@@ -4,15 +4,24 @@ const LIST_PRICES_USD = Object.freeze({
   "openai-web": Object.freeze({ pricingVersion: "2026-09-23", inputPerMillion: 0.10, outputPerMillion: 0.50, searchPerRequest: 0.010 }),
   "google-web": Object.freeze({ inputPerMillion: 0.30, outputPerMillion: 2.50, searchPerRequest: 0.014, searchAllowanceUnknown: true }),
   "perplexity-sonar": Object.freeze({ inputPerMillion: 1.00, outputPerMillion: 1.00, searchPerRequest: 0.005 }),
-  "anthropic-web": Object.freeze({ inputPerMillion: 1.00, outputPerMillion: 5.00, searchPerRequest: 0.010 })
+  "anthropic-web": Object.freeze({
+    pricingVersion: "2026-10-14",
+    inputPerMillion: 0.10,
+    outputPerMillion: 0.50,
+    searchPerRequest: 0.010,
+    longContext: Object.freeze({ inputTokensOver: 100_000, inputPerMillion: 0.50, outputPerMillion: 2.50 })
+  })
 });
 
 function estimateProviderCost(profileId, usage = {}) {
-  const price = LIST_PRICES_USD[profileId];
-  if (!price) return { status: "unknown", pricing_version: PRICING_VERSION };
-  const pricingVersion = price.pricingVersion || PRICING_VERSION;
+  const listed = LIST_PRICES_USD[profileId];
+  if (!listed) return { status: "unknown", pricing_version: PRICING_VERSION };
+  const pricingVersion = listed.pricingVersion || PRICING_VERSION;
   const reported = finiteNonNegative(usage.provider_reported_cost_usd);
   const inputTokens = finiteNonNegative(usage.input_tokens);
+  const price = listed.longContext && inputTokens != null && inputTokens > listed.longContext.inputTokensOver
+    ? { ...listed, ...listed.longContext }
+    : listed;
   const outputTokens = finiteNonNegative(usage.output_tokens);
   const searchRequests = finiteNonNegative(usage.search_requests);
   const totalTokens = finiteNonNegative(usage.total_tokens);

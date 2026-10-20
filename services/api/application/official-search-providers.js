@@ -12,6 +12,23 @@ function createOfficialProvidersFromEnv(options = {}) {
   return listOfficialEngineProfiles().map((profile) => createAdapter(profile, keys, fetchImpl));
 }
 
+// One adapter for one profile, requiring only that provider's key. GeoCheck MCAC uses
+// this so it never needs (or touches) the other engines' credentials.
+function createOfficialProvider(profileId, options = {}) {
+  const config = options.config || process.env;
+  const fetchImpl = options.fetch || globalThis.fetch;
+  const base = listOfficialEngineProfiles().find((profile) => profile.id === profileId);
+  if (!base) throw new Error(`Unknown official engine profile: ${profileId}`);
+  const readiness = getOfficialProviderReadiness(config)[profileId];
+  if (!readiness?.configured) {
+    const error = new Error(`Official provider ${profileId} requires: ${readiness?.env || "an API key"}`);
+    error.code = "missing_provider_api_keys";
+    throw error;
+  }
+  const profile = options.model ? Object.freeze({ ...base, model: String(options.model) }) : base;
+  return createAdapter(profile, { [base.provider]: String(config[readiness.env]).trim() }, fetchImpl);
+}
+
 function getOfficialProviderReadiness(config = process.env) {
   const names = {
     "openai-web": "OPENAI_API_KEY",
@@ -114,7 +131,9 @@ async function executeGemini(profile, apiKey, fetchImpl, request) {
 }
 
 async function executeAnthropic(profile, apiKey, fetchImpl, request) {
-  const maxOutputTokens = optionalPositiveInteger(request.maxOutputTokens, 4_096) || 1_024;
+  // Haiku 5.5 thinks by default and thinking counts toward max_tokens: 1,024 and
+  // then 2,048 still cut answers off (LSL-D-002), so leave room for both.
+  const maxOutputTokens = optionalPositiveInteger(request.maxOutputTokens, 4_096) || 4_096;
   const maxSearchRequests = optionalPositiveInteger(request.maxSearchRequests, 10) || 1;
   const timeoutMs = optionalPositiveInteger(request.timeoutMs, PROVIDER_TIMEOUT_MS) || PROVIDER_TIMEOUT_MS;
   const { body: response, requestId } = await postJson(fetchImpl, "https://api.anthropic.com/v1/messages", {
@@ -123,6 +142,7 @@ async function executeAnthropic(profile, apiKey, fetchImpl, request) {
   }, {
     model: profile.model,
     max_tokens: maxOutputTokens,
+    output_config: { effort: "low" },
     messages: [{ role: "user", content: request.prompt }],
     tools: [{ type: "web_search_20250305", name: "web_search", max_uses: maxSearchRequests }]
   }, timeoutMs);
@@ -242,6 +262,7 @@ function providerError(code, message) {
   return error;
 }
 
+// Citations split one answer into several text blocks; text before the last search result is preamble.
 function anthropicAnswer(content) {
   if (!Array.isArray(content)) return "";
   let start = 0;
@@ -414,6 +435,7 @@ function dedupeCitations(citations) {
 
 module.exports = {
   MAX_PROVIDER_RESPONSE_BYTES,
+  createOfficialProvider,
   createOfficialProvidersFromEnv,
   getOfficialProviderReadiness
 };

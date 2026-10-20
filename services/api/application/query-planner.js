@@ -399,5 +399,6 @@ module.exports = {
   mergePreferredQueries,
   normalizeGeoQueryPlan,
   normalizeReviewedQueryPlan,
+  querySimilarity,
   selectRepresentativeQueries
 };

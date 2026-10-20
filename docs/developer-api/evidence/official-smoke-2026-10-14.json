@@ -1,0 +1,129 @@
+{
+  "smoke_version": "official-four-v1",
+  "observed_at": "2026-10-13T18:54:17.589Z",
+  "prompt_sha256": "72a610e16d07fd6fe7348bce49705e3457c0b89b11834a1e4fe8fca1d651a0a3",
+  "round_status": "succeeded",
+  "providers": [
+    {
+      "profile_id": "openai-web",
+      "status": "succeeded",
+      "reported_model": "gpt-6-luna",
+      "response_id_present": true,
+      "search_executed": true,
+      "citation_count": 1,
+      "answer_chars": 125,
+      "usage": {
+        "input_tokens": 6869,
+        "output_tokens": 161,
+        "total_tokens": 7030,
+        "search_requests": 1,
+        "provider_reported_cost_usd": null
+      },
+      "cost": {
+        "status": "estimated_list_price",
+        "pricing_version": "2026-09-23",
+        "estimated_usd": 0.0107674,
+        "estimated_min_usd": 0.0107674,
+        "estimated_max_usd": 0.0107674,
+        "token_cost_usd": 0.0007674,
+        "token_cost_min_usd": 0.0007674,
+        "token_cost_max_usd": 0.0007674,
+        "search_cost_usd": 0.01
+      },
+      "latency_ms": 6152
+    },
+    {
+      "profile_id": "google-web",
+      "status": "succeeded",
+      "reported_model": "gemini-3.5-flash-lite",
+      "response_id_present": false,
+      "search_executed": true,
+      "citation_count": 1,
+      "answer_chars": 104,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null,
+        "total_tokens": 124,
+        "search_requests": 2,
+        "provider_reported_cost_usd": null
+      },
+      "cost": {
+        "status": "estimated_range_free_allowance_unknown",
+        "pricing_version": "2026-09-09",
+        "estimated_usd": 0.02831,
+        "estimated_min_usd": 0.0000372,
+        "estimated_max_usd": 0.02831,
+        "token_cost_usd": null,
+        "token_cost_min_usd": 0.0000372,
+        "token_cost_max_usd": 0.00031,
+        "search_cost_usd": 0.028
+      },
+      "latency_ms": 3875
+    },
+    {
+      "profile_id": "perplexity-sonar",
+      "status": "succeeded",
+      "reported_model": "sonar",
+      "response_id_present": true,
+      "search_executed": true,
+      "citation_count": 10,
+      "answer_chars": 64,
+      "usage": {
+        "input_tokens": 46,
+        "output_tokens": 52,
+        "total_tokens": 98,
+        "search_requests": null,
+        "provider_reported_cost_usd": 0.00278
+      },
+      "cost": {
+        "status": "provider_reported",
+        "pricing_version": "2026-09-09",
+        "provider_reported_usd": 0.00278,
+        "estimated_list_usd": null
+      },
+      "latency_ms": 1990
+    },
+    {
+      "profile_id": "anthropic-web",
+      "status": "succeeded",
+      "reported_model": "claude-haiku-5-5",
+      "response_id_present": true,
+      "search_executed": true,
+      "citation_count": 1,
+      "answer_chars": 180,
+      "usage": {
+        "input_tokens": 12663,
+        "output_tokens": 430,
+        "total_tokens": 13093,
+        "search_requests": 1,
+        "provider_reported_cost_usd": null
+      },
+      "cost": {
+        "status": "estimated_list_price",
+        "pricing_version": "2026-10-14",
+        "estimated_usd": 0.0114813,
+        "estimated_min_usd": 0.0114813,
+        "estimated_max_usd": 0.0114813,
+        "token_cost_usd": 0.0014813,
+        "token_cost_min_usd": 0.0014813,
+        "token_cost_max_usd": 0.0014813,
+        "search_cost_usd": 0.01
+      },
+      "latency_ms": 3915
+    }
+  ],
+  "cost": {
+    "status": "estimated_range",
+    "usd_minimum": 0.025066,
+    "usd_maximum": 0.053339,
+    "twd_per_usd": 32.085,
+    "minimum_twd": 0.804239,
+    "maximum_twd": 1.711372,
+    "note": "Perplexity may report billed cost; other values use 2026-09-09 official list prices. Google Search's monthly free allowance is unknown, so its search fee is represented as a range."
+  },
+  "original_assumption": {
+    "twd_per_successful_round": 4,
+    "matches": true,
+    "repricing_gate_exceeded": false
+  }
+}

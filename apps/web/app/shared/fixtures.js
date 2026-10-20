@@ -169,7 +169,7 @@ registerEvidence({
   questionText: '台北米其林星級主廚牛排餐廳推薦',
   intent: 'consideration',
   engine: 'anthropic',
-  model: 'claude-haiku-4.5',
+  model: 'claude-haiku-5.5',
   observedAt: '2026-09-09T02:15:45.000Z',
   status: 'unknown', // Unknown!
   brandMentioned: null,

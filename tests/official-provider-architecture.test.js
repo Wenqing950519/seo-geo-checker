@@ -22,7 +22,13 @@ assert.deepEqual(
 
 for (const profile of listOfficialEngineProfiles()) {
   assert.equal(profile.routing, "official_direct");
-  if (profile.id === "openai-web") {
+  if (profile.id === "anthropic-web") {
+    assert.equal(profile.developerApiStatus, "prototype_benchmark_verified");
+    assert.equal(profile.modelStatus, "account_smoke_verified");
+    assert.equal(profile.searchCapabilityStatus, "controlled_benchmark_verified");
+    assert.equal(profile.lastSmokeDate, "2026-10-19");
+    assert.equal(profile.lastBenchmarkDate, "2026-10-19");
+  } else if (profile.id === "openai-web") {
     assert.equal(profile.developerApiStatus, "pending_live_smoke");
     assert.equal(profile.modelStatus, "official_documentation_verified");
     assert.equal(profile.searchCapabilityStatus, "official_documentation_verified");
@@ -48,7 +54,7 @@ assert.deepEqual(
     "openai-web": "gpt-6-luna",
     "google-web": "gemini-3.5-flash-lite",
     "perplexity-sonar": "sonar",
-    "anthropic-web": "claude-haiku-4-5-20251001"
+    "anthropic-web": "claude-haiku-5-5"
   }
 );
 
@@ -72,6 +78,17 @@ function runtimeJavaScriptFiles(directory) {
     const target = path.join(directory, entry.name);
     return entry.isDirectory() ? runtimeJavaScriptFiles(target) : target.endsWith(".js") ? [target] : [];
   });
+}
+
+// Public Platform pages show the model id the API returns (profile.model), not a display name.
+const profileModels = listOfficialEngineProfiles().map((profile) => profile.model).sort();
+for (const [page, pattern] of [
+  ["apps/web/public/developers.html", /<span class="engine-model">([^<]+)<\/span>/g],
+  ["apps/web/public/developers/docs.html", /<tr><td><strong>[^<]+<\/strong><\/td><td><code>([^<]+)<\/code><\/td>/g],
+  ["apps/web/public/developers/docs.html", /<span class="s">"model"<\/span>: <span class="s">"([^"]+)"<\/span>/g]
+]) {
+  const shown = [...fs.readFileSync(at(page), "utf8").matchAll(pattern)].map((match) => match[1]).sort();
+  assert.deepEqual(shown, profileModels, `${page} must list exactly the official engine profile models`);
 }
 
 for (const file of [

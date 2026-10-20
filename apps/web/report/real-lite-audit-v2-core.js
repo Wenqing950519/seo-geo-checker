@@ -359,4 +359,12 @@ function unique(values) {
   return [...new Set(values.filter(Boolean).map(String))];
 }
 
-module.exports = { applyV2Audit, createFetchLimitedReport, runRealLiteAudit };
+module.exports = {
+  applyV2Audit,
+  buildDeterministicActions,
+  buildDeterministicCiteability,
+  buildDeterministicIssues,
+  createFetchLimitedReport,
+  rankDeterministicActions,
+  runRealLiteAudit
+};
