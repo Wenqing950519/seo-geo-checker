@@ -106,6 +106,9 @@ assert.doesNotMatch(visible, /ChatGPT\s*有提到你|在 ChatGPT 或 Perplexity 
 assert.doesNotMatch(home, /Top Position Trend|Jan 01/, "a snapshot tool must not draw a trend chart");
 assert.doesNotMatch(home, />50\+</, "the checked-site count has no source");
 assert.doesNotMatch(home, /app\.lslabs\.tw/, "the paused Dashboard must not be linked");
+// PR #7 puts a 「檢測改版中」 notice on main that blocks every submit until MCAC opens. It
+// does not conflict with this branch, so it would survive the merge; this page opens audits.
+assert.doesNotMatch(home, /audit-paused-notice|showAuditPaused/, "remove the pre-MCAC paused notice (PR #7) when MCAC opens");
 assert.doesNotMatch(home, /找得到你 ✓/, "Google indexing is not measured, so it cannot be ticked");
 assert.doesNotMatch(visible, /閱讀完幾十個網站/, "a source list does not show which pages an answer used");
 assert.doesNotMatch(visible, /程式碼範例/, "the MCAC report lists site checks, not code samples");
