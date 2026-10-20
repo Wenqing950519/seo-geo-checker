@@ -10,7 +10,6 @@ const FIELD = { correct: "正確", mismatch: "和你的頁面不一致", not_pro
 const SOURCE = { official: "官網", maps: "地圖", social: "社群", booking: "訂位平台", ugc: "評論論壇", wiki: "維基", gov_edu: "政府學校", other: "其他", unattributable: "無法歸屬" };
 const ENTRY = { website: "網站", map: "地圖", phone: "電話", booking: "訂位", order: "訂購", line: "LINE", address: "地址", other: "其他" };
 const PROBE = { discovery: "推薦題（不帶店名）", fact: "事實題", action: "行動題" };
-const ENGINE = { perplexity: "Perplexity Sonar", gemini: "Gemini Flash（Google 搜尋）" };
 const TRUTH_SOURCE = { json_ld: "結構化資料", visible_text: "頁面文字" };
 
 function mcacReportHtml(report) {
@@ -60,7 +59,7 @@ ul.plain{margin:6px 0 0;padding-left:18px}.foot{margin-top:28px;font:400 .76rem/
 <h1>AI 能見度檢測單</h1>
 <div class="meta">
 <span>受檢網站 ${esc(host)}</span><span>品牌名稱 ${esc(report.entity?.name || "未知")}</span><span>地區 ${esc(report.entity?.location || "未知")}</span>
-<span>方法 MCAC v${esc(String(m.method_version || "0.1.0"))}</span><span>AI 搜尋 ${esc(ENGINE[report.engine?.id] || report.engine?.id || "未知")}</span>
+<span>方法 MCAC v${esc(String(m.method_version || "0.1.0"))}</span>
 <span>檢測時間 ${esc(taipeiTime(report.createdAt))}</span><span>報告編號 ${esc(report.id || "")}</span>
 </div>
 <p class="note">四項分開判讀，不合成總分。每項都附題數與原始回答；這是一次快照，換題目、順序或時間，結果都可能不同。</p>
@@ -93,7 +92,7 @@ ${checks.citeability?.gaps_zh?.length ? `<p class="note">可以補強的內容�
 <li>被提到不等於被推薦，也可能是比較或批評；來源出現次數不是 AI 的信任權重。</li>
 <li>判讀規則為 v0 暫定（${esc(m.flag_rules_version || "mcac-flags-v0")}）；本工具沒有量測後續來客或轉換。</li>
 </ul>
-<p class="foot">GeoCheck · MCAC v${esc(String(m.method_version || "0.1.0"))} · ${esc(report.pipelineVersion || "")}<br>方法依據：<a href="https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/">AI 搜尋時代的檢索機制報告</a></p>
+<p class="foot">GeoCheck · MCAC v${esc(String(m.method_version || "0.1.0"))} · ${esc(pipelineLabel(report))}<br>方法依據：<a href="https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/">AI 搜尋時代的檢索機制報告</a></p>
 </main>
 </body>
 </html>`;
@@ -161,7 +160,6 @@ function mcacReportMarkdown(report) {
     ``,
     `- 受檢網站：${safeHost(report.finalUrl || report.url)}`,
     `- 方法：MCAC v${m.method_version || "0.1.0"}（四項分開判讀，不合成總分）`,
-    `- AI 搜尋：${ENGINE[report.engine?.id] || report.engine?.id || "未知"}`,
     `- 檢測時間：${taipeiTime(report.createdAt)}`,
     ``,
     `| 項目 | 結果 | 判讀 |`,
@@ -187,6 +185,14 @@ function hasMismatch(m) {
 function flag(value) {
   const [label, tone] = FLAG[value] || FLAG.unknown;
   return `<span class="f f-${tone}">${label}</span>`;
+}
+
+// The pipeline version ends in the engine id. The site does not say which engine ran the
+// check (2026-10-21), so the footer shows the version without it.
+function pipelineLabel(report) {
+  const version = String(report.pipelineVersion || "");
+  const engine = report.engine?.id;
+  return engine && version.endsWith(`-${engine}`) ? version.slice(0, -engine.length - 1) : version;
 }
 
 function taipeiTime(value) {

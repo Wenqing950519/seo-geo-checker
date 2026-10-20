@@ -112,7 +112,7 @@ async function main() {
   const serverSource = fs.readFileSync(path.resolve(__dirname, "../../services/api/server.js"), "utf8");
   assert.equal(/SEO\/GEO 顧問|#services|服務方案/.test(serverSource), false);
   assert.equal(serverSource.includes("[專案內容](${SITE_ORIGIN}/#project)"), true);
-  assert.equal(serverSource.includes("[研究與方法](${SITE_ORIGIN}/#method): 資料流程、當前模型與限制"), true);
+  assert.equal(serverSource.includes("[研究與方法](${SITE_ORIGIN}/#method): 資料流程與限制"), true);
   assert.equal(serverSource.includes("result_viewed"), true);
   assert.equal(serverSource.includes("recommendation_clicked"), true);
   assert.equal(serverSource.includes("<title>GeoCheck GEO 健檢報告 - ${escapeHtml(report.url)}</title>"), false);
