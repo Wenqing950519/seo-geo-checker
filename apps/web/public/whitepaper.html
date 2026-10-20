@@ -717,7 +717,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <h2 id="sec-1">1. 緒論：為什麼要分開量測？</h2>
     <h3>1.1 從傳統 SEO 到 GEO（生成式引擎優化）</h3>
     <p>傳統搜尋引擎（如 Google、Bing）的核心是「排序藍色連結（Ranked Blue Links）」，其評估體系以關鍵字排名、展示次數（Impressions）與點擊率（CTR）為中心。</p>
-    <p>生成式 AI 搜尋（如 Perplexity、ChatGPT Search、Google AI Overviews）改變了答案的呈現方式：<strong>AI 直接生成綜合解答，而非僅列出網頁清單。</strong></p>
+    <p>生成式 AI 搜尋（如 ChatGPT Search、Google AI Overviews）改變了答案的呈現方式：<strong>AI 直接生成綜合解答，而非僅列出網頁清單。</strong></p>
     <p>在生成式回答中，品牌至少會遇到四件可以分開觀察的事：</p>
     <ul>
       <li><strong>提及（Mention）</strong>：顧客沒說店名時，AI 有沒有主動講到這個品牌？提到不等於推薦，也可能是比較或批評。</li>
@@ -844,27 +844,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </div>
     </div>
 
-    <h3>2.1 引擎只有兩組</h3>
-    <table class="sharp-table">
-      <thead><tr><th>組合</th><th>出題</th><th>被量測的 AI 搜尋</th></tr></thead>
-      <tbody>
-        <tr><td>預設</td><td>DeepSeek</td><td>Perplexity Sonar</td></tr>
-        <tr><td>可切換</td><td>DeepSeek</td><td>Gemini Flash 搭配 Google 搜尋</td></tr>
-      </tbody>
-    </table>
-    <p>每次檢測只用一個被量測的 AI 搜尋，其他引擎一律不用；出題的 DeepSeek 失敗時，也不改用其他模型。預設的 Perplexity Sonar 與檢索機制報告使用的 API 相同。</p>
+    <h3>2.1 每次只問一個 AI 搜尋</h3>
+    <p>出題與回答分開：一個模型依網站內容規劃推薦題，另一個被量測的 AI 搜尋回答 4 題。每次檢測只用一個被量測的 AI 搜尋，其他引擎一律不用；出題失敗時，也不改用其他模型。</p>
 
     <!-- Section 3 -->
     <h2 id="sec-3">3. 單站檢測流程（MCAC 0.2.0）</h2>
     <p>使用者在首頁輸入網址後，系統依序執行：</p>
     <ol>
       <li><strong>讀網站</strong>：以一般抓取或瀏覽器渲染讀取首頁。所有讀取方式都失敗時直接停止，不詢問 AI，四項標為未知。</li>
-      <li><strong>規劃推薦題</strong>：DeepSeek 依頁面內容規劃不帶店名的候選題，系統優先選「推薦型」題目，並略過太相近的題目；使用者自訂的推薦題優先採用，最多 2 題。DeepSeek 失敗時推薦題標為未知，事實題與行動題照常執行。</li>
+      <li><strong>規劃推薦題</strong>：依頁面內容規劃不帶店名的候選題，系統優先選「推薦型」題目，並略過太相近的題目；使用者自訂的推薦題優先採用，最多 2 題。規劃失敗時推薦題標為未知，事實題與行動題照常執行。</li>
       <li><strong>組成事實題與行動題</strong>：用網站上的店名與地區提問，題目不放網域，避免把 AI 引向官網而灌高引用。</li>
       <li><strong>詢問 AI</strong>：4 題依序送給被量測的 AI 搜尋；遇到可重試的錯誤，每題最多重試 1 次。</li>
       <li><strong>讀出頁面資料並判讀</strong>：從網站的結構化資料（JSON-LD）與頁面文字讀出電話、地址與營業時間，最多再讀兩個門市頁或聯絡頁，再與 AI 的回答比對，產出四項判讀與報告。</li>
     </ol>
-    <p>品牌的別名只取自網站資料與 DeepSeek 的規劃，不另外花一題確認身分。別名可能抓不全，提及因此可能偏保守；報告會列出所用的品牌名稱。</p>
+    <p>品牌的別名只取自網站資料與推薦題的規劃結果，不另外花一題確認身分。別名可能抓不全，提及因此可能偏保守；報告會列出所用的品牌名稱。</p>
 
     <!-- Section 4 -->
     <h2 id="sec-4">4. 判讀規則（mcac-flags-v0）</h2>
@@ -915,9 +908,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <!-- Section 7 -->
     <h2 id="sec-7">7. 研究限制與治理規範</h2>
     <ol>
-      <li><strong>快檢不是研究結論</strong>：每項只有 1 到 2 題、跑一次，推薦題由 DeepSeek 自動產生、未經人工審題。結果是一次快照，不能當成研究結論或長期趨勢引用。</li>
+      <li><strong>快檢不是研究結論</strong>：每項只有 1 到 2 題、跑一次，推薦題自動產生、未經人工審題。結果是一次快照，不能當成研究結論或長期趨勢引用。</li>
       <li><strong>時間波動性（Temporal Drift）</strong>：生成式搜尋每週微調模型或更新索引。量測結果代表特定時點的可觀測狀態，不代表永久排名。</li>
-      <li><strong>單一引擎限制</strong>：每次檢測只問一個 AI 搜尋（預設 Perplexity Sonar，可切換 Gemini Flash 搭配 Google 搜尋），結果不能直接外推到其他 AI 平台。</li>
+      <li><strong>單一引擎限制</strong>：每次檢測只問一個 AI 搜尋，結果不能直接外推到其他 AI 平台。</li>
       <li><strong>資料只比對使用者的頁面</strong>：資訊正確性只以使用者自己的頁面為準；研究版另外核對 Google 商家檔案，快檢沒有。</li>
       <li><strong>探索性相關分析</strong>：若探討四項結果與客流量的關係，嚴格定性為探索性相關，嚴禁宣稱因果關係。</li>
       <li><strong>可重算</strong>：判讀規則公開，報告保留每一題的原始回答與來源，可以由原始回答重算四項結果；研究資料集另計算 SHA-256 雜湊值，並揭露未知與失敗紀錄。</li>
@@ -950,7 +943,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <h3>8.2 Classic 單站檢測流程</h3>
     <ol>
       <li><strong>多重抓取彈性保障</strong>：優先以輕量 HTTP 抓取目標頁面 HTML；遇客戶端渲染自動退回 Headless 瀏覽器渲染模式。</li>
-      <li><strong>非品牌題目生成與防呆</strong>：使用結構化 LLM（當時主力：<code>deepseek-v4-flash</code>）依頁面證據產出 5～8 個候選題，並以確定性正規表示式嚴格剔除包含受測品牌的題目。若兩輪無法湊齊可選出 4 題的合規非品牌題，系統主動停止搜尋並標示 <code>unknown</code>。</li>
+      <li><strong>非品牌題目生成與防呆</strong>：使用結構化 LLM 依頁面證據產出 5～8 個候選題，並以確定性正規表示式嚴格剔除包含受測品牌的題目。若兩輪無法湊齊可選出 4 題的合規非品牌題，系統主動停止搜尋並標示 <code>unknown</code>。</li>
       <li><strong>實體查詢隔離</strong>：額外執行 1 次帶品牌名稱的實體查詢（Direct Entity Query），但僅用於綁定官方別名與網域，不併入非品牌發現的評分分母中。</li>
     </ol>
 

@@ -94,9 +94,9 @@ for (const phrase of ["AI 信任值", "信任值", "AI Trust Index", "65%", "35%
 }
 
 // 4. The method is stated as built: three kinds of question, four results read
-//    separately, no total, the two engine pairs, and the Accuracy wording decided on
-//    2026-10-20. A value the page does not list is not called an error.
-for (const phrase of ["推薦題", "事實題", "行動題", "推薦 2、事實 1、行動 1", "四項分開判讀", "不合成總分", "和你的頁面不一致", "無法核對", "未知不等於 0", "DeepSeek", "Perplexity", "Gemini"]) {
+//    separately, no total, and the Accuracy wording decided on 2026-10-20. A value the
+//    page does not list is not called an error.
+for (const phrase of ["推薦題", "事實題", "行動題", "推薦 2、事實 1、行動 1", "四項分開判讀", "不合成總分", "和你的頁面不一致", "無法核對", "未知不等於 0"]) {
   assert.ok(visible.includes(phrase), `home must explain MCAC: "${phrase}"`);
 }
 assert.doesNotMatch(visible, /有錯誤|[：:]\s*錯誤|>錯誤</, "a mismatch with the owner's page is not an error");
@@ -124,6 +124,11 @@ for (const [name, page] of [["home", home], ["whitepaper", whitepaper]]) {
   assert.doesNotMatch(page, /AUDIT_DAILY_LIMIT|AUDIT_RATE/, `${name} must not name the limit settings`);
   assert.doesNotMatch(page, /(?:每(?:日|天)|同一(?:個)?\s*(?:IP|網路))[^。<]{0,16}?\d+\s*(?:次|份|個|題)/, `${name} must not publish a limit number`);
   assert.doesNotMatch(page, /\d+\s*(?:次|份)[^。<]{0,8}(?:上限|額度)/, `${name} must not publish a limit number`);
+}
+// 5b. The site does not say which models or engines run the check (2026-10-21 decision),
+//     on the page, in the sample sheet or in the whitepaper.
+for (const [name, page] of [["home", home], ["whitepaper", whitepaper]]) {
+  assert.doesNotMatch(page, /DeepSeek|Perplexity|Sonar|Gemini/i, `${name} must not name the models behind the check`);
 }
 for (const phrase of ["名額上限", "太頻繁"]) assert.ok(visible.includes(phrase), `the FAQ must say the limits exist: ${phrase}`);
 
