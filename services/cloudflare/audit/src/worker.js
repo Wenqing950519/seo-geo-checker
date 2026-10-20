@@ -117,9 +117,13 @@ async function getReport(db, reportId) {
 // new report, competed with audits for the instance ceiling, and one stuck instance kept its
 // report failing for good (2026-10-21 deploy check). Audits run one at a time (max_concurrency).
 const RENDER_CONTAINER = "report-render";
+// Audits share one container as well. A container per job kept running after its audit, so the
+// next audits hit the instance ceiling and failed (2026-10-21 launch smoke). The queue runs one
+// audit at a time, so one container is enough.
+const AUDIT_CONTAINER = "runner";
 
-async function invokeContainer(env, jobId, path, body) {
-  const container = getContainer(env.AUDIT_FALLBACK, `audit-${jobId}`);
+async function invokeContainer(env, name, path, body) {
+  const container = getContainer(env.AUDIT_FALLBACK, `audit-${name}`);
   const request = new Request(`http://audit-container${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -157,7 +161,7 @@ async function processAudit(message, env) {
   let html = null;
   let browserError = null;
   try { html = await browserHtml(env, job.site_url); } catch (error) { browserError = String(error?.message || "browser_run_failed").slice(0, 240); }
-  const response = await invokeContainer(env, jobId, "/audit", {
+  const response = await invokeContainer(env, AUDIT_CONTAINER, "/audit", {
     url: job.site_url,
     report_id: job.report_id,
     custom_queries: queries,

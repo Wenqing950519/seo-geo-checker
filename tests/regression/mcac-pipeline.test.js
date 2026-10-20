@@ -344,7 +344,7 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   // One shared render container plus one audit at a time fits the container ceiling. A
   // container per report left one report's page failing for good (2026-10-21 deploy check).
   assert.equal(wrangler.queues.consumers[0].max_concurrency, 1, "audits run one at a time");
-  assert.ok(wrangler.containers[0].max_instances >= 2, "room for the render container and one audit");
+  assert.ok(wrangler.containers[0].max_instances >= 3, "room for the render container, the audit container and one instance still stopping");
   const limits = await import("../../services/cloudflare/audit/src/limits.mjs");
   assert.equal(limits.QUEUE_MAX_RETRIES, wrangler.queues.consumers[0].max_retries, "the Worker knows the queue's retry limit");
   const workerSource = fs.readFileSync(path.resolve(__dirname, "../../services/cloudflare/audit/src/worker.js"), "utf8");
@@ -356,6 +356,10 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.match(workerSource, /rate_limited/);
   assert.ok(!workerSource.includes("`render-${"), "report pages never get a container per report");
   assert.ok(workerSource.includes("RENDER_CONTAINER"), "report pages and downloads share one render container");
+  // Audits share one container too. A container per job kept running after its audit, so the
+  // next audits hit the instance ceiling and failed (2026-10-21 launch smoke).
+  assert.ok(workerSource.includes("AUDIT_CONTAINER"), "audits share one audit container");
+  assert.doesNotMatch(workerSource, /invokeContainer\(env, jobId,/, "an audit never gets a container per job");
   assert.ok(workerSource.includes("parseLimits(env)"), "new audits need the secret limits");
   assert.ok(workerSource.includes("\\/markdown$/"), "the download link has a route (PR #6 finding 2)");
   assert.match(workerSource, /status = 'failed'/, "a job whose last retry fails is marked failed (PR #6 finding 4)");
