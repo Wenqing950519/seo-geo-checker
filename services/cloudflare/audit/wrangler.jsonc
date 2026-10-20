@@ -33,7 +33,7 @@
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["AuditFallbackContainer"] }],
   "vars": {
     "AUDIT_PIPELINE_VERSION": "mcac-0.2.0-mcac-probes-0.2.0-mcac-flags-v0-planner1.5.0-p2.1.0-perplexity",
-    "AUDIT_ADMISSION_ENABLED": "false",
+    "AUDIT_ADMISSION_ENABLED": "true",
     "GEOCHECK_METHOD": "mcac",
     "GEOCHECK_MCAC_ENGINE": "perplexity"
   }

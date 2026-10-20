@@ -337,7 +337,7 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.ok(Object.keys(MCAC_ENGINES).includes(wrangler.vars.GEOCHECK_MCAC_ENGINE), "the deployed engine is on the allowlist");
   assert.equal(wrangler.vars.AUDIT_PIPELINE_VERSION, `${MCAC_PIPELINE_VERSION}-${wrangler.vars.GEOCHECK_MCAC_ENGINE}`,
     "the Worker cache key must match the container's MCAC pipeline version");
-  assert.equal(wrangler.vars.AUDIT_ADMISSION_ENABLED, "false", "MCAC ships closed until the paid smoke test passes");
+  assert.equal(wrangler.vars.AUDIT_ADMISSION_ENABLED, "true", "MCAC opened on 2026-10-21 with the user's go-ahead, after the paid smoke test passed");
   // Limits are kept out of the public repo: they live in the AUDIT_LIMITS secret (LSL-D-006).
   for (const name of ["AUDIT_DAILY_LIMIT", "AUDIT_LIMITS", "AUDIT_IP_PEPPER"]) assert.ok(!(name in wrangler.vars), `${name} is not a public var`);
   assert.equal(wrangler.queues.consumers[0].max_retries, 1, "a failed audit is retried once, not three times");

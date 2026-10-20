@@ -42,7 +42,8 @@ try {
     "/privacy", "/privacy/", "/privacy.html",
     "/refund", "/refund/", "/refund.html"
   ]);
-  assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "false");
+  // Opened on 2026-10-21 with the user's go-ahead, after the local paid smoke test passed.
+  assert.equal(auditConfig.vars.AUDIT_ADMISSION_ENABLED, "true");
   assert.equal(auditConfig.containers[0].image_build_context, "../../..");
   assert.deepEqual(auditConfig.routes, [
     { pattern: "geocheck.lslabs.tw/api/*", zone_name: "lslabs.tw" },
