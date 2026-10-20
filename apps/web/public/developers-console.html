@@ -3,239 +3,1067 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
-<title>控制台｜LS-Labs Platform</title>
-<meta name="description" content="LS-Labs Platform 控制台：查看帳戶資格、觀測額度、API 金鑰與任務記錄。">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
-<link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
-<link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<title>Platform By LS-Labs Console — GeoCheck API 管理</title>
+<meta name="description" content="Platform By LS-Labs 上的 GeoCheck API 管理控制台：管理 API 金鑰、四引擎觀測配額與四大官方搜尋引擎觀測任務。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=lslabs-20261021">
+<link rel="icon" type="image/png" href="/favicon.png?v=lslabs-20261021">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="/assets/tokens.css">
 <style>
-/* Platform console. Same language as the Platform landing and geocheck.lslabs.tw:
-   dark void, hairline rules, Space Grotesk for numbers and labels, Noto Sans TC for
-   prose. Every colour is an alias into /assets/tokens.css. Class names below are the
-   ones the script renders into, so they stay even where the look changed. */
-@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500 700;font-display:swap;src:url(/assets/fonts/space-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+2190-2193,U+2212,U+00D7}
-@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+:root {
+  /* LS-Labs Brand Tokens (Dark Cosmic Developer Edition) */
+  --gc-bg-canvas: #090D1A;         /* Cosmic Base */
+  --gc-sidebar-bg: #0D1424;        /* Dark Navy Sidebar */
+  --gc-card-bg: #121B30;           /* Elevated Navy Card */
+  --gc-card-border: #1E2B4A;       /* Crisp Border */
+  --gc-card-hover-border: #2F4270; /* Hover Border */
+  --gc-border-subtle: #17223B;
+  
+  /* Text & Accents */
+  --gc-text-primary: #F8FAFC;
+  --gc-text-secondary: #94A3B8;
+  --gc-text-muted: #64748B;
+  
+  /* Aliases into /assets/tokens.css. The mint name used to hold the success
+     green here and the accent blue on the other pages: one name, two
+     meanings, which is how a palette stops being checkable. */
+  --gc-accent: var(--ls-accent-surface);
+  --gc-accent-glow: rgba(59, 130, 246, 0.18);
+  --gc-accent-hover: #2563EB;
 
-:root{
-  --gc-bg:#04060A;
-  --gc-panel:#0B1220;
-  --gc-line:rgba(229,234,242,.1);
-  --gc-line-strong:rgba(229,234,242,.2);
-  --gc-card-border:var(--gc-line-strong);
-  --gc-text-primary:var(--ls-on-dark);
-  --gc-text-secondary:var(--ls-on-dark-body);
-  --gc-text-muted:var(--ls-on-dark-muted);
-  --gc-accent:var(--ls-accent-surface);
-  --gc-accent-text:var(--ls-accent-on-dark);
-  --gc-success:var(--ls-success);
-  --gc-warning:var(--ls-warning);
-  --gc-danger:var(--ls-danger);
-  --color-openai:var(--ls-engine-openai);
-  --color-gemini:var(--ls-engine-gemini);
-  --color-perplexity:var(--ls-engine-perplexity);
-  --color-claude:var(--ls-engine-anthropic);
-  --font-sans:'Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;
-  --font-display:'Space Grotesk','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
-  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
-  --radius-sm:8px;
-  --radius-md:12px;
-  --ease:cubic-bezier(.23,1,.32,1);
+  --gc-success: var(--ls-success);
+  --gc-success-glow: rgba(16, 185, 129, 0.15);
+  --gc-warning: var(--ls-warning);
+  --gc-danger: var(--ls-danger);
+
+  /* 4-Engine Official Visual Identity. Claude was #D97706, which is the
+     brand manual's --color-warning-dark: an engine identity must not double
+     as a status colour. */
+  --color-openai: var(--ls-engine-openai);
+  --color-gemini: var(--ls-engine-gemini);
+  --color-perplexity: var(--ls-engine-perplexity);
+  --color-claude: var(--ls-engine-anthropic);
+
+  /* Typography */
+  --font-sans: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, monospace;
+  
+  /* Crisp Professional Geometry (Slightly angular, not overly bubbly) */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-pill: 9999px;
 }
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-body{margin:0;min-height:100vh;background:var(--gc-bg);color:var(--gc-text-secondary);font:400 16px/1.7 var(--font-sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gc-accent-text);outline-offset:3px;border-radius:4px}
-.font-mono{font-family:var(--font-mono)}
-.font-number{font-family:var(--font-display);font-variant-numeric:tabular-nums}
-.skip-link{position:absolute;left:16px;top:-80px;z-index:10;padding:10px 16px;background:var(--ls-accent-on-light);color:#fff;border-radius:999px}
-.skip-link:focus{top:12px}
 
-/* Toast */
-.toast{position:fixed;left:50%;bottom:24px;z-index:2100;transform:translate(-50%,16px);max-width:calc(100% - 32px);padding:10px 18px;border-radius:999px;background:rgba(15,23,42,.94);border:1px solid var(--gc-line-strong);color:var(--gc-text-primary);font-size:15px;font-weight:500;opacity:0;pointer-events:none;transition:opacity 200ms ease,transform 200ms ease}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-.toast:empty{display:none}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Login gate */
-.fullpage-auth-gate{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;background:radial-gradient(38% 30% at 72% 18%,rgba(59,130,246,.18),transparent 70%),radial-gradient(30% 26% at 20% 72%,rgba(139,124,246,.12),transparent 70%)}
-.fullpage-auth-card{width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:40px 32px 28px;border-radius:16px;background:var(--gc-panel);box-shadow:0 0 0 1px var(--gc-line-strong),0 30px 60px -30px rgba(0,0,0,.8)}
-.gate-brand-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;font:700 20px/1 var(--font-display);color:var(--gc-text-primary)}
-.gate-brand-logo img{width:28px;height:28px}
-.gate-brand-logo span{padding-left:12px;border-left:1px solid var(--gc-line-strong);font:500 16px/1 var(--font-display);color:var(--gc-text-muted)}
-.gate-title{margin:0 0 10px;font:700 26px/1.3 var(--font-sans);color:var(--gc-text-primary)}
-.gate-desc{margin:0 0 28px;font-size:16px;line-height:1.75;color:var(--gc-text-secondary)}
-.btn-google-signin-full{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:50px;padding:0 18px;border:0;border-radius:999px;background:#fff;color:var(--ls-navy);font:700 16px/1 var(--font-sans);cursor:pointer;transition:background 150ms ease,transform 160ms var(--ease)}
-.btn-google-signin-full:hover{background:#EFF6FF}
-.btn-google-signin-full:active{transform:scale(.98)}
-.gate-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 24px;width:100%;margin-top:26px;padding-top:20px;border-top:1px solid var(--gc-line);font-size:14px;color:var(--gc-text-muted)}
-.gate-links a{transition:color 150ms ease}
-.gate-links a:hover{color:var(--gc-text-primary)}
+body {
+  font-family: var(--font-sans);
+  background-color: var(--gc-bg-canvas);
+  color: var(--gc-text-primary);
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Workspace */
-.console-app{display:flex;min-height:100vh;width:100%}
-aside.console-sidebar{position:sticky;top:0;flex:none;display:flex;flex-direction:column;width:240px;height:100vh;border-right:1px solid var(--gc-line);user-select:none}
-.sidebar-header{display:flex;align-items:center;min-height:84px;padding:0 22px;border-bottom:1px solid var(--gc-line)}
-.sidebar-logo{display:inline-flex;align-items:center;gap:10px;font:700 18px/1 var(--font-display);color:var(--gc-text-primary);letter-spacing:-.01em}
-.sidebar-logo img{width:26px;height:26px}
-.sidebar-brand-badge{padding-left:10px;border-left:1px solid var(--gc-line-strong);font:500 14px/1 var(--font-display);color:var(--gc-text-muted);letter-spacing:.02em}
-.sidebar-nav{display:flex;flex-direction:column;gap:2px;flex:1;padding:14px 12px}
-.nav-item{display:flex;align-items:center;gap:12px;width:100%;min-height:44px;padding:0 12px;border:0;border-radius:var(--radius-sm);background:none;color:var(--gc-text-secondary);font:500 15px/1.4 var(--font-sans);text-align:left;cursor:pointer;transition:background 150ms ease,color 150ms ease}
-.nav-item:hover{background:rgba(229,234,242,.05);color:var(--gc-text-primary)}
-.nav-item.active{background:rgba(59,130,246,.14);color:var(--gc-text-primary)}
-.nav-item svg{flex:none;width:17px;height:17px;stroke:currentColor;color:var(--gc-text-muted)}
-.nav-item.active svg{color:var(--gc-accent-text)}
-.sidebar-nav-bottom{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-top:1px solid var(--gc-line)}
-.sidebar-footer{padding:14px 16px;border-top:1px solid var(--gc-line)}
-.user-profile-widget{display:flex;align-items:center;gap:10px}
-.user-avatar-circle{flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(59,130,246,.18);color:var(--gc-accent-text);font:700 14px/1 var(--font-display)}
-.user-info-text{display:flex;flex-direction:column;min-width:0;flex:1}
-.user-name-val{font-size:14px;font-weight:700;color:var(--gc-text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.user-tenant-label{font-size:12px;color:var(--gc-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.btn-dev-logout{border:0;background:none;padding:6px;border-radius:4px;color:var(--gc-text-muted);font-size:14px;cursor:pointer;transition:color 150ms ease}
-.btn-dev-logout:hover{color:var(--gc-text-primary)}
+.font-mono { font-family: var(--font-mono); }
+.font-number {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
 
-.console-main{flex:1;min-width:0;display:flex;flex-direction:column}
-.console-container{width:100%;max-width:1160px;margin:0 auto;padding:40px 40px 96px}
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2100;
+  background: #18233C;
+  color: #FFFFFF;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  border: 1px solid #2B3D66;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
 
-/* Page heads */
-.page-title-row,.section-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px 24px;margin-bottom:28px}
-.page-title{margin:0;font:700 28px/1.3 var(--font-sans);color:var(--gc-text-primary);letter-spacing:.01em}
-.page-subtitle,.section-desc{margin:6px 0 0;max-width:46em;font-size:15px;line-height:1.75;color:var(--gc-text-secondary)}
-.head-actions{display:flex;flex-wrap:wrap;gap:10px}
+/* ===================================================================
+   1. FULL-PAGE AUTH GATE (LS-Labs Dark Style)
+   =================================================================== */
+.fullpage-auth-gate {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 50% 30%, #152240 0%, #090D1A 85%);
+  padding: 24px;
+}
+.fullpage-auth-card {
+  max-width: 440px;
+  width: 100%;
+  background: var(--gc-sidebar-bg);
+  border: 1px solid var(--gc-card-border);
+  border-radius: 20px;
+  padding: 48px 40px 36px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gate-brand-logo {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.gate-brand-logo img { width: 100%; height: 100%; }
+.gate-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #60A5FA;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 14px;
+  letter-spacing: 0.08em;
+}
+.gate-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--gc-text-primary);
+  margin-bottom: 8px;
+}
+.gate-desc {
+  font-size: 0.88rem;
+  color: var(--gc-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.btn-google-signin-full {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0F172A;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.btn-google-signin-full:hover {
+  background: #F1F5F9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+.gate-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gc-border-subtle);
+  width: 100%;
+  font-size: 0.85rem;
+}
+.gate-links a {
+  color: var(--gc-text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.gate-links a:hover { color: #60A5FA; }
 
-/* Buttons */
-.btn-primary-blue,.btn.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 20px;border:1px solid transparent;border-radius:999px;background:var(--ls-accent-on-light);color:#fff;font:700 15px/1 var(--font-sans);cursor:pointer;transition:background 150ms ease,transform 160ms var(--ease)}
-.btn-primary-blue:hover,.btn.btn-primary:hover{background:var(--ls-accent-on-light-strong)}
-.btn-primary-blue:active{transform:scale(.97)}
-.btn-card-action,.btn-pill-action,.btn-copy-code,.btn-plan-outline{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:0 14px;border:1px solid var(--gc-line-strong);border-radius:999px;background:none;color:var(--gc-text-primary);font:500 14px/1 var(--font-sans);cursor:pointer;transition:border-color 150ms ease,background 150ms ease}
-.btn-card-action:hover,.btn-pill-action:hover,.btn-copy-code:hover,.btn-plan-outline:hover{border-color:var(--gc-accent-text);background:rgba(59,130,246,.12)}
-.btn-revoke{min-height:32px;padding:0 12px;border:1px solid rgba(239,68,68,.45);border-radius:999px;background:none;color:var(--gc-danger);font:500 13px/1 var(--font-sans);cursor:pointer;transition:background 150ms ease,color 150ms ease}
-.btn-revoke:hover{background:var(--gc-danger);color:#fff}
+/* ===================================================================
+   2. AUTHENTICATED WORKSPACE APPLICATION
+   =================================================================== */
+.console-app {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
 
-/* Panels */
-.meter-card,.stat-box,.panel-card,.plan-card,.code-block-container{border-radius:var(--radius-md);background:var(--gc-panel);box-shadow:0 0 0 1px var(--gc-line)}
-.quota-meter-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:16px}
-.meter-card{display:flex;flex-direction:column;padding:22px 24px}
-.meter-card-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-bottom:10px}
-.meter-card-label{display:inline-flex;align-items:center;gap:10px;font:700 15px/1.4 var(--font-sans);color:var(--gc-text-secondary)}
-.plan-pill-tag{padding:2px 10px;border-radius:999px;background:rgba(59,130,246,.14);color:var(--gc-accent-text);font:500 13px/1.6 var(--font-display)}
-.meter-amount-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin:4px 0 14px}
-.meter-main-val{font:700 40px/1 var(--font-display);color:var(--gc-text-primary);letter-spacing:-.02em}
-.meter-sub-val{font-size:14px;color:var(--gc-text-muted)}
-.progress-bar-bg{width:100%;height:3px;margin-bottom:12px;border-radius:3px;background:var(--gc-line-strong);overflow:hidden}
-.progress-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gc-accent),#2DD4BF);transition:width 600ms var(--ease)}
-.meter-footnote{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;margin-top:auto;font-size:13px;line-height:1.6;color:var(--gc-text-muted)}
-.meter-footnote a{color:var(--gc-accent-text)}
-.meter-list{margin:0;font-size:15px;line-height:1.8;color:var(--gc-text-secondary)}
-.meter-list dt{float:left;clear:left;width:7em;color:var(--gc-text-muted)}
-.meter-list dd{margin:0 0 0 7em;color:var(--gc-text-primary)}
-.stats-tri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
-.stat-box{padding:18px 22px}
-.stat-box-label{font-size:14px;color:var(--gc-text-muted)}
-.stat-box-val{display:flex;align-items:baseline;gap:6px;margin-top:6px;font:700 30px/1 var(--font-display);color:var(--gc-text-primary);letter-spacing:-.02em}
-.stat-box-desc{margin-top:6px;font-size:13px;color:var(--gc-text-muted)}
-.action-strip{display:flex;justify-content:flex-end;margin-top:4px}
+/* Sidebar */
+aside.console-sidebar {
+  width: 236px;
+  background: var(--gc-sidebar-bg);
+  border-right: 1px solid var(--gc-border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 90;
+  user-select: none;
+}
 
-/* Tables */
-.panel-card{overflow:hidden}
-.data-table{width:100%;border-collapse:collapse;font-size:15px}
-.data-table th{padding:14px 20px;border-bottom:1px solid var(--gc-line-strong);text-align:left;font:500 13px/1.5 var(--font-display);color:var(--gc-text-muted);letter-spacing:.04em}
-.data-table td{padding:14px 20px;border-bottom:1px solid var(--gc-line);color:var(--gc-text-primary);vertical-align:middle}
-.data-table tr:last-child td{border-bottom:0}
-.key-badge{display:inline-block;padding:3px 8px;border-radius:6px;background:rgba(229,234,242,.06);font:400 13px/1.5 var(--font-mono);color:var(--gc-accent-text)}
-.scope-tag{display:inline-block;margin-right:4px;padding:2px 8px;border-radius:999px;background:rgba(229,234,242,.06);font:400 12px/1.5 var(--font-mono);color:var(--gc-text-secondary)}
-.empty-state{padding:44px 20px;text-align:center;font-size:15px;color:var(--gc-text-muted)}
-.table-scroll{overflow-x:auto}
+.sidebar-header {
+  padding: 20px 18px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gc-border-subtle);
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+}
+.sidebar-logo img {
+  width: 24px;
+  height: 24px;
+}
+.sidebar-brand-name {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--gc-text-primary);
+  letter-spacing: -0.02em;
+}
+.sidebar-brand-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #60A5FA;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.04em;
+}
 
-/* Engines */
-.engine-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.engine-card{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 16px;align-items:center;padding:20px 22px;border-radius:var(--radius-md);background:var(--gc-panel);box-shadow:0 0 0 1px var(--gc-line)}
-.engine-card__logo{grid-row:1/span 2;display:grid;place-items:center;width:44px;height:44px;border-radius:10px;background:#F8FAFC}
-.engine-card__logo img{width:26px;height:26px;display:block}
-.engine-card__logo--perplexity img{width:28px;height:28px;border-radius:6px}
-.engine-card__name{font:700 17px/1.4 var(--font-sans);color:var(--gc-text-primary)}
-.engine-card__meta{font:400 13px/1.6 var(--font-mono);color:var(--gc-text-muted);overflow-wrap:anywhere}
-.engine-card__tool{grid-column:2;margin:4px 0 0;font-size:14px;line-height:1.7;color:var(--gc-text-secondary)}
+/* Nav Menu */
+.sidebar-nav {
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
 
-/* Code blocks */
-.code-block-container{padding:0;overflow:hidden}
-.code-block-container+.code-block-container{margin-top:16px}
-.code-block-header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px 10px 18px;border-bottom:1px solid var(--gc-line)}
-.code-block-tag{font:500 14px/1 var(--font-display);color:var(--gc-text-muted)}
-.code-block-container pre{margin:0;padding:18px 20px;font:400 14px/1.7 var(--font-mono);color:var(--gc-text-secondary);overflow-x:auto}
+.nav-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--gc-text-secondary);
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--gc-text-primary);
+}
+.nav-item.active {
+  background: #172442;
+  color: #FFFFFF;
+  font-weight: 600;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+.nav-item svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  color: var(--gc-text-secondary);
+}
+.nav-item.active svg {
+  color: var(--gc-accent);
+  stroke: var(--gc-accent);
+}
+.nav-item.active svg[fill="currentColor"] {
+  fill: var(--gc-accent);
+}
 
-/* Plans */
-.plans-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-.plan-card{display:flex;flex-direction:column;padding:24px 26px}
-.plan-card-name{font:700 19px/1.4 var(--font-sans);color:var(--gc-text-primary)}
-.plan-card-price{margin:6px 0 14px;font:500 15px/1.6 var(--font-display);color:var(--gc-accent-text)}
-.plan-card-list{list-style:none;margin:0 0 22px;padding:0;font-size:15px;line-height:1.85;color:var(--gc-text-secondary)}
-.plan-card-list li{padding-left:16px;position:relative}
-.plan-card-list li::before{content:'';position:absolute;left:0;top:.8em;width:6px;height:6px;border-radius:50%;background:var(--gc-accent)}
-.btn-plan-select{margin-top:auto;align-self:flex-start}
-.btn-plan-blue{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 20px;border:0;border-radius:999px;background:var(--ls-accent-on-light);color:#fff;font:700 15px/1 var(--font-sans);cursor:pointer}
-.btn-plan-blue:hover{background:var(--ls-accent-on-light-strong)}
+.sidebar-nav-bottom {
+  padding: 10px 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-top: 1px solid var(--gc-border-subtle);
+}
+
+/* User Profile Footer */
+.sidebar-footer {
+  padding: 12px 14px;
+  border-top: 1px solid var(--gc-border-subtle);
+  background: #0B111F;
+}
+.user-profile-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(135deg, #1E3A8A, #2563EB);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+.user-info-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex-grow: 1;
+}
+.user-name-val {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--gc-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-tenant-label {
+  font-size: 0.7rem;
+  color: var(--gc-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btn-dev-logout {
+  background: transparent;
+  border: none;
+  color: var(--gc-text-muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: var(--radius-xs);
+  transition: color 0.15s ease;
+}
+.btn-dev-logout:hover {
+  color: var(--gc-danger);
+}
+
+/* ===================================================================
+   MAIN VIEWPORT & CONTAINERS
+   =================================================================== */
+.console-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--gc-bg-canvas);
+  overflow-y: auto;
+}
+
+.console-container {
+  padding: 32px 40px 80px;
+  max-width: 1220px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Top Signature: 4-Engine Live Gateway Bar */
+.engine-gateway-bar {
+  background: #0E162B;
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.engine-gateway-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gc-text-secondary);
+}
+.engine-status-list {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.engine-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gc-text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 3px 9px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.engine-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+.dot-openai { color: var(--color-openai); background-color: var(--color-openai); }
+.dot-gemini { color: var(--color-gemini); background-color: var(--color-gemini); }
+.dot-perplexity { color: var(--color-perplexity); background-color: var(--color-perplexity); }
+.dot-claude { color: var(--color-claude); background-color: var(--color-claude); }
+
+/* Page Header */
+.page-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.page-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--gc-text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.page-subtitle {
+  font-size: 0.84rem;
+  color: var(--gc-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.badge-zero-cost {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #34D399;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+}
+
+/* Action Banner (GeoCheck Architecture Highlights) */
+.gc-feature-banner {
+  background: linear-gradient(135deg, #101E3C 0%, #0F172C 100%);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.feature-banner-text {
+  font-size: 0.84rem;
+  color: #BFDBFE;
+  line-height: 1.5;
+}
+.feature-banner-text strong {
+  color: #FFFFFF;
+}
+.btn-banner-action {
+  background: var(--gc-accent);
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+.btn-banner-action:hover {
+  background: var(--gc-accent-hover);
+}
+
+/* Top Quota Meter Grid */
+.quota-meter-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.meter-card {
+  background: var(--gc-card-bg);
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.15s ease;
+}
+.meter-card:hover {
+  border-color: var(--gc-card-hover-border);
+}
+.meter-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.meter-card-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--gc-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.plan-pill-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: rgba(59, 130, 246, 0.15);
+  color: #60A5FA;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+.btn-card-action {
+  background: transparent;
+  color: #93C5FD;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-card-action:hover {
+  background: rgba(59, 130, 246, 0.15);
+  color: #FFFFFF;
+}
+
+.meter-amount-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 6px 0 12px;
+}
+.meter-main-val {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gc-text-primary);
+  letter-spacing: -0.02em;
+}
+.meter-sub-val {
+  font-size: 0.85rem;
+  color: var(--gc-text-muted);
+}
+.progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: #0B1222;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3B82F6, #10B981);
+  border-radius: var(--radius-pill);
+  transition: width 0.3s ease;
+}
+.meter-footnote {
+  font-size: 0.78rem;
+  color: var(--gc-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 3 Quick Stat Cards */
+.stats-tri-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-box {
+  background: var(--gc-card-bg);
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stat-box-label {
+  font-size: 0.8rem;
+  color: var(--gc-text-secondary);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.stat-box-val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--gc-text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.stat-box-desc {
+  font-size: 0.76rem;
+  color: var(--gc-text-muted);
+  margin-top: 4px;
+}
+
+/* Action Strip */
+.action-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.action-strip-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.select-pill {
+  background: var(--gc-card-bg);
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--gc-text-primary);
+}
+.select-pill select {
+  background: transparent;
+  border: none;
+  color: var(--gc-text-primary);
+  font-family: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  outline: none;
+}
+.select-pill select option {
+  background: var(--gc-card-bg);
+  color: var(--gc-text-primary);
+}
+
+.btn-pill-action {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--gc-card-border);
+  color: var(--gc-text-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+.btn-pill-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--gc-card-hover-border);
+}
+
+/* Table & Panels */
+.panel-card {
+  background: var(--gc-card-bg);
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: 14px;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gc-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-desc {
+  font-size: 0.84rem;
+  color: var(--gc-text-secondary);
+  margin-top: 4px;
+}
+
+.btn-primary-blue {
+  /* white on --gc-accent is 3.68:1 */
+  background: var(--ls-accent-on-light);
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease;
+}
+.btn-primary-blue:hover {
+  background: var(--ls-accent-on-light-strong);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.data-table th {
+  background: #0D1526;
+  padding: 12px 18px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--gc-text-secondary);
+  border-bottom: 1px solid var(--gc-card-border);
+  font-size: 0.78rem;
+}
+.data-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--gc-card-border);
+  color: var(--gc-text-primary);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+.key-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: #0B111F;
+  border: 1px solid #233454;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  color: #60A5FA;
+}
+.scope-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: #18233C;
+  color: #94A3B8;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  margin-right: 4px;
+}
+.btn-revoke {
+  background: transparent;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: var(--gc-danger);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-revoke:hover {
+  background: var(--gc-danger);
+  color: #FFFFFF;
+}
+
+.empty-state {
+  padding: 44px 20px;
+  text-align: center;
+  color: var(--gc-text-muted);
+  font-size: 0.88rem;
+}
+
+/* Quickstart code blocks */
+.code-block-container {
+  background: #0B111F;
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  position: relative;
+  margin-top: 14px;
+}
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.code-block-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: #93C5FD;
+}
+.btn-copy-code {
+  background: #172442;
+  border: 1px solid #2E416E;
+  color: #E2E8F0;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-copy-code:hover {
+  background: #253966;
+  color: #FFFFFF;
+}
+.code-block-container pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #E2E8F0;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+/* Plans Grid */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+.plan-card {
+  background: var(--gc-card-bg);
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-md);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+}
+.plan-card.featured {
+  border: 1px solid var(--gc-accent);
+  background: #14203A;
+}
+.plan-card-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--gc-text-primary);
+  margin-bottom: 4px;
+}
+.plan-card-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--gc-text-primary);
+  margin: 10px 0 16px;
+}
+.plan-card-price span {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--gc-text-secondary);
+}
+.plan-card-list {
+  list-style: none;
+  font-size: 0.82rem;
+  color: #CBD5E1;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.plan-card-list li::before {
+  content: "✓ ";
+  color: var(--gc-accent);
+  font-weight: 700;
+}
+.btn-plan-select {
+  margin-top: auto;
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+.btn-plan-blue {
+  background: var(--ls-accent-on-light);
+  color: #FFFFFF;
+}
+.btn-plan-blue:hover {
+  background: var(--ls-accent-on-light-strong);
+}
+.btn-plan-outline {
+  background: transparent;
+  border-color: #2E416E;
+  color: #E2E8F0;
+}
+.btn-plan-outline:hover {
+  background: #172442;
+}
 
 /* Modals */
-.modal-overlay{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(4,6,10,.78);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity 200ms ease}
-.modal-overlay.open{opacity:1;pointer-events:auto}
-.modal-card{position:relative;width:100%;max-width:480px;padding:28px;border-radius:16px;background:var(--gc-panel);box-shadow:0 0 0 1px var(--gc-line-strong),0 30px 60px -30px rgba(0,0,0,.9)}
-.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:0;border-radius:50%;background:none;color:var(--gc-text-muted);font-size:16px;cursor:pointer}
-.modal-close:hover{color:var(--gc-text-primary);background:rgba(229,234,242,.06)}
-.modal-title{margin:0 0 8px;font:700 22px/1.35 var(--font-sans);color:var(--gc-text-primary)}
-.modal-subtitle{margin:0 0 20px;font-size:15px;line-height:1.75;color:var(--gc-text-secondary)}
-.modal-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:10px;margin-top:20px}
-.form-group{margin-bottom:16px}
-.form-label{display:block;margin-bottom:6px;font-size:14px;font-weight:500;color:var(--gc-text-secondary)}
-.form-input{width:100%;padding:11px 14px;border:1px solid var(--gc-line-strong);border-radius:var(--radius-sm);background:rgba(15,23,42,.6);color:var(--gc-text-primary);font:400 16px/1.4 var(--font-sans)}
-.form-input:focus{outline:none;border-color:var(--gc-accent-text);box-shadow:0 0 0 3px rgba(59,130,246,.18)}
-.key-reveal-box{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:16px 0 20px;padding:12px 14px;border-radius:var(--radius-sm);background:rgba(15,23,42,.6);box-shadow:0 0 0 1px var(--gc-line-strong)}
-.key-reveal-code{font:400 14px/1.6 var(--font-mono);color:#2DD4BF;word-break:break-all}
-.contact-list{margin:0;padding:14px 16px;border-radius:var(--radius-sm);background:rgba(15,23,42,.6);box-shadow:0 0 0 1px var(--gc-line);font-size:15px;line-height:1.9}
-.contact-list a{color:var(--gc-accent-text)}
-
-@media (max-width:900px){
-  .console-app{flex-direction:column}
-  aside.console-sidebar{position:static;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--gc-line)}
-  .sidebar-header{min-height:64px;padding:0 20px}
-  .sidebar-nav{flex-direction:row;overflow-x:auto;gap:4px;padding:8px 12px;scrollbar-width:none}
-  .sidebar-nav::-webkit-scrollbar{display:none}
-  .sidebar-nav .nav-item{width:auto;min-height:40px;white-space:nowrap}
-  .sidebar-nav .nav-item svg{display:none}
-  .sidebar-nav-bottom{display:none}
-  .sidebar-footer{padding:10px 20px}
-  .console-container{padding:28px 20px 72px}
-  .quota-meter-grid,.stats-tri-grid,.engine-grid{grid-template-columns:1fr}
-  .data-table{min-width:640px}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  padding: 16px;
 }
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition-duration:1ms!important}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-card {
+  background: var(--gc-card-bg);
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--gc-text-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+}
+.modal-close:hover { color: #FFFFFF; }
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gc-text-primary);
+  margin-bottom: 6px;
+}
+.modal-subtitle {
+  font-size: 0.84rem;
+  color: var(--gc-text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gc-text-secondary);
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  background: #0B111F;
+  border: 1px solid #233454;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  color: #FFFFFF;
+  outline: none;
+  font-family: inherit;
+}
+.form-input:focus {
+  border-color: var(--gc-accent);
+}
+.key-reveal-box {
+  background: #0B111F;
+  border: 1px solid var(--gc-card-border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0 20px;
+}
+.key-reveal-code {
+  font-family: var(--font-mono);
+  color: #34D399;
+  font-size: 0.84rem;
+  word-break: break-all;
+}
+
+@media (max-width: 900px) {
+  .console-sidebar { display: none; }
+  .quota-meter-grid { grid-template-columns: 1fr; }
+  .stats-tri-grid { grid-template-columns: 1fr; }
+  .plans-grid { grid-template-columns: 1fr; }
+  .console-container { padding: 20px 16px; }
+}
+
+/* ===== Accessibility & motion safety ===== */
+.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
 }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要內容</a>
 
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="toast" class="toast" role="status" aria-live="polite">✓ 已更新</div>
 
-<!-- 1. Login gate (not signed in) -->
+<!-- 1. FULL-PAGE AUTH GATE (When not logged in) -->
 <div id="console-login-gate" class="fullpage-auth-gate" style="display:none;">
   <div class="fullpage-auth-card">
     <div class="gate-brand-logo">
-      <img src="/assets/logo-mark.svg" alt="">LS-Labs<span>Platform</span>
+      <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='./assets/logo-mark.svg';}" alt="LS-Labs">
     </div>
-    <h1 class="gate-title">登入控制台</h1>
-    <p class="gate-desc">用 Google 帳號登入，查看帳戶資格、觀測額度與 API 金鑰。</p>
+    <span class="gate-tag">LS LABS PLATFORM</span>
+    <h1 class="gate-title">登入 Developer 控制台</h1>
+    <p class="gate-desc">
+      品牌的生成式 AI 能見度量測平台。<br>使用 Google 帳號登入以存取四大官方搜尋引擎 API、管理金鑰與配額。
+    </p>
 
-    <button type="button" class="btn-google-signin-full" onclick="beginGoogleLogin()">
-      <svg class="google-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+    <button type="button" class="btn-google-signin-full" onclick="beginGoogleLogin()" title="使用 Google 帳號登入">
+      <svg class="google-icon" width="18" height="18" viewBox="0 0 24 24">
         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
         <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
@@ -245,324 +1073,488 @@ aside.console-sidebar{position:sticky;top:0;flex:none;display:flex;flex-directio
     </button>
 
     <div class="gate-links">
-      <a href="/docs">技術文件</a>
+      <a href="/docs">API 技術文件 ↗</a>
       <a href="/terms">服務條款</a>
       <a href="/privacy">隱私權政策</a>
-      <a href="/">Platform 首頁</a>
     </div>
   </div>
 </div>
 
-<!-- 2. Workspace (signed in) -->
+<!-- 2. AUTHENTICATED WORKSPACE APPLICATION -->
 <div id="console-workspace" class="console-app" style="display:none;">
+  <!-- Sidebar -->
   <aside class="console-sidebar">
     <div class="sidebar-header">
       <a href="/" class="sidebar-logo">
-        <img src="/assets/logo-mark.svg" alt="">
+        <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='./assets/logo-mark.svg';}" alt="LS-Labs">
         <span class="sidebar-brand-name">LS-Labs</span>
-        <span class="sidebar-brand-badge">Platform</span>
       </a>
+      <span class="sidebar-brand-badge">CONSOLE</span>
     </div>
 
-    <nav class="sidebar-nav" aria-label="控制台分頁">
+    <!-- Main Navigation Group -->
+    <nav class="sidebar-nav">
       <button type="button" class="nav-item active" data-tab="usage" onclick="switchConsoleTab('usage')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg>
-        <span>用量</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="12" width="4" height="8" rx="1"/>
+          <rect x="10" y="7" width="4" height="13" rx="1"/>
+          <rect x="17" y="3" width="4" height="17" rx="1"/>
+        </svg>
+        <span>觀測用量與概覽</span>
       </button>
+
       <button type="button" class="nav-item" data-tab="keys" onclick="switchConsoleTab('keys')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-        <span>API 金鑰</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+        </svg>
+        <span>API 金鑰管理</span>
       </button>
+
       <button type="button" class="nav-item" data-tab="engines" onclick="switchConsoleTab('engines')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
-        <span>四個引擎</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="2"/>
+          <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
+        </svg>
+        <span>四引擎與用途</span>
       </button>
+
       <button type="button" class="nav-item" data-tab="jobs" onclick="switchConsoleTab('jobs')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span>任務記錄</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        <span>量測任務記錄</span>
       </button>
+
       <button type="button" class="nav-item" data-tab="quickstart" onclick="switchConsoleTab('quickstart')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-        <span>第一次呼叫</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="4 17 10 11 4 5"/>
+          <line x1="12" y1="19" x2="20" y2="19"/>
+        </svg>
+        <span>快速開始 (cURL)</span>
       </button>
+
       <button type="button" class="nav-item" data-tab="plans" onclick="switchConsoleTab('plans')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-        <span>存取狀態</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="5" width="20" height="14" rx="2"/>
+          <line x1="2" y1="10" x2="22" y2="10"/>
+        </svg>
+        <span>方案與配額</span>
       </button>
     </nav>
 
+    <!-- Bottom Navigation Group -->
     <div class="sidebar-nav-bottom">
       <a href="/docs" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        <span>技術文件</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+        <span>API 技術文件 ↗</span>
       </a>
+
       <button type="button" class="nav-item" onclick="openFeedbackModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v12H7l-3 3z"/></svg>
-        <span>聯絡我們</span>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span>聯繫支援與反饋</span>
       </button>
+
+      <a href="https://lslabs.tw/" class="nav-item" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span>LS-Labs 官網 ↗</span>
+      </a>
     </div>
 
+    <!-- User Section -->
     <div class="sidebar-footer">
       <div class="user-profile-widget">
-        <div class="user-avatar-circle" id="user-avatar-text">D</div>
+        <div class="user-avatar-circle" id="user-avatar-text">E</div>
         <div class="user-info-text">
           <span class="user-name-val" id="sidebar-user-name">Developer</span>
           <span class="user-tenant-label font-mono" id="sidebar-tenant-id">—</span>
         </div>
-        <button type="button" class="btn-dev-logout" onclick="handleDevLogout()">登出</button>
+        <button type="button" class="btn-dev-logout" onclick="handleDevLogout()" title="登出">登出</button>
       </div>
     </div>
   </aside>
 
+  <!-- Main Viewport -->
   <div class="console-main" id="main" role="main">
     <div class="console-container">
 
-      <!-- Tab: usage -->
+      <!-- Signature Strip: 4-Engine Official Gateway Status -->
+      <div class="engine-gateway-bar">
+        <div class="engine-gateway-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>每次觀測呼叫的四家官方引擎</span>
+        </div>
+        <div class="engine-status-list">
+          <span class="engine-chip"><span class="engine-dot dot-openai"></span>OpenAI Search</span>
+          <span class="engine-chip"><span class="engine-dot dot-gemini"></span>Google Gemini</span>
+          <span class="engine-chip"><span class="engine-dot dot-perplexity"></span>Perplexity Sonar</span>
+          <span class="engine-chip"><span class="engine-dot dot-claude"></span>Claude Web</span>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 1: 觀測用量與概覽 (Usage & Overview)
+           ========================================== -->
       <div id="tab-usage" class="console-tab-view">
         <div class="page-title-row">
           <div>
-            <h1 class="page-title">用量</h1>
-            <p class="page-subtitle">日期以 Asia/Taipei 計。這裡是用量紀錄，不是帳單。</p>
+            <h1 class="page-title">觀測用量與控制台概覽</h1>
+            <div class="page-subtitle">
+              <span>所有日期均按 Asia/Taipei (GMT+8) 計算。</span>
+              <span class="badge-zero-cost">全成才扣量原則 (Zero-Waste)</span>
+            </div>
           </div>
-          <div class="head-actions">
-            <button type="button" class="btn-card-action" onclick="openPlanModal()">存取狀態</button>
-            <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()">建立 API 金鑰</button>
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()">+ 建立 API 金鑰</button>
+            <button type="button" class="btn-card-action" onclick="openPlanModal()" style="padding:6px 14px;">查看方案狀態</button>
           </div>
         </div>
 
+        <!-- GeoCheck Architectural Guarantee Banner -->
+        <div class="gc-feature-banner">
+          <div class="feature-banner-text">
+            <strong>配額計算：</strong>發起量測時，只有 OpenAI、Google Gemini、Perplexity (Sonar) 與 Anthropic (Claude) 四家全數完成回傳，才扣除 1 輪配額；任一家逾時或報錯不扣配額。這是用量紀錄，並非付款帳單；付費方案尚未開放。
+          </div>
+          <button type="button" class="btn-banner-action" onclick="switchConsoleTab('quickstart')">發起首次量測 →</button>
+        </div>
+
+        <!-- Top Quota Meter Grid -->
         <div class="quota-meter-grid">
+          <!-- Card 1: 觀測剩餘額度 Meter -->
           <div class="meter-card">
             <div class="meter-card-header">
-              <span class="meter-card-label">剩餘額度 <span id="overview-plan-badge" class="plan-pill-tag">尚未開通</span></span>
+              <span class="meter-card-label">
+                剩餘觀測配額
+                <span id="overview-plan-badge" class="plan-pill-tag">尚未開通</span>
+              </span>
+              <button type="button" class="btn-card-action" onclick="openPlanModal()">查看方案狀態</button>
             </div>
             <div class="meter-amount-row">
-              <div class="meter-main-val font-number" id="meter-remaining-val">—</div>
-              <div class="meter-sub-val" id="meter-used-sub">尚無可顯示的用量資料</div>
+              <div class="meter-main-val font-number" id="meter-remaining-val">2 / 3 <span style="font-size:1.1rem; font-weight:600; color:var(--gc-text-secondary);">輪</span></div>
+              <div class="meter-sub-val" id="meter-used-sub">今日已消耗 1 輪</div>
             </div>
-            <div class="progress-bar-bg"><div class="progress-bar-fill" id="meter-progress-bar" style="width:0%;"></div></div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="meter-progress-bar" style="width: 66%;"></div>
+            </div>
             <div class="meter-footnote">
-              <span>四個引擎全部完成才計 1 輪，失敗不計；每日 00:00 重置</span>
-              <span id="meter-expiry-text"></span>
+              <span>重置週期：每日 Asia/Taipei 00:00 自動刷新</span>
+              <span id="meter-expiry-text">有效至 2026/09/19</span>
             </div>
           </div>
 
+          <!-- Card 2: 方案與保護規範 -->
           <div class="meter-card">
             <div class="meter-card-header">
-              <span class="meter-card-label">帳戶</span>
+              <span class="meter-card-label">當前方案權益與限制</span>
+              
             </div>
-            <dl class="meter-list">
-              <dt>方案</dt><dd id="plan-name-text">尚未開通</dd>
-              <dt>速率限制</dt><dd id="plan-rate-limit">開通時顯示</dd>
-              <dt>重送</dt><dd>帶 <code class="font-mono">Idempotency-Key</code> 不重複扣量</dd>
-            </dl>
-            <div class="meter-footnote">
-              <span>請求與回應格式</span>
-              <a href="/docs">技術文件</a>
+            <div style="font-size:0.86rem; color:#CBD5E1; line-height:1.75; margin-top:4px;">
+              • 方案等級：<strong id="plan-name-text" style="color:#FFF;">尚未開通</strong><br>
+              • 調用頻率限制：<strong id="plan-rate-limit">以 Console 開通資訊為準</strong><br>
+              • 冪等性保障：支援 <code>Idempotency-Key</code> 標頭防重複扣量<br>
+              • 引擎涵蓋：四大官方 AI 搜尋引擎完整交付
+            </div>
+            <div class="meter-footnote" style="margin-top:10px;">
+              <span>支援 Bearer 全域 API 金鑰隔離</span>
+              <a href="/docs" style="color:#60A5FA; text-decoration:none;">調用規格文件 ↗</a>
             </div>
           </div>
         </div>
 
+        <!-- 3 Specific Metrics Cards -->
         <div class="stats-tri-grid">
           <div class="stat-box">
-            <div class="stat-box-label">今日已用</div>
-            <div class="stat-box-val font-number" id="metric-used-rounds">—</div>
-            <div class="stat-box-desc">四個引擎全部完成才計</div>
+            <div class="stat-box-label">今日已消耗輪數</div>
+            <div class="stat-box-val font-number" id="metric-used-rounds">1 <span style="font-size:0.95rem; color:var(--gc-text-muted);">輪</span></div>
+            <div class="stat-box-desc">四引擎全成始計入消耗</div>
           </div>
           <div class="stat-box">
             <div class="stat-box-label">有效 API 金鑰</div>
-            <div class="stat-box-val font-number" id="metric-active-keys">0</div>
-            <div class="stat-box-desc">完整金鑰只在建立時顯示</div>
+            <div class="stat-box-val font-number" id="metric-active-keys">1 <span style="font-size:0.95rem; color:var(--gc-text-muted);">組</span></div>
+            <div class="stat-box-desc">具備 read / write 權限</div>
           </div>
           <div class="stat-box">
-            <div class="stat-box-label">任務</div>
-            <div class="stat-box-val font-number" id="metric-total-jobs">0</div>
-            <div class="stat-box-desc">透過 API 建立的觀測</div>
+            <div class="stat-box-label">量測任務歷史</div>
+            <div class="stat-box-val font-number" id="metric-total-jobs">1 <span style="font-size:0.95rem; color:var(--gc-text-muted);">筆</span></div>
+            <div class="stat-box-desc">非同步執行與結果持久化</div>
           </div>
         </div>
 
         <!-- Prepaid points (LSL-D-003): hidden until the API reports the points service is available -->
-        <section id="points-panel" class="meter-card" aria-labelledby="points-panel-title" hidden style="margin-bottom:16px;">
+        <section id="points-panel" class="meter-card" aria-labelledby="points-panel-title" hidden style="margin-bottom:22px;">
           <div class="meter-card-header">
-            <span class="meter-card-label" id="points-panel-title">點數</span>
-            <span id="points-mode" style="font-size:13px;color:var(--gc-warning);"></span>
+            <span class="meter-card-label" id="points-panel-title">點數儲值</span>
+            <span id="points-mode" style="font-size:0.78rem; color:#F59E0B;"></span>
           </div>
-          <div class="meter-amount-row"><div class="meter-main-val font-number"><span id="points-balance">0</span></div><div class="meter-sub-val">點</div></div>
-          <p id="points-rule" style="margin:0 0 12px;font-size:15px;"></p>
+          <div class="meter-main-val font-number"><span id="points-balance">0</span> <span style="font-size:1.1rem; font-weight:600; color:var(--gc-text-secondary);">點</span></div>
+          <p id="points-rule" style="font-size:0.86rem; color:#CBD5E1; margin:6px 0 12px;"></p>
           <!-- Gifted points (migration 0008): shown only while a usable gift exists -->
-          <div id="points-promo" style="margin:0 0 12px;font-size:15px;" hidden>
+          <div id="points-promo" style="font-size:0.86rem; color:#CBD5E1; margin:0 0 12px;" hidden>
             <p id="points-promo-summary" style="margin:0 0 4px;"></p>
-            <ul id="points-promo-list" style="margin:0;padding-left:18px;"></ul>
+            <ul id="points-promo-list" style="margin:0; padding-left:18px;"></ul>
           </div>
-          <p style="margin:0 0 12px;font-size:15px;"><a href="/promotions" style="color:var(--gc-accent-text);">領取活動贈送點數</a></p>
-          <div id="points-plans" style="display:flex;flex-wrap:wrap;gap:10px;"></div>
-          <p id="points-closed" style="margin:10px 0 0;font-size:15px;color:var(--gc-text-muted);" hidden>尚未開放付款。</p>
+          <p style="font-size:0.86rem; margin:0 0 12px;"><a href="/promotions" style="color:#60A5FA; text-decoration:none;">領取活動贈送點數 →</a></p>
+          <div id="points-plans" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+          <p id="points-closed" style="font-size:0.86rem; color:var(--gc-text-secondary); margin-top:10px;" hidden>尚未開放付款。</p>
           <div class="meter-footnote" style="margin-top:12px;">
             <span>點數僅限本平台使用，不得轉讓或兌換現金</span>
-            <a href="/terms#points">點數規則</a>
+            <a href="/terms#points" style="color:#60A5FA; text-decoration:none;">點數規則 ↗</a>
           </div>
         </section>
 
+        <!-- Action & Filter Strip -->
         <div class="action-strip">
-          <button type="button" class="btn-pill-action" onclick="exportUsageCsv()">匯出今日用量 CSV</button>
+          <div class="action-strip-left">
+            <div class="select-pill">
+              <span style="color:var(--gc-text-secondary);">統計時段</span>
+              <span>|</span>
+              <select onchange="handleTimeFilter(this.value)">
+                <option value="today" selected>今日 (00:00 起)</option>
+                <option value="7d">近 7 天</option>
+                <option value="month">本月累計</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="btn-pill-action" onclick="exportUsageCsv()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>匯出用量明細 CSV</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Tab: keys -->
+      <!-- ==========================================
+           TAB 2: API 金鑰管理 (API Keys)
+           ========================================== -->
       <div id="tab-keys" class="console-tab-view" style="display:none;">
         <div class="section-header">
           <div>
-            <h1 class="page-title">API 金鑰</h1>
-            <p class="section-desc">呼叫 API 時放在 Authorization: Bearer。完整金鑰只在建立時顯示一次。</p>
+            <h1 class="page-title">API 金鑰管理</h1>
+            <p class="section-desc">管理用於授權 GeoCheck API 呼叫之 Bearer 金鑰。金鑰建立時僅會完整顯示一次，請妥善保管。</p>
           </div>
-          <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()">建立 API 金鑰</button>
+          <button type="button" class="btn-primary-blue" onclick="handleCreateKeyClick()">+ 建立新 API 金鑰</button>
         </div>
 
         <div class="panel-card">
-          <div class="table-scroll">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th style="width:28%;">名稱</th>
-                  <th style="width:26%;">前綴</th>
-                  <th style="width:18%;">權限</th>
-                  <th style="width:16%;">建立時間</th>
-                  <th style="width:12%;text-align:right;"></th>
-                </tr>
-              </thead>
-              <tbody id="keys-tbody"></tbody>
-            </table>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:28%;">金鑰名稱</th>
+                <th style="width:26%;">金鑰前綴</th>
+                <th style="width:18%;">權限範圍 (Scopes)</th>
+                <th style="width:16%;">建立時間</th>
+                <th style="width:12%; text-align:right;">操作</th>
+              </tr>
+            </thead>
+            <tbody id="keys-tbody"></tbody>
+          </table>
+          <div id="keys-empty" class="empty-state" style="display:none;">
+            尚未建立任何 API 金鑰。點選右上角「+ 建立新 API 金鑰」即可開通。
           </div>
-          <div id="keys-empty" class="empty-state" style="display:none;">還沒有 API 金鑰。</div>
         </div>
       </div>
 
-      <!-- Tab: engines -->
+      <!-- ==========================================
+           TAB 3: 四引擎與用途 (4 Engines Gateway)
+           ========================================== -->
       <div id="tab-engines" class="console-tab-view" style="display:none;">
         <div class="section-header">
           <div>
-            <h1 class="page-title">四個引擎</h1>
-            <p class="section-desc">每次觀測都呼叫這四家的官方 API，回應裡每個引擎各一個欄位。這不是健康狀態頁；某次成功與否看「任務記錄」。</p>
+            <h1 class="page-title">四大官方搜尋引擎與用途</h1>
+            <p class="section-desc">這裡列出每次觀測會呼叫的引擎與用途。<strong>這不是健康狀態頁</strong>：目前沒有定期健康檢查，某次呼叫是否成功請看「量測任務記錄」的單筆結果。</p>
           </div>
         </div>
 
-        <div class="engine-grid">
-          <article class="engine-card">
-            <span class="engine-card__logo"><img src="/assets/openai.svg" alt="" width="26" height="26"></span>
-            <span class="engine-card__name">OpenAI</span>
-            <span class="engine-card__meta">"id": "openai" · gpt-6-luna</span>
-            <p class="engine-card__tool">官方 Web Search 工具。</p>
-          </article>
-          <article class="engine-card">
-            <span class="engine-card__logo"><img src="/assets/googlegemini.svg" alt="" width="26" height="26"></span>
-            <span class="engine-card__name">Google Gemini</span>
-            <span class="engine-card__meta">"id": "gemini" · gemini-3.5-flash-lite</span>
-            <p class="engine-card__tool">Google Search grounding。</p>
-          </article>
-          <article class="engine-card">
-            <span class="engine-card__logo engine-card__logo--perplexity"><img src="/assets/perplexity.svg" alt="" width="28" height="28"></span>
-            <span class="engine-card__name">Perplexity</span>
-            <span class="engine-card__meta">"id": "perplexity" · sonar</span>
-            <p class="engine-card__tool">Sonar 搜尋模型。</p>
-          </article>
-          <article class="engine-card">
-            <span class="engine-card__logo"><img src="/assets/claude.svg" alt="" width="26" height="26"></span>
-            <span class="engine-card__name">Claude</span>
-            <span class="engine-card__meta">"id": "anthropic" · claude-haiku-5-5</span>
-            <p class="engine-card__tool">官方 Web Search 工具。</p>
-          </article>
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px; margin-top:16px;">
+          <!-- OpenAI Search -->
+          <div class="meter-card">
+            <div class="meter-card-header">
+              <span class="meter-card-label" style="color:var(--color-openai);">● OpenAI Search</span>
+              <span style="font-size:0.75rem; color:var(--gc-unknown, #94A3B8); font-weight:700;">已配置</span>
+            </div>
+            <div style="font-size:0.85rem; color:#CBD5E1; line-height:1.7;">
+              • 引擎技術：官方 Web Search 工具（模型 ID 以 API 回應為準）<br>
+              • 觀測指標：品牌提及、官網來源引用權重、結構化摘錄
+            </div>
+          </div>
+
+          <!-- Google Gemini -->
+          <div class="meter-card">
+            <div class="meter-card-header">
+              <span class="meter-card-label" style="color:var(--color-gemini);">● Google Gemini</span>
+              <span style="font-size:0.75rem; color:var(--gc-unknown, #94A3B8); font-weight:700;">已配置</span>
+            </div>
+            <div style="font-size:0.85rem; color:#CBD5E1; line-height:1.7;">
+              • 引擎技術：Google Search Grounding 動態聯網技術<br>
+              • 觀測指標：搜尋關鍵字排名、Grounding Sources 引用
+            </div>
+          </div>
+
+          <!-- Perplexity Sonar -->
+          <div class="meter-card">
+            <div class="meter-card-header">
+              <span class="meter-card-label" style="color:var(--color-perplexity);">● Perplexity Sonar</span>
+              <span style="font-size:0.75rem; color:var(--gc-unknown, #94A3B8); font-weight:700;">已配置</span>
+            </div>
+            <div style="font-size:0.85rem; color:#CBD5E1; line-height:1.7;">
+              • 引擎技術：Sonar Online 搜尋引擎直連通道<br>
+              • 觀測指標：直接引用 URL、自然語言答案排序
+            </div>
+          </div>
+
+          <!-- Anthropic Claude -->
+          <div class="meter-card">
+            <div class="meter-card-header">
+              <span class="meter-card-label" style="color:var(--color-claude);">● Anthropic Claude</span>
+              <span style="font-size:0.75rem; color:var(--gc-unknown, #94A3B8); font-weight:700;">已配置</span>
+            </div>
+            <div style="font-size:0.85rem; color:#CBD5E1; line-height:1.7;">
+              • 引擎技術：官方 Web Search 能力（模型 ID 以 API 回應為準）<br>
+              • 觀測指標：深度語意推薦、長文本品牌上下文理解
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Tab: jobs -->
+      <!-- ==========================================
+           TAB 4: 量測任務記錄 (Jobs)
+           ========================================== -->
       <div id="tab-jobs" class="console-tab-view" style="display:none;">
         <div class="section-header">
           <div>
-            <h1 class="page-title">任務記錄</h1>
-            <p class="section-desc">透過 API 建立的觀測任務與目前狀態。</p>
+            <h1 class="page-title">量測任務記錄 (Recent Jobs)</h1>
+            <p class="section-desc">檢視透過 API 提交之非同步量測任務生命週期、發起時間與執行狀態。</p>
           </div>
         </div>
 
         <div class="panel-card">
-          <div class="table-scroll">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th style="width:28%;">job_id</th>
-                  <th style="width:34%;">measurement_id</th>
-                  <th style="width:18%;">狀態</th>
-                  <th style="width:20%;">建立時間</th>
-                </tr>
-              </thead>
-              <tbody id="jobs-tbody"></tbody>
-            </table>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:28%;">任務 ID (Job ID)</th>
+                <th style="width:34%;">量測識別碼 (Measurement ID)</th>
+                <th style="width:18%;">執行狀態</th>
+                <th style="width:20%;">發起時間</th>
+              </tr>
+            </thead>
+            <tbody id="jobs-tbody"></tbody>
+          </table>
+          <div id="jobs-empty" class="empty-state" style="display:none;">
+            暫無歷史任務。透過 API 發起量測後，任務進度將即時呈現於此。
           </div>
-          <div id="jobs-empty" class="empty-state" style="display:none;">還沒有任務。</div>
         </div>
       </div>
 
-      <!-- Tab: quickstart -->
+      <!-- ==========================================
+           TAB 5: 快速開始 (Quickstart)
+           ========================================== -->
       <div id="tab-quickstart" class="console-tab-view" style="display:none;">
-        <div class="section-header">
+        <div class="page-title-row">
           <div>
-            <h1 class="page-title">第一次呼叫</h1>
-            <p class="section-desc">建立任務後，用 GET /v1/measurements/:id 取結果；處理中回 409。細節見<a href="/docs" style="color:var(--gc-accent-text);">技術文件</a>。</p>
+            <h1 class="page-title">快速開始：30 秒發起首次量測</h1>
+            <p class="section-desc">透過 cURL 或 Python 發起四大引擎並行量測。帶入 Idempotency-Key 可保障完全冪等不重複扣量。</p>
           </div>
         </div>
 
         <div class="code-block-container">
           <div class="code-block-header">
-            <span class="code-block-tag">cURL</span>
-            <button type="button" class="btn-copy-code" onclick="copyCode('qs-curl-code')">複製</button>
+            <span class="code-block-tag">cURL Example</span>
+            <button type="button" class="btn-copy-code" onclick="copyCode('qs-curl-code')">複製代碼</button>
           </div>
           <pre id="qs-curl-code"><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
-  --max-time 30 --fail-with-body \
   -H "Authorization: Bearer $GEOCHECK_API_KEY" \
   -H "Idempotency-Key: $(uuidgen)" \
   -H "Content-Type: application/json" \
   -d '{"input": {"type": "url", "url": "https://example.com"}, "locale": "zh-TW"}'</code></pre>
         </div>
 
-        <div class="code-block-container">
+        <div class="code-block-container" style="margin-top: 18px;">
           <div class="code-block-header">
-            <span class="code-block-tag">Python</span>
-            <button type="button" class="btn-copy-code" onclick="copyCode('qs-py-code')">複製</button>
+            <span class="code-block-tag">Python Request Example</span>
+            <button type="button" class="btn-copy-code" onclick="copyCode('qs-py-code')">複製代碼</button>
           </div>
           <pre id="qs-py-code"><code>import requests, uuid
 
-res = requests.post(
+response = requests.post(
     "https://platform.lslabs.tw/v1/measurements",
     headers={
-        "Authorization": "Bearer " + API_KEY,
+        "Authorization": "Bearer gck_live_your_key_here",
         "Idempotency-Key": str(uuid.uuid4()),
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
     },
-    json={"input": {"type": "url", "url": "https://example.com"}, "locale": "zh-TW"},
-    timeout=30,
+    json={
+        "input": {"type": "url", "url": "https://example.com"},
+        "locale": "zh-TW"
+    }
 )
-job = res.json()
-print(job["measurement_id"], job["status"])</code></pre>
+job = response.json()
+print("Measurement initiated:", job["measurement_id"])</code></pre>
         </div>
       </div>
 
-      <!-- Tab: plans -->
+      <!-- ==========================================
+           TAB 6: 方案與配額 (Plans & Quotas)
+           ========================================== -->
       <div id="tab-plans" class="console-tab-view" style="display:none;">
         <div class="section-header">
           <div>
-            <h1 class="page-title">存取狀態</h1>
-            <p class="section-desc">目前是 Private Beta，帳戶逐一開通；資格、額度與可用引擎以本頁顯示為準。</p>
+            <h1 class="page-title">Developer API 方案與配額</h1>
+            <p class="section-desc">Developer API 目前採 Private Beta 管理；實際存取資格、額度與可用引擎以 Console 為準。</p>
           </div>
         </div>
 
         <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-card-name">Private Beta</div>
+          <!-- Free Trial -->
+          <div class="plan-card featured">
+            <div class="plan-card-name">Private Beta 存取</div>
             <div class="plan-card-price">依帳戶開通狀態</div>
             <ul class="plan-card-list">
-              <li>額度與速率限制在開通時顯示。</li>
-              <li>儲值點數 1 點＝新台幣 1 元；四個引擎全部完成的一次觀測扣 8 點，失敗不扣。</li>
-              <li>尚未開放付款。規則見 <a href="/pricing" style="color:var(--gc-accent-text);">儲值與計費說明</a>。</li>
+              <li>由帳戶權益決定可用範圍</li>
+              <li>可用引擎由 Console 顯示</li>
+              <li>速率限制在開通時顯示</li>
+              <li>目前不提供公開自助開通</li>
             </ul>
             <button type="button" class="btn-plan-select btn-plan-blue" onclick="requestAccess()">查看存取狀態</button>
+          </div>
+
+          <!-- Basic -->
+          <div class="plan-card">
+            <div class="plan-card-name">Basic</div>
+            <div class="plan-card-price">尚未公開選購</div>
+            <ul class="plan-card-list">
+              <li>不預設任何商業額度</li>
+              <li>結果語意以 API 契約為準</li>
+              <li>權益在正式開放時顯示</li>
+              <li>目前沒有公開價格</li>
+            </ul>
+            <button type="button" class="btn-plan-select btn-plan-outline" onclick="requestAccess()">查看存取狀態</button>
+          </div>
+
+          <!-- Premium -->
+          <div class="plan-card">
+            <div class="plan-card-name">Premium</div>
+            <div class="plan-card-price">尚未公開選購</div>
+            <ul class="plan-card-list">
+              <li>不預設任何商業額度</li>
+              <li>partial 結果不等同完整觀測</li>
+              <li>權益在正式開放時顯示</li>
+              <li>目前沒有公開價格</li>
+            </ul>
+            <button type="button" class="btn-plan-select btn-plan-outline" onclick="requestAccess()">查看存取狀態</button>
           </div>
         </div>
       </div>
@@ -571,80 +1563,144 @@ print(job["measurement_id"], job["status"])</code></pre>
   </div>
 </div>
 
-<!-- Modals -->
+<!-- ==========================================
+     MODALS
+     ========================================== -->
 
-<div id="plan-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="plan-modal-title">
-  <div class="modal-card">
-    <button type="button" class="modal-close" onclick="closePlanModal()" aria-label="關閉">✕</button>
-    <h2 class="modal-title" id="plan-modal-title">存取狀態</h2>
-    <p class="modal-subtitle">目前是 Private Beta，帳戶逐一開通。額度、可用引擎與速率限制在開通時顯示；尚未開放付款。</p>
-    <div class="modal-actions">
-      <button type="button" class="btn-plan-outline" onclick="closePlanModal()">關閉</button>
-      <button type="button" class="btn-primary-blue" onclick="requestAccess()">查看存取狀態</button>
+<!-- 1. Plan Modal -->
+<div id="plan-modal" class="modal-overlay">
+  <div class="modal-card" style="max-width: 800px;">
+    <button class="modal-close" onclick="closePlanModal()">✕</button>
+    <div style="text-align:center; margin-bottom: 20px;">
+      <h2 class="modal-title">Developer API 開放狀態</h2>
+      <p class="modal-subtitle">目前採 Private Beta 管理；方案、額度與任何付費安排會在正式開通時顯示。</p>
+    </div>
+
+    <div class="plans-grid" style="margin-top:0;">
+      <div class="plan-card featured">
+        <div class="plan-card-name">Private Beta 存取</div>
+        <div class="plan-card-price">依帳戶開通狀態</div>
+        <ul class="plan-card-list">
+          <li>由帳戶權益決定可用範圍</li>
+          <li>可用引擎由 Console 顯示</li>
+          <li>速率限制在開通時顯示</li>
+          <li>目前不提供公開自助開通</li>
+        </ul>
+        <button type="button" class="btn-plan-select btn-plan-blue" onclick="requestAccess()">查看存取狀態</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-card-name">Basic</div>
+        <div class="plan-card-price">尚未公開選購</div>
+        <ul class="plan-card-list">
+          <li>不預設任何商業額度</li>
+          <li>結果語意以 API 契約為準</li>
+          <li>權益在正式開放時顯示</li>
+          <li>目前沒有公開價格</li>
+        </ul>
+        <button type="button" class="btn-plan-select btn-plan-outline" onclick="requestAccess()">查看存取狀態</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-card-name">Premium</div>
+        <div class="plan-card-price">尚未公開選購</div>
+        <ul class="plan-card-list">
+          <li>不預設任何商業額度</li>
+          <li>partial 結果不等同完整觀測</li>
+          <li>權益在正式開放時顯示</li>
+          <li>目前沒有公開價格</li>
+        </ul>
+        <button type="button" class="btn-plan-select btn-plan-outline" onclick="requestAccess()">查看存取狀態</button>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="paid-notice-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="paid-notice-title">
-  <div class="modal-card">
-    <button type="button" class="modal-close" onclick="closePaidNoticeModal()" aria-label="關閉">✕</button>
-    <h2 class="modal-title" id="paid-notice-title">Private Beta</h2>
-    <p class="modal-subtitle">帳戶資格、可用引擎、額度與付費安排，以開通時本控制台顯示的內容為準。有問題寫信到 <a href="mailto:me@lslabs.tw" style="color:var(--gc-accent-text);">me@lslabs.tw</a>。</p>
-    <div class="modal-actions">
-      <button type="button" class="btn-primary-blue" onclick="closePaidNoticeModal()">知道了</button>
+<!-- 2. Paid Notice Modal -->
+<div id="paid-notice-modal" class="modal-overlay">
+  <div class="modal-card" style="text-align:center; max-width:420px;">
+    <button class="modal-close" onclick="closePaidNoticeModal()">✕</button>
+    <div style="width:44px; height:44px; border-radius:var(--radius-md); background:rgba(59,130,246,0.15); color:var(--gc-accent); display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
     </div>
+    <h3 class="modal-title" style="margin-bottom:8px;">Developer API 存取狀態</h3>
+    <p class="modal-subtitle" style="margin-bottom:20px;">
+      目前 Developer API 處於 Private Beta 階段。帳戶資格、可用引擎、額度與任何後續付費安排，都必須以正式開通時的 Console 資訊為準。
+    </p>
+    <button type="button" class="btn-primary-blue" style="width:100%; justify-content:center; padding:9px;" onclick="closePaidNoticeModal()">了解</button>
   </div>
 </div>
 
-<div id="create-key-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="create-key-title">
+<!-- 3. Create Key Input Modal -->
+<div id="create-key-modal" class="modal-overlay">
   <div class="modal-card">
-    <button type="button" class="modal-close" onclick="closeCreateKeyModal()" aria-label="關閉">✕</button>
-    <h2 class="modal-title" id="create-key-title">建立 API 金鑰</h2>
-    <p class="modal-subtitle">金鑰綁定這個帳戶的額度，可建立觀測與查詢結果。</p>
+    <button class="modal-close" onclick="closeCreateKeyModal()">✕</button>
+    <h3 class="modal-title">建立新 API 金鑰</h3>
+    <p class="modal-subtitle">
+      金鑰將綁定於當前租戶配額，具備發起量測與查詢之存取權限。
+    </p>
+
     <div class="form-group">
-      <label class="form-label" for="key-name-input">名稱</label>
-      <input id="key-name-input" class="form-input" placeholder="例如 production" value="Default API Key" maxlength="60">
+      <label class="form-label" for="key-name-input">金鑰識別名稱</label>
+      <input id="key-name-input" class="form-input" placeholder="例如: Production-API, Agent-Bot" value="Default API Key" maxlength="60" />
     </div>
-    <div class="modal-actions">
-      <button type="button" class="btn-plan-outline" onclick="closeCreateKeyModal()">取消</button>
-      <button type="button" class="btn-primary-blue" onclick="submitCreateKey()">建立</button>
+
+    <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+      <button type="button" class="btn-plan-select btn-plan-outline" style="width:auto; padding:6px 14px;" onclick="closeCreateKeyModal()">取消</button>
+      <button type="button" class="btn-primary-blue" onclick="submitCreateKey()">確定建立</button>
     </div>
   </div>
 </div>
 
-<div id="reveal-key-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="reveal-key-title">
+<!-- 4. Key Revealed Modal -->
+<div id="reveal-key-modal" class="modal-overlay">
   <div class="modal-card">
-    <h2 class="modal-title" id="reveal-key-title">金鑰已建立</h2>
-    <p class="modal-subtitle">完整金鑰只顯示這一次，離開後無法再看。</p>
+    <h3 class="modal-title" style="color:var(--gc-success);">API 金鑰建立成功</h3>
+    <p class="modal-subtitle">
+      請妥善保存以下 API 金鑰。出於安全考慮，該金鑰 <strong>僅會完整顯示一次</strong>，離開此頁後將無法再次查看。
+    </p>
+
     <div class="key-reveal-box">
       <span id="revealed-key-text" class="key-reveal-code">gck_live_loading...</span>
-      <button type="button" class="btn-copy-code" onclick="copyRevealedKey()"><span id="btn-copy-label">複製金鑰</span></button>
+      <button type="button" class="btn-copy-code" onclick="copyRevealedKey()">
+        <span id="btn-copy-label">複製金鑰</span>
+      </button>
     </div>
-    <div class="modal-actions">
-      <button type="button" class="btn-primary-blue" onclick="closeRevealModal()">我已保存</button>
+
+    <button type="button" class="btn-primary-blue" style="width:100%; justify-content:center;" onclick="closeRevealModal()">我已妥善保存</button>
+  </div>
+</div>
+
+<!-- 5. Revoke Confirm Modal -->
+<div id="revoke-modal" class="modal-overlay">
+  <div class="modal-card" style="max-width: 400px;">
+    <button class="modal-close" onclick="closeRevokeModal()">✕</button>
+    <h3 class="modal-title" style="color:var(--gc-danger);">確認撤銷 API 金鑰</h3>
+    <p class="modal-subtitle" style="margin-bottom:16px;">
+      您確定要撤銷「<strong id="revoke-key-name" style="color:#FFF;"></strong>」嗎？撤銷後使用該金鑰的所有應用將立即無法發起量測。
+    </p>
+
+    <div style="display:flex; justify-content:flex-end; gap:10px;">
+      <button type="button" class="btn-plan-select btn-plan-outline" style="width:auto; padding:6px 14px;" onclick="closeRevokeModal()">取消</button>
+      <button type="button" class="btn-revoke" style="padding:6px 14px; font-size:0.82rem;" onclick="confirmRevokeKey()">確認撤銷</button>
     </div>
   </div>
 </div>
 
-<div id="revoke-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="revoke-title">
-  <div class="modal-card">
-    <button type="button" class="modal-close" onclick="closeRevokeModal()" aria-label="關閉">✕</button>
-    <h2 class="modal-title" id="revoke-title">撤銷 API 金鑰</h2>
-    <p class="modal-subtitle">撤銷「<strong id="revoke-key-name" style="color:var(--gc-text-primary);"></strong>」後，用這把金鑰的程式會立刻無法呼叫。</p>
-    <div class="modal-actions">
-      <button type="button" class="btn-plan-outline" onclick="closeRevokeModal()">取消</button>
-      <button type="button" class="btn-revoke" style="min-height:42px;padding:0 20px;font-size:15px;" onclick="confirmRevokeKey()">撤銷</button>
+<!-- 6. Feedback Modal -->
+<div id="feedback-modal" class="modal-overlay">
+  <div class="modal-card" style="max-width: 440px;">
+    <button class="modal-close" onclick="closeFeedbackModal()">✕</button>
+    <h3 class="modal-title">聯繫支援與反饋</h3>
+    <p class="modal-subtitle">
+      如果您在對接 API、量測結果判讀或架構集成上有任何問題，歡迎直接聯絡 LS-Labs 核心團隊：
+    </p>
+    <div style="background:#0B111F; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--gc-card-border); font-size:0.85rem; color:#CBD5E1; line-height:1.8;">
+      • 技術支援信箱：<a href="mailto:me@lslabs.tw" style="color:#60A5FA;">me@lslabs.tw</a><br>
+      • 官方網站：<a href="https://lslabs.tw/" target="_blank" rel="noopener" style="color:#60A5FA;">https://lslabs.tw/</a><br>
+      • API 技術文件：<a href="/docs" style="color:#60A5FA;">/docs</a>
     </div>
-  </div>
-</div>
-
-<div id="feedback-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
-  <div class="modal-card">
-    <button type="button" class="modal-close" onclick="closeFeedbackModal()" aria-label="關閉">✕</button>
-    <h2 class="modal-title" id="feedback-title">聯絡我們</h2>
-    <p class="modal-subtitle">串接、結果判讀或帳戶問題，直接來信。</p>
-    <p class="contact-list"><!--email_off--><a href="mailto:me@lslabs.tw">me@lslabs.tw</a><!--/email_off--><br><a href="https://lslabs.tw/">lslabs.tw</a><br><a href="/docs">技術文件</a></p>
-    <div class="modal-actions">
+    <div style="margin-top:18px; text-align:right;">
       <button type="button" class="btn-primary-blue" onclick="closeFeedbackModal()">關閉</button>
     </div>
   </div>
@@ -904,6 +1960,10 @@ function renderJobsTable() {
     `;
     tbody.appendChild(tr);
   });
+}
+
+function handleTimeFilter(val) {
+  showToast('已切換統計時段：' + (val === '7d' ? '近 7 天' : val === 'month' ? '本月累計' : '今日'));
 }
 
 function exportUsageCsv() {
