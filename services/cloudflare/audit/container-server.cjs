@@ -1,7 +1,7 @@
 const http = require("node:http");
 const { runRealLiteAudit } = require("../../../apps/web/report/real-lite-audit.js");
 const { createHomepageFromHtml } = require("../../../packages/crawler/html-v2.js");
-const { normalizeReportForClient, reportHtml } = require("../../api/server.js");
+const { normalizeReportForClient, reportHtml, reportMarkdown } = require("../../api/server.js");
 
 const PORT = Number(process.env.PORT || 8080);
 const MAX_REQUEST_BYTES = 2 * 1024 * 1024;
@@ -42,6 +42,7 @@ const server = http.createServer(async (req, res) => {
         : null;
       const report = await runRealLiteAudit(url, {
         customQueries: Array.isArray(body.custom_queries) ? body.custom_queries : null,
+        reportId: typeof body.report_id === "string" ? body.report_id : undefined,
         ...(homepage ? { homepage } : {})
       });
       return sendJson(res, 200, { report, crawl_path: homepage ? "browser_run" : "container_fallback" });
@@ -51,6 +52,11 @@ const server = http.createServer(async (req, res) => {
       const html = reportHtml(normalizeReportForClient(body.report));
       res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" });
       return res.end(html);
+    }
+    if (req.url === "/render-markdown") {
+      if (!body.report || typeof body.report !== "object") return sendJson(res, 400, { error: "report_required" });
+      res.writeHead(200, { "Content-Type": "text/markdown; charset=utf-8", "Cache-Control": "no-store" });
+      return res.end(reportMarkdown(normalizeReportForClient(body.report)));
     }
     return sendJson(res, 404, { error: "not_found" });
   } catch (error) {

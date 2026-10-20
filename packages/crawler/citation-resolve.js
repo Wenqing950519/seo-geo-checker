@@ -1,10 +1,11 @@
 const { safeHostname } = require("../geo-core/evidence/brand-match.js");
 
 // 只處理已知的重導向/短網址服務；一般網址不打網路請求。
+// Gemini 的 Google 搜尋接地一律經 vertexaisearch 轉址引用來源（2026-10-20 實測）。
 const KNOWN_REDIRECTORS = new Set([
   "l.facebook.com", "lm.facebook.com", "fb.me", "bit.ly", "tinyurl.com", "goo.gl",
   "reurl.cc", "lihi.cc", "lihi1.com", "lihi2.com", "lihi3.cc", "pse.is", "t.co",
-  "rb.gy", "shorturl.at"
+  "rb.gy", "shorturl.at", "vertexaisearch.cloud.google.com"
 ]);
 
 // 部分重導向網址把目的地放在 query 參數，可離線解出、不需網路。

@@ -12,6 +12,23 @@ function createOfficialProvidersFromEnv(options = {}) {
   return listOfficialEngineProfiles().map((profile) => createAdapter(profile, keys, fetchImpl));
 }
 
+// One adapter for one profile, requiring only that provider's key. GeoCheck MCAC uses
+// this so it never needs (or touches) the other engines' credentials.
+function createOfficialProvider(profileId, options = {}) {
+  const config = options.config || process.env;
+  const fetchImpl = options.fetch || globalThis.fetch;
+  const base = listOfficialEngineProfiles().find((profile) => profile.id === profileId);
+  if (!base) throw new Error(`Unknown official engine profile: ${profileId}`);
+  const readiness = getOfficialProviderReadiness(config)[profileId];
+  if (!readiness?.configured) {
+    const error = new Error(`Official provider ${profileId} requires: ${readiness?.env || "an API key"}`);
+    error.code = "missing_provider_api_keys";
+    throw error;
+  }
+  const profile = options.model ? Object.freeze({ ...base, model: String(options.model) }) : base;
+  return createAdapter(profile, { [base.provider]: String(config[readiness.env]).trim() }, fetchImpl);
+}
+
 function getOfficialProviderReadiness(config = process.env) {
   const names = {
     "openai-web": "OPENAI_API_KEY",
@@ -418,6 +435,7 @@ function dedupeCitations(citations) {
 
 module.exports = {
   MAX_PROVIDER_RESPONSE_BYTES,
+  createOfficialProvider,
   createOfficialProvidersFromEnv,
   getOfficialProviderReadiness
 };
