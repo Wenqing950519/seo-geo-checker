@@ -20,9 +20,12 @@ assert.match(server, /AI 回答裡有提到你的品牌/);
 assert.match(server, /AI 回答裡有引用你的官網/);
 assert.match(server, /沒拿到回答的題目不會被當成 0 分/);
 assert.doesNotMatch(realLiteReportSection(server), /Perplexity|DeepSeek|Provider:|Model:/);
-assert.match(home, /AI 有沒有提到你（占 65%）/);
-assert.match(home, /AI 有沒有引用你的官網（占 35%）/);
-assert.match(home, /不會當成 0 分/);
+// The public home page describes MCAC (2026-10-20); the 65/35 index stays with the
+// Classic report and research batches above.
+assert.doesNotMatch(home, /AI 信任值|占 65%|占 35%/);
+assert.match(home, /AI 有沒有提到你/);
+assert.match(home, /有沒有引用你的官網/);
+assert.match(home, /未知不等於 0/);
 assert.match(batch, /ai_trust_index/);
 assert.match(batch, /source_evidence_rate/);
 console.log("ai trust product/report/whitepaper surface tests passed");
