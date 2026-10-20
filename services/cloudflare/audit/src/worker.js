@@ -113,6 +113,11 @@ async function getReport(db, reportId) {
   try { return JSON.parse(row.report_json); } catch { return null; }
 }
 
+// Report pages and downloads share one container. A container per report cold-started on every
+// new report, competed with audits for the instance ceiling, and one stuck instance kept its
+// report failing for good (2026-10-21 deploy check). Audits run one at a time (max_concurrency).
+const RENDER_CONTAINER = "report-render";
+
 async function invokeContainer(env, jobId, path, body) {
   const container = getContainer(env.AUDIT_FALLBACK, `audit-${jobId}`);
   const request = new Request(`http://audit-container${path}`, {
@@ -267,7 +272,7 @@ export default {
         const reportId = decodeURIComponent(markdownMatch[1]);
         const report = await getReport(env.REPORTS_DB, reportId);
         if (!report) return json(404, { error: "Report not found" });
-        const rendered = await invokeContainer(env, `render-${reportId}`, "/render-markdown", { report });
+        const rendered = await invokeContainer(env, RENDER_CONTAINER, "/render-markdown", { report });
         if (!rendered.ok) throw new Error(`audit_container_http_${rendered.status}`);
         return withSecurityHeaders(new Response(await rendered.text(), { status: 200, headers: {
           "Content-Type": "text/markdown; charset=utf-8",
@@ -279,7 +284,7 @@ export default {
       if (request.method === "GET" && pageMatch) {
         const report = await getReport(env.REPORTS_DB, decodeURIComponent(pageMatch[1]));
         if (!report) return withSecurityHeaders(new Response("<h1>Report not found</h1>", { status: 404, headers: { "Content-Type": "text/html; charset=utf-8" } }));
-        return withSecurityHeaders(await invokeContainer(env, `render-${pageMatch[1]}`, "/render", { report }));
+        return withSecurityHeaders(await invokeContainer(env, RENDER_CONTAINER, "/render", { report }));
       }
       if (request.method === "POST" && url.pathname === "/api/leads") {
         const body = await readBody(request);
