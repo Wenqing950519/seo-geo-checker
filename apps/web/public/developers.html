@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Platform By LS-Labs — 可驗證的 AI 能見度量測 API</title>
-<meta name="description" content="Platform By LS-Labs 提供 GeoCheck API 與 TypeScript SDK：一次呼叫，同步取得四個官方 AI 搜尋引擎的原生回答與引用證據。">
+<title>LS-Labs Platform｜四個 AI 搜尋引擎的回答與引用 API</title>
+<meta name="description" content="一次呼叫取回 OpenAI、Google Gemini、Perplexity 與 Claude 的回答原文和引用來源，每個引擎分開標示成功或失敗。目前為 Private Beta。">
 <link rel="canonical" href="https://platform.lslabs.tw/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="LS-Labs Platform">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:title" content="Platform By LS-Labs — 可驗證的 AI 能見度量測 API">
-<meta property="og:description" content="Platform By LS-Labs 提供 GeoCheck API 與 TypeScript SDK：一次呼叫，同步取得四個官方 AI 搜尋引擎的原生回答與引用證據。">
+<meta property="og:title" content="LS-Labs Platform｜四個 AI 搜尋引擎的回答與引用 API">
+<meta property="og:description" content="一次呼叫取回 OpenAI、Google Gemini、Perplexity 與 Claude 的回答原文和引用來源，每個引擎分開標示成功或失敗。">
 <meta property="og:url" content="https://platform.lslabs.tw/">
 <meta property="og:image" content="https://platform.lslabs.tw/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Platform By LS-Labs — 可驗證的 AI 能見度量測 API">
-<meta name="twitter:description" content="Platform By LS-Labs 提供 GeoCheck API 與 TypeScript SDK：一次呼叫，同步取得四個官方 AI 搜尋引擎的原生回答與引用證據。">
+<meta name="twitter:title" content="LS-Labs Platform｜四個 AI 搜尋引擎的回答與引用 API">
+<meta name="twitter:description" content="一次呼叫取回 OpenAI、Google Gemini、Perplexity 與 Claude 的回答原文和引用來源，每個引擎分開標示成功或失敗。">
 <meta name="twitter:image" content="https://platform.lslabs.tw/og-image.png">
 <!-- LS-Labs public-web GA4 tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
@@ -27,1063 +27,357 @@
 </script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904">
 <link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904">
+<link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-
+<!-- CJK glyphs load without blocking the first paint; text shows in the system face and swaps in. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap"></noscript>
 <link rel="stylesheet" href="/assets/tokens.css">
 <style>
-:root {
-  /* Brand Primitive Colors */
-  /* Aliases into /assets/tokens.css. These carried mint-flavoured names
-     while holding blue; the role is in the name now. */
-  --gc-navy: var(--ls-navy);
-  --gc-navy-dark: var(--ls-navy-deep);
-  --gc-navy-light: #17355F;
-  --gc-navy-surface: var(--ls-navy-surface);
-  --gc-accent: var(--ls-accent-surface);
-  --gc-accent-on-light: var(--ls-accent-on-light);
-  --gc-accent-on-dark: var(--ls-accent-on-dark);
-  --gc-accent-tint: var(--ls-accent-tint);
+/* Platform landing. Same language as geocheck.lslabs.tw and lslabs.tw: a dark void,
+   hairline rules instead of boxes, Space Grotesk / Noto Sans TC, light paper for
+   product screens. Colours are aliases into /assets/tokens.css. */
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:500 700;font-display:swap;src:url(/assets/fonts/space-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+2190-2193,U+2212,U+00D7}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/ibm-plex-mono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
 
-  /* Neutrals & Surfaces */
-  --gc-bg: #FFFFFF;
-  --gc-bg-alt: #F8FAFC;
-  --gc-card: #FFFFFF;
-  --gc-text: #1E293B;
-  --gc-muted: #475569;
-  --gc-border: rgba(11, 31, 59, 0.1);
-  --gc-border-focus: rgba(59, 130, 246, 0.4);
+:root{
+  --pf-bg:#04060A;
+  --pf-line:rgba(229,234,242,.1);
+  --pf-line-strong:rgba(229,234,242,.2);
+  --pf-white:var(--ls-on-dark);
+  --pf-body:var(--ls-on-dark-body);
+  --pf-muted:var(--ls-on-dark-muted);
+  --pf-accent:var(--ls-accent-on-dark);
+  --pf-indigo:#A78BFA;
+  --pf-sans:'Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;
+  --pf-display:'Space Grotesk','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  --pf-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --pf-ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;min-height:100vh;background:var(--pf-bg);color:var(--pf-body);font:400 17px/1.8 var(--pf-sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--pf-accent);outline-offset:3px;border-radius:4px}
+.skip-link{position:absolute;left:16px;top:-80px;z-index:10;padding:10px 16px;background:var(--ls-accent-on-light);color:#fff;border-radius:999px}
+.skip-link:focus{top:12px}
+.pf-wrap{max-width:1200px;margin:0 auto;padding-inline:40px}
+.pf-center{text-align:center;margin-inline:auto}
 
-  /* Semantic Status Colors */
-  --gc-success: #10B981;
-  --gc-warning: #F59E0B;
-  --gc-danger: #EF4444;
+/* Sky: a slow aurora, no motion once reduced motion is on. */
+.pf-sky{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--pf-bg)}
+.pf-sky::before{content:'';position:absolute;inset:-20%;background:
+  radial-gradient(38% 30% at 72% 18%,rgba(59,130,246,.2),transparent 70%),
+  radial-gradient(30% 26% at 20% 72%,rgba(139,124,246,.12),transparent 70%);
+  animation:pf-aurora 36s ease-in-out infinite alternate}
+@keyframes pf-aurora{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-4%,3%,0) scale(1.06)}100%{transform:translate3d(3%,-2%,0) scale(1.02)}}
 
-  /* Layout & Metrics */
-  --gc-radius-sm: 4px;
-  --gc-radius-md: 6px;
-  --gc-radius-lg: 8px;
-  --gc-radius-pill: 6px;
-  --gc-shadow-sm: 0 4px 14px rgba(11, 31, 59, 0.05);
-  --gc-shadow-md: 0 10px 30px rgba(11, 31, 59, 0.08);
-  --gc-shadow-lg: 0 20px 50px rgba(11, 31, 59, 0.12);
+/* Toast (copy feedback) */
+.toast{position:fixed;left:50%;bottom:24px;z-index:1000;transform:translate(-50%,16px);padding:10px 18px;border-radius:999px;background:rgba(15,23,42,.92);border:1px solid var(--pf-line-strong);color:var(--pf-white);font-size:15px;font-weight:500;opacity:0;pointer-events:none;transition:opacity 200ms ease,transform 200ms ease}
+.toast.show{opacity:1;transform:translate(-50%,0)}
 
-  /* Fonts */
-  --gc-font-sans: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  --gc-font-number: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --gc-font-mono: 'JetBrains Mono', monospace;
-}
+/* Header */
+.pf-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 28px;min-height:84px}
+.pf-brand{display:inline-flex;align-items:center;gap:10px;font:700 20px/1 var(--pf-display);color:var(--pf-white);letter-spacing:-.01em}
+.pf-brand img{width:28px;height:28px}
+.pf-brand__product{padding-left:12px;margin-left:2px;border-left:1px solid var(--pf-line-strong);font:500 16px/1 var(--pf-display);color:var(--pf-muted);letter-spacing:.02em}
+.pf-nav{display:flex;flex-wrap:wrap;gap:4px 28px;margin-left:auto;font:500 15px/1.6 var(--pf-sans)}
+.pf-nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--pf-body);transition:color 150ms ease}
+.pf-nav a:hover{color:var(--pf-white)}
 
-.font-number {
-  font-family: var(--gc-font-number);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-}
+/* Buttons: one filled, one outlined */
+.pf-actions{display:flex;flex-wrap:wrap;gap:12px 16px;margin:36px 0 0}
+.pf-actions--center{justify-content:center}
+.pf-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border:1px solid transparent;border-radius:999px;background:var(--ls-accent-on-light);color:#fff;font:700 16px/1 var(--pf-sans);letter-spacing:.03em;white-space:nowrap;cursor:pointer;transition:background 150ms ease,border-color 150ms ease,transform 160ms var(--pf-ease)}
+.pf-btn::after{content:'→';font-family:var(--pf-display);transition:transform 200ms var(--pf-ease)}
+.pf-btn:hover{background:var(--ls-accent-on-light-strong)}
+.pf-btn:hover::after{transform:translateX(3px)}
+.pf-btn:active{transform:scale(.97)}
+.pf-btn--ghost{background:rgba(15,23,42,.55);border-color:rgba(229,234,242,.32);color:var(--pf-white)}
+.pf-btn--ghost:hover{background:rgba(59,130,246,.16);border-color:var(--pf-accent)}
+.pf-btn--sm{min-height:42px;padding:0 20px;font-size:15px}
+.pf-btn--sm::after{content:none}
 
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body {
-  font-family: var(--gc-font-sans);
-  color: var(--gc-text);
-  background: var(--gc-bg-alt);
-  line-height: 1.7;
-  overflow-x: hidden;
-}
+/* Hero */
+.pf-hero{overflow-x:clip;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:center;padding-block:clamp(40px,7vw,96px) clamp(64px,9vw,120px)}
+.pf-hero__copy>*{animation:pf-rise 700ms var(--pf-ease) both}
+.pf-hero__copy>:nth-child(2){animation-delay:70ms}.pf-hero__copy>:nth-child(3){animation-delay:140ms}
+@keyframes pf-rise{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+.pf-title{margin:0;font:700 clamp(34px,5vw,60px)/1.18 var(--pf-sans);letter-spacing:.01em;background:linear-gradient(100deg,var(--ls-accent-on-dark) 0%,var(--ls-accent-surface) 40%,var(--pf-indigo) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
+.pf-lead{max-width:30em;margin:22px 0 0;font-size:clamp(18px,1.6vw,20px);font-weight:500;line-height:1.75;color:var(--pf-white)}
+.pf-hero .pf-actions{margin-top:34px}
 
-/* Toast */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1000;
-  background: var(--gc-navy-dark);
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: var(--gc-radius-pill);
-  font-size: 0.88rem;
-  font-weight: 700;
-  box-shadow: var(--gc-shadow-lg);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  pointer-events: none;
-}
-.toast.show { opacity: 1; transform: translateY(0); }
+/* Response paper: the documented GET /v1/measurements result, drawn on light paper */
+.pf-paper{position:relative;padding:22px 24px 16px;border-radius:12px;background:#F8FAFC;color:var(--ls-ink);box-shadow:0 30px 60px -28px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.06);animation:pf-rise 800ms var(--pf-ease) 200ms both}
+.pf-paper__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;padding-bottom:12px;border-bottom:1px solid rgba(11,31,59,.14);font:400 13px/1.6 var(--pf-mono);color:var(--ls-ink-muted)}
+.pf-paper__head b{font-weight:400;color:var(--ls-navy)}
+.pf-engines{list-style:none;margin:0;padding:0}
+.pf-engine{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:0 14px;align-items:center;padding:13px 0;border-bottom:1px solid rgba(11,31,59,.08)}
+.pf-engine__logo{display:grid;place-items:center;width:36px;height:36px;border-radius:9px;background:#fff;box-shadow:0 0 0 1px rgba(11,31,59,.1)}
+.pf-engine__logo img,.pf-engine__logo svg{width:22px;height:22px;display:block}
+.pf-engine__logo--perplexity img{width:24px;height:24px;border-radius:5px}
+.pf-engine__name{font-size:15px;font-weight:700;color:var(--ls-navy);line-height:1.4}
+.pf-engine__meta{display:block;font:400 13px/1.5 var(--pf-mono);color:var(--ls-ink-muted);overflow-wrap:anywhere}
+.pf-engine__status{font:400 13px/1 var(--pf-mono);color:var(--ls-success-on-light);background:var(--ls-success-tint);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.pf-paper__foot{margin:12px 0 0;font-size:13px;line-height:1.6;color:var(--ls-ink-muted)}
 
-/* Navigation */
-header.dev-nav {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--gc-border);
-}
-.nav-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 24px;
-}
-.brand-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-.brand-title {
-  font-size: 1.25rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  letter-spacing: -0.02em;
-}
-.brand-badge {
-  font-family: var(--gc-font-sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--gc-accent-on-light);
-  background: var(--gc-accent-tint);
-  padding: 3px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.04em;
-}
-.nav-links {
-  display: flex;
-  gap: 22px;
-  align-items: center;
-  list-style: none;
-}
-.nav-links a {
-  text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--gc-muted);
-  transition: color 0.2s ease;
-}
-.nav-links a:hover, .nav-links a.active {
-  color: var(--gc-navy);
-}
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border-radius: var(--gc-radius-pill);
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 1px solid transparent;
-}
-.btn-primary {
-  /* white on --gc-accent is 3.68:1; the on-light role is 6.70:1 */
-  background: var(--gc-accent-on-light);
-  color: #FFFFFF;
-}
-.btn-primary:hover {
-  background: var(--ls-accent-on-light-strong);
-  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.3);
-}
-.btn-outline {
-  background: #FFFFFF;
-  color: var(--gc-navy);
-  border-color: var(--gc-border);
-}
-.btn-outline:hover {
-  border-color: var(--gc-navy);
-  background: var(--gc-bg-alt);
-}
-.btn-navy {
-  background: var(--gc-navy);
-  color: #FFFFFF;
-}
-.btn-navy:hover {
-  background: var(--gc-navy-dark);
-}
+/* Sections */
+.pf-section{padding-block:clamp(72px,9vw,128px);border-top:1px solid var(--pf-line)}
+.pf-eyebrow{margin:0 0 14px;font:700 15px/1.6 var(--pf-sans);color:var(--pf-accent);letter-spacing:.12em}
+.pf-h2{margin:0;font:700 clamp(30px,3.6vw,46px)/1.3 var(--pf-sans);color:var(--pf-white);letter-spacing:.01em;text-wrap:balance}
+.pf-section__lead{max-width:44em;margin:20px 0 0;font-size:18px;line-height:1.85;color:var(--pf-white)}
+.pf-inline{color:var(--pf-white);border-bottom:1px solid var(--pf-line-strong);transition:color 150ms ease,border-color 150ms ease}
+.pf-inline:hover{color:var(--pf-accent);border-color:currentColor}
+code{font-family:var(--pf-mono);font-size:.92em}
 
-/* Hero Section */
-.dev-hero {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 64px 24px 72px;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 48px;
-  align-items: center;
-}
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--gc-accent-tint);
-  color: var(--gc-accent-on-light);
-  font-family: var(--gc-font-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: var(--gc-radius-pill);
-  margin-bottom: 20px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-}
-.hero-tag::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--gc-accent);
-}
-.dev-hero h1 {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 900;
-  color: var(--gc-navy);
-  line-height: 1.25;
-  letter-spacing: -0.03em;
-  margin-bottom: 20px;
-}
-.dev-hero p.hero-desc {
-  font-size: 1.1rem;
-  color: var(--gc-muted);
-  line-height: 1.75;
-  margin-bottom: 32px;
-}
-.hero-ctas {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.hero-ctas .btn {
-  padding: 12px 26px;
-  font-size: 0.95rem;
-}
+/* Fields: four columns divided by hairlines */
+.pf-fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:56px;border-top:1px solid var(--pf-line-strong)}
+.pf-field{padding:32px 28px 12px 0}
+.pf-field+.pf-field{padding-left:28px;border-left:1px solid var(--pf-line)}
+.pf-field>code{display:block;font:400 15px/1.4 var(--pf-mono);color:var(--pf-accent);letter-spacing:.02em}
+.pf-field h3{margin:18px 0 0;font:700 21px/1.4 var(--pf-sans);color:var(--pf-white)}
+.pf-field p{margin:10px 0 0;font-size:16px;line-height:1.75;color:var(--pf-body)}
 
-/* Engine Architecture Widget */
-.hero-preview-card {
-  background: #0B192C;
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  border-radius: var(--gc-radius-lg);
-  padding: 28px;
-  box-shadow: var(--gc-shadow-lg);
-  color: #FFFFFF;
-}
-.preview-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 20px;
-}
-.header-dot-group {
-  display: flex;
-  gap: 6px;
-}
-.header-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.header-dot.red { background: #FF5F56; }
-.header-dot.yellow { background: #FFBD2E; }
-.header-dot.green { background: #10B981; }
-.header-badge {
-  font-family: var(--gc-font-sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: var(--gc-accent-on-dark);
-  background: rgba(59, 130, 246, 0.15);
-  padding: 3px 8px;
-  border-radius: 4px;
-  letter-spacing: 0.03em;
-}
-.engine-stream-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.engine-stream-item {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--gc-radius-sm);
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
-.engine-stream-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(59, 130, 246, 0.3);
-}
-.engine-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.engine-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 800;
-  font-family: var(--gc-font-mono);
-}
-.engine-name {
-  font-weight: 700;
-  color: #F1F5F9;
-}
-.engine-model {
-  font-family: var(--gc-font-mono);
-  font-size: 0.75rem;
-  color: #94A3B8;
-  margin-left: 6px;
-}
-.engine-status-tag {
-  font-family: var(--gc-font-mono);
-  font-size: 0.72rem;
-  padding: 3px 8px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.engine-status-tag.ok {
-  background: rgba(39, 201, 63, 0.15);
-  color: #10B981;
-}
+/* Integrate: copy beside a code screen */
+.pf-split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:start;margin-top:48px}
+.pf-steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--pf-line-strong)}
+.pf-steps li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:0 16px;padding:20px 0;border-bottom:1px solid var(--pf-line)}
+.pf-steps b{font:700 28px/1 var(--pf-display);color:var(--pf-accent);letter-spacing:-.02em}
+.pf-steps strong{display:block;font-size:18px;color:var(--pf-white)}
+.pf-steps p{margin:6px 0 0;font-size:16px;line-height:1.75}
+.pf-code{border-radius:12px;background:#0B1220;box-shadow:0 0 0 1px var(--pf-line-strong),0 30px 60px -30px rgba(0,0,0,.8);overflow:hidden}
+.pf-code__bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px 10px 16px;border-bottom:1px solid var(--pf-line)}
+.pf-tabs{display:flex;gap:4px}
+.pf-tab{border:0;background:none;padding:6px 12px;border-radius:999px;font:500 14px/1 var(--pf-display);color:var(--pf-muted);cursor:pointer;transition:background 150ms ease,color 150ms ease}
+.pf-tab:hover{color:var(--pf-white)}
+.pf-tab[aria-selected="true"]{background:rgba(59,130,246,.16);color:var(--pf-white)}
+.pf-copy{border:1px solid var(--pf-line-strong);background:none;padding:6px 12px;border-radius:999px;font:500 13px/1 var(--pf-sans);color:var(--pf-body);cursor:pointer;transition:border-color 150ms ease,color 150ms ease}
+.pf-copy:hover{border-color:var(--pf-accent);color:var(--pf-white)}
+.pf-code pre{margin:0;padding:20px;font:400 14px/1.7 var(--pf-mono);color:var(--pf-body);overflow-x:auto;tab-size:2}
+.pf-code pre[hidden]{display:none}
+.pf-code .k{color:var(--pf-accent)}.pf-code .s{color:#2DD4BF}.pf-code .c{color:var(--pf-muted)}
 
-/* Feature Grid */
-.features-section {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 40px 24px 80px;
-}
-.sec-header {
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto 48px;
-}
-.sec-header h2 {
-  font-size: 2.2rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-}
-.sec-header p {
-  color: var(--gc-muted);
-  font-size: 1.05rem;
-}
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-.feature-card {
-  background: #FFFFFF;
-  border: 1px solid var(--gc-border);
-  border-radius: var(--gc-radius-md);
-  padding: 28px 24px;
-  box-shadow: var(--gc-shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.feature-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--gc-shadow-md);
-  border-color: rgba(59, 130, 246, 0.4);
-}
-.feature-icon-wrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--gc-accent-tint);
-  color: var(--gc-accent-on-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.feature-card h3 {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--gc-navy);
-  margin-bottom: 10px;
-}
-.feature-card p {
-  font-size: 0.92rem;
-  color: var(--gc-muted);
-  line-height: 1.65;
-}
+/* Status rows */
+.pf-rows{list-style:none;margin:48px 0 0;padding:0;border-top:1px solid var(--pf-line-strong)}
+.pf-rows li{display:grid;grid-template-columns:minmax(0,.35fr) minmax(0,1fr);gap:8px 40px;padding:24px 0;border-bottom:1px solid var(--pf-line)}
+.pf-rows strong{font-size:19px;color:var(--pf-white)}
+.pf-rows p{margin:0;font-size:17px;line-height:1.8}
+.pf-rows p+p{margin-top:6px}
 
-/* Interactive Code Snippet Section */
-.code-showcase-section {
-  background: #FFFFFF;
-  border-top: 1px solid var(--gc-border);
-  border-bottom: 1px solid var(--gc-border);
-  padding: 72px 24px;
-}
-.code-showcase-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 48px;
-  align-items: center;
-}
-.code-showcase-info h2 {
-  font-size: 2.1rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  margin-bottom: 16px;
-  line-height: 1.3;
-}
-.code-showcase-info p {
-  font-size: 1.05rem;
-  color: var(--gc-muted);
-  margin-bottom: 24px;
-}
-.code-feature-bullets {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.code-feature-bullets li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.94rem;
-  color: var(--gc-text);
-}
-.code-feature-bullets svg {
-  color: var(--gc-accent);
-  flex-shrink: 0;
-  margin-top: 3px;
-}
+/* Closing */
+.pf-end{position:relative;overflow:hidden;padding-block:clamp(96px,12vw,168px);border-top:1px solid var(--pf-line);text-align:center}
+.pf-end__glow{position:absolute;inset:0;z-index:-1;display:grid;place-items:center;pointer-events:none}
+.pf-end__glow::before{content:'';position:absolute;width:min(900px,120vw);aspect-ratio:2/1;border-radius:50%;background:radial-gradient(closest-side,rgba(59,130,246,.26),rgba(139,124,246,.12) 55%,transparent);animation:pf-breathe 10s ease-in-out infinite alternate}
+@keyframes pf-breathe{from{transform:scale(.92);opacity:.7}to{transform:scale(1.08);opacity:1}}
+.pf-end__title{margin:0;font:700 clamp(32px,4.4vw,56px)/1.25 var(--pf-sans);color:var(--pf-white);letter-spacing:.01em;text-wrap:balance}
+.pf-end__lead{max-width:34em;margin:20px auto 0;font-size:18px;line-height:1.8;color:var(--pf-body)}
 
-.terminal-box {
-  background: #06101E;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: var(--gc-radius-md);
-  overflow: hidden;
-  box-shadow: var(--gc-shadow-lg);
-}
-.terminal-bar {
-  background: #0B192C;
-  padding: 10px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-.tab-group {
-  display: flex;
-  gap: 8px;
-}
-.tab-btn {
-  background: transparent;
-  border: none;
-  color: #94A3B8;
-  font-family: var(--gc-font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.tab-btn.active {
-  background: rgba(59, 130, 246, 0.2);
-  color: var(--gc-accent-on-dark);
-}
-.copy-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #CBD5E1;
-  font-family: var(--gc-font-mono);
-  font-size: 0.75rem;
-  padding: 4px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-}
-.copy-btn:hover {
-  background: var(--gc-accent-on-light);
-  border-color: var(--gc-accent-on-light);
-  color: #FFFFFF;
-}
-.terminal-content {
-  padding: 22px;
-  font-family: var(--gc-font-mono);
-  font-size: 0.84rem;
-  line-height: 1.7;
-  color: #E2E8F0;
-  overflow-x: auto;
-  min-height: 280px;
-}
-.terminal-content pre { margin: 0; }
-.c-keyword { color: #F472B6; }
-.c-string { color: #34D399; }
-.c-func { color: #60A5FA; }
-.c-comment { color: var(--ls-on-dark-muted); font-style: italic; }
+.pf-footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px 24px;padding-block:28px 44px;border-top:1px solid var(--pf-line);font:400 14px/1.7 var(--pf-sans);color:var(--pf-muted)}
+.pf-footer nav{display:flex;flex-wrap:wrap;gap:8px 24px}
+.pf-footer a{transition:color 150ms ease}
+.pf-footer a:hover{color:var(--pf-white)}
 
-/* Pricing Section */
-.pricing-section {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 80px 24px 96px;
+@media (max-width:1040px){
+  .pf-hero{grid-template-columns:minmax(0,1fr);gap:48px}
+  .pf-paper{max-width:620px}
+  .pf-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pf-field:nth-child(3){padding-left:0;border-left:0}
+  .pf-field:nth-child(n+3){border-top:1px solid var(--pf-line)}
+  .pf-split{grid-template-columns:minmax(0,1fr);gap:36px}
 }
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-top: 40px;
+@media (max-width:640px){
+  .pf-wrap{padding-inline:20px}
+  .pf-header{min-height:0;padding-block:18px 4px;column-gap:12px}
+  .pf-nav{order:3;width:100%;margin-left:0;gap:0 20px;font-size:14px}
+  .pf-header .pf-btn--sm{order:2;margin-left:auto;min-height:40px;padding:0 16px;font-size:14px}
+  .pf-engine{grid-template-columns:36px minmax(0,1fr)}
+  .pf-engine__status{grid-column:2;justify-self:start;margin-top:6px}
+  .pf-fields{grid-template-columns:minmax(0,1fr)}
+  .pf-field,.pf-field+.pf-field{padding:26px 0 6px;border-left:0}
+  .pf-field+.pf-field{border-top:1px solid var(--pf-line)}
+  .pf-rows li{grid-template-columns:minmax(0,1fr)}
+  .pf-code__bar{flex-wrap:wrap}
 }
-.pricing-card {
-  background: #FFFFFF;
-  border: 1px solid var(--gc-border);
-  border-radius: var(--gc-radius-lg);
-  padding: 36px 30px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: var(--gc-shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.pricing-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--gc-shadow-md);
-}
-.pricing-card.featured {
-  border-color: var(--gc-accent);
-  box-shadow: 0 12px 36px rgba(59, 130, 246, 0.12);
-}
-.popular-badge {
-  position: absolute;
-  top: -12px;
-  right: 28px;
-  background: var(--gc-accent-on-light);
-  color: #FFFFFF;
-  font-size: 0.75rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: var(--gc-radius-pill);
-  letter-spacing: 0.05em;
-}
-.plan-name {
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  margin-bottom: 8px;
-}
-.plan-desc {
-  font-size: 0.9rem;
-  color: var(--gc-muted);
-  min-height: 48px;
-  margin-bottom: 20px;
-}
-.plan-price-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin-bottom: 24px;
-}
-.plan-currency {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--gc-navy);
-}
-.plan-price {
-  font-family: var(--gc-font-number);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--gc-navy);
-  line-height: 1;
-}
-.plan-cycle {
-  font-size: 0.88rem;
-  color: var(--gc-muted);
-}
-.plan-features-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
-  flex-grow: 1;
-}
-.plan-features-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  color: var(--gc-text);
-}
-.plan-features-list svg {
-  color: var(--gc-accent);
-  flex-shrink: 0;
-}
-.pricing-card .btn {
-  width: 100%;
-  padding: 12px;
-  font-size: 0.95rem;
-}
-
-/* Footer */
-footer.dev-footer {
-  background: var(--gc-navy-dark);
-  color: #94A3B8;
-  padding: 48px 24px;
-  font-size: 0.88rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-.footer-wrap {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  list-style: none;
-}
-.footer-links a {
-  color: #CBD5E1;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer-links a:hover {
-  color: var(--gc-accent-on-dark);
-}
-
-@media (max-width: 990px) {
-  .nav-links { display: none; }
-  .dev-hero { grid-template-columns: 1fr; }
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .code-showcase-container { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .grid-4 { grid-template-columns: 1fr; }
-  .nav-container { flex-wrap: wrap; gap: 12px; }
-  .nav-actions { flex: 1 0 100%; }
-  .nav-actions .btn { flex: 1; white-space: nowrap; }
-}
-
-/* ===== Accessibility & motion safety ===== */
-.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
-.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
-@media (prefers-reduced-motion: reduce){
+@media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
+  *,*::before,*::after{animation:none!important;transition-duration:1ms!important}
 }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要內容</a>
+<div class="pf-sky" aria-hidden="true"></div>
 
-<div id="toast" class="toast" role="status" aria-live="polite">✓ 已複製代碼到剪貼簿</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<!-- Header -->
-<header class="dev-nav">
-  <div class="nav-container">
-    <a href="/" class="brand-group">
-      <img src="/assets/logo-mark.svg" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='./assets/logo-mark.svg';}" width="28" height="28" alt="LS-Labs">
-      <div>
-        <div style="font-family:var(--gc-font-sans);font-size:1.15rem;font-weight:900;color:var(--gc-navy);line-height:1.1">Platform<span style="color:var(--gc-accent-on-light)">.</span></div>
-        <div style="font-size:0.7rem;font-weight:700;color:var(--gc-muted);letter-spacing:0.04em">By LS-Labs</div>
-      </div>
-      <span class="brand-badge" style="margin-left:6px">PLATFORM</span>
-    </a>
-
-    <ul class="nav-links">
-      <li><a href="https://lslabs.tw/">LS-Labs 首頁</a></li>
-      <li><a href="/docs">技術文件</a></li>
-      <li><a href="#pricing">開放狀態</a></li>
-    </ul>
-
-    <div class="nav-actions">
-      <a href="/docs" class="btn btn-outline">閱讀文件</a>
-      <a href="/console" class="btn btn-primary">進入控制台</a>
-    </div>
-  </div>
+<header class="pf-header pf-wrap">
+  <a class="pf-brand" href="https://lslabs.tw/" aria-label="LS-Labs 首頁"><img src="/assets/logo-mark.svg" alt="" width="28" height="28"><span>LS-Labs</span><span class="pf-brand__product">Platform</span></a>
+  <nav class="pf-nav" aria-label="頁面導覽"><a href="#response">回應結構</a><a href="#integrate">整合</a><a href="#status">開放狀態</a><a href="/docs">技術文件</a><a href="https://geocheck.lslabs.tw/">GeoCheck</a></nav>
+  <a class="pf-btn pf-btn--sm" href="/console">進入控制台</a>
 </header>
 
 <main id="main">
 
-<!-- Hero -->
-<section class="dev-hero">
-  <div>
-    <div class="hero-tag">四引擎觀測契約 · 以控制台開放狀態為準</div>
-    <h1>跨生成式搜尋引擎的<br>客觀 GEO 引用觀測 API</h1>
-    <p class="hero-desc">
-      API 的回應設計包含 <strong>OpenAI</strong>、<strong>Google Gemini</strong>、<strong>Perplexity</strong> 與 <strong>Anthropic</strong> 四個引擎欄位，並明確區分完成、部分完成與失敗。
-      實際可用引擎、帳戶權益與用量以控制台顯示為準；結果仍可回到回答與引用證據檢視。
-    </p>
-    <div class="hero-ctas">
-      <a href="/console" class="btn btn-primary">查看控制台開放狀態</a>
-      <a href="/docs" class="btn btn-outline">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        閱讀技術文件
-      </a>
-    </div>
+<section class="pf-hero pf-wrap" aria-labelledby="hero-title">
+  <div class="pf-hero__copy">
+    <h1 id="hero-title" class="pf-title">四個 AI 搜尋引擎<br>一次呼叫</h1>
+    <p class="pf-lead">送出網址，取回 OpenAI、Google Gemini、Perplexity 與 Claude 的回答原文和引用來源。四個引擎分開標示成功或失敗，不合併、不評分。</p>
+    <p class="pf-actions"><a class="pf-btn" href="/console">進入控制台</a><a class="pf-btn pf-btn--ghost" href="/docs">技術文件</a></p>
   </div>
 
-  <!-- Hero Interactive Preview Widget -->
-  <div class="hero-preview-card">
-    <div class="preview-card-header">
-      <div class="header-dot-group">
-        <div class="header-dot red"></div>
-        <div class="header-dot yellow"></div>
-        <div class="header-dot green"></div>
-      </div>
-      <div class="header-badge">4-ENGINE RESPONSE EXAMPLE</div>
-    </div>
+  <figure class="pf-paper" aria-label="GET /v1/measurements 回應中的四個引擎欄位">
+    <div class="pf-paper__head"><b>GET /v1/measurements/:id</b><span>"status": "succeeded"</span></div>
+    <ol class="pf-engines">
+      <li class="pf-engine">
+        <span class="pf-engine__logo"><img src="/assets/openai.svg" alt="" width="22" height="22"></span>
+        <span><span class="pf-engine__name">OpenAI</span><span class="pf-engine__meta">"id": "openai" · <span class="engine-model">gpt-6-luna</span></span></span>
+        <span class="pf-engine__status">succeeded</span>
+      </li>
+      <li class="pf-engine">
+        <span class="pf-engine__logo"><img src="/assets/googlegemini.svg" alt="" width="22" height="22"></span>
+        <span><span class="pf-engine__name">Google Gemini</span><span class="pf-engine__meta">"id": "gemini" · <span class="engine-model">gemini-3.5-flash-lite</span></span></span>
+        <span class="pf-engine__status">succeeded</span>
+      </li>
+      <li class="pf-engine">
+        <span class="pf-engine__logo pf-engine__logo--perplexity"><img src="/assets/perplexity.svg" alt="" width="24" height="24"></span>
+        <span><span class="pf-engine__name">Perplexity</span><span class="pf-engine__meta">"id": "perplexity" · <span class="engine-model">sonar</span></span></span>
+        <span class="pf-engine__status">succeeded</span>
+      </li>
+      <li class="pf-engine">
+        <span class="pf-engine__logo"><img src="/assets/claude.svg" alt="" width="22" height="22"></span>
+        <span><span class="pf-engine__name">Claude</span><span class="pf-engine__meta">"id": "anthropic" · <span class="engine-model">claude-haiku-5-5</span></span></span>
+        <span class="pf-engine__status">succeeded</span>
+      </li>
+    </ol>
+    <figcaption class="pf-paper__foot">每個引擎另有 answer 與 citations 欄位；模型以 API 回應為準。</figcaption>
+  </figure>
+</section>
 
-    <div class="engine-stream-list">
-      <div class="engine-stream-item">
-        <div class="engine-meta">
-          <div class="engine-icon" style="background:var(--ls-engine-openai); color:var(--gc-navy);">OA</div>
-          <div>
-            <div class="engine-name">OpenAI</div>
-            <span class="engine-model">gpt-6-luna</span>
-          </div>
-        </div>
-        <span class="engine-status-tag ok">示例 · 2 筆引用</span>
-      </div>
+<section id="response" class="pf-section pf-wrap" aria-labelledby="response-title">
+  <p class="pf-eyebrow">回應</p>
+  <h2 id="response-title" class="pf-h2">每個引擎一個欄位</h2>
+  <p class="pf-section__lead">回應裡的 engines 陣列有四個元素，各自帶回答、引用與狀態。完整結構見<a class="pf-inline" href="/docs">技術文件</a>。</p>
 
-      <div class="engine-stream-item">
-        <div class="engine-meta">
-          <div class="engine-icon" style="background:var(--ls-engine-gemini); color:var(--gc-navy);">G</div>
-          <div>
-            <div class="engine-name">Google Gemini</div>
-            <span class="engine-model">gemini-3.5-flash-lite</span>
-          </div>
-        </div>
-        <span class="engine-status-tag ok">示例 · 3 筆引用</span>
-      </div>
-
-      <div class="engine-stream-item">
-        <div class="engine-meta">
-          <div class="engine-icon" style="background:var(--ls-engine-perplexity); color:var(--gc-navy);">PX</div>
-          <div>
-            <div class="engine-name">Perplexity</div>
-            <span class="engine-model">sonar</span>
-          </div>
-        </div>
-        <span class="engine-status-tag ok">示例 · 4 筆引用</span>
-      </div>
-
-      <div class="engine-stream-item">
-        <div class="engine-meta">
-          <div class="engine-icon" style="background:var(--ls-engine-anthropic); color:var(--gc-navy);">CL</div>
-          <div>
-            <div class="engine-name">Anthropic Claude</div>
-            <span class="engine-model">claude-haiku-5-5</span>
-          </div>
-        </div>
-        <span class="engine-status-tag ok">示例 · 2 筆引用</span>
-      </div>
-    </div>
-
-    <div style="margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; font-size:0.78rem; color:#94A3B8; font-family:var(--gc-font-mono);">
-      <span>示例資料，不代表即時服務狀態</span>
-      <span style="color:var(--gc-accent-on-dark);">實際額度以 Console 為準</span>
-    </div>
+  <div class="pf-fields">
+    <article class="pf-field">
+      <code>answer</code>
+      <h3>回答原文</h3>
+      <p>引擎回答的完整文字，不摘要、不改寫。</p>
+    </article>
+    <article class="pf-field">
+      <code>citations[]</code>
+      <h3>引用來源</h3>
+      <p>引擎列出的來源網址與標題，依引擎原始順序。</p>
+    </article>
+    <article class="pf-field">
+      <code>status</code>
+      <h3>逐引擎的狀態</h3>
+      <p>任務從 queued 走到 succeeded 或 failed。任一引擎最終失敗，任務標 failed，已完成的引擎放在 partial_results。</p>
+    </article>
+    <article class="pf-field">
+      <code>Idempotency-Key</code>
+      <h3>重送不重複</h3>
+      <p>同一個鍵重送只建立一次任務。四個引擎全部完成才扣點，失敗不扣。</p>
+    </article>
   </div>
 </section>
 
-<!-- Feature Section -->
-<section class="features-section">
-  <div class="sec-header">
-    <h2>為企業級 GEO 監測打造的開發者基礎設施</h2>
-    <p>以可追溯的結果結構呈現觀測資料。公開範圍、可用引擎與資料保存設定會在開通時由 Console 顯示。</p>
-  </div>
-
-  <div class="grid-4">
-    <div class="feature-card">
-      <div class="feature-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
-      </div>
-      <h3>四引擎結果結構</h3>
-      <p>回應會按引擎保留狀態與可取得的引用資料；沒有成功結果時，不以零分或空白冒充已完成。</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h3>全成才扣量原則</h3>
-      <p>扣量與結果狀態的語意會由 API 契約與 Console 顯示；partial_results 保留已完成部分，不能視為完整觀測。</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <h3>TypeScript 整合介面</h3>
-      <p>技術文件說明型別、冪等鍵與非同步輪詢。取得存取資格後，再依文件與 Console 提供的方式整合。</p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon-wrap">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
-      </div>
-      <h3>資料範圍與刪除</h3>
-      <p>保存、刪除與可匯出資料的範圍須以現行技術文件與帳戶開通內容為準，不在行銷頁承諾固定天數。</p>
-    </div>
-  </div>
-</section>
-
-<!-- Code Showcase Section -->
-<section class="code-showcase-section">
-  <div class="code-showcase-container">
-    <div class="code-showcase-info">
-      <h2>只需 3 行程式碼，<br>搞定多引擎 GEO 觀測</h2>
-      <p>使用 <code>@geocheck/sdk</code>，您可以將複雜的並發呼叫、任務輪詢、延遲等待與錯誤降級化繁為簡。</p>
-      
-      <ul class="code-feature-bullets">
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>完整 TypeScript 型別推導，自動提示四引擎結構化欄位。</span>
-        </li>
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>自動處理非同步 Job 輪詢狀態與 HTTP 409 Retry-After。</span>
-        </li>
-        <li>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>支援網址 (URL) 自動分析或自然語言 Prompt 直觀觀測。</span>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Code Block -->
-    <div class="terminal-box">
-      <div class="terminal-bar">
-        <div class="tab-group">
-          <button class="tab-btn active" onclick="switchTab('ts')">TypeScript SDK</button>
-          <button class="tab-btn" onclick="switchTab('curl')">cURL</button>
-          <button class="tab-btn" onclick="switchTab('py')">Python</button>
+<section id="integrate" class="pf-section pf-wrap" aria-labelledby="integrate-title">
+  <p class="pf-eyebrow">整合</p>
+  <h2 id="integrate-title" class="pf-h2">兩個請求</h2>
+  <div class="pf-split">
+    <ol class="pf-steps">
+      <li><b>1</b><div><strong>POST /v1/measurements</strong><p>帶 API 金鑰與 Idempotency-Key 建立任務，回 202 與 measurement_id。</p></div></li>
+      <li><b>2</b><div><strong>GET /v1/measurements/:id</strong><p>處理中回 409，完成後回 200 與四個引擎的結果。</p></div></li>
+    </ol>
+    <div class="pf-code">
+      <div class="pf-code__bar">
+        <div class="pf-tabs" role="tablist" aria-label="範例語言">
+          <button class="pf-tab" type="button" role="tab" aria-selected="true" aria-controls="code-curl" id="tab-curl">cURL</button>
+          <button class="pf-tab" type="button" role="tab" aria-selected="false" aria-controls="code-py" id="tab-py">Python</button>
         </div>
-        <button class="copy-btn" onclick="copySnippet()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          複製代碼
-        </button>
+        <button class="pf-copy" type="button" id="copy-code">複製</button>
       </div>
+      <pre id="code-curl" role="tabpanel" aria-labelledby="tab-curl"><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
+  --max-time 30 --fail-with-body \
+  -H <span class="s">"Authorization: Bearer $GEOCHECK_API_KEY"</span> \
+  -H <span class="s">"Idempotency-Key: $(uuidgen)"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"input": {"type": "url", "url": "https://example.com"}, "locale": "zh-TW"}'</span></code></pre>
+      <pre id="code-py" role="tabpanel" aria-labelledby="tab-py" hidden><code><span class="k">import</span> requests, uuid
 
-      <div class="terminal-content">
-        <pre id="code-ts"><code><span class="c-keyword">import</span> { GeoCheckClient } <span class="c-keyword">from</span> <span class="c-string">"@geocheck/sdk"</span>;
-
-<span class="c-keyword">const</span> client = <span class="c-keyword">new</span> <span class="c-func">GeoCheckClient</span>({ 
-  apiKey: process.env.GEOCHECK_API_KEY! 
-});
-
-<span class="c-comment">// 發起跨 4 大搜尋引擎的觀測任務</span>
-<span class="c-keyword">const</span> accepted = <span class="c-keyword">await</span> client.<span class="c-func">createMeasurement</span>(
-  { input: { type: <span class="c-string">"url"</span>, url: <span class="c-string">"https://example.com"</span> }, locale: <span class="c-string">"zh-TW"</span> },
-  crypto.<span class="c-func">randomUUID</span>()
-);
-
-<span class="c-comment">// 自動輪詢並等待四家引擎全成結果</span>
-<span class="c-keyword">const</span> result = <span class="c-keyword">await</span> client.<span class="c-func">pollMeasurement</span>(accepted.measurement_id);
-
-console.<span class="c-func">log</span>(result.engines); <span class="c-comment">// [OpenAI, Gemini, Perplexity, Anthropic]</span></code></pre>
-
-        <pre id="code-curl" style="display:none;"><code>curl -X POST https://platform.lslabs.tw/v1/measurements \
-  -H "Authorization: Bearer gck_live_xxxxxxxxxxxx" \
-  -H "Content-Type: application/json" \
-  -H "Idempotency-Key: $(uuidgen)" \
-  -d '{
-    "input": {
-      "type": "url",
-      "url": "https://example.com"
+res = requests.post(
+    <span class="s">"https://platform.lslabs.tw/v1/measurements"</span>,
+    headers={
+        <span class="s">"Authorization"</span>: <span class="s">"Bearer "</span> + API_KEY,
+        <span class="s">"Idempotency-Key"</span>: str(uuid.uuid4()),
+        <span class="s">"Content-Type"</span>: <span class="s">"application/json"</span>,
     },
-    "locale": "zh-TW"
-  }'</code></pre>
-
-        <pre id="code-py" style="display:none;"><code>import requests, uuid
-
-api_key = "gck_live_xxxxxxxxxxxx"
-headers = {
-    "Authorization": f"Bearer {api_key}",
-    "Content-Type": "application/json",
-    "Idempotency-Key": str(uuid.uuid4())
-}
-
-# 建立觀測任務
-response = requests.post(
-    "https://platform.lslabs.tw/v1/measurements",
-    headers=headers,
-    json={"input": {"type": "url", "url": "https://example.com"}, "locale": "zh-TW"}
+    json={<span class="s">"input"</span>: {<span class="s">"type"</span>: <span class="s">"url"</span>, <span class="s">"url"</span>: <span class="s">"https://example.com"</span>}, <span class="s">"locale"</span>: <span class="s">"zh-TW"</span>},
+    timeout=30,
 )
-job = response.json()
-print("Job created:", job["measurement_id"])</code></pre>
-      </div>
+job = res.json()
+print(job[<span class="s">"measurement_id"</span>], job[<span class="s">"status"</span>])</code></pre>
     </div>
   </div>
 </section>
 
-<!-- Pricing Section -->
-<section class="pricing-section" id="pricing">
-  <div class="sec-header">
-    <h2>目前開放狀態</h2>
-    <p>Developer API 目前以 Private Beta 方式管理存取，尚未開放付款。未來採按用量計費；計價與付款方式會在開放前公開說明。</p>
-  </div>
+<section id="status" class="pf-section pf-wrap" aria-labelledby="status-title">
+  <p class="pf-eyebrow">開放狀態</p>
+  <h2 id="status-title" class="pf-h2">Private Beta</h2>
+  <ul class="pf-rows">
+    <li><strong>存取</strong><p>帳戶逐一開通。登入控制台可看到自己的資格、可用額度與 API 金鑰。</p></li>
+    <li><strong>計費</strong><p>儲值點數，1 點＝新台幣 1 元；四個引擎全部完成的一次觀測扣 8 點，任一引擎失敗不扣點。</p><p>目前尚未開放付款。規則見<a class="pf-inline" href="/pricing">儲值與計費說明</a>。</p></li>
+    <li><strong>引擎</strong><p>每次呼叫都走四家的官方 API，模型以回應裡的 model 欄位為準；頁面上的名單不是即時健康狀態。</p></li>
+  </ul>
+</section>
 
-  <div class="pricing-grid">
-    <div class="pricing-card">
-      <div class="plan-name">技術文件</div>
-      <div class="plan-desc">先確認請求、回應與錯誤語意，避免在未開通前把範例憑證當成可用金鑰。</div>
-      <ul class="plan-features-list">
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>查看 API 請求與非同步輪詢流程</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>查看狀態與結果語意</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>確認憑證安全與錯誤處理</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>以現行文件為準</span>
-        </li>
-      </ul>
-      <a href="/docs" class="btn btn-outline">閱讀技術文件</a>
-    </div>
-
-    <div class="pricing-card featured">
-      <span class="popular-badge">PRIVATE BETA</span>
-      <div class="plan-name">Console 存取</div>
-      <div class="plan-desc">登入後檢查帳戶是否已有存取資格與可用額度；沒有資格時，不會產生虛構的用量資料。</div>
-      <ul class="plan-features-list">
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>帳戶權益與額度由後端提供</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>結果狀態依 API 契約呈現</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>速率限制在開通時顯示</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>不在本頁承諾商業方案內容</span>
-        </li>
-      </ul>
-      <a href="/console" class="btn btn-primary">進入 Console</a>
-    </div>
-
-    <div class="pricing-card">
-      <div class="plan-name">付費通道</div>
-      <div class="plan-desc">按用量計費方案準備中。正式開放前，會公開新台幣單價、計量方式、付款與退款規則。</div>
-      <ul class="plan-features-list">
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>不提供公開結帳</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>不預設任何付費額度</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>開放前不承諾保存期限</span>
-        </li>
-        <li>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>權益會在正式開通時另外說明</span>
-        </li>
-      </ul>
-      <a href="/console" class="btn btn-outline">查看開放狀態</a>
-    </div>
+<section class="pf-end" aria-labelledby="end-title">
+  <div class="pf-end__glow" aria-hidden="true"></div>
+  <div class="pf-wrap">
+    <h2 id="end-title" class="pf-end__title">先讀文件，再進控制台</h2>
+    <p class="pf-end__lead">請求、回應與錯誤語意都寫在技術文件裡；控制台顯示你的帳戶實際能用什麼。</p>
+    <p class="pf-actions pf-actions--center"><a class="pf-btn" href="/docs">技術文件</a><a class="pf-btn pf-btn--ghost" href="/console">進入控制台</a></p>
   </div>
 </section>
 
-<!-- Footer -->
 </main>
 
-<footer class="dev-footer">
-  <div class="footer-wrap">
-    <div>
-      <span style="font-weight:900; color:#FFFFFF;">Platform By LS-Labs</span>
-      <p style="margin-top:4px; font-size:0.8rem; color:var(--ls-on-dark-muted);">© 2026 LS-Labs. GeoCheck 是平台上的 AI 能見度量測模組。</p>
-    </div>
-    <ul class="footer-links">
-      <li><a href="/docs">技術文件</a></li>
-      <li><a href="/console">控制台</a></li>
-      <li><a href="/pricing">計費說明</a></li>
-      <li><a href="/terms">服務條款</a></li>
-      <li><a href="/privacy">隱私權政策</a></li>
-      <li><a href="/refund">退款與申訴</a></li>
-      <li><!--email_off--><a href="mailto:me@lslabs.tw">聯絡客服</a><!--/email_off--></li>
-      <li><a href="https://lslabs.tw/brand/">品牌規範</a></li>
-      <li><a href="https://geocheck.lslabs.tw/whitepaper">研究白皮書</a></li>
-      <li><a href="https://lslabs.tw/">LS-Labs 首頁</a></li>
-    </ul>
-  </div>
+<footer class="pf-footer pf-wrap">
+  <span>© 2026 LS-Labs・台北</span>
+  <nav aria-label="頁尾連結"><a href="/docs">技術文件</a><a href="/console">控制台</a><a href="/pricing">儲值與計費</a><a href="/terms">服務條款</a><a href="/privacy">隱私權政策</a><a href="/refund">退款與申訴</a><a href="https://geocheck.lslabs.tw/whitepaper">方法白皮書</a><a href="https://lslabs.tw/brand/">品牌規範</a><a href="https://lslabs.tw/">LS-Labs 首頁</a><!--email_off--><a href="mailto:me@lslabs.tw">聯絡我們</a><!--/email_off--></nav>
 </footer>
 
 <script>
-let currentTab = 'ts';
-function switchTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById('code-ts').style.display = tab === 'ts' ? 'block' : 'none';
-  document.getElementById('code-curl').style.display = tab === 'curl' ? 'block' : 'none';
-  document.getElementById('code-py').style.display = tab === 'py' ? 'block' : 'none';
-}
-
-function copySnippet() {
-  const codeEl = document.getElementById(`code-${currentTab}`);
-  navigator.clipboard.writeText(codeEl.innerText).then(() => {
-    showToast('已複製代碼到剪貼簿');
+(function () {
+  var tabs = document.querySelectorAll('.pf-tab');
+  var panels = { 'tab-curl': document.getElementById('code-curl'), 'tab-py': document.getElementById('code-py') };
+  var current = 'tab-curl';
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      current = tab.id;
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+      Object.keys(panels).forEach(function (id) { panels[id].hidden = id !== current; });
+    });
   });
-}
-
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  toast.innerText = `✓ ${msg}`;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2400);
-}
+  var toast = document.getElementById('toast');
+  var timer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(timer);
+    timer = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+  }
+  document.getElementById('copy-code').addEventListener('click', function () {
+    var text = panels[current].innerText;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { showToast('已複製'); }, function () { showToast('無法複製，請手動選取'); });
+    } else {
+      showToast('無法複製，請手動選取');
+    }
+  });
+})();
 </script>
-
 </body>
 </html>
