@@ -1,5 +1,6 @@
 // This adapter belongs only to geocheck-web Pages, not the Developer API's
 // shared asset binding. API/report Workers keep their existing routes.
+const GONE_HTML = '<!doctype html><html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>頁面已移除｜LS-Labs GeoCheck</title></head><body style="font-family:system-ui,sans-serif;max-width:40rem;margin:4rem auto;padding:0 1rem"><h1>這個頁面已移除</h1><p><a href="/">回到 GeoCheck 首頁</a></p></body></html>';
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -31,6 +32,14 @@ export default {
       url.hostname = 'geocheck.lslabs.tw';
       url.protocol = 'https:';
       return Response.redirect(url.href, 308);
+    }
+    // Retired pages (LSL-D-001 demo; 2026-10-19 removal of the Track sales pages)
+    // answer 410 so crawlers drop them instead of retrying a 404.
+    if (/^\/(?:demo|pricing|refund)(?:\/|\.html)?$/.test(pathname)) {
+      return new Response(request.method === 'HEAD' ? null : GONE_HTML, {
+        status: 410,
+        headers: { 'content-type': 'text/html; charset=utf-8', 'x-robots-tag': 'noindex' }
+      });
     }
     return env.ASSETS.fetch(request);
   }

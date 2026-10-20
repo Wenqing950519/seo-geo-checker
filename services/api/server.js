@@ -954,9 +954,6 @@ async function handleRequest(req, res) {
   if (req.method === "GET" && url.pathname === "/terms") {
     return sendHtml(res, 200, fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/terms.html"), "utf8"));
   }
-  if (req.method === "GET" && url.pathname === "/refund") {
-    return sendHtml(res, 200, fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/refund.html"), "utf8"));
-  }
 
   if (req.method === "GET" && url.pathname === "/llms.txt") {
     return sendText(res, 200, llmsTxt(), "text/plain; charset=utf-8");
@@ -977,13 +974,9 @@ async function handleRequest(req, res) {
     return sendHtml(res, 200, fs.readFileSync(prototypePath, "utf8"));
   }
 
-  // UI/UX 2.0 概念展示原型頁面
+  // The UI/UX 2.0 demo prototype is retired (LSL-D-001); answer 410 like the public Pages host.
   if (req.method === "GET" && (url.pathname === "/demo" || url.pathname === "/demo/")) {
-    const demoPath = path.resolve(__dirname, "../../apps/web/public/demo.html");
-    if (!fs.existsSync(demoPath)) {
-      return sendHtml(res, 404, "<h1>Demo HTML not found</h1>");
-    }
-    return sendHtml(res, 200, fs.readFileSync(demoPath, "utf8"));
+    return sendHtml(res, 410, '<h1>這個頁面已移除</h1><p><a href="/">回到 GeoCheck 首頁</a></p>');
   }
 
   // 品牌識別系統 (Brand Identity System)

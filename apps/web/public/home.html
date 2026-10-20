@@ -100,7 +100,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Fonts load without blocking the first paint; text shows in the system face and swaps in. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap"></noscript>
 <link rel="stylesheet" href="/assets/tokens.css">
 <style>
 :root{
@@ -1400,6 +1402,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
 }
+
+/* ===== 2026-10-19: anonymous sample site, sample flag, third-party source tags ===== */
+.sample-site{flex-direction:column;background:radial-gradient(120% 90% at 30% 15%,#3A2418 0%,#1B120D 55%,#08121E 100%)}
+.sample-site__bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.08)}
+.sample-site__bar span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}
+.sample-site__bar em{margin-left:10px;font:500 .72rem/1 'JetBrains Mono',monospace;font-style:normal;color:rgba(255,255,255,.55)}
+.sample-site__hero{position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;color:#fff}
+.sample-site__tag{position:absolute;top:16px;right:16px;padding:2px 10px;border:1px solid rgba(255,255,255,.5);border-radius:4px;font-size:.75rem;font-weight:700;letter-spacing:.12em}
+.sample-site__kicker{margin:0 0 8px;font:600 .72rem/1 'JetBrains Mono',monospace;letter-spacing:.2em;color:#F5C08A}
+.sample-site__name{margin:0;font-size:2rem;font-weight:900;line-height:1.2}
+.sample-site__line{margin:6px 0 18px;color:rgba(255,255,255,.75);font-size:.92rem}
+.sample-site__nav{display:flex;flex-wrap:wrap;gap:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.15);font-size:.82rem;color:rgba(255,255,255,.7)}
+.sample-flag{display:inline-block;margin-left:8px;padding:0 6px;border:1px solid currentColor;border-radius:3px;font-size:.7rem;font-weight:700;letter-spacing:.08em;color:var(--muted);vertical-align:middle}
+.ai-list__citation--third{border-color:#E2E8F0;background:#F1F5F9;color:#475569}
+.method-report-link{display:inline-block;margin-top:16px;font-size:.92rem;font-weight:700;color:var(--accent-on-light);text-decoration:none}
+.method-report-link:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -1433,7 +1451,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <li><a href="#report" data-spy>報告摘要</a></li>
       <li><a href="#method" data-spy>計算方法</a></li>
       <li><a href="#resources" data-spy>常見問題</a></li>
-      <li><a href="/pricing">服務價格</a></li>
       <li><a href="https://lslabs.tw/blog/category/research/" class="nav-whitepaper-badge"><svg class="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>LS-Labs 研究</a></li>
       <li><a class="btn btn-nav" href="#top" id="nav-cta" data-track-cta="nav_start_audit">免費檢查</a></li>
       <li class="nav-mobile-only"><a class="btn btn-nav" href="/whitepaper" data-track-cta="nav_mobile_whitepaper">查看白皮書</a></li>
@@ -1448,7 +1465,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   <div class="hero-visual" aria-hidden="true">
     <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
     <div class="sweep"></div>
-    <div class="node n1"><b>Google</b> 找得到你 ✓</div>
+    <div class="node n1"><b>Google</b> 搜得到你嗎？</div>
     <div class="node n2"><b>ChatGPT</b> 有提到你嗎？</div>
     <div class="node n3">AI 有沒有<b>連到你的官網</b></div>
     <div class="node n4">AI 知道<b>你在賣什麼</b>嗎</div>
@@ -1477,7 +1494,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <!-- Social proof strip (Seamless connection from Hero to Measured) -->
 <div class="proof-strip" style="background:linear-gradient(180deg,#FFFFFF 0%,#F4FAF8 100%);border:none;padding:36px 24px 16px">
   <div class="proof-inner" style="max-width:720px;margin:0 auto;display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:center;text-align:center">
-    <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">50+</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">已經檢查過的網站</span></div>
+    <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">4 題</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">每次實際詢問 AI 的題數</span></div>
     <div class="proof-divider" style="width:1px;height:36px;background:rgba(11,59,111,.12)" aria-hidden="true"></div>
     <div><strong style="font-size:1.6rem;color:var(--navy);font-weight:900;letter-spacing:-0.02em">約 90 秒</strong><span style="display:block;font-size:.84rem;color:var(--muted);margin-top:2px">免費、不用註冊就能拿到報告</span></div>
   </div>
@@ -1487,7 +1504,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="modules" class="semrush-section">
   <div class="wrap">
     <h2 class="semrush-title">量測指標</h2>
-    <p class="semrush-subtitle">結合語言模型真實回答與客觀引證來源，將黑盒 AI 搜尋拆解為四個可驗證、可重現的科學維度。</p>
+    <p class="semrush-subtitle">每次用 4 題實際詢問 AI，分開記錄有沒有提到你、有沒有引用你的官網，再另外檢查網站條件。結果是一次快照，換題目、順序或時間都可能不同。</p>
     <p class="semrush-note" style="margin-top:8px;font-size:.82rem;color:var(--muted)">下方圖卡為<strong>介面示意，非即時資料</strong>；實際數字只會出現在你自己的檢測報告中，並附上觀測時間與題組。</p>
 
     <div class="measured-grid">
@@ -1495,36 +1512,38 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">AI 能見度</text>
+            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">AI 信任值（摘要）</text>
             <path d="M 38 95 A 62 62 0 0 1 162 95" stroke="#F1F5F9" stroke-width="14" stroke-linecap="round" />
-            <path d="M 38 95 A 62 62 0 0 1 140 50" stroke="#3B82F6" stroke-width="14" stroke-linecap="round" />
-            <text x="100" y="90" font-family="'Noto Sans TC', sans-serif" font-size="26" font-weight="900" fill="#0B1F3B" text-anchor="middle">62</text>
+            <path d="M 38 95 A 62 62 0 0 1 100 33" stroke="#3B82F6" stroke-width="14" stroke-linecap="round" />
+            <text x="100" y="90" font-family="'Noto Sans TC', sans-serif" font-size="26" font-weight="900" fill="#0B1F3B" text-anchor="middle">50</text>
           </svg>
         </div>
         <h3 class="measured-card-title">AI 信任值</h3>
-        <p class="measured-card-desc">結合「可見答案採用率」與「經核實官方網址引用率」之綜合信賴指標。真實反映品牌是否被 AI 主動納入決策清單。</p>
+        <p class="measured-card-desc">把提及率與官網引用率按 65／35 加權的摘要分數。分數只是摘要；要知道問題出在哪，請看兩個分項與每一題的原始回答。</p>
       </article>
 
       <!-- Card 2: AI Mentions -->
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">AI 提及頻率</text>
-            <line x1="16" y1="42" x2="184" y2="42" stroke="#F1F5F9" stroke-width="1"/>
-            <line x1="16" y1="65" x2="184" y2="65" stroke="#F1F5F9" stroke-width="1"/>
-            <line x1="16" y1="88" x2="184" y2="88" stroke="#F1F5F9" stroke-width="1"/>
-            <!-- Green line -->
-            <path d="M 20 56 Q 60 36 100 52 T 180 38" stroke="#10B981" stroke-width="2" fill="none"/>
-            <circle cx="100" cy="52" r="2.5" fill="#10B981" />
-            <!-- Pink line -->
-            <path d="M 20 72 Q 60 54 100 42 T 180 48" stroke="#EC4899" stroke-width="1.8" fill="none"/>
-            <!-- Purple line -->
-            <path d="M 20 86 Q 70 82 110 74 T 180 82" stroke="#8B5CF6" stroke-width="1.8" fill="none"/>
-            <text x="100" y="108" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#94A3B8" text-anchor="middle">Jan 01 &nbsp; Jan 15 &nbsp; Feb 01 &nbsp; Feb 15</text>
+            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">4 題裡有沒有提到你</text>
+            <line x1="16" y1="32" x2="184" y2="32" stroke="#F1F5F9" stroke-width="1"/>
+            <text x="16" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#64748B">Q1</text>
+            <rect x="38" y="42" width="96" height="5" rx="1" fill="#CBD5E1"/>
+            <text x="184" y="48" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="end">提到</text>
+            <text x="16" y="66" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#64748B">Q2</text>
+            <rect x="38" y="60" width="84" height="5" rx="1" fill="#CBD5E1"/>
+            <text x="184" y="66" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="end">提到</text>
+            <text x="16" y="84" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#64748B">Q3</text>
+            <rect x="38" y="78" width="104" height="5" rx="1" fill="#CBD5E1"/>
+            <text x="184" y="84" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#94A3B8" text-anchor="end">沒提到</text>
+            <text x="16" y="102" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#64748B">Q4</text>
+            <rect x="38" y="96" width="72" height="5" rx="1" fill="#CBD5E1"/>
+            <text x="184" y="102" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#94A3B8" text-anchor="end">沒提到</text>
           </svg>
         </div>
-        <h3 class="measured-card-title">答案採用率 (占 65%)</h3>
-        <p class="measured-card-desc">當顧客詢問不帶品牌名的商業問題時（如「推薦大安區約會餐酒館」），AI 在生成答案中主動提及並推薦受測品牌的頻率。</p>
+        <h3 class="measured-card-title">提及率（占 65%）</h3>
+        <p class="measured-card-desc">用不含你店名的問題（如「推薦大安區約會餐酒館」）實際問 AI，記錄幾題的回答正文提到你。被提到可能是推薦，也可能是比較或批評。</p>
       </article>
 
       <!-- Card 3: Citations -->
@@ -1542,37 +1561,39 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             <!-- Row 2 -->
             <rect x="14" y="50" width="68" height="5" rx="1" fill="#CBD5E1"/>
             <circle cx="112" cy="53" r="3.5" fill="#3B82F6"/>
-            <text x="138" y="55" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/book</text>
+            <text x="138" y="55" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#64748B">food-blog.tw</text>
             <!-- Row 3 -->
             <rect x="14" y="68" width="82" height="5" rx="1" fill="#CBD5E1"/>
             <circle cx="112" cy="71" r="3.5" fill="#3B82F6"/>
-            <text x="138" y="73" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/about</text>
+            <text x="138" y="73" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#64748B">maps 評論</text>
             <!-- Row 4 -->
             <rect x="14" y="86" width="58" height="5" rx="1" fill="#CBD5E1"/>
             <circle cx="112" cy="89" r="3.5" fill="#3B82F6"/>
-            <text x="138" y="91" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/faq</text>
+            <text x="138" y="91" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="#175CD3">brand.com/book</text>
           </svg>
         </div>
-        <h3 class="measured-card-title">官方來源引用 (占 35%)</h3>
-        <p class="measured-card-desc">AI 在回答正文或參考文獻中，標註受測官方網域名稱為資訊出處的比例。確保品牌是第一手訊號，而非二手轉述。</p>
+        <h3 class="measured-card-title">官網引用率（占 35%）</h3>
+        <p class="measured-card-desc">AI 回答列出的來源裡有沒有你的官網，還是都來自食記、地圖與評論。被列為來源和被提到是兩回事，來源清單出現的次數也不是 AI 的信任權重。</p>
       </article>
 
       <!-- Card 4: Diagnostics & Volume -->
       <article class="measured-col">
         <div class="measured-mockup-frame">
           <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-            <text x="100" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B" text-anchor="middle">Top Position Trend</text>
-            <text x="65" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#64748B" text-anchor="middle">Won</text>
-            <text x="65" y="72" font-family="'Noto Sans TC', sans-serif" font-size="20" font-weight="800" fill="#0B1F3B" text-anchor="middle">32</text>
-            <text x="65" y="90" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="middle">▲ +36%</text>
-            <line x1="100" y1="44" x2="100" y2="94" stroke="#E2E8F0" stroke-width="1"/>
-            <text x="135" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#64748B" text-anchor="middle">Lost</text>
-            <text x="135" y="72" font-family="'Noto Sans TC', sans-serif" font-size="20" font-weight="800" fill="#0B1F3B" text-anchor="middle">43</text>
-            <text x="135" y="90" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700" fill="#EF4444" text-anchor="middle">▼ -45%</text>
+            <text x="16" y="24" font-family="'Noto Sans TC', sans-serif" font-size="11" font-weight="800" fill="#0B1F3B">網站條件檢查</text>
+            <line x1="16" y1="32" x2="184" y2="32" stroke="#F1F5F9" stroke-width="1"/>
+            <text x="16" y="48" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#334155">robots.txt</text>
+            <text x="184" y="48" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="end">通過</text>
+            <text x="16" y="66" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#334155">sitemap.xml</text>
+            <text x="184" y="66" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#10B981" text-anchor="end">通過</text>
+            <text x="16" y="84" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#334155">LocalBusiness</text>
+            <text x="184" y="84" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#F59E0B" text-anchor="end">待補</text>
+            <text x="16" y="102" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#334155">FAQ 文字</text>
+            <text x="184" y="102" font-family="'Noto Sans TC', sans-serif" font-size="8.5" font-weight="700" fill="#F59E0B" text-anchor="end">待補</text>
           </svg>
         </div>
-        <h3 class="measured-card-title">技術準備度與聲量</h3>
-        <p class="measured-card-desc">檢查網站結構化標記、Robots 存取與非品牌搜尋主題覆蓋度。若題目未拿到回答會標示未知，不會當成 0 分。</p>
+        <h3 class="measured-card-title">網站條件（不計分）</h3>
+        <p class="measured-card-desc">檢查 robots、sitemap、結構化資料等網站條件。這些有助搜尋系統讀取，但不保證被 AI 採用，所以不計入分數。題目沒拿到回答會標示未知，不會當成 0 分。</p>
       </article>
     </div>
   </div>
@@ -1639,14 +1660,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
 
         <div class="compare-card__footer">
-          資訊過載：顧客必須逐一跳轉點擊，跳出率高
+          顧客要自己逐一點開、比較
         </div>
       </article>
 
       <!-- AI 搜尋 -->
       <article class="compare-card compare-card--ai">
         <div class="compare-card__top">
-          <h3 class="compare-card__label">AI 生成回答（GEO 決策直達）</h3>
+          <h3 class="compare-card__label">AI 生成回答（直接給名單）</h3>
         </div>
 
         <div class="compare-card__body">
@@ -1664,7 +1685,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
                   <div>
                     <div class="ai-list__heading">
                       <span class="ai-list__name">Lumière Bistro</span>
-                      <span class="ai-list__citation">官網引用</span>
+                      <span class="ai-list__citation">來源：官網</span>
                     </div>
                     <p class="ai-list__text">
                       適合正式約會，主打法式料理與自然酒，環境安靜，鄰近捷運信義安和站。
@@ -1676,7 +1697,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
                   <div>
                     <div class="ai-list__heading">
                       <span class="ai-list__name">Noir Dining</span>
-                      <span class="ai-list__citation">官網引用</span>
+                      <span class="ai-list__citation ai-list__citation--third">來源：食記</span>
                     </div>
                     <p class="ai-list__text">
                       燈光與座位配置偏私密，適合晚餐與調酒續攤，可線上預約雙人座位。
@@ -1688,7 +1709,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
                   <div>
                     <div class="ai-list__heading">
                       <span class="ai-list__name">Maison 27</span>
-                      <span class="ai-list__citation">官網引用</span>
+                      <span class="ai-list__citation ai-list__citation--third">來源：地圖評論</span>
                     </div>
                     <p class="ai-list__text">
                       預算較親民，餐點選擇完整，適合第一次約會或週末輕鬆聚餐。
@@ -1701,7 +1722,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </div>
 
         <div class="compare-card__footer">
-          AI 直接推薦：受測品牌直接進入最終決策清單
+          AI 直接給名單：被提到的依據可能來自官網、食記或地圖評論
         </div>
       </article>
 
@@ -1713,14 +1734,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="report" style="padding: 84px 24px; background: #FAFDFE; border-top: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0;">
   <div class="wrap">
     <h2 class="reveal">報告摘要</h2>
-    <p class="sub reveal">結合受測官網實境與雙軌 AI 信任量測，直接產出整體得分、能見度比重與先修清單。一目了然。</p>
+    <p class="sub reveal">報告分開列出 AI 有沒有提到你、有沒有引用你的官網，附上每一題的原始回答與先修清單；總分只是摘要。下方為<strong>範例</strong>，店家與數字皆為示意。</p>
 
     <div class="report-preview-box reveal delay-1">
       <!-- 2-Column Split: Left Site Visual | Right AI Dialog Panel -->
       <div class="preview-grid">
         <!-- Left: 受測官網實景展示 -->
-        <div class="report-site-visual">
-          <img src="/assets/real-site-apoint-retina.jpg" alt="受測官網首頁：艾朋牛排餐酒館 À Point Steak & Bistro" class="report-site-img" />
+        <div class="report-site-visual sample-site" role="img" aria-label="範例網站示意：範例餐酒館">
+          <div class="sample-site__bar"><span></span><span></span><span></span><em>example-bistro.tw</em></div>
+          <div class="sample-site__hero">
+            <span class="sample-site__tag">範例</span>
+            <p class="sample-site__kicker">BISTRO · 信義安和</p>
+            <p class="sample-site__name">範例餐酒館</p>
+            <p class="sample-site__line">熟成牛排、自然酒與季節菜單</p>
+            <div class="sample-site__nav"><span>菜單</span><span>訂位</span><span>交通</span><span>常見問題</span></div>
+          </div>
         </div>
 
         <!-- Right: AI 對話與診斷報告 UI -->
@@ -1728,7 +1756,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <!-- User Query Bubble -->
           <div class="chat-user-row">
             <div class="chat-user-bubble">
-              <span class="chat-user-label">顧客真實提問</span>
+              <span class="chat-user-label">範例提問</span>
               <div class="chat-user-text">「台北約會牛排餐酒館推薦？」</div>
             </div>
             <div class="chat-user-avatar" title="顧客提問">
@@ -1748,7 +1776,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
             </div>
             <div class="chat-ai-body">
               <div class="chat-ai-top">
-                <span class="chat-ai-title">AI 搜尋檢測回答</span>
+                <span class="chat-ai-title">AI 搜尋檢測回答<span class="sample-flag">範例</span></span>
                 <span class="badge" style="margin:0;">AI 偶爾才提到你</span>
               </div>
 
@@ -1757,18 +1785,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
                 <div class="compact-gauge">
                   <svg viewBox="0 0 200 110" aria-hidden="true">
                     <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#EAF0F6" stroke-width="16" stroke-linecap="round"/>
-                    <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#3B82F6" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="141" class="arc" id="arc"/>
+                    <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#3B82F6" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="126" class="arc" id="arc"/>
                   </svg>
-                  <div class="val"><span id="scoreVal">44</span><small>/100</small></div>
+                  <div class="val"><span id="scoreVal">50</span><small>/100</small></div>
                 </div>
 
                 <div class="compact-dual-bars">
                   <div class="compact-bar-item">
-                    <div class="compact-bar-label"><span>答案採用率（占 65%）</span><span style="color:var(--accent-on-light)">提及 40%</span></div>
-                    <div class="compact-bar-track"><div class="compact-bar-fill" style="width:40%"></div></div>
+                    <div class="compact-bar-label"><span>提及率（占 65%）</span><span data-sample-metric="mention" data-hits="2" data-n="4" style="color:var(--accent-on-light)">2 / 4 題 · 50%</span></div>
+                    <div class="compact-bar-track"><div class="compact-bar-fill" style="width:50%"></div></div>
                   </div>
                   <div class="compact-bar-item">
-                    <div class="compact-bar-label"><span>官網引用率（占 35%）</span><span style="color:var(--accent-on-light)">引用 50%</span></div>
+                    <div class="compact-bar-label"><span>官網引用率（占 35%）</span><span data-sample-metric="citation" data-hits="2" data-n="4" style="color:var(--accent-on-light)">2 / 4 題 · 50%</span></div>
                     <div class="compact-bar-track"><div class="compact-bar-fill" style="width:50%"></div></div>
                   </div>
                 </div>
@@ -1778,18 +1806,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
               <div class="compact-actions">
                 <div class="compact-act-item">
                   <span class="compact-act-tag">優先 P1</span>
-                  <div><b>補齊全站 LocalBusiness 標記</b>：讓 AI 搜尋引擎秒懂你的官方店名、營業時間與訂位連結。</div>
+                  <div><b>補齊 LocalBusiness 結構化資料</b>：讓搜尋系統更容易讀到店名、營業時間與訂位連結。</div>
                 </div>
                 <div class="compact-act-item">
                   <span class="compact-act-tag">優先 P2</span>
-                  <div><b>在網頁中增加文字常見問答</b>：將招牌牛排、低消與停車規範寫成可讀文字，方便 AI 引用。</div>
+                  <div><b>在網頁中增加文字常見問答</b>：把招牌牛排、低消與停車規範寫成可讀文字，方便被摘錄。</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="center" style="margin-top:2px;">
-            <a class="btn" href="#top" data-track-cta="report_preview_start_audit" style="width:100%;padding:10px 18px;font-size:0.92rem;">免費檢查你的網站能得幾分 →</a>
+            <a class="btn" href="#top" data-track-cta="report_preview_start_audit" style="width:100%;padding:10px 18px;font-size:0.92rem;">免費檢查你的網站 →</a>
           </div>
         </div>
       </div>
@@ -1801,7 +1829,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="method" class="alt">
   <div class="wrap">
     <h2 class="reveal">計算方法</h2>
-    <p class="sub reveal">這套分數是怎麼算的？告別虛無縹緲的演算法盲測。我們根據白皮書雙軌信號模型，直接量化 AI 生成回答中的品牌能見度與權威出處。</p>
+    <p class="sub reveal">這套分數是怎麼算的？AI 信任值是快檢的摘要分數：提及率 × 65% ＋ 官網引用率 × 35%，公式公開。兩個分項代表不同的事，判讀時請分開看，不要只看總分。</p>
 
     <!-- Dual Marketing Pillars -->
     <div class="method-dual-grid reveal delay-1">
@@ -1809,21 +1837,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <article class="method-pillar">
         <div>
           <div class="pillar-header-meta">
-            <span class="pillar-signal-label">核心推薦信號</span>
+            <span class="pillar-signal-label">提及</span>
             <span class="pillar-weight-badge">65% 權重</span>
           </div>
           <h3 class="pillar-headline">AI 有沒有提到你（占 65%）</h3>
           <p class="pillar-copy">
-            當顧客在 ChatGPT 或 Perplexity 詢問不帶店名的商業問題時（例如「大安區約會推薦哪間法餐」），AI 是主動向顧客背書你的品牌，還是只推薦你的競爭對手？
-            這 <strong>65% 權重</strong> 衡量的是品牌在生成式對話中的「心智第一指名率」。
+            當顧客在 ChatGPT 或 Perplexity 詢問不帶店名的問題時（例如「大安區約會推薦哪間法餐」），AI 的回答正文有沒有提到你？
+            提到可能是推薦，也可能是比較或批評；報告會附上原文讓你判斷。
           </p>
         </div>
         <div class="pillar-insight">
           <div class="pillar-insight-header">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-            <span>商業關鍵影響</span>
+            <span>判讀限制</span>
           </div>
-          <p class="pillar-insight-text">多數顧客不再點擊第二頁搜尋結果，AI 有沒有主動提及你，直接決定了潛在訂單能否被截流。</p>
+          <p class="pillar-insight-text">每次只有 4 題、跑一次。換問法、換順序或換時間，結果都可能不同；這裡也沒有量測後續的來客或轉換。</p>
         </div>
       </article>
 
@@ -1831,21 +1859,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <article class="method-pillar">
         <div>
           <div class="pillar-header-meta">
-            <span class="pillar-signal-label">官方引用信號</span>
+            <span class="pillar-signal-label">官網引用</span>
             <span class="pillar-weight-badge">35% 權重</span>
           </div>
           <h3 class="pillar-headline">AI 有沒有引用你的官網（占 35%）</h3>
           <p class="pillar-copy">
-            AI 在給出答案與推薦時，底部的參考資料是直接標註你的官方網址、訂位頁面，還是只能引用外部二手食記？
-            這 <strong>35% 權重</strong> 檢驗你的網站是否被模型認定為不可撼動的第一手權威依據。
+            AI 回答列出的參考來源裡，有沒有你的官方網址或訂位頁？還是都來自食記、地圖與評論？
+            沒有官網的店也可能被提到；官網的價值在於提供一個你能自己維護的官方版本。
           </p>
         </div>
         <div class="pillar-insight">
           <div class="pillar-insight-header">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            <span>商業關鍵影響</span>
+            <span>判讀限制</span>
           </div>
-          <p class="pillar-insight-text">第一方引用會把回答中的來源連結指回你的官網，而不是第三方轉述頁。GeoCheck 記錄的是引用是否出現，不預測後續的流量或轉換成效。</p>
+          <p class="pillar-insight-text">被列為來源和被提到是兩回事，來源清單出現的次數也不是 AI 的信任權重。GeoCheck 記錄的是引用是否出現，不預測後續的流量或轉換。</p>
         </div>
       </article>
     </div>
@@ -1856,6 +1884,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <span>閱讀完整白皮書方法論</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+      <br><a class="method-report-link" href="https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/">為什麼不只看總分：AI 搜尋時代的檢索機制報告 →</a>
     </div>
   </div>
 </section>
@@ -1873,11 +1902,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </details>
       <details>
         <summary>為什麼 AI 都沒提到我的店？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="faq-body"><p>常見原因有三個：網站沒有清楚寫出你的業務核心與服務地區；內容過於籠統缺乏結構化資訊；網路上缺少第三方實體引用佐證。這個檢查會用真實顧客提問直接實測一次給你看。</p><p>報告裡會直接列出實際問到的結果與依據，你可以自己核對。</p></div>
+        <div class="faq-body"><p>可能的原因包括：網路上關於你的公開資料（地圖、評論、媒體、社群）太少或彼此不一致；網站沒有清楚寫出服務內容與地區；也可能只是這幾題的問法沒問到你。沒有官網的店也可能被 AI 提到，官網不是唯一的管道。</p><p>報告裡會直接列出實際問到的結果與依據，你可以自己核對。</p></div>
       </details>
       <details>
         <summary>網站要準備什麼，AI 才容易讀懂？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="faq-body"><p>清楚說明提供什麼服務、服務誰、收費範圍、聯絡方式，並在網站中加入 Schema 結構化資料。這比單純追求關鍵字堆砌更能被 AI 引擎理解與摘錄。</p><p>報告裡會直接列出具體程式碼範例。</p></div>
+        <div class="faq-body"><p>清楚寫出提供什麼服務、服務誰、價格範圍與聯絡方式，並加入 Schema 結構化資料，讓搜尋系統更容易解析。這能提高被讀懂的機會，但不保證被 AI 採用；地圖、評論與媒體報導同樣會影響 AI 怎麼描述你。</p><p>報告裡會直接列出具體程式碼範例。</p></div>
       </details>
       <details>
         <summary>有沒有可能是網站把 AI 擋住了？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
@@ -1893,7 +1922,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <h2>一次檢測是快照，不是趨勢。</h2>
     <p class="intro">
       這份報告只代表這一次、這組提問、這個時間點的觀測。
-      想知道情況有沒有在變，需要同一組題目、定期重測，並保留每次的原始回答。
+      同一題換個問法或順序，答案也可能不同；想知道情況有沒有在變，需要同一組題目、定期重測，並保留每次的原始回答。
     </p>
 
     <div class="monitor-actions">
@@ -1909,7 +1938,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <footer>
   <div class="foot">
     <div>© 2026 LS-Labs · GeoCheck 快速檢測</div>
-    <div><!--email_off--><a href="mailto:me@lslabs.tw">聯絡我們</a><!--/email_off--><a href="/demo">介面示範</a><a href="https://lslabs.tw/blog/category/research/">LS-Labs 研究</a><a href="https://lslabs.tw/brand/">品牌規範</a><a href="/privacy">隱私權政策</a><a href="/terms">服務條款</a></div>
+    <div><!--email_off--><a href="mailto:me@lslabs.tw">聯絡我們</a><!--/email_off--><a href="https://lslabs.tw/blog/category/research/">LS-Labs 研究</a><a href="https://lslabs.tw/brand/">品牌規範</a><a href="/privacy">隱私權政策</a><a href="/terms">服務條款</a></div>
   </div>
 </footer>
 
@@ -2369,7 +2398,7 @@ async function executeAudit(customQueries) {
 const scoreIO = new IntersectionObserver(es => es.forEach(e => {
   if (!e.isIntersecting) return;
   scoreIO.disconnect();
-  const target = 44, arc = document.getElementById('arc'), val = document.getElementById('scoreVal');
+  const target = 50, arc = document.getElementById('arc'), val = document.getElementById('scoreVal');
   if (!arc || !val) return;
   const full = 251; let t0 = null;
   function step(ts) {

@@ -91,4 +91,18 @@ for (const id of new Set(sidebarHrefs)) {
   assert.ok(docs.includes(`id="${id}"`), `docs sidebar links to #${id}, which has no section`);
 }
 
+// 13. GeoCheck Track is paused (D-051) and nothing is sold on geocheck.lslabs.tw, so the
+//     Track plans, prices, checkout and refund pages are gone (2026-10-19). Platform's
+//     own pricing and legal pages live under /platform/ and are not affected.
+for (const page of ["pricing.html", "refund.html", "demo.html"]) {
+  assert.ok(!fs.existsSync(path.join(publicDir, page)), `${page} must not be published on GeoCheck`);
+}
+const geocheckPages = ["home.html", "terms.html", "privacy.html", "whitepaper.html", "404.html"];
+for (const page of geocheckPages) {
+  const html = read(page);
+  assert.doesNotMatch(html, /href="(?:https:\/\/geocheck\.lslabs\.tw)?\/(?:pricing|refund)"/, `${page} must not link to removed sales pages`);
+  assert.doesNotMatch(html, /GeoCheck Track 標準方案|NT\$\s?330|藍新金流|定期定額/, `${page} must not describe a Track sale`);
+}
+assert.doesNotMatch(read("sitemap.xml"), /geocheck\.lslabs\.tw\/(?:pricing|refund)</, "removed sales pages must leave the sitemap");
+
 console.log("public surface claim tests passed");
