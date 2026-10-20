@@ -21,6 +21,8 @@ async function runMcacAudit(siteUrl, options = {}) {
     id: REPORT_ID.test(String(options.reportId || "")) ? options.reportId : `real_lite_${randomUUID()}`,
     url: siteUrl,
     finalUrl: measurement.finalUrl,
+    // The URL the user typed; siteUrl is the entry the Worker found reachable (may differ).
+    requestedUrl: options.requestedUrl || siteUrl,
     createdAt: new Date().toISOString(),
     method: "mcac",
     algorithmVersion: `mcac-${MCAC_VERSION}`,

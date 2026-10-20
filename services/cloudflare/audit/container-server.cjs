@@ -43,6 +43,8 @@ const server = http.createServer(async (req, res) => {
       const report = await runRealLiteAudit(url, {
         customQueries: Array.isArray(body.custom_queries) ? body.custom_queries : null,
         reportId: typeof body.report_id === "string" ? body.report_id : undefined,
+        // What the user typed, when the Worker's entry probe sent a different URL to measure.
+        requestedUrl: typeof body.requested_url === "string" ? validUrl(body.requested_url) : undefined,
         ...(homepage ? { homepage } : {})
       });
       return sendJson(res, 200, { report, crawl_path: homepage ? "browser_run" : "container_fallback" });

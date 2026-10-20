@@ -1,6 +1,7 @@
 import { Container, getContainer } from "@cloudflare/containers";
 import { env as workerEnv } from "cloudflare:workers";
 import { clientKey, isFinalAttempt, parseLimits } from "./limits.mjs";
+import { cacheKey, normalizeUrl, resolveEntryUrl, sha256 } from "./entry-url.mjs";
 
 const JSON_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -37,40 +38,6 @@ export class AuditFallbackContainer extends Container {
 
 function json(status, body, extraHeaders = {}) {
   return new Response(JSON.stringify(body), { status, headers: { ...JSON_HEADERS, ...extraHeaders } });
-}
-
-function normalizeUrl(input) {
-  const raw = String(input || "").trim();
-  const value = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
-  const url = new URL(value);
-  if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || isPrivateHost(url.hostname)) {
-    const error = new Error("invalid_target_url");
-    error.status = 400;
-    throw error;
-  }
-  return url.toString();
-}
-
-function isPrivateHost(hostname) {
-  const host = hostname.toLowerCase().replace(/\.$/, "");
-  if (host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local")) return true;
-  if (/^(127\.|10\.|0\.|169\.254\.|192\.168\.)/.test(host)) return true;
-  const parts = host.match(/^(\d+)\.(\d+)\./);
-  return Boolean(parts && Number(parts[1]) === 172 && Number(parts[2]) >= 16 && Number(parts[2]) <= 31);
-}
-
-async function sha256(value) {
-  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
-  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
-}
-
-async function cacheKey(siteUrl, customQueries, pipelineVersion) {
-  const parsed = new URL(siteUrl);
-  return sha256(JSON.stringify({
-    site_origin: `${parsed.protocol}//${parsed.host}`.toLowerCase(),
-    custom_queries: customQueries || [],
-    pipeline_version: String(pipelineVersion || "unknown")
-  }));
 }
 
 async function readBody(request, maxBytes = 16 * 1024) {
@@ -158,11 +125,15 @@ async function processAudit(message, env) {
   ).run();
   if (Number(claim.meta?.changes || 0) !== 1) return;
   const queries = JSON.parse(job.custom_queries_json || "[]");
+  // site_url is what the user typed; entry_url is the entry the probe found reachable.
+  let entryUrl = job.site_url;
+  try { entryUrl = new URL(JSON.parse(job.diagnostics_json || "{}").entry_url || job.site_url).toString(); } catch { /* keep site_url */ }
   let html = null;
   let browserError = null;
-  try { html = await browserHtml(env, job.site_url); } catch (error) { browserError = String(error?.message || "browser_run_failed").slice(0, 240); }
+  try { html = await browserHtml(env, entryUrl); } catch (error) { browserError = String(error?.message || "browser_run_failed").slice(0, 240); }
   const response = await invokeContainer(env, AUDIT_CONTAINER, "/audit", {
-    url: job.site_url,
+    url: entryUrl,
+    requested_url: job.site_url,
     report_id: job.report_id,
     custom_queries: queries,
     ...(html ? { browser_html: html } : {})
@@ -182,7 +153,7 @@ async function processAudit(message, env) {
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON CONFLICT(report_id) DO UPDATE SET stored_at = excluded.stored_at, expires_at = excluded.expires_at,
       report_hash = excluded.report_hash, report_json = excluded.report_json`).bind(
-      job.report_id, job.cache_key, new URL(job.site_url).origin.toLowerCase(), queries.length ? "custom" : "automatic",
+      job.report_id, job.cache_key, new URL(entryUrl).origin.toLowerCase(), queries.length ? "custom" : "automatic",
       String(report.queryPlanning?.queryPlan?.query_set_version || report.probeSetVersion || "unknown"), String(report.pipelineVersion || workerEnv.AUDIT_PIPELINE_VERSION || "unknown"),
       String(report.audit?.score?.algorithm_version || report.algorithmVersion || "unknown"),
       String(report.audit?.query_planning?.entity_name || report.entity?.name || "unknown"), String(report.createdAt || completedAt), completedAt,
@@ -234,7 +205,11 @@ export default {
         if (customQueries.length > 4 || new Set(customQueries.map((item) => item.toLowerCase())).size !== customQueries.length) {
           return json(400, { error: "自訂觀測題最多 4 題，且每題都必須不同。", code: "invalid_custom_queries" });
         }
-        const key = await cacheKey(siteUrl, customQueries, env.AUDIT_PIPELINE_VERSION);
+        // The probe picks the entry that answers (https apex, https www, http apex with its
+        // redirects), so a site whose apex https is dead is still measured, and one site typed
+        // in different ways shares one cache row.
+        const entry = await resolveEntryUrl(siteUrl);
+        const key = await cacheKey(entry.url, customQueries, env.AUDIT_PIPELINE_VERSION);
         const cached = await env.REPORTS_DB.prepare("SELECT report_id FROM audit_reports WHERE cache_key = ? AND expires_at > ? ORDER BY created_at DESC LIMIT 1")
           .bind(key, new Date().toISOString()).first();
         let client = null;
@@ -256,7 +231,7 @@ export default {
           job_id, report_id, cache_key, site_url, custom_queries_json, status, created_at, updated_at, completed_at, diagnostics_json
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
           .bind(jobId, reportId, key, siteUrl, JSON.stringify(customQueries), cached ? "completed" : "queued", now, now,
-            cached ? now : null, JSON.stringify({ cache_hit: Boolean(cached), ...(client ? { client } : {}) })).run();
+            cached ? now : null, JSON.stringify({ cache_hit: Boolean(cached), entry_url: entry.url, entry_reachable: entry.reachable, ...(client ? { client } : {}) })).run();
         if (!cached) await env.AUDIT_JOBS.send({ job_id: jobId });
         return json(202, { job_id: jobId, report_id: reportId, status: cached ? "completed" : "queued", poll_url: `/api/status/${jobId}` }, { Location: `/api/status/${jobId}` });
       }
