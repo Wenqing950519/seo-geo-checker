@@ -335,6 +335,10 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   // Limits are kept out of the public repo: they live in the AUDIT_LIMITS secret (LSL-D-006).
   for (const name of ["AUDIT_DAILY_LIMIT", "AUDIT_LIMITS", "AUDIT_IP_PEPPER"]) assert.ok(!(name in wrangler.vars), `${name} is not a public var`);
   assert.equal(wrangler.queues.consumers[0].max_retries, 1, "a failed audit is retried once, not three times");
+  // One shared render container plus one audit at a time fits the container ceiling. A
+  // container per report left one report's page failing for good (2026-10-21 deploy check).
+  assert.equal(wrangler.queues.consumers[0].max_concurrency, 1, "audits run one at a time");
+  assert.ok(wrangler.containers[0].max_instances >= 2, "room for the render container and one audit");
   const limits = await import("../../services/cloudflare/audit/src/limits.mjs");
   assert.equal(limits.QUEUE_MAX_RETRIES, wrangler.queues.consumers[0].max_retries, "the Worker knows the queue's retry limit");
   const workerSource = fs.readFileSync(path.resolve(__dirname, "../../services/cloudflare/audit/src/worker.js"), "utf8");
@@ -344,6 +348,8 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.doesNotMatch(workerSource, /OPENAI_API_KEY|ANTHROPIC_API_KEY/, "no other engine key reaches the GeoCheck container");
   assert.match(workerSource, /daily_limit_reached/);
   assert.match(workerSource, /rate_limited/);
+  assert.ok(!workerSource.includes("`render-${"), "report pages never get a container per report");
+  assert.ok(workerSource.includes("RENDER_CONTAINER"), "report pages and downloads share one render container");
   assert.ok(workerSource.includes("parseLimits(env)"), "new audits need the secret limits");
   assert.ok(workerSource.includes("\\/markdown$/"), "the download link has a route (PR #6 finding 2)");
   assert.match(workerSource, /status = 'failed'/, "a job whose last retry fails is marked failed (PR #6 finding 4)");

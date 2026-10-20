@@ -20,7 +20,7 @@
   }],
   "queues": {
     "producers": [{ "binding": "AUDIT_JOBS", "queue": "geocheck-audit-jobs" }],
-    "consumers": [{ "queue": "geocheck-audit-jobs", "max_batch_size": 1, "max_batch_timeout": 5, "max_retries": 1, "dead_letter_queue": "geocheck-audit-jobs-dlq" }]
+    "consumers": [{ "queue": "geocheck-audit-jobs", "max_batch_size": 1, "max_batch_timeout": 5, "max_retries": 1, "max_concurrency": 1, "dead_letter_queue": "geocheck-audit-jobs-dlq" }]
   },
   "containers": [{
     "class_name": "AuditFallbackContainer",
