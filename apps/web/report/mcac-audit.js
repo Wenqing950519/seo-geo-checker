@@ -11,11 +11,14 @@ const {
   rankDeterministicActions
 } = require("./real-lite-audit-v2-core.js");
 
+const REPORT_ID = /^real_lite_[A-Za-z0-9-]{1,80}$/;
+
 async function runMcacAudit(siteUrl, options = {}) {
   const measurement = await measureMcacSite(siteUrl, options);
   const signals = measurement.signals;
   return {
-    id: `real_lite_${randomUUID()}`,
+    // The Worker passes the id it stores the report under; anything else gets a fresh id.
+    id: REPORT_ID.test(String(options.reportId || "")) ? options.reportId : `real_lite_${randomUUID()}`,
     url: siteUrl,
     finalUrl: measurement.finalUrl,
     createdAt: new Date().toISOString(),

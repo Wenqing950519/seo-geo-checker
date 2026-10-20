@@ -356,7 +356,11 @@ function formatReportTime(value) {
 }
 
 function reportHtml(report) {
-  return report?.method === "mcac" ? mcacReportHtml(report) : realLiteReportHtml(report);
+  if (report?.method !== "mcac") return realLiteReportHtml(report);
+  // Same GA4 tag and result_viewed event as the Classic report page.
+  return mcacReportHtml(report)
+    .replace("</head>", `${GA_TAG_HTML}</head>`)
+    .replace("</body>", `${reportTrackingHtml(report.id)}</body>`);
 }
 
 // The cache key must change with the method and engine, or a Classic report could be

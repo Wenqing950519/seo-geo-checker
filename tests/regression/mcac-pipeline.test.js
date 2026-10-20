@@ -4,7 +4,7 @@ const { measureMcacSite, MCAC_PIPELINE_VERSION, pickTruthPages } = require("../.
 const { runMcacAudit } = require("../../apps/web/report/mcac-audit.js");
 const { resolveAuditMethod } = require("../../apps/web/report/real-lite-audit.js");
 const { mcacReportHtml, mcacReportMarkdown } = require("../../apps/web/report/mcac-report-html.js");
-const { reportHtml } = require("../../services/api/server.js");
+const { reportHtml, reportMarkdown } = require("../../services/api/server.js");
 const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.js");
 
 // GeoCheck runs exactly two engine combinations: DeepSeek planning with either
@@ -276,7 +276,25 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.doesNotMatch(html, /AI 信任值|65%|35%/, "the MCAC report never shows the old blended score");
   assert.doesNotMatch(html, /<script>alert/, "AI answers are escaped");
   assert.match(html, /&lt;script&gt;/);
-  assert.equal(reportHtml(report), html, "the shared renderer dispatches MCAC reports to the MCAC page");
+  const servedHtml = reportHtml(report);
+  assert.ok(servedHtml.includes("AI 能見度檢測單") && servedHtml.includes("&lt;script&gt;"), "the shared renderer dispatches MCAC reports to the MCAC page");
+  // The served page reports result_viewed to GA4, as the Classic report page did (PR #6 finding 5).
+  assert.match(servedHtml, /googletagmanager\.com\/gtag\/js/);
+  assert.match(servedHtml, /trackResultViewed/);
+  assert.match(reportMarkdown(report), /AI 能見度檢測單/);
+
+  // The stored report carries the id the Worker stored it under, so the page and its download
+  // link use the URL's id (PR #6 finding 1).
+  const stored = await runMcacAudit("https://example-noodle.tw/", { ...deps().options, reportId: "real_lite_stored-id-1" });
+  assert.equal(stored.id, "real_lite_stored-id-1");
+  const unsafe = await runMcacAudit("https://example-noodle.tw/", { ...deps().options, reportId: "../x" });
+  assert.match(unsafe.id, /^real_lite_[0-9a-f-]{36}$/, "only a real_lite_ id is accepted");
+
+  // Site checks are read from their Chinese fields (PR #6 finding 3).
+  report.siteChecks.issues = [{ severity: "high", check: "JavaScript rendering", detail_zh: "首頁大部分文字要等程式跑完才會出現。", impact_zh: "有些 AI 只會讀到空白。" }];
+  const checksHtml = mcacReportHtml(report);
+  assert.match(checksHtml, /首頁大部分文字要等程式跑完才會出現。/);
+  assert.match(checksHtml, /有些 AI 只會讀到空白。/);
 
   // A value that is not on the owner's page is a mismatch, not an error: the page may be out
   // of date, or another platform (Google Maps) may list something else (2026-10-20 decision).
@@ -306,14 +324,44 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.equal(wrangler.vars.AUDIT_PIPELINE_VERSION, `${MCAC_PIPELINE_VERSION}-${wrangler.vars.GEOCHECK_MCAC_ENGINE}`,
     "the Worker cache key must match the container's MCAC pipeline version");
   assert.equal(wrangler.vars.AUDIT_ADMISSION_ENABLED, "false", "MCAC ships closed until the paid smoke test passes");
-  assert.ok(Number(wrangler.vars.AUDIT_DAILY_LIMIT) > 0);
+  // Limits are kept out of the public repo: they live in the AUDIT_LIMITS secret (LSL-D-006).
+  for (const name of ["AUDIT_DAILY_LIMIT", "AUDIT_LIMITS", "AUDIT_IP_PEPPER"]) assert.ok(!(name in wrangler.vars), `${name} is not a public var`);
   assert.equal(wrangler.queues.consumers[0].max_retries, 1, "a failed audit is retried once, not three times");
+  const limits = await import("../../services/cloudflare/audit/src/limits.mjs");
+  assert.equal(limits.QUEUE_MAX_RETRIES, wrangler.queues.consumers[0].max_retries, "the Worker knows the queue's retry limit");
   const workerSource = fs.readFileSync(path.resolve(__dirname, "../../services/cloudflare/audit/src/worker.js"), "utf8");
   for (const name of ["GEOCHECK_METHOD", "GEOCHECK_MCAC_ENGINE", "GEMINI_API_KEY", "PERPLEXITY_API_KEY", "DEEPSEEK_API_KEY"]) {
     assert.ok(workerSource.includes(`${name}: workerEnv.${name}`), `the container receives ${name}`);
   }
   assert.doesNotMatch(workerSource, /OPENAI_API_KEY|ANTHROPIC_API_KEY/, "no other engine key reaches the GeoCheck container");
   assert.match(workerSource, /daily_limit_reached/);
+  assert.match(workerSource, /rate_limited/);
+  assert.ok(workerSource.includes("parseLimits(env)"), "new audits need the secret limits");
+  assert.ok(workerSource.includes("\\/markdown$/"), "the download link has a route (PR #6 finding 2)");
+  assert.match(workerSource, /status = 'failed'/, "a job whose last retry fails is marked failed (PR #6 finding 4)");
+  assert.match(workerSource, /json_patch/, "completing a job keeps the client key used for the per-client limit");
+
+  // Limits: missing or invalid settings close admission; nothing about the values is public.
+  const pepper = "p".repeat(32);
+  assert.equal(limits.parseLimits({}), null);
+  assert.equal(limits.parseLimits({ AUDIT_LIMITS: "not json", AUDIT_IP_PEPPER: pepper }), null);
+  assert.equal(limits.parseLimits({ AUDIT_LIMITS: '{"daily":5,"per_ip":0,"per_ip_hours":2}', AUDIT_IP_PEPPER: pepper }), null);
+  assert.equal(limits.parseLimits({ AUDIT_LIMITS: '{"daily":5,"per_ip":1,"per_ip_hours":2}', AUDIT_IP_PEPPER: "short" }), null);
+  assert.deepEqual(limits.parseLimits({ AUDIT_LIMITS: '{"daily":5,"per_ip":1,"per_ip_hours":2}', AUDIT_IP_PEPPER: pepper }),
+    { daily: 5, perIp: 1, perIpHours: 2, pepper });
+  // One IPv6 /64 is one client; addresses are stored only as a peppered hash.
+  assert.equal(limits.clientBucket("203.0.113.9"), "203.0.113.9");
+  assert.equal(limits.clientBucket("2001:db8:1:2:3:4:5:6"), "2001:db8:1:2");
+  assert.equal(limits.clientBucket("2001:db8:1:2::9"), "2001:db8:1:2");
+  assert.equal(limits.clientBucket("2001:DB8::1"), "2001:db8:0:0");
+  assert.equal(limits.clientBucket(""), "unknown");
+  const keyA = await limits.clientKey("2001:db8:1:2:aaaa::1", pepper);
+  assert.equal(keyA, await limits.clientKey("2001:db8:1:2:bbbb::2", pepper));
+  assert.notEqual(keyA, await limits.clientKey("2001:db8:1:2:aaaa::1", "q".repeat(32)));
+  assert.match(keyA, /^[0-9a-f]{32}$/);
+  // Queue attempts count from 1: with one retry, the second failure is final.
+  assert.equal(limits.isFinalAttempt(1, 1), false);
+  assert.equal(limits.isFinalAttempt(2, 1), true);
 
   console.log("MCAC pipeline tests passed");
   // Requiring services/api/server.js starts its local HTTP server; end explicitly.

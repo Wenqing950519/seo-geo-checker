@@ -18,6 +18,16 @@ try {
   assert.equal(invalid.status, 502);
   assert.equal((await invalid.json()).error, "ERR_INVALID_URL");
 
+  // The Worker's download link renders Markdown in the container (PR #6 finding 2).
+  const markdown = await fetch(`http://127.0.0.1:${port}/render-markdown`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ report: { id: "real_lite_md", method: "mcac", url: "https://example-noodle.tw/", finalUrl: "https://example-noodle.tw/", createdAt: "2026-10-20T00:00:00Z", mcac: { probes: [] } } })
+  });
+  assert.equal(markdown.status, 200);
+  assert.match(markdown.headers.get("content-type"), /text\/markdown/);
+  assert.match(await markdown.text(), /AI 能見度檢測單/);
+
   const health = await fetch(`http://127.0.0.1:${port}/healthz`);
   assert.equal(health.status, 200);
   assert.deepEqual(await health.json(), { ok: true });

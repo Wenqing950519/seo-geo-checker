@@ -85,7 +85,7 @@ ${hasMismatch(m) ? `<p class="limited">${esc(MISMATCH_ADVICE)}</p>` : ""}
 <h2>每一題的原始回答與來源</h2>
 ${probes.length ? probes.map((probe, index) => probeBlock(probe, index)).join("\n") : `<p class="note">這次沒有可顯示的回答。</p>`}
 <h2>網站條件（不計分）</h2>
-${checks.issues?.length ? `<ul class="plain">${checks.issues.map((item) => `<li><b>${esc(item.check || "")}</b>：${esc(item.detail || "")}</li>`).join("")}</ul>` : `<p class="note">沒有發現阻擋讀取的網站設定。</p>`}
+${checks.issues?.length ? `<ul class="plain">${checks.issues.map((item) => `<li><b>${esc(item.check || "")}</b>：${esc(item.detail_zh || item.detail || "")}${item.impact_zh ? `<br><small>${esc(item.impact_zh)}</small>` : ""}</li>`).join("")}</ul>` : `<p class="note">沒有發現阻擋讀取的網站設定。</p>`}
 ${checks.citeability?.gaps_zh?.length ? `<p class="note">可以補強的內容：${esc(checks.citeability.gaps_zh.join("；"))}</p>` : ""}
 <h2>判讀限制</h2>
 <ul class="plain">

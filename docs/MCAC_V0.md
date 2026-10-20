@@ -48,7 +48,9 @@ The twelve existing site checks stay on the report, unscored.
 ## Operations
 
 - Cache key: `AUDIT_PIPELINE_VERSION` must equal `${MCAC_PIPELINE_VERSION}-${engine}`; the test fails on drift.
-- Queue retries: 1. Daily ceiling: `AUDIT_DAILY_LIMIT` fresh audits per Asia/Taipei day (cached results are not counted).
+- Queue retries: 1. A job whose last retry fails is marked `failed` (the dead-letter queue has no consumer).
+- Admission limits are not published. A daily ceiling (per Asia/Taipei day) and a per-client ceiling within a window apply to fresh audits only (cached results are never refused); the numbers live in the `AUDIT_LIMITS` secret (`{"daily":n,"per_ip":n,"per_ip_hours":n}`), and clients are counted by an HMAC of the IP (IPv6 by /64) keyed with the `AUDIT_IP_PEPPER` secret, never by the raw address. Without both secrets the Worker accepts no new audits (`/healthz` reports `limits_configured`). Over the per-client ceiling the answer is 429 `rate_limited` with no Retry-After; over the daily one, 429 `daily_limit_reached`.
+- The stored report's `id` is the id the Worker stores it under, and `/report/<id>/markdown` serves the Markdown download.
 - Cost: four answer-engine calls plus one DeepSeek planning call per audit (worst case eight engine calls with retries). Measured in the 2026-10-20 smoke: about US$0.021–0.023 per audit with Perplexity (reported by Perplexity) and US$0.10–0.12 with Gemini (list price with every Google search billed; a free allowance may apply), plus under US$0.001 for DeepSeek. Usage goes to the AI usage ledger, never into a result.
 
 ## Limits

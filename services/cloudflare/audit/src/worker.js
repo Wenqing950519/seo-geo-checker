@@ -1,5 +1,6 @@
 import { Container, getContainer } from "@cloudflare/containers";
 import { env as workerEnv } from "cloudflare:workers";
+import { clientKey, isFinalAttempt, parseLimits } from "./limits.mjs";
 
 const JSON_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -80,11 +81,10 @@ async function readBody(request, maxBytes = 16 * 1024) {
   return JSON.parse(text || "{}");
 }
 
-// Daily ceiling on fresh (non-cached) audits, counted per Asia/Taipei day. Cached
-// results cost nothing and are never refused.
-async function dailyLimitState(env, now = Date.now()) {
-  const limit = Number(env.AUDIT_DAILY_LIMIT ?? 50);
-  if (!Number.isFinite(limit) || limit < 0) return { reached: false };
+// Ceilings on fresh (non-cached) audits: per Asia/Taipei day, and per client within a window.
+// The numbers come from the AUDIT_LIMITS secret (limits.mjs). Cached results cost nothing and
+// are never refused.
+async function dailyLimitState(env, limit, now = Date.now()) {
   const offset = 8 * 60 * 60_000;
   const local = new Date(now + offset);
   local.setUTCHours(0, 0, 0, 0);
@@ -93,6 +93,14 @@ async function dailyLimitState(env, now = Date.now()) {
     "SELECT COUNT(*) AS n FROM audit_jobs WHERE created_at >= ? AND COALESCE(json_extract(diagnostics_json, '$.cache_hit'), 0) = 0"
   ).bind(new Date(dayStart).toISOString()).first();
   return { reached: Number(row?.n || 0) >= limit, retryAfterSeconds: Math.max(60, Math.ceil((dayStart + 24 * 60 * 60_000 - now) / 1000)) };
+}
+
+async function clientLimitReached(env, client, limits, now = Date.now()) {
+  const since = new Date(now - limits.perIpHours * 60 * 60_000).toISOString();
+  const row = await env.REPORTS_DB.prepare(
+    "SELECT COUNT(*) AS n FROM audit_jobs WHERE created_at >= ? AND json_extract(diagnostics_json, '$.client') = ? AND COALESCE(json_extract(diagnostics_json, '$.cache_hit'), 0) = 0"
+  ).bind(since, client).first();
+  return Number(row?.n || 0) >= limits.perIp;
 }
 
 async function getJob(db, jobId) {
@@ -146,13 +154,15 @@ async function processAudit(message, env) {
   try { html = await browserHtml(env, job.site_url); } catch (error) { browserError = String(error?.message || "browser_run_failed").slice(0, 240); }
   const response = await invokeContainer(env, jobId, "/audit", {
     url: job.site_url,
+    report_id: job.report_id,
     custom_queries: queries,
     ...(html ? { browser_html: html } : {})
   });
   if (!response.ok) throw new Error(`audit_container_http_${response.status}`);
   const payload = await response.json();
   if (!payload?.report || typeof payload.report !== "object") throw new Error("audit_container_invalid_result");
-  const report = payload.report;
+  // The page, its "報告編號" and its download link must use the id the report is stored under.
+  const report = { ...payload.report, id: job.report_id };
   const reportJson = JSON.stringify(report);
   const completedAt = new Date().toISOString();
   const limited = report?.model === "fetch-limited" || report?.homepage?.fetchBlocked === true || report?.limited === true;
@@ -169,7 +179,9 @@ async function processAudit(message, env) {
       String(report.audit?.query_planning?.entity_name || report.entity?.name || "unknown"), String(report.createdAt || completedAt), completedAt,
       new Date(Date.now() + 7 * 24 * 60 * 60_000).toISOString(), await sha256(reportJson), reportJson
     ),
-    env.REPORTS_DB.prepare(`UPDATE audit_jobs SET status = ?, completed_at = ?, updated_at = ?, diagnostics_json = ?, error_code = NULL
+    // json_patch keeps cache_hit and the client key that the per-client limit counts.
+    env.REPORTS_DB.prepare(`UPDATE audit_jobs SET status = ?, completed_at = ?, updated_at = ?,
+      diagnostics_json = json_patch(COALESCE(diagnostics_json, '{}'), ?), error_code = NULL
       WHERE job_id = ? AND lease_token = ?`).bind(
       limited ? "completed_with_limitations" : "completed", completedAt, completedAt,
       JSON.stringify({ browser_run: html ? "succeeded" : "failed", browser_error: browserError, crawl_path: payload.crawl_path || "unknown" }), jobId, leaseToken
@@ -193,11 +205,17 @@ export default {
           queue: Boolean(env.AUDIT_JOBS),
           browser: Boolean(env.BROWSER),
           container: Boolean(env.AUDIT_FALLBACK),
-          admission_enabled: String(env.AUDIT_ADMISSION_ENABLED || "").toLowerCase() === "true"
+          admission_enabled: String(env.AUDIT_ADMISSION_ENABLED || "").toLowerCase() === "true",
+          limits_configured: Boolean(parseLimits(env))
         });
       }
       if (request.method === "POST" && url.pathname === "/api/audit-real-lite") {
         if (String(env.AUDIT_ADMISSION_ENABLED || "").toLowerCase() !== "true") {
+          return json(503, { error: "New audits are temporarily paused", code: "service_unavailable" });
+        }
+        const limits = parseLimits(env);
+        if (!limits) {
+          console.error(JSON.stringify({ event: "audit_limits_missing" }));
           return json(503, { error: "New audits are temporarily paused", code: "service_unavailable" });
         }
         const body = await readBody(request);
@@ -210,8 +228,14 @@ export default {
         const key = await cacheKey(siteUrl, customQueries, env.AUDIT_PIPELINE_VERSION);
         const cached = await env.REPORTS_DB.prepare("SELECT report_id FROM audit_reports WHERE cache_key = ? AND expires_at > ? ORDER BY created_at DESC LIMIT 1")
           .bind(key, new Date().toISOString()).first();
+        let client = null;
         if (!cached) {
-          const daily = await dailyLimitState(env);
+          client = await clientKey(request.headers.get("CF-Connecting-IP"), limits.pepper);
+          // The window and count are not published, so this answer gives no Retry-After.
+          if (await clientLimitReached(env, client, limits)) {
+            return json(429, { error: "檢測次數太頻繁，請稍後再試。", code: "rate_limited" });
+          }
+          const daily = await dailyLimitState(env, limits.daily);
           if (daily.reached) {
             return json(429, { error: "今日免費檢測額度已滿，請明天再試。", code: "daily_limit_reached" }, { "Retry-After": String(daily.retryAfterSeconds) });
           }
@@ -223,7 +247,7 @@ export default {
           job_id, report_id, cache_key, site_url, custom_queries_json, status, created_at, updated_at, completed_at, diagnostics_json
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
           .bind(jobId, reportId, key, siteUrl, JSON.stringify(customQueries), cached ? "completed" : "queued", now, now,
-            cached ? now : null, JSON.stringify({ cache_hit: Boolean(cached) })).run();
+            cached ? now : null, JSON.stringify({ cache_hit: Boolean(cached), ...(client ? { client } : {}) })).run();
         if (!cached) await env.AUDIT_JOBS.send({ job_id: jobId });
         return json(202, { job_id: jobId, report_id: reportId, status: cached ? "completed" : "queued", poll_url: `/api/status/${jobId}` }, { Location: `/api/status/${jobId}` });
       }
@@ -237,6 +261,19 @@ export default {
       if (request.method === "GET" && reportMatch) {
         const report = await getReport(env.REPORTS_DB, decodeURIComponent(reportMatch[1]));
         return report ? json(200, report) : json(404, { error: "Report not found" });
+      }
+      const markdownMatch = url.pathname.match(/^\/report\/([^/]+)\/markdown$/);
+      if (request.method === "GET" && markdownMatch) {
+        const reportId = decodeURIComponent(markdownMatch[1]);
+        const report = await getReport(env.REPORTS_DB, reportId);
+        if (!report) return json(404, { error: "Report not found" });
+        const rendered = await invokeContainer(env, `render-${reportId}`, "/render-markdown", { report });
+        if (!rendered.ok) throw new Error(`audit_container_http_${rendered.status}`);
+        return withSecurityHeaders(new Response(await rendered.text(), { status: 200, headers: {
+          "Content-Type": "text/markdown; charset=utf-8",
+          "Content-Disposition": `attachment; filename="geocheck-${reportId.replace(/[^A-Za-z0-9_-]/g, "")}.md"`,
+          "Cache-Control": "no-store"
+        } }));
       }
       const pageMatch = url.pathname.match(/^\/report\/([^/]+)$/);
       if (request.method === "GET" && pageMatch) {
@@ -273,9 +310,21 @@ export default {
       } catch (error) {
         console.error(JSON.stringify({ event: "audit_job_failed", code: error?.code || "audit_failed" }));
         const jobId = String(message.body?.job_id || "");
+        const code = String(error?.code || "audit_failed").slice(0, 120);
+        const now = new Date().toISOString();
+        // After the last retry the message would sit in the unconsumed DLQ and the job would stay
+        // queued forever, so the last failure marks the job failed and ends here.
+        if (isFinalAttempt(message.attempts)) {
+          if (jobId) {
+            await env.REPORTS_DB.prepare("UPDATE audit_jobs SET status = 'failed', lease_token = NULL, lease_expires_at = NULL, error_code = ?, completed_at = ?, updated_at = ? WHERE job_id = ? AND status IN ('queued', 'running')")
+              .bind(code, now, now, jobId).run();
+          }
+          message.ack();
+          continue;
+        }
         if (jobId) {
           await env.REPORTS_DB.prepare("UPDATE audit_jobs SET status = 'queued', lease_token = NULL, lease_expires_at = NULL, error_code = ?, updated_at = ? WHERE job_id = ? AND status = 'running'")
-            .bind(String(error?.code || "audit_failed").slice(0, 120), new Date().toISOString(), jobId).run();
+            .bind(code, now, jobId).run();
         }
         message.retry({ delaySeconds: 60 });
       }
