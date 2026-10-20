@@ -2,11 +2,18 @@ const fs = require("fs");
 const path = require("path");
 
 const LEDGER_FILE = path.resolve(__dirname, "../../mock-api/usage-events.jsonl");
+// AI_USAGE_LEDGER_FILE moves the ledger (tests, containers without mock-api/).
+function ledgerFile() { return process.env.AI_USAGE_LEDGER_FILE || LEDGER_FILE; }
 const MAX_EVENTS = 2000;
 
 function recordAiUsage(event) {
   const normalized = normalizeEvent(event);
-  fs.appendFileSync(LEDGER_FILE, `${JSON.stringify(normalized)}\n`, "utf8");
+  // The audit container has no mock-api folder; a ledger that cannot be written never breaks the
+  // model call it records (2026-10-20 container check: DeepSeek planning failed with ENOENT).
+  try {
+    fs.mkdirSync(path.dirname(ledgerFile()), { recursive: true });
+    fs.appendFileSync(ledgerFile(), `${JSON.stringify(normalized)}\n`, "utf8");
+  } catch { /* usage is best effort */ }
   return normalized;
 }
 
@@ -19,15 +26,15 @@ function getUsageSummary({ limit = 40, runId = null } = {}) {
     byProvider[key] = mergeEvent(byProvider[key] || { provider: event.provider, model: event.model, ...emptyTotals() }, event);
   }
   return {
-    generatedAt: new Date().toISOString(), ledgerFile: path.basename(LEDGER_FILE),
+    generatedAt: new Date().toISOString(), ledgerFile: path.basename(ledgerFile()),
     totals: finalizeTotals(totals), byProvider: Object.values(byProvider).map(finalizeTotals),
     recentEvents: events.slice(-Math.max(1, Math.min(Number(limit) || 40, 200))).reverse()
   };
 }
 
 function readEvents({ runId = null } = {}) {
-  if (!fs.existsSync(LEDGER_FILE)) return [];
-  const events = fs.readFileSync(LEDGER_FILE, "utf8").split(/\r?\n/).filter(Boolean).slice(-MAX_EVENTS).flatMap((line) => {
+  if (!fs.existsSync(ledgerFile())) return [];
+  const events = fs.readFileSync(ledgerFile(), "utf8").split(/\r?\n/).filter(Boolean).slice(-MAX_EVENTS).flatMap((line) => {
     try { return [JSON.parse(line)]; } catch { return []; }
   });
   return runId ? events.filter((event) => event.runId === runId) : events;

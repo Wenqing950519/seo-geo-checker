@@ -319,8 +319,9 @@ function cleanQuestions(values) {
   return [...new Set((Array.isArray(values) ? values : []).map((value) => String(value || "").replace(/\s+/g, " ").trim()).filter(Boolean))];
 }
 
+// Without JSON-LD the page title names the business; an h1 is often a slogan (noodle3.com.tw).
 function titleName(metadata = {}) {
-  return String(metadata.h1 || metadata.title || "").split(/[|｜—–:：\-]/)[0].trim() || null;
+  return String(metadata.title || metadata.h1 || "").split(/[|｜—–:：\-]/)[0].trim() || null;
 }
 
 function safeCode(value) {

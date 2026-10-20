@@ -172,6 +172,14 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.deepEqual(customResult.probes.filter((p) => p.type === "discovery").map((p) => p.query), ["自訂一？", "自訂二？"]);
 
   // If DeepSeek fails, discovery is unknown but fact and action still run on the site's own name.
+  // Without JSON-LD the page title names the business; an h1 is often a slogan
+  // (noodle3.com.tw: title 天下三絕, h1 牛肉麵界的勞斯萊斯; 2026-10-20 container check).
+  const sloganH1 = deps({
+    queryPlanner: async () => { throw Object.assign(new Error("deepseek down"), { stage: "deepseek_api" }); },
+    fetchHomepage: async (url) => ({ url, finalUrl: url, html: "<html><head><title>範例牛肉麵</title></head><body><h1>牛肉麵界的勞斯萊斯</h1></body></html>",
+      text: "牛肉麵界的勞斯萊斯", metadata: { title: "範例牛肉麵", h1: "牛肉麵界的勞斯萊斯" }, internalLinks: [], statusCode: 200, crawlQuality: { status: "good", scorable: true } })
+  });
+  assert.equal((await measureMcacSite("https://example-noodle.tw/", sloganH1.options)).entity.name, "範例牛肉麵");
   const plannerDown = deps({ queryPlanner: async () => { throw Object.assign(new Error("deepseek down"), { stage: "deepseek_api" }); } });
   const downResult = await measureMcacSite("https://example-noodle.tw/", plannerDown.options);
   assert.equal(downResult.evaluation.mention.flag, "unknown");
