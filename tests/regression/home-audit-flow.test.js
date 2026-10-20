@@ -93,6 +93,11 @@ function load({ post, statuses }) {
       assert.doesNotMatch(shown, /背景完成|會出現/);
       return true;
     });
+    // The Worker marks a job failed after its last retry (PR #5): the page stops at the
+    // first failed status instead of waiting out the timeout.
+    const ended = load({ post: { job_id: "aud_6", report_id: "real_lite_z" }, statuses: [{ status: "running" }, { status: "failed", error_code: "audit_failed" }] });
+    await assert.rejects(ended.waitForAuditReport("https://bistro.example/", undefined, () => {}), /工作失敗/);
+    assert.equal(ended.calls.filter(([, route]) => route.startsWith("/api/status/")).length, 2, "polling stops at the failed status");
     const missing = load({ post: { status: "queued" }, statuses: [{}] });
     await assert.rejects(missing.waitForAuditReport("https://bistro.example/", undefined, () => {}), /工作編號/);
   }
@@ -101,6 +106,10 @@ function load({ post, statuses }) {
   {
     const page = load({ post: {}, statuses: [{}] });
     assert.equal(page.auditErrorMessage({ status: 429, code: "daily_limit_reached", message: "今日免費檢測額度已滿，請明天再試。" }), "今日免費檢測額度已滿，請明天再試。");
+    // The per-IP limit is a second 429: it clears within the day, so it must not say tomorrow.
+    const frequent = page.auditErrorMessage({ status: 429, code: "rate_limited", message: "檢測次數太頻繁，請稍後再試。" });
+    assert.equal(frequent, "檢測次數太頻繁，請稍後再試。");
+    assert.doesNotMatch(frequent, /明天|隔天|額度已滿/);
     const paused = page.auditErrorMessage({ status: 503, code: "service_unavailable", message: "New audits are temporarily paused" });
     assert.doesNotMatch(paused, /[A-Za-z]/, "the paused message must not show the Worker's English text");
     assert.match(paused, /暫停受理新的檢測/);

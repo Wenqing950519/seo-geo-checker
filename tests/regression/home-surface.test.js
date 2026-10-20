@@ -114,6 +114,16 @@ for (const phrase of ["可重現", "科學維度", "心智第一指名率", "不
 }
 assert.match(visible, /https:\/\/lslabs\.tw\/blog\/AI搜尋時代的檢索機制報告\//, "the method section must point to the retrieval report");
 
+// 5a. The daily and per-IP audit limits are unpublished (2026-10-20 decision; the values
+//     live only in Worker secrets). The page may say a limit exists, never how large it is.
+const whitepaper = fs.readFileSync(path.resolve(__dirname, "../../apps/web/public/whitepaper.html"), "utf8");
+for (const [name, page] of [["home", home], ["whitepaper", whitepaper]]) {
+  assert.doesNotMatch(page, /AUDIT_DAILY_LIMIT|AUDIT_RATE/, `${name} must not name the limit settings`);
+  assert.doesNotMatch(page, /(?:每(?:日|天)|同一(?:個)?\s*(?:IP|網路))[^。<]{0,16}?\d+\s*(?:次|份|個|題)/, `${name} must not publish a limit number`);
+  assert.doesNotMatch(page, /\d+\s*(?:次|份)[^。<]{0,8}(?:上限|額度)/, `${name} must not publish a limit number`);
+}
+for (const phrase of ["名額上限", "太頻繁"]) assert.ok(visible.includes(phrase), `the FAQ must say the limits exist: ${phrase}`);
+
 // 6. The FAQ structured data says what the visible FAQ says, question for question.
 const ld = JSON.parse(home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
 const faq = ld["@graph"].find((node) => node["@type"] === "FAQPage");

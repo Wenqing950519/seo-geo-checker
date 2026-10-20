@@ -106,7 +106,7 @@
           "name": "檢查要錢嗎？需要註冊嗎？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "免費，也不用註冊。貼上網址後約 90 秒會產出一份報告，列出四項結果與每一題的原始回答。每天的新檢測有名額上限，額滿時請隔天再試。"
+            "text": "免費，也不用註冊。貼上網址後約 90 秒會產出一份報告，列出四項結果與每一題的原始回答。每天的新檢測有名額上限，額滿時請隔天再試；同一個網路在短時間內檢測太頻繁，也會請你稍後再試。"
           }
         }
       ]
@@ -1741,7 +1741,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </details>
       <details>
         <summary>檢查要錢嗎？需要註冊嗎？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="faq-body"><p>免費，也不用註冊。貼上網址後約 90 秒會產出一份報告，列出四項結果與每一題的原始回答。</p><p>每天的新檢測有名額上限，額滿時請隔天再試。</p></div>
+        <div class="faq-body"><p>免費，也不用註冊。貼上網址後約 90 秒會產出一份報告，列出四項結果與每一題的原始回答。</p><p>每天的新檢測有名額上限，額滿時請隔天再試；同一個網路在短時間內檢測太頻繁，也會請你稍後再試。</p></div>
       </details>
     </div>
   </div>
@@ -2083,9 +2083,11 @@ async function waitForAuditReport(targetUrl, customQueries, onStatus) {
   throw Object.assign(new Error('等待時間超過預期'), { stage: 'timeout' });
 }
 
-// The Worker refuses with a daily ceiling (429) or while new audits are paused (503).
+// The Worker refuses with a daily ceiling or a per-IP limit (both 429, told apart by
+// code) or while new audits are paused (503).
 function auditErrorMessage(err) {
   if (err.code === 'daily_limit_reached') return '今日免費檢測額度已滿，請明天再試。';
+  if (err.code === 'rate_limited') return '檢測次數太頻繁，請稍後再試。';
   if (err.code === 'service_unavailable') return '目前暫停受理新的檢測，請稍後再試。';
   if (err.stage === 'timeout') return '這次等待時間超過預期，請稍後再試一次。';
   const reason = String(err.message || '').replace(/[。.]+$/, '');
