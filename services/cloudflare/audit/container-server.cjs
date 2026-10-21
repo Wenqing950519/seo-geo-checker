@@ -62,8 +62,13 @@ const server = http.createServer(async (req, res) => {
     }
     return sendJson(res, 404, { error: "not_found" });
   } catch (error) {
-    console.error(JSON.stringify({ event: "audit_container_error", code: error?.code || "audit_failed" }));
-    return sendJson(res, error?.code === "request_too_large" ? 413 : 502, { error: error?.code || "audit_failed" });
+    // The Worker stores this body with the failed job (failure.mjs), so the message and stage
+    // travel with the code instead of ending as a bare `audit_failed` in D1.
+    const code = String(error?.code || error?.stage || "audit_failed").slice(0, 120);
+    const message = String(error?.message || "").slice(0, 240);
+    const stage = error?.stage ? String(error.stage).slice(0, 120) : null;
+    console.error(JSON.stringify({ event: "audit_container_error", code, stage, message }));
+    return sendJson(res, error?.code === "request_too_large" ? 413 : 502, { error: code, message, stage });
   }
 });
 

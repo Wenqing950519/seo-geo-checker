@@ -231,6 +231,14 @@ function fakeD1() {
       reports.set(report_id, { report_id, cache_key, site_origin, report_json });
       return { run: async () => ({ meta: { changes: 1 } }) };
     }
+    if (/^UPDATE audit_jobs SET diagnostics_json = json_patch/.test(text)) {
+      const [patch, updated_at, job_id, lease_token] = args;
+      const job = jobs.get(job_id);
+      if (job && job.lease_token === lease_token) {
+        Object.assign(job, { updated_at, diagnostics_json: JSON.stringify({ ...JSON.parse(job.diagnostics_json || "{}"), ...JSON.parse(patch) }) });
+      }
+      return { run: async () => ({ meta: { changes: job ? 1 : 0 } }) };
+    }
     if (/^UPDATE audit_jobs SET status = \?, completed_at/.test(text)) {
       const [status, completed_at, updated_at, patch, job_id, lease_token] = args;
       const job = jobs.get(job_id);

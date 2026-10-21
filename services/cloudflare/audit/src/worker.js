@@ -2,6 +2,7 @@ import { Container, getContainer } from "@cloudflare/containers";
 import { env as workerEnv } from "cloudflare:workers";
 import { clientKey, isFinalAttempt, parseLimits } from "./limits.mjs";
 import { cacheKey, normalizeUrl, resolveEntryUrl, sha256 } from "./entry-url.mjs";
+import { containerFailure, describeFailure, failure } from "./failure.mjs";
 
 const JSON_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -131,6 +132,10 @@ async function processAudit(message, env) {
   let html = null;
   let browserError = null;
   try { html = await browserHtml(env, entryUrl); } catch (error) { browserError = String(error?.message || "browser_run_failed").slice(0, 240); }
+  // Recorded before the container runs, so a job that fails in the container still shows
+  // which crawl path it was on (the 2026-10-21 failures had no browser_run at all).
+  await env.REPORTS_DB.prepare("UPDATE audit_jobs SET diagnostics_json = json_patch(COALESCE(diagnostics_json, '{}'), ?), updated_at = ? WHERE job_id = ? AND lease_token = ?")
+    .bind(JSON.stringify({ browser_run: html ? "succeeded" : "failed", browser_error: browserError }), new Date().toISOString(), jobId, leaseToken).run();
   const response = await invokeContainer(env, AUDIT_CONTAINER, "/audit", {
     url: entryUrl,
     requested_url: job.site_url,
@@ -138,9 +143,14 @@ async function processAudit(message, env) {
     custom_queries: queries,
     ...(html ? { browser_html: html } : {})
   });
-  if (!response.ok) throw new Error(`audit_container_http_${response.status}`);
-  const payload = await response.json();
-  if (!payload?.report || typeof payload.report !== "object") throw new Error("audit_container_invalid_result");
+  if (!response.ok) {
+    let body = null;
+    try { body = await response.json(); } catch { /* the container may answer without a JSON body */ }
+    throw containerFailure(response.status, body);
+  }
+  let payload;
+  try { payload = await response.json(); } catch (error) { throw failure("audit_container_invalid_result", `container payload is not JSON: ${error?.message || "parse error"}`); }
+  if (!payload?.report || typeof payload.report !== "object") throw failure("audit_container_invalid_result", "container payload has no report object");
   // The page, its "報告編號" and its download link must use the id the report is stored under.
   const report = { ...payload.report, id: job.report_id };
   const reportJson = JSON.stringify(report);
@@ -164,7 +174,7 @@ async function processAudit(message, env) {
       diagnostics_json = json_patch(COALESCE(diagnostics_json, '{}'), ?), error_code = NULL
       WHERE job_id = ? AND lease_token = ?`).bind(
       limited ? "completed_with_limitations" : "completed", completedAt, completedAt,
-      JSON.stringify({ browser_run: html ? "succeeded" : "failed", browser_error: browserError, crawl_path: payload.crawl_path || "unknown" }), jobId, leaseToken
+      JSON.stringify({ crawl_path: payload.crawl_path || "unknown" }), jobId, leaseToken
     )
   ]);
 }
@@ -292,23 +302,31 @@ export default {
         await processAudit(message, env);
         message.ack();
       } catch (error) {
-        console.error(JSON.stringify({ event: "audit_job_failed", code: error?.code || "audit_failed" }));
         const jobId = String(message.body?.job_id || "");
-        const code = String(error?.code || "audit_failed").slice(0, 120);
+        const attempt = Number(message.attempts || 1);
+        const detail = describeFailure(error, { attempt });
+        console.error(JSON.stringify({ event: "audit_job_failed", job_id: jobId, ...detail }));
         const now = new Date().toISOString();
+        // `failure` is the latest attempt; the retry path also keeps `first_failure`, so a job
+        // that failed twice shows what failed first and what failed last.
+        const patch = JSON.stringify({ failure: { ...detail, at: now } });
         // After the last retry the message would sit in the unconsumed DLQ and the job would stay
         // queued forever, so the last failure marks the job failed and ends here.
-        if (isFinalAttempt(message.attempts)) {
+        if (isFinalAttempt(attempt)) {
           if (jobId) {
-            await env.REPORTS_DB.prepare("UPDATE audit_jobs SET status = 'failed', lease_token = NULL, lease_expires_at = NULL, error_code = ?, completed_at = ?, updated_at = ? WHERE job_id = ? AND status IN ('queued', 'running')")
-              .bind(code, now, now, jobId).run();
+            await env.REPORTS_DB.prepare(`UPDATE audit_jobs SET status = 'failed', lease_token = NULL, lease_expires_at = NULL, error_code = ?, completed_at = ?, updated_at = ?,
+              diagnostics_json = json_patch(COALESCE(diagnostics_json, '{}'), ?)
+              WHERE job_id = ? AND status IN ('queued', 'running')`)
+              .bind(detail.code, now, now, patch, jobId).run();
           }
           message.ack();
           continue;
         }
         if (jobId) {
-          await env.REPORTS_DB.prepare("UPDATE audit_jobs SET status = 'queued', lease_token = NULL, lease_expires_at = NULL, error_code = ?, updated_at = ? WHERE job_id = ? AND status = 'running'")
-            .bind(code, now, jobId).run();
+          await env.REPORTS_DB.prepare(`UPDATE audit_jobs SET status = 'queued', lease_token = NULL, lease_expires_at = NULL, error_code = ?, updated_at = ?,
+            diagnostics_json = json_patch(COALESCE(diagnostics_json, '{}'), ?)
+            WHERE job_id = ? AND status = 'running'`)
+            .bind(detail.code, now, JSON.stringify({ failure: { ...detail, at: now }, first_failure: { ...detail, at: now } }), jobId).run();
         }
         message.retry({ delaySeconds: 60 });
       }
