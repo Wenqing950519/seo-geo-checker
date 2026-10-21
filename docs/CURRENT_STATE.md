@@ -42,6 +42,12 @@ tags:
   - 切換狀態以 ls-labs 的 `products/geocheck/README.md` 為準。
 - Classic 程式與 AI Trust Index v1 保留給研究批次與舊報告；以下 2026-09-02 起的 AI Trust Index 段落是歷史紀錄。
 
+## 2026-10-19 Platform Claude 改用 Haiku 5.5（已部署）
+
+依 LSL-D-002，`anthropic-web` 改用 `claude-haiku-5-5`（effort `low`、輸出上限 4,096）。同日第三輪受控驗收 plan v3 以 19／20 通過門檻，唯一失敗為 Claude 一輪 `citation_missing`；證據見 [smoke](developer-api/evidence/official-smoke-2026-10-19.json) 與 [benchmark v3](developer-api/evidence/controlled-benchmark-2026-10-19-v3.summary.json)。使用者推送 main（`0663ba2`）後，Workers Builds 版本 `bba243c5-61bc-44e1-bc1a-6398703d8d02` 為 100% 流量，取代 `091c3d90-5458-49e7-951c-5fb522bb604d`。
+
+部署後線上第一方模組與 `0663ba2` 一致，secret 名稱、bindings、環境變數與前一版相同，日／月客戶預算仍為 NT$200／2,500、內部 NT$500／3,000、單工作上限 NT$12；Platform 首頁與文件顯示 `claude-haiku-5-5`，`/healthz` 就緒，未授權請求照舊拒絕。未做部署後真實量測，正式路徑尚無 Haiku 5.5 量測觀測。下方各段「正式仍為 Haiku 4.5」為當時狀態。
+
 ## 2026-10-16 Platform MCP provider 回應排錯
 
 正式維護版本 `31584707-658c-402e-bffb-6a5b2c394f93` 已取代下方 10/15 初版，100% 流量。Grok 抽測兩筆指定失敗量測共五個引擎均記錄搜尋 0 次，舊驗證器卻標 `provider_invalid_response`；現改為 `provider_search_not_executed` 並保存未成功的 `response_observation`，保持失敗／扣量與成本規則。Claude 解析器另修正只保存搜尋前開場白的問題。修補未改模型、提示詞、搜尋選擇、輸出上限或預算；正式仍為 Haiku 4.5。歷史沒有完整上游 raw，不能補回丟棄的回答或把舊 Claude 成功視為完整答案。操作及受控驗收見 [MCP 排錯紀錄](developer-api/MCP_RESEARCH.md#2026-10-16-未搜尋誤分類與-claude-答案解析修補) 與其證據。使用者已回報 Grok Bot 實際提交研究量測，10/15「尚未設定」僅為當時狀態。
