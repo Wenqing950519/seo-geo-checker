@@ -12,9 +12,15 @@ tags:
 
 # GeoCheck 當前運作狀態
 
-## 2026-10-21 Platform 程式移交 ls-labs（流量切換待辦）
+## 2026-10-21 audit 失敗明細與入口網址轉址（已部署）
 
-> [!warning] 本段屬分支 chore/platform-moved-to-ls-labs-2026-10-21，**等 lslabs-platform 切換驗收後才合併**。合併前，下列敘述尚未成真，線上 platform.lslabs.tw 仍由舊 Worker 服務。
+- **合併**：#15（audit 失敗時把實際錯誤的 message／stage 寫進 D1 `diagnostics_json.failure`，`2eb0317`）、#16（送檢前探測可達入口網址：apex↔www、https↔http，每一跳都做 SSRF 檢查，`82c2d23`）。
+- **部署**：audit Worker 版本 `f6982898-d41f-4460-a1e0-6f7f7cb1fcfa`，100% 流量（2026-10-21 12:20Z）。回復：`npx wrangler rollback 2308688f-c77d-44ff-843f-19031694289f --name geocheck-audit-api`。
+- **驗證**：noodle3.com.tw 的 `entry_url` 為 `https://www.noodle3.com.tw/`，`browser_run` 成功，不再是 `translate_fetch`；www、http、帶斜線三種寫法命中同一份報告。
+
+## 2026-10-21 Platform 程式移交 ls-labs（已切換）
+
+> [!note] 本段原屬分支 chore/platform-moved-to-ls-labs-2026-10-21，已由 #19 於 2026-10-21 合併（`413b3f7`）。`platform.lslabs.tw` 已改由 ls-labs 的 `lslabs-platform` 服務（LSL-D-009「上線」段）；舊 Worker `geocheck-developer-api` 已退役、Workers Builds 已斷開，Worker 本身保留。
 
 依 ls-labs LSL-D-009（使用者 12 項決定），Platform 的程式、測試、D1 migration、SDK、scripts、文件與公開頁已複製到 ls-labs `products/platform/`（PR #11），新 Worker 名稱 `lslabs-platform`。來源是本 repo `f94ee85`，不帶 Git 歷史；歷史與 blame 留在本 repo，要追就從 `f94ee85` 往回看。
 
@@ -24,7 +30,7 @@ tags:
 - **測試拆分**：Platform 頁的斷言（`public-surface-claims`、`favicon-version`、`design-tokens`、`cloudflare-pages-build`、`dashboard-frontend` 的 Console 段）已移到 ls-labs `tests/platform/public-surface.test.js`，這裡保留 Classic 部分；Classic 伺服器路由、audit Worker 設定、公開頁信箱掃描與 Pages Worker `/terms` 拆成 `tests/server-private-routes.test.js`、`tests/cloudflare-audit-worker-config.test.mjs`、`tests/classic-public-pages.test.mjs`。
 - **`apps/web/public/_redirects`**：被刪的 Platform 路徑全部 308 到 `https://platform.lslabs.tw/` 的新路徑。這個檔案原本和 Developer API Worker 共用資產目錄所以只能寫相對路徑，Platform 搬走後只剩 Pages 使用。
 - **切換前提與回復**：合併前須先完成 ls-labs 的 cutover runbook（新 Worker 部署、secrets、無流量驗證、Workers Builds 綁定、queue consumer 與網域切換）並在 Dashboard 斷開 `geocheck-developer-api` 的 Workers Builds，否則本 repo main 的建置會因 `services/cloudflare/developer-api` 不存在而失敗。合併後若需要回復舊 Worker，從 `f94ee85` 部署（本分支之後的 main 不含 Platform 程式）。
-- **仍待辦**：流量切換（runbook）、`geocheck-developer-d1-gateway` 退役、`services/cloudflare/legacy-developers/`（已刪的 Pages 專案 `ls-labs-developers` 的轉址設定，沒有人再部署）可在切換後刪。`docs/DECISION_LOG.md` 與 `docs/research/`、`docs/strategy/` 的歷史內文提到的舊路徑不改，用 `f94ee85` 定位。
+- **仍待辦**（流量切換已完成）：`geocheck-developer-d1-gateway` 退役、`services/cloudflare/legacy-developers/`（已刪的 Pages 專案 `ls-labs-developers` 的轉址設定，沒有人再部署）可在切換後刪。`docs/DECISION_LOG.md` 與 `docs/research/`、`docs/strategy/` 的歷史內文提到的舊路徑不改，用 `f94ee85` 定位。
 
 ## 2026-10-21 公開快檢改用 MCAC（已上線）
 
@@ -33,6 +39,7 @@ tags:
 - **合併**：#9（報告頁與 llms.txt 不寫模型名稱）、#10（`AUDIT_ADMISSION_ENABLED=true`）、#6（MCAC 版首頁與白皮書，拿掉「檢測改版中」提示）、#11（檢測共用一個容器）。
 - **部署**：audit Worker 版本 `bda73130-2048-47e0-a600-f4dcd680fa10`，100% 流量，`/healthz` 的 `admission_enabled`、`limits_configured` 都是 true。
   - 回復：`npx wrangler rollback 55470fbd-4019-4d7e-a405-117e0d20b23a`（同一套程式，開關關閉）。
+  - 之後的版本：#13 拿掉 `geocheck.lisheng.cv/report/*` 路由後為 `5592ab2b`；#15、#16 部署後為 `f6982898`（現行，見最上段）。
 - **實測發現**：
   - 每份檢測原本各開一個容器，結束後不會馬上釋放，連續檢測會碰到容器上限而失敗。#11 改為共用一個容器，上限調為 3。
   - 天下三絕在正式環境讀不到網站，四項都是未知、沒有問 AI。雲端瀏覽器回 422，容器的其他抓取方式也都失敗，可能是網站擋雲端 IP。
