@@ -15,6 +15,7 @@
 | Server | `services/api/server.js` |
 | 研究 skill | `.agents/skills/geo-whitepaper-research/` |
 | 研究工具鏈 | `research/work/` |
+| Platform（Developer API、Console、SDK） | 不在本 repo：2026-10-21 起在 ls-labs `products/platform`（LSL-D-009） |
 
 > 註：Contract 範本提到的 `src/` 與 `tests/` 在本 repo 對應 `services/api/`、`apps/web/`、`packages/` 與 `tests/regression/`。
 > 2026-09-08 已依使用者明確要求完成目錄整理（D-026）；mock-api 僅是相容入口。不得新增第二份核心實作。

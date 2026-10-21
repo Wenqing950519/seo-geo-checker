@@ -22,8 +22,6 @@ const { assertSafePublicUrl } = require("../../packages/crawler/url-safety.js");
 const { testDeepSeekProvider } = require("../../packages/ai-providers/deepseek.js");
 const { searchPerplexity, testPerplexityProvider } = require("../../packages/ai-providers/perplexity.js");
 const { getUsageSummary } = require("../../packages/ai-providers/usage-meter.js");
-const { createDeveloperApiHttpHandler } = require("./developer-api-http.js");
-const { createSqliteDeveloperPlatformStore } = require("./storage/developer-platform-store.js");
 const { createDashboardApiHttpHandler } = require("./dashboard-api-http.js");
 const { createSqliteDashboardStore } = require("./storage/dashboard-store.js");
 const { createGoogleOAuthHttpHandler } = require("./google-oauth-http.js");
@@ -39,10 +37,9 @@ const jobs = new Map();
 const reports = new Map();
 const auditCache = createAuditCache();
 const d1ReportStore = createD1ReportStore();
-const developerApi = createDeveloperApiHttpHandler({ createSqlitePlatformStore: createSqliteDeveloperPlatformStore });
 const gscClient = createGoogleSearchConsoleClient({ clientId: process.env.GOOGLE_OAUTH_CLIENT_ID, clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET });
 const dashboardApi = createDashboardApiHttpHandler({ gscClient, createSqliteDashboardStore });
-const googleOAuth = createGoogleOAuthHttpHandler({ dashboardApi, developerApi, gscClient });
+const googleOAuth = createGoogleOAuthHttpHandler({ dashboardApi, gscClient });
 const funnel = createFunnelRecorder();
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
 const SECURITY_HEADERS = Object.freeze({
@@ -939,8 +936,6 @@ async function handleRequest(req, res) {
 
   if (await dashboardApi.handle({ req, res, url, readJson, sendJson })) return;
 
-  if (await developerApi.handle({ req, res, url, readJson, sendJson })) return;
-
   if (req.method === "OPTIONS" && PRIVATE_OPERATION_PATHS.has(url.pathname)) {
     return sendPrivateJson(res, 204, null, { Allow: "GET, POST, OPTIONS" });
   }
@@ -1009,33 +1004,6 @@ async function handleRequest(req, res) {
       return sendHtml(res, 404, "<h1>Whitepaper HTML not found</h1>");
     }
     return sendHtml(res, 200, fs.readFileSync(whitepaperPath, "utf8"));
-  }
-
-  // Developer Platform 介紹介面 (Showcase / Landing)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers" || url.pathname === "/developers/")) {
-    const devPath = path.resolve(__dirname, "../../apps/web/public/developers.html");
-    if (!fs.existsSync(devPath)) {
-      return sendHtml(res, 404, "<h1>Developers HTML not found</h1>");
-    }
-    return sendHtml(res, 200, fs.readFileSync(devPath, "utf8"));
-  }
-
-  // Developer Platform 技術文件 (SDK & API Docs)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/docs" || url.pathname === "/developers/docs/" || url.pathname === "/docs" || url.pathname === "/docs/")) {
-    const docsPath = path.resolve(__dirname, "../../apps/web/public/developers/docs.html");
-    if (!fs.existsSync(docsPath)) {
-      return sendHtml(res, 404, "<h1>Developer Docs HTML not found</h1>");
-    }
-    return sendHtml(res, 200, fs.readFileSync(docsPath, "utf8"));
-  }
-
-  // Developer Platform 管理控制台 (Console Dashboard)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/console" || url.pathname === "/developers/console/" || url.pathname === "/developers-console" || url.pathname === "/developers-console/" || url.pathname === "/console" || url.pathname === "/console/")) {
-    const consolePath = path.resolve(__dirname, "../../apps/web/public/developers-console.html");
-    if (!fs.existsSync(consolePath)) {
-      return sendHtml(res, 404, "<h1>Developer Console HTML not found</h1>");
-    }
-    return sendHtml(res, 200, fs.readFileSync(consolePath, "utf8"));
   }
 
   // Product A Marketing Dashboard (SPA Client)

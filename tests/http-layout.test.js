@@ -38,10 +38,7 @@ async function check(entry) {
       ['/analytics.js','analytics.js'],
       ['/favicon.svg','favicon.svg'],
       ['/og-image.png','og-image.png'],
-      ['/assets/real-site-apoint.png','assets/real-site-apoint.png'],
-      ['/developers','developers.html'],
-      ['/developers/docs','developers/docs.html'],
-      ['/developers/console','developers-console.html']
+      ['/assets/real-site-apoint.png','assets/real-site-apoint.png']
     ]) {
       const response=await fetch(base+route);
       assert.equal(response.status,200,`${entry}: ${route}`);

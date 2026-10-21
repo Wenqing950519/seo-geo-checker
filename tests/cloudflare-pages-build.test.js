@@ -11,7 +11,7 @@ const output = (...parts) => path.join(root, "dist", "pages", ...parts);
 assert.ok(fs.existsSync(output("404.html")), "Unknown Pages routes must return 404");
 assert.equal(fs.readFileSync(output("_worker.js"), "utf8"), fs.readFileSync(path.join(root, "services/cloudflare/pages/worker.mjs"), "utf8"));
 assert.deepEqual(JSON.parse(fs.readFileSync(output("_routes.json"), "utf8")).exclude, ["/api/*", "/app-api/*", "/report/*", "/v1/*", "/internal/*"]);
-assert.ok(!fs.existsSync(path.join(root, "apps/web/public/_worker.js")), "Pages routing must not affect the Developer API asset binding");
+assert.ok(!fs.existsSync(path.join(root, "apps/web/public/_worker.js")), "Pages routing lives in the build output, never in the static asset directory");
 for (const file of [
   "home.html",
   "index.html",
@@ -44,39 +44,51 @@ assert.match(redirects, /^\/home\s+\/\s+301$/m, "GeoCheck /home must permanently
 assert.match(redirects, /^\/home\/\s+\/\s+301$/m, "GeoCheck /home/ must permanently redirect to /");
 assert.doesNotMatch(redirects, /^\/(privacy|terms|refund)\s/m, "Pages automatically maps extensionless HTML paths; duplicate redirects loop");
 
-// _redirects is shared by Cloudflare Pages and the B API Worker, whose assets
-// directory is this same folder. A rule naming an absolute origin therefore also
-// runs on that origin and redirects it to itself, so every rule stays path-only.
+// _redirects configures Cloudflare Pages only since the Platform code moved to ls-labs (LSL-D-009), so a
+// cross-origin rule is allowed - but only to the Platform host, which is where the removed pages went.
 const rules = redirects.split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#"));
 for (const rule of rules) {
-  assert.doesNotMatch(
-    rule, /\shttps?:\/\//,
-    "_redirects is shared with the B API Worker; a cross-origin rule loops on that origin"
+  const [, destination] = rule.split(/\s+/);
+  assert.ok(
+    !/^https?:\/\//.test(destination) || destination.startsWith("https://platform.lslabs.tw/"),
+    `_redirects may only send people to platform.lslabs.tw: ${rule}`
   );
 }
 // Pages maps an extensionless path to its .html file, so a rule whose target is
 // a .html file degrades into a redirect to the extensionless form — which the
-// reverse rule then sends back. The docs therefore live at their canonical path
-// as a real file, and only the legacy path needs a rule.
+// reverse rule then sends back. The Platform pages no longer exist here, so each removed path
+// redirects straight to a real path on platform.lslabs.tw.
 // The root is the exception: "/" has no extensionless form to bounce to.
 for (const rule of rules.filter((entry) => !entry.startsWith("/ "))) {
+  const [, destination] = rule.split(/\s+/);
   assert.doesNotMatch(
-    rule, /\.html(\s|$)/,
+    destination, /\.html$/,
     "A rule targeting a .html file becomes a redirect to its extensionless form and can loop"
   );
 }
-assert.ok(
-  fs.existsSync(output("developers", "docs.html")),
-  "The docs page must be a real file at its canonical /developers/docs path"
-);
-assert.ok(
-  !fs.existsSync(output("developers-docs.html")),
-  "The hyphenated docs file must not also exist; two copies drift"
-);
-assert.match(
-  redirects, /^\/developers-docs\s+\/developers\/docs\s+308$/m,
-  "The legacy hyphenated docs path must keep working"
-);
+// The Platform pages left this artifact (LSL-D-009). Every removed path must still land on its page at
+// platform.lslabs.tw, and none of the files may come back.
+const platformRedirects = [
+  ["/developers", "/"], ["/developers/", "/"], ["/developers.html", "/"],
+  ["/developers/docs", "/docs"], ["/developers/docs/", "/docs"], ["/developers/docs.html", "/docs"], ["/developers-docs", "/docs"],
+  ["/developers-console", "/console"], ["/developers-console.html", "/console"],
+  ["/developers/console", "/console"], ["/developers/console/", "/console"],
+  ...["pricing", "privacy", "refund", "terms", "promotions"].flatMap((page) => [
+    [`/platform/${page}`, `/${page}`], [`/platform/${page}/`, `/${page}`], [`/platform/${page}.html`, `/${page}`]
+  ]),
+  ["/platform-sitemap.xml", "/sitemap.xml"], ["/platform-robots.txt", "/robots.txt"]
+];
+for (const [from, to] of platformRedirects) {
+  const rule = `${from} https://platform.lslabs.tw${to} 308`;
+  assert.ok(rules.includes(rule), `_redirects must keep: ${rule}`);
+}
+for (const removed of [
+  "developers.html", "developers-console.html", "developers/docs.html", "developers-docs.html",
+  "platform/pricing.html", "platform/privacy.html", "platform/refund.html", "platform/terms.html",
+  "platform/promotions.html", "platform-sitemap.xml", "platform-robots.txt"
+]) {
+  assert.ok(!fs.existsSync(output(removed)), `${removed} moved to ls-labs products/platform and must not be published here`);
+}
 
 const sitemap = fs.readFileSync(output("sitemap.xml"), "utf8");
 for (const route of ["privacy", "terms"]) {
@@ -98,20 +110,6 @@ assert.match(
   "Cloudflare must not rewrite the public contact link into an email-protection crawl URL"
 );
 
-// The Console must be same-origin with the B API it calls. On platform.lslabs.tw
-// the canonical link is therefore root-relative and cannot drift to the legacy host.
-const CONSOLE_PATH = "/console";
-for (const page of ["developers.html", "developers/docs.html", "developers-console.html"]) {
-  const html = fs.readFileSync(output(page), "utf8");
-  assert.doesNotMatch(
-    html, /href="[^"]*\/developers-(console|docs)"/,
-    `${page} must not link to a hyphenated developer path`
-  );
-  assert.doesNotMatch(html, /href="\/developers\/console"/, `${page} must use the Platform Console path`);
-}
-assert.ok(
-  fs.readFileSync(output("developers.html"), "utf8").includes(`href="${CONSOLE_PATH}"`),
-  "The developers page must link to the Console"
-);
+// The Console same-origin and hyphenated-path checks moved to ls-labs tests/platform/public-surface.test.js.
 
 console.log("Cloudflare Pages artifact tests passed");

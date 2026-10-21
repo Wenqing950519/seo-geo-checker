@@ -1,11 +1,44 @@
 /home / 301
 /home/ / 301
 
-# NOTE: this file is shared. It configures Cloudflare Pages *and* the B API
-# Worker, whose assets directory is this same folder, so every rule must be
-# path-only; a rule naming an absolute origin loops on that origin.
+# NOTE: this file configures Cloudflare Pages (geocheck-web) only. Before 2026-10-21 it was
+# shared with the Developer API Worker, whose assets directory was this folder, so every
+# rule had to be path-only. The Platform code and pages moved to ls-labs products/platform
+# (LSL-D-009); the Platform Worker lslabs-platform now has its own asset directory, so a rule
+# here that names https://platform.lslabs.tw cannot loop.
 #
-# Pages already maps extensionless paths to their .html file, so a rule whose
-# target is a .html file becomes a redirect to the extensionless form. Only add
-# a rule whose target is a real, distinct path.
-/developers-docs /developers/docs 308
+# Pages already maps extensionless paths to their .html file, so a rule whose destination is
+# a .html file becomes a redirect to the extensionless form. Only add a rule whose
+# destination is a real, distinct path.
+#
+# Removed Platform paths: permanent redirect to the same page on platform.lslabs.tw.
+# The geocheck-public Worker (ls-labs products/geocheck/routing.mjs) and the Pages Worker
+# answer first in production; these rules are the fallback for the asset layer.
+/developers https://platform.lslabs.tw/ 308
+/developers/ https://platform.lslabs.tw/ 308
+/developers.html https://platform.lslabs.tw/ 308
+/developers/docs https://platform.lslabs.tw/docs 308
+/developers/docs/ https://platform.lslabs.tw/docs 308
+/developers/docs.html https://platform.lslabs.tw/docs 308
+/developers-docs https://platform.lslabs.tw/docs 308
+/developers-console https://platform.lslabs.tw/console 308
+/developers-console.html https://platform.lslabs.tw/console 308
+/developers/console https://platform.lslabs.tw/console 308
+/developers/console/ https://platform.lslabs.tw/console 308
+/platform/pricing https://platform.lslabs.tw/pricing 308
+/platform/pricing/ https://platform.lslabs.tw/pricing 308
+/platform/pricing.html https://platform.lslabs.tw/pricing 308
+/platform/privacy https://platform.lslabs.tw/privacy 308
+/platform/privacy/ https://platform.lslabs.tw/privacy 308
+/platform/privacy.html https://platform.lslabs.tw/privacy 308
+/platform/refund https://platform.lslabs.tw/refund 308
+/platform/refund/ https://platform.lslabs.tw/refund 308
+/platform/refund.html https://platform.lslabs.tw/refund 308
+/platform/terms https://platform.lslabs.tw/terms 308
+/platform/terms/ https://platform.lslabs.tw/terms 308
+/platform/terms.html https://platform.lslabs.tw/terms 308
+/platform/promotions https://platform.lslabs.tw/promotions 308
+/platform/promotions/ https://platform.lslabs.tw/promotions 308
+/platform/promotions.html https://platform.lslabs.tw/promotions 308
+/platform-sitemap.xml https://platform.lslabs.tw/sitemap.xml 308
+/platform-robots.txt https://platform.lslabs.tw/robots.txt 308
