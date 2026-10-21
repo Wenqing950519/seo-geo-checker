@@ -85,9 +85,10 @@ for (const engine of ["openai", "gemini", "anthropic", "perplexity"]) {
 
 // --- 2. one owner for the values -------------------------------------------
 
+// developers.html and developers-console.html moved to ls-labs products/platform/public (LSL-D-009);
+// their palette checks live in tests/platform/public-surface.test.js there.
 const pages = [
-  "home.html", "whitepaper.html", "developers.html",
-  "developers-console.html", "brand.html"
+  "home.html", "whitepaper.html", "brand.html"
 ];
 
 for (const page of pages) {

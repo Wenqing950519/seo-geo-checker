@@ -8,7 +8,7 @@ When instructions conflict, this file and the nearest scoped AGENTS.md take prec
 
 ## 2026-09-26 所有權優先規則
 
-使用者已確認跨產品決策 [LSL-D-001](../home/docs/DECISION_LOG.md)。本 repo 的新工作以 GeoCheck Core Classic 為主；Dashboard 保留暫停。MCAC、Platform 與新版公開產品的決策正本在 `ls-labs`，不再於本 repo 另立相衝突的產品方向。Platform 部署尚未移交，仍須維持既有服務與必要維護；不可因新歸屬刪除原程式、資料或部署。下方「決策須記錄本檔指定 DECISION_LOG」對跨產品事項改依新正本，歷史及 Classic 仍用本 repo 的紀錄。
+使用者已確認跨產品決策 [LSL-D-001](../home/docs/DECISION_LOG.md)。本 repo 的新工作以 GeoCheck Core Classic 為主；Dashboard 保留暫停。MCAC、Platform 與新版公開產品的決策正本在 `ls-labs`，不再於本 repo 另立相衝突的產品方向。Platform 程式已於 2026-10-21 移到 ls-labs `products/platform`（LSL-D-009），本 repo 不含也不再維護；正式流量切換驗收前，線上舊 Worker 仍在服務，切換與回復步驟在 ls-labs 的 cutover runbook。MCAC 與 Classic 仍在用的 provider 層（`official-search-providers`、`official-engine-profiles`、`provider-costs`、`ports/search-provider`）在本 repo 保留一份，與 ls-labs 版各自維護、不自動同步。下方「決策須記錄本檔指定 DECISION_LOG」對跨產品事項改依新正本，歷史及 Classic 仍用本 repo 的紀錄。
 
 ## Mission
 

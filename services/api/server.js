@@ -22,8 +22,6 @@ const { assertSafePublicUrl } = require("../../packages/crawler/url-safety.js");
 const { testDeepSeekProvider } = require("../../packages/ai-providers/deepseek.js");
 const { searchPerplexity, testPerplexityProvider } = require("../../packages/ai-providers/perplexity.js");
 const { getUsageSummary } = require("../../packages/ai-providers/usage-meter.js");
-const { createDeveloperApiHttpHandler } = require("./developer-api-http.js");
-const { createSqliteDeveloperPlatformStore } = require("./storage/developer-platform-store.js");
 const { createDashboardApiHttpHandler } = require("./dashboard-api-http.js");
 const { createSqliteDashboardStore } = require("./storage/dashboard-store.js");
 const { createGoogleOAuthHttpHandler } = require("./google-oauth-http.js");
@@ -39,10 +37,9 @@ const jobs = new Map();
 const reports = new Map();
 const auditCache = createAuditCache();
 const d1ReportStore = createD1ReportStore();
-const developerApi = createDeveloperApiHttpHandler({ createSqlitePlatformStore: createSqliteDeveloperPlatformStore });
 const gscClient = createGoogleSearchConsoleClient({ clientId: process.env.GOOGLE_OAUTH_CLIENT_ID, clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET });
 const dashboardApi = createDashboardApiHttpHandler({ gscClient, createSqliteDashboardStore });
-const googleOAuth = createGoogleOAuthHttpHandler({ dashboardApi, developerApi, gscClient });
+const googleOAuth = createGoogleOAuthHttpHandler({ dashboardApi, gscClient });
 const funnel = createFunnelRecorder();
 const TALLY_FORM_URL = "https://tally.so/r/obxVMX";
 const SECURITY_HEADERS = Object.freeze({
@@ -570,8 +567,8 @@ function realLiteReportHtml(report) {
   return `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/>${GA_TAG_HTML}
 <title>GeoCheck — AI 信任值報告</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904"/>
-<link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=lslabs-20261021"/>
+<link rel="icon" type="image/png" href="/favicon.png?v=lslabs-20261021"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
@@ -939,8 +936,6 @@ async function handleRequest(req, res) {
 
   if (await dashboardApi.handle({ req, res, url, readJson, sendJson })) return;
 
-  if (await developerApi.handle({ req, res, url, readJson, sendJson })) return;
-
   if (req.method === "OPTIONS" && PRIVATE_OPERATION_PATHS.has(url.pathname)) {
     return sendPrivateJson(res, 204, null, { Allow: "GET, POST, OPTIONS" });
   }
@@ -1009,33 +1004,6 @@ async function handleRequest(req, res) {
       return sendHtml(res, 404, "<h1>Whitepaper HTML not found</h1>");
     }
     return sendHtml(res, 200, fs.readFileSync(whitepaperPath, "utf8"));
-  }
-
-  // Developer Platform 介紹介面 (Showcase / Landing)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers" || url.pathname === "/developers/")) {
-    const devPath = path.resolve(__dirname, "../../apps/web/public/developers.html");
-    if (!fs.existsSync(devPath)) {
-      return sendHtml(res, 404, "<h1>Developers HTML not found</h1>");
-    }
-    return sendHtml(res, 200, fs.readFileSync(devPath, "utf8"));
-  }
-
-  // Developer Platform 技術文件 (SDK & API Docs)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/docs" || url.pathname === "/developers/docs/" || url.pathname === "/docs" || url.pathname === "/docs/")) {
-    const docsPath = path.resolve(__dirname, "../../apps/web/public/developers/docs.html");
-    if (!fs.existsSync(docsPath)) {
-      return sendHtml(res, 404, "<h1>Developer Docs HTML not found</h1>");
-    }
-    return sendHtml(res, 200, fs.readFileSync(docsPath, "utf8"));
-  }
-
-  // Developer Platform 管理控制台 (Console Dashboard)
-  if ((req.method === "GET" || req.method === "HEAD") && (url.pathname === "/developers/console" || url.pathname === "/developers/console/" || url.pathname === "/developers-console" || url.pathname === "/developers-console/" || url.pathname === "/console" || url.pathname === "/console/")) {
-    const consolePath = path.resolve(__dirname, "../../apps/web/public/developers-console.html");
-    if (!fs.existsSync(consolePath)) {
-      return sendHtml(res, 404, "<h1>Developer Console HTML not found</h1>");
-    }
-    return sendHtml(res, 200, fs.readFileSync(consolePath, "utf8"));
   }
 
   // Product A Marketing Dashboard (SPA Client)
@@ -1370,8 +1338,8 @@ async function handleRequest(req, res) {
   if (req.method === "GET" && !url.pathname.startsWith("/api/")) {
     return sendHtml(res, 404, `<!doctype html>
 <html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex"/><title>GeoCheck — 找不到頁面 (404)</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=radar-20260904"/>
-<link rel="icon" type="image/png" href="/favicon.png?v=radar-20260904"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=lslabs-20261021"/>
+<link rel="icon" type="image/png" href="/favicon.png?v=lslabs-20261021"/>
 <style>body{font-family:system-ui,"Noto Sans TC",sans-serif;background:#f7f9fc;color:#1e2a38;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0}main{text-align:center;padding:24px}h1{color:#0b3b6f;font-size:3rem;margin:0 0 8px}a{display:inline-block;margin-top:20px;background:#00b8a9;color:#fff;text-decoration:none;padding:12px 28px;border-radius:999px;font-weight:700}</style>
 </head><body><main><h1>404</h1><p>找不到這個頁面。想檢查你的網站 AI 看不看得見?</p><a href="/">回首頁開始免費健檢</a></main></body></html>`);
   }
