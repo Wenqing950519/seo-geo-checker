@@ -80,16 +80,8 @@ function runtimeJavaScriptFiles(directory) {
   });
 }
 
-// Public Platform pages show the model id the API returns (profile.model), not a display name.
-const profileModels = listOfficialEngineProfiles().map((profile) => profile.model).sort();
-for (const [page, pattern] of [
-  ["apps/web/public/developers.html", /<span class="engine-model">([^<]+)<\/span>/g],
-  ["apps/web/public/developers/docs.html", /<tr><td><strong>[^<]+<\/strong><\/td><td><code>([^<]+)<\/code><\/td>/g],
-  ["apps/web/public/developers/docs.html", /<span class="s">"model"<\/span>: <span class="s">"([^"]+)"<\/span>/g]
-]) {
-  const shown = [...fs.readFileSync(at(page), "utf8").matchAll(pattern)].map((match) => match[1]).sort();
-  assert.deepEqual(shown, profileModels, `${page} must list exactly the official engine profile models`);
-}
+// The Platform pages' model-id check (developers.html, developers/docs.html against the engine profiles) moved to
+// ls-labs tests/platform/official-provider-architecture.test.js together with the pages (LSL-D-009).
 
 for (const file of [
   ...runtimeJavaScriptFiles(at("packages")),

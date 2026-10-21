@@ -2,11 +2,11 @@
 
 ## GeoCheck Core Classic — 2026-09-26 所有權更新
 
-本 repo 保留低成本研究量測、舊評分與方法版本，名稱為 **GeoCheck Core Classic**；暫停 Dashboard 保留。新版 MCAC、公開 GeoCheck 與 Platform 的維護歸屬已移至 `ls-labs`，依 [LSL-D-001](../home/docs/DECISION_LOG.md)。Platform 程式與正式部署尚未實體移交，本 repo 在驗收切換前仍負責既有服務。下方產品進度為歷史描述，以 [CURRENT_STATE.md](docs/CURRENT_STATE.md) 為準。
+本 repo 保留低成本研究量測、舊評分與方法版本，名稱為 **GeoCheck Core Classic**；暫停 Dashboard 保留。新版 MCAC、公開 GeoCheck 與 Platform 的維護歸屬已移至 `ls-labs`，依 [LSL-D-001](../home/docs/DECISION_LOG.md)。Platform（Developer API、Console、SDK、`platform.lslabs.tw` 各頁）的程式已於 2026-10-21 移到 ls-labs `products/platform`（[LSL-D-009](../home/docs/DECISION_LOG.md)），本 repo 不再含 Platform 程式；正式流量切換驗收前舊 Worker 仍在線，見 [CURRENT_STATE.md](docs/CURRENT_STATE.md) 第一段。下方產品進度為歷史描述，以 [CURRENT_STATE.md](docs/CURRENT_STATE.md) 為準。
 
 Classic 原 API 與批次執行命令保持相容，不新增自動 MCAC fallback、不借用 Platform 客戶額度。當前 HEAD 是遷移來源，不代表第一份白皮書使用的版本；白皮書方法須以其原研究紀錄核對。
 
-GeoCheck 目前提供單站 AI 搜尋曝光診斷；此 repository 已按產品、核心規則、外部整合與研究資料分層。Developer API 的 B0～B2 後臺、OpenAPI 與四家官方 adapter 已實作，20 輪受控 benchmark 全數成功；視覺前端、SDK client、付款、遠端 B D1 與公開部署仍未完成，因此不是已上線服務。
+GeoCheck 目前提供單站 AI 搜尋曝光診斷；此 repository 已按產品、核心規則、外部整合與研究資料分層。Developer API（Platform）的後臺、OpenAPI、SDK 與四家官方 adapter 已移到 ls-labs `products/platform`；本 repo 只留 MCAC 與 Classic 仍在用的 provider 層。
 
 ## 從這裡開始
 
@@ -22,14 +22,12 @@ npm.cmd test
 ```text
 geocheck/
 ├─ apps/
-│  ├─ web/                    # A：首頁資源、報告組裝、analytics
-│  └─ developer-console/      # 僅邊界說明，尚無功能
+│  └─ web/                    # A：首頁資源、報告組裝、analytics（Platform 頁已移到 ls-labs）
 ├─ packages/
 │  ├─ geo-core/               # evidence、site-analyzer、query-generator、scoring
 │  ├─ crawler/                # HTTP / browser / Python 抓取及技術探測
 │  ├─ ai-providers/           # Perplexity、DeepSeek、結構化模型 router
 │  ├─ monitor/                # 僅邊界說明，尚無排程服務
-│  ├─ sdk/                    # 僅邊界說明，尚未發布 npm
 │  └─ shared/                 # errors 與現有環境載入
 ├─ services/api/              # 現行 HTTP、application、storage、guards、D1 migrations
 ├─ tests/                    # regression、目錄相容與 HTTP 檢查
@@ -53,7 +51,7 @@ geocheck/
 
 | 想做什麼 | 入口 |
 |---|---|
-| 接手附屬 API 的產品／安全與實作設計 | [2026-09-09 實測與審計](docs/developer-api/AUDIT_2026-09-09.md)、[B API 交接](docs/developer-api/HANDOFF.md)、[產品與架構](docs/developer-api/BLUEPRINT.md)、[防濫用與資安](docs/developer-api/SECURITY.md) |
+| 接手 Platform（Developer API）的產品／安全與實作設計 | 已移到 ls-labs `products/platform/docs/`，指引見 [docs/developer-api/README.md](docs/developer-api/README.md) |
 | 理解現在怎麼運作 | [CURRENT_STATE](docs/CURRENT_STATE.md)、[ARCHITECTURE](docs/ARCHITECTURE.md) |
 | 確認 A／B 與 API 範圍 | [PRODUCT_BOUNDARY](docs/PRODUCT_BOUNDARY.md)、[API_CONTRACT](docs/API_CONTRACT.md) |
 | 看後續順序 | [TASKS](docs/TASKS.md)、[路線與架構對照](docs/strategy/ROADMAP_ALIGNMENT.md) |

@@ -70,7 +70,7 @@ Render 的 Build Command 維持 `npm install` 即可。根目錄 `postinstall` �
 - `GET /api/rate-limit-state`：限流與儲存狀態；必須帶 `X-Admin-Token`。
 - `GET /<ADMIN_PATH_TOKEN>/usage`：成本與 Token 摘要；必須帶 `X-Admin-Token`。
 
-上述付費 probe 與營運狀態端點若未設定 `ADMIN_TOKEN`，一律回 401，不會降級成公開入口。Developer API platform mode 的客戶 key、console session 與 admin token 是三種不同權限；兩者不可共用前端或提交到 Git。完整後臺環境、D1 migration、邀請及停機流程見 [Developer API 後臺手冊](../../docs/developer-api/BACKEND_RUNBOOK.md)。
+上述付費 probe 與營運狀態端點若未設定 `ADMIN_TOKEN`，一律回 401，不會降級成公開入口。Platform 的後臺環境、D1 migration、邀請及停機流程已移到 ls-labs `products/platform/docs/BACKEND_RUNBOOK.md`，本 repo 不再包含。
 
 ## 白皮書批次
 

@@ -1,7 +1,6 @@
 const assert = require("node:assert/strict");
 const { createOfficialProvidersFromEnv, getOfficialProviderReadiness, MAX_PROVIDER_RESPONSE_BYTES } = require("../services/api/application/official-search-providers.js");
 const { estimateProviderCost } = require("../services/api/application/provider-costs.js");
-const { createD1MeasurementResultStore, MAX_RESULT_BYTES } = require("../services/api/storage/developer-measurement-result-store.js");
 
 const config = { OPENAI_API_KEY: "openai-test-key", GEMINI_API_KEY: "gemini-test-key", ANTHROPIC_API_KEY: "anthropic-test-key", PERPLEXITY_API_KEY: "perplexity-test-key" };
 
@@ -92,20 +91,7 @@ async function main() {
     oversizedProviders[0].execute({ prompt: "bounded response" }),
     /response exceeded/
   );
-  const d1Calls = [];
-  const resultStore = createD1MeasurementResultStore({
-    config: { accountId: "account", databaseId: "developer-db", apiToken: "token" },
-    fetch: async (_url, options) => {
-      const request = JSON.parse(options.body); d1Calls.push(request);
-      if (request.sql.startsWith("SELECT")) return Response.json({ success: true, result: [{ success: true, results: [{ result_json: JSON.stringify({ measurement_id: "m1", tenant_id: "t1" }) }] }] });
-      return Response.json({ success: true, result: [{ success: true, results: [] }] });
-    }
-  });
-  assert.equal(resultStore.state().enabled, true);
-  await resultStore.put({ measurement_id: "m1", tenant_id: "t1", status: "succeeded", created_at: "2026-01-01T00:00:00.000Z", completed_at: "2026-01-01T00:00:01.000Z" });
-  assert.match(d1Calls[0].sql, /INSERT INTO developer_measurement_results/);
-  assert.deepEqual(await resultStore.get({ tenantId: "t1", measurementId: "m1" }), { measurement_id: "m1", tenant_id: "t1" });
-  await assert.rejects(resultStore.put({ measurement_id: "large", tenant_id: "t1", value: "x".repeat(MAX_RESULT_BYTES) }), /exceeds/);
-  console.log("official provider adapter and D1 result-store tests passed");
+  // The D1 measurement result-store assertions moved with the store to ls-labs products/platform (LSL-D-009).
+  console.log("official provider adapter tests passed");
 }
 main().catch((error) => { console.error(error); process.exitCode = 1; });

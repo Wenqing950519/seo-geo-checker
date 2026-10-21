@@ -6,20 +6,9 @@ const { spawn } = require("node:child_process");
 
 const root = path.resolve(__dirname, "..");
 const appDir = path.join(root, "apps/web/app");
-const developerConsole = fs.readFileSync(path.join(root, "apps/web/public/developers-console.html"), "utf8");
 const dashboardState = fs.readFileSync(path.join(appDir, "shared/state.js"), "utf8");
 const dashboardApi = fs.readFileSync(path.join(appDir, "shared/api.js"), "utf8");
-assert.match(developerConsole, /https:\/\/platform\.lslabs\.tw\/v1\/auth\/google\/start/, "Developer Console Google login must target the isolated B API origin");
-assert.doesNotMatch(developerConsole, /href="\/developers(?:\/docs)?"/, "Developer Console links must not resolve to the B API origin after same-origin deployment");
-assert.doesNotMatch(developerConsole, /gcs_live_dev_session_demo|key_demo_default|Mock initial jobs/, "Developer Console must not authenticate, create keys, or show jobs from browser-only demo data");
-assert.doesNotMatch(developerConsole, /STATE\.usage \? STATE\.usage\.remaining_rounds : 2/, "Developer Console must not invent remaining quota before the API responds");
-assert.doesNotMatch(developerConsole, /STATE\.usage \? \(STATE\.usage\.used_rounds \|\| 0\) : 1/, "Developer Console must not invent used quota before the API responds");
-assert.match(developerConsole, /尚無可顯示的用量資料/, "Developer Console must explain when no quota data exists");
-assert.match(developerConsole, /預覽模式：此頁的帳號、金鑰、用量與工作紀錄皆為示意資料/, "Explicit preview mode must identify fixture data");
-assert.doesNotMatch(developerConsole, /NT\$ 660|NT\$ 1,390|開通免費試用/, "Private Beta Console must not advertise unavailable public pricing or self-service trials");
-assert.match(developerConsole, /consoleRequest\('\/v1\/console\/api-keys'/, "Developer Console must list API keys through the B Console API");
-assert.match(developerConsole, /consoleRequest\('\/v1\/console\/jobs'/, "Developer Console must list jobs through the B Console API");
-assert.match(developerConsole, /consoleRequest\('\/v1\/console\/usage'/, "Developer Console must load its quota through the B Console API");
+// The Developer Console assertions that used to follow moved to ls-labs tests/platform/public-surface.test.js with the page (LSL-D-009).
 assert.match(dashboardState, /this\.fixtureMode = false/, "Dashboard must not default to fixture data");
 assert.doesNotMatch(dashboardApi, /falling back to acceptance fixtures/i, "Dashboard must not silently replace failed live data with fixtures");
 
