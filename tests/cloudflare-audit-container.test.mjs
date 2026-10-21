@@ -16,7 +16,25 @@ try {
     body: JSON.stringify({ report: { id: "invalid-render-fixture" } })
   });
   assert.equal(invalid.status, 502);
-  assert.equal((await invalid.json()).error, "ERR_INVALID_URL");
+  const invalidBody = await invalid.json();
+  assert.equal(invalidBody.error, "ERR_INVALID_URL");
+  // The 2026-10-21 launch failures left only `audit_failed` behind: the container must say
+  // what went wrong, so the Worker can store it with the job.
+  assert.match(invalidBody.message, /Invalid URL/);
+  assert.equal(invalidBody.stage, null);
+
+  // An audit whose browser HTML is too thin fails while building the homepage, before any
+  // network or provider call. The container names that stage instead of a bare `audit_failed`.
+  const thin = await fetch(`http://127.0.0.1:${port}/audit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url: "https://example-thin.tw/", report_id: "real_lite_thin", browser_html: "<html><body>hi</body></html>" })
+  });
+  assert.equal(thin.status, 502);
+  const thinBody = await thin.json();
+  assert.equal(thinBody.error, "fetch_homepage");
+  assert.equal(thinBody.stage, "fetch_homepage");
+  assert.match(thinBody.message, /empty or too short/);
 
   // The Worker's download link renders Markdown in the container (PR #6 finding 2).
   const markdown = await fetch(`http://127.0.0.1:${port}/render-markdown`, {
