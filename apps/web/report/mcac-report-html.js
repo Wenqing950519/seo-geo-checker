@@ -18,6 +18,7 @@ function mcacReportHtml(report) {
   const probes = Array.isArray(m.probes) ? m.probes : [];
   const checks = report.siteChecks || {};
   const host = safeHost(report.finalUrl || report.url);
+  const entry = entryNote(report);
   return `<!doctype html>
 <html lang="zh-Hant-TW">
 <head>
@@ -58,7 +59,7 @@ ul.plain{margin:6px 0 0;padding-left:18px}.foot{margin-top:28px;font:400 .76rem/
 <main class="sheet">
 <h1>AI 能見度檢測單</h1>
 <div class="meta">
-<span>受檢網站 ${esc(host)}</span><span>品牌名稱 ${esc(report.entity?.name || "未知")}</span><span>地區 ${esc(report.entity?.location || "未知")}</span>
+<span>受檢網站 ${esc(host)}</span>${entry ? `<span>${esc(entry)}</span>` : ""}<span>品牌名稱 ${esc(report.entity?.name || "未知")}</span><span>地區 ${esc(report.entity?.location || "未知")}</span>
 <span>方法 MCAC v${esc(String(m.method_version || "0.1.0"))}</span>
 <span>檢測時間 ${esc(taipeiTime(report.createdAt))}</span><span>報告編號 ${esc(report.id || "")}</span>
 </div>
@@ -159,6 +160,7 @@ function mcacReportMarkdown(report) {
     `# AI 能見度檢測單（MCAC）`,
     ``,
     `- 受檢網站：${safeHost(report.finalUrl || report.url)}`,
+    ...(entryNote(report) ? [`- ${entryNote(report)}`] : []),
     `- 方法：MCAC v${m.method_version || "0.1.0"}（四項分開判讀，不合成總分）`,
     `- 檢測時間：${taipeiTime(report.createdAt)}`,
     ``,
@@ -198,6 +200,15 @@ function pipelineLabel(report) {
 function taipeiTime(value) {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? "—" : date.toLocaleString("zh-TW", { timeZone: "Asia/Taipei", hour12: false });
+}
+
+// When the Worker measured a different entry from what the user typed (apex https dead, www
+// live), the report says which URL was read and which was typed.
+function entryNote(report) {
+  const requested = String(report.requestedUrl || "");
+  const measured = String(report.finalUrl || report.url || "");
+  if (!requested || !measured || requested === measured) return "";
+  return `實際入口 ${measured}（輸入 ${requested}）`;
 }
 
 function safeHost(value) {

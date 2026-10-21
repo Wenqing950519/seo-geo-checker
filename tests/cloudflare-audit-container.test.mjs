@@ -40,11 +40,15 @@ try {
   const markdown = await fetch(`http://127.0.0.1:${port}/render-markdown`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ report: { id: "real_lite_md", method: "mcac", url: "https://example-noodle.tw/", finalUrl: "https://example-noodle.tw/", createdAt: "2026-10-20T00:00:00Z", mcac: { probes: [] } } })
+    body: JSON.stringify({ report: { id: "real_lite_md", method: "mcac", url: "https://www.example-noodle.tw/", finalUrl: "https://www.example-noodle.tw/", requestedUrl: "https://example-noodle.tw/", createdAt: "2026-10-20T00:00:00Z", mcac: { probes: [] } } })
   });
   assert.equal(markdown.status, 200);
   assert.match(markdown.headers.get("content-type"), /text\/markdown/);
-  assert.match(await markdown.text(), /AI 能見度檢測單/);
+  const markdownText = await markdown.text();
+  assert.match(markdownText, /AI 能見度檢測單/);
+  // The Worker measured the www entry for a typed apex (noodle3.com.tw, 2026-10-21): both show.
+  assert.match(markdownText, /受檢網站：example-noodle\.tw/);
+  assert.match(markdownText, /實際入口 https:\/\/www\.example-noodle\.tw\/（輸入 https:\/\/example-noodle\.tw\/）/);
 
   const health = await fetch(`http://127.0.0.1:${port}/healthz`);
   assert.equal(health.status, 200);
