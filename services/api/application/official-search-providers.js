@@ -1,3 +1,5 @@
+// Platform 正本已移至 ls-labs `products/platform/api/…`（LSL-D-009）；本檔供 MCAC／Classic 使用，
+// 模型與價格變更各依 LSL-D-002（Platform）與 LSL-D-006（MCAC）。兩邊不會自動同步。
 const { defineSearchProvider } = require("../ports/search-provider.js");
 const { listOfficialEngineProfiles } = require("./official-engine-profiles.js");
 const { estimateProviderCost } = require("./provider-costs.js");

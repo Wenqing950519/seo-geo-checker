@@ -12,6 +12,20 @@ tags:
 
 # GeoCheck 當前運作狀態
 
+## 2026-10-21 Platform 程式移交 ls-labs（流量切換待辦）
+
+> [!warning] 本段屬分支 chore/platform-moved-to-ls-labs-2026-10-21，**等 lslabs-platform 切換驗收後才合併**。合併前，下列敘述尚未成真，線上 platform.lslabs.tw 仍由舊 Worker 服務。
+
+依 ls-labs LSL-D-009（使用者 12 項決定），Platform 的程式、測試、D1 migration、SDK、scripts、文件與公開頁已複製到 ls-labs `products/platform/`（PR #11），新 Worker 名稱 `lslabs-platform`。來源是本 repo `f94ee85`，不帶 Git 歷史；歷史與 blame 留在本 repo，要追就從 `f94ee85` 往回看。
+
+- **本分支刪除**：`services/cloudflare/developer-api/`、`services/developer-d1-gateway/`（Worker 已退役，決定 6）、`apps/developer-console/`、`packages/sdk/`、`services/api/developer-api-migrations/`、`scripts/developer-api/`、`docs/developer-api/`（改成一頁指向 ls-labs 的 README）、Developer API 程式樹（`developer-api-http.js`、`developer-api-prototype`、`developer-platform-service`、`developer-points-service`、`developer-mcp-research`、四個 store、`developer-credentials`、`portaly-*`）、`apps/web/public` 的 Platform 頁與 logo／字型、20 個 Platform 測試檔（其中 4 個把 Classic 部分拆出另存）與 `tests/fixtures/portaly/`，以及對應的 npm scripts 與只給 Platform 用的依賴（`zod`、`@modelcontextprotocol/*`、`agents`、`typescript`、`esbuild`）。`services/api/server.js` 不再掛載 Developer API 與 Platform 頁。
+- **本分支保留（Classic、MCAC、Dashboard 仍用）**：`services/api/google-oauth-http.js`（Dashboard Worker）、`services/api/payments/newebpay-periodic.js`（Dashboard 計費測試）、`packages/geo-core/evidence/brand-match.js`、`packages/shared/env.js`，以及 MCAC 用的 provider 層四檔：`application/official-search-providers.js`、`official-engine-profiles.js`、`provider-costs.js`、`ports/search-provider.js`。
+- **兩邊各有一份 provider 層**：ls-labs `products/platform/api/` 有同名四檔，本 repo 的四檔檔頭已註明。Platform 模型與價格依 LSL-D-002、MCAC 依 LSL-D-006 各自變更，兩邊不會自動同步；等 MCAC 移進 ls-labs 時再合成一份。
+- **測試拆分**：Platform 頁的斷言（`public-surface-claims`、`favicon-version`、`design-tokens`、`cloudflare-pages-build`、`dashboard-frontend` 的 Console 段）已移到 ls-labs `tests/platform/public-surface.test.js`，這裡保留 Classic 部分；Classic 伺服器路由、audit Worker 設定、公開頁信箱掃描與 Pages Worker `/terms` 拆成 `tests/server-private-routes.test.js`、`tests/cloudflare-audit-worker-config.test.mjs`、`tests/classic-public-pages.test.mjs`。
+- **`apps/web/public/_redirects`**：被刪的 Platform 路徑全部 308 到 `https://platform.lslabs.tw/` 的新路徑。這個檔案原本和 Developer API Worker 共用資產目錄所以只能寫相對路徑，Platform 搬走後只剩 Pages 使用。
+- **切換前提與回復**：合併前須先完成 ls-labs 的 cutover runbook（新 Worker 部署、secrets、無流量驗證、Workers Builds 綁定、queue consumer 與網域切換）並在 Dashboard 斷開 `geocheck-developer-api` 的 Workers Builds，否則本 repo main 的建置會因 `services/cloudflare/developer-api` 不存在而失敗。合併後若需要回復舊 Worker，從 `f94ee85` 部署（本分支之後的 main 不含 Platform 程式）。
+- **仍待辦**：流量切換（runbook）、`geocheck-developer-d1-gateway` 退役、`services/cloudflare/legacy-developers/`（已刪的 Pages 專案 `ls-labs-developers` 的轉址設定，沒有人再部署）可在切換後刪。`docs/DECISION_LOG.md` 與 `docs/research/`、`docs/strategy/` 的歷史內文提到的舊路徑不改，用 `f94ee85` 定位。
+
 ## 2026-10-21 公開快檢改用 MCAC（已上線）
 
 依使用者授權與 LSL-D-006（ls-labs repo），公開快檢從 Classic（AI Trust Index v1）改為 MCAC 0.2.0：每次問 AI 推薦題 2、事實題 1、行動題 1，四項分開判讀，不合成總分，未知不等於 0。規格正本為 `docs/MCAC_V0.md`。

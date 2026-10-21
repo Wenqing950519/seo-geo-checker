@@ -7,9 +7,6 @@ const sources = [
   "apps/web/public/home.html",
   "apps/web/public/brand.html",
   "apps/web/public/whitepaper.html",
-  "apps/web/public/developers.html",
-  "apps/web/public/developers/docs.html",
-  "apps/web/public/developers-console.html",
   "services/api/server.js"
 ].map((relativePath) => fs.readFileSync(path.join(root, relativePath), "utf8"));
 

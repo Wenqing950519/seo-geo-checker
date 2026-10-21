@@ -9,11 +9,12 @@ const outputDir = path.join(root, "dist", "pages");
 fs.rmSync(outputDir, { recursive: true, force: true });
 fs.mkdirSync(outputDir, { recursive: true });
 fs.cpSync(publicDir, outputDir, { recursive: true });
-// Pages needs a real root document. A shared _redirects root rewrite also runs
-// inside the Developer Worker asset binding and shadows platform.lslabs.tw.
+// Pages needs a real root document. (Before LSL-D-009 a shared _redirects root rewrite also ran
+// inside the Developer Worker asset binding and shadowed platform.lslabs.tw; the Platform now
+// has its own asset directory in ls-labs, but the concrete index.html is still the simpler contract.)
 fs.copyFileSync(path.join(publicDir, "home.html"), path.join(outputDir, "index.html"));
 fs.cpSync(dashboardDir, path.join(outputDir, "app"), { recursive: true });
-// Host-specific routing must not enter the assets shared with the API Worker.
+// Host-specific routing lives in this Pages _worker.js, not in the static assets.
 fs.copyFileSync(path.join(root, 'services/cloudflare/pages/worker.mjs'), path.join(outputDir, '_worker.js'));
 fs.writeFileSync(path.join(outputDir, '_routes.json'), JSON.stringify({
   version: 1, include: ['/*'], exclude: ['/api/*','/app-api/*','/report/*','/v1/*','/internal/*']
