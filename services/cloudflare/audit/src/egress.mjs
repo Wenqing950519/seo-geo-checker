@@ -42,7 +42,8 @@ async function resolvePublicDns(hostname, signal, fetchImpl) {
   const results = await Promise.all(["A", "AAAA"].map(async (type) => {
     const query = new URL("https://cloudflare-dns.com/dns-query");
     query.search = new URLSearchParams({ name: host, type }).toString();
-    const response = await fetchImpl(query.href, { headers: { accept: "application/dns-json" }, redirect: "error", signal });
+    // Workers supports only follow/manual. Reject non-2xx below without following a resolver redirect.
+    const response = await fetchImpl(query.href, { headers: { accept: "application/dns-json" }, redirect: "manual", signal });
     if (!response.ok) throw new Error("egress_dns_failed");
     const data = JSON.parse(new TextDecoder().decode(await readBoundedBytes(response, 64 * 1024)));
     if (data.Status !== 0) throw new Error("egress_dns_failed");
@@ -90,6 +91,11 @@ export async function fetchPublicPage(input, init = {}, dependencies = {}) {
 
 function rejected(status = 403) {
   return Response.json({ error: "egress_denied" }, { status, headers: { "cache-control": "no-store" } });
+}
+
+// Known host handlers run first; every other intercepted destination is denied locally.
+export function denyOutbound(_request) {
+  return rejected();
 }
 
 // This function is attached ONLY to the container's outboundByHost, never to public fetch().

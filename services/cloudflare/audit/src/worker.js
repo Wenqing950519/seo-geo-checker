@@ -3,7 +3,7 @@ import { env as workerEnv } from "cloudflare:workers";
 import { clientKey, isFinalAttempt, parseLimits } from "./limits.mjs";
 import { cacheKey, normalizeUrl, resolveEntryUrl, sha256 } from "./entry-url.mjs";
 import { containerFailure, describeFailure, failure } from "./failure.mjs";
-import { EGRESS_MODE, PROVIDER_PLACEHOLDER, outboundByHost, fetchPublicPage } from "./egress.mjs";
+import { EGRESS_MODE, PROVIDER_PLACEHOLDER, outboundByHost, denyOutbound, fetchPublicPage } from "./egress.mjs";
 import { admitRequest } from "./request-admission.mjs";
 
 export { ContainerProxy };
@@ -50,6 +50,7 @@ export class AuditFallbackContainer extends Container {
   };
 }
 AuditFallbackContainer.outboundByHost = outboundByHost;
+AuditFallbackContainer.outbound = denyOutbound;
 
 function json(status, body, extraHeaders = {}) {
   return new Response(JSON.stringify(body), { status, headers: { ...JSON_HEADERS, ...extraHeaders } });

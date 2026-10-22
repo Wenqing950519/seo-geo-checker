@@ -16,9 +16,65 @@ test("the public container denies unmanaged network paths and never receives rea
   const container = new AuditFallbackContainer();
   assert.equal(container.enableInternet, false);
   assert.equal(container.interceptHttps, true);
+  assert.equal(container.allowedHosts, undefined, "no host allowlist may bypass the explicit handlers");
   assert.equal(container.envVars.GEOCHECK_EGRESS_MODE, "cloudflare-gateway-v1");
   assert.doesNotMatch(JSON.stringify(container.envVars), /real-test-secret|real-search-secret/);
   assert.deepEqual(Object.keys(AuditFallbackContainer.outboundByHost).sort(), ["api.deepseek.com", "api.perplexity.ai", "generativelanguage.googleapis.com", "geocheck-egress.internal"].sort());
+});
+
+test("the default outbound handler explicitly denies unknown HTTP, HTTPS and IP destinations without fetching", async () => {
+  assert.equal(typeof AuditFallbackContainer.outbound, "function");
+  const originalFetch = globalThis.fetch;
+  let calls = 0;
+  globalThis.fetch = async () => { calls += 1; throw Error("unexpected upstream request"); };
+  try {
+    for (const url of ["http://unknown.example/", "https://unknown.example/", "http://1.1.1.1/", "https://[2606:4700:4700::1111]/"]) {
+      const response = await AuditFallbackContainer.outbound(new Request(url));
+      assert.equal(response.status, 403);
+      assert.deepEqual(await response.json(), { error: "egress_denied" });
+      assert.equal(response.headers.get("cache-control"), "no-store");
+    }
+    assert.equal(calls, 0);
+  } finally { globalThis.fetch = originalFetch; }
+});
+
+test("the installed ContainerProxy routes known hosts before the explicit default deny", async () => {
+  assert.equal(typeof AuditFallbackContainer.outbound, "function");
+  // Exercise the installed SDK's actual registry and routing. Only its runtime base
+  // classes are stubbed; lifecycle helpers are unused by this outbound-only test.
+  const sdkSource = (await readFile(new URL("../node_modules/@cloudflare/containers/dist/lib/container.js", import.meta.url), "utf8"))
+    .replace(/^import .* from '\.\/helpers';\r?\n/m, "")
+    .replace(/^import .* from 'cloudflare:workers';\r?\n/m, "class DurableObject {}\nclass WorkerEntrypoint { constructor(ctx, env) { this.ctx = ctx; this.env = env; } }\n");
+  const sdk = await import(`data:text/javascript;base64,${Buffer.from(sdkSource).toString("base64")}`);
+  sdk.Container.outboundByHost = AuditFallbackContainer.outboundByHost;
+  sdk.Container.outbound = AuditFallbackContainer.outbound;
+  const proxy = new sdk.ContainerProxy({ props: { className: sdk.Container.name, enableInternet: false, interceptAll: true } }, { DEEPSEEK_API_KEY: "test-provider-secret" });
+  const originalFetch = globalThis.fetch;
+  const calls = [];
+  globalThis.fetch = async (input, init) => {
+    const url = new URL(input);
+    calls.push(url.hostname);
+    if (url.hostname === "cloudflare-dns.com") return Response.json({ Status: 0, Answer: url.searchParams.get("type") === "A" ? [{ type: 1, data: "93.184.215.14" }] : [] });
+    if (url.hostname === "api.deepseek.com") {
+      assert.equal(init.headers.get("authorization"), "Bearer test-provider-secret");
+      return Response.json({ provider: true });
+    }
+    assert.equal(url.hostname, "public.example");
+    return new Response("public page");
+  };
+  try {
+    const page = await proxy.fetch(new Request("http://geocheck-egress.internal/fetch", { method: "POST", body: JSON.stringify({ url: "https://public.example/" }) }));
+    assert.equal(await page.text(), "public page");
+    const provider = await proxy.fetch(new Request("https://api.deepseek.com/chat/completions", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" }));
+    assert.deepEqual(await provider.json(), { provider: true });
+    assert.equal(calls.length, 4);
+    for (const url of ["http://unknown.example/", "https://unknown.example/", "http://1.1.1.1/"]) {
+      const denied = await proxy.fetch(new Request(url));
+      assert.equal(denied.status, 403);
+      assert.deepEqual(await denied.json(), { error: "egress_denied" });
+    }
+    assert.equal(calls.length, 4, "unmanaged destinations never reach global fetch");
+  } finally { globalThis.fetch = originalFetch; }
 });
 
 test("public gateway rejects mixed/private DNS answers before opening a website connection", async () => {
@@ -35,6 +91,36 @@ test("public gateway rejects mixed/private DNS answers before opening a website 
     await assert.rejects(() => fetchPublicPage(url, {}, { fetch }), /unsafe_public_url/);
   }
   assert.equal(calls.length, 2, "invalid syntax must not even trigger DNS");
+});
+
+test("public DNS preflight uses a redirect mode supported by Workers fetch", async () => {
+  const calls = [];
+  const fetch = async (url, init) => {
+    // Workers accepts only follow/manual, unlike Node fetch which also accepts error.
+    if (!["follow", "manual"].includes(init.redirect)) throw new TypeError("Invalid redirect value, must be 'follow' or 'manual'.");
+    calls.push({ url, init });
+    if (new URL(url).hostname === "cloudflare-dns.com") {
+      return Response.json({ Status: 0, Answer: new URL(url).searchParams.get("type") === "A" ? [{ type: 1, data: "93.184.215.14" }] : [] });
+    }
+    return new Response("public page");
+  };
+  const response = await fetchPublicPage("https://public.example/", {}, { fetch });
+  assert.equal(await response.text(), "public page");
+  assert.equal(calls.length, 3, "both DNS families are checked before fetching the website");
+});
+
+test("DNS redirects and errors fail closed without following a new resolver or fetching the website", async () => {
+  for (const status of [301, 302, 303, 307, 308, 401, 500]) {
+    const calls = [];
+    const fetch = async (url, init) => {
+      if (!["follow", "manual"].includes(init.redirect)) throw new TypeError("Invalid redirect value, must be 'follow' or 'manual'.");
+      calls.push({ url, init });
+      return new Response(null, { status, headers: { location: "http://127.0.0.1/dns-query" } });
+    };
+    await assert.rejects(() => fetchPublicPage("https://public.example/", {}, { fetch }), /egress_dns_failed/, `DNS status ${status}`);
+    assert.equal(calls.length, 2);
+    assert.ok(calls.every(({ url, init }) => new URL(url).hostname === "cloudflare-dns.com" && init.redirect === "manual"));
+  }
 });
 
 test("each public redirect remains visible and neither credentials nor browser forwarding headers leave the gateway", async () => {
