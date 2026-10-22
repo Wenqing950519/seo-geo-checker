@@ -1,7 +1,7 @@
 ---
 type: current-state
 project: GeoCheck
-last_updated: 2026-10-21
+last_updated: 2026-10-22
 tags:
   - geocheck
   - current-state
@@ -11,6 +11,14 @@ tags:
 > 內容未經改動。此檔為營運現況的共同事實來源；狀態變更時必須更新此處，不得只寫在對話或記憶中。
 
 # GeoCheck 當前運作狀態
+
+## 2026-10-22 雲端出口隔離（已部署並完成容器內實測）
+
+安全修補 `781f1b8` 與後續修正 `719fb65` 已上線。audit Worker 最終版本為 `bc2c8fa4-2c75-41f8-9847-5363a0a67d6a`，2026-10-22 13:22Z 起承接 100% 流量。容器一般 Internet 出口關閉，指定主機交由 ContainerProxy 的受控 gateway／provider 路由，其餘請求明確回 `403 egress_denied`；真實 provider 金鑰留在 Worker。修正 Workers 不支援的 DNS fetch `redirect: "error"`，改為 `manual` 並拒絕轉址回應。
+
+21:20（台灣時間）在正式 `audit-report-render` 與 `audit-runner` 容器內以同一固定探針完成實測：受控 robots 抓取 200；直接 HTTPS、直接 IP 連線及 provider 禁止路徑均明確 403；容器僅持有 provider 佔位值。兩者探針 SHA-256 均為 `6517b41b77084d9115f00095c83b33d4e2cdf836de21095bd64c55cb7b01001d`、退出碼 0。一般 timeout／連線重設不計為通過。SSH 在容器狀態恢復後仍出現握手 400；本次改以私有 service binding 呼叫原生 container exec 完成，未將任意命令或診斷介面公開。
+
+21:22 已移除臨時 RPC 方法與診斷 entrypoint，正式 Worker 內容及 19 項健康／既有報告／不存在診斷路徑檢查通過；容器映像與應用設定維持原值，SSH 公鑰數 0、queued／running 工作均為 0。完整 GeoCheck 測試（含 26 項出口安全測試）、實際 workerd 回歸與 home 235 項測試通過。本輪未新增付費檢測或呼叫付費 provider，不能替代付費工作端到端驗收。原始收據與前輪 SSH 失敗歷史統一見 [跨站審計報告](../../docs/audits/2026-10-22-site-security-seo.md)。
 
 ## 2026-10-21 audit 失敗明細與入口網址轉址（已部署）
 
