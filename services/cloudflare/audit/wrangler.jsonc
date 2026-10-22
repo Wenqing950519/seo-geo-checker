@@ -10,7 +10,6 @@
     { "pattern": "geocheck.lslabs.tw/report/*", "zone_name": "lslabs.tw" },
     { "pattern": "geocheck.lisheng.cv/api/*", "zone_name": "lisheng.cv" }
   ],
-  "browser": { "binding": "BROWSER" },
   "d1_databases": [{
     "binding": "REPORTS_DB",
     "database_name": "geocheck-reports",

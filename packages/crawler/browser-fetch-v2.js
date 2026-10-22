@@ -1,6 +1,7 @@
 const path = require("path");
 const { AppError } = require("../shared/errors.js");
 const { configureBrowserRuntime } = require("./browser-runtime.js");
+const { fetchPublicUrl } = require("./public-fetch.js");
 
 configureBrowserRuntime();
 
@@ -10,19 +11,20 @@ async function fetchHomepageWithBrowser(url, previousError) {
 
   let browser;
   try {
-    browser = await playwright.chromium.launch({ headless: true });
+    browser = await playwright.chromium.launch({ headless: true, args: ["--force-webrtc-ip-handling-policy=disable_non_proxied_udp"] });
     const context = await browser.newContext({
       userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36",
       locale: "zh-TW",
       timezoneId: "Asia/Taipei",
       viewport: { width: 1366, height: 900 },
+      serviceWorkers: "block",
       extraHTTPHeaders: { "Accept-Language": "zh-TW,zh;q=0.9,en;q=0.8" }
     });
-    await context.route("**/*", async (route) => {
-      const type = route.request().resourceType();
-      if (["image", "media", "font"].includes(type)) return route.abort();
-      return route.continue();
-    });
+    // Chromium must not independently resolve destinations after the check. Proxy each
+    // browser request through the same pinned transport as HTML/robots/sitemap, including
+    // redirects, subresources and JS fetches. Service workers and WebSockets bypass routing.
+    await context.route("**/*", createPublicRouteHandler());
+    await context.routeWebSocket("**/*", (socket) => socket.close());
 
     const page = await context.newPage();
     let response = null;
@@ -82,6 +84,19 @@ function loadPlaywright() {
   return null;
 }
 
+function createPublicRouteHandler(fetchPage = fetchPublicUrl) {
+  return async (route) => {
+    const request = route.request();
+    if (["image", "media", "font"].includes(request.resourceType()) || !["GET", "HEAD"].includes(request.method())) return route.abort();
+    try {
+      const response = await fetchPage(request.url(), { method: request.method(), redirect: "manual", headers: await request.allHeaders(), signal: AbortSignal.timeout(15_000) });
+      // Browser request interception sees each redirect as its own request, so preserve the
+      // response metadata while ensuring all network I/O was performed by the safe transport.
+      return route.fulfill({ status: response.status, headers: Object.fromEntries(response.headers), body: Buffer.from(await response.arrayBuffer()) });
+    } catch { return route.abort(); }
+  };
+}
+
 function looksLikeBotChallenge(html, title, bodyTextLength) {
   if (bodyTextLength > 1200) return false;
   const source = `${title}\n${String(html).slice(0, 50_000)}`.toLowerCase();
@@ -125,4 +140,4 @@ function browserError(message, previousError, retryable) {
   });
 }
 
-module.exports = { fetchHomepageWithBrowser, looksLikeBotChallenge, waitForBotChallengeToClear };
+module.exports = { fetchHomepageWithBrowser, looksLikeBotChallenge, waitForBotChallengeToClear, createPublicRouteHandler };

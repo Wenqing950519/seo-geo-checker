@@ -1,40 +1,19 @@
 const dns = require("dns").promises;
 const net = require("net");
-
-function isPrivateIp(address) {
-  if (net.isIPv4(address)) {
-    const parts = address.split(".").map(Number);
-    return parts[0] === 10
-      || parts[0] === 127
-      || (parts[0] === 169 && parts[1] === 254)
-      || (parts[0] === 172 && parts[1] >= 16 && parts[1] <= 31)
-      || (parts[0] === 192 && parts[1] === 168)
-      || (parts[0] === 100 && parts[1] >= 64 && parts[1] <= 127)
-      || parts[0] === 0;
-  }
-  if (net.isIPv6(address)) {
-    const value = address.toLowerCase().split("%")[0];
-    return value === "::1"
-      || value === "::"
-      || value.startsWith("fc")
-      || value.startsWith("fd")
-      || value.startsWith("fe8")
-      || value.startsWith("fe9")
-      || value.startsWith("fea")
-      || value.startsWith("feb");
-  }
-  return true;
-}
+const { assertPublicHttpUrl, isPrivateIp } = require("../shared/public-url.js");
 
 async function assertSafePublicUrl(siteUrl, options = {}) {
-  const parsed = new URL(siteUrl);
-  const hostname = parsed.hostname.toLowerCase().replace(/\.$/, "");
-  if (hostname === "localhost" || hostname.endsWith(".localhost") || hostname.endsWith(".local")) {
-    throw unsafeUrlError();
-  }
+  await resolveSafePublicUrl(siteUrl, options);
+  return siteUrl;
+}
+
+async function resolveSafePublicUrl(siteUrl, options = {}) {
+  let parsed;
+  try { parsed = assertPublicHttpUrl(siteUrl); } catch { throw unsafeUrlError(); }
+  const hostname = parsed.hostname.toLowerCase().replace(/\.$/, "").replace(/^\[|\]$/g, "");
   if (net.isIP(hostname)) {
     if (isPrivateIp(hostname)) throw unsafeUrlError();
-    return siteUrl;
+    return { url: parsed, address: hostname, family: net.isIP(hostname) };
   }
   const lookup = options.lookup || dns.lookup;
   let addresses;
@@ -49,7 +28,7 @@ async function assertSafePublicUrl(siteUrl, options = {}) {
   if (!addresses.length || addresses.some((item) => isPrivateIp(item.address))) {
     throw unsafeUrlError();
   }
-  return siteUrl;
+  return { url: parsed, ...addresses[0] };
 }
 
 function unsafeUrlError() {
@@ -59,4 +38,4 @@ function unsafeUrlError() {
   return error;
 }
 
-module.exports = { assertSafePublicUrl, isPrivateIp };
+module.exports = { assertSafePublicUrl, resolveSafePublicUrl, isPrivateIp };

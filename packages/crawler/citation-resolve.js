@@ -1,4 +1,5 @@
 const { safeHostname } = require("../geo-core/evidence/brand-match.js");
+const { fetchPublicUrl } = require("./public-fetch.js");
 
 // 只處理已知的重導向/短網址服務；一般網址不打網路請求。
 // Gemini 的 Google 搜尋接地一律經 vertexaisearch 轉址引用來源（2026-10-20 實測）。
@@ -37,7 +38,7 @@ async function resolveOne(url, timeoutMs) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
-      const response = await fetch(current, { method: "HEAD", redirect: "manual", signal: controller.signal });
+      const response = await fetchPublicUrl(current, { method: "HEAD", redirect: "manual", signal: controller.signal });
       const location = response.headers.get("location");
       if (!location || response.status < 300 || response.status >= 400) break;
       current = new URL(location, current).toString();

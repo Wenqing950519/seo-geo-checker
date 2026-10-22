@@ -2,6 +2,7 @@ const http = require("node:http");
 const { runRealLiteAudit } = require("../../../apps/web/report/real-lite-audit.js");
 const { createHomepageFromHtml } = require("../../../packages/crawler/html-v2.js");
 const { normalizeReportForClient, reportHtml, reportMarkdown } = require("../../api/server.js");
+const { assertPublicHttpUrl } = require("../../../packages/shared/public-url.js");
 
 const PORT = Number(process.env.PORT || 8080);
 const MAX_REQUEST_BYTES = 2 * 1024 * 1024;
@@ -25,9 +26,7 @@ async function readJson(req) {
 }
 
 function validUrl(value) {
-  const url = new URL(String(value || ""));
-  if (!['http:', 'https:'].includes(url.protocol)) throw new Error("invalid_url");
-  return url.toString();
+  return assertPublicHttpUrl(String(value || "")).toString();
 }
 
 const server = http.createServer(async (req, res) => {

@@ -5,6 +5,8 @@
 // that answers before Browser Rendering and the container fetch it; the cache key and the
 // measurement use that entry, while the job keeps what the user typed.
 
+import { assertPublicHttpUrl, isPrivateHostname } from "../../../../packages/shared/public-url.js";
+
 const PROBE_HEADERS = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/125.0 Safari/537.36",
   "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -14,21 +16,17 @@ const PROBE_HEADERS = {
 export function normalizeUrl(input) {
   const raw = String(input || "").trim();
   const value = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
-  const url = new URL(value);
-  if (!["http:", "https:"].includes(url.protocol) || !url.hostname || isPrivateHost(url.hostname)) {
+  try {
+    return assertPublicHttpUrl(value).toString();
+  } catch {
     const error = new Error("invalid_target_url");
     error.status = 400;
     throw error;
   }
-  return url.toString();
 }
 
 export function isPrivateHost(hostname) {
-  const host = hostname.toLowerCase().replace(/\.$/, "");
-  if (host === "localhost" || host.endsWith(".localhost") || host.endsWith(".local")) return true;
-  if (/^(127\.|10\.|0\.|169\.254\.|192\.168\.)/.test(host)) return true;
-  const parts = host.match(/^(\d+)\.(\d+)\./);
-  return Boolean(parts && Number(parts[1]) === 172 && Number(parts[2]) >= 16 && Number(parts[2]) <= 31);
+  return isPrivateHostname(hostname);
 }
 
 export async function sha256(value) {
@@ -77,8 +75,7 @@ export async function resolveEntryUrl(siteUrl, options = {}) {
     const seen = new Set();
     for (let hop = 0; hop < maxHops; hop += 1) {
       let target;
-      try { target = new URL(current); } catch { attempts.push(`${current} invalid`); break; }
-      if (!["http:", "https:"].includes(target.protocol) || !target.hostname || isPrivateHost(target.hostname)) {
+      try { target = assertPublicHttpUrl(current); } catch {
         attempts.push(`${current} blocked`);
         break;
       }

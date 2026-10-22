@@ -1,8 +1,12 @@
-import { Container, getContainer } from "@cloudflare/containers";
+import { Container, ContainerProxy, getContainer } from "@cloudflare/containers";
 import { env as workerEnv } from "cloudflare:workers";
 import { clientKey, isFinalAttempt, parseLimits } from "./limits.mjs";
 import { cacheKey, normalizeUrl, resolveEntryUrl, sha256 } from "./entry-url.mjs";
 import { containerFailure, describeFailure, failure } from "./failure.mjs";
+import { EGRESS_MODE, PROVIDER_PLACEHOLDER, outboundByHost, fetchPublicPage } from "./egress.mjs";
+import { admitRequest } from "./request-admission.mjs";
+
+export { ContainerProxy };
 
 const JSON_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
@@ -10,6 +14,7 @@ const JSON_HEADERS = {
   "CDN-Cache-Control": "no-store",
   "Strict-Transport-Security": "max-age=31536000",
   "X-Content-Type-Options": "nosniff",
+  "X-Robots-Tag": "noindex, nofollow",
   "Referrer-Policy": "strict-origin-when-cross-origin"
 };
 
@@ -17,6 +22,7 @@ function withSecurityHeaders(response) {
   const headers = new Headers(response.headers);
   headers.set("Strict-Transport-Security", "max-age=31536000");
   headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Robots-Tag", "noindex, nofollow");
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }
@@ -24,39 +30,70 @@ function withSecurityHeaders(response) {
 export class AuditFallbackContainer extends Container {
   defaultPort = 8080;
   sleepAfter = "2m";
+  enableInternet = false;
+  interceptHttps = true;
   // GeoCheck runs DeepSeek planning with exactly one answer engine: Perplexity Sonar or
   // Gemini Flash (GEOCHECK_MCAC_ENGINE). No other provider key reaches the container.
   envVars = {
-    DEEPSEEK_API_KEY: workerEnv.DEEPSEEK_API_KEY,
+    DEEPSEEK_API_KEY: workerEnv.DEEPSEEK_API_KEY ? PROVIDER_PLACEHOLDER : "",
     DEEPSEEK_MODEL: workerEnv.DEEPSEEK_MODEL,
-    PERPLEXITY_API_KEY: workerEnv.PERPLEXITY_API_KEY,
-    GEMINI_API_KEY: workerEnv.GEMINI_API_KEY,
+    PERPLEXITY_API_KEY: workerEnv.PERPLEXITY_API_KEY ? PROVIDER_PLACEHOLDER : "",
+    GEMINI_API_KEY: workerEnv.GEMINI_API_KEY ? PROVIDER_PLACEHOLDER : "",
     GEOCHECK_METHOD: workerEnv.GEOCHECK_METHOD,
     GEOCHECK_MCAC_ENGINE: workerEnv.GEOCHECK_MCAC_ENGINE,
-    GEOCHECK_MCAC_GEMINI_MODEL: workerEnv.GEOCHECK_MCAC_GEMINI_MODEL
+    GEOCHECK_MCAC_GEMINI_MODEL: workerEnv.GEOCHECK_MCAC_GEMINI_MODEL,
+    GEOCHECK_EGRESS_MODE: EGRESS_MODE,
+    NODE_EXTRA_CA_CERTS: "/etc/cloudflare/certs/cloudflare-containers-ca.crt",
+    // Scrapling remains a manual research tool. Public HTML and Playwright requests use
+    // only the private outbound gateway; the network policy blocks other browser traffic.
+    DISABLE_SCRAPLING_FETCH: "true"
   };
 }
+AuditFallbackContainer.outboundByHost = outboundByHost;
 
 function json(status, body, extraHeaders = {}) {
   return new Response(JSON.stringify(body), { status, headers: { ...JSON_HEADERS, ...extraHeaders } });
 }
 
 async function readBody(request, maxBytes = 16 * 1024) {
+  return JSON.parse(await readLimitedText(request, maxBytes) || "{}");
+}
+
+async function readLimitedText(request, maxBytes) {
   const declared = Number(request.headers.get("content-length") || 0);
   if (declared > maxBytes) throw Object.assign(new Error("request_too_large"), { status: 413 });
-  const text = await request.text();
-  if (new TextEncoder().encode(text).byteLength > maxBytes) throw Object.assign(new Error("request_too_large"), { status: 413 });
-  return JSON.parse(text || "{}");
+  const reader = request.body?.getReader();
+  const chunks = [];
+  let size = 0;
+  if (reader) {
+    try {
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        size += value.byteLength;
+        if (size > maxBytes) { await reader.cancel(); throw Object.assign(new Error("request_too_large"), { status: 413 }); }
+        chunks.push(value);
+      }
+    } finally { reader.releaseLock(); }
+  }
+  const bytes = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
+  return new TextDecoder().decode(bytes);
 }
 
 // Ceilings on fresh (non-cached) audits: per Asia/Taipei day, and per client within a window.
 // The numbers come from the AUDIT_LIMITS secret (limits.mjs). Cached results cost nothing and
 // are never refused.
-async function dailyLimitState(env, limit, now = Date.now()) {
+function dailyStart(now = Date.now()) {
   const offset = 8 * 60 * 60_000;
   const local = new Date(now + offset);
   local.setUTCHours(0, 0, 0, 0);
-  const dayStart = local.getTime() - offset;
+  return local.getTime() - offset;
+}
+
+async function dailyLimitState(env, limit, now = Date.now()) {
+  const dayStart = dailyStart(now);
   const row = await env.REPORTS_DB.prepare(
     "SELECT COUNT(*) AS n FROM audit_jobs WHERE created_at >= ? AND COALESCE(json_extract(diagnostics_json, '$.cache_hit'), 0) = 0"
   ).bind(new Date(dayStart).toISOString()).first();
@@ -100,19 +137,6 @@ async function invokeContainer(env, name, path, body) {
   return container.fetch(request);
 }
 
-async function browserHtml(env, siteUrl) {
-  const response = await env.BROWSER.quickAction("content", { url: siteUrl });
-  if (!response.ok) throw new Error(`browser_run_http_${response.status}`);
-  const text = await response.text();
-  try {
-    const parsed = JSON.parse(text);
-    const html = parsed.html || parsed.result?.html || parsed.content;
-    if (typeof html === "string" && html.length >= 100) return html;
-  } catch { /* content endpoint may return HTML directly */ }
-  if (text.length < 100) throw new Error("browser_run_empty_content");
-  return text;
-}
-
 async function processAudit(message, env) {
   const jobId = String(message.body?.job_id || "");
   const job = await getJob(env.REPORTS_DB, jobId);
@@ -129,19 +153,15 @@ async function processAudit(message, env) {
   // site_url is what the user typed; entry_url is the entry the probe found reachable.
   let entryUrl = job.site_url;
   try { entryUrl = new URL(JSON.parse(job.diagnostics_json || "{}").entry_url || job.site_url).toString(); } catch { /* keep site_url */ }
-  let html = null;
-  let browserError = null;
-  try { html = await browserHtml(env, entryUrl); } catch (error) { browserError = String(error?.message || "browser_run_failed").slice(0, 240); }
-  // Recorded before the container runs, so a job that fails in the container still shows
-  // which crawl path it was on (the 2026-10-21 failures had no browser_run at all).
+  // Managed Browser Rendering has a separate network boundary. All crawling now happens
+  // inside the deny-default container through the audited gateway, including Playwright.
   await env.REPORTS_DB.prepare("UPDATE audit_jobs SET diagnostics_json = json_patch(COALESCE(diagnostics_json, '{}'), ?), updated_at = ? WHERE job_id = ? AND lease_token = ?")
-    .bind(JSON.stringify({ browser_run: html ? "succeeded" : "failed", browser_error: browserError }), new Date().toISOString(), jobId, leaseToken).run();
+    .bind(JSON.stringify({ egress_policy: EGRESS_MODE, browser_run: "disabled" }), new Date().toISOString(), jobId, leaseToken).run();
   const response = await invokeContainer(env, AUDIT_CONTAINER, "/audit", {
     url: entryUrl,
     requested_url: job.site_url,
     report_id: job.report_id,
-    custom_queries: queries,
-    ...(html ? { browser_html: html } : {})
+    custom_queries: queries
   });
   if (!response.ok) {
     let body = null;
@@ -193,7 +213,8 @@ export default {
           ok: d1,
           d1,
           queue: Boolean(env.AUDIT_JOBS),
-          browser: Boolean(env.BROWSER),
+          browser: false,
+          egress_policy: EGRESS_MODE,
           container: Boolean(env.AUDIT_FALLBACK),
           admission_enabled: String(env.AUDIT_ADMISSION_ENABLED || "").toLowerCase() === "true",
           limits_configured: Boolean(parseLimits(env))
@@ -215,16 +236,18 @@ export default {
         if (customQueries.length > 4 || new Set(customQueries.map((item) => item.toLowerCase())).size !== customQueries.length) {
           return json(400, { error: "自訂觀測題最多 4 題，且每題都必須不同。", code: "invalid_custom_queries" });
         }
+        const requestClient = await clientKey(request.headers.get("CF-Connecting-IP"), limits.pepper);
+        if (!await admitRequest(env.REPORTS_DB, requestClient)) return json(429, { error: "檢測次數太頻繁，請稍後再試。", code: "rate_limited" });
         // The probe picks the entry that answers (https apex, https www, http apex with its
         // redirects), so a site whose apex https is dead is still measured, and one site typed
         // in different ways shares one cache row.
-        const entry = await resolveEntryUrl(siteUrl);
+        const entry = await resolveEntryUrl(siteUrl, { fetch: (url, init) => fetchPublicPage(url, { ...init, headersOnly: true }) });
         const key = await cacheKey(entry.url, customQueries, env.AUDIT_PIPELINE_VERSION);
         const cached = await env.REPORTS_DB.prepare("SELECT report_id FROM audit_reports WHERE cache_key = ? AND expires_at > ? ORDER BY created_at DESC LIMIT 1")
           .bind(key, new Date().toISOString()).first();
         let client = null;
         if (!cached) {
-          client = await clientKey(request.headers.get("CF-Connecting-IP"), limits.pepper);
+          client = requestClient;
           // The window and count are not published, so this answer gives no Retry-After.
           if (await clientLimitReached(env, client, limits)) {
             return json(429, { error: "檢測次數太頻繁，請稍後再試。", code: "rate_limited" });
@@ -237,11 +260,25 @@ export default {
         const jobId = `aud_${crypto.randomUUID()}`;
         const reportId = cached?.report_id || `real_lite_${crypto.randomUUID()}`;
         const now = new Date().toISOString();
-        await env.REPORTS_DB.prepare(`INSERT INTO audit_jobs (
+        // The INSERT is the authority for admission. Separate count reads above only give an
+        // early response: concurrent requests can all see the same old count. D1 executes this
+        // conditional write atomically, before any paid job is placed on the queue.
+        const admission = await env.REPORTS_DB.prepare(`INSERT INTO audit_jobs (
           job_id, report_id, cache_key, site_url, custom_queries_json, status, created_at, updated_at, completed_at, diagnostics_json
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+        ) SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+          WHERE ? = 1 OR (
+            (SELECT COUNT(*) FROM audit_jobs WHERE created_at >= ? AND COALESCE(json_extract(diagnostics_json, '$.cache_hit'), 0) = 0) < ?
+            AND (SELECT COUNT(*) FROM audit_jobs WHERE created_at >= ? AND json_extract(diagnostics_json, '$.client') = ? AND COALESCE(json_extract(diagnostics_json, '$.cache_hit'), 0) = 0) < ?
+          )`)
           .bind(jobId, reportId, key, siteUrl, JSON.stringify(customQueries), cached ? "completed" : "queued", now, now,
-            cached ? now : null, JSON.stringify({ cache_hit: Boolean(cached), entry_url: entry.url, entry_reachable: entry.reachable, ...(client ? { client } : {}) })).run();
+            cached ? now : null, JSON.stringify({ cache_hit: Boolean(cached), entry_url: entry.url, entry_reachable: entry.reachable, ...(client ? { client } : {}) }),
+            cached ? 1 : 0, new Date(dailyStart()).toISOString(), limits.daily,
+            new Date(Date.now() - limits.perIpHours * 60 * 60_000).toISOString(), client, limits.perIp).run();
+        if (Number(admission.meta?.changes || 0) !== 1) {
+          const daily = await dailyLimitState(env, limits.daily);
+          if (daily.reached) return json(429, { error: "今日免費檢測額度已滿，請明天再試。", code: "daily_limit_reached" }, { "Retry-After": String(daily.retryAfterSeconds) });
+          return json(429, { error: "檢測次數太頻繁，請稍後再試。", code: "rate_limited" });
+        }
         if (!cached) await env.AUDIT_JOBS.send({ job_id: jobId });
         return json(202, { job_id: jobId, report_id: reportId, status: cached ? "completed" : "queued", poll_url: `/api/status/${jobId}` }, { Location: `/api/status/${jobId}` });
       }
@@ -249,7 +286,10 @@ export default {
       if (request.method === "GET" && statusMatch) {
         const job = await getJob(env.REPORTS_DB, decodeURIComponent(statusMatch[1]));
         if (!job) return json(404, { error: "Job not found" });
-        return json(200, { status: job.status, reportId: job.report_id, error_code: job.error_code || null, diagnostics: JSON.parse(job.diagnostics_json || "{}") });
+        const diagnostics = JSON.parse(job.diagnostics_json || "{}");
+        // Failure messages and the keyed client bucket are operator diagnostics kept in D1.
+        // Public polling only needs cache_hit; never serialize the stored object wholesale.
+        return json(200, { status: job.status, reportId: job.report_id, error_code: job.error_code || null, diagnostics: { cache_hit: diagnostics.cache_hit === true } });
       }
       const reportMatch = url.pathname.match(/^\/api\/report\/([^/]+)$/);
       if (request.method === "GET" && reportMatch) {
@@ -281,6 +321,10 @@ export default {
         const siteUrl = normalizeUrl(body.site);
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || body.consent !== true) return json(400, { error: "email 與個人資料同意為必填" });
         if (email.length > 254 || String(body.need || "").length > 1000 || String(body.name || "").length > 100) return json(400, { error: "欄位長度超過限制" });
+        const limits = parseLimits(env);
+        if (!limits) return json(503, { error: "Unable to process request", code: "service_unavailable" });
+        const requestClient = await clientKey(request.headers.get("CF-Connecting-IP"), limits.pepper);
+        if (!await admitRequest(env.REPORTS_DB, requestClient)) return json(429, { error: "請稍後再試。", code: "rate_limited" });
         const now = new Date().toISOString();
         const leadId = crypto.randomUUID();
         await env.REPORTS_DB.prepare(`INSERT INTO audit_leads (

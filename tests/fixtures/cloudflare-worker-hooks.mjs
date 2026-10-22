@@ -17,7 +17,7 @@ export async function load(url, context, next) {
     return { format: "module", shortCircuit: true, source: "export const env = globalThis.__WORKER_ENV__ ?? (globalThis.__WORKER_ENV__ = {});" };
   }
   if (url === "worker-stub:@cloudflare/containers") {
-    return { format: "module", shortCircuit: true, source: "export class Container {}\nexport function getContainer(binding, name) { return binding.get(name); }" };
+    return { format: "module", shortCircuit: true, source: "export class Container {}\nexport class ContainerProxy {}\nexport function getContainer(binding, name) { return binding.get(name); }" };
   }
   // The Worker entry is an ES module; the repo's package.json declares no module type.
   if (url.endsWith("/services/cloudflare/audit/src/worker.js")) return { format: "module", shortCircuit: true, source: await readFile(fileURLToPath(url), "utf8") };

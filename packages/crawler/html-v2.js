@@ -3,6 +3,7 @@ const { assessCrawlQuality, chooseBetterResult, shouldRenderWithBrowser } = requ
 const { AppError } = require("../shared/errors.js");
 const { fetchHomepageWithGoogleTranslate } = require("./google-translate-fetch.js");
 const { fetchHomepageWithScrapling } = require("./scrapling-fetch.js");
+const { fetchPublicUrl } = require("./public-fetch.js");
 
 function stripHtml(html) {
   return String(html || "")
@@ -374,7 +375,7 @@ function looksClientRendered(result) {
 function fetchWithTimeout(url, options, timeoutMs) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
-  return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
+  return fetchPublicUrl(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
 }
 
 function shouldTryBrowserFallback(error) {

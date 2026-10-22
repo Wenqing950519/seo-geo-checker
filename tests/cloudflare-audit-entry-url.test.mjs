@@ -20,6 +20,7 @@ function fetchStub(routes) {
   const calls = [];
   const stub = async (input, init = {}) => {
     const url = String(input);
+    if (url.startsWith("https://cloudflare-dns.com/dns-query?")) return Response.json({ Status: 0, Answer: [{ type: 1, data: "93.184.215.14" }] });
     calls.push({ url, method: init.method || "GET", redirect: init.redirect });
     const route = routes[url];
     if (!route) throw Object.assign(new TypeError(`fetch failed: no route for ${url}`), { code: "ENOTFOUND" });
@@ -158,7 +159,8 @@ const entry = await import("../services/cloudflare/audit/src/entry-url.mjs");
     assert.deepEqual(sentJobs, [{ job_id: jobId }]);
 
     await worker.queue({ messages: [{ body: { job_id: jobId }, attempts: 1, ack() {}, retry() { throw new Error("retry not expected"); } }] }, env);
-    assert.deepEqual(browserCalls, [{ action: "content", url: "https://www.noodle3.com.tw/" }], "Browser Rendering fetches the reachable entry, not the dead apex");
+    assert.deepEqual(browserCalls, [], "all rendering stays inside the restricted container");
+    assert.equal(containerCalls[0].body.browser_html, undefined);
     assert.equal(containerCalls.length, 1);
     assert.equal(containerCalls[0].path, "/audit");
     assert.equal(containerCalls[0].body.url, "https://www.noodle3.com.tw/", "the container measures the reachable entry");
@@ -206,6 +208,7 @@ function fakeD1() {
   const reports = new Map();
   const execute = (sql, args) => {
     const text = sql.replace(/\s+/g, " ");
+    if (/^(DELETE FROM|INSERT INTO) audit_request_admissions/.test(text)) return { run: async () => ({ meta: { changes: 1 } }) };
     if (/^SELECT report_id FROM audit_reports WHERE cache_key/.test(text)) {
       const [key] = args;
       const hit = [...reports.values()].find((row) => row.cache_key === key);

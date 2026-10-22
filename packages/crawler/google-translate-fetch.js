@@ -1,5 +1,5 @@
 const net = require("node:net");
-const https = require("node:https");
+const { fetchPublicUrl } = require("./public-fetch.js");
 const { AppError } = require("../shared/errors.js");
 
 async function fetchHomepageWithGoogleTranslate(url, options = {}) {
@@ -91,22 +91,10 @@ function looksLikeChallenge(html) {
     .some((needle) => source.includes(needle));
 }
 
-function requestText(url, headers, requestImpl) {
+async function requestText(url, headers, requestImpl) {
   if (requestImpl) return requestImpl(url, headers);
-  return new Promise((resolve, reject) => {
-    const request = https.get(url, { headers }, (response) => {
-      const chunks = [];
-      response.on("data", (chunk) => chunks.push(chunk));
-      response.on("end", () => resolve({
-        ok: response.statusCode >= 200 && response.statusCode < 300,
-        status: response.statusCode || 0,
-        headers: { get: (name) => response.headers[String(name).toLowerCase()] || "" },
-        text: Buffer.concat(chunks).toString("utf8")
-      }));
-    });
-    request.setTimeout(25_000, () => request.destroy(new Error("timeout")));
-    request.on("error", reject);
-  });
+  const response = await fetchPublicUrl(url, { headers, redirect: "manual", signal: AbortSignal.timeout(25_000) });
+  return { ok: response.ok, status: response.status, headers: response.headers, text: await response.text() };
 }
 
 module.exports = { buildGoogleTranslateUrl, fetchHomepageWithGoogleTranslate, isEligiblePublicUrl, looksLikeChallenge };

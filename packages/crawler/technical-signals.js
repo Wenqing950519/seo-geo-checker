@@ -1,4 +1,5 @@
 const SEARCH_BOTS = ["Googlebot", "OAI-SearchBot", "Claude-SearchBot"];
+const { fetchPublicUrl } = require("./public-fetch.js");
 const POLICY_BOTS = ["GPTBot", "ClaudeBot", "Google-Extended"];
 
 async function fetchTechnicalSignals(siteUrl, homepage = {}) {
@@ -50,7 +51,8 @@ async function fetchTextResource(url, expectedType) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 10_000);
   try {
-    const response = await fetch(url, {
+    const response = await fetchPublicUrl(url, {
+      maxBytes: 1_000_000,
       redirect: "follow",
       headers: {
         "User-Agent": "GEOCheck-Audit/2.0",
