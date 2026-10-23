@@ -15,4 +15,11 @@ const index = fs.readFileSync(indexPath, "utf8")
   .replace('src="/app/app.js"', 'src="/app.js"');
 fs.writeFileSync(indexPath, index);
 
+// app.lslabs.tw is a separate Pages deployment and cannot read the Classic site's assets.
+for (const name of ['assets/logo-mark.svg', 'favicon.svg', 'favicon.png']) {
+  const target = path.join(outputDir, name);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.copyFileSync(path.join(root, 'apps', 'web', 'public', name), target);
+}
+
 console.log(`Built Dashboard Pages artifact: ${path.relative(root, outputDir)}`);

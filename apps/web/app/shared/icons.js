@@ -2,7 +2,7 @@
 
 export const ICONS = {
   // Brand & Product (Matches home.html exactly)
-  logo: `<svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#EFF6FF" /><path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B1F3B" stroke-width="4.2" stroke-linecap="round" /><path d="M 16 25 L 22 31 L 38 15" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" /><circle cx="38" cy="15" r="3.5" fill="#3B82F6" /><circle cx="38" cy="15" r="1.5" fill="#FFFFFF" /></svg>`,
+  logo: `<img src="/assets/logo-mark.svg" width="32" height="32" alt="LS-Labs">`,
   
   // Navigation Tabs
   overview: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>`,

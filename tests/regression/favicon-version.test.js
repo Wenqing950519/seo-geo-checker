@@ -11,8 +11,8 @@ const sources = [
 ].map((relativePath) => fs.readFileSync(path.join(root, relativePath), "utf8"));
 
 for (const source of sources) {
-  assert.match(source, /href="\/favicon\.svg\?v=lslabs-20261021"/);
-  assert.match(source, /href="\/favicon\.png\?v=lslabs-20261021"/);
+  assert.match(source, /href="\/favicon\.svg\?v=lslabs-20261023"/);
+  assert.match(source, /href="\/favicon\.png\?v=lslabs-20261023"/);
 }
 
 console.log("favicon version tests passed");
