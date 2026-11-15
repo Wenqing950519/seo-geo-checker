@@ -87,16 +87,17 @@ if (judged.includes("mismatch")) {
   assert.match(sample[0], /請確認哪一個正確，並把官網、粉專、Google 商家等各平台的資料統一/, "a mismatch carries the report's advice");
 }
 
-// 3. No blended score anywhere: MCAC reads four results and has no total (total: null).
+// 3. The homepage sample draws no gauge and never describes the Classic score. The report's
+//    0-100 overview is given only when all four results are measured (2026-11-15).
 assert.doesNotMatch(home, /scoreVal|compact-gauge|id="arc"|\/100</, "the sample must not draw a score gauge");
 for (const phrase of ["AI 信任值", "信任值", "AI Trust Index", "65%", "35%", "65／35", "65/35", "摘要分數", "總分只是摘要", "先修清單", "先修哪三件事", "優先 P1", "補成四題"]) {
   assert.ok(!home.includes(phrase), `home must not describe the Classic score: "${phrase}"`);
 }
 
 // 4. The method is stated as built: three kinds of question, four results read
-//    separately, no total, and the Accuracy wording decided on 2026-10-20. A value the
+//    separately, a score only when all four are measured, and the Accuracy wording decided on 2026-10-20. A value the
 //    page does not list is not called an error.
-for (const phrase of ["推薦題", "事實題", "行動題", "推薦 2、事實 1、行動 1", "四項分開判讀", "不合成總分", "和你的頁面不一致", "無法核對", "未知不等於 0"]) {
+for (const phrase of ["推薦題", "事實題", "行動題", "推薦 2、事實 1、行動 1", "四項分開判讀", "四項都量到才給分", "和你的頁面不一致", "無法核對", "未知不等於 0"]) {
   assert.ok(visible.includes(phrase), `home must explain MCAC: "${phrase}"`);
 }
 assert.doesNotMatch(visible, /有錯誤|[：:]\s*錯誤|>錯誤</, "a mismatch with the owner's page is not an error");

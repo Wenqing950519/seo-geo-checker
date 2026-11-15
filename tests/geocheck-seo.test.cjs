@@ -41,7 +41,7 @@ test('the whitepaper leads with MCAC and keeps the Classic index as a record',()
   const html=fs.readFileSync(path.join(publicDir,'whitepaper.html'),'utf8');
   assert.ok(html.includes('https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/'), 'the method must link the retrieval report');
   assert.match(html,/MCAC 0\.2\.0/);
-  for (const phrase of ['推薦題','事實題','行動題','四項分開判讀','不合成總分','和你的頁面不一致','無法核對']) {
+  for (const phrase of ['推薦題','事實題','行動題','四項分開判讀','四項都量到才給分','和你的頁面不一致','無法核對']) {
     assert.ok(html.includes(phrase), `the whitepaper must explain MCAC: ${phrase}`);
   }
   const classic=html.match(/<h2 id="sec-classic">([^<]+)<\/h2>([\s\S]*?)(?=<h2 |<\/article>)/);

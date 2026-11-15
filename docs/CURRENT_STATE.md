@@ -42,7 +42,7 @@ tags:
 
 ## 2026-10-21 公開快檢改用 MCAC（已上線）
 
-依使用者授權與 LSL-D-006（ls-labs repo），公開快檢從 Classic（AI Trust Index v1）改為 MCAC 0.2.0：每次問 AI 推薦題 2、事實題 1、行動題 1，四項分開判讀，不合成總分，未知不等於 0。規格正本為 `docs/MCAC_V0.md`。
+依使用者授權與 LSL-D-006（ls-labs repo），公開快檢從 Classic（AI Trust Index v1）改為 MCAC 0.2.0：每次問 AI 推薦題 2、事實題 1、行動題 1，四項分開判讀，未知不等於 0。規格正本為 `docs/MCAC_V0.md`。2026-11-15 起（LSL-D-011）報告首屏另給 0–100 的 AI 可見度總覽分，四項都量到才給分，配分見規格的 Overview score。
 
 - **合併**：#9（報告頁與 llms.txt 不寫模型名稱）、#10（`AUDIT_ADMISSION_ENABLED=true`）、#6（MCAC 版首頁與白皮書，拿掉「檢測改版中」提示）、#11（檢測共用一個容器）。
 - **部署**：audit Worker 版本 `bda73130-2048-47e0-a600-f4dcd680fa10`，100% 流量，`/healthz` 的 `admission_enabled`、`limits_configured` 都是 true。

@@ -42,10 +42,11 @@ async function runMcacAudit(siteUrl, options = {}) {
     mcac: measurement.evaluation,
     siteChecks: signals ? {
       readiness: Number.isFinite(measurement.siteReadiness?.score) ? measurement.siteReadiness.score : null,
+      checks: Array.isArray(measurement.siteReadiness?.checks) ? measurement.siteReadiness.checks : [],
       issues: safeList(() => buildDeterministicIssues(signals)),
       citeability: safeValue(() => buildDeterministicCiteability(signals), { strengths_zh: [], gaps_zh: [] }),
       actions: safeList(() => rankDeterministicActions(buildDeterministicActions(signals)))
-    } : { readiness: null, issues: [], citeability: { strengths_zh: [], gaps_zh: [] }, actions: [] },
+    } : { readiness: null, checks: [], issues: [], citeability: { strengths_zh: [], gaps_zh: [] }, actions: [] },
     homepage: measurement.homepage ? {
       metadata: measurement.homepage.metadata,
       statusCode: measurement.homepage.statusCode,

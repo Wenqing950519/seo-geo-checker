@@ -3,7 +3,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "../..");
-const server = fs.readFileSync(path.join(root, "services/api/server.js"), "utf8");
+// Report rendering moved to apps/web/report/report-render.js on 2026-11-15; check both files.
+const server = fs.readFileSync(path.join(root, "services/api/server.js"), "utf8")
+  + fs.readFileSync(path.join(root, "apps/web/report/report-render.js"), "utf8");
 const home = fs.readFileSync(path.join(root, "apps/web/public/home.html"), "utf8");
 function realLiteReportSection(source) {
   const start = source.indexOf("function realLiteReportHtml(report) {");

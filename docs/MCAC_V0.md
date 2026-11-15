@@ -8,7 +8,7 @@ Method source: LS-Labs, *AI 搜尋時代的檢索機制報告* (2026-09-18; `doc
 
 ## What changes from AI Trust Index v1
 
-AI Trust Index v1 asks four unbranded discovery questions that all measure the same thing and blends mention and official citation into one 65/35 score. MCAC asks three kinds of task and reads four results separately. There is **no total**: the data contract's `total` is always `null`, enforced by `tests/regression/mcac-core.test.js`. Classic code stays for research batches; the two methods never fall back to each other.
+AI Trust Index v1 asks four unbranded discovery questions that all measure the same thing and blends mention and official citation into one 65/35 score. MCAC asks three kinds of task and reads four results separately. The data contract's `total` stays `null`. Since 2026-11-15 (LSL-D-011, amending LSL-D-006) the evaluation also carries `score`, a 0–100 overview the report shows on its first screen, given only when all four results are measured (see "Overview score" below; enforced by `tests/regression/mcac-core.test.js`). Classic code stays for research batches; the two methods never fall back to each other.
 
 ## Engines
 
@@ -44,6 +44,17 @@ Questions never contain the site's domain. Each probe gets at most one retry on 
 - **Conversion-readiness** (action answer): ACTION lines or free-text phone, URL, address, map, booking, ordering or LINE entries. Any actionable entry → `yes`, none → `no`, failed answer → `unknown`. Whether an entry is the official site is reported separately; a redirect written into the answer (Gemini sometimes gives its grounding link as the website) is shown and credited by where it leads.
 
 The twelve existing site checks stay on the report, unscored.
+
+## Overview score (`exposure_funnel_v1`)
+
+`computeMcacScore` in `packages/geo-core/mcac/evaluate.js`; weights are v1 and provisional (Human Ownership) and have not been validated against outcomes.
+
+- **Mention, 35**: hits / valid discovery answers × 28, plus a list-position bonus when mentioned: best position 1–3 → 7, 4–10 → 4, mentioned without a list position → 2.
+- **Citation, 25**: official site in ≥ 3/4 of answered probes → 25, ≥ 1/2 → 22, at least one → 14, none → 0.
+- **Accuracy, 20**: phone and address 10 each (correct 10, not_provided 3, unverifiable 2, mismatch 0); when only one field can be judged it counts double.
+- **Conversion-readiness, 20**: any actionable entry → 12, plus 5 for an official entry and 3 for two or more kinds of entry; none → 0.
+
+The score is the sum, with labels ≥ 80 能見度優異, 60–79 具備基礎能見度, 35–59 能見度待補強, < 35 能見度偏低. If any result is `unknown` the score is `null` with status `partial` and label 「4 項中 N 項可判讀」: unknown is never zero, and the measured results are not rescaled to stand in for the missing ones (an earlier rescaled version gave a report with an unknown mention 75). The report recomputes the score from the four results instead of trusting a stored copy. With two discovery questions the mention part takes only a few values; the four results and raw answers remain the basis for any advice. The public method text is `apps/web/public/whitepaper.html#mcac-score`.
 
 ## Operations
 

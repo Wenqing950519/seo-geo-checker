@@ -5,6 +5,7 @@ import { cacheKey, normalizeUrl, resolveEntryUrl, sha256 } from "./entry-url.mjs
 import { containerFailure, describeFailure, failure } from "./failure.mjs";
 import { EGRESS_MODE, PROVIDER_PLACEHOLDER, outboundByHost, denyOutbound, fetchPublicPage } from "./egress.mjs";
 import { admitRequest } from "./request-admission.mjs";
+import reportRender from "../../../../apps/web/report/report-render.js";
 
 export { ContainerProxy };
 
@@ -48,6 +49,25 @@ export class AuditFallbackContainer extends Container {
     // only the private outbound gateway; the network policy blocks other browser traffic.
     DISABLE_SCRAPLING_FETCH: "true"
   };
+
+  // The library calls this when the instance has been idle for sleepAfter with no request in
+  // flight. The first time it sends SIGTERM; if the instance is still running at the next expiry,
+  // the signal was ignored, so force it down instead of billing an idle instance indefinitely.
+  async onActivityExpired() {
+    if (!this.container.running) return;
+    if (this.stopRequested) {
+      console.log("Container ignored SIGTERM, destroying");
+      this.stopRequested = false;
+      await this.destroy();
+      return;
+    }
+    this.stopRequested = true;
+    await this.stop();
+  }
+
+  onStop() {
+    this.stopRequested = false;
+  }
 }
 AuditFallbackContainer.outboundByHost = outboundByHost;
 AuditFallbackContainer.outbound = denyOutbound;
@@ -119,10 +139,10 @@ async function getReport(db, reportId) {
   try { return JSON.parse(row.report_json); } catch { return null; }
 }
 
-// Report pages and downloads share one container. A container per report cold-started on every
-// new report, competed with audits for the instance ceiling, and one stuck instance kept its
-// report failing for good (2026-10-21 deploy check). Audits run one at a time (max_concurrency).
-const RENDER_CONTAINER = "report-render";
+// Report pages and Markdown downloads render here in the Worker (report-render.js is plain
+// JavaScript). They used to wake the container on every view, cold-starting Playwright just to
+// format stored JSON (2026-11-15 cost check). Only audits need the container.
+const { normalizeReportForClient, reportHtml, reportMarkdown } = reportRender;
 // Audits share one container as well. A container per job kept running after its audit, so the
 // next audits hit the instance ceiling and failed (2026-10-21 launch smoke). The queue runs one
 // audit at a time, so one container is enough.
@@ -302,9 +322,7 @@ export default {
         const reportId = decodeURIComponent(markdownMatch[1]);
         const report = await getReport(env.REPORTS_DB, reportId);
         if (!report) return json(404, { error: "Report not found" });
-        const rendered = await invokeContainer(env, RENDER_CONTAINER, "/render-markdown", { report });
-        if (!rendered.ok) throw new Error(`audit_container_http_${rendered.status}`);
-        return withSecurityHeaders(new Response(await rendered.text(), { status: 200, headers: {
+        return withSecurityHeaders(new Response(reportMarkdown(normalizeReportForClient(report)), { status: 200, headers: {
           "Content-Type": "text/markdown; charset=utf-8",
           "Content-Disposition": `attachment; filename="geocheck-${reportId.replace(/[^A-Za-z0-9_-]/g, "")}.md"`,
           "Cache-Control": "no-store"
@@ -314,7 +332,10 @@ export default {
       if (request.method === "GET" && pageMatch) {
         const report = await getReport(env.REPORTS_DB, decodeURIComponent(pageMatch[1]));
         if (!report) return withSecurityHeaders(new Response("<h1>Report not found</h1>", { status: 404, headers: { "Content-Type": "text/html; charset=utf-8" } }));
-        return withSecurityHeaders(await invokeContainer(env, RENDER_CONTAINER, "/render", { report }));
+        return withSecurityHeaders(new Response(reportHtml(normalizeReportForClient(report)), { status: 200, headers: {
+          "Content-Type": "text/html; charset=utf-8",
+          "Cache-Control": "no-store"
+        } }));
       }
       if (request.method === "POST" && url.pathname === "/api/leads") {
         const body = await readBody(request);

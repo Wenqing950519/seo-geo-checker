@@ -109,7 +109,9 @@ async function main() {
   assert.equal(homePage.includes(".nav-mobile-only"), true);
   assert.equal(homePage.includes("不是猜的"), false);
 
-  const serverSource = fs.readFileSync(path.resolve(__dirname, "../../services/api/server.js"), "utf8");
+  // Report rendering moved to apps/web/report/report-render.js on 2026-11-15; check both files.
+  const serverSource = fs.readFileSync(path.resolve(__dirname, "../../services/api/server.js"), "utf8")
+    + fs.readFileSync(path.resolve(__dirname, "../../apps/web/report/report-render.js"), "utf8");
   assert.equal(/SEO\/GEO 顧問|#services|服務方案/.test(serverSource), false);
   assert.equal(serverSource.includes("[專案內容](${SITE_ORIGIN}/#project)"), true);
   assert.equal(serverSource.includes("[研究與方法](${SITE_ORIGIN}/#method): 資料流程與限制"), true);

@@ -13,7 +13,7 @@
 </script>
 <script src="/analytics.js"></script>
 <title>GeoCheck by LS-Labs — 免費 AI 能見度快速檢測</title>
-<meta name="description" content="GeoCheck by LS-Labs：輸入網站網址，實際問 AI 三種題目，分開檢查提及、引用來源、資訊正確性與行動資訊，不合成總分；免費、不用註冊。">
+<meta name="description" content="GeoCheck by LS-Labs：輸入網站網址，實際問 AI 三種題目，分開檢查提及、引用來源、資訊正確性與行動資訊，四項都量到才給 AI 可見度總覽分；免費、不用註冊。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://geocheck.lslabs.tw/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=lslabs-20261023">
@@ -63,10 +63,10 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "這份檢測看哪四件事？為什麼不給總分？",
+          "name": "這份檢測看哪四件事？分數怎麼來？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "看四件事：提及（顧客沒說店名時，AI 有沒有主動講到你）、引用來源（回答列出的來源裡有沒有你的官網）、資訊正確性（AI 給的地址、電話和你的頁面一不一致），以及行動資訊（AI 有沒有給出電話、網址、地圖或訂位等下一步）。四件事反映不同的缺口，合成一個分數就看不出問題出在哪，所以分開判讀、不合成總分。沒拿到回答的項目標「未知」，未知不等於 0。網站被 Google 收錄，也不代表 AI 會主動把你列為答案。"
+            "text": "看四件事：提及（顧客沒說店名時，AI 有沒有主動講到你）、引用來源（回答列出的來源裡有沒有你的官網）、資訊正確性（AI 給的地址、電話和你的頁面一不一致），以及行動資訊（AI 有沒有給出電話、網址、地圖或訂位等下一步）。四件事反映不同的缺口，所以報告先分開判讀；四項都拿到回答時，首屏另給一個 0–100 的 AI 可見度總覽分，方便一眼看出整體強弱，四項都量到才給分，配分寫在方法說明。沒拿到回答的項目標「未知」，未知不等於 0。網站被 Google 收錄，也不代表 AI 會主動把你列為答案。"
           }
         },
         {
@@ -1363,7 +1363,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="modules" class="semrush-section">
   <div class="wrap">
     <h2 class="semrush-title">量測指標</h2>
-    <p class="semrush-subtitle">每次檢測問 AI 三種題目共 4 題（推薦 2、事實 1、行動 1），四項結果分開判讀，不合成總分；網站條件另外列出，不計分。結果是一次快照，換題目、順序或時間都可能不同。</p>
+    <p class="semrush-subtitle">每次檢測問 AI 三種題目共 4 題（推薦 2、事實 1、行動 1），四項結果分開判讀，四項都量到才給 0–100 總覽分；網站條件另外列出，不計分。結果是一次快照，換題目、順序或時間都可能不同。</p>
     <p class="semrush-note" style="margin-top:8px;font-size:.82rem;color:var(--muted)">下方圖卡為<strong>介面示意，非即時資料</strong>；實際結果只會出現在你自己的檢測報告中，並附上每一題的原始回答與來源。</p>
 
     <div class="measured-grid">
@@ -1598,7 +1598,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="report" style="padding: 84px 24px; background: #FAFDFE; border-top: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0;">
   <div class="wrap">
     <h2 class="reveal">報告摘要</h2>
-    <p class="sub reveal">報告分開列出四項判讀，附上每一題的原始回答與來源，並把 AI 給的電話地址和你的頁面並排核對；不合成總分。下方為<strong>範例</strong>，店家與資料皆為虛構。</p>
+    <p class="sub reveal">報告分開列出四項判讀，附上每一題的原始回答與來源，並把 AI 給的電話地址和你的頁面並排核對；四項都量到才給總覽分。下方為<strong>範例</strong>，店家與資料皆為虛構。</p>
 
     <div class="report-preview-box reveal delay-1">
       <!-- 2-Column Split: Left sample site | Right MCAC report sheet (mirrors apps/web/report/mcac-report-html.js) -->
@@ -1623,7 +1623,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
               <span class="mcac-sheet__title">AI 能見度檢測單<span class="sample-flag">範例</span></span>
               <span class="mcac-sheet__meta">example-bistro.tw · MCAC v0.2.0</span>
             </div>
-            <p class="mcac-sheet__note">四項分開判讀，不合成總分。共問 4 題：推薦題 2、事實題 1、行動題 1。</p>
+            <p class="mcac-sheet__note">四項分開判讀，四項都量到才給分。共問 4 題：推薦題 2、事實題 1、行動題 1。</p>
             <table class="mcac-rows">
               <thead><tr><th scope="col">項目</th><th scope="col">結果</th><th scope="col">判讀</th></tr></thead>
               <tbody>
@@ -1654,7 +1654,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section id="method" class="alt">
   <div class="wrap">
     <h2 class="reveal">計算方法</h2>
-    <p class="sub reveal">這份檢測怎麼判讀？方法是 MCAC 0.2.0：每次問 AI 三種題目共 4 題，四項結果分開判讀，不合成總分。題目依你的網站內容規劃，每次檢測只問一個 AI 搜尋。</p>
+    <p class="sub reveal">這份檢測怎麼判讀？方法是 MCAC 0.2.0：每次問 AI 三種題目共 4 題，四項結果分開判讀，四項都量到才給分。題目依你的網站內容規劃，每次檢測只問一個 AI 搜尋。</p>
 
     <!-- Two pillars: the question set and the four separate results -->
     <div class="method-dual-grid reveal delay-1">
@@ -1684,7 +1684,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <div>
           <div class="pillar-header-meta">
             <span class="pillar-signal-label">四項分開判讀</span>
-            <span class="pillar-weight-badge">不合成總分</span>
+            <span class="pillar-weight-badge">四項都量到才給分</span>
           </div>
           <h3 class="pillar-headline">提及、引用來源、資訊正確性、行動資訊</h3>
           <p class="pillar-copy">
@@ -1720,8 +1720,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <p class="sub reveal">先搞懂幾件事，再動手改網站。用清晰白話解析生成式搜尋的底層邏輯，點擊即可展開閱讀。</p>
     <div class="faq reveal delay-1">
       <details>
-        <summary>這份檢測看哪四件事？為什麼不給總分？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="faq-body"><p>看四件事：提及（顧客沒說店名時，AI 有沒有主動講到你）、引用來源（回答列出的來源裡有沒有你的官網）、資訊正確性（AI 給的地址、電話和你的頁面一不一致），以及行動資訊（AI 有沒有給出電話、網址、地圖或訂位等下一步）。四件事反映不同的缺口，合成一個分數就看不出問題出在哪，所以分開判讀、不合成總分。</p><p>沒拿到回答的項目標「未知」，未知不等於 0。網站被 Google 收錄，也不代表 AI 會主動把你列為答案。</p></div>
+        <summary>這份檢測看哪四件事？分數怎麼來？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-body"><p>看四件事：提及（顧客沒說店名時，AI 有沒有主動講到你）、引用來源（回答列出的來源裡有沒有你的官網）、資訊正確性（AI 給的地址、電話和你的頁面一不一致），以及行動資訊（AI 有沒有給出電話、網址、地圖或訂位等下一步）。四件事反映不同的缺口，所以報告先分開判讀；四項都拿到回答時，首屏另給一個 0–100 的 AI 可見度總覽分，方便一眼看出整體強弱，四項都量到才給分，配分寫在方法說明。</p><p>沒拿到回答的項目標「未知」，未知不等於 0。網站被 Google 收錄，也不代表 AI 會主動把你列為答案。</p></div>
       </details>
       <details>
         <summary>「和你的頁面不一致」和「無法核對」是什麼意思？<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>

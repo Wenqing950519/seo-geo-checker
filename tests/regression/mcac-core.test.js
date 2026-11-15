@@ -10,6 +10,8 @@ const {
   parseFactAnswer,
   judgeFact,
   parseActions,
+  extractOptionList,
+  computeMcacScore,
   evaluateMcac
 } = require("../../packages/geo-core/mcac/index.js");
 
@@ -181,6 +183,18 @@ const truth = { phone: { value: "02-2700-1234", source: "json_ld" }, address: { 
   assert.equal(result.conversion.flag, "yes");
   assert.equal(result.conversion.official_entry, false);
   assert.deepEqual(result.conversion.entries, ["phone", "map"]);
+  assert.ok(result.mention.peers.includes("林東芳牛肉麵"));
+  assert.ok(result.mention.peers.includes("富宏牛肉麵"));
+  assert.ok(!result.mention.peers.some((p) => p.includes("範例牛肉麵")), "self brand is excluded from competitor peers");
+  assert.equal(result.mention.options_by_probe[0].find((o) => o.name === "範例牛肉麵")?.isSelf, true);
+  assert.equal(result.score.value, 60);
+  assert.equal(result.score.status, "measured");
+  assert.deepEqual(result.score.breakdown, {
+    mention: { status: "measured", points: 21, max: 35 },
+    citation: { status: "measured", points: 14, max: 25 },
+    accuracy: { status: "measured", points: 10, max: 20 },
+    conversion: { status: "measured", points: 15, max: 20 }
+  });
 }
 {
   const result = evaluateMcac({
@@ -201,6 +215,12 @@ const truth = { phone: { value: "02-2700-1234", source: "json_ld" }, address: { 
   assert.equal(result.conversion.flag, "unknown", "a failed action question is unknown");
   assert.equal(result.citation.n, 1, "only answered questions count toward citations");
   assert.equal(result.total, null);
+  // A score needs all four results (2026-11-15 decision): blending only the measured ones put a
+  // report whose mention was unknown at 75 "具備基礎能見度". Missing results mean no score.
+  assert.equal(result.score.status, "partial");
+  assert.equal(result.score.value, null);
+  assert.equal(result.score.label, `4 項中 ${result.score.valid_dimensions} 項可判讀`);
+  assert.ok(result.score.valid_dimensions < 4);
 }
 // A rank counts the options themselves (2026-10-20 smoke): reasons and sources nested under
 // each option are not options, so a shop listed fourth is fourth, and one listed sixth is not lost.
@@ -239,6 +259,58 @@ const truth = { phone: { value: "02-2700-1234", source: "json_ld" }, address: { 
   assert.equal(result.accuracy.flag, "not_provided");
   assert.equal(result.conversion.flag, "no");
   assert.equal(result.citation.flag, "no");
+}
+
+{
+  // computeMcacScore edge cases: all-unknown returns null, perfect score reaches 100.
+  const unknownScore = computeMcacScore({
+    mention: { flag: "unknown", hits: null, n: 0, ranks: [] },
+    citation: { flag: "unknown", official_probes: 0, n: 0 },
+    accuracy: { flag: "unknown", fields: { phone: "not_judged", address: "not_judged", hours: "not_judged" } },
+    conversion: { flag: "unknown", official_entry: false, entries: [] }
+  });
+  assert.equal(unknownScore.value, null);
+  assert.equal(unknownScore.status, "unknown");
+  assert.equal(unknownScore.label, "尚無可判讀資料");
+
+  const maxScore = computeMcacScore({
+    mention: { flag: "yes", hits: 2, n: 2, ranks: [1, 1] },
+    citation: { flag: "yes", official_probes: 4, n: 4 },
+    accuracy: { flag: "correct", fields: { phone: "correct", address: "correct", hours: "correct" } },
+    conversion: { flag: "yes", official_entry: true, entries: ["official", "phone"] }
+  });
+  assert.equal(maxScore.value, 100);
+  assert.equal(maxScore.status, "measured");
+  assert.equal(maxScore.label, "能見度優異");
+  assert.deepEqual(maxScore.breakdown, {
+    mention: { status: "measured", points: 35, max: 35 },
+    citation: { status: "measured", points: 25, max: 25 },
+    accuracy: { status: "measured", points: 20, max: 20 },
+    conversion: { status: "measured", points: 20, max: 20 }
+  });
+
+  // extractOptionList handles numbered headings, tables, and bullets.
+  const numberedOpts = extractOptionList(
+    "### 1. **林東芳牛肉麵**：老店\n### 2. 範例牛肉麵 — 紅燒湯頭",
+    brandTerms
+  );
+  assert.deepEqual(numberedOpts.map((o) => [o.rank, o.name, o.isSelf]), [
+    [1, "林東芳牛肉麵", false],
+    [2, "範例牛肉麵", true]
+  ]);
+  const tableOpts = extractOptionList(
+    "| 店家 | 特色 |\n| --- | --- |\n| 富宏牛肉麵 | 24小時 |",
+    brandTerms
+  );
+  assert.deepEqual(tableOpts.map((o) => o.name), ["富宏牛肉麵"]);
+  const bulletOpts = extractOptionList(
+    "- **建宏牛肉麵**：平價\n- [範例牛肉麵](https://example-noodle.tw) | 官網",
+    brandTerms
+  );
+  assert.deepEqual(bulletOpts.map((o) => [o.name, o.isSelf]), [
+    ["建宏牛肉麵", false],
+    ["範例牛肉麵", true]
+  ]);
 }
 
 console.log("MCAC core tests passed");

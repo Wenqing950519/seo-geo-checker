@@ -268,6 +268,8 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.match(report.pipelineVersion, /perplexity/);
   assert.ok(!JSON.stringify(report).includes("ai_trust"), "an MCAC report carries no AI Trust Index fields");
   assert.ok(Array.isArray(report.siteChecks.issues), "site checks stay, unscored");
+  assert.ok(Array.isArray(report.siteChecks.checks) && report.siteChecks.checks.length > 0, "site checks expose deterministic check rows");
+  assert.equal(typeof report.mcac.score?.value, "number", "MCAC evaluation carries 0-100 visibility score");
 
   assert.equal(resolveAuditMethod("mcac"), "mcac");
   assert.equal(resolveAuditMethod(""), "classic");
@@ -275,13 +277,17 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.throws(() => resolveAuditMethod("both"), /GEOCHECK_METHOD/);
 
   // ---------------------------------------------------------------------------
-  // 4. Report page: four rows read separately, raw answers escaped
+  // 4. Report page: AI visibility score, four rows, green/gray site checklist, export
   // ---------------------------------------------------------------------------
   report.mcac.probes[0].answer = '<script>alert("x")</script> 範例牛肉麵';
   const html = mcacReportHtml(report);
   for (const label of ["提及", "引用來源", "資訊正確性", "行動資訊"]) assert.match(html, new RegExp(label), `the report shows ${label}`);
-  assert.match(html, /不合成總分/);
-  assert.doesNotMatch(html, /AI 信任值|65%|35%/, "the MCAC report never shows the old blended score");
+  assert.match(html, /AI 可見度/);
+  assert.match(html, /✓ 通過/);
+  assert.match(html, /下載 Markdown/);
+  assert.match(html, /下載 PDF/);
+  assert.match(html, /window\.print\(\)/);
+  assert.doesNotMatch(html, /AI 信任值|65%|35%|曝光漏斗/, "the MCAC report never shows the old blended score or internal weights");
   assert.doesNotMatch(html, /<script>alert/, "AI answers are escaped");
   assert.match(html, /&lt;script&gt;/);
   const servedHtml = reportHtml(report);
@@ -289,10 +295,13 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   // The served page reports result_viewed to GA4, as the Classic report page did (PR #6 finding 5).
   assert.match(servedHtml, /googletagmanager\.com\/gtag\/js/);
   assert.match(servedHtml, /trackResultViewed/);
-  assert.match(reportMarkdown(report), /AI 能見度檢測單/);
+  const md = reportMarkdown(report);
+  assert.match(md, /AI 能見度檢測單/);
+  assert.match(md, new RegExp(`AI 可見度：${report.mcac.score.value} / 100`));
+  assert.doesNotMatch(md, /AI 信任值|65%|35%|25%|20%|曝光漏斗/);
   // The site does not say which models or engines run the check (2026-10-21 decision): not in
   // the page header, the footer's pipeline version or the Markdown download.
-  for (const [name, page] of [["page", servedHtml], ["download", reportMarkdown(report)]]) {
+  for (const [name, page] of [["page", servedHtml], ["download", md]]) {
     assert.doesNotMatch(page, /DeepSeek|Perplexity|Sonar|Gemini/i, `the report ${name} must not name the models behind the check`);
   }
   assert.match(servedHtml, /mcac-0.2.0-/, "the footer still carries the pipeline version");
@@ -304,11 +313,12 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   const unsafe = await runMcacAudit("https://example-noodle.tw/", { ...deps().options, reportId: "../x" });
   assert.match(unsafe.id, /^real_lite_[0-9a-f-]{36}$/, "only a real_lite_ id is accepted");
 
-  // Site checks are read from their Chinese fields (PR #6 finding 3).
+  // Site checks are read from their Chinese fields (PR #6 finding 3) and show gray unpassed status.
   report.siteChecks.issues = [{ severity: "high", check: "JavaScript rendering", detail_zh: "首頁大部分文字要等程式跑完才會出現。", impact_zh: "有些 AI 只會讀到空白。" }];
   const checksHtml = mcacReportHtml(report);
   assert.match(checksHtml, /首頁大部分文字要等程式跑完才會出現。/);
   assert.match(checksHtml, /有些 AI 只會讀到空白。/);
+  assert.match(checksHtml, /— 未通過|— 待補強/);
 
   // A value that is not on the owner's page is a mismatch, not an error: the page may be out
   // of date, or another platform (Google Maps) may list something else (2026-10-20 decision).
@@ -324,6 +334,98 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.match(differingHtml, /統一/, "a mismatch asks the owner to make every platform say the same");
   assert.doesNotMatch(differingHtml, /有錯誤|>錯誤</, "the product cannot tell which value is wrong, so it never says wrong");
   assert.match(mcacReportMarkdown(differingReport), /和你的頁面不一致/);
+
+  // New consultant-style first screen: 30-second answers, dynamic conclusion, 1-3 genuine priorities, no dominant 0-100 ring.
+  for (const question of ["AI 有沒有提到你？", "AI 有沒有引用你的網站？", "店家資訊有沒有一致？", "顧客能不能找到聯絡入口？"]) {
+    assert.ok(html.includes(question), `the first screen asks: ${question}`);
+  }
+  assert.ok(html.includes("範例牛肉麵") && html.includes("#method-note"));
+  assert.ok(html.includes("#detail-mcac") && html.includes("#detail-probes") && html.includes("#detail-checks"));
+  assert.match(html, /class="gauge-wrap"/, "0-100 visibility ring gauge container is present on the first screen");
+  assert.match(html, /<svg[^>]*viewBox="0 0 116 116"/, "116x116 circular visibility score ring SVG renders upfront");
+  assert.match(differingHtml, /電話資訊有差異/, "one-sentence conclusion states phone discrepancy when phone mismatches");
+  assert.match(mcacReportHtml({ ...report, isDemo: true }), /示範資料/);
+  const healthyHtml = mcacReportHtml({
+    ...report,
+    mcac: {
+      ...report.mcac,
+      mention: { flag: "yes", hits: 2, n: 2, ranks: [1, 2], options_by_probe: [] },
+      citation: { flag: "yes", official_probes: 4, n: 4, by_type: { official: 4 }, official_urls: ["https://example-noodle.tw/"] },
+      accuracy: { flag: "correct", fields: { phone: "correct", address: "correct", hours: "not_judged" }, claimed: { phone: ["02-2700-1234"], address: ["台北市大安區仁愛路4段27巷3號"] } },
+      conversion: { flag: "yes", official_entry: true, entries: ["website", "phone"], actions: [{ type: "website", target: "https://example-noodle.tw/", owner: "品牌自有", official: true }] }
+    }
+  });
+  assert.doesNotMatch(healthyHtml, /<li class="hero-action-item/, "no fabricated priority actions when no measured defect exists");
+  const allUnknownHtml = mcacReportHtml({
+    ...report,
+    limited: true,
+    mcac: {
+      method: "mcac",
+      method_version: "0.2.0",
+      probes: [],
+      mention: { flag: "unknown", hits: null, n: 0, ranks: [] },
+      citation: { flag: "unknown", official_probes: null, n: 0, by_type: {}, official_urls: [] },
+      accuracy: { flag: "unknown", fields: { phone: "unknown", address: "unknown", hours: "not_judged" }, claimed: null },
+      conversion: { flag: "unknown", entries: [], official_entry: null, actions: [] }
+    }
+  });
+  assert.doesNotMatch(allUnknownHtml, /<li class="hero-action-item/, "no fabricated priority actions when data is unknown");
+  assert.doesNotMatch(allUnknownHtml, /基本聯絡資訊與頁面一致/, "unknown results must never be described as consistent");
+
+  // 4d. Lightweight Design System contract: LS-Labs semantic palette tokens, 16px body scale,
+  //     light calm report canvas below dark header, and zero decorative bars/glows/nested inset boxes.
+  assert.match(html, /href="\/assets\/tokens\.css"/, "report links canonical LS-Labs tokens stylesheet");
+  assert.match(html, /--ls-accent-on-light:#1D4ED8/);
+  assert.match(html, /--ls-ink:#1E293B/);
+  assert.match(html, /--text-body:1rem/);
+  assert.match(html, /GeoCheck · AI 能見度檢測單/);
+  assert.doesNotMatch(html, /class="rank-scale"/, "decorative 1-10 slot gauge is removed");
+  assert.doesNotMatch(html, /class="stack-bar"/, "decorative multi-color citation bar is removed");
+  assert.doesNotMatch(html, /class="gc-sky"/, "ambient background glow layer is removed");
+  assert.doesNotMatch(html, /class="inset-box"/, "nested box-in-box containers are removed");
+
+  // 4e. Redesigned MCAC four modules & traceable raw evidence contracts.
+  for (const heading of ["AI 有沒有提到你？", "AI 有沒有引用你的網站？", "AI 提供的店家資訊正確嗎？", "顧客能找到你的聯絡方式嗎？"]) {
+    assert.ok(html.includes(heading), `module heading present: ${heading}`);
+  }
+  assert.doesNotMatch(html, /class="peer-chip"/, "mention module removes competitor chip wall");
+  assert.doesNotMatch(html, /第 \d+ 名/, "mention module avoids calling single list order a fixed ranking");
+  assert.match(html, /第 \d+ 項/, "mention module labels listed position cleanly as item order");
+  assert.match(html, /出現官網引用的題目數（按題計算）/, "citation module shows question-level denominator");
+  assert.match(html, /AI 附上的來源網址紀錄（按筆數計算）/, "citation module separates URL record count");
+  assert.doesNotMatch(healthyHtml, /class="source-bar-track"/, "no source distribution bar when only 1 source category exists");
+  assert.match(differingHtml, /class="fact-row fact-row--mismatch"/, "accuracy module highlights only differing field");
+  assert.match(differingHtml, /資訊不一致／待核對/, "accuracy module uses neutral mismatch/pending status");
+  assert.match(html, /entry-badge--yes">已提供</);
+  assert.match(html, /entry-badge--no">未提供</);
+  assert.match(allUnknownHtml, /entry-badge--untested">未檢測</, "conversion module explicitly marks untested state");
+  const platformHtml = mcacReportHtml({
+    ...report,
+    mcac: {
+      ...report.mcac,
+      citation: { flag: "unknown", reason: "platform_root_input", official_probes: 0, n: 4, by_type: { social: 2 }, official_urls: [] }
+    }
+  });
+  assert.match(platformHtml, /entry-badge--na">不適用</, "conversion module marks N/A for shared platform domain");
+  assert.match(html, /id="probe-1"/);
+  assert.match(html, /href="#probe-1"/, "module links directly to corresponding raw probe evidence");
+  assert.match(html, /支持結論的關鍵證據/);
+  assert.match(html, /AI 原始回答/);
+  assert.match(html, /實際引用來源/);
+  const noSourceDiff = mcacReportHtml({
+    ...differingReport,
+    mcac: {
+      ...differingReport.mcac,
+      probes: differingReport.mcac.probes.map((p) => ({ ...p, sources: [] }))
+    }
+  });
+  assert.match(noSourceDiff, /本題 AI 未提供外部參考來源網址/);
+
+  // 4f. Typography and de-pilled semantic labels: no Google Fonts or 999px pill tokens.
+  assert.doesNotMatch(differingHtml, /fonts\.googleapis\.com/);
+  assert.doesNotMatch(differingHtml, /--font-(mono|display)/);
+  assert.doesNotMatch(differingHtml, /--radius-pill/);
+  assert.doesNotMatch(differingHtml, /999px/);
 
   // ---------------------------------------------------------------------------
   // 5. Deployment config: MCAC with one allowlisted engine, a cache key that changes
@@ -355,7 +457,9 @@ const { KNOWN_REDIRECTORS } = require("../../packages/crawler/citation-resolve.j
   assert.match(workerSource, /daily_limit_reached/);
   assert.match(workerSource, /rate_limited/);
   assert.ok(!workerSource.includes("`render-${"), "report pages never get a container per report");
-  assert.ok(workerSource.includes("RENDER_CONTAINER"), "report pages and downloads share one render container");
+  // Report pages and downloads render in the Worker and never wake the container (2026-11-15).
+  assert.ok(workerSource.includes("reportHtml(normalizeReportForClient(report))"), "report pages render in the Worker");
+  assert.ok(!workerSource.includes("RENDER_CONTAINER"), "report pages and downloads never wake the audit container");
   // Audits share one container too. A container per job kept running after its audit, so the
   // next audits hit the instance ceiling and failed (2026-10-21 launch smoke).
   assert.ok(workerSource.includes("AUDIT_CONTAINER"), "audits share one audit container");

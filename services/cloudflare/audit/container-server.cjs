@@ -72,3 +72,14 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => console.log(`audit fallback container listening on ${PORT}`));
+
+// Node runs as PID 1 in the container, and Linux PID 1 ignores SIGTERM without a handler. The
+// Containers library stops an idle instance with SIGTERM, so without this the instance never
+// slept and billed around the clock (2026-11-15 billing check).
+for (const signal of ["SIGTERM", "SIGINT"]) {
+  process.once(signal, () => {
+    console.log(`audit fallback container received ${signal}, exiting`);
+    server.close(() => process.exit(0));
+    setTimeout(() => process.exit(0), 3000).unref();
+  });
+}
