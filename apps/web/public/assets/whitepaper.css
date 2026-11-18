@@ -126,10 +126,6 @@ code { font: .85em/1.5 var(--mono); color: #264264; overflow-wrap: anywhere; }
 .method-detail { border-block: 1px solid #b9c7d8; padding: 0 16px; margin-block: 22px; background: #f1f5f9; }
 .method-detail summary { font-weight: 650; font-size: .93em; color: #214b84; padding: 13px 0; cursor: pointer; }
 .method-detail[open] summary { margin-bottom: 8px; }
-.math-box { border-left: 3px solid #5474a0; padding: 14px 18px; background: #edf2f7; margin-block: 18px; }
-.math-box p { margin: 0; }
-.svg-frame { overflow-x: auto; margin: 22px 0 0; }
-.svg-frame svg { display: block; width: 100%; min-width: 560px; height: auto; }
 .document-footer { background: var(--night); }
 .document-footer > div { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 24px; }
 .document-footer a { text-decoration: none; color: #c3d0e0; font-size: .88rem; padding: 6px 0; }
@@ -181,9 +177,7 @@ code { font: .85em/1.5 var(--mono); color: #264264; overflow-wrap: anywhere; }
   .document-body h2:first-child { margin-top: 15pt; }
   .document-body h3 { margin-top: 14pt; font-size: 14pt; }
   h1, h2, h3, summary { break-after: avoid; }
-  tr, figure, .svg-frame { break-inside: avoid; }
+  tr, figure { break-inside: avoid; }
   .sharp-table { margin: 12pt 0; }
   .sharp-table th, .sharp-table td { padding: 6pt; }
-  .svg-frame { overflow: visible; }
-  .svg-frame svg { min-width: 0; max-height: 16cm; }
 }

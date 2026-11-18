@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const publicDir = path.resolve(__dirname,'../apps/web/public');
-test('the historical whitepaper has truthful, complete metadata',()=>{
+test('the public whitepaper has truthful, complete metadata',()=>{
   for(const name of ['whitepaper']) {
     const html = fs.readFileSync(path.join(publicDir,`${name}.html`),'utf8');
     assert.ok(html.includes(`<link rel="canonical" href="https://geocheck.lslabs.tw/${name}"`));
@@ -37,17 +37,15 @@ test('the retired demo prototype is gone from the site, the sitemap and the home
   assert.ok(!sitemap.includes('https://geocheck.lslabs.tw/demo<'), 'the retired demo must leave the sitemap');
 });
 
-test('the whitepaper leads with MCAC and keeps the Classic index as a record',()=>{
+test('the whitepaper presents the current MCAC method throughout',()=>{
   const html=fs.readFileSync(path.join(publicDir,'whitepaper.html'),'utf8');
   assert.ok(html.includes('https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/'), 'the method must link the retrieval report');
   assert.match(html,/MCAC 0\.2\.0/);
   for (const phrase of ['推薦題','事實題','行動題','四項分開判讀','四項都量到才給分','和你的頁面不一致','無法核對']) {
     assert.ok(html.includes(phrase), `the whitepaper must explain MCAC: ${phrase}`);
   }
-  const classic=html.match(/<h2 id="sec-classic">([^<]+)<\/h2>([\s\S]*?)(?=<h2 |<\/article>)/);
-  assert.ok(classic, 'the AI Trust Index chapter stays as a Classic record');
-  assert.ok(classic[1].includes('舊版方法（Classic，已退出公開快檢）'), `the Classic chapter is titled as retired: ${classic[1]}`);
-  assert.match(classic[2], /0\.65/, 'the record keeps the 65/35 formula');
-  const before=html.slice(0, html.indexOf('<h2 id="sec-classic">'));
-  assert.doesNotMatch(before.replace(/<head>[\s\S]*?<\/head>/,''), /AI 信任值 =|65% 可見答案採用率/, 'the 65/35 formula appears only in the Classic record');
+  assert.doesNotMatch(html, /sec-classic|AI Trust Index|AI 信任值|可見答案採用率|Classic/i);
+  for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
+    assert.ok(html.includes(`id="${id}"`), `missing whitepaper anchor: ${id}`);
+  }
 });
