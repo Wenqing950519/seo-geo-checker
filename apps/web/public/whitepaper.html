@@ -27,645 +27,45 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=lslabs-20261023">
 <link rel="icon" type="image/png" href="/favicon.png?v=lslabs-20261023">
 <link rel="apple-touch-icon" href="/favicon.png?v=lslabs-20261023">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<!-- KaTeX for Math rendering -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
-
 <link rel="stylesheet" href="/assets/tokens.css">
-<style>
-:root {
-  /* Aliases into /assets/tokens.css. */
-  --navy: var(--ls-navy);
-  --navy-dark: var(--ls-navy-deep);
-  --navy-light: #164E8C;
-  --accent: var(--ls-accent-surface);
-  --accent-on-light: var(--ls-accent-on-light);
-  --bg-page: var(--ls-surface-alt);
-  --bg-card: var(--ls-surface);
-  --text-main: #0F172A;
-  --text-muted: var(--ls-ink-muted);
-  --border-line: var(--ls-line);
-  --border-dark: #CBD5E1;
-  --number: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-  --sans: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  
-  /* Ahrefs-inspired sharp geometry */
-  --sharp-radius: 2px;
-  --card-radius: 4px;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-body {
-  font-family: var(--sans);
-  color: var(--text-main);
-  background: var(--bg-page);
-  line-height: 1.8;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Sharp Technical Header */
-header.ahrefs-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #FFFFFF;
-  border-bottom: 1px solid var(--border-line);
-  padding: 12px 24px;
-}
-.nav-wrap {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.brand-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  font-weight: 900;
-  font-size: 1.2rem;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-}
-.brand-subtitle {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  border-left: 1px solid var(--border-line);
-  padding-left: 10px;
-  margin-left: 6px;
-  font-weight: 600;
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-.nav-link {
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  transition: color 0.15s;
-}
-.nav-link:hover { color: var(--navy); }
-.btn-sharp {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--navy);
-  text-decoration: none;
-  border: 1px solid var(--border-dark);
-  background: #FFFFFF;
-  padding: 5px 12px;
-  border-radius: var(--sharp-radius);
-  transition: all 0.15s;
-}
-.btn-sharp:hover {
-  background: var(--navy);
-  color: #FFFFFF;
-  border-color: var(--navy);
-}
-
-/* Main Layout */
-.page-layout {
-  max-width: 1240px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 36px;
-  padding: 36px 24px 100px;
-}
-@media (max-width: 960px) {
-  /* minmax(0, …): a formula that cannot wrap scrolls in its box, not the page */
-  .page-layout { grid-template-columns: minmax(0, 1fr); }
-  .sidebar-toc { display: none; }
-}
-
-/* Sticky TOC Sidebar (Ahrefs Style) */
-.sidebar-toc {
-  position: sticky;
-  top: 86px;
-  height: fit-content;
-  max-height: calc(100vh - 110px);
-  overflow-y: auto;
-  background: #FFFFFF;
-  border: 1px solid var(--border-line);
-  border-radius: var(--card-radius);
-  padding: 20px;
-}
-.toc-heading {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--navy);
-}
-.toc-nav { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.toc-nav a {
-  text-decoration: none;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  line-height: 1.5;
-  padding: 5px 8px;
-  border-left: 2px solid transparent;
-  display: block;
-  transition: all 0.15s;
-}
-.toc-nav a:hover {
-  color: var(--navy);
-  border-left-color: var(--accent);
-  background: #F8FAFC;
-}
-
-/* Document Container */
-article.document-body {
-  background: #FFFFFF;
-  border: 1px solid var(--border-line);
-  border-radius: var(--card-radius);
-  padding: 52px 60px;
-}
-@media (max-width: 680px) {
-  article.document-body { padding: 28px 18px; }
-}
-
-/* Meta Bar */
-.meta-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 22px;
-}
-.meta-tag {
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  font-weight: 700;
-  background: #F1F5F9;
-  border: 1px solid var(--border-line);
-  color: var(--navy);
-  padding: 2px 8px;
-  border-radius: var(--sharp-radius);
-}
-.meta-tag.accent {
-  background: #E6F8F6;
-  border-color: rgba(59, 130, 246, 0.4);
-  color: var(--accent-on-light);
-}
-
-/* Title & Subtitle */
-h1.doc-title {
-  font-size: clamp(2rem, 3.4vw, 2.6rem);
-  font-weight: 900;
-  color: var(--navy);
-  line-height: 1.25;
-  letter-spacing: -0.03em;
-  margin-bottom: 14px;
-}
-p.doc-lead {
-  font-size: 1.15rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  margin-bottom: 28px;
-}
-
-/* Visual Banner Frame */
-.doc-hero-banner {
-  margin: 0 0 36px;
-  border: 1px solid var(--border-line);
-  border-radius: var(--card-radius);
-  overflow: hidden;
-  background: #060E1C;
-}
-.doc-hero-banner img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Refined Scientific Formula Panel */
-.formula-panel,
-.ahrefs-callout {
-  background: #F8FAFC;
-  border: 1px solid var(--border-line);
-  border-radius: 6px;
-  padding: 24px 28px;
-  margin: 28px 0 36px;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
-}
-.callout-header {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--navy);
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.callout-formula {
-  font-size: 1.12rem;
-  font-weight: 800;
-  color: var(--navy-dark);
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-.callout-desc {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  margin: 0;
-  line-height: 1.7;
-}
-
-/* Formal Research Boundary & Governance Box (Dignified Academic Styling) */
-.disclaimer-box {
-  background: #FFFFFF;
-  border: 1px solid var(--border-line);
-  border-radius: 6px;
-  padding: 24px 28px;
-  margin-bottom: 40px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
-}
-.disclaimer-box .disclaimer-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #F1F5F9;
-}
-.disclaimer-box .disclaimer-head svg {
-  color: var(--navy);
-  flex-shrink: 0;
-}
-.disclaimer-box h4 {
-  font-size: 1.02rem;
-  font-weight: 800;
-  color: var(--navy);
-  margin: 0;
-  letter-spacing: -0.01em;
-}
-.disclaimer-box .disclaimer-sub {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-left: auto;
-}
-.disclaimer-box ol {
-  padding-left: 20px;
-  color: #334155;
-  font-size: 0.9rem;
-  line-height: 1.75;
-  margin: 0;
-}
-.disclaimer-box li {
-  margin-bottom: 10px;
-}
-.disclaimer-box li:last-child {
-  margin-bottom: 0;
-}
-.disclaimer-box strong {
-  color: var(--navy-dark);
-}
-
-/* Sharp Typography */
-h2 {
-  font-size: 1.55rem;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-  margin: 48px 0 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-line);
-}
-h3 {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--navy);
-  margin: 30px 0 12px;
-}
-p {
-  font-size: 0.98rem;
-  color: var(--text-main);
-  margin-bottom: 18px;
-  line-height: 1.8;
-}
-ul, ol {
-  padding-left: 22px;
-  margin-bottom: 22px;
-}
-li { margin-bottom: 6px; font-size: 0.96rem; }
-
-/* Architecture Flowchart Diagram (Clean System Architecture Blueprint on Light Surface) */
-.arch-flow-diagram {
-  margin: 32px 0 44px;
-  background: #FFFFFF;
-  border: 1px solid var(--border-line);
-  border-radius: 8px;
-  padding: 36px 28px;
-  box-shadow: 0 4px 20px rgba(11, 59, 111, 0.04);
-}
-.flow-root-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.flow-node-root {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #FFFFFF;
-  border: 1.5px solid var(--navy);
-  color: var(--navy);
-  font-size: 0.95rem;
-  font-weight: 800;
-  padding: 10px 22px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(11, 59, 111, 0.05);
-  letter-spacing: 0.02em;
-}
-.flow-node-root svg {
-  color: var(--accent);
-}
-.flow-connector-fork,
-.flow-connector-merge {
-  display: block;
-  max-width: 600px;
-  width: 100%;
-}
-.flow-dual-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  max-width: 820px;
-  margin: 0 auto;
-}
-@media (max-width: 720px) {
-  .flow-dual-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .flow-connector-fork,
-  .flow-connector-merge {
-    display: none;
-  }
-}
-.flow-card {
-  background: #F8FAFC;
-  border: 1px solid var(--border-line);
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.flow-card:hover {
-  border-color: #CBD5E1;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-}
-.flow-card-head {
-  padding: 16px 20px;
-  background: #FFFFFF;
-  border-bottom: 1px solid var(--border-line);
-}
-.flow-card-head h4 {
-  margin: 0;
-  font-size: 1.02rem;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: -0.01em;
-}
-.flow-card-badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-family: var(--mono);
-  font-weight: 700;
-  color: var(--navy);
-  background: #EEF4FA;
-  padding: 3px 8px;
-  border-radius: 3px;
-  margin-bottom: 6px;
-  letter-spacing: 0.04em;
-}
-.flow-card.pillar-2 .flow-card-badge {
-  color: var(--accent-on-light);
-  background: #E6F8F6;
-}
-.flow-card-badge.aux {
-  color: #475569;
-  background: #EDF2F7;
-}
-.flow-card-sub {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  margin-top: 4px;
-}
-.flow-card-body {
-  padding: 16px 20px;
-  list-style: none;
-  margin: 0;
-}
-.flow-card-body li {
-  font-size: 0.88rem;
-  color: #334155;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.flow-card-body li:last-child {
-  margin-bottom: 0;
-}
-.flow-card-body li::before {
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--navy-light);
-  flex-shrink: 0;
-}
-.flow-card.pillar-2 .flow-card-body li::before {
-  background: var(--accent-on-light);
-}
-.flow-merge-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.flow-bottom-grid {
-  max-width: 820px;
-  margin: 0 auto;
-}
-.flow-card.pillar-3 {
-  background: #FAFAFA;
-  border: 1px dashed var(--border-dark);
-}
-.flow-aux-notice {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #475569;
-  background: #EDF2F7;
-  padding: 3px 8px;
-  border-radius: 3px;
-}
-.flow-bottom-items {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 16px 20px;
-}
-@media (max-width: 600px) {
-  .flow-bottom-items {
-    grid-template-columns: 1fr;
-  }
-}
-.flow-sub-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.86rem;
-  color: #334155;
-}
-.flow-sub-item .bullet {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #94A3B8;
-  margin-top: 6px;
-  flex-shrink: 0;
-}
-.flow-sub-item strong {
-  display: block;
-  font-size: 0.88rem;
-  color: var(--navy);
-  margin-bottom: 2px;
-}
-.flow-sub-item p {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  line-height: 1.4;
-}
-
-/* Balanced Scientific Math Box */
-.math-box {
-  background: #F8FAFC;
-  border: 1px solid var(--border-line);
-  border-radius: 6px;
-  padding: 24px 28px;
-  margin: 24px 0;
-  text-align: center;
-  overflow-x: auto;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
-}
-
-/* Sharp SVG Frame */
-.svg-frame {
-  margin: 32px 0;
-  text-align: center;
-  background: #FFFFFF;
-  border: 1px solid var(--border-line);
-  border-radius: var(--sharp-radius);
-  padding: 24px 16px;
-  overflow-x: auto;
-}
-.svg-frame svg {
-  max-width: 100%;
-  height: auto;
-}
-
-.method-detail { margin: 1.25rem 0; }
-.method-detail summary { cursor: pointer; font-weight: 700; color: var(--navy); }
-.method-detail p { margin: .8rem 0; }
-
-/* Sharp Tables */
-table.sharp-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 24px 0 32px;
-  font-size: 0.88rem;
-  border: 1px solid var(--border-line);
-}
-table.sharp-table th {
-  background: #F1F5F9;
-  color: var(--navy);
-  font-family: var(--mono);
-  font-weight: 700;
-  padding: 10px 14px;
-  text-align: left;
-  border-bottom: 2px solid var(--border-line);
-  border-right: 1px solid var(--border-line);
-}
-table.sharp-table td {
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--border-line);
-  border-right: 1px solid var(--border-line);
-  vertical-align: top;
-}
-table.rules-table td:first-child { width: 26%; }
-/* Phones: each MCAC rule reads as one block instead of four squeezed columns. */
-@media (max-width: 600px) {
-  table.rules-table thead { display: none; }
-  table.rules-table, table.rules-table tbody, table.rules-table tr, table.rules-table td { display: block; width: 100%; }
-  table.rules-table tr { padding: 8px 0; border-bottom: 1px solid var(--border-line); }
-  table.rules-table td { padding: 4px 12px; border: 0; }
-  table.rules-table td:first-child { width: 100%; }
-  table.rules-table td[data-label]::before { content: attr(data-label) "："; font-weight: 700; color: var(--navy); }
-}
-
-/* ===== Accessibility & motion safety ===== */
-.skip-link{position:absolute;top:8px;left:8px;z-index:9999;padding:10px 18px;border-radius:999px;background:#1D4ED8;color:#FFFFFF;font-weight:700;text-decoration:none;transform:translateY(-160%)}
-.skip-link:focus-visible{transform:translateY(0);outline:2px solid #60A5FA;outline-offset:3px}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid #1D4ED8;outline-offset:3px;border-radius:4px}
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:1ms !important;animation-iteration-count:1 !important;transition-duration:120ms !important;scroll-behavior:auto !important}
-}
-</style>
+<link rel="stylesheet" href="/assets/whitepaper.css">
 </head>
-<body>
+<body id="top">
 <a class="skip-link" href="#main">跳到主要內容</a>
-
-<!-- Sharp Header -->
-<header class="ahrefs-nav">
-  <div class="nav-wrap">
-    <a class="brand-link" href="/">
-      <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
-        <rect width="48" height="48" rx="2" fill="#EFF6FF" />
-        <path d="M 38 15 A 18 18 0 1 0 42 25" stroke="#0B1F3B" stroke-width="4.2" stroke-linecap="round" />
-        <path d="M 16 25 L 22 31 L 38 15" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-        <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
-      </svg>
-      <span>LS-Labs GeoCheck</span>
-      <span class="brand-subtitle">方法白皮書</span>
-    </a>
-    <div class="nav-right">
-      <a class="nav-link" href="https://lslabs.tw/brand/">品牌規範 (BIS)</a>
-      <a class="btn-sharp" href="/">← 回到產品首頁</a>
-    </div>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="/"><img src="/assets/logo-full.svg" alt="LS-Labs" width="136" height="36"><span>GeoCheck</span></a>
+    <a class="back-link" href="/"><span aria-hidden="true">←</span> 回到產品首頁</a>
   </div>
 </header>
 
-<div class="page-layout">
+<main id="main">
+  <header class="cover">
+    <div class="cover-inner">
+      <div class="cover-intro">
+        <h1><span class="title-product">LS-Labs GeoCheck</span> 方法白皮書</h1>
+        <p class="doc-lead">假設客人問 AI 怎麼訂位，回答列出了你的店名，電話卻和官網上的不同。門市可以先確認哪一支電話還在用，再查有沒有哪個頁面仍留著舊號碼。GeoCheck 把這次問了什麼、AI 怎麼回答，以及官網寫了什麼放進同一份報告，讓你找得到這筆差異。</p>
+        <a class="example-link" href="#score-example">看 86 分與 100 分的範例 <span aria-hidden="true">↓</span></a>
+      </div>
+      <figure class="weights" aria-labelledby="weight-caption">
+        <figcaption id="weight-caption">MCAC 四項配分 <span>滿分 100 分</span></figcaption>
+        <dl class="weight-chart">
+          <div class="weight-mention"><dt>提及</dt><dd>35<small> 分</small></dd></div>
+          <div class="weight-citation"><dt>引用來源</dt><dd>25<small> 分</small></dd></div>
+          <div class="weight-accuracy"><dt>資訊正確性</dt><dd>20<small> 分</small></dd></div>
+          <div class="weight-action"><dt>行動資訊</dt><dd>20<small> 分</small></dd></div>
+        </dl>
+        <a class="weight-link" href="#mcac-score">查看計分方式 <span aria-hidden="true">↘</span></a>
+      </figure>
+      <p class="byline"><span>LS-Labs 編寫</span><span>MCAC 0.2.0</span><span>文件修訂 <time datetime="2026-11-18">2026 年 11 月 18 日</time></span></p>
+    </div>
+  </header>
 
-  <!-- TOC Sidebar (Ahrefs Style) -->
-  <aside class="sidebar-toc">
-    <div class="toc-heading">章節目錄</div>
-    <ul class="toc-nav">
+  <div class="reading-layout">
+    <nav class="contents" aria-label="章節目錄">
+      <details open>
+        <summary>章節目錄</summary>
+        <ul class="toc-nav">
       <li><a href="#sec-1">先看哪一筆資料</a></li>
       <li><a href="#sec-2">快檢怎麼問 AI</a></li>
       <li><a href="#sec-3">網站、店名與門市</a></li>
@@ -677,14 +77,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <li><a href="#sec-7">拿同一份回答重算</a></li>
       <li><a href="#sec-classic">舊版方法（Classic）</a></li>
     </ul>
-  </aside>
-
-  <article class="document-body" id="main" role="main">
-    <h1 class="doc-title">LS-Labs GeoCheck 方法白皮書</h1>
-    <p class="doc-lead">假設客人問 AI 怎麼訂位，回答列出了你的店名，電話卻和官網上的不同。門市可以先確認哪一支電話還在用，再查有沒有哪個頁面仍留著舊號碼。GeoCheck 把這次問了什麼、AI 怎麼回答，以及官網寫了什麼放進同一份報告，讓你找得到這筆差異。</p>
-    <p class="meta-strip"><span class="meta-tag">LS-Labs 編寫</span><span class="meta-tag">MCAC 0.2.0</span><span class="meta-tag">文件修訂 <time datetime="2026-11-18">2026 年 11 月 18 日</time></span></p>
-    <div class="doc-hero-banner"><img src="/assets/dashboard-banner.webp" alt=""></div>
-
+      </details>
+    </nav>
+    <article class="document-body" aria-label="方法正文">
     <h2 id="sec-1">先看哪一筆資料</h2>
     <p id="sec-disclaimer">拿到報告，先核對受測網址、店名、檢測日期，再看哪幾題取得了回答。GeoCheck 每次向同一個 AI 搜尋服務提問。想知道它怎麼介紹你的店，可以打開推薦題原文；要確認電話或訂位入口，直接看事實題與行動題。</p>
     <p>2026 年 9 月，LS-Labs 測了六家台北牛肉麵店。研究人員把六家店分成三組，每組問兩次，第二次把店名順序對調。六份回答都列出了排在第一家的電話與地址，排在第二家的資料都有缺漏。LS-Labs 因此把店家的基本資料留給單獨一題查證。這組觀測收在<a href="https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/">《AI 搜尋時代的檢索機制報告》</a>。</p>
@@ -767,7 +162,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     </div>
     <p>Classic 另用一題帶品牌名的查詢確認別名與網域，這題不列入計算。當有效推薦回答少於兩筆，顯示分數最高為 69。現行 MCAC 新增地址電話與行動入口的判讀，兩版分數衡量的項目和配分都不同。閱讀舊報告時，可用下圖查閱當時的兩項指標。</p>
 
-    <div class="svg-frame">
+    <div class="svg-frame" role="region" aria-label="Classic 方法四象限圖表" tabindex="0">
       <svg
         width="800"
         height="500"
@@ -887,11 +282,51 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </g>
       </svg>
     </div>
+    </article>
+  </div>
+</main>
+<footer class="document-footer">
+  <div><a href="/">回到產品首頁 <span aria-hidden="true">→</span></a><a href="#top">回到頁首 <span aria-hidden="true">↑</span></a></div>
+</footer>
+<script>
+  const contents = document.querySelector('.contents details');
+  const desktop = matchMedia('(min-width: 900px)');
+  function setContentsLayout() { contents.open = desktop.matches; }
+  setContentsLayout();
+  desktop.addEventListener('change', setContentsLayout);
+  const links = [...contents.querySelectorAll('a')];
+  contents.addEventListener('click', event => {
+    if (!desktop.matches && event.target.closest('a')) contents.open = false;
+  });
+  const headings = links.map(link => document.getElementById(link.hash.slice(1)));
+  let scheduled = false;
+  function highlightChapter() {
+    const threshold = Math.min(window.innerHeight / 4, 150);
+    let activeIndex = -1;
+    for (let i = 0; i < headings.length && headings[i].getBoundingClientRect().top <= threshold; i++) activeIndex = i;
+    links.forEach((link, index) => {
+      if (index === activeIndex) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    scheduled = false;
+  }
+  function queueHighlight() {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(highlightChapter);
+    }
+  }
+  addEventListener('scroll', queueHighlight, { passive: true });
+  addEventListener('resize', queueHighlight);
+  highlightChapter();
 
-
-  </article>
-
-</div>
-
+  const instructions = document.querySelector('.method-detail');
+  let instructionsWereOpen;
+  addEventListener('beforeprint', () => {
+    instructionsWereOpen = instructions.open;
+    instructions.open = true;
+  });
+  addEventListener('afterprint', () => { instructions.open = instructionsWereOpen; });
+</script>
 </body>
 </html>

@@ -102,8 +102,16 @@ for (const route of ["whitepaper"]) {
   assert.match(html, new RegExp(`<link rel="canonical" href="https://geocheck\\.lslabs\\.tw/${route}">`));
 }
 const whitepaper = fs.readFileSync(output("whitepaper.html"), "utf8");
-assert.match(whitepaper, /src="\/assets\/dashboard-banner\.webp"/, "Whitepaper must use the optimized dashboard banner");
-assert.ok(fs.statSync(output("assets", "dashboard-banner.webp")).size < 1_000_000, "Dashboard banner must stay below 1 MB");
+assert.ok(!whitepaper.includes("dashboard-banner.webp"), "The public whitepaper must show the scoring method on its cover");
+assert.ok(whitepaper.includes('href="/assets/whitepaper.css"') && fs.existsSync(output("assets", "whitepaper.css")),
+  "The whitepaper reading layout must ship with the public page");
+const weightFigure = whitepaper.match(/<figure\b[^>]*>[\s\S]*?<\/figure>/)?.[0] || "";
+const weightLabels = weightFigure.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+for (const [label, points] of [["提及", 35], ["引用來源", 25], ["資訊正確性", 20], ["行動資訊", 20]]) {
+  assert.ok(weightLabels.includes(`${label} ${points} 分`),
+    `The cover must give the text equivalent of the ${label} weight`);
+}
+assert.ok(weightFigure.includes('href="#mcac-score"'), "Readers must be able to go directly from the weights to the calculation");
 assert.match(
   fs.readFileSync(output("home.html"), "utf8"),
   /<!--email_off--><a href="mailto:me@lslabs\.tw">聯絡我們<\/a><!--\/email_off-->/,

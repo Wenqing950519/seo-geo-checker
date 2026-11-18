@@ -34,9 +34,18 @@ test('Product A/shared legal source remains reachable on its existing host', asy
 
 test('public research links reach their final pages directly', () => {
   const home = fs.readFileSync(new URL('home.html', publicDir), 'utf8');
-  const whitepaper = fs.readFileSync(new URL('whitepaper.html', publicDir), 'utf8');
   assert.doesNotMatch(home, /href="https:\/\/lslabs\.tw\/research\/"/);
   assert.match(home, /href="https:\/\/lslabs\.tw\/blog\/category\/research\/"/);
-  assert.doesNotMatch(whitepaper, /href="\/brand"/);
-  assert.match(whitepaper, /href="https:\/\/lslabs\.tw\/brand\/"/);
+});
+
+test('Classic pages keep the brand guide out of public navigation', () => {
+  for (const name of fs.readdirSync(publicDir).filter(name => name.endsWith('.html') && name !== 'brand.html')) {
+    const html = fs.readFileSync(new URL(name, publicDir), 'utf8');
+    assert.ok(!/href=["'](?:https?:\/\/(?:geocheck\.)?lslabs\.tw)?\/brand(?:\/|\.html)?(?:[?#][^"']*)?["']/i.test(html), name);
+  }
+});
+
+test('the directly served Classic brand guide opts out of indexing', () => {
+  const html = fs.readFileSync(new URL('brand.html', publicDir), 'utf8');
+  assert.ok(/<meta name="robots" content="[^"]*\bnoindex\b/i.test(html));
 });
