@@ -10,20 +10,20 @@
   gtag('js', new Date());
   gtag('config', 'G-CBTTKVLT82');
 </script>
-<title>LS-Labs GeoCheck — GEO 研究與方法論白皮書</title>
-<meta name="description" content="GeoCheck 公開快檢的 MCAC 0.2.0 方法：推薦、事實、行動三種題型，提及、引用來源、資訊正確性與行動資訊四項分開判讀，四項都量到才給 0–100 AI 可見度總覽分；並保留舊版 AI 信任值（Classic）的方法紀錄。">
+<title>LS-Labs GeoCheck 方法白皮書｜怎麼讀一份 AI 搜尋檢測報告</title>
+<meta name="description" content="從一間店的電話與訂位入口，讀懂 LS-Labs GeoCheck 的 MCAC 四項結果、實際題目與配分。用同一組回答，看少一題如何改變總分。">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://geocheck.lslabs.tw/whitepaper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LS-Labs GeoCheck — GEO 研究與方法論白皮書">
-<meta property="og:description" content="GeoCheck 公開快檢的 MCAC 0.2.0 方法：推薦、事實、行動三種題型，提及、引用來源、資訊正確性與行動資訊四項分開判讀，四項都量到才給 0–100 AI 可見度總覽分；並保留舊版 AI 信任值（Classic）的方法紀錄。">
+<meta property="og:title" content="LS-Labs GeoCheck 方法白皮書｜怎麼讀一份 AI 搜尋檢測報告">
+<meta property="og:description" content="從一間店的電話與訂位入口，讀懂 LS-Labs GeoCheck 的 MCAC 四項結果、實際題目與配分。用同一組回答，看少一題如何改變總分。">
 <meta property="og:url" content="https://geocheck.lslabs.tw/whitepaper">
 <meta property="og:image" content="https://geocheck.lslabs.tw/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LS-Labs GeoCheck — GEO 研究與方法論白皮書">
-<meta name="twitter:description" content="GeoCheck 公開快檢的 MCAC 0.2.0 方法：推薦、事實、行動三種題型，提及、引用來源、資訊正確性與行動資訊四項分開判讀，四項都量到才給 0–100 AI 可見度總覽分；並保留舊版 AI 信任值（Classic）的方法紀錄。">
+<meta name="twitter:title" content="LS-Labs GeoCheck 方法白皮書｜怎麼讀一份 AI 搜尋檢測報告">
+<meta name="twitter:description" content="從一間店的電話與訂位入口，讀懂 LS-Labs GeoCheck 的 MCAC 四項結果、實際題目與配分。用同一組回答，看少一題如何改變總分。">
 <meta name="twitter:image" content="https://geocheck.lslabs.tw/og-image.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"LS-Labs GeoCheck — GEO 研究與方法論白皮書","description":"GeoCheck 公開快檢的 MCAC 0.2.0 方法：推薦、事實、行動三種題型，提及、引用來源、資訊正確性與行動資訊四項分開判讀，四項都量到才給 0–100 AI 可見度總覽分；並保留舊版 AI 信任值（Classic）的方法紀錄。","url":"https://geocheck.lslabs.tw/whitepaper","mainEntityOfPage":"https://geocheck.lslabs.tw/whitepaper","inLanguage":"zh-Hant-TW","image":"https://geocheck.lslabs.tw/og-image.png","author":{"@type":"Person","@id":"https://lslabs.tw/#founder","name":"李奕辰","alternateName":"Eason Lee","url":"https://lslabs.tw/#about"},"publisher":{"@type":"Organization","@id":"https://lslabs.tw/#organization","name":"LS-Labs","url":"https://lslabs.tw","logo":"https://lslabs.tw/brand/logos/ls-labs/ls-labs-monogram.svg"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"LS-Labs GeoCheck 方法白皮書｜怎麼讀一份 AI 搜尋檢測報告","description":"從一間店的電話與訂位入口，讀懂 LS-Labs GeoCheck 的 MCAC 四項結果、實際題目與配分。用同一組回答，看少一題如何改變總分。","url":"https://geocheck.lslabs.tw/whitepaper","mainEntityOfPage":"https://geocheck.lslabs.tw/whitepaper","inLanguage":"zh-Hant-TW","image":"https://geocheck.lslabs.tw/og-image.png","author":{"@type":"Organization","@id":"https://lslabs.tw/#organization","name":"LS-Labs","url":"https://lslabs.tw/"},"publisher":{"@type":"Organization","@id":"https://lslabs.tw/#organization","name":"LS-Labs","url":"https://lslabs.tw","logo":"https://lslabs.tw/brand/logos/ls-labs/ls-labs-monogram.svg"},"dateModified":"2026-11-18"}</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=lslabs-20261023">
 <link rel="icon" type="image/png" href="/favicon.png?v=lslabs-20261023">
 <link rel="apple-touch-icon" href="/favicon.png?v=lslabs-20261023">
@@ -588,6 +588,10 @@ li { margin-bottom: 6px; font-size: 0.96rem; }
   height: auto;
 }
 
+.method-detail { margin: 1.25rem 0; }
+.method-detail summary { cursor: pointer; font-weight: 700; color: var(--navy); }
+.method-detail p { margin: .8rem 0; }
+
 /* Sharp Tables */
 table.sharp-table {
   width: 100%;
@@ -646,8 +650,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <path d="M 16 25 L 22 31 L 38 15" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
         <circle cx="38" cy="15" r="3.5" fill="#3B82F6" />
       </svg>
-      <span>GeoCheck</span>
-      <span class="brand-subtitle">研究方法論</span>
+      <span>LS-Labs GeoCheck</span>
+      <span class="brand-subtitle">方法白皮書</span>
     </a>
     <div class="nav-right">
       <a class="nav-link" href="https://lslabs.tw/brand/">品牌規範 (BIS)</a>
@@ -662,306 +666,106 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   <aside class="sidebar-toc">
     <div class="toc-heading">章節目錄</div>
     <ul class="toc-nav">
-      <li><a href="#sec-disclaimer">研究邊界與重要聲明</a></li>
-      <li><a href="#sec-1">1. 緒論：為什麼要分開量測</a></li>
-      <li><a href="#sec-2">2. 量測架構：四項分開判讀</a></li>
-      <li><a href="#sec-3">3. 單站檢測流程</a></li>
-      <li><a href="#sec-4">4. 判讀規則</a></li>
-      <li><a href="#sec-5">5. 網站條件（不計分）</a></li>
-      <li><a href="#sec-6">6. 研究批次流程</a></li>
-      <li><a href="#sec-7">7. 研究限制與治理規範</a></li>
-      <li><a href="#sec-classic">8. 舊版方法（Classic）</a></li>
+      <li><a href="#sec-1">先看哪一筆資料</a></li>
+      <li><a href="#sec-2">快檢怎麼問 AI</a></li>
+      <li><a href="#sec-3">網站、店名與門市</a></li>
+      <li><a href="#sec-4">四項判讀規則</a></li>
+      <li><a href="#mcac-score">總覽分怎麼算</a></li>
+      <li><a href="#score-example">86 分與 100 分的範例</a></li>
+      <li><a href="#sec-5">網站條件</a></li>
+      <li><a href="#sec-6">怎麼比較兩份報告</a></li>
+      <li><a href="#sec-7">拿同一份回答重算</a></li>
+      <li><a href="#sec-classic">舊版方法（Classic）</a></li>
     </ul>
   </aside>
 
-  <!-- Document Main Content -->
   <article class="document-body" id="main" role="main">
+    <h1 class="doc-title">LS-Labs GeoCheck 方法白皮書</h1>
+    <p class="doc-lead">假設客人問 AI 怎麼訂位，回答列出了你的店名，電話卻和官網上的不同。門市可以先確認哪一支電話還在用，再查有沒有哪個頁面仍留著舊號碼。GeoCheck 把這次問了什麼、AI 怎麼回答，以及官網寫了什麼放進同一份報告，讓你找得到這筆差異。</p>
+    <p class="meta-strip"><span class="meta-tag">LS-Labs 編寫</span><span class="meta-tag">MCAC 0.2.0</span><span class="meta-tag">文件修訂 <time datetime="2026-11-18">2026 年 11 月 18 日</time></span></p>
+    <div class="doc-hero-banner"><img src="/assets/dashboard-banner.webp" alt=""></div>
 
-    <h1 class="doc-title">GeoCheck GEO（生成式引擎優化）產品與方法論白皮書</h1>
-    <p class="doc-lead">從單一分數改為四項分開判讀：MCAC 量測架構、題型與判讀規則</p>
+    <h2 id="sec-1">先看哪一筆資料</h2>
+    <p id="sec-disclaimer">拿到報告，先核對受測網址、店名、檢測日期，再看哪幾題取得了回答。GeoCheck 每次向同一個 AI 搜尋服務提問。想知道它怎麼介紹你的店，可以打開推薦題原文；要確認電話或訂位入口，直接看事實題與行動題。</p>
+    <p>2026 年 9 月，LS-Labs 測了六家台北牛肉麵店。研究人員把六家店分成三組，每組問兩次，第二次把店名順序對調。六份回答都列出了排在第一家的電話與地址，排在第二家的資料都有缺漏。LS-Labs 因此把店家的基本資料留給單獨一題查證。這組觀測收在<a href="https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/">《AI 搜尋時代的檢索機制報告》</a>。</p>
 
-    <!-- 2026-10-20: the public quick check moves to MCAC 0.2.0; the AI Trust Index stays as a Classic record (§8) -->
-    <aside class="ahrefs-callout" role="note">
-      <div class="callout-header"><span>方法更新：MCAC 0.2.0</span></div>
-      <p class="callout-desc">GeoCheck 公開快檢的現行方法是 MCAC 0.2.0。依據 LS-Labs<a href="https://lslabs.tw/blog/AI搜尋時代的檢索機制報告/">《AI 搜尋時代的檢索機制報告》</a>：單一分數看不出品牌缺在提及、引用來源、資訊正確性還是行動入口；來源清單的出現次數不是 AI 的信任權重；兩家店放在同一題比較時，結果會受順序影響。舊版的 AI 信任值（Classic）已退出公開快檢，方法紀錄保留於第 8 章。</p>
-    </aside>
-
-    <!-- Visual Banner: 3D Technical Dashboard -->
-    <div class="doc-hero-banner">
-      <img src="/assets/dashboard-banner.webp" alt="GeoCheck AI Search Visibility Platform Architecture" />
-    </div>
-
-    <!-- Ahrefs Callout Box -->
-    <div class="ahrefs-callout">
-      <div class="callout-header">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
-        <span>一次檢測（MCAC 0.2.0）</span>
-      </div>
-      <div class="callout-formula">三種題型共 4 題 → 四項分開判讀，四項都量到才給分</div>
-      <p class="callout-desc">
-        推薦題 2 題、事實題 1 題、行動題 1 題，分別判讀提及、引用來源、資訊正確性與行動資訊。四項都拿到可判讀的回答時，報告首屏另給一個 0–100 的 AI 可見度總覽分（配分見 4.2）；有任一項未知就不給分，未知不等於 0。
-      </p>
-    </div>
-
-    <!-- Disclaimer Box -->
-    <div class="disclaimer-box" id="sec-disclaimer">
-      <div class="disclaimer-head">
-        <h4>重要聲明與研究邊界</h4>
-      </div>
-      <ol>
-        <li><strong>非商業成效保證</strong>：GeoCheck 量測的是特定條件下「可觀測的搜尋與引用證據」，絕不承諾或保證任何搜尋引擎或 AI 平台的特定排名、推薦率、點擊流量、獲客量或營收轉換。</li>
-        <li><strong>非模型內部認知</strong>：四項判讀記錄的是 AI 公開回答中可觀測的事件，包括有沒有提到品牌、來源清單有沒有官網、電話地址和品牌頁面是否一致，以及有沒有給出下一步。它們不代表大型語言模型（LLM）內部的信念或偏好，來源出現次數也不是信任權重。</li>
-        <li><strong>未知不等於零</strong>：平台服務中斷、網路逾時、API 拒答或無法解析之回答，均歸類為「未知（unknown）」，不假定為表現為零。網站讀不到時，這次不詢問 AI，四項都標未知。</li>
-      </ol>
-    </div>
-
-    <!-- Section 1 -->
-    <h2 id="sec-1">1. 緒論：為什麼要分開量測？</h2>
-    <h3>1.1 從傳統 SEO 到 GEO（生成式引擎優化）</h3>
-    <p>傳統搜尋引擎（如 Google、Bing）的核心是「排序藍色連結（Ranked Blue Links）」，其評估體系以關鍵字排名、展示次數（Impressions）與點擊率（CTR）為中心。</p>
-    <p>生成式 AI 搜尋（如 ChatGPT Search、Google AI Overviews）改變了答案的呈現方式：<strong>AI 直接生成綜合解答，而非僅列出網頁清單。</strong></p>
-    <p>在生成式回答中，品牌至少會遇到四件可以分開觀察的事：</p>
-    <ul>
-      <li><strong>提及（Mention）</strong>：顧客沒說店名時，AI 有沒有主動講到這個品牌？提到不等於推薦，也可能是比較或批評。</li>
-      <li><strong>引用來源（Citation）</strong>：回答列出的來源裡，有沒有品牌的官網？還是都來自食記、地圖與評論？</li>
-      <li><strong>資訊正確性（Accuracy）</strong>：AI 給的地址、電話，和品牌自己的頁面一不一致？</li>
-      <li><strong>行動資訊（Conversion-readiness）</strong>：AI 有沒有給出電話、網址、地圖或訂位等可執行的下一步？</li>
-    </ul>
-    <p>檢索機制報告在六家台北牛肉麵店、單一 API 的探索性試驗中觀察到：未確認自有網域的店仍被提及，也取得與參照表一致的地址與電話；有官網的店，官網也不一定出現在來源清單。合成單一分數會遮住這些差別，所以 GeoCheck 分開判讀四項。報告也提醒，這四個構面是操作性整理，尚未經統計證明彼此獨立。</p>
-
-    <h3>1.2 當前市場痛點：黑盒巫術與過度承諾</h3>
-    <p>當前市場對 GEO 充滿焦慮與投機，常見問題包括：</p>
-    <ol>
-      <li><strong>虛假因果承諾</strong>：宣稱「填寫特定 Schema 標籤或改寫內容，即可 100% 登上 AI 推薦第一名」。事實上，生成式引擎具備隨機取樣（Temperature &gt; 0）與即時 RAG 動態重排序特性，不存在確定性的排名保證。</li>
-      <li><strong>混淆指標與構念</strong>：將網站內部的技術分數（例如 HTML 結構、結構化資料完整度）直接混充為「AI 已經喜愛並推薦你的網站」。</li>
-      <li><strong>無效填補與偏誤</strong>：測試 API 一旦拒答或連線失敗，許多工具直接把該次查詢記為 0 分，等於把「沒拿到資料」誤判成「品牌表現為零」。</li>
-    </ol>
-
-    <!-- Section 2 -->
-    <h2 id="sec-2">2. 量測架構：三種題型、四項分開判讀</h2>
-    <p>MCAC 不把四項壓成一個分數。一次檢測分成題組、判讀與網站條件三層：</p>
-
-    <!-- Clean System Architecture Blueprint (Light, Authoritative Academic Topology) -->
-    <div class="arch-flow-diagram">
-      <!-- Root Node -->
-      <div class="flow-root-container">
-        <div class="flow-node-root">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-          <span>GeoCheck MCAC 0.2.0 一次檢測</span>
-        </div>
-        <!-- Downward Fork Connector -->
-        <svg class="flow-connector-fork" width="100%" height="36" viewBox="0 0 600 36" fill="none" preserveAspectRatio="none">
-          <path d="M300 0 V16 H150 V36 M300 16 H450 V36" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="300" cy="0" r="3" fill="#64748B"/>
-          <circle cx="150" cy="36" r="3" fill="#64748B"/>
-          <circle cx="450" cy="36" r="3" fill="#64748B"/>
-        </svg>
-      </div>
-
-      <!-- Level 2: question set and readings -->
-      <div class="flow-dual-grid">
-        <!-- Pillar 1 -->
-        <div class="flow-card pillar-1">
-          <div class="flow-card-head">
-            <span class="flow-card-badge">面向一 · 題組</span>
-            <h4>1. 三種題型，共 4 題</h4>
-            <div class="flow-card-sub">題目都不放受檢網站的網域</div>
-          </div>
-          <ul class="flow-card-body">
-            <li>推薦題 2 題（不帶店名）</li>
-            <li>事實題 1 題（地址與電話）</li>
-            <li>行動題 1 題（下一步）</li>
-            <li>不做比較題（受順序影響）</li>
-          </ul>
-        </div>
-
-        <!-- Pillar 2 -->
-        <div class="flow-card pillar-2">
-          <div class="flow-card-head">
-            <span class="flow-card-badge">面向二 · 判讀</span>
-            <h4>2. 四項分開判讀</h4>
-            <div class="flow-card-sub">四項都量到才給分 · 未知不等於 0</div>
-          </div>
-          <ul class="flow-card-body">
-            <li>提及：看推薦題</li>
-            <li>引用來源：看四題的來源</li>
-            <li>資訊正確性：事實題對照你的頁面</li>
-            <li>行動資訊：看行動題</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Convergence Connector -->
-      <div class="flow-merge-container">
-        <svg class="flow-connector-merge" width="100%" height="36" viewBox="0 0 600 36" fill="none" preserveAspectRatio="none">
-          <path d="M150 0 V18 H300 V36 M450 0 V18 H300" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="150" cy="0" r="3" fill="#64748B"/>
-          <circle cx="450" cy="0" r="3" fill="#64748B"/>
-          <circle cx="300" cy="36" r="3" fill="#64748B"/>
-        </svg>
-      </div>
-
-      <!-- Level 3: Auxiliary Technical Layer -->
-      <div class="flow-bottom-grid">
-        <div class="flow-card pillar-3">
-          <div class="flow-card-head">
-            <div class="head-row" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-              <span class="flow-card-badge aux">面向三 · 輔助技術診斷</span>
-              <span class="flow-aux-notice">獨立列出 · 不計分</span>
-            </div>
-            <h4>3. 輔助技術診斷：網站條件</h4>
-            <div class="flow-card-sub">Site Tech Readiness · 機器可檢索性與結構化標準</div>
-          </div>
-          <div class="flow-bottom-items">
-            <div class="flow-sub-item">
-              <span class="bullet"></span>
-              <div>
-                <strong>HTTP 狀態與存取性</strong>
-                <p>200 / 301 重定向與伺服器回傳</p>
-              </div>
-            </div>
-            <div class="flow-sub-item">
-              <span class="bullet"></span>
-              <div>
-                <strong>Robots.txt / Sitemap</strong>
-                <p>搜尋與 AI 爬蟲存取規則</p>
-              </div>
-            </div>
-            <div class="flow-sub-item">
-              <span class="bullet"></span>
-              <div>
-                <strong>JSON-LD 結構化資料</strong>
-                <p>Organization / Schema 實體對齊</p>
-              </div>
-            </div>
-            <div class="flow-sub-item">
-              <span class="bullet"></span>
-              <div>
-                <strong>內容字數與標題層級</strong>
-                <p>H1–H3 階層與可閱讀內文深度</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <h3>2.1 每次只問一個 AI 搜尋</h3>
-    <p>出題與回答分開：一個模型依網站內容規劃推薦題，另一個被量測的 AI 搜尋回答 4 題。每次檢測只用一個被量測的 AI 搜尋，其他引擎一律不用；出題失敗時，也不改用其他模型。</p>
-
-    <!-- Section 3 -->
-    <h2 id="sec-3">3. 單站檢測流程（MCAC 0.2.0）</h2>
-    <p>使用者在首頁輸入網址後，系統依序執行：</p>
-    <ol>
-      <li><strong>讀網站</strong>：以一般抓取或瀏覽器渲染讀取首頁。所有讀取方式都失敗時直接停止，不詢問 AI，四項標為未知。</li>
-      <li><strong>規劃推薦題</strong>：依頁面內容規劃不帶店名的候選題，系統優先選「推薦型」題目，並略過太相近的題目；使用者自訂的推薦題優先採用，最多 2 題。規劃失敗時推薦題標為未知，事實題與行動題照常執行。</li>
-      <li><strong>組成事實題與行動題</strong>：用網站上的店名與地區提問，題目不放網域，避免把 AI 引向官網而灌高引用。</li>
-      <li><strong>詢問 AI</strong>：4 題依序送給被量測的 AI 搜尋；遇到可重試的錯誤，每題最多重試 1 次。</li>
-      <li><strong>讀出頁面資料並判讀</strong>：從網站的結構化資料（JSON-LD）與頁面文字讀出電話、地址與營業時間，最多再讀兩個門市頁或聯絡頁，再與 AI 的回答比對，產出四項判讀與報告。</li>
-    </ol>
-    <p>品牌的別名只取自網站資料與推薦題的規劃結果，不另外花一題確認身分。別名可能抓不全，提及因此可能偏保守；報告會列出所用的品牌名稱。</p>
-
-    <!-- Section 4 -->
-    <h2 id="sec-4">4. 判讀規則（mcac-flags-v0）</h2>
-    <p>判讀門檻為 v0 暫定，可能依實測資料調整。每項只看指定的題目，分母只計有效回答：</p>
+    <h2 id="sec-2">快檢怎麼問 AI</h2>
+    <p>一次快檢安排兩道推薦題、一道事實題和一道行動題。另一個模型先讀你的網頁，依地區和業務擬推薦題。你也可以填一兩個客人會問的問題，系統優先使用。想看陌生顧客會不會找到你，自訂推薦題時請省略店名與網址。</p>
     <table class="sharp-table rules-table">
-      <thead><tr><th>項目與題目</th><th>記錄什麼</th><th>標記</th></tr></thead>
+      <thead><tr><th scope="col">題型</th><th scope="col">AI 收到什麼要求</th><th scope="col">報告裡可以看什麼</th></tr></thead>
       <tbody>
-        <tr><td><strong>提及（Mention）</strong><br>看推薦題</td><td data-label="記錄">提到品牌的題數／有效推薦題數；有清單時記錄名次</td><td data-label="標記">全部提到為「有」，部分提到為「部分」，都沒提到為「無」，沒有有效回答為「未知」</td></tr>
-        <tr><td><strong>引用來源（Citation）</strong><br>看四題</td><td data-label="記錄">官網出現在幾題的來源中，以及官網、地圖、社群、訂位平台、評論論壇等各類來源的數量</td><td data-label="標記">至少一半為「有」，至少一題為「部分」，都沒有為「無」；沒有有效回答，或輸入的是平台頁（例如粉專），為「未知」</td></tr>
-        <tr><td><strong>資訊正確性（Accuracy）</strong><br>看事實題</td><td data-label="記錄">電話與地址各判為正確、和你的頁面不一致、未提供或無法核對；營業時間只記錄、不判定</td><td data-label="標記">任一項不一致為「不一致」；否則任一項正確為「正確」；兩項都無法核對為「無法核對」；其餘為「未提供」；事實題沒有回答為「未知」</td></tr>
-        <tr><td><strong>行動資訊（Conversion-readiness）</strong><br>看行動題</td><td data-label="記錄">回答中的電話、網址、地址、地圖、訂位、訂購或 LINE 等入口；官網入口另列</td><td data-label="標記">至少一個可執行入口為「有」，沒有為「無」，行動題沒有回答為「未知」</td></tr>
+        <tr><td><strong>推薦題 × 2</strong></td><td data-label="提問">例如「台北哪家牛肉麵店適合帶長輩去？」要求最多列十個選項，每項附理由和來源。</td><td data-label="看回答">哪一題出現店名、在清單第幾個位置、來源連到哪裡。</td></tr>
+        <tr><td><strong>事實題 × 1</strong></td><td data-label="提問">給地區與店名，請 AI 查證目前的地址和電話。</td><td data-label="看回答">AI 給的地址和電話，能否在受測頁面找到。</td></tr>
+        <tr><td><strong>行動題 × 1</strong></td><td data-label="提問">給地區與店名，請 AI 提供至少一個前往或聯絡的方式，並附上來源。</td><td data-label="看回答">客人明確問了怎麼去或怎麼聯絡時，拿到的是電話、官網、地圖，還是第三方訂位連結。</td></tr>
       </tbody>
     </table>
+    <details class="method-detail">
+      <summary>展開三種題型的完整指令</summary>
+      <p>題組版本為 <code>mcac-probes-0.2.0</code>。每題都以這句開頭：「你是台灣商家與品牌研究助理。只使用公開網頁搜尋所得資料，保留不確定性，不把搜尋摘要當作無條件真實。」下列方括號代表會依網站或自訂題目替換的文字。</p>
+      <p><strong>推薦題</strong><br>［推薦問題］<br>請列出最多 10 個選項，簡述理由，並為每個選項附可核對的網頁來源。不要假設任何特定品牌必須出現在答案中。</p>
+      <p><strong>事實題</strong><br>請查證［地區］的「［品牌］」目前地址與電話。只輸出兩行：ADDRESS: &lt;地址或 UNKNOWN&gt;；PHONE: &lt;電話或 UNKNOWN&gt;。逐項使用可核對來源，不要猜測。</p>
+      <p><strong>行動題</strong><br>我想前往或聯絡［地區］的「［品牌］」。請提供至少一個可執行的下一步（官方網站、地圖、電話、訂位或購買）。每項寫成 ACTION: &lt;類型&gt; | &lt;URL 或電話&gt; | &lt;由品牌自有或第三方平台提供&gt;，並附來源；無法確認請寫 UNKNOWN。</p>
+    </details>
 
-    <h3>4.1 為什麼稱「和你的頁面不一致」</h3>
-    <p>資訊正確性以使用者自己的頁面為準，也就是官網，或輸入粉專時的粉專。AI 給的電話或地址出現在頁面上，判為「正確」；沒有出現，判為「和你的頁面不一致」；頁面沒寫的項目標「無法核對」，不算錯。</p>
-    <p>不一致不稱為錯誤，因為工具無法判斷哪一方才對：可能是頁面資料過時，也可能是 Google 地圖等其他平台列的資料不同。檢索機制報告也指出，第一方不天然等於正確，未維護的官網可能過時，第三方資料則可能較新。報告會列出 AI 給的值，並提醒店家確認後把官網、粉專、Google 商家等各平台的資料統一。</p>
-    <p>比對方式沿用研究的分析規則：電話只比數字（+886 視同 0）；地址統一「臺／台」、全形與半形、郵遞區號與「四段／4段」等寫法後，從路名比到門牌號。頁面列出的每一組電話與地址都算正確答案，傳真除外。</p>
+    <h2 id="sec-3">哪個網站、哪一家門市</h2>
+    <p>GeoCheck 讀取你輸入的網址，從網頁和出題資料辨認店名、別名與地區。有多家分店時，請對照報告採用的名稱與網址。若 AI 寫的是另一間分店，先核對分店身分，再決定哪個頁面需要修改。</p>
+    <p>系統從網頁文字及網頁內的結構化資料讀取聯絡方式，也會尋找門市或聯絡頁，最多額外讀取兩個這類頁面。地址從路名比到門牌號，「臺／台」和「四段／4段」等寫法會先統一；電話比對時，「+886」會換成台灣本地撥號的「0」。網頁有多組號碼時，比對會納入辨認到的號碼，排除標示為傳真的號碼。</p>
+    <p>網站一直讀不到，檢測就停在讀取階段，四項都顯示「未知」。個別問題遇到暫時性的連線錯誤會再試一次。確定沒有取得回答的題目，從該項分母扣除。</p>
 
-    <h3 id="mcac-score">4.2 AI 可見度總覽分（exposure_funnel_v1）</h3>
-    <p>報告首屏的 0–100 AI 可見度，是把四項結果依固定配分加總：提及 35 分、引用來源 25 分、資訊正確性 20 分、行動資訊 20 分。四項都拿到可判讀的回答才給分；任一項為「未知」時不給分，只顯示「4 項中幾項可判讀」，不把未知當 0，也不用其餘幾項放大估算。</p>
+    <h2 id="sec-4">四項分開判讀</h2>
+    <p><a href="https://lslabs.tw/blog/glossary-mcac/">MCAC</a> 分別看店名、來源、聯絡資料和行動入口。同一題回答裡，店名可能寫對，訂位卻導向第三方平台。</p>
     <table class="sharp-table rules-table">
-      <thead><tr><th>項目</th><th>怎麼給分</th></tr></thead>
+      <thead><tr><th scope="col">讀哪一項</th><th scope="col">怎麼判讀</th></tr></thead>
       <tbody>
-        <tr><td><strong>提及</strong>（35）</td><td data-label="給分">提到品牌的題數佔有效推薦題的比例 × 28；有提到時再依清單位置加分：前 3 項加 7、第 4 到 10 項加 4，提到但沒有清單位置加 2</td></tr>
-        <tr><td><strong>引用來源</strong>（25）</td><td data-label="給分">官網出現在至少四分之三題的來源中得 25，至少一半得 22，至少一題得 14，都沒有得 0</td></tr>
-        <tr><td><strong>資訊正確性</strong>（20）</td><td data-label="給分">電話與地址各 10 分：正確 10、未提供 3、無法核對 2、和你的頁面不一致 0；只判得出其中一項時，以該項加倍計</td></tr>
-        <tr><td><strong>行動資訊</strong>（20）</td><td data-label="給分">有可執行入口得 12，其中有官網入口加 5，有兩種以上入口加 3；沒有入口得 0</td></tr>
+        <tr><td><strong>提及</strong><br>Mention</td><td data-label="判讀">看有效推薦題。每題都出現辨認到的店名或別名為「有」，部分題目出現為「部分」，全部沒出現為「無」。有列清單時記下名次。點開原文，可以分辨 AI 是推薦這家店，還是只順帶一提。</td></tr>
+        <tr><td><strong>引用來源</strong><br>Citation</td><td data-label="判讀">四題都看。在至少一半的有效回答裡找到官網來源為「有」，低於一半但至少有一題為「部分」，都沒找到為「無」。同一題列出多個官網連結仍算一題。受測網址若是粉專等共用平台頁，官網引用標為「未知」。</td></tr>
+        <tr><td><strong>資訊正確性</strong><br>Accuracy</td><td data-label="判讀">看事實題，把電話與地址各自對回你的頁面。相符為「正確」，值不同為「和你的頁面不一致」。頁面有寫、回答沒有給出可辨識的值，標「未提供」；頁面缺少可供比對的資料，標「無法核對」。營業時間只記錄。</td></tr>
+        <tr><td><strong>行動資訊</strong><br>Conversion-readiness</td><td data-label="判讀">看行動題。有電話、地址、地圖、網站、訂位等任一入口為「有」，有效回答裡找不到入口為「無」。是否連回官網另列。要知道客人有沒有真的完成訂位，得查店家的訂位紀錄。</td></tr>
       </tbody>
     </table>
-    <p>80 分以上標「能見度優異」，60 到 79 分「具備基礎能見度」，35 到 59 分「能見度待補強」，35 分以下「能見度偏低」。</p>
-    <p>這組配分是 v1 暫定，依「先被提到、再被引用、資訊正確、最後能行動」的順序給權重，尚未以實測資料做效度驗證，之後可能調整。推薦題只有 2 題，提及的得分只會落在少數幾個值；分數是單次快照，換題目、順序或時間都可能不同。分數只是總覽，要改善什麼仍以四項結果與原始回答為準；被提到不等於被推薦，來源出現次數也不是 AI 的信任權重。網站條件不計入分數。</p>
+    <p>遇到「和你的頁面不一致」，先請門市確認正在用的電話或地址，再回頭檢查官網、商家檔案和訂位平台。若看見「未知」，先核對該題有沒有取得回答。使用粉專等共用平台頁檢測，即使題目答齊，官網引用仍會列為「未知」。</p>
 
-    <!-- Section 5 -->
-    <h2 id="sec-5">5. 網站條件：基礎建設與非因果限制</h2>
-    <p>網站條件檢查網站的機器可讀性（HTTP 存取性、Robots、Sitemap、Schema.org JSON-LD 與內容密度），在報告中獨立列出。</p>
+    <h3 id="mcac-score">總覽分怎麼算</h3>
+    <p>GeoCheck 用 0 到 100 分概括當次回答，四項都量到才給分。任一項為「未知」，報告會顯示有幾項可判讀。計分依據是每項的<strong>有效回答</strong>；即使總分出現，其中一道推薦題仍可能缺答。</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">項目與配分</th><th scope="col">計分方式</th></tr></thead>
+      <tbody>
+        <tr><td><strong>提及 · 35 分</strong></td><td data-label="計分">有效推薦題中提到店名的比例乘以 28。再取最佳名次，前 3 名加 7 分，第 4 至 10 名加 4 分；提到店名但沒有可辨識的名次，或落在第 10 名之後，加 2 分。</td></tr>
+        <tr><td><strong>引用來源 · 25 分</strong></td><td data-label="計分">官網出現在至少四分之三的有效回答中，得 25 分。未達四分之三但至少一半，得 22 分；低於一半但有出現，得 14 分；都沒出現，得 0 分。</td></tr>
+        <tr><td><strong>資訊正確性 · 20 分</strong></td><td data-label="計分">電話和地址各占 10 分。相符得 10 分，未提供得 3 分，無法核對得 2 分，不一致得 0 分。若只有一欄能套用上述配分，以該欄分數加倍計。</td></tr>
+        <tr><td><strong>行動資訊 · 20 分</strong></td><td data-label="計分">有可執行的入口得 12 分，有官網入口加 5 分，有至少兩種入口加 3 分。有效回答中沒有入口，得 0 分。</td></tr>
+      </tbody>
+    </table>
+    <p>四項加總後取整數。80–100 分顯示「能見度優異」，60–79 分為「具備基礎能見度」，35–59 分為「能見度待補強」，0–34 分為「能見度偏低」。35／25／20／20 是 LS-Labs 在第一版計分規則中設定的權重，與實際來客數的關係尚未驗證。</p>
 
-    <div class="ahrefs-callout">
-      <div class="callout-header">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span>非因果架構原則</span>
-      </div>
-      <div class="callout-formula" style="font-size:1.05rem;">網站條件全部通過 ≠ AI 一定會推薦你</div>
-      <p class="callout-desc">
-        頁面能被抓取與索引，是搜尋系統引用它的前提，但不是保證。結構化資料可以協助表達店名、地址等資訊；Google 也說明，它的 AI 搜尋功能不需要特殊標記，結構化資料不保證顯示。網站條件不計分，也不影響四項判讀。
-      </p>
-    </div>
+    <h3 id="score-example">同一間店，少一份回答，86 分變成 100 分</h3>
+    <p>這是用固定資料在本機重算的合成範例。第一道推薦題將店家列在首位，第二道介紹了別家店。四份回答中有三份列出受測店家的官網，第二道推薦題只列出另一家店的網址。事實題的電話與地址和官網相符，行動題給了官網和電話。現在只把第二道推薦題改成「執行失敗」，其他回答原封不動。</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">第二道推薦題</th><th scope="col">有效回答</th><th scope="col">提及得分</th><th scope="col">總覽分</th></tr></thead>
+      <tbody>
+        <tr><td><strong>回答提到別家店</strong></td><td data-label="有效回答">4／4 題</td><td data-label="提及">1／2 題提到，得 21 分</td><td data-label="總覽分">21 + 25 + 20 + 20 = <strong>86</strong></td></tr>
+        <tr><td><strong>執行失敗</strong></td><td data-label="有效回答">3／4 題</td><td data-label="提及">1／1 題提到，得 35 分</td><td data-label="總覽分">35 + 25 + 20 + 20 = <strong>100</strong></td></tr>
+      </tbody>
+    </table>
+    <p>官網引用由 3／4 題變成 3／3 題，兩者都拿到該項的 25 分。多出的 14 分全部來自推薦題的分母從 2 變成 1。拿這份結果向店主說明，寫「這次只收到一份推薦回答，店名列在第一位」比寫「店家的能見度進步了 14 分」更準確。</p>
 
-    <!-- Section 6 -->
-    <h2 id="sec-6">6. 白皮書研究批次流程：凍結題組與嚴謹母體</h2>
-    <p>當進行跨品牌、跨產業的基準調查或研究白皮書時，<strong>嚴禁使用單站檢測的動態題目</strong>。批次研究恪守以下原則：</p>
-    <ul>
-      <li><strong>受控題組（Frozen Query Set）</strong>：全體受測樣本面對完全相同的提示詞（Prompts）。題目一旦審定封存，不可事後調整以迎合特定品牌。</li>
-      <li><strong>實體主檔鎖定（Entity Master Lock）</strong>：在啟動 API 批量測試前，必須完成人工實體主檔審查，明確定義品牌正式名稱、已知別名、官方主網域與專屬路徑。</li>
-      <li><strong>Preflight 覆蓋防護</strong>：執行前進行程式化預檢。凡有未對齊實體或母體定義模糊者，系統直接阻擋執行。</li>
-      <li><strong>禁止靜默備援（No Silent Fallback）</strong>：研究批次中，搜尋供應商若連線中斷，一律記為失敗，禁止自動切換至其他模型，確保樣本處於同一模型基準線。</li>
-    </ul>
+    <h2 id="sec-5">網站條件該交給誰處理</h2>
+    <p>報告另列網頁是否打得開、爬蟲規則、網站地圖和結構化資料等網站條件。網站讀不到，可請維護人員檢查網址與存取設定；電話只放在圖片裡，可請內容編輯補上文字。這些檢查能找出網站哪裡難以讀取，總覽分則完全取自前面的四項判讀。</p>
 
-    <!-- Section 7 -->
-    <h2 id="sec-7">7. 研究限制與治理規範</h2>
-    <ol>
-      <li><strong>快檢不是研究結論</strong>：每項只有 1 到 2 題、跑一次，推薦題自動產生、未經人工審題。結果是一次快照，不能當成研究結論或長期趨勢引用。</li>
-      <li><strong>時間波動性（Temporal Drift）</strong>：生成式搜尋每週微調模型或更新索引。量測結果代表特定時點的可觀測狀態，不代表永久排名。</li>
-      <li><strong>單一引擎限制</strong>：每次檢測只問一個 AI 搜尋，結果不能直接外推到其他 AI 平台。</li>
-      <li><strong>資料只比對使用者的頁面</strong>：資訊正確性只以使用者自己的頁面為準；研究版另外核對 Google 商家檔案，快檢沒有。</li>
-      <li><strong>探索性相關分析</strong>：若探討四項結果與客流量的關係，嚴格定性為探索性相關，嚴禁宣稱因果關係。</li>
-      <li><strong>可重算</strong>：判讀規則公開，報告保留每一題的原始回答與來源，可以由原始回答重算四項結果；研究資料集另計算 SHA-256 雜湊值，並揭露未知與失敗紀錄。</li>
-    </ol>
+    <h2 id="sec-6">怎麼比較兩份報告</h2>
+    <p>改過官網電話後再送檢，先對照報告日期。相同的網站入口、自訂題目與檢測版本，在上次報告完成後七天內會優先沿用該份報告。重新開啟舊報告，看到的也是原來的回答。</p>
+    <p>比較同一家店的兩份快檢時，使用相同的門市網址與自訂推薦題，對照檢測日期和每題原文，就能找出哪一次列了店名、換了來源或給了不同的電話。LS-Labs 做跨店研究時，會另外固定搜尋服務、題組、品牌別名和官方網域，一併保存失敗紀錄。</p>
 
-    <!-- Section 8: the retired Classic method, kept as a record -->
-    <h2 id="sec-classic">8. 舊版方法（Classic，已退出公開快檢）</h2>
-    <aside class="ahrefs-callout" role="note">
-      <div class="callout-header"><span>方法紀錄</span></div>
-      <p class="callout-desc">本章是 MCAC 上線前公開快檢使用的 AI 信任值（AI Trust Index v1），保留作為方法紀錄。Classic 程式仍保留給本機的研究批次使用，不再用於公開快檢；兩種方法互不替代。</p>
-    </aside>
+    <h2 id="sec-7">拿同一份回答重算</h2>
+    <p>行銷或營運人員可以用報告的原始回答和來源逐題核對。技術人員若要重算，要用當次的受測網域、品牌別名、網站當時列出的地址電話，以及來源連結的實際目的地。<a href="https://github.com/Wenqing950519/seo-geo-checker/tree/main/packages/geo-core/mcac">MCAC 判讀核心</a>包含題型模板、電話地址比對和計分程式。<a href="https://github.com/Wenqing950519/seo-geo-checker/releases/tag/mcac-core-0.2.0-replay.1">下載離線重算工具與範例</a>後，可用隨附的固定回答驗算四項結果，全程不需 API 金鑰。本版的方法是 <code>MCAC 0.2.0</code>，四項判讀規則是 <code>mcac-flags-v0</code>，總覽分採 <code>exposure_funnel_v1</code>。</p>
+    <p>固定同一份資料和規則，可以驗算同一份分數。重新向 AI 提問，取得的是另一筆觀測。若要保存交付當天的結果，可下載當次報告；線上開啟舊報告時，系統會依目前的規則重算總覽分。</p>
 
-    <h3>8.1 指標定義：AI 信任值</h3>
-    <div class="ahrefs-callout">
-      <div class="callout-header"><span>核心量測算式（AI 信任值）</span></div>
-      <div class="callout-formula">AI 信任值 = 65% 可見答案採用率 + 35% 經核實第一方來源證據率</div>
-    </div>
-    <p>在經審定的非品牌發現查詢集中，針對所有取得有效且可見回答的執行次數（\(N_{\text{valid}}\)），「AI 信任值」定義如下：</p>
-
+    <h2 id="sec-classic">舊版方法（Classic，已退出公開快檢）</h2>
+    <p>2026 年 10 月 21 日之前的快檢使用 AI 信任值（AI Trust Index v1）。Classic 問四道不帶店名的推薦問題，在有效回答中計算兩件事：正文提到品牌的比例、來源中出現已核實官方網址的比例。</p>
     <div class="math-box">
-      $$\text{AI Trust Index} = 100 \times \left( 0.65 \times \text{答案採用率} + 0.35 \times \text{來源證據率} \right)$$
-      <br>
-      $$\text{答案採用率} = \frac{\sum \text{提及已對齊品牌之有效查詢數}}{N_{\text{valid}}}$$
-      <br>
-      $$\text{來源證據率} = \frac{\sum \text{引用經核實第一方官方 URL 之有效查詢數}}{N_{\text{valid}}}$$
+      <p>AI 信任值 = 100 ×（0.65 × 可見答案採用率 + 0.35 × 經核實第一方來源證據率）</p>
     </div>
-
-    <p><strong>樣本不足封頂防呆（Coverage Cap at 69 分）</strong>：單次偶發的成功無法代表穩定的市場能見度。若受測網站有效查詢次數 \(N_{\text{valid}} &lt; 2\)，前端產品顯示分數嚴格封頂於 69 分，防止單一題目偶然被提及時產生虛假的滿分誤導。</p>
-
-    <h3>8.2 Classic 單站檢測流程</h3>
-    <ol>
-      <li><strong>多重抓取彈性保障</strong>：優先以輕量 HTTP 抓取目標頁面 HTML；遇客戶端渲染自動退回 Headless 瀏覽器渲染模式。</li>
-      <li><strong>非品牌題目生成與防呆</strong>：使用結構化 LLM 依頁面證據產出 5～8 個候選題，並以確定性正規表示式嚴格剔除包含受測品牌的題目。若兩輪無法湊齊可選出 4 題的合規非品牌題，系統主動停止搜尋並標示 <code>unknown</code>。</li>
-      <li><strong>實體查詢隔離</strong>：額外執行 1 次帶品牌名稱的實體查詢（Direct Entity Query），但僅用於綁定官方別名與網域，不併入非品牌發現的評分分母中。</li>
-    </ol>
-
-    <h3>8.3 證據判定：答案採用 vs. 來源證據四象限</h3>
-    <p>Classic 將 AI 的輸出拆解為兩個維度：答案層是否提及品牌（65%）、來源層是否引用官方網域（35%）。</p>
+    <p>Classic 另用一題帶品牌名的查詢確認別名與網域，這題不列入計算。當有效推薦回答少於兩筆，顯示分數最高為 69。現行 MCAC 新增地址電話與行動入口的判讀，兩版分數衡量的項目和配分都不同。閱讀舊報告時，可用下圖查閱當時的兩項指標。</p>
 
     <div class="svg-frame">
       <svg
@@ -976,7 +780,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <title id="chart-title">AI 信任值：答案採用 vs. 來源證據判定四象限</title>
         <desc id="chart-desc">
           X 軸為第一方官網引用率，權重 35%；Y 軸為可見答案採用率，權重 65%。
-          四象限依序為完全採信、二次提及、未可觀測與背景引用。
+          四種情況依正文有無提到品牌，以及來源有無官網交叉判讀。
         </desc>
 
         <defs>
@@ -1018,16 +822,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <text x="176" y="164" font-family="sans-serif" font-size="14" font-weight="700" fill="#0B1F3B">AI 提及品牌</text>
         <text x="176" y="184" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#475569">但引用第三方部落格</text>
 
-        <!-- Q1: 完全採信 -->
+        <!-- Q1: 提及及引用 -->
         <g filter="url(#cardShadow)">
           <rect x="458" y="101" width="246" height="110" rx="2" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5" />
         </g>
         <rect x="476" y="118" width="76" height="24" rx="2" fill="#3B82F6" />
-        <text x="514" y="134" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#FFFFFF">完全採信</text>
+        <text x="514" y="134" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#FFFFFF">提及及引用</text>
         <circle cx="679" cy="130" r="9" fill="#E6F8F6"/>
         <path d="M675 130L678 133L683 127" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         <text x="476" y="164" font-family="sans-serif" font-size="14" font-weight="700" fill="#0B1F3B">AI 提及品牌＋引用官網</text>
-        <text x="476" y="184" font-family="sans-serif" font-size="12.5" font-weight="700" fill="#1D4ED8">最佳實證</text>
 
         <!-- Q3: 未可觀測 -->
         <g filter="url(#cardShadow)">
@@ -1044,8 +847,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </g>
         <rect x="476" y="288" width="76" height="24" rx="2" fill="#E6F8F6" />
         <text x="514" y="304" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#1D4ED8">背景引用</text>
-        <text x="476" y="334" font-family="sans-serif" font-size="14" font-weight="700" fill="#0B1F3B">AI 參考了官網</text>
-        <text x="476" y="354" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#475569">但內文未主動推薦</text>
+        <text x="476" y="334" font-family="sans-serif" font-size="14" font-weight="700" fill="#0B1F3B">來源清單列出官網</text>
+        <text x="476" y="354" font-family="sans-serif" font-size="12.5" font-weight="400" fill="#475569">回答正文未提及品牌</text>
 
         <!-- Axes -->
         <line x1="126" y1="416" x2="749" y2="416" stroke="#0B1F3B" stroke-width="2" marker-end="url(#arrowNavy)" />
@@ -1085,8 +888,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </svg>
     </div>
 
-    <h3>8.4 為什麼退出公開快檢</h3>
-    <p>Classic 每次問 4 題不帶店名的發現題，四題量的都是同兩件事，也就是有沒有提到品牌、有沒有引用官網，再以 65／35 加權成一個分數；資訊正確性與行動資訊沒有量測。檢索機制報告指出單一分數看不出品牌缺在哪裡，公開快檢因此改用第 2 至 4 章的 MCAC。</p>
 
   </article>
 

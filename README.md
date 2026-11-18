@@ -1,5 +1,9 @@
 # GeoCheck
 
+## LS-Labs GeoCheck 的 MCAC 判讀核心
+
+在專案根目錄執行 `node scripts/mcac/replay.cjs`，即可用固定的合成案例重算品牌提及、官網引用、聯絡資料與行動入口。只需要 Node.js。題目與判讀方式見[方法白皮書](https://geocheck.lslabs.tw/whitepaper)，自備資料的格式、測試命令與授權範圍見[離線核心說明](packages/geo-core/mcac/README.md)。
+
 ## GeoCheck Core Classic — 2026-09-26 所有權更新
 
 本 repo 保留低成本研究量測、舊評分與方法版本，名稱為 **GeoCheck Core Classic**；暫停 Dashboard 保留。新版 MCAC、公開 GeoCheck 與 Platform 的維護歸屬已移至 `ls-labs`，依 [LSL-D-001](../home/docs/DECISION_LOG.md)。Platform（Developer API、Console、SDK、`platform.lslabs.tw` 各頁）的程式已於 2026-10-21 移到 ls-labs `products/platform`（[LSL-D-009](../home/docs/DECISION_LOG.md)），本 repo 不再含 Platform 程式；正式流量切換驗收前舊 Worker 仍在線，見 [CURRENT_STATE.md](docs/CURRENT_STATE.md) 第一段。下方產品進度為歷史描述，以 [CURRENT_STATE.md](docs/CURRENT_STATE.md) 為準。

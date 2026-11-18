@@ -1,6 +1,6 @@
 # GeoCheck MCAC v0.2.0
 
-Status: implemented behind `GEOCHECK_METHOD=mcac`; not yet live. The audit Worker ships with `AUDIT_ADMISSION_ENABLED=false` until deployment is authorised. Flag thresholds are **v0 and provisional** (Human Ownership): they need the user's confirmation and may change after real data.
+MCAC 0.2.0 has powered the public quick check since 2026-10-21. Its four flags use the `mcac-flags-v0` rules. The overview score was added on 2026-11-15. The [offline core](../packages/geo-core/mcac/README.md) documents the input format and includes an executable scoring example.
 
 Version 0.2.0 (2026-10-20) follows the paid smoke of 0.1.0 (four sites, Perplexity and Gemini; record in the workspace at `work/2026-10-20-mcac-backend/smoke/`). The user decided four changes: Accuracy reports a value missing from the owner's page as `mismatch`, not `incorrect`; discovery asks recommendation questions first; discovery answers get 2,048 output tokens; Perplexity stays the default engine. The smoke also led to fixes for Gemini citations, option ranks, fan-page inputs and citation markers in fact answers (described below).
 

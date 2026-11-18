@@ -1,6 +1,5 @@
-// MCAC evaluation: four results read separately (Mention, Citation, Accuracy,
-// Conversion-readiness). No blended total exists; unknown stays unknown and is never
-// counted as zero. Flag thresholds are v0 and provisional (Human Ownership).
+// MCAC reports four findings and computes an overview score when each dimension
+// can be scored. The legacy total field stays null.
 
 const {
   classifyAnswerStatus,
@@ -205,8 +204,8 @@ function unknownFields() {
 
 // Exposure-funnel composite score (0-100) over the four MCAC dimensions:
 // Mention (35) -> Citation (25) -> Accuracy (20) -> Conversion (20).
-// Unknown dimensions (e.g. failed queries or platform-root citations) are excluded
-// from the denominator and proportionally normalized, never counted as zero.
+// A missing dimension withholds the overview. Within Mention and Citation the
+// denominator is the number of valid answers for that dimension.
 function computeMcacScore(mcac = {}) {
   const m = mcac?.mention || {};
   let mentionScore;

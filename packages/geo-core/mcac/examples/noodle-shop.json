@@ -1,0 +1,43 @@
+{
+  "methodVersion": "0.2.0",
+  "siteHost": "noodle-shop.example",
+  "brandNames": ["範例牛肉麵"],
+  "truth": {
+    "phone": { "value": "02-0000-0000", "source": "visible_text" },
+    "address": { "value": "台北市大安區範例路四段27巷3號", "source": "visible_text" }
+  },
+  "probes": [
+    {
+      "id": "d1",
+      "type": "discovery",
+      "query": "台北大安區有哪些牛肉麵店適合帶長輩聚餐？",
+      "status": "answered",
+      "answer": "1. 範例牛肉麵：提供四人桌，可以提前訂位。",
+      "citations": ["https://noodle-shop.example/booking"]
+    },
+    {
+      "id": "d2",
+      "type": "discovery",
+      "query": "台北大安區週末午餐有哪些牛肉麵店？",
+      "status": "answered",
+      "answer": "1. 另一家麵店：週末中午供應清燉牛肉麵。",
+      "citations": ["https://another-shop.example/menu"]
+    },
+    {
+      "id": "f1",
+      "type": "fact",
+      "query": "台北「範例牛肉麵」地址與電話",
+      "status": "answered",
+      "answer": "ADDRESS: 台北市大安區範例路四段27巷3號；PHONE: 02-0000-0000",
+      "citations": ["https://noodle-shop.example/contact"]
+    },
+    {
+      "id": "a1",
+      "type": "action",
+      "query": "台北「範例牛肉麵」可執行的下一步",
+      "status": "answered",
+      "answer": "ACTION: 官網 | https://noodle-shop.example | 品牌自有\nACTION: 電話 | 02-0000-0000 | 品牌自有",
+      "citations": ["https://noodle-shop.example/contact"]
+    }
+  ]
+}
