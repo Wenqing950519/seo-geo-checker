@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://geocheck.lslabs.tw/</loc></url>
-  <url><loc>https://geocheck.lslabs.tw/whitepaper</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://geocheck.lslabs.tw/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://geocheck.lslabs.tw/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://geocheck.lslabs.tw/zh-cn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://geocheck.lslabs.tw/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://geocheck.lslabs.tw/"/>
+  </url>
+  <url>
+    <loc>https://geocheck.lslabs.tw/zh-cn/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://geocheck.lslabs.tw/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://geocheck.lslabs.tw/zh-cn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://geocheck.lslabs.tw/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://geocheck.lslabs.tw/"/>
+  </url>
+  <url>
+    <loc>https://geocheck.lslabs.tw/en/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://geocheck.lslabs.tw/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://geocheck.lslabs.tw/zh-cn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://geocheck.lslabs.tw/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://geocheck.lslabs.tw/"/>
+  </url>
+  <url>
+    <loc>https://geocheck.lslabs.tw/whitepaper</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://geocheck.lslabs.tw/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://geocheck.lslabs.tw/zh-cn/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://geocheck.lslabs.tw/en/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://geocheck.lslabs.tw/whitepaper"/>
+  </url>
+  <url>
+    <loc>https://geocheck.lslabs.tw/zh-cn/whitepaper</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://geocheck.lslabs.tw/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://geocheck.lslabs.tw/zh-cn/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://geocheck.lslabs.tw/en/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://geocheck.lslabs.tw/whitepaper"/>
+  </url>
+  <url>
+    <loc>https://geocheck.lslabs.tw/en/whitepaper</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant-TW" href="https://geocheck.lslabs.tw/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://geocheck.lslabs.tw/zh-cn/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://geocheck.lslabs.tw/en/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://geocheck.lslabs.tw/whitepaper"/>
+  </url>
 </urlset>

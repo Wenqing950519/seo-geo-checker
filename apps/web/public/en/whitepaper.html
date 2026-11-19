@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CBTTKVLT82');
+</script>
+<title>LS-Labs GeoCheck methodology | How to read an AI search report</title>
+<meta name="description" content="Follow a restaurant’s phone number and booking link through the four MCAC results, prompts and scoring rules. See how one missing answer changes the score.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://geocheck.lslabs.tw/en/whitepaper">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://geocheck.lslabs.tw/whitepaper">
+<link rel="alternate" hreflang="zh-CN" href="https://geocheck.lslabs.tw/zh-cn/whitepaper">
+<link rel="alternate" hreflang="en" href="https://geocheck.lslabs.tw/en/whitepaper">
+<link rel="alternate" hreflang="x-default" href="https://geocheck.lslabs.tw/whitepaper">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="LS-Labs GeoCheck methodology | How to read an AI search report">
+<meta property="og:description" content="Follow a restaurant’s phone number and booking link through the four MCAC results, prompts and scoring rules. See how one missing answer changes the score.">
+<meta property="og:url" content="https://geocheck.lslabs.tw/en/whitepaper">
+<meta property="og:image" content="https://geocheck.lslabs.tw/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LS-Labs GeoCheck methodology | How to read an AI search report">
+<meta name="twitter:description" content="Follow a restaurant’s phone number and booking link through the four MCAC results, prompts and scoring rules. See how one missing answer changes the score.">
+<meta name="twitter:image" content="https://geocheck.lslabs.tw/og-image.png">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "LS-Labs GeoCheck methodology | How to read an AI search report",
+  "description": "Follow a restaurant’s phone number and booking link through the four MCAC results, prompts and scoring rules. See how one missing answer changes the score.",
+  "url": "https://geocheck.lslabs.tw/en/whitepaper",
+  "mainEntityOfPage": "https://geocheck.lslabs.tw/en/whitepaper",
+  "inLanguage": "en",
+  "image": "https://geocheck.lslabs.tw/og-image.png",
+  "author": {
+    "@type": "Organization",
+    "@id": "https://lslabs.tw/#organization",
+    "name": "LS-Labs",
+    "url": "https://lslabs.tw/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://lslabs.tw/#organization",
+    "name": "LS-Labs",
+    "url": "https://lslabs.tw",
+    "logo": "https://lslabs.tw/brand/logos/ls-labs/ls-labs-monogram.svg"
+  },
+  "dateModified": "2026-11-18"
+}</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=lslabs-20261023">
+<link rel="icon" type="image/png" href="/favicon.png?v=lslabs-20261023">
+<link rel="apple-touch-icon" href="/favicon.png?v=lslabs-20261023">
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/whitepaper.css">
+</head>
+<body id="top">
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="/en/"><img src="/assets/logo-full.svg" alt="LS-Labs" width="136" height="36"><span>GeoCheck</span></a>
+    <a class="back-link" href="/en/"><span aria-hidden="true">←</span> Back to GeoCheck</a>
+  </div>
+</header>
+<nav class="document-languages" aria-label="Languages"><a hreflang="zh-Hant-TW" href="/whitepaper" lang="zh-Hant-TW">繁體中文</a> <a hreflang="zh-CN" href="/zh-cn/whitepaper" lang="zh-CN">简体中文</a> <a hreflang="en" href="/en/whitepaper" lang="en" aria-current="page">English</a></nav>
+
+<main id="main">
+  <header class="cover">
+    <div class="cover-inner">
+      <div class="cover-intro">
+        <h1><span class="title-product">LS-Labs GeoCheck</span> Methodology</h1>
+        <p class="doc-lead">A customer asks AI how to book a table. The answer names your restaurant but gives a different phone number from the one on your website. Your staff can check which number still works and look for pages that list the old one. GeoCheck puts the question, the AI’s answer and what your website said in a single report so you can trace the discrepancy.</p>
+        <a class="example-link" href="#score-example">See the 86- and 100-point examples <span aria-hidden="true">↓</span></a>
+      </div>
+      <figure class="weights" aria-labelledby="weight-caption">
+        <figcaption id="weight-caption">How MCAC allocates points <span>100 points in total</span></figcaption>
+        <dl class="weight-chart">
+          <div class="weight-mention"><dt>Mention</dt><dd>35<small> points</small></dd></div>
+          <div class="weight-citation"><dt>Citation</dt><dd>25<small> points</small></dd></div>
+          <div class="weight-accuracy"><dt>Accuracy</dt><dd>20<small> points</small></dd></div>
+          <div class="weight-action"><dt>Conversion readiness</dt><dd>20<small> points</small></dd></div>
+        </dl>
+        <a class="weight-link" href="#mcac-score">See the scoring rules <span aria-hidden="true">↘</span></a>
+      </figure>
+      <p class="byline"><span>By LS-Labs</span><span>MCAC 0.2.0</span><span>Revised <time datetime="2026-11-18">November 18, 2026</time></span></p>
+    </div>
+  </header>
+
+  <div class="reading-layout">
+    <nav class="contents" aria-label="Contents">
+      <details open>
+        <summary>Contents</summary>
+        <ul class="toc-nav">
+      <li><a href="#sec-1">Where to start</a></li>
+      <li><a href="#sec-2">What GeoCheck asks</a></li>
+      <li><a href="#sec-3">Websites, business names and branches</a></li>
+      <li><a href="#sec-4">How to read the four results</a></li>
+      <li><a href="#mcac-score">How the overall score works</a></li>
+      <li><a href="#score-example">An example with 86 and 100 points</a></li>
+      <li><a href="#sec-5">Website conditions</a></li>
+      <li><a href="#sec-6">Comparing two reports</a></li>
+      <li><a href="#sec-7">Recalculate from the same answers</a></li>
+    </ul>
+      </details>
+    </nav>
+    <article class="document-body" aria-label="Methodology text">
+    <h2 id="sec-1">Where to start</h2>
+    <p id="sec-disclaimer">Start by checking the URL, business name and date in your report. Then see which questions received an answer. In a single check, GeoCheck directs all its questions to the same AI search service. Open the recommendation answers to see how it describes your business. To find out which number or booking link it gave, open the fact-check and action answers.</p>
+    <p>In September 2026, LS-Labs tested six beef noodle restaurants in Taipei. Researchers formed three pairs and asked about each pair twice, reversing the order of the names the second time. All six answers gave the phone number and address of the first restaurant. Details were missing for the second restaurant in every answer. This led LS-Labs to give business details a separate fact-check question. The observations appear in <a href="https://lslabs.tw/en/blog/ai-search-retrieval-mechanisms/">How AI search finds local businesses</a>.</p>
+
+    <h2 id="sec-2">What GeoCheck asks</h2>
+    <p>A check asks two recommendation questions, one fact-check question and one action question. A separate model first reads your webpage and drafts recommendation questions for your location and type of business. You can enter one or two questions your customers might ask, which take priority. To see whether new customers could discover you, leave your name and URL out of the recommendation questions.</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">Question type</th><th scope="col">What the AI is asked to do</th><th scope="col">What to look for</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Recommendation × 2</strong></td><td data-label="Prompt">For example, “Which beef noodle restaurants in Taipei would be good for a meal with older relatives?” The AI is asked for up to ten options, each with a reason and a source.</td><td data-label="In the answer">Which answers name the restaurant, its position on each list and where the citations lead.</td></tr>
+        <tr><td><strong>Fact-check × 1</strong></td><td data-label="Prompt">Given the area and business name, verify the current address and phone number.</td><td data-label="In the answer">Whether the address and phone number in the answer appear on the page you submitted.</td></tr>
+        <tr><td><strong>Action × 1</strong></td><td data-label="Prompt">Given the area and business name, supply at least one way to visit or get in touch, with sources.</td><td data-label="In the answer">When a customer explicitly asks for directions or contact details, does the answer give a phone number, official site, map or third-party booking link?</td></tr>
+      </tbody>
+    </table>
+    <details class="method-detail">
+      <summary>Read the three prompts in full (English translations)</summary>
+      <p>The prompt set is <code>mcac-probes-0.2.0</code>. Each prompt begins with the following instruction in Chinese: “You are a research assistant for businesses and brands in Taiwan. Use only information from public web searches, preserve uncertainty and do not treat search snippets as unconditionally true.” Brackets below mark text supplied from the website or a custom question.</p>
+      <p><strong>Recommendation</strong><br>[Recommendation question]<br>List up to 10 options, briefly explain why and give a verifiable web source for each. Do not assume that any particular brand must appear in the answer.</p>
+      <p><strong>Fact-check</strong><br>Verify the current address and phone number of “[brand]” in [area]. Output exactly two lines: ADDRESS: &lt;address or UNKNOWN&gt; and PHONE: &lt;phone number or UNKNOWN&gt;. Use verifiable sources for each. Do not guess.</p>
+      <p><strong>Action</strong><br>I would like to visit or contact “[brand]” in [area]. Give at least one actionable next step (official website, map, telephone, reservation or purchase). Format each as ACTION: &lt;type&gt; | &lt;URL or phone number&gt; | &lt;provided by the brand or a third party&gt; and include a source. Write UNKNOWN if you cannot confirm it.</p>
+    </details>
+
+    <h2 id="sec-3">Which website and which branch?</h2>
+    <p>GeoCheck reads the URL you enter. It identifies the business name, aliases and area from the page and the information used to construct the prompts. If the business has several locations, check the name and URL in the report. When AI describes a different branch, establish which branch it found before deciding which page to edit.</p>
+    <p>GeoCheck reads contact details from page text and structured data. It also looks for branch or contact pages and reads up to two additional pages of that kind. For addresses, it compares the street name through the building number and normalizes alternative spellings such as the two written forms of “Tai” or “Section Four” versus “Section 4.” For phone numbers, Taiwan’s +886 prefix is normalized to the local leading 0. If several numbers appear, all identifiable numbers are considered except those labeled as fax numbers.</p>
+    <p>If GeoCheck still cannot read the website, it stops before asking the questions and marks all four results “Unknown.” A question that encounters a temporary connection error is retried once. A question that returns no answer is removed from the denominator for the relevant measure.</p>
+
+    <h2 id="sec-4">Reading the four results</h2>
+    <p><a href="https://lslabs.tw/en/blog/glossary-mcac/">MCAC</a>  looks separately at business names, sources, contact details and ways to take action. An answer can name the right restaurant and still direct bookings to a third party.</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">Measure</th><th scope="col">How it is assessed</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Mention</strong></td><td data-label="Assessment">Look at the recommendation questions that returned answers. “Yes” means every answer contains a recognized name or alias, “Partial” means some do and “No” means none do. When an answer gives a list, the report records the position. Read the original to distinguish a recommendation from a passing mention.</td></tr>
+        <tr><td><strong>Citation</strong></td><td data-label="Assessment">Look across all four questions. “Yes” means at least half the valid answers cite the official site. “Partial” means at least one does but the share is below half. “No” means none do. Several official links in one answer still count as one answer. When the submitted URL is on a shared platform, such as a social media page, official-site citation is marked “Unknown.”</td></tr>
+        <tr><td><strong>Accuracy</strong></td><td data-label="Assessment">Compare the phone number and address in the fact-check answer with your page, separately. A match is “Correct,” and a different value is “Differs from your page.” If the page lists a value but the answer supplies no recognizable one, the result is “Not provided.” If the page lacks information for comparison, the result is “Cannot verify.” Opening hours are recorded only.</td></tr>
+        <tr><td><strong>Conversion readiness</strong></td><td data-label="Assessment">Look at the action answer. “Yes” means it gives a phone number, address, map, website, reservation link or another usable way to act. “No” means a valid answer has none. The report records official-site channels separately. To find out whether anyone actually booked, consult the restaurant’s booking records.</td></tr>
+      </tbody>
+    </table>
+    <p>For “Differs from your page,” ask the branch to confirm the number or address it uses, then review the website, business listings and booking platforms. For “Unknown,” first check whether the question received an answer. A check on a shared platform page yields “Unknown” for official-site citation even if every question was answered.</p>
+
+    <h3 id="mcac-score">How the overall score works</h3>
+    <p>GeoCheck summarizes a run on a scale of 0 to 100 when all four measures can be assessed. If any measure is “Unknown,” the report shows how many can be assessed. Each measure uses the <strong>valid answers</strong> for that measure. One recommendation question can go unanswered even when a score is available.</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">Measure and weight</th><th scope="col">Scoring rule</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Mention · 35 points</strong></td><td data-label="Scoring">Multiply the share of valid recommendation answers mentioning the business by 28. Then use its best position: add 7 points for positions 1–3, 4 for positions 4–10, or 2 for a mention without an identifiable position or below tenth place.</td></tr>
+        <tr><td><strong>Citation · 25 points</strong></td><td data-label="Scoring">Award 25 points if the official site appears in at least three quarters of valid answers, 22 if it appears in at least half but less than three quarters, 14 if it appears in fewer than half but at least once, and 0 if it never appears.</td></tr>
+        <tr><td><strong>Accuracy · 20 points</strong></td><td data-label="Scoring">Phone number and address are worth 10 points each. A match earns 10, “Not provided” earns 3, “Cannot verify” earns 2 and a mismatch earns 0. If only one field can be scored under these rules, double that field’s score.</td></tr>
+        <tr><td><strong>Conversion readiness · 20 points</strong></td><td data-label="Scoring">A usable way to act earns 12 points. Add 5 for an official website channel and 3 for at least two different types of channel. A valid answer with no way to act earns 0.</td></tr>
+      </tbody>
+    </table>
+    <p>Add the four measures and round to a whole number. Scores of 80–100 are labeled “Excellent visibility,” 60–79 “Basic visibility,” 35–59 “Visibility needs improvement” and 0–34 “Low visibility.” LS-Labs chose the weights of 35, 25, 20 and 20 for the first scoring rules. Their relationship to actual customer visits has not been validated.</p>
+
+    <h3 id="score-example">How one missing answer moves the same restaurant from 86 to 100</h3>
+    <p>This synthetic example uses fixed data recalculated offline. The first recommendation ranks the restaurant first. The second recommends another restaurant and links only to that other restaurant. Three of the four answers link to the site being tested. The fact-check answer gives the phone number and address on the official site. The action answer gives the official site and phone number. Now mark only the second recommendation as failed, keeping the remaining answers exactly as they were.</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">Second recommendation</th><th scope="col">valid answers</th><th scope="col">Mention points</th><th scope="col">Overall score</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Names another restaurant</strong></td><td data-label="valid answers">4 of 4</td><td data-label="Mention">1 of 2 mentions it: 21 points</td><td data-label="Overall score">21 + 25 + 20 + 20 = <strong>86</strong></td></tr>
+        <tr><td><strong>Execution failed</strong></td><td data-label="valid answers">3 of 4</td><td data-label="Mention">1 of 1 mentions it: 35 points</td><td data-label="Overall score">35 + 25 + 20 + 20 = <strong>100</strong></td></tr>
+      </tbody>
+    </table>
+    <p>Official-site citations go from 3 of 4 answers to 3 of 3. Both earn the full 25 citation points. The entire 14-point increase comes from the recommendation denominator dropping from two to one. Tell the owner, “We received one recommendation answer, and it ranked you first.” Saying that the restaurant’s visibility improved by 14 points would misrepresent what changed.</p>
+
+    <h2 id="sec-5">Who can act on the website checks?</h2>
+    <p>A separate part of the report covers page accessibility, crawler rules, the sitemap and structured data. If the website cannot be read, ask its maintainer to check the URL and access settings. If the phone number appears only in an image, ask the content editor to add it as text. These checks identify difficulties reading the site. The visibility score comes entirely from the four MCAC measures.</p>
+
+    <h2 id="sec-6">Comparing two reports</h2>
+    <p>If you submit your website after changing its phone number, check the date of the report. When the entry URL, custom questions and check version match, GeoCheck preferentially reuses a report completed within the previous seven days. Reopening a saved report also displays the original answers.</p>
+    <p>To compare two checks on the same location, use the same branch URL and custom recommendation questions. Compare dates and read each original answer to see which run mentioned the business, used another source or gave a different phone number. In research across businesses, LS-Labs also holds the search service, prompt set, brand aliases and official domains constant and retains failure records.</p>
+
+    <h2 id="sec-7">Recalculate from the same answers</h2>
+    <p>Marketing and operations teams can check each original answer and its sources in the report. To recalculate, engineers need the tested domain, brand aliases, phone numbers and addresses shown on the site at the time, and the actual destinations of the source links. The <a href="https://github.com/Wenqing950519/seo-geo-checker/tree/main/packages/geo-core/mcac">MCAC scoring core</a> includes the prompt templates, phone and address matching, and scoring code. <a href="https://github.com/Wenqing950519/seo-geo-checker/releases/tag/mcac-core-0.2.0-replay.1">Download the offline replay tool and examples</a> to reproduce the four results with the included fixed answers, without an API key. The method version is  <code>MCAC 0.2.0</code>, the four results use  <code>mcac-flags-v0</code> and the overall score uses  <code>exposure_funnel_v1</code>.</p>
+    <p>With the same data and rules you can reproduce the same score. Asking the AI again creates a new observation. Download the report to preserve the result as delivered. When an old report is reopened online, its overall score is recalculated using the current rules.</p>
+
+    </article>
+  </div>
+</main>
+<footer class="document-footer">
+  <div><a href="/en/">Back to GeoCheck <span aria-hidden="true">→</span></a><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
+</footer>
+<script>
+  const contents = document.querySelector('.contents details');
+  const desktop = matchMedia('(min-width: 900px)');
+  function setContentsLayout() { contents.open = desktop.matches; }
+  setContentsLayout();
+  desktop.addEventListener('change', setContentsLayout);
+  const links = [...contents.querySelectorAll('a')];
+  contents.addEventListener('click', event => {
+    if (!desktop.matches && event.target.closest('a')) contents.open = false;
+  });
+  const headings = links.map(link => document.getElementById(link.hash.slice(1)));
+  let scheduled = false;
+  function highlightChapter() {
+    const threshold = Math.min(window.innerHeight / 4, 150);
+    let activeIndex = -1;
+    for (let i = 0; i < headings.length && headings[i].getBoundingClientRect().top <= threshold; i++) activeIndex = i;
+    links.forEach((link, index) => {
+      if (index === activeIndex) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    scheduled = false;
+  }
+  function queueHighlight() {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(highlightChapter);
+    }
+  }
+  addEventListener('scroll', queueHighlight, { passive: true });
+  addEventListener('resize', queueHighlight);
+  highlightChapter();
+
+  const instructions = document.querySelector('.method-detail');
+  let instructionsWereOpen;
+  addEventListener('beforeprint', () => {
+    instructionsWereOpen = instructions.open;
+    instructions.open = true;
+  });
+  addEventListener('afterprint', () => { instructions.open = instructionsWereOpen; });
+</script>
+</body>
+</html>

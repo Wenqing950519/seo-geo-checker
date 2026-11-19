@@ -1355,6 +1355,22 @@ textarea:focus-visible,
   margin-top: 4px;
 }
 
+.sign-in-languages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 14px;
+  font-size: .82rem;
+}
+.sign-in-languages a {
+  color: var(--gc-navy);
+  padding-block: 6px;
+}
+.sign-in-languages a[aria-current] {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 .btn-gate-demo-link {
   background: none;
   border: none;

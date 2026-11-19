@@ -130,6 +130,13 @@ async function availablePort() {
 }
 
 async function testHttpRoutes() {
+  const { signInCopy, signInLanguageLink } = await import('../apps/web/app/shared/sign-in-copy.mjs');
+  assert.equal(signInCopy('?lang=en').button, 'Sign in with Google');
+  assert.equal(signInCopy('?lang=zh-CN').button, '使用 Google 账号登录');
+  assert.equal(signInCopy('?lang=unsupported').language, 'zh-Hant-TW');
+  assert.equal(signInLanguageLink('en', '#citations'), '?lang=en#citations');
+  assert.equal(signInLanguageLink('zh-CN', ''), '?lang=zh-CN');
+  assert.ok(!signInLanguageLink('en', '#"><').includes('"'));
   const port = await availablePort();
   const child = spawn(process.execPath, ["services/api/server.js"], {
     cwd: root,

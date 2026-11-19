@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CBTTKVLT82"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CBTTKVLT82');
+</script>
+<title>LS-Labs GeoCheck 方法白皮书｜怎么读一份 AI 搜索检测报告</title>
+<meta name="description" content="从一家店的电话与订座入口，读懂 LS-Labs GeoCheck 的 MCAC 四项结果、实际题目与分值。用同一组回答，看少一题如何改变总分。">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://geocheck.lslabs.tw/zh-cn/whitepaper">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://geocheck.lslabs.tw/whitepaper">
+<link rel="alternate" hreflang="zh-CN" href="https://geocheck.lslabs.tw/zh-cn/whitepaper">
+<link rel="alternate" hreflang="en" href="https://geocheck.lslabs.tw/en/whitepaper">
+<link rel="alternate" hreflang="x-default" href="https://geocheck.lslabs.tw/whitepaper">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="LS-Labs GeoCheck 方法白皮书｜怎么读一份 AI 搜索检测报告">
+<meta property="og:description" content="从一家店的电话与订座入口，读懂 LS-Labs GeoCheck 的 MCAC 四项结果、实际题目与分值。用同一组回答，看少一题如何改变总分。">
+<meta property="og:url" content="https://geocheck.lslabs.tw/zh-cn/whitepaper">
+<meta property="og:image" content="https://geocheck.lslabs.tw/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LS-Labs GeoCheck 方法白皮书｜怎么读一份 AI 搜索检测报告">
+<meta name="twitter:description" content="从一家店的电话与订座入口，读懂 LS-Labs GeoCheck 的 MCAC 四项结果、实际题目与分值。用同一组回答，看少一题如何改变总分。">
+<meta name="twitter:image" content="https://geocheck.lslabs.tw/og-image.png">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "LS-Labs GeoCheck 方法白皮书｜怎么读一份 AI 搜索检测报告",
+  "description": "从一家店的电话与订座入口，读懂 LS-Labs GeoCheck 的 MCAC 四项结果、实际题目与分值。用同一组回答，看少一题如何改变总分。",
+  "url": "https://geocheck.lslabs.tw/zh-cn/whitepaper",
+  "mainEntityOfPage": "https://geocheck.lslabs.tw/zh-cn/whitepaper",
+  "inLanguage": "zh-CN",
+  "image": "https://geocheck.lslabs.tw/og-image.png",
+  "author": {
+    "@type": "Organization",
+    "@id": "https://lslabs.tw/#organization",
+    "name": "LS-Labs",
+    "url": "https://lslabs.tw/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://lslabs.tw/#organization",
+    "name": "LS-Labs",
+    "url": "https://lslabs.tw",
+    "logo": "https://lslabs.tw/brand/logos/ls-labs/ls-labs-monogram.svg"
+  },
+  "dateModified": "2026-11-18"
+}</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=lslabs-20261023">
+<link rel="icon" type="image/png" href="/favicon.png?v=lslabs-20261023">
+<link rel="apple-touch-icon" href="/favicon.png?v=lslabs-20261023">
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/whitepaper.css">
+</head>
+<body id="top">
+<a class="skip-link" href="#main">跳到主要内容</a>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="/zh-cn/"><img src="/assets/logo-full.svg" alt="LS-Labs" width="136" height="36"><span>GeoCheck</span></a>
+    <a class="back-link" href="/zh-cn/"><span aria-hidden="true">←</span> 回到产品首页</a>
+  </div>
+</header>
+<nav class="document-languages" aria-label="语言"><a hreflang="zh-Hant-TW" href="/whitepaper" lang="zh-Hant-TW">繁體中文</a> <a hreflang="zh-CN" href="/zh-cn/whitepaper" lang="zh-CN" aria-current="page">简体中文</a> <a hreflang="en" href="/en/whitepaper" lang="en">English</a></nav>
+
+<main id="main">
+  <header class="cover">
+    <div class="cover-inner">
+      <div class="cover-intro">
+        <h1><span class="title-product">LS-Labs GeoCheck</span> 方法白皮书</h1>
+        <p class="doc-lead">假设客人问 AI 怎么订座，回答列出了你的店名，电话却和官网上的号码不同。门店可以先确认哪个电话号码还在用，再查有没有哪个页面仍留着旧号码。GeoCheck 把这次问了什么、AI 怎么回答，以及官网写了什么放进同一份报告，让你找得到这笔差异。</p>
+        <a class="example-link" href="#score-example">看 86 分与 100 分的示例 <span aria-hidden="true">↓</span></a>
+      </div>
+      <figure class="weights" aria-labelledby="weight-caption">
+        <figcaption id="weight-caption">MCAC 四项分值 <span>满分 100 分</span></figcaption>
+        <dl class="weight-chart">
+          <div class="weight-mention"><dt>提及</dt><dd>35<small> 分</small></dd></div>
+          <div class="weight-citation"><dt>引用来源</dt><dd>25<small> 分</small></dd></div>
+          <div class="weight-accuracy"><dt>信息正确性</dt><dd>20<small> 分</small></dd></div>
+          <div class="weight-action"><dt>行动信息</dt><dd>20<small> 分</small></dd></div>
+        </dl>
+        <a class="weight-link" href="#mcac-score">查看计分方式 <span aria-hidden="true">↘</span></a>
+      </figure>
+      <p class="byline"><span>LS-Labs 编写</span><span>MCAC 0.2.0</span><span>修订日期 <time datetime="2026-11-18">2026 年 11 月 18 日</time></span></p>
+    </div>
+  </header>
+
+  <div class="reading-layout">
+    <nav class="contents" aria-label="章节目录">
+      <details open>
+        <summary>章节目录</summary>
+        <ul class="toc-nav">
+      <li><a href="#sec-1">先核对哪些信息</a></li>
+      <li><a href="#sec-2">快检怎么问 AI</a></li>
+      <li><a href="#sec-3">网站、店名与门店</a></li>
+      <li><a href="#sec-4">四项评估规则</a></li>
+      <li><a href="#mcac-score">总分怎么算</a></li>
+      <li><a href="#score-example">86 分与 100 分的示例</a></li>
+      <li><a href="#sec-5">网站条件</a></li>
+      <li><a href="#sec-6">怎么比较两份报告</a></li>
+      <li><a href="#sec-7">拿同一份回答重算</a></li>
+    </ul>
+      </details>
+    </nav>
+    <article class="document-body" aria-label="方法正文">
+    <h2 id="sec-1">先核对哪些信息</h2>
+    <p id="sec-disclaimer">拿到报告，先核对受测网址、店名、检测日期，再看哪几题取得了回答。GeoCheck 每次向同一个 AI 搜索服务提问。想知道它怎么介绍你的店，可以打开推荐题原文；要确认电话或订座入口，直接看事实题与行动题。</p>
+    <p>2026 年 9 月，LS-Labs 测了六家台北牛肉面店。研究人员把六家店分成三组，每组问两次，第二次把店名顺序对调。六份回答都列出了排在第一家的电话与地址，排在第二家的信息都有缺漏。LS-Labs 因此把商家的基本信息留给单独一题查证。这组观测收在<a href="https://lslabs.tw/zh-cn/blog/AI搜尋時代的檢索機制報告/">《AI 搜索时代的检索机制报告》</a>。</p>
+
+    <h2 id="sec-2">快检怎么问 AI</h2>
+    <p>一次快检安排两道推荐题、一道事实题和一道行动题。另一个模型先读取你的网页，再根据地区和业务拟定推荐问题。你也可以填一两个客人会问的问题，系统优先使用。想看陌生顾客会不会找到你，自定义推荐题时请省略店名与网址。</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">题型</th><th scope="col">AI 收到什么要求</th><th scope="col">报告里可以看什么</th></tr></thead>
+      <tbody>
+        <tr><td><strong>推荐题 × 2</strong></td><td data-label="提问">例如“台北哪家牛肉面店适合带长辈去？”要求最多列十个选项，每项附理由和来源。</td><td data-label="看回答">哪一题出现店名、在清单第几个位置、来源连到哪里。</td></tr>
+        <tr><td><strong>事实题 × 1</strong></td><td data-label="提问">给地区与店名，请 AI 核实目前的地址和电话。</td><td data-label="看回答">AI 给的地址和电话，能否在受测页面找到。</td></tr>
+        <tr><td><strong>行动题 × 1</strong></td><td data-label="提问">给地区与店名，请 AI 提供至少一个前往或联系的方式，并附上来源。</td><td data-label="看回答">客人明确问了怎么去或怎么联系时，拿到的是电话、官网、地图，还是第三方订座链接。</td></tr>
+      </tbody>
+    </table>
+    <details class="method-detail">
+      <summary>展开三种题型的完整指令</summary>
+      <p>题组版本为 <code>mcac-probes-0.2.0</code>。每题都以这句开头：“你是台湾商家与品牌研究助理。只使用公开网页搜索所得数据，保留不确定性，不把搜索摘要当作无条件真实。”下列方括号代表会依网站或自定义题目替换的文字。</p>
+      <p><strong>推荐题</strong><br>［推荐问题］<br>请列出最多 10 个选项，简述理由，并为每个选项附可核对的网页来源。不要假设任何特定品牌必须出现在答案中。</p>
+      <p><strong>事实题</strong><br>请查证［地区］的“［品牌］”目前地址与电话。只输出两行：ADDRESS: &lt;地址或 UNKNOWN&gt;；PHONE: &lt;电话或 UNKNOWN&gt;。逐项使用可核对来源，不要猜测。</p>
+      <p><strong>行动题</strong><br>我想前往或联系［地区］的“［品牌］”。请提供至少一个可实际操作的下一步（官方网站、地图、电话、订座或购买）。每项写成 ACTION: &lt;类型&gt; | &lt;URL 或电话&gt; | &lt;由品牌自有或第三方平台提供&gt;，并附来源；无法确认请写 UNKNOWN。</p>
+    </details>
+
+    <h2 id="sec-3">哪个网站、哪一家门店</h2>
+    <p>GeoCheck 读取你输入的网址，从网页和出题时使用的信息辨认店名、别名与地区。有多家分店时，请对照报告采用的名称与网址。若 AI 写的是另一间分店，先核对分店身份，再决定哪个页面需要修改。</p>
+    <p>系统从网页文字及网页内的结构化数据读取联系方式，也会寻找门店或联系页，最多额外读取两个这类页面。地址从路名比到门牌号，“臺”和“台”、“四段／4段”等写法会先统一；电话比对时，“+886”会换成台湾本地拨号的“0”。网页有多组号码时，比对会纳入辨认到的号码，排除标示为传真的号码。</p>
+    <p>网站一直读不到，检测就停在读取阶段，四项都显示“未知”。个别问题遇到暂时性的连接错误会再试一次。确定没有取得回答的题目，从该项分母扣除。</p>
+
+    <h2 id="sec-4">四项分开评估</h2>
+    <p><a href="https://lslabs.tw/zh-cn/blog/glossary-mcac/">MCAC</a> 分别看店名、来源、联系方式和行动入口。同一题回答里，店名可能写对，订座却指向第三方平台。</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">读哪一项</th><th scope="col">怎么评估</th></tr></thead>
+      <tbody>
+        <tr><td><strong>提及</strong><br>Mention</td><td data-label="评估">看有效推荐题。每题都出现辨认到的店名或别名为“有”，部分题目出现为“部分”，全部没出现为“无”。有列清单时记下名次。点开原文，可以分辨 AI 是推荐这家店，还是只顺带一提。</td></tr>
+        <tr><td><strong>引用来源</strong><br>Citation</td><td data-label="评估">四题都看。在至少一半的有效回答里找到官网来源为“有”，低于一半但至少有一题为“部分”，都没找到为“无”。同一题列出多个官网链接仍算一题。受测网址若是社交媒体主页等共享平台上的页面，官网引用标为“未知”。</td></tr>
+        <tr><td><strong>信息正确性</strong><br>Accuracy</td><td data-label="评估">看事实题，把电话与地址各自对回你的页面。相符为“正确”，值不同为“和你的页面不一致”。页面有写、回答没有给出可识别的值，标“未提供”；页面缺少可供比对的数据，标“无法核对”。营业时间只记录。</td></tr>
+        <tr><td><strong>行动信息</strong><br>Conversion-readiness</td><td data-label="评估">看行动题。有电话、地址、地图、网站、订座等任一入口为“有”，有效回答里找不到入口为“无”。是否连回官网另列。要知道客人有没有真的完成订座，得查商家的订座纪录。</td></tr>
+      </tbody>
+    </table>
+    <p>遇到“和你的页面不一致”，先请门店确认正在用的电话或地址，再回头检查官网、商家资料和订座平台。若看见“未知”，先核对该题有没有取得回答。使用社交媒体主页等共享平台上的页面检测，即使题目答齐，官网引用仍会列为“未知”。</p>
+
+    <h3 id="mcac-score">总分怎么算</h3>
+    <p>GeoCheck 用 0 到 100 分概括当次回答，四项都能评估时才给分。任一项为“未知”，报告会显示有几项可评估。计分依据是每项的<strong>有效回答</strong>；即使总分出现，其中一道推荐题仍可能缺答。</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">项目与分值</th><th scope="col">计分方式</th></tr></thead>
+      <tbody>
+        <tr><td><strong>提及 · 35 分</strong></td><td data-label="计分">有效推荐题中提到店名的比例乘以 28。再取最佳名次，前 3 名加 7 分，第 4 至 10 名加 4 分；提到店名但没有可识别的名次，或落在第 10 名之后，加 2 分。</td></tr>
+        <tr><td><strong>引用来源 · 25 分</strong></td><td data-label="计分">官网出现在至少四分之三的有效回答中，得 25 分。未达四分之三但至少一半，得 22 分；低于一半但有出现，得 14 分；都没出现，得 0 分。</td></tr>
+        <tr><td><strong>信息正确性 · 20 分</strong></td><td data-label="计分">电话和地址各占 10 分。相符得 10 分，未提供得 3 分，无法核对得 2 分，不一致得 0 分。若只有一栏能套用上述分值，以该栏分数加倍计。</td></tr>
+        <tr><td><strong>行动信息 · 20 分</strong></td><td data-label="计分">有可用的入口得 12 分，有官网入口加 5 分，有至少两种入口加 3 分。有效回答中没有入口，得 0 分。</td></tr>
+      </tbody>
+    </table>
+    <p>四项得分相加后取整。80–100 分显示“可见度优异”，60–79 分为“具备基础可见度”，35–59 分为“可见度有待提升”，0–34 分为“可见度偏低”。35／25／20／20 是 LS-Labs 在第一版计分规则中设置的权重，与实际到店客流量的关系尚未验证。</p>
+
+    <h3 id="score-example">同一间店，少一份回答，86 分变成 100 分</h3>
+    <p>这是用固定数据在本机重算的合成示例。第一道推荐题将商家列在首位，第二道介绍了别家店。四份回答中有三份列出受测商家的官网，第二道推荐题只列出另一家店的网址。事实题的电话与地址和官网相符，行动题给了官网和电话。现在只把第二道推荐题改成“执行失败”，其他回答原封不动。</p>
+    <table class="sharp-table rules-table">
+      <thead><tr><th scope="col">第二道推荐题</th><th scope="col">有效回答</th><th scope="col">提及得分</th><th scope="col">总分</th></tr></thead>
+      <tbody>
+        <tr><td><strong>回答提到别家店</strong></td><td data-label="有效回答">4／4 题</td><td data-label="提及">1／2 题提到，得 21 分</td><td data-label="总分">21 + 25 + 20 + 20 = <strong>86</strong></td></tr>
+        <tr><td><strong>执行失败</strong></td><td data-label="有效回答">3／4 题</td><td data-label="提及">1／1 题提到，得 35 分</td><td data-label="总分">35 + 25 + 20 + 20 = <strong>100</strong></td></tr>
+      </tbody>
+    </table>
+    <p>官网引用由 3／4 题变成 3／3 题，两种情况都得到该项的 25 分。多出的 14 分全部来自推荐题的分母从 2 变成 1。拿这份结果向店主说明，写“这次只收到一份推荐回答，店名列在第一位”比写“商家的可见度进步了 14 分”更准确。</p>
+
+    <h2 id="sec-5">网站问题该交给谁处理</h2>
+    <p>报告另列网页是否打得开、爬虫规则、网站地图和结构化数据等网站条件。网站读不到，可请维护人员检查网址与访问设置；电话只放在图片里，可请内容编辑补上文字。这些检查能找出网站哪里难以读取，总分则完全取自前面的四项评估。</p>
+
+    <h2 id="sec-6">怎么比较两份报告</h2>
+    <p>改过官网电话后再送检，先对照报告日期。相同的网站入口、自定义题目与检测版本，在上次报告完成后七天内会优先沿用该份报告。重新打开旧报告，看到的也是原来的回答。</p>
+    <p>比较同一家店的两份快检时，使用相同的门店网址与自定义推荐题，对照检测日期和每题原文，就能找出哪一次列了店名、换了来源或给了不同的电话。LS-Labs 做跨店研究时，会另外固定搜索服务、题组、品牌别名和官方域名，一并保存失败纪录。</p>
+
+    <h2 id="sec-7">拿同一份回答重算</h2>
+    <p>营销或运营人员可以用报告的原始回答和来源逐题核对。技术人员若要重算，要用当次的受测域名、品牌别名、网站当时列出的地址电话，以及来源链接的实际目的地。<a href="https://github.com/Wenqing950519/seo-geo-checker/tree/main/packages/geo-core/mcac">MCAC 评分核心</a>包含题型模板、电话地址比对和计分程序。<a href="https://github.com/Wenqing950519/seo-geo-checker/releases/tag/mcac-core-0.2.0-replay.1">下载离线重新计算工具与示例</a>后，可用随附的固定回答验算四项结果，全程不需 API 密钥。本版的方法是 <code>MCAC 0.2.0</code>，四项评估规则是 <code>mcac-flags-v0</code>，总分采用 <code>exposure_funnel_v1</code>。</p>
+    <p>固定同一份数据和规则，可以验算同一份分数。重新向 AI 提问，取得的是另一笔观测。若要保存交付当天的结果，可下载当次报告；在线打开旧报告时，系统会依目前的规则重算总分。</p>
+
+    </article>
+  </div>
+</main>
+<footer class="document-footer">
+  <div><a href="/zh-cn/">回到产品首页 <span aria-hidden="true">→</span></a><a href="#top">返回页首 <span aria-hidden="true">↑</span></a></div>
+</footer>
+<script>
+  const contents = document.querySelector('.contents details');
+  const desktop = matchMedia('(min-width: 900px)');
+  function setContentsLayout() { contents.open = desktop.matches; }
+  setContentsLayout();
+  desktop.addEventListener('change', setContentsLayout);
+  const links = [...contents.querySelectorAll('a')];
+  contents.addEventListener('click', event => {
+    if (!desktop.matches && event.target.closest('a')) contents.open = false;
+  });
+  const headings = links.map(link => document.getElementById(link.hash.slice(1)));
+  let scheduled = false;
+  function highlightChapter() {
+    const threshold = Math.min(window.innerHeight / 4, 150);
+    let activeIndex = -1;
+    for (let i = 0; i < headings.length && headings[i].getBoundingClientRect().top <= threshold; i++) activeIndex = i;
+    links.forEach((link, index) => {
+      if (index === activeIndex) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    scheduled = false;
+  }
+  function queueHighlight() {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(highlightChapter);
+    }
+  }
+  addEventListener('scroll', queueHighlight, { passive: true });
+  addEventListener('resize', queueHighlight);
+  highlightChapter();
+
+  const instructions = document.querySelector('.method-detail');
+  let instructionsWereOpen;
+  addEventListener('beforeprint', () => {
+    instructionsWereOpen = instructions.open;
+    instructions.open = true;
+  });
+  addEventListener('afterprint', () => { instructions.open = instructionsWereOpen; });
+</script>
+</body>
+</html>

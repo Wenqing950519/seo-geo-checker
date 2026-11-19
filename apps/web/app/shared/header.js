@@ -6,7 +6,7 @@ import { formatRelativeTime, formatCountdownDays, formatDate } from './formatter
 import { AppState } from './state.js';
 import { api } from './api.js';
 
-export function renderHeader() {
+export function renderHeader(copy) {
   const isAuthed = api.hasSession();
 
   // Unauthenticated: brand only. The sign-in action lives on the gate card,
@@ -16,7 +16,7 @@ export function renderHeader() {
     return `
       <header class="dashboard-topbar unauthenticated-topbar">
         <div class="topbar-brand-wrap">
-          <a href="https://lslabs.tw/" class="brand-link" title="返回 LS-Labs 首頁">
+          <a href="${copy.homeUrl}" class="brand-link" title="${copy.home}" aria-label="${copy.home}">
             <div class="brand-logo-icon">${ICONS.logo}</div>
             <div class="brand-text">
               <div class="brand-name">GeoCheck Track<span style="color:var(--gc-accent)">.</span></div>

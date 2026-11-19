@@ -91,6 +91,22 @@ for (const removed of [
 }
 
 const sitemap = fs.readFileSync(output("sitemap.xml"), "utf8");
+for (const [prefix, language] of [["", "zh-Hant-TW"], ["en/", "en"], ["zh-cn/", "zh-CN"]]) {
+  for (const page of ["whitepaper", "privacy", "terms"]) {
+    const route = "/" + prefix + page;
+    const edition = fs.readFileSync(output(prefix, page + ".html"), "utf8");
+    assert.ok(edition.includes(`<html lang="${language}">`), route);
+    assert.ok(edition.includes(`rel="canonical" href="https://geocheck.lslabs.tw${route}"`), route);
+    for (const [other, locale] of [["", "zh-Hant-TW"], ["en/", "en"], ["zh-cn/", "zh-CN"]]) {
+      assert.ok(edition.includes(`hreflang="${locale}" href="https://geocheck.lslabs.tw/${other}${page}"`), route);
+      assert.ok(edition.includes(`hreflang="${locale}" href="/${other}${page}"`), route);
+    }
+    const indexed = page === "whitepaper";
+    assert.equal(sitemap.includes(`<loc>https://geocheck.lslabs.tw${route}</loc>`), indexed, route);
+    assert.equal(edition.includes('content="noindex,follow"'), !indexed, route);
+  }
+  assert.ok(sitemap.includes(`<loc>https://geocheck.lslabs.tw/${prefix}</loc>`));
+}
 for (const route of ["privacy", "terms"]) {
   assert.ok(!sitemap.includes(`https://geocheck.lslabs.tw/${route}`), `${route} must stay out of the sitemap`);
   const html = fs.readFileSync(output(`${route}.html`), "utf8");
